@@ -175,6 +175,8 @@ def analyze_docker_compose(workdir, dc):
             if not data or 'services' not in data or not data['services']:
                 return analysis
             for name, service in data['services'].items():
+                if not service:
+                    continue
                 s = {}
                 s['name'] = name
                 if 'image' in service and service['image']:
