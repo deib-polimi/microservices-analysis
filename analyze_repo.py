@@ -199,8 +199,8 @@ def analyze_docker_compose(workdir, dc):
 
 def compute_size(workdir):
     root_directory = Path(workdir)
-    for f in root_directory.glob('**/*'):
-        return sum(f.stat().st_size for f in root_directory.glob('**/*') if f.is_file() and '.git' not in f.parts)//1000
+    return sum(f.stat().st_size for f in root_directory.glob('**/*') if f.is_file() and '.git' not in f.parts)//1000
+    
 
 def synthetize_data(analysis):
     keys = DATA.keys()
