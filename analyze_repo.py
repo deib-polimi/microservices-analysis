@@ -107,7 +107,7 @@ def analyze_languages(workdir):
 
 def analyze_dockerfile(workdir, df):
     print('-analyzing dockerfile', df)
-    analysis = {'path': df, 'cmd': '', 'cmd_keywords': []}
+    analysis = {'path': df, 'cmd': '', 'cmd_keywords': [], 'from' : ''}
     try:
         commands = dockerfile.parse_file(workdir+df)
         runs = ''
