@@ -176,6 +176,7 @@ def analyze_docker_compose(workdir, dc):
                     s['image'] = s['image_full'] =  ''
                 
                 if isinstance(s['image'], dict):
+                    print(s['image'])
                      s['image'] = s['image_full'] =  s['image'].keys()[0]
 
                 for k,v in DATA.items():
