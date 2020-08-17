@@ -80,6 +80,8 @@ def locate_files(workdir, filename):
     print('-locating ', filename)
     res = []
     for df in Path(workdir).rglob(filename):
+        if not df.is_file():
+            continue
         df = str(df)
         res.append(df.split(workdir)[-1])
     return res
