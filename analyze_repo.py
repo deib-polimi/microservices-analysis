@@ -68,7 +68,7 @@ def clone(repo_url, full_repo_name):
         p1 = subprocess.run(['curl', endpoint], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,)
         size = json.loads(p1.stdout.decode("utf-8"))['size']
         print('repo size', '%dM' % (size/1000,))
-        if size < 100000:
+        if size < 50000:
             git.Git(workdir).clone(repo_url)
         else:
             print('repo too big')
@@ -259,13 +259,14 @@ def analyze_repo(url):
         analysis['dockers'] = dockers_analysis
         dc = locate_files(workdir, 'docker-compose.yml')
         analysis['structure'] = {'path': dc, 'num_services': 0, 'services': [], 'detected_dbs': { 'num' : 0, 'names': [], 'services': [], 'shared_dbs' : False} }
-
         if len(dc):
             dc = dc[0]
             analysis['structure'] = analyze_docker_compose(workdir, dc)
+
         fs = locate_files(workdir, 'requirements.txt')
         fs += locate_files(workdir, '*.gradle')
         fs += locate_files(workdir, 'pom.xml')
+        fs += locate_files(workdir, 'package.json')
         file_analysis = []
         for f in fs:
             file_analysis.append(analyze_file(workdir, f))
@@ -273,7 +274,7 @@ def analyze_repo(url):
         synthetize_data(analysis)
         with open(outfile, 'w', encoding='utf-8') as f:
             json.dump(analysis, f, ensure_ascii=False, indent=4)
-        #shutil.rmtree(path.dirname(workdir))
+        shutil.rmtree(path.dirname(workdir))
     else:
         print('skipped')
     
