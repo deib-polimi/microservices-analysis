@@ -126,6 +126,7 @@ def analyze_dockerfile(workdir, df):
         if 'from' in analysis:
             for k,v in DATA.items():
                 analysis[k] = match_one(analysis['from'], v) \
+                                or match_ones(get_words(analysis['from']), v) \
                                 or match_ones(get_words(analysis['cmd']), v) \
                                 or match_ones(get_words(runs), v)
     except dockerfile.GoParseError as e:
@@ -169,14 +170,17 @@ def analyze_docker_compose(workdir, dc):
                 if 'image' in service:
                     s['image'] =  service['image'].split(':')[0]
                     s['image_full'] =  service['image']
-                else:
+                elif 'build' in service:
                     s['image'] = service['build']
                     s['image_full'] =  service['build']
+                else:
+                    s['image'] = ''
+                    s['image_full'] =  ''
                 
                 for k,v in DATA.items():
                     if k == 'langs':
                         continue
-                    s[k] = match_one(s['image'], v)
+                    s[k] = match_ones(get_words(s['image']), v)
 
                 if s['dbs']:
                     detected_dbs.append({'service' : name, 'name': s['dbs'][0]})
