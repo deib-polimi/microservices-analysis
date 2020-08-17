@@ -67,7 +67,7 @@ def clone(repo_url, full_repo_name):
         endpoint = 'https://api.github.com/repos/%s' % (full_repo_name,)
         p1 = subprocess.run(['curl', endpoint], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,)
         data = json.loads(p1.stdout.decode("utf-8"))
-        if 'size' is not in data:
+        if 'size' not in data:
             print('unknown repo size')
             return None
         print('repo size', '%dM' % (size/1000,))
