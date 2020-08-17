@@ -59,7 +59,7 @@ def match_ones(names, l):
 
   
 def clone(repo_url, full_repo_name):
-    username, repo_name = full_repo_name.split('/')
+    username, repo_name = full_repo_name.split('/')[-2:]
     workdir = path.join("temp", username)
     Path(workdir).mkdir(parents=True, exist_ok=True)
     full_workdir = path.join(workdir, repo_name)
@@ -324,10 +324,11 @@ def analyze_all():
             while True:
                 try:
                     line = next(reader)
+                    print(line)
                     analyze_repo(line[0])
                 except UnicodeDecodeError as e:
                     print(e)
                 except StopIteration:
                     break
-                
+
 analyze_all()
