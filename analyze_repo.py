@@ -321,8 +321,13 @@ def analyze_all():
     for source in repos:
         with open(str(source), newline='') as f:
             reader = csv.reader(f, delimiter=',')
-            for line in reader:
-                analyze_repo(line[0])
-
-
+            while True:
+                try:
+                    line = next(reader)
+                    analyze_repo(line[0])
+                except UnicodeDecodeError as e:
+                    print(e)
+                except StopIteration:
+                    break
+                
 analyze_all()
