@@ -149,47 +149,50 @@ def check_shared_db(analysis):
 
 def analyze_docker_compose(workdir, dc):
     print('-analyzing docker-compose')
+    analysis = {'path': dc, 'num_services': 0, 'services': [], 'detected_dbs': { 'num' : 0, 'names': [], 'services': [], 'shared_dbs' : False} }
     with open(workdir+dc) as f:
-        data = yaml.load(f, Loader=yaml.FullLoader)
-        analysis = {'path': dc, 'num_services': 0, 'services': [], 'detected_dbs': { 'num' : 0, 'names': [], 'services': [], 'shared_dbs' : False} }
-        services = []
-        detected_dbs = []
-        if 'services' not in data:
-            return analysis
-        for name, service in data['services'].items():
-            s = {}
-            s['name'] = name
-            if 'image' in service:
-                s['image'] =  service['image'].split(':')[0]
-                s['image_full'] =  service['image']
-            else:
-                s['image'] = service['build']
-                s['image_full'] =  service['build']
-            
-            for k,v in DATA.items():
-                if k == 'langs':
-                    continue
-                s[k] = match_one(s['image'], v)
-
-            if s['dbs']:
-                detected_dbs.append({'service' : name, 'name': s['dbs'][0]})
-
-            if 'depends_on' in service:
-                if isinstance(service['depends_on'], dict):
-                    s['depends_on'] = list(service['depends_on'].keys())
+        try:
+            data = yaml.load(f, Loader=yaml.FullLoader)
+            services = []
+            detected_dbs = []
+            if 'services' not in data:
+                return analysis
+            for name, service in data['services'].items():
+                s = {}
+                s['name'] = name
+                if 'image' in service:
+                    s['image'] =  service['image'].split(':')[0]
+                    s['image_full'] =  service['image']
                 else:
-                    s['depends_on'] = service['depends_on']
-            elif 'links' in service:
-                s['depends_on'] = list(service['links'])
-            else:
-                s['depends_on'] = []
-            services.append(s)
-        analysis['services'] = services
-        analysis['num_services'] = len(services)
-        analysis['detected_dbs'] = {'num': len(detected_dbs), \
-                                     'names' : list({db['name'] for db in detected_dbs}), \
-                                     'services' : [db['service'] for db in detected_dbs]}
-        analysis['detected_dbs']['shared_dbs'] = check_shared_db(analysis)
+                    s['image'] = service['build']
+                    s['image_full'] =  service['build']
+                
+                for k,v in DATA.items():
+                    if k == 'langs':
+                        continue
+                    s[k] = match_one(s['image'], v)
+
+                if s['dbs']:
+                    detected_dbs.append({'service' : name, 'name': s['dbs'][0]})
+
+                if 'depends_on' in service:
+                    if isinstance(service['depends_on'], dict):
+                        s['depends_on'] = list(service['depends_on'].keys())
+                    else:
+                        s['depends_on'] = service['depends_on']
+                elif 'links' in service:
+                    s['depends_on'] = list(service['links'])
+                else:
+                    s['depends_on'] = []
+                services.append(s)
+            analysis['services'] = services
+            analysis['num_services'] = len(services)
+            analysis['detected_dbs'] = {'num': len(detected_dbs), \
+                                        'names' : list({db['name'] for db in detected_dbs}), \
+                                        'services' : [db['service'] for db in detected_dbs]}
+            analysis['detected_dbs']['shared_dbs'] = check_shared_db(analysis)
+        except Exception as e:
+            print(e)
 
     return analysis
 
