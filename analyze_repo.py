@@ -174,10 +174,8 @@ def analyze_docker_compose(workdir, dc):
                     s['image'] = s['image_full'] = service['build']
                 else:
                     s['image'] = s['image_full'] =  ''
-                
                 if isinstance(s['image'], dict):
-                    print(s['image'])
-                    s['image'] = s['image_full'] =  next(s['image'].values())
+                    s['image'] = s['image_full'] =  list(s['image'].values())[0]
 
                 for k,v in DATA.items():
                     if k == 'langs':
