@@ -67,7 +67,6 @@ def clone(repo_url, full_repo_name):
         endpoint = 'https://api.github.com/repos/%s' % (full_repo_name,)
         p1 = subprocess.run(['curl', endpoint], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,)
         data = json.loads(p1.stdout.decode("utf-8"))
-        print('repo size', '%dM' % (size/1000,))
         if 'size' not in data or data['size'] < 512000:
             git.Git(workdir).clone(repo_url)
         else:
