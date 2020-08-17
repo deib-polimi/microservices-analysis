@@ -131,13 +131,15 @@ def analyze_dockerfile(workdir, df):
 def analyze_file(workdir, f):
     print('-analyzing file', f)
     analysis = {'path': f}
-    with open(workdir+f) as fl:
-        data = ' '.join(fl.read().splitlines())
-        for k,v in DATA.items():
-            if k == 'langs':
-                continue
-            analysis[k] = match_alls(get_words(data), v)
-
+    try:
+        with open(workdir+f) as fl:
+            data = ' '.join(fl.read().splitlines())
+            for k,v in DATA.items():
+                if k == 'langs':
+                    continue
+                analysis[k] = match_alls(get_words(data), v)
+    except UnicodeDecodeError as e: 
+            print(e)
     return analysis
 
 def check_shared_db(analysis):
@@ -191,7 +193,7 @@ def analyze_docker_compose(workdir, dc):
                                         'names' : list({db['name'] for db in detected_dbs}), \
                                         'services' : [db['service'] for db in detected_dbs]}
             analysis['detected_dbs']['shared_dbs'] = check_shared_db(analysis)
-        except Exception as e:
+        except UnicodeDecodeError as e:
             print(e)
 
     return analysis
