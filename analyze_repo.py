@@ -68,7 +68,7 @@ def clone(repo_url, full_repo_name):
         p1 = subprocess.run(['curl', endpoint], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,)
         size = json.loads(p1.stdout.decode("utf-8"))['size']
         print('repo size', '%dM' % (size/1000,))
-        if size < 512000:
+        if size < 50000:
             git.Git(workdir).clone(repo_url)
         else:
             print('repo too big')
@@ -237,7 +237,7 @@ def synthetize_data(analysis):
         analysis[k] = list(analysis[k])
     analysis['num_dockers'] = len(analysis['dockers'])
     analysis['num_files'] = analysis['num_dockers'] + len(analysis['files']) + 1
-    analysis['avg_size_service'] = analysis['size'] / analysis['num_dockers']
+    analysis['avg_size_service'] = analysis['size'] / max(analysis['num_dockers'], 1)
 
 
 def analyze_repo(url):
@@ -283,7 +283,7 @@ def analyze_repo(url):
 def analyze_all():
     repos = Path('repos').glob('*.csv')
     for source in repos:
-        with open(source, newline='') as f:
+        with open(str(source), newline='') as f:
             reader = csv.reader(f, delimiter=',')
             for line in reader:
                 analyze_repo(line[0])
