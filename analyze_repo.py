@@ -5,6 +5,7 @@ import os
 import dockerfile
 from collections import Counter
 import nltk
+nltk.download('punkt')
 import sys
 import string
 import subprocess
