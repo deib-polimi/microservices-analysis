@@ -86,11 +86,14 @@ def clone(repo_url, full_repo_name):
 def locate_files(workdir, filename):
     print('-locating ', filename)
     res = []
-    for df in Path(workdir).rglob(filename):
-        if not df.is_file():
-            continue
-        df = str(df)
-        res.append(df.split(workdir)[-1])
+    try:
+        for df in Path(workdir).rglob(filename):
+            if not df.is_file():
+                continue
+            df = str(df)
+            res.append(df.split(workdir)[-1])
+    except OSError:
+        pass
     return res
 
 def get_words(data, unique=False):
