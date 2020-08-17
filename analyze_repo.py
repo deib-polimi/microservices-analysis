@@ -59,7 +59,10 @@ def match_ones(names, l):
 
   
 def clone(repo_url, full_repo_name):
-    username, repo_name = full_repo_name.split('/')[-2:]
+    parts = full_repo_name.split('/')
+    if len(parts) != 2:
+        return None
+    username, repo_name = full_repo_name.split('/')
     workdir = path.join("temp", username)
     Path(workdir).mkdir(parents=True, exist_ok=True)
     full_workdir = path.join(workdir, repo_name)
