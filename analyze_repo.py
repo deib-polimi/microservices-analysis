@@ -283,11 +283,24 @@ def analyze_repo(url):
         analysis['files'] =  file_analysis
         synthetize_data(analysis)
         with open(outfile, 'w', encoding='utf-8') as f:
+            analysis = remove_invalid_char(analysis)
             json.dump(analysis, f, ensure_ascii=False, indent=4)
         shutil.rmtree(path.dirname(workdir))
     else:
         print('skipped')
-    
+
+def remove_invalid_char(d):
+    if isinstance(d, str):
+        return d.encode('utf-16', 'surrogatepass').decode('utf-16')
+    if isinstance(d, dict):
+        for k, v in d.items():
+            d[k] = remove_invalid_char(v)
+    elif isinstance(d, list) or isinstance(d, set) or isinstance(d, tuple):
+        for i, v in enumerate(list(d)):
+            d[i] = remove_invalid_char(v)
+    return d
+ 
+                
 
 def analyze_all():
     repos = Path('repos').glob('*.csv')
