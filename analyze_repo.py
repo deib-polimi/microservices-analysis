@@ -114,7 +114,7 @@ def analyze_dockerfile(workdir, df):
         commands = dockerfile.parse_file(workdir+df)
         runs = ''
         for command in commands:
-            if command.cmd == 'from':
+            if command.cmd == 'from' and command.value:
                 analysis['from'] = command.value[0].split(':')[0]
                 analysis['from_full'] = command.value[0]
             if command.cmd == 'run':
