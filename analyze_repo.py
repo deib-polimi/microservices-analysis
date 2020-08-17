@@ -107,24 +107,27 @@ def analyze_languages(workdir):
 
 def analyze_dockerfile(workdir, df):
     print('-analyzing dockerfile', df)
-    commands = dockerfile.parse_file(workdir+df)
-    runs = ''
     analysis = {'path': df, 'cmd': '', 'cmd_keywords': []}
-    for command in commands:
-        if command.cmd == 'from':
-            analysis['from'] = command.value[0].split(':')[0]
-            analysis['from_full'] = command.value[0]
-        if command.cmd == 'run':
-            runs += '%s ' % (' '.join(command.value),)
-        if command.cmd == 'cmd':
-            analysis['cmd'] = ' '.join(command.value)
-            analysis['cmd_keywords'] = keywords(analysis['cmd'])
-        analysis['keywords'] = keywords(runs)
-    if 'from' in analysis:
-        for k,v in DATA.items():
-            analysis[k] = match_one(analysis['from'], v) \
-                            or match_ones(get_words(analysis['cmd']), v) \
-                            or match_ones(get_words(runs), v)
+    try:
+        commands = dockerfile.parse_file(workdir+df)
+        runs = ''
+        for command in commands:
+            if command.cmd == 'from':
+                analysis['from'] = command.value[0].split(':')[0]
+                analysis['from_full'] = command.value[0]
+            if command.cmd == 'run':
+                runs += '%s ' % (' '.join(command.value),)
+            if command.cmd == 'cmd':
+                analysis['cmd'] = ' '.join(command.value)
+                analysis['cmd_keywords'] = keywords(analysis['cmd'])
+            analysis['keywords'] = keywords(runs)
+        if 'from' in analysis:
+            for k,v in DATA.items():
+                analysis[k] = match_one(analysis['from'], v) \
+                                or match_ones(get_words(analysis['cmd']), v) \
+                                or match_ones(get_words(runs), v)
+    except dockerfile.GoParseError as e:
+        print(e)
     return analysis
 
 def analyze_file(workdir, f):
