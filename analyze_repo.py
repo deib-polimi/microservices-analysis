@@ -14,6 +14,7 @@ import shutil
 import yaml
 import Levenshtein
 import csv
+from filelock import Timeout, FileLock
 
 with open('db.csv') as db_file:
     dbs = [db.lower() for db in db_file.read().splitlines()]
@@ -255,53 +256,51 @@ def synthetize_data(analysis):
 
 def analyze_repo(url):
     lockfile = "temp/%s.lock" % (''.join(get_words(url)),)
-    if not path.exists(lockfile):
-        open(lockfile, 'w').close()
-    else: 
-        print('in progress')
-        return
+    lock = FileLock(lockfile, timeout=0.01)
     try:
-        workdir = None
-        analysis = {'url' : url}
-        analysis['name'] = url.split('.git')[0].split('git://github.com/')[-1]
-        print('analyzing', analysis['name'])
-        outfile = path.join('results', analysis['name'].replace('/', '#'))
-        outfile = "%s.json" % (outfile,)
-        if not path.exists(outfile):
-            workdir = clone(url, analysis['name'])
-            if not workdir:
-                return 
-            analysis['size']=compute_size(workdir)
-            analysis['languages'] = analyze_languages(workdir)
-            dfs = locate_files(workdir, 'Dockerfile')
-            dockers_analysis = []
-            for df in dfs:
-                dockers_analysis.append(analyze_dockerfile(workdir, df))
-            analysis['dockers'] = dockers_analysis
-            dc = locate_files(workdir, 'docker-compose.yml')
-            analysis['structure'] = {'path': dc, 'num_services': 0, 'services': [], 'detected_dbs': { 'num' : 0, 'names': [], 'services': [], 'shared_dbs' : False} }
-            if len(dc):
-                dc = dc[0]
-                analysis['structure'] = analyze_docker_compose(workdir, dc)
+        with lock:
+            workdir = None
+            analysis = {'url' : url}
+            analysis['name'] = url.split('.git')[0].split('git://github.com/')[-1]
+            print('analyzing', analysis['name'])
+            outfile = path.join('results', analysis['name'].replace('/', '#'))
+            outfile = "%s.json" % (outfile,)
+            if not path.exists(outfile):
+                workdir = clone(url, analysis['name'])
+                if not workdir:
+                    return 
+                analysis['size']=compute_size(workdir)
+                analysis['languages'] = analyze_languages(workdir)
+                dfs = locate_files(workdir, 'Dockerfile')
+                dockers_analysis = []
+                for df in dfs:
+                    dockers_analysis.append(analyze_dockerfile(workdir, df))
+                analysis['dockers'] = dockers_analysis
+                dc = locate_files(workdir, 'docker-compose.yml')
+                analysis['structure'] = {'path': dc, 'num_services': 0, 'services': [], 'detected_dbs': { 'num' : 0, 'names': [], 'services': [], 'shared_dbs' : False} }
+                if len(dc):
+                    dc = dc[0]
+                    analysis['structure'] = analyze_docker_compose(workdir, dc)
 
-            fs = locate_files(workdir, 'requirements.txt')
-            fs += locate_files(workdir, '*.gradle')
-            fs += locate_files(workdir, 'pom.xml')
-            fs += locate_files(workdir, 'package.json')
-            
-            file_analysis = []
-            for f in fs:
-                file_analysis.append(analyze_file(workdir, f))
-            analysis['files'] =  file_analysis
-            synthetize_data(analysis)
-            with open(outfile, 'w', encoding='utf-8') as f:
-                analysis = remove_invalid_char(analysis)
-                json.dump(analysis, f, ensure_ascii=False, indent=4)
-            shutil.rmtree(path.dirname(workdir))
-        else:
-            print('skipped')
+                fs = locate_files(workdir, 'requirements.txt')
+                fs += locate_files(workdir, '*.gradle')
+                fs += locate_files(workdir, 'pom.xml')
+                fs += locate_files(workdir, 'package.json')
+                
+                file_analysis = []
+                for f in fs:
+                    file_analysis.append(analyze_file(workdir, f))
+                analysis['files'] =  file_analysis
+                synthetize_data(analysis)
+                with open(outfile, 'w', encoding='utf-8') as f:
+                    analysis = remove_invalid_char(analysis)
+                    json.dump(analysis, f, ensure_ascii=False, indent=4)
+                shutil.rmtree(path.dirname(workdir))
+            else:
+                print('skipped')
+    except Timeout:
+        print('in progress')
     finally:
-        os.remove(lockfile)
         print(workdir)
 
 def remove_invalid_char(d):
