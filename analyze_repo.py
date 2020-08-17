@@ -162,7 +162,7 @@ def analyze_docker_compose(workdir, dc):
             data = yaml.load(f, Loader=yaml.FullLoader)
             services = []
             detected_dbs = []
-            if 'services' not in data:
+            if 'services' not in data or not data['services']:
                 return analysis
             for name, service in data['services'].items():
                 s = {}
