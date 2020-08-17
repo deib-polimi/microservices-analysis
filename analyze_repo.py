@@ -141,6 +141,8 @@ def analyze_dockerfile(workdir, df):
                                 or match_ones(get_words(runs), v)
     except dockerfile.GoParseError as e:
         print(e)
+    except:
+        pass
     return analysis
 
 def analyze_file(workdir, f):
