@@ -167,10 +167,10 @@ def analyze_docker_compose(workdir, dc):
             for name, service in data['services'].items():
                 s = {}
                 s['name'] = name
-                if 'image' in service:
+                if 'image' in service and service['image']:
                     s['image'] =  service['image'].split(':')[0]
                     s['image_full'] =  service['image']
-                elif 'build' in service:
+                elif 'build' in service and service['build']:
                     s['image'] = s['image_full'] = service['build']
                 else:
                     s['image'] = s['image_full'] =  ''
