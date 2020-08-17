@@ -255,6 +255,7 @@ def synthetize_data(analysis):
 
 def analyze_repo(url):
     try:
+        wordird = ''
         analysis = {'url' : url}
         analysis['name'] = url.split('.git')[0].split('git://github.com/')[-1]
         print('analyzing', analysis['name'])
