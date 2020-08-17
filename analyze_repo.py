@@ -69,7 +69,10 @@ def clone(repo_url, full_repo_name):
         p1 = subprocess.run(['curl', endpoint], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,)
         data = json.loads(p1.stdout.decode("utf-8"))
         if 'size' not in data or data['size'] < 512000:
-            git.Git(workdir).clone(repo_url)
+            try:
+                git.Git(workdir).clone(repo_url)
+            except:
+                return None
         else:
             print('repo too big')
             return None
