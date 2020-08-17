@@ -13,6 +13,7 @@ import json
 import shutil
 import yaml
 import Levenshtein
+import csv
 
 with open('db.csv') as db_file:
     dbs = [db.lower() for db in db_file.read().splitlines()]
@@ -22,9 +23,19 @@ with open('lang.csv') as lang_file:
     langs = [lang.lower() for lang in lang_file.read().splitlines()]
 with open('server.csv') as server_file:
     servers = [server.lower() for server in server_file.read().splitlines()]
+with open('gateway.csv') as gate_file:
+    gates = [gate.lower() for gate in gate_file.read().splitlines()]
+with open('monitor.csv') as monitor_file:
+    monitors = [monitor.lower() for monitor in monitor_file.read().splitlines()]
+with open('discovery.csv') as disco_file:
+    discos = [disco.lower() for disco in disco_file.read().splitlines()]
+
+DATA = {
+    'dbs' : dbs, 'servers' : servers, 'buses' : buses, 'langs' : langs, 'gates' : gates, 'monitors' : monitors, 'discos' : discos
+}
 
 def are_similar(name, candidate):
-    return name == candidate or candidate in name
+    return name == candidate
    
 def match_one(name, l):
     for candidate in l:
@@ -110,20 +121,11 @@ def analyze_dockerfile(workdir, df):
             analysis['cmd'] = ' '.join(command.value)
             analysis['cmd_keywords'] = keywords(analysis['cmd'])
         analysis['keywords'] = keywords(runs)
-    if 'from' not in analysis:
-        return analysis
-    analysis['dbs'] = match_one(analysis['from'], dbs) \
-                    or match_ones(get_words(analysis['cmd']), dbs) \
-                    or match_ones(get_words(runs), dbs)
-    analysis['buses'] = match_one(analysis['from'], buses) \
-                    or match_ones(get_words(analysis['cmd']), buses) \
-                    or match_ones(get_words(runs), buses)
-    analysis['servers'] = match_one(analysis['from'], servers) \
-                    or match_ones(get_words(analysis['cmd']), servers) \
-                    or match_ones(get_words(runs), servers)
-    analysis['langs'] = match_one(analysis['from'], langs) \
-                    or match_ones(get_words(analysis['cmd']), langs) \
-                    or match_ones(get_words(runs), langs)
+    if 'from' in analysis:
+        for k,v in DATA.items():
+            analysis[k] = match_one(analysis['from'], v) \
+                            or match_ones(get_words(analysis['cmd']), v) \
+                            or match_ones(get_words(runs), v)
     return analysis
 
 def analyze_file(workdir, f):
@@ -131,9 +133,11 @@ def analyze_file(workdir, f):
     analysis = {'path': f}
     with open(workdir+f) as fl:
         data = ' '.join(fl.read().splitlines())
-        analysis['dbs'] = match_alls(get_words(data), dbs)
-        analysis['buses'] = match_alls(get_words(data), buses)
-        analysis['servers'] = match_alls(get_words(data), servers)
+        for k,v in DATA.items():
+            if k == 'langs':
+                continue
+            analysis[k] = match_alls(get_words(data), v)
+
     return analysis
 
 def check_shared_db(analysis):
@@ -161,12 +165,14 @@ def analyze_docker_compose(workdir, dc):
             else:
                 s['image'] = service['build']
                 s['image_full'] =  service['build']
+            
+            for k,v in DATA.items():
+                if k == 'langs':
+                    continue
+                s[k] = match_one(s['image'], v)
 
-            s['dbs'] = match_one(s['image'], dbs)
             if s['dbs']:
                 detected_dbs.append({'service' : name, 'name': s['dbs'][0]})
-            s['buses'] = match_one(s['image'], buses)
-            s['servers'] = match_one(s['image'], servers)
 
             if 'depends_on' in service:
                 if isinstance(service['depends_on'], dict):
@@ -187,8 +193,14 @@ def analyze_docker_compose(workdir, dc):
 
     return analysis
 
+def compute_size(workdir):
+    root_directory = Path(workdir)
+    for f in root_directory.glob('**/*'):
+        return sum(f.stat().st_size for f in root_directory.glob('**/*') if f.is_file() and '.git' not in f.parts)//1000
+
 def synthetize_data(analysis):
-    keys = ['dbs', 'langs', 'servers', 'buses']
+    keys = DATA.keys()
+
     def add_data(data):
         for d in data:
             for k in keys:
@@ -205,10 +217,27 @@ def synthetize_data(analysis):
     analysis['shared_dbs'] = analysis['structure']['detected_dbs']['shared_dbs']
     analysis['langs'].update(analysis['languages'])
     analysis['num_dockers'] = len(analysis['dockers'])
+    analysis['images'] = list({s['from']for s in analysis['dockers'] if s['from']})
+    for db in set(analysis['dbs']):
+        if 'db' == db[-2:]:
+            analysis['dbs'].discard(db)
+            analysis['dbs'].add(db[-2:])
+
+    if len(analysis['dbs']) > 1:
+        analysis['dbs'].discard('db')
+    if len(analysis['gates']) > 1:
+       analysis['gates'].discard('gateway')
+    if len(analysis['monitors']) > 1:
+        analysis['monitors'].discard('monitoring')
+    if len(analysis['buses']) > 1:
+        analysis['buses'].discard('bus')
 
     for k in keys:
         analysis['num_%s' % (k,)] = len(analysis[k])
         analysis[k] = list(analysis[k])
+    analysis['num_dockers'] = len(analysis['dockers'])
+    analysis['num_files'] = analysis['num_dockers'] + len(analysis['files']) + 1
+    analysis['avg_size_service'] = analysis['size'] / analysis['num_dockers']
 
 
 def analyze_repo(url):
@@ -217,10 +246,11 @@ def analyze_repo(url):
     print('analyzing', analysis['name'])
     outfile = path.join('results', analysis['name'].replace('/', '#'))
     outfile = "%s.json" % (outfile,)
-    if True:#not path.exists(outfile):
+    if not path.exists(outfile):
         workdir = clone(url, analysis['name'])
         if not workdir:
             return 
+        analysis['size']=compute_size(workdir)
         analysis['languages'] = analyze_languages(workdir)
         dfs = locate_files(workdir, 'Dockerfile')
         dockers_analysis = []
@@ -246,11 +276,15 @@ def analyze_repo(url):
         #shutil.rmtree(path.dirname(workdir))
     else:
         print('skipped')
+    
 
 def analyze_all():
-    with open('repos.csv', 'r') as f:
-       for repo in f:
-            analyze_repo(repo)
+    repos = Path('repos').glob('*.csv')
+    for source in repos:
+        with open(source, newline='') as f:
+            reader = csv.reader(f, delimiter=',')
+            for line in reader:
+                analyze_repo(line[0])
 
 
 analyze_all()
