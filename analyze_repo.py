@@ -306,6 +306,8 @@ def analyze_repo(url):
                 print('skipped')
     except Timeout:
         print('in progress')
+    except FileNotFoundError:
+        print('skipped')
     finally:
         print(workdir)
 
