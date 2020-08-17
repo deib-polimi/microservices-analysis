@@ -176,7 +176,7 @@ def analyze_docker_compose(workdir, dc):
                 else:
                     s['image'] = s['image_full'] =  ''
                 if isinstance(s['image'], dict):
-                    s['image'] = s['image_full'] =  list(s['image'].values())[0]
+                    s['image'] = s['image_full'] =  str(list(s['image'].values())[0])
 
                 for k,v in DATA.items():
                     if k == 'langs':
@@ -257,9 +257,9 @@ def synthetize_data(analysis):
 def analyze_repo(url):
     lockfile = "temp/%s.lock" % (''.join(get_words(url)),)
     lock = FileLock(lockfile, timeout=0.01)
+    workdir = None
     try:
         with lock:
-            workdir = None
             analysis = {'url' : url}
             analysis['name'] = url.split('.git')[0].split('git://github.com/')[-1]
             print('analyzing', analysis['name'])
