@@ -104,7 +104,7 @@ def analyze_languages(workdir):
     print('-analyzing languages')
     result = subprocess.run(['github-linguist', workdir], stdout=subprocess.PIPE)
     output = result.stdout.decode("utf-8")
-    return [r.split('  ')[1].lower().replace(' ', '') for r in output.split('\n')[:-1] if float(r.split('%')[0]) > 10]
+    return [r.split('%')[1].lower().replace(' ', '') for r in output.split('\n')[:-1] if float(r.split('%')[0]) > 10]
 
 def analyze_dockerfile(workdir, df):
     print('-analyzing dockerfile', df)
