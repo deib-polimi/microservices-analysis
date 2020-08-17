@@ -68,7 +68,7 @@ def clone(repo_url, full_repo_name):
         p1 = subprocess.run(['curl', endpoint], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,)
         size = json.loads(p1.stdout.decode("utf-8"))['size']
         print('repo size', '%dM' % (size/1000,))
-        if size < 50000:
+        if size < 512000:
             git.Git(workdir).clone(repo_url)
         else:
             print('repo too big')
@@ -267,6 +267,7 @@ def analyze_repo(url):
         fs += locate_files(workdir, '*.gradle')
         fs += locate_files(workdir, 'pom.xml')
         fs += locate_files(workdir, 'package.json')
+        
         file_analysis = []
         for f in fs:
             file_analysis.append(analyze_file(workdir, f))
