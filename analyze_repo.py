@@ -254,6 +254,12 @@ def synthetize_data(analysis):
 
 
 def analyze_repo(url):
+    lockfile = "temp/%s.lock" % (''.join(get_words(url)),)
+    if not path.exists(lockfile):
+        open(lockfile, 'w').close()
+    else: 
+        print('in progress')
+        return
     try:
         workdir = None
         analysis = {'url' : url}
@@ -295,6 +301,7 @@ def analyze_repo(url):
         else:
             print('skipped')
     finally:
+        os.remove(lockfile)
         print(workdir)
 
 def remove_invalid_char(d):
