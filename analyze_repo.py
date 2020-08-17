@@ -201,7 +201,7 @@ def analyze_docker_compose(workdir, dc):
                                         'names' : list({db['name'] for db in detected_dbs}), \
                                         'services' : [db['service'] for db in detected_dbs]}
             analysis['detected_dbs']['shared_dbs'] = check_shared_db(analysis)
-        except (UnicodeDecodeError, yaml.parser.ParserError) as e:
+        except (UnicodeDecodeError, yaml.parser.ParserError, yaml.scanner.ScannerError) as e:
             print(e)
 
     return analysis
