@@ -16,7 +16,7 @@ excluded_languages = ['css', 'html', 'dockerfile']
 def analyze_data(data):
     global num_services, num_ok, num_files, num_dockers, dbs, dbs_flat, langs, langs_flat
     num_services += data['num_services']
-    if not num_services:
+    if not data['num_services']:
         return
     num_ok += 1 if data['num_services'] else 0
     num_files += data['num_files']
