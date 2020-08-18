@@ -11,17 +11,18 @@ dbs_flat = []
 dbs = []
 langs = []
 langs_flat = []
-
+polyglot = 0
 excluded_languages = ['css', 'html', 'dockerfile']
 def analyze_data(data):
-    global num_services, num_ok, num_files, num_dockers, dbs, dbs_flat, langs, langs_flat
+    global num_services, num_ok, num_files, num_dockers, dbs, dbs_flat, langs, langs_flat, polyglot
     num_services += data['num_services']
-    num_ok += 1 if data['num_services'] else 0
+    num_ok += data['num_services'] > 0
     num_files += data['num_files']
     num_dockers += data['num_dockers']
     dbs += data['dbs']
     dbs_flat.append(tuple(sorted(data['dbs'])))
     data['langs'] = list({'go' if x == 'golang' else x for x in data['langs'] if x not in excluded_languages})
+    polyglot += len(data['langs']) > 2
     langs += data['langs']
     langs_flat.append(tuple(sorted(data['langs'])))
 
@@ -51,3 +52,4 @@ print(cdbs.most_common(50))
 print(cdbs_flat.most_common(50))
 print(clangs.most_common(50))
 print(clangs_flat.most_common(50))
+print(polyglot)
