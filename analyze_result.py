@@ -33,7 +33,7 @@ def analyze_all():
             with open(str(source)) as json_file:
                 data = json.load(json_file)
                 analyze_data(data)
-        except UnicodeDecodeError:
+        except (UnicodeDecodeError, json.decoder.JSONDecodeError):
             print(source)
             pass
         i += 1
