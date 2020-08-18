@@ -22,7 +22,7 @@ def analyze_data(data):
     dbs += data['dbs']
     dbs_flat.append(tuple(sorted(data['dbs'])))
     data['langs'] = list({'go' if x == 'golang' else x for x in data['langs'] if x not in excluded_languages})
-    polyglot += len(data['langs']) > 2
+    polyglot += len(data['langs']) > 1
     langs += data['langs']
     langs_flat.append(tuple(sorted(data['langs'])))
 
