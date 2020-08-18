@@ -12,6 +12,7 @@ dbs = []
 langs = []
 langs_flat = []
 
+excluded_languages = ['css', 'html', 'dockerfile']
 def analyze_data(data):
     global num_services, num_ok, num_files, num_dockers, dbs, dbs_flat, langs, langs_flat
     num_services += data['num_services']
@@ -20,12 +21,13 @@ def analyze_data(data):
     num_dockers += data['num_dockers']
     dbs += data['dbs']
     dbs_flat.append(tuple(sorted(data['dbs'])))
-    data['langs'] = list({'go' if x == 'golang' else x for x in data['langs']})
+    data['langs'] = list({'go' if x == 'golang' else x for x in data['langs'] if x not in excluded_languages})
     langs += data['langs']
     langs_flat.append(tuple(sorted(data['langs'])))
 
 def analyze_all():
     repos = Path('results').glob('*.json')
+    i = 0
     for source in repos:
         try:
             with open(str(source)) as json_file:
@@ -34,6 +36,8 @@ def analyze_all():
         except UnicodeDecodeError:
             print(source)
             pass
+        i += 1
+        print(i)
 
 
 analyze_all()
