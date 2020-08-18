@@ -27,7 +27,7 @@ def analyze_data(data):
 def analyze_all():
     repos = Path('results').glob('*.json')
     for source in repos:
-        with open(source) as json_file:
+        with open(str(source)) as json_file:
             data = json.load(json_file)
             analyze_data(data)
 
