@@ -16,6 +16,8 @@ excluded_languages = ['css', 'html', 'dockerfile']
 def analyze_data(data):
     global num_services, num_ok, num_files, num_dockers, dbs, dbs_flat, langs, langs_flat
     num_services += data['num_services']
+    if not num_services:
+        return
     num_ok += 1 if data['num_services'] else 0
     num_files += data['num_files']
     num_dockers += data['num_dockers']
@@ -46,7 +48,7 @@ cdbs = Counter(dbs)
 cdbs_flat = Counter(dbs_flat)
 clangs = Counter(langs)
 clangs_flat = Counter(langs_flat)
-print(cdbs.most_common(10))
-print(cdbs_flat.most_common(10))
-print(clangs.most_common(10))
-print(clangs_flat.most_common(10))
+print(cdbs.most_common(50))
+print(cdbs_flat.most_common(50))
+print(clangs.most_common(50))
+print(clangs_flat.most_common(50))
