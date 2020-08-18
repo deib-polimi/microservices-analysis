@@ -35,9 +35,10 @@ def analyze_all():
                 analyze_data(data)
         except (UnicodeDecodeError, json.decoder.JSONDecodeError):
             print(source)
+            i += 1
             pass
-        i += 1
-        print(i)
+    
+    print("ERRORS", i)
 
 
 analyze_all()
