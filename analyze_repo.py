@@ -289,7 +289,6 @@ def analyze_repo(url):
                 workdir = clone(url, analysis['name'])
                 if not workdir:
                     return 
-                print(committers(workdir))
                 analysis['commiters'] = committers(workdir)
                 analysis['size']=compute_size(workdir)
                 analysis['languages'] = analyze_languages(workdir)
@@ -324,6 +323,8 @@ def analyze_repo(url):
         print('in progress')
     except FileNotFoundError:
         print('skipped')
+    except:
+        print('Error, continuing...')
     finally:
         print(workdir)
     

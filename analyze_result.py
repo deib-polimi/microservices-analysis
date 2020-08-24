@@ -89,7 +89,7 @@ def color_with_alpha(hex, alpha):
     hex = hex.lstrip('#')
     return [int(hex[i:i+2], 16)/256 for i in (0, 2, 4)] + [alpha]
 
-def plot_scatter(name, *data, scale='linear', xlabel='Values', ylabel='Values', legend=[], colors=[]):
+def plot_scatter(name, *data, scale='linear', xlabel='', ylabel='', legend=[], colors=[]):
     alpha = 0.8
     for i,d in enumerate(data):
         if colors:
@@ -106,7 +106,7 @@ def plot_scatter(name, *data, scale='linear', xlabel='Values', ylabel='Values', 
     plt.clf()
 
 
-def create_hist(name, b, *data, xlabel='Values', ylabel='Frequency', interval=False, legend=[], colors=[]):
+def create_hist(name, b, *data, xlabel='', ylabel='', interval=False, legend=[], colors=[]):
     def autolabel(rects):
        for rect in rects:
         h = rect.get_height()
@@ -193,7 +193,7 @@ def plots():
 
     plot_scatter('size', [x/1000 for x in SIZES['size'] if x < 10**6], [x/1000 for x in SIZES['avg_size_service'] if x < 10**6], legend=['Project size', 'Microservice size'], xlabel='Repositories', ylabel='Size (MB)', colors=colors) 
     #create_hist(SIZES['size'], [0, 10**3, 10**4, 10**5, sys.maxsize])
-    create_hist('num_services', [1, 3, 5, 7, 10, 15, 20, sys.maxsize], SIZES['num_dockers'], SIZES['num_services'], SIZES['num_ms'], interval=True, legend=['# Dockerfile', '# Compose services', '# Microservices'], colors=colors)
+    create_hist('num_services', [1, 3, 5, 7, 10, 15, 20, sys.maxsize], SIZES['num_dockers'], SIZES['num_services'], SIZES['num_ms'], interval=True, legend=['# Dockerfile', '# Compose services', '# Microservices'], ylabel='Occurences', colors=colors)
     #create_hist(, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, sys.maxsize])
     #create_hist(SIZES['num_services'], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, sys.maxsize])
     #create_hist(SIZES['avg_size_service'], [0, 10**3, 5*10**3, 10**4, sys.maxsize])
@@ -210,7 +210,7 @@ for key in KEYS:
     print('---')
 
 '''
-
+plots()
 
 imagescomb = []
 for data in DATA['images'][1]:
@@ -221,7 +221,7 @@ data, labels = [], []
 for x in Counter(imagescomb).most_common(20):
     data.append(x[1])
     labels.append('-'.join(x[0]))
-plot_barh('images+comb', data, ticks=labels, xlabel='Values', ylabel='Frequency', legend=[], colors=colors)
+plot_barh('images+comb', data, ticks=labels, xlabel='Occurrences', ylabel='', legend=[], colors=colors)
 
 data, labels = [], []
 for x in Counter(DATA['images'][0]).most_common(20):
@@ -231,4 +231,5 @@ for x in Counter(DATA['images'][0]).most_common(20):
         parts = x[0].split('/')
         label = f'{parts[0]}/../{parts[-1]}'
     labels.append(label)
-plot_barh('images', data, ticks=labels, xlabel='Occurences', ylabel='', legend=[], colors=colors)
+plot_barh('images', data, ticks=labels, xlabel='Occurrences', ylabel='', legend=[], colors=colors)
+
