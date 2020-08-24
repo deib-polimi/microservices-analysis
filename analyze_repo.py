@@ -56,7 +56,6 @@ def match_ones(names, l):
         if res:
             return res
     return []
-
   
 def clone(repo_url, full_repo_name):
     parts = full_repo_name.split('/')
@@ -163,6 +162,11 @@ def check_shared_db(analysis):
     for service in analysis['services']:
         dependencies += set(service['depends_on']) & db_services
     return len(set(dependencies)) != len(dependencies)
+
+def committers(workdir):
+    result = subprocess.run(['git', '--git-dir', os.path.join(workdir, '.git'), 'shortlog', '-s'], stdout=subprocess.PIPE)
+    output = result.stdout.decode("utf-8")
+    return len(output.splitlines())
 
 def analyze_docker_compose(workdir, dc):
     print('-analyzing docker-compose')
@@ -277,11 +281,13 @@ def analyze_repo(url):
             analysis['name'] = url.split('.git')[0].split('git://github.com/')[-1]
             print('analyzing', analysis['name'])
             outfile = path.join('results', analysis['name'].replace('/', '#'))
-            outfile = "%s.json" % (outfile,)
+            outfile = "AAA-%s.json" % (outfile,)
             if not path.exists(outfile):
                 workdir = clone(url, analysis['name'])
                 if not workdir:
                     return 
+                print(committers(workdir))
+                analysis['commiters'] = committers(workdir)
                 analysis['size']=compute_size(workdir)
                 analysis['languages'] = analyze_languages(workdir)
                 dfs = locate_files(workdir, 'Dockerfile')
@@ -317,7 +323,8 @@ def analyze_repo(url):
         print('skipped')
     finally:
         print(workdir)
-
+    
+    
 def remove_invalid_char(d):
     if isinstance(d, str):
         return d.encode('utf-16', 'surrogatepass').decode('utf-16')
