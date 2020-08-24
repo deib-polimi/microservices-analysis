@@ -340,13 +340,14 @@ def remove_invalid_char(d):
 
 def analyze_all():
     repos = Path('repos').glob('*.csv')
+    repos = sorted([str(x) for x in repos])
     for source in repos:
         with open(str(source), newline='') as f:
             reader = csv.reader(f, delimiter=',')
             while True:
                 try:
                     line = next(reader)
-                    print(line)
+                    print(line, source)
                     analyze_repo(line[0])
                 except UnicodeDecodeError as e:
                     print(e)
