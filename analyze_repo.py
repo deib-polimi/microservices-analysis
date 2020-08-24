@@ -281,12 +281,11 @@ def analyze_repo(url):
             analysis['name'] = url.split('.git')[0].split('git://github.com/')[-1]
             print('analyzing', analysis['name'])
             outfile = path.join('results', analysis['name'].replace('/', '#'))
-            outfile = "AAA-%s.json" % (outfile,)
+            outfile = "%s.json" % (outfile,)
             if not path.exists(outfile):
                 workdir = clone(url, analysis['name'])
                 if not workdir:
                     return 
-                print(committers(workdir))
                 analysis['commiters'] = committers(workdir)
                 analysis['size']=compute_size(workdir)
                 analysis['languages'] = analyze_languages(workdir)
