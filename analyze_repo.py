@@ -164,9 +164,12 @@ def check_shared_db(analysis):
     return len(set(dependencies)) != len(dependencies)
 
 def committers(workdir):
-    result = subprocess.run(['git', '--git-dir', os.path.join(workdir, '.git'), 'shortlog', '-s'], stdout=subprocess.PIPE)
-    output = result.stdout.decode("utf-8")
-    return len(output.splitlines())
+    try:
+        result = subprocess.run(['git', '--git-dir', os.path.join(workdir, '.git'), 'shortlog', '-s'], stdout=subprocess.PIPE, timeout=5)
+        output = result.stdout.decode("utf-8")
+        return len(output.splitlines())
+    except:
+        return 0
 
 def analyze_docker_compose(workdir, dc):
     print('-analyzing docker-compose')
@@ -286,6 +289,7 @@ def analyze_repo(url):
                 workdir = clone(url, analysis['name'])
                 if not workdir:
                     return 
+                print(committers(workdir))
                 analysis['commiters'] = committers(workdir)
                 analysis['size']=compute_size(workdir)
                 analysis['languages'] = analyze_languages(workdir)
