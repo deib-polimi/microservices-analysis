@@ -1,0 +1,230 @@
+{
+    "num_services": 6,
+    "num_buses": 0,
+    "files": [
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "node"
+            ],
+            "path": "/usdaweb/package.json",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [],
+            "path": "/descriptions/package.json",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [],
+            "path": "/nutrients/package.json",
+            "discos": [],
+            "dbs": []
+        }
+    ],
+    "num_dbs": 1,
+    "num_discos": 0,
+    "languages": [
+        "typescript",
+        "javascript"
+    ],
+    "num_langs": 3,
+    "images": [
+        "ubuntu",
+        "node"
+    ],
+    "buses": [],
+    "size": 5719,
+    "servers": [
+        "node"
+    ],
+    "num_gates": 1,
+    "discos": [],
+    "num_monitors": 0,
+    "avg_size_service": 1906.3333333333333,
+    "langs": [
+        "typescript",
+        "javascript",
+        "bash"
+    ],
+    "dockers": [
+        {
+            "keywords": [
+                "get",
+                "apt",
+                "bin",
+                "install",
+                "build"
+            ],
+            "buses": [],
+            "langs": [
+                "bash"
+            ],
+            "path": "/usdaweb/Dockerfile",
+            "cmd": "",
+            "gates": [],
+            "from": "ubuntu",
+            "monitors": [],
+            "servers": [],
+            "from_full": "ubuntu:16.04",
+            "discos": [],
+            "cmd_keywords": [],
+            "dbs": []
+        },
+        {
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "path": "/descriptions/Dockerfile",
+            "cmd": "",
+            "gates": [],
+            "from": "node",
+            "monitors": [],
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:6-onbuild",
+            "discos": [],
+            "cmd_keywords": [],
+            "dbs": []
+        },
+        {
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "path": "/nutrients/Dockerfile",
+            "cmd": "",
+            "gates": [],
+            "from": "node",
+            "monitors": [],
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:6-onbuild",
+            "discos": [],
+            "cmd_keywords": [],
+            "dbs": []
+        }
+    ],
+    "name": "JeremyLikness/usda-microservice",
+    "url": "git://github.com/JeremyLikness/usda-microservice.git",
+    "gates": [
+        "nginx"
+    ],
+    "num_servers": 1,
+    "monitors": [],
+    "num_files": 7,
+    "shared_dbs": true,
+    "num_dockers": 3,
+    "dbs": [
+        "mongo"
+    ],
+    "structure": {
+        "num_services": 6,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "./nutrients",
+                "image_full": "./nutrients",
+                "servers": [],
+                "discos": [],
+                "depends_on": [
+                    "db"
+                ],
+                "name": "nutrients"
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": ".",
+                "image_full": ".",
+                "servers": [],
+                "discos": [],
+                "depends_on": [],
+                "name": "seed"
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "monitors": [],
+                "image": "mongo",
+                "image_full": "mongo",
+                "servers": [],
+                "discos": [],
+                "depends_on": [],
+                "name": "db"
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "./descriptions",
+                "image_full": "./descriptions",
+                "servers": [],
+                "discos": [],
+                "depends_on": [
+                    "db"
+                ],
+                "name": "descriptions"
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "./usdaweb",
+                "image_full": "./usdaweb",
+                "servers": [],
+                "discos": [],
+                "depends_on": [],
+                "name": "ngbuild"
+            },
+            {
+                "gates": [
+                    "nginx"
+                ],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "nginx",
+                "image_full": "nginx",
+                "servers": [],
+                "discos": [],
+                "depends_on": [
+                    "descriptions"
+                ],
+                "name": "web"
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": true,
+            "num": 1,
+            "services": [
+                "db"
+            ],
+            "names": [
+                "mongo"
+            ]
+        }
+    }
+}

@@ -1,0 +1,268 @@
+{
+    "size": 825,
+    "avg_size_service": 165.0,
+    "name": "vineetkala11/Microservice",
+    "languages": [
+        "java"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "num_dbs": 1,
+    "images": [
+        "redis",
+        "openjdk"
+    ],
+    "structure": {
+        "path": "/docker-compose/docker-compose.yml",
+        "num_services": 5,
+        "services": [
+            {
+                "depends_on": [],
+                "image_full": "myredis",
+                "monitors": [],
+                "name": "redis",
+                "image": "myredis",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "eureka-server",
+                    "redis"
+                ],
+                "image_full": "catalog-data",
+                "monitors": [],
+                "name": "catalog-data",
+                "image": "catalog-data",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "eureka-server",
+                "monitors": [],
+                "name": "eureka-server",
+                "image": "eureka-server",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": [
+                    "eureka"
+                ]
+            },
+            {
+                "depends_on": [
+                    "eureka-server"
+                ],
+                "image_full": "catalog-service",
+                "monitors": [],
+                "name": "catalog-service",
+                "image": "catalog-service",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "eureka-server"
+                ],
+                "image_full": "gateway",
+                "monitors": [],
+                "name": "zuul-gateway",
+                "image": "gateway",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [
+                    "gateway"
+                ],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [],
+            "names": [],
+            "shared_dbs": false,
+            "num": 0
+        }
+    },
+    "num_dockers": 5,
+    "num_buses": 0,
+    "num_services": 5,
+    "dockers": [
+        {
+            "path": "/Gateway/Dockerfile",
+            "from": "openjdk",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "openjdk:8",
+            "keywords": [],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/CatalogData/Dockerfile",
+            "from": "openjdk",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "openjdk:8",
+            "keywords": [],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/redis/Dockerfile",
+            "from": "redis",
+            "langs": [],
+            "cmd": "redis-server /usr/local/etc/redis/redis.conf",
+            "servers": [],
+            "from_full": "redis:4",
+            "keywords": [],
+            "cmd_keywords": [
+                "redis",
+                "server",
+                "usr",
+                "conf",
+                "etc"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [
+                "redis"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/EurekaServer/Dockerfile",
+            "from": "openjdk",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "openjdk:8",
+            "keywords": [],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/CatalogService/Dockerfile",
+            "from": "openjdk",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "openjdk:8",
+            "keywords": [],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "num_langs": 1,
+    "langs": [
+        "java"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "num_gates": 1,
+    "num_monitors": 0,
+    "num_files": 10,
+    "files": [
+        {
+            "path": "/Gateway/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/CatalogData/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "redis"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/EurekaServer/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/CatalogService/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ]
+        }
+    ],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_servers": 1,
+    "url": "git://github.com/vineetkala11/Microservice.git",
+    "dbs": [
+        "redis"
+    ],
+    "num_discos": 1,
+    "gates": [
+        "zuul"
+    ],
+    "buses": []
+}

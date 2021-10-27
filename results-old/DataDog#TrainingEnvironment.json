@@ -1,0 +1,396 @@
+{
+    "num_gates": 1,
+    "images": [
+        "python",
+        "ubuntu",
+        "postgres",
+        "datadog/agent"
+    ],
+    "discos": [],
+    "num_buses": 0,
+    "name": "DataDog/TrainingEnvironment",
+    "gates": [
+        "nginx"
+    ],
+    "structure": {
+        "num_services": 5,
+        "detected_dbs": {
+            "services": [
+                "docdb"
+            ],
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": false,
+            "num": 1
+        },
+        "path": "/logsparsing/docker-compose.yml",
+        "services": [
+            {
+                "image": "datadog_agent",
+                "image_full": "datadog_agent",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "webserver",
+                    "api"
+                ],
+                "servers": [],
+                "name": "datadog",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "./app/.",
+                "image_full": "./app/.",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "thinker"
+                ],
+                "servers": [],
+                "name": "api",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "./app/.",
+                "image_full": "./app/.",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "docdb"
+                ],
+                "servers": [],
+                "name": "thinker",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "redis",
+                "image_full": "redis:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "docdb",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "redis"
+                ]
+            },
+            {
+                "image": "nginx",
+                "image_full": "nginx:latest",
+                "discos": [],
+                "gates": [
+                    "nginx"
+                ],
+                "depends_on": [
+                    "api"
+                ],
+                "servers": [],
+                "name": "webserver",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            }
+        ]
+    },
+    "url": "git://github.com/DataDog/TrainingEnvironment.git",
+    "langs": [
+        "python",
+        "shell"
+    ],
+    "num_dockers": 9,
+    "num_langs": 2,
+    "dbs": [
+        "postgresql",
+        "redis"
+    ],
+    "shared_dbs": false,
+    "size": 3928,
+    "dockers": [
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "postgres:9.3",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "postgres",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/monitoringk8s/postgres/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "python:3-alpine",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "from": "python",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "dev",
+                "apk",
+                "python",
+                "update",
+                "musl"
+            ],
+            "dbs": [
+                "postgresql"
+            ],
+            "path": "/monitoringk8s/flask-app/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "datadog/agent:latest",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "datadog/agent",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/logsparsing/datadog_agent/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "python:3.6",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "from": "python",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "install",
+                "dir",
+                "requirements",
+                "pip",
+                "cache"
+            ],
+            "dbs": [],
+            "path": "/logsparsing/app/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "python:3.6.2-alpine3.6",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "from": "python",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "txt",
+                "pip",
+                "install",
+                "requirements"
+            ],
+            "dbs": [],
+            "path": "/apmk/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "postgres:9.3",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "postgres",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/k8sautodiscovery/postgres/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "ubuntu:latest",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "from": "ubuntu",
+            "cmd": "app.py",
+            "gates": [],
+            "keywords": [
+                "python",
+                "install",
+                "pip",
+                "dev",
+                "get"
+            ],
+            "dbs": [],
+            "path": "/k8sautodiscovery/flask_app/Dockerfile",
+            "cmd_keywords": [
+                "app"
+            ]
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "python:3.6",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "from": "python",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "install",
+                "dir",
+                "requirements",
+                "pip",
+                "cache"
+            ],
+            "dbs": [],
+            "path": "/logsintro/app/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "python:3.6.2-alpine3.6",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "from": "python",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "txt",
+                "pip",
+                "install",
+                "requirements"
+            ],
+            "dbs": [],
+            "path": "/apm/Dockerfile",
+            "cmd_keywords": []
+        }
+    ],
+    "num_servers": 1,
+    "monitors": [],
+    "num_services": 5,
+    "servers": [
+        "flask"
+    ],
+    "num_monitors": 0,
+    "avg_size_service": 436.44444444444446,
+    "num_files": 16,
+    "buses": [],
+    "files": [
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/monitoringk8s/flask-app/requirements.txt"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "monitors": [],
+            "dbs": [
+                "redis"
+            ],
+            "path": "/logsparsing/app/requirements.txt"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "monitors": [],
+            "dbs": [
+                "redis"
+            ],
+            "path": "/apmk/requirements.txt"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/k8sautodiscovery/flask_app/requirements.txt"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "monitors": [],
+            "dbs": [
+                "redis"
+            ],
+            "path": "/logsintro/app/requirements.txt"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "monitors": [],
+            "dbs": [
+                "redis"
+            ],
+            "path": "/apm/requirements.txt"
+        }
+    ],
+    "languages": [
+        "python",
+        "shell"
+    ],
+    "num_dbs": 2,
+    "num_discos": 0
+}

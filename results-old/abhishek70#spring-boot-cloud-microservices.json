@@ -1,0 +1,331 @@
+{
+    "size": 1073,
+    "num_dockers": 5,
+    "discos": [
+        "eureka"
+    ],
+    "num_files": 12,
+    "avg_size_service": 214.6,
+    "buses": [],
+    "num_gates": 1,
+    "langs": [
+        "java"
+    ],
+    "num_discos": 1,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/auth-service/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/gateway-service/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/profile-service/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/eureka-service/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8"
+        },
+        {
+            "monitors": [],
+            "cmd": "npm start",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "from": "node",
+            "path": "/react-ui/Dockerfile",
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "node:10"
+        }
+    ],
+    "num_dbs": 1,
+    "monitors": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "eureka-service",
+                "image_full": "eureka-service",
+                "discos": [
+                    "eureka"
+                ],
+                "name": "eureka-service",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mysql/mysql-server",
+                "image_full": "mysql/mysql-server:5.6",
+                "discos": [],
+                "name": "auth-db",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "auth-service",
+                "image_full": "auth-service",
+                "discos": [],
+                "name": "auth-service",
+                "depends_on": [
+                    "eureka-service",
+                    "auth-db"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "react-ui",
+                "image_full": "react-ui",
+                "discos": [],
+                "name": "react-ui",
+                "depends_on": [
+                    "eureka-service",
+                    "gateway-service"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mysql/mysql-server",
+                "image_full": "mysql/mysql-server:5.6",
+                "discos": [],
+                "name": "profile-db",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "profile-service",
+                "image_full": "profile-service",
+                "discos": [],
+                "name": "profile-service",
+                "depends_on": [
+                    "eureka-service",
+                    "profile-db"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "gateway-service",
+                "image_full": "gateway-service",
+                "discos": [],
+                "name": "gateway-service",
+                "depends_on": [
+                    "eureka-service"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": [
+                    "gateway"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "num": 2,
+            "names": [
+                "mysql"
+            ],
+            "services": [
+                "auth-db",
+                "profile-db"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 7,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 0,
+    "servers": [
+        "spring",
+        "node"
+    ],
+    "url": "git://github.com/abhishek70/spring-boot-cloud-microservices.git",
+    "num_services": 7,
+    "gates": [
+        "gateway"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/auth-service/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/gateway-service/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/profile-service/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/eureka-service/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/react-ui/package.json"
+        }
+    ],
+    "name": "abhishek70/spring-boot-cloud-microservices",
+    "languages": [
+        "java"
+    ],
+    "images": [
+        "openjdk",
+        "node"
+    ],
+    "dbs": [
+        "mysql"
+    ],
+    "num_servers": 2,
+    "num_langs": 1
+}

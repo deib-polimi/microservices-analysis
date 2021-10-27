@@ -1,0 +1,387 @@
+{
+    "files": [
+        {
+            "buses": [],
+            "path": "/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "servers": [],
+            "discos": [
+                "thrift"
+            ],
+            "gates": [
+                "gateway",
+                "zuul"
+            ]
+        },
+        {
+            "buses": [],
+            "path": "/api-gateway-zuul/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "discos": [],
+            "gates": [
+                "gateway",
+                "zuul"
+            ]
+        },
+        {
+            "buses": [],
+            "path": "/course-dubbo-service-api/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "servers": [],
+            "discos": [
+                "thrift"
+            ],
+            "gates": []
+        },
+        {
+            "path": "/message-thirft-java-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "path": "/course-dubbo-service/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "buses": [],
+            "path": "/message-thrift-service-api/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "servers": [],
+            "discos": [
+                "thrift"
+            ],
+            "gates": []
+        },
+        {
+            "buses": [],
+            "path": "/user-thrift-service-api/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "servers": [],
+            "discos": [
+                "thrift"
+            ],
+            "gates": []
+        },
+        {
+            "buses": [],
+            "path": "/course-edge-service/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "buses": [],
+            "path": "/user-thrift-service/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "thrift"
+            ],
+            "gates": []
+        },
+        {
+            "buses": [],
+            "path": "/user-edge-service/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "redis"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "thrift"
+            ],
+            "gates": []
+        },
+        {
+            "path": "/user-edge-service-client/pom.xml"
+        }
+    ],
+    "size": 548,
+    "url": "git://github.com/zephyrlai/microservice4docker.git",
+    "num_monitors": 0,
+    "languages": [
+        "java"
+    ],
+    "langs": [
+        "java"
+    ],
+    "discos": [
+        "thrift"
+    ],
+    "gates": [
+        "zuul"
+    ],
+    "num_servers": 2,
+    "num_dockers": 6,
+    "shared_dbs": false,
+    "images": [
+        "ccr.ccs.tencentyun.com/zephyrlai/centos-jdk8-tomcat8"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 0,
+            "names": [],
+            "services": []
+        },
+        "services": [
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "zephyrlai/user-thrift-service",
+                "monitors": [],
+                "image_full": "zephyrlai/user-thrift-service:latest",
+                "dbs": [],
+                "name": "user-thrift-service",
+                "servers": [],
+                "discos": [
+                    "thrift"
+                ],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "user-thrift-service"
+                ],
+                "buses": [],
+                "image": "zephyrlai/course-dubbo-service",
+                "monitors": [],
+                "image_full": "zephyrlai/course-dubbo-service:latest",
+                "dbs": [],
+                "name": "course-dubbo-service",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "user-thrift-service",
+                    "message-thrift-service"
+                ],
+                "buses": [],
+                "image": "zephyrlai/user-edge-service",
+                "monitors": [],
+                "image_full": "zephyrlai/user-edge-service:latest",
+                "dbs": [],
+                "name": "user-edge-service",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "user-edge-service"
+                ],
+                "buses": [],
+                "image": "zephyrlai/course-edge-service",
+                "monitors": [],
+                "image_full": "zephyrlai/course-edge-service:latest",
+                "dbs": [],
+                "name": "course-edge-service",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "course-edge-service",
+                    "user-edge-service"
+                ],
+                "buses": [],
+                "image": "zephyrlai/api-gateway-zuul",
+                "monitors": [],
+                "image_full": "zephyrlai/api-gateway-zuul:latest",
+                "dbs": [],
+                "name": "api-gateway-zuul",
+                "servers": [],
+                "discos": [],
+                "gates": [
+                    "gateway"
+                ]
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "zephyrlai/message-thrift-service",
+                "monitors": [],
+                "image_full": "zephyrlai/message-thrift-service:latest",
+                "dbs": [],
+                "name": "message-thrift-service",
+                "servers": [],
+                "discos": [
+                    "thrift"
+                ],
+                "gates": []
+            }
+        ],
+        "num_services": 6
+    },
+    "num_gates": 1,
+    "buses": [],
+    "num_dbs": 2,
+    "avg_size_service": 91.33333333333333,
+    "num_discos": 1,
+    "servers": [
+        "spring",
+        "tomcat"
+    ],
+    "num_buses": 0,
+    "dockers": [
+        {
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "servers": [
+                "tomcat"
+            ],
+            "from": "ccr.ccs.tencentyun.com/zephyrlai/centos-jdk8-tomcat8",
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/api-gateway-zuul/Dockerfile",
+            "monitors": [],
+            "from_full": "ccr.ccs.tencentyun.com/zephyrlai/centos-jdk8-tomcat8:0.0.1",
+            "keywords": [
+                "yum",
+                "install"
+            ]
+        },
+        {
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "servers": [
+                "tomcat"
+            ],
+            "from": "ccr.ccs.tencentyun.com/zephyrlai/centos-jdk8-tomcat8",
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/message-thirft-java-service/Dockerfile",
+            "monitors": [],
+            "from_full": "ccr.ccs.tencentyun.com/zephyrlai/centos-jdk8-tomcat8:0.0.1",
+            "keywords": [
+                "yum",
+                "install"
+            ]
+        },
+        {
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "servers": [
+                "tomcat"
+            ],
+            "from": "ccr.ccs.tencentyun.com/zephyrlai/centos-jdk8-tomcat8",
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/course-dubbo-service/Dockerfile",
+            "monitors": [],
+            "from_full": "ccr.ccs.tencentyun.com/zephyrlai/centos-jdk8-tomcat8:0.0.1",
+            "keywords": [
+                "yum",
+                "install"
+            ]
+        },
+        {
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "servers": [
+                "tomcat"
+            ],
+            "from": "ccr.ccs.tencentyun.com/zephyrlai/centos-jdk8-tomcat8",
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/course-edge-service/Dockerfile",
+            "monitors": [],
+            "from_full": "ccr.ccs.tencentyun.com/zephyrlai/centos-jdk8-tomcat8:0.0.1",
+            "keywords": [
+                "yum",
+                "install"
+            ]
+        },
+        {
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "servers": [
+                "tomcat"
+            ],
+            "from": "ccr.ccs.tencentyun.com/zephyrlai/centos-jdk8-tomcat8",
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/user-thrift-service/Dockerfile",
+            "monitors": [],
+            "from_full": "ccr.ccs.tencentyun.com/zephyrlai/centos-jdk8-tomcat8:0.0.1",
+            "keywords": [
+                "yum",
+                "install"
+            ]
+        },
+        {
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "servers": [
+                "tomcat"
+            ],
+            "from": "ccr.ccs.tencentyun.com/zephyrlai/centos-jdk8-tomcat8",
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/user-edge-service/Dockerfile",
+            "monitors": [],
+            "from_full": "ccr.ccs.tencentyun.com/zephyrlai/centos-jdk8-tomcat8:0.0.1",
+            "keywords": [
+                "yum",
+                "install"
+            ]
+        }
+    ],
+    "monitors": [],
+    "num_files": 18,
+    "dbs": [
+        "mysql",
+        "redis"
+    ],
+    "name": "zephyrlai/microservice4docker",
+    "num_langs": 1,
+    "num_services": 6
+}

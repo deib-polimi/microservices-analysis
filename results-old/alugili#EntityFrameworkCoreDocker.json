@@ -1,0 +1,127 @@
+{
+    "buses": [],
+    "num_servers": 0,
+    "languages": [
+        "c#"
+    ],
+    "dbs": [],
+    "num_services": 3,
+    "avg_size_service": 30.0,
+    "servers": [],
+    "structure": {
+        "num_services": 3,
+        "detected_dbs": {
+            "services": [],
+            "shared_dbs": false,
+            "num": 0,
+            "names": []
+        },
+        "services": [
+            {
+                "image": "microsoft/mssql-server-linux",
+                "buses": [],
+                "image_full": "microsoft/mssql-server-linux:2017-latest",
+                "dbs": [],
+                "depends_on": [],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "sqlserver",
+                "gates": []
+            },
+            {
+                "image": "${DOCKER_REGISTRY}orderswebapi",
+                "buses": [],
+                "image_full": "${DOCKER_REGISTRY}orderswebapi",
+                "dbs": [],
+                "depends_on": [],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "EntityFrameworkSQLite",
+                "gates": []
+            },
+            {
+                "image": "${DOCKER_REGISTRY}productswebapi",
+                "buses": [],
+                "image_full": "${DOCKER_REGISTRY}productswebapi",
+                "dbs": [],
+                "depends_on": [
+                    "sqlserver"
+                ],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "EntityFrameworkSqlServer",
+                "gates": []
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "monitors": [],
+    "num_buses": 0,
+    "images": [
+        "base"
+    ],
+    "gates": [],
+    "num_gates": 0,
+    "num_langs": 1,
+    "langs": [
+        "c#"
+    ],
+    "url": "git://github.com/alugili/EntityFrameworkCoreDocker.git",
+    "num_discos": 0,
+    "num_files": 3,
+    "files": [],
+    "shared_dbs": false,
+    "num_monitors": 0,
+    "name": "alugili/EntityFrameworkCoreDocker",
+    "num_dbs": 0,
+    "discos": [],
+    "dockers": [
+        {
+            "langs": [],
+            "dbs": [],
+            "path": "/EntityFrameworkSQLite/Dockerfile",
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "entityframeworksqlite",
+                "dotnet",
+                "csproj",
+                "release",
+                "app"
+            ],
+            "cmd": "",
+            "buses": [],
+            "from_full": "base",
+            "from": "base",
+            "discos": [],
+            "cmd_keywords": [],
+            "gates": []
+        },
+        {
+            "langs": [],
+            "dbs": [],
+            "path": "/EntityFrameworkSqlServer/Dockerfile",
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "dotnet",
+                "csproj",
+                "entityframeworksqlserver",
+                "app",
+                "release"
+            ],
+            "cmd": "",
+            "buses": [],
+            "from_full": "base",
+            "from": "base",
+            "discos": [],
+            "cmd_keywords": [],
+            "gates": []
+        }
+    ],
+    "num_dockers": 2,
+    "size": 60
+}

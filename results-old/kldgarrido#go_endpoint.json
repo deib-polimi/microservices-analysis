@@ -1,0 +1,177 @@
+{
+    "num_services": 4,
+    "num_buses": 1,
+    "files": [
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [],
+            "path": "/user_consumer/requirements.txt",
+            "discos": [],
+            "dbs": []
+        }
+    ],
+    "num_dbs": 0,
+    "num_discos": 0,
+    "languages": [
+        "dockerfile",
+        "tsql"
+    ],
+    "num_langs": 3,
+    "images": [
+        "golang"
+    ],
+    "buses": [
+        "rabbitmq"
+    ],
+    "size": 55934,
+    "servers": [],
+    "num_gates": 0,
+    "discos": [],
+    "num_monitors": 0,
+    "avg_size_service": 18644.666666666668,
+    "langs": [
+        "golang",
+        "tsql",
+        "dockerfile"
+    ],
+    "dockers": [
+        {
+            "keywords": [],
+            "buses": [],
+            "langs": [
+                "golang"
+            ],
+            "path": "/Dockerfile",
+            "cmd": "go user_endpoint/app/app.go",
+            "gates": [],
+            "from": "golang",
+            "monitors": [],
+            "servers": [],
+            "from_full": "golang",
+            "discos": [],
+            "cmd_keywords": [
+                "app",
+                "user",
+                "endpoint"
+            ],
+            "dbs": []
+        },
+        {
+            "keywords": [
+                "build",
+                "get"
+            ],
+            "buses": [],
+            "langs": [
+                "golang"
+            ],
+            "path": "/user_consumer/Dockerfile",
+            "cmd": "go app.go",
+            "gates": [],
+            "from": "golang",
+            "monitors": [],
+            "servers": [],
+            "from_full": "golang",
+            "discos": [],
+            "cmd_keywords": [
+                "app"
+            ],
+            "dbs": []
+        },
+        {
+            "keywords": [],
+            "buses": [],
+            "langs": [
+                "golang"
+            ],
+            "path": "/user_endpoint/Dockerfile",
+            "cmd": "",
+            "gates": [],
+            "from": "golang",
+            "monitors": [],
+            "servers": [],
+            "from_full": "golang",
+            "discos": [],
+            "cmd_keywords": [],
+            "dbs": []
+        }
+    ],
+    "name": "kldgarrido/go_endpoint",
+    "url": "git://github.com/kldgarrido/go_endpoint.git",
+    "gates": [],
+    "num_servers": 0,
+    "monitors": [],
+    "num_files": 5,
+    "shared_dbs": false,
+    "num_dockers": 3,
+    "dbs": [],
+    "structure": {
+        "num_services": 4,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "golang",
+                "image_full": "golang:1.8.1-alpine",
+                "servers": [],
+                "discos": [],
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "name": "web"
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "postgres",
+                "image_full": "postgres:latest",
+                "servers": [],
+                "discos": [],
+                "depends_on": [],
+                "name": "db"
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "golang",
+                "image_full": "golang:1.8.1-alpine",
+                "servers": [],
+                "discos": [],
+                "depends_on": [
+                    "db",
+                    "rabbitmq"
+                ],
+                "name": "app"
+            },
+            {
+                "gates": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "monitors": [],
+                "image": "bitnami/rabbitmq",
+                "image_full": "bitnami/rabbitmq:latest",
+                "servers": [],
+                "discos": [],
+                "depends_on": [],
+                "name": "rabbitmq"
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 0,
+            "services": [],
+            "names": []
+        }
+    }
+}

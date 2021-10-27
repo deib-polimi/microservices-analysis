@@ -1,0 +1,166 @@
+{
+    "size": 14,
+    "num_servers": 0,
+    "dbs": [
+        "cassandra"
+    ],
+    "files": [],
+    "structure": {
+        "num_services": 8,
+        "services": [
+            {
+                "name": "microservice1",
+                "image": "antifragilesoftware/simple-boot-message-sending-traceable-zipkin-microservice",
+                "depends_on": [
+                    "consul1",
+                    "query",
+                    "web"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "antifragilesoftware/simple-boot-message-sending-traceable-zipkin-microservice",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "microservice2",
+                "image": "antifragilesoftware/simple-boot-message-receiving-traceable-zipkin-microservice",
+                "depends_on": [
+                    "consul1",
+                    "query",
+                    "web"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "antifragilesoftware/simple-boot-message-receiving-traceable-zipkin-microservice",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "storage",
+                "image": "openzipkin/zipkin-cassandra",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "openzipkin/zipkin-cassandra:1.39.0",
+                "discos": [],
+                "dbs": [
+                    "cassandra"
+                ],
+                "monitors": []
+            },
+            {
+                "name": "microserviceconsumer",
+                "image": "antifragilesoftware/simple-boot-traceable-zipkin-microservice-consumer",
+                "depends_on": [
+                    "consul1",
+                    "query",
+                    "web"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "antifragilesoftware/simple-boot-traceable-zipkin-microservice-consumer",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "rabbit1",
+                "image": "rabbitmq",
+                "depends_on": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "servers": [],
+                "image_full": "rabbitmq:3-management",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "web",
+                "image": "openzipkin/zipkin-web",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "openzipkin/zipkin-web:1.39.0",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "query",
+                "image": "openzipkin/zipkin-query",
+                "depends_on": [
+                    "storage"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "openzipkin/zipkin-query:1.39.0",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "consul1",
+                "image": "gliderlabs/consul",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "gliderlabs/consul",
+                "discos": [
+                    "consul"
+                ],
+                "dbs": [],
+                "monitors": []
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "cassandra"
+            ],
+            "shared_dbs": false,
+            "services": [
+                "storage"
+            ]
+        }
+    },
+    "buses": [
+        "rabbitmq"
+    ],
+    "images": [],
+    "num_discos": 1,
+    "url": "git://github.com/antifragilesoftware/cross-service-messaging-tracing-zipkin.git",
+    "num_services": 8,
+    "langs": [],
+    "discos": [
+        "consul"
+    ],
+    "num_gates": 0,
+    "shared_dbs": false,
+    "num_files": 1,
+    "num_monitors": 0,
+    "gates": [],
+    "servers": [],
+    "num_langs": 0,
+    "languages": [],
+    "monitors": [],
+    "name": "antifragilesoftware/cross-service-messaging-tracing-zipkin",
+    "num_buses": 1,
+    "avg_size_service": 14.0,
+    "dockers": [],
+    "num_dbs": 1,
+    "num_dockers": 0
+}

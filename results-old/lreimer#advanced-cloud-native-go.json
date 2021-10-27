@@ -1,0 +1,392 @@
+{
+    "avg_size_service": 37.72727272727273,
+    "buses": [
+        "amqp"
+    ],
+    "num_dbs": 0,
+    "files": [],
+    "num_dockers": 11,
+    "num_langs": 3,
+    "num_servers": 0,
+    "num_buses": 1,
+    "num_discos": 1,
+    "gates": [],
+    "images": [
+        "golang"
+    ],
+    "size": 415,
+    "structure": {
+        "path": "/Discovery/Simple/docker-compose.yml",
+        "num_services": 3,
+        "services": [
+            {
+                "buses": [],
+                "name": "consul",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "consul",
+                "image_full": "consul:0.8.3",
+                "discos": [
+                    "consul"
+                ],
+                "gates": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "name": "simple-server",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "simple-server",
+                "image_full": "simple-server:1.0.1",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "consul"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "simple-client",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "simple-client",
+                "image_full": "simple-client:1.0.1",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "consul",
+                    "simple-server"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 0,
+            "names": [],
+            "services": []
+        }
+    },
+    "num_files": 12,
+    "servers": [],
+    "url": "git://github.com/lreimer/advanced-cloud-native-go.git",
+    "dbs": [],
+    "monitors": [],
+    "dockers": [
+        {
+            "from_full": "golang:1.8.1-alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/Discovery/Simple/server/Dockerfile",
+            "from": "golang",
+            "cmd": "${SOURCES}server/server",
+            "cmd_keywords": [
+                "server",
+                "sources"
+            ],
+            "servers": [],
+            "keywords": [
+                "apk",
+                "build",
+                "api",
+                "get",
+                "upgrade"
+            ],
+            "discos": [
+                "consul"
+            ],
+            "langs": [
+                "golang"
+            ]
+        },
+        {
+            "from_full": "golang:1.8.1-alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/Discovery/Simple/client/Dockerfile",
+            "from": "golang",
+            "cmd": "${SOURCES}client/client",
+            "cmd_keywords": [
+                "client",
+                "sources"
+            ],
+            "servers": [],
+            "keywords": [
+                "apk",
+                "build",
+                "api",
+                "get",
+                "upgrade"
+            ],
+            "discos": [
+                "consul"
+            ],
+            "langs": [
+                "golang"
+            ]
+        },
+        {
+            "from_full": "golang:1.8.1-alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/Discovery/Kubernetes/server/Dockerfile",
+            "from": "golang",
+            "cmd": "${SOURCES}server/server",
+            "cmd_keywords": [
+                "server",
+                "sources"
+            ],
+            "servers": [],
+            "keywords": [
+                "cgo",
+                "sources",
+                "enabled",
+                "server",
+                "build"
+            ],
+            "discos": [],
+            "langs": [
+                "golang"
+            ]
+        },
+        {
+            "from_full": "golang:1.8.1-alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/Discovery/Kubernetes/client/Dockerfile",
+            "from": "golang",
+            "cmd": "${SOURCES}client/client",
+            "cmd_keywords": [
+                "client",
+                "sources"
+            ],
+            "servers": [],
+            "keywords": [
+                "cgo",
+                "build",
+                "sources",
+                "enabled",
+                "client"
+            ],
+            "discos": [],
+            "langs": [
+                "golang"
+            ]
+        },
+        {
+            "from_full": "golang:1.8.1-alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/Frameworks/Gin-Web/Dockerfile",
+            "from": "golang",
+            "cmd": "${SOURCES}Gin-Web",
+            "cmd_keywords": [
+                "web",
+                "sources",
+                "gin"
+            ],
+            "servers": [],
+            "keywords": [
+                "apk",
+                "gin",
+                "build",
+                "sources",
+                "get"
+            ],
+            "discos": [],
+            "langs": [
+                "golang"
+            ]
+        },
+        {
+            "from_full": "golang:1.8.1-alpine",
+            "buses": [
+                "amqp"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/Communication/RabbitMQ/producer/Dockerfile",
+            "from": "golang",
+            "cmd": "${SOURCES}producer/producer",
+            "cmd_keywords": [
+                "producer",
+                "sources"
+            ],
+            "servers": [],
+            "keywords": [
+                "apk",
+                "build",
+                "amqp",
+                "get",
+                "upgrade"
+            ],
+            "discos": [],
+            "langs": [
+                "golang"
+            ]
+        },
+        {
+            "from_full": "golang:1.8.1-alpine",
+            "buses": [
+                "amqp"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/Communication/RabbitMQ/consumer/Dockerfile",
+            "from": "golang",
+            "cmd": "${SOURCES}consumer/consumer",
+            "cmd_keywords": [
+                "consumer",
+                "sources"
+            ],
+            "servers": [],
+            "keywords": [
+                "apk",
+                "build",
+                "consumer",
+                "amqp",
+                "get"
+            ],
+            "discos": [],
+            "langs": [
+                "golang"
+            ]
+        },
+        {
+            "from_full": "golang:1.8.1-alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/Communication/Kafka/subscriber/Dockerfile",
+            "from": "golang",
+            "cmd": "${SOURCES}subscriber/subscriber",
+            "cmd_keywords": [
+                "subscriber",
+                "sources"
+            ],
+            "servers": [],
+            "keywords": [
+                "apk",
+                "build",
+                "shopify",
+                "get",
+                "upgrade"
+            ],
+            "discos": [],
+            "langs": [
+                "golang"
+            ]
+        },
+        {
+            "from_full": "golang:1.8.1-alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/Communication/Kafka/producer/Dockerfile",
+            "from": "golang",
+            "cmd": "${SOURCES}producer/producer",
+            "cmd_keywords": [
+                "producer",
+                "sources"
+            ],
+            "servers": [],
+            "keywords": [
+                "apk",
+                "build",
+                "shopify",
+                "get",
+                "upgrade"
+            ],
+            "discos": [],
+            "langs": [
+                "golang"
+            ]
+        },
+        {
+            "from_full": "golang:1.8.1-alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/Communication/Go-Micro/server/Dockerfile",
+            "from": "golang",
+            "cmd": "${SOURCES}server/server",
+            "cmd_keywords": [
+                "server",
+                "sources"
+            ],
+            "servers": [],
+            "keywords": [
+                "micro",
+                "apk",
+                "get",
+                "com",
+                "github"
+            ],
+            "discos": [],
+            "langs": [
+                "golang"
+            ]
+        },
+        {
+            "from_full": "golang:1.8.1-alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/Communication/Go-Micro/client/Dockerfile",
+            "from": "golang",
+            "cmd": "${SOURCES}client/client",
+            "cmd_keywords": [
+                "client",
+                "sources"
+            ],
+            "servers": [],
+            "keywords": [
+                "com",
+                "micro",
+                "get",
+                "github",
+                "hystrix"
+            ],
+            "discos": [],
+            "langs": [
+                "golang"
+            ]
+        }
+    ],
+    "languages": [
+        "go",
+        "dockerfile"
+    ],
+    "num_services": 3,
+    "num_gates": 0,
+    "name": "lreimer/advanced-cloud-native-go",
+    "shared_dbs": false,
+    "langs": [
+        "go",
+        "golang",
+        "dockerfile"
+    ],
+    "discos": [
+        "consul"
+    ],
+    "num_monitors": 0
+}

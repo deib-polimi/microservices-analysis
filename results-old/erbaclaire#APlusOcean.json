@@ -1,0 +1,443 @@
+{
+    "size": 307863,
+    "avg_size_service": 51310.5,
+    "name": "erbaclaire/APlusOcean",
+    "languages": [
+        "python"
+    ],
+    "servers": [
+        "django"
+    ],
+    "num_dbs": 1,
+    "images": [
+        "django",
+        "python"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 11,
+        "services": [
+            {
+                "depends_on": [],
+                "image_full": "postgres",
+                "monitors": [],
+                "name": "carts_db",
+                "image": "postgres",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "items_db"
+                ],
+                "image_full": "./Items/items_service",
+                "monitors": [],
+                "name": "items_service",
+                "image": "./Items/items_service",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "bidsdb"
+                ],
+                "image_full": "./Auctions/auctions_service",
+                "monitors": [],
+                "name": "auctions_service",
+                "image": "./Auctions/auctions_service",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "rabbitmq:3-management",
+                "monitors": [],
+                "name": "rabbitmq",
+                "image": "rabbitmq",
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "mongo",
+                "monitors": [],
+                "name": "bidsdb",
+                "image": "mongo",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "accounts_db"
+                ],
+                "image_full": "./Accounts/accounts_service",
+                "monitors": [],
+                "name": "accounts_service",
+                "image": "./Accounts/accounts_service",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "postgres",
+                "monitors": [],
+                "name": "notifications_db",
+                "image": "postgres",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "notifications_db"
+                ],
+                "image_full": "./Notifications/notification_service",
+                "monitors": [],
+                "name": "notifications_service",
+                "image": "./Notifications/notification_service",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "carts_db"
+                ],
+                "image_full": "./Carts/carts_service",
+                "monitors": [],
+                "name": "carts_service",
+                "image": "./Carts/carts_service",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "postgres",
+                "monitors": [],
+                "name": "accounts_db",
+                "image": "postgres",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "postgres",
+                "monitors": [],
+                "name": "items_db",
+                "image": "postgres",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "bidsdb"
+            ],
+            "names": [
+                "mongo"
+            ],
+            "shared_dbs": false,
+            "num": 1
+        }
+    },
+    "num_dockers": 6,
+    "num_buses": 1,
+    "num_services": 11,
+    "dockers": [
+        {
+            "path": "/Items/items_service/Dockerfile",
+            "from": "django",
+            "langs": [
+                "python"
+            ],
+            "cmd": "python manage.py runserver 0.0.0.0:8080",
+            "servers": [
+                "django"
+            ],
+            "from_full": "django",
+            "keywords": [
+                "install",
+                "pip",
+                "get",
+                "schedule",
+                "txt"
+            ],
+            "cmd_keywords": [
+                "runserver",
+                "manage",
+                "python"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/Notifications/notification_service/Dockerfile",
+            "from": "django",
+            "langs": [
+                "python"
+            ],
+            "cmd": "python manage.py runserver 0.0.0.0:8081",
+            "servers": [
+                "django"
+            ],
+            "from_full": "django",
+            "keywords": [
+                "install",
+                "pip",
+                "get",
+                "txt",
+                "requirements"
+            ],
+            "cmd_keywords": [
+                "runserver",
+                "manage",
+                "python"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/Carts/carts_service/Dockerfile",
+            "from": "django",
+            "langs": [
+                "python"
+            ],
+            "cmd": "python manage.py runserver 0.0.0.0:8082",
+            "servers": [
+                "django"
+            ],
+            "from_full": "django",
+            "keywords": [
+                "install",
+                "pip",
+                "get",
+                "schedule",
+                "txt"
+            ],
+            "cmd_keywords": [
+                "runserver",
+                "manage",
+                "python"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/Frontend/frontend/Dockerfile",
+            "from": "django",
+            "langs": [
+                "python"
+            ],
+            "cmd": "python3 manage.py runserver 0.0.0.0:8000",
+            "servers": [
+                "django"
+            ],
+            "from_full": "django",
+            "keywords": [
+                "get",
+                "txt",
+                "install",
+                "requirements",
+                "apt"
+            ],
+            "cmd_keywords": [
+                "runserver",
+                "manage",
+                "python"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/Accounts/accounts_service/Dockerfile",
+            "from": "django",
+            "langs": [
+                "python"
+            ],
+            "cmd": "python manage.py runserver 0.0.0.0:8083",
+            "servers": [
+                "django"
+            ],
+            "from_full": "django",
+            "keywords": [
+                "install",
+                "pip",
+                "get",
+                "service",
+                "requirements"
+            ],
+            "cmd_keywords": [
+                "runserver",
+                "manage",
+                "python"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/Auctions/auctions_service/Dockerfile",
+            "from": "python",
+            "langs": [
+                "python"
+            ],
+            "cmd": "python manage.py runserver 0.0.0.0:8084",
+            "servers": [],
+            "from_full": "python:3",
+            "keywords": [
+                "install",
+                "pip",
+                "get",
+                "txt",
+                "requirements"
+            ],
+            "cmd_keywords": [
+                "runserver",
+                "manage",
+                "python"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "num_langs": 1,
+    "langs": [
+        "python"
+    ],
+    "discos": [],
+    "num_gates": 0,
+    "num_monitors": 0,
+    "num_files": 13,
+    "files": [
+        {
+            "path": "/Items/items_service/requirements.txt",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "django"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/Notifications/notification_service/requirements.txt",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "django"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/Carts/carts_service/requirements.txt",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "django"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/Frontend/frontend/requirements.txt",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "django"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/Accounts/accounts_service/requirements.txt",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "django"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/Auctions/auctions_service/requirements.txt",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "django"
+            ],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_servers": 1,
+    "url": "git://github.com/erbaclaire/APlusOcean.git",
+    "dbs": [
+        "mongo"
+    ],
+    "num_discos": 0,
+    "gates": [],
+    "buses": [
+        "rabbitmq"
+    ]
+}

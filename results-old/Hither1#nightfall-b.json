@@ -1,0 +1,467 @@
+{
+    "gates": [
+        "gateway"
+    ],
+    "langs": [
+        "javascript",
+        "typescript"
+    ],
+    "structure": {
+        "detected_dbs": {
+            "names": [
+                "mongo"
+            ],
+            "services": [
+                "mongo-merkle-tree",
+                "mongo-nightfall"
+            ],
+            "num": 2,
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "image": "./offchain",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "ganache"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "./offchain",
+                "name": "offchain",
+                "discos": [],
+                "buses": []
+            },
+            {
+                "image": "mongo",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "servers": [],
+                "image_full": "mongo",
+                "name": "mongo-merkle-tree",
+                "discos": [],
+                "buses": []
+            },
+            {
+                "image": "./database",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "mongo-nightfall"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "./database",
+                "name": "database",
+                "discos": [],
+                "buses": []
+            },
+            {
+                "image": "ajmay/truffle",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "ganache"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "ajmay/truffle:5.0.9",
+                "name": "truffle-offchain",
+                "discos": [],
+                "buses": []
+            },
+            {
+                "image": "./zkp",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "ganache"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "./zkp",
+                "name": "zkp",
+                "discos": [],
+                "buses": []
+            },
+            {
+                "image": "ajmay/truffle",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "ganache"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "ajmay/truffle:5.0.9",
+                "name": "truffle-zkp",
+                "discos": [],
+                "buses": []
+            },
+            {
+                "image": "./ui",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "./ui",
+                "name": "ui",
+                "discos": [],
+                "buses": []
+            },
+            {
+                "image": "./api-gateway",
+                "gates": [
+                    "gateway"
+                ],
+                "monitors": [],
+                "depends_on": [
+                    "accounts",
+                    "offchain",
+                    "zkp",
+                    "database"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "./api-gateway",
+                "name": "api-gateway",
+                "discos": [],
+                "buses": []
+            },
+            {
+                "image": "trufflesuite/ganache-cli",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "trufflesuite/ganache-cli:latest",
+                "name": "ganache",
+                "discos": [],
+                "buses": []
+            },
+            {
+                "image": "./accounts",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "ganache"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "./accounts",
+                "name": "accounts",
+                "discos": [],
+                "buses": []
+            },
+            {
+                "image": "docker.pkg.github.com/eyblockchain/timber/timber",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "mongo-merkle-tree",
+                    "ganache"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "docker.pkg.github.com/eyblockchain/timber/timber:v1.3.0",
+                "name": "merkle-tree",
+                "discos": [],
+                "buses": []
+            },
+            {
+                "image": "mongo",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "servers": [],
+                "image_full": "mongo",
+                "name": "mongo-nightfall",
+                "discos": [],
+                "buses": []
+            }
+        ],
+        "num_services": 12,
+        "path": "/docker-compose.yml"
+    },
+    "num_langs": 2,
+    "dockers": [
+        {
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "cmd": "npm start",
+            "monitors": [],
+            "path": "/api-gateway/Dockerfile",
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "from_full": "node:11.15",
+            "keywords": [
+                "npm"
+            ],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "cmd": "npm start",
+            "monitors": [],
+            "path": "/ui/Dockerfile",
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "from_full": "node:11.15",
+            "keywords": [
+                "npm"
+            ],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "cmd": "npm start",
+            "monitors": [],
+            "path": "/accounts/Dockerfile",
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "from_full": "node:11.15",
+            "keywords": [
+                "npm"
+            ],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "cmd": "npm start",
+            "monitors": [],
+            "path": "/offchain/Dockerfile",
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "from_full": "node:11.15",
+            "keywords": [
+                "npm"
+            ],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "cmd": "npm start",
+            "monitors": [],
+            "path": "/database/Dockerfile",
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "from_full": "node:11.15",
+            "keywords": [
+                "apt",
+                "org",
+                "mongodb",
+                "list",
+                "get"
+            ],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "cmd": "npm start",
+            "monitors": [],
+            "path": "/zkp/Dockerfile",
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "from_full": "node:11.15",
+            "keywords": [
+                "npm"
+            ],
+            "discos": []
+        }
+    ],
+    "shared_dbs": false,
+    "num_servers": 3,
+    "num_discos": 0,
+    "languages": [
+        "javascript",
+        "typescript"
+    ],
+    "avg_size_service": 2061.6666666666665,
+    "num_dbs": 1,
+    "num_services": 12,
+    "discos": [],
+    "num_dockers": 6,
+    "num_gates": 1,
+    "dbs": [
+        "mongo"
+    ],
+    "servers": [
+        "express",
+        "node",
+        "mongoose"
+    ],
+    "size": 12370,
+    "name": "Hither1/nightfall-b",
+    "url": "git://github.com/Hither1/nightfall-b.git",
+    "monitors": [],
+    "num_monitors": 0,
+    "num_buses": 0,
+    "num_files": 15,
+    "buses": [],
+    "images": [
+        "node"
+    ],
+    "files": [
+        {
+            "gates": [],
+            "monitors": [],
+            "path": "/package.json",
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "discos": []
+        },
+        {
+            "gates": [
+                "gateway"
+            ],
+            "monitors": [],
+            "path": "/api-gateway/package.json",
+            "dbs": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "buses": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "monitors": [],
+            "path": "/zkp-utils/package.json",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "monitors": [],
+            "path": "/ui/package.json",
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "monitors": [],
+            "path": "/accounts/package.json",
+            "dbs": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "buses": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "monitors": [],
+            "path": "/offchain/package.json",
+            "dbs": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "buses": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "monitors": [],
+            "path": "/database/package.json",
+            "dbs": [
+                "mongo"
+            ],
+            "servers": [
+                "express",
+                "node",
+                "mongoose"
+            ],
+            "buses": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "monitors": [],
+            "path": "/zkp/package.json",
+            "dbs": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "buses": [],
+            "discos": []
+        }
+    ]
+}

@@ -1,0 +1,163 @@
+{
+    "size": 35,
+    "shared_dbs": false,
+    "num_servers": 0,
+    "name": "PestaKit/integration",
+    "files": [
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "path": "/e2e-specs/pom.xml",
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "num_files": 2,
+    "num_langs": 1,
+    "dbs": [
+        "postgresql"
+    ],
+    "servers": [],
+    "num_discos": 0,
+    "url": "git://github.com/PestaKit/integration.git",
+    "gates": [],
+    "structure": {
+        "services": [
+            {
+                "image": "pestakit/users",
+                "dbs": [],
+                "image_full": "pestakit/users",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "microservice-users",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "users-init-data"
+                ]
+            },
+            {
+                "image": "pestakit/surveys-db",
+                "dbs": [],
+                "image_full": "pestakit/surveys-db",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "surveys-db",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "pestakit/surveys",
+                "dbs": [],
+                "image_full": "pestakit/surveys",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "surveys",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "surveys-db",
+                    "microservice-users"
+                ]
+            },
+            {
+                "image": "cockroachdb/cockroach",
+                "dbs": [
+                    "cockroachdb"
+                ],
+                "image_full": "cockroachdb/cockroach:v1.1.2",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "users-roach-two",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "jbergknoff/postgresql-client",
+                "dbs": [
+                    "postgresql"
+                ],
+                "image_full": "jbergknoff/postgresql-client:latest",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "users-init-data",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "users-roach-one"
+                ]
+            },
+            {
+                "image": "cockroachdb/cockroach",
+                "dbs": [
+                    "cockroachdb"
+                ],
+                "image_full": "cockroachdb/cockroach:v1.1.2",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "users-roach-three",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "cockroachdb/cockroach",
+                "dbs": [
+                    "cockroachdb"
+                ],
+                "image_full": "cockroachdb/cockroach:v1.1.2",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "users-roach-one",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            }
+        ],
+        "num_services": 7,
+        "detected_dbs": {
+            "num": 4,
+            "names": [
+                "cockroachdb",
+                "postgresql"
+            ],
+            "services": [
+                "users-roach-two",
+                "users-init-data",
+                "users-roach-three",
+                "users-roach-one"
+            ],
+            "shared_dbs": false
+        },
+        "path": "/docker-topologies/docker-compose.yml"
+    },
+    "num_gates": 0,
+    "num_dockers": 0,
+    "num_dbs": 1,
+    "num_services": 7,
+    "langs": [
+        "java"
+    ],
+    "buses": [],
+    "num_buses": 0,
+    "num_monitors": 0,
+    "languages": [
+        "java"
+    ],
+    "dockers": [],
+    "monitors": [],
+    "avg_size_service": 35.0,
+    "discos": [],
+    "images": []
+}

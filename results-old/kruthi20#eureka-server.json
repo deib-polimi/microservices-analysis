@@ -1,0 +1,230 @@
+{
+    "size": 47686,
+    "num_servers": 1,
+    "dbs": [
+        "mysql"
+    ],
+    "files": [
+        {
+            "path": "/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "structure": {
+        "num_services": 9,
+        "services": [
+            {
+                "name": "product-view-service",
+                "image": "kmurthy3/product-view-service",
+                "depends_on": [
+                    "eureka-server",
+                    "product-service",
+                    "inventory-service",
+                    "promotion-service"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "kmurthy3/product-view-service",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "zuul-api-gateway",
+                "image": "kmurthy3/zuul-api-gateway",
+                "depends_on": [
+                    "product-view-service"
+                ],
+                "buses": [],
+                "gates": [
+                    "zuul"
+                ],
+                "servers": [],
+                "image_full": "kmurthy3/zuul-api-gateway",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "mysql-inventory",
+                "image": "mysql",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "mysql:5.6",
+                "discos": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "monitors": []
+            },
+            {
+                "name": "eureka-server",
+                "image": "kmurthy3/eureka-server",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "kmurthy3/eureka-server",
+                "discos": [
+                    "eureka"
+                ],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "product-service",
+                "image": "kmurthy3/product-service",
+                "depends_on": [
+                    "eureka-server",
+                    "mysql-standalone"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "kmurthy3/product-service",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "inventory-service",
+                "image": "kmurthy3/inventory-service",
+                "depends_on": [
+                    "eureka-server",
+                    "mysql-inventory"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "kmurthy3/inventory-service",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "promotion-service",
+                "image": "kmurthy3/promotion-service",
+                "depends_on": [
+                    "eureka-server",
+                    "mysql-promotion"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "kmurthy3/promotion-service",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "mysql-promotion",
+                "image": "mysql",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "mysql:5.6",
+                "discos": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "monitors": []
+            },
+            {
+                "name": "mysql-standalone",
+                "image": "mysql",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "mysql:5.6",
+                "discos": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "monitors": []
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "num": 3,
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": false,
+            "services": [
+                "mysql-inventory",
+                "mysql-promotion",
+                "mysql-standalone"
+            ]
+        }
+    },
+    "buses": [],
+    "images": [
+        "openjdk"
+    ],
+    "num_discos": 1,
+    "url": "git://github.com/kruthi20/eureka-server.git",
+    "num_services": 9,
+    "langs": [
+        "dockerfile",
+        "java"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "num_gates": 1,
+    "shared_dbs": false,
+    "num_files": 3,
+    "num_monitors": 0,
+    "gates": [
+        "zuul"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "num_langs": 2,
+    "languages": [
+        "java",
+        "dockerfile"
+    ],
+    "monitors": [],
+    "name": "kruthi20/eureka-server",
+    "num_buses": 0,
+    "avg_size_service": 47686.0,
+    "dockers": [
+        {
+            "path": "/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "touch",
+                "app",
+                "jar"
+            ],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        }
+    ],
+    "num_dbs": 1,
+    "num_dockers": 1
+}

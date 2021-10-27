@@ -1,0 +1,271 @@
+{
+    "gates": [],
+    "images": [
+        "base"
+    ],
+    "num_dbs": 1,
+    "structure": {
+        "num_services": 8,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "mongo",
+                "gates": [],
+                "image": "mongo",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "name": "nosql.data",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "duber/trip.notifications:${TAG:-latest}",
+                "gates": [],
+                "image": "duber/trip.notifications",
+                "depends_on": [],
+                "dbs": [],
+                "name": "duber.trip.notifications",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "externalsystem/paymentservice:${TAG:-latest}",
+                "gates": [],
+                "image": "externalsystem/paymentservice",
+                "depends_on": [],
+                "dbs": [],
+                "name": "externalsystem.payment",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "duber/trip.api:${TAG:-latest}",
+                "gates": [],
+                "image": "duber/trip.api",
+                "depends_on": [
+                    "nosql.data",
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "name": "duber.trip.api",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "duber/website:${TAG:-latest}",
+                "gates": [],
+                "image": "duber/website",
+                "depends_on": [
+                    "duber.invoice.api",
+                    "duber.trip.api",
+                    "sql.data",
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "name": "duber.website",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "rabbitmq:3-management",
+                "gates": [],
+                "image": "rabbitmq",
+                "depends_on": [],
+                "dbs": [],
+                "name": "rabbitmq",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "duber/invoice.api:${TAG:-latest}",
+                "gates": [],
+                "image": "duber/invoice.api",
+                "depends_on": [
+                    "sql.data",
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "name": "duber.invoice.api",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "microsoft/mssql-server-linux:2017-latest",
+                "gates": [],
+                "image": "microsoft/mssql-server-linux",
+                "depends_on": [],
+                "dbs": [],
+                "name": "sql.data",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 1,
+            "services": [
+                "nosql.data"
+            ],
+            "shared_dbs": false,
+            "names": [
+                "mongo"
+            ]
+        }
+    },
+    "num_files": 6,
+    "num_gates": 0,
+    "discos": [],
+    "num_dockers": 5,
+    "shared_dbs": false,
+    "languages": [
+        "c#"
+    ],
+    "name": "vany0114/microservices-dotnetcore-docker-sf-k8s",
+    "num_langs": 1,
+    "avg_size_service": 135.6,
+    "monitors": [],
+    "num_servers": 0,
+    "num_services": 8,
+    "dbs": [
+        "mongo"
+    ],
+    "langs": [
+        "c#"
+    ],
+    "dockers": [
+        {
+            "gates": [],
+            "path": "/ExternalSystem/PaymentService/Dockerfile",
+            "langs": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "base",
+            "discos": [],
+            "from_full": "base",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": [
+                "dotnet",
+                "release",
+                "publish",
+                "restore",
+                "build"
+            ]
+        },
+        {
+            "gates": [],
+            "path": "/src/Web/Duber.WebSite/Dockerfile",
+            "langs": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "base",
+            "discos": [],
+            "from_full": "base",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": [
+                "dotnet",
+                "release",
+                "publish",
+                "restore",
+                "build"
+            ]
+        },
+        {
+            "gates": [],
+            "path": "/src/Application/Duber.Invoice.API/Dockerfile",
+            "langs": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "base",
+            "discos": [],
+            "from_full": "base",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": [
+                "dotnet",
+                "release",
+                "publish",
+                "restore",
+                "build"
+            ]
+        },
+        {
+            "gates": [],
+            "path": "/src/Application/Duber.Trip.API/Dockerfile",
+            "langs": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "base",
+            "discos": [],
+            "from_full": "base",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": [
+                "dotnet",
+                "release",
+                "publish",
+                "restore",
+                "build"
+            ]
+        },
+        {
+            "gates": [],
+            "path": "/src/Application/Duber.Trip.Notifications/Dockerfile",
+            "langs": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "base",
+            "discos": [],
+            "from_full": "base",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": [
+                "notifications",
+                "duber",
+                "trip",
+                "dotnet",
+                "csproj"
+            ]
+        }
+    ],
+    "buses": [
+        "rabbitmq"
+    ],
+    "servers": [],
+    "size": 678,
+    "files": [],
+    "num_buses": 1,
+    "num_monitors": 0,
+    "url": "git://github.com/vany0114/microservices-dotnetcore-docker-sf-k8s.git",
+    "num_discos": 0
+}

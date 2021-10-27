@@ -1,0 +1,248 @@
+{
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "avg_size_service": 76.0,
+    "num_dbs": 0,
+    "num_services": 5,
+    "langs": [
+        "dockerfile",
+        "java"
+    ],
+    "num_langs": 2,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [],
+                "image_full": "mip/discovery-service",
+                "name": "discovery",
+                "dbs": [],
+                "servers": [],
+                "image": "mip/discovery-service",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [],
+                "image_full": "mip/gateway-service",
+                "name": "gateway",
+                "dbs": [],
+                "servers": [],
+                "image": "mip/gateway-service",
+                "gates": [
+                    "gateway"
+                ],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [],
+                "image_full": "mip/admin-service",
+                "name": "admin",
+                "dbs": [],
+                "servers": [],
+                "image": "mip/admin-service",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "depends_on": [],
+                "image_full": "rabbitmq:3.7.17-management",
+                "name": "rabbitmq-bus",
+                "dbs": [],
+                "servers": [],
+                "image": "rabbitmq",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "rabbitmq-bus"
+                ],
+                "image_full": "mip/config-service",
+                "name": "config",
+                "dbs": [],
+                "servers": [],
+                "image": "mip/config-service",
+                "gates": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "names": [],
+            "num": 0,
+            "services": []
+        },
+        "num_services": 5
+    },
+    "shared_dbs": false,
+    "num_buses": 2,
+    "dockers": [
+        {
+            "buses": [],
+            "from_full": "openjdk:8-jre-alpine",
+            "cmd": "",
+            "from": "openjdk",
+            "path": "/admin-service/src/main/docker/Dockerfile",
+            "langs": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [],
+            "dbs": [],
+            "gates": [],
+            "servers": []
+        },
+        {
+            "buses": [],
+            "from_full": "openjdk:8-jre-alpine",
+            "cmd": "",
+            "from": "openjdk",
+            "path": "/gateway-service/src/main/docker/Dockerfile",
+            "langs": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [],
+            "dbs": [],
+            "gates": [],
+            "servers": []
+        },
+        {
+            "buses": [],
+            "from_full": "openjdk:8-jre-alpine",
+            "cmd": "",
+            "from": "openjdk",
+            "path": "/discovery-service/src/main/docker/Dockerfile",
+            "langs": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [],
+            "dbs": [],
+            "gates": [],
+            "servers": []
+        },
+        {
+            "buses": [],
+            "from_full": "openjdk:8-jre-alpine",
+            "cmd": "",
+            "from": "openjdk",
+            "path": "/config-service/src/main/docker/Dockerfile",
+            "langs": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [],
+            "dbs": [],
+            "gates": [],
+            "servers": []
+        }
+    ],
+    "dbs": [],
+    "languages": [
+        "java",
+        "dockerfile"
+    ],
+    "gates": [
+        "zuul"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "num_gates": 1,
+    "name": "microservices-in-practice/mip-spring-cloud-docker-infra",
+    "num_monitors": 1,
+    "monitors": [
+        "turbine"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "files": [
+        {
+            "buses": [
+                "amqp"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/admin-service/pom.xml",
+            "gates": [],
+            "monitors": [
+                "turbine"
+            ]
+        },
+        {
+            "buses": [
+                "amqp"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/gateway-service/pom.xml",
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "monitors": []
+        },
+        {
+            "buses": [
+                "amqp"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/discovery-service/pom.xml",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/config-service/pom.xml",
+            "gates": [],
+            "monitors": []
+        }
+    ],
+    "size": 304,
+    "num_dockers": 4,
+    "num_files": 9,
+    "url": "git://github.com/microservices-in-practice/mip-spring-cloud-docker-infra.git",
+    "num_servers": 1,
+    "images": [
+        "openjdk"
+    ],
+    "num_discos": 1
+}

@@ -1,0 +1,357 @@
+{
+    "num_discos": 0,
+    "buses": [],
+    "gates": [],
+    "num_servers": 2,
+    "num_gates": 0,
+    "num_dbs": 1,
+    "monitors": [],
+    "num_langs": 2,
+    "num_files": 13,
+    "structure": {
+        "services": [
+            {
+                "name": "catalog",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "catalog_db",
+                "image_full": "catalog_db:${IMAGE_BUILD_TAG}",
+                "monitors": [],
+                "depends_on": [
+                    "database"
+                ]
+            },
+            {
+                "name": "liblogic",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "lib_logic",
+                "image_full": "lib_logic:${IMAGE_BUILD_TAG}",
+                "monitors": [],
+                "depends_on": [
+                    "catalog",
+                    "borrow",
+                    "patron"
+                ]
+            },
+            {
+                "name": "patron",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "patrons_db",
+                "image_full": "patrons_db:${IMAGE_BUILD_TAG}",
+                "monitors": [],
+                "depends_on": [
+                    "database"
+                ]
+            },
+            {
+                "name": "database",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "sql_backend",
+                "image_full": "sql_backend:${IMAGE_BUILD_TAG}",
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "frontend",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "web_frontend",
+                "image_full": "web_frontend:${IMAGE_BUILD_TAG}",
+                "monitors": [],
+                "depends_on": [
+                    "catalog",
+                    "borrow",
+                    "patron",
+                    "liblogic"
+                ]
+            },
+            {
+                "name": "borrow",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "borrowing_db",
+                "image_full": "borrowing_db:${IMAGE_BUILD_TAG}",
+                "monitors": [],
+                "depends_on": [
+                    "database"
+                ]
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "names": [],
+            "num": 0,
+            "services": [],
+            "shared_dbs": false
+        },
+        "num_services": 6
+    },
+    "servers": [
+        "django",
+        "flask"
+    ],
+    "shared_dbs": false,
+    "langs": [
+        "html",
+        "python"
+    ],
+    "dockers": [
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/flask-services/src/borrowlogicservice/Dockerfile",
+            "from": "python",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "apt",
+                "var",
+                "pip",
+                "get",
+                "install"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "python:3.6-slim-stretch",
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/flask-services/src/catalogdbservice/Dockerfile",
+            "from": "python",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "apt",
+                "var",
+                "pip",
+                "get",
+                "install"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "python:3.6-slim-stretch",
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/flask-services/src/borrowingdbservice/Dockerfile",
+            "from": "python",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "apt",
+                "var",
+                "pip",
+                "get",
+                "install"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "python:3.6-slim-stretch",
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/flask-services/src/patronsdbservice/Dockerfile",
+            "from": "python",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "apt",
+                "var",
+                "pip",
+                "get",
+                "install"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "python:3.6-slim-stretch",
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/mysql/Dockerfile",
+            "from": "mysql",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "apt",
+                "var",
+                "lists",
+                "get",
+                "lib"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "from_full": "mysql:5.7",
+            "langs": []
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/django-frontend/Dockerfile",
+            "from": "python",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "apt",
+                "var",
+                "pip",
+                "get",
+                "install"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "python:3.6-slim-stretch",
+            "langs": [
+                "python"
+            ]
+        }
+    ],
+    "name": "eyalabraham/docker-services-demo",
+    "discos": [],
+    "avg_size_service": 500.3333333333333,
+    "num_monitors": 0,
+    "images": [
+        "mysql",
+        "python"
+    ],
+    "url": "git://github.com/eyalabraham/docker-services-demo.git",
+    "files": [
+        {
+            "discos": [],
+            "buses": [],
+            "path": "/flask-services/requirements.txt",
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "buses": [],
+            "path": "/flask-services/src/borrowlogicservice/requirements.txt",
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "buses": [],
+            "path": "/flask-services/src/catalogdbservice/requirements.txt",
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "buses": [],
+            "path": "/flask-services/src/borrowingdbservice/requirements.txt",
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "buses": [],
+            "path": "/flask-services/src/patronsdbservice/requirements.txt",
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "buses": [],
+            "path": "/django-frontend/requirements.txt",
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "django"
+            ],
+            "monitors": []
+        }
+    ],
+    "size": 3002,
+    "languages": [
+        "python",
+        "html"
+    ],
+    "dbs": [
+        "mysql"
+    ],
+    "num_buses": 0,
+    "num_services": 6,
+    "num_dockers": 6
+}

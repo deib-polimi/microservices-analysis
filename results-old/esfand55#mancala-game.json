@@ -1,0 +1,331 @@
+{
+    "num_gates": 0,
+    "images": [
+        "docker.elastic.co/elasticsearch/elasticsearch",
+        "docker.elastic.co/beats/filebeat",
+        "prom/prometheus",
+        "ubuntu",
+        "openjdk"
+    ],
+    "discos": [
+        "consul"
+    ],
+    "num_buses": 0,
+    "name": "esfand55/mancala-game",
+    "gates": [],
+    "structure": {
+        "num_services": 6,
+        "detected_dbs": {
+            "services": [
+                "mongodb",
+                "redisdb"
+            ],
+            "names": [
+                "redis",
+                "mongo"
+            ],
+            "shared_dbs": false,
+            "num": 2
+        },
+        "path": "/docker/docker-compose.yml",
+        "services": [
+            {
+                "image": "../mancala-microservice/mancala-api",
+                "image_full": "../mancala-microservice/mancala-api",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "redisdb",
+                    "mongodb"
+                ],
+                "servers": [],
+                "name": "mancala-api",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "mongo",
+                "image_full": "mongo:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "mongodb",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "mongo"
+                ]
+            },
+            {
+                "image": "../mancala-microservice/mancala-web",
+                "image_full": "../mancala-microservice/mancala-web",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "consul-server"
+                ],
+                "servers": [],
+                "name": "mancala-web",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "consul",
+                "image_full": "consul:1.2.0",
+                "discos": [
+                    "consul"
+                ],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "consul-server",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "redis",
+                "image_full": "redis",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "redisdb",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "redis"
+                ]
+            },
+            {
+                "image": "apache",
+                "image_full": "apache",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "consul-server"
+                ],
+                "servers": [],
+                "name": "apache",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            }
+        ]
+    },
+    "url": "git://github.com/esfand55/mancala-game.git",
+    "langs": [
+        "java"
+    ],
+    "num_dockers": 6,
+    "num_langs": 1,
+    "dbs": [
+        "redis",
+        "mongo"
+    ],
+    "shared_dbs": false,
+    "size": 1667,
+    "dockers": [
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:8-jre-alpine",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "openjdk",
+            "cmd": "/usr/bin/java -Dlogging.path=/log/ -Xmx400m -Xms400m -jar mancala-web-0.1.0.jar",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/mancala-microservice/mancala-web/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "bin",
+                "xmx",
+                "xms",
+                "log"
+            ]
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:8-jre-alpine",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "openjdk",
+            "cmd": "/usr/bin/java -Dlogging.path=/log/ -Xmx400m -Xms400m -jar mancala-api-0.0.1-SNAPSHOT.jar",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/mancala-microservice/mancala-api/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "bin",
+                "api",
+                "usr",
+                "mancala"
+            ]
+        },
+        {
+            "discos": [
+                "consul"
+            ],
+            "monitors": [],
+            "from_full": "ubuntu:16.04",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "ubuntu",
+            "cmd": "/usr/bin/consul-template -log-level info -consul consul-server:8500 -template \"/etc/apache2/sites-enabled/000-default.ctmpl:/etc/apache2/sites-enabled/000-default.conf:apache2ctl -k graceful\"",
+            "gates": [],
+            "keywords": [
+                "template",
+                "consul",
+                "proxy",
+                "apt",
+                "get"
+            ],
+            "dbs": [],
+            "path": "/docker/apache/Dockerfile",
+            "cmd_keywords": [
+                "consul",
+                "apache",
+                "etc",
+                "template",
+                "sites"
+            ]
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "docker.elastic.co/beats/filebeat:6.3.1",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "docker.elastic.co/beats/filebeat",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "filebeat",
+                "chown",
+                "yml",
+                "usr",
+                "share"
+            ],
+            "dbs": [],
+            "path": "/docker/filebeat/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "from_full": "prom/prometheus:v2.11.1",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "prom/prometheus",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/docker/prometheus/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "docker.elastic.co/elasticsearch/elasticsearch:6.3.1",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "docker.elastic.co/elasticsearch/elasticsearch",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "elasticsearch",
+                "chown",
+                "bin",
+                "share",
+                "usr"
+            ],
+            "dbs": [],
+            "path": "/docker/elasticsearch/Dockerfile",
+            "cmd_keywords": []
+        }
+    ],
+    "num_servers": 1,
+    "monitors": [
+        "prometheus"
+    ],
+    "num_services": 6,
+    "servers": [
+        "spring"
+    ],
+    "num_monitors": 1,
+    "avg_size_service": 277.8333333333333,
+    "num_files": 10,
+    "buses": [],
+    "files": [
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/mancala-microservice/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "consul"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [
+                "prometheus"
+            ],
+            "dbs": [],
+            "path": "/mancala-microservice/mancala-web/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "consul"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [
+                "prometheus"
+            ],
+            "dbs": [
+                "redis",
+                "mongodb",
+                "mongo"
+            ],
+            "path": "/mancala-microservice/mancala-api/pom.xml"
+        }
+    ],
+    "languages": [
+        "java"
+    ],
+    "num_dbs": 2,
+    "num_discos": 1
+}

@@ -1,0 +1,170 @@
+{
+    "size": 269,
+    "num_dockers": 2,
+    "discos": [],
+    "num_files": 3,
+    "avg_size_service": 134.5,
+    "buses": [],
+    "num_gates": 0,
+    "langs": [
+        "php"
+    ],
+    "num_discos": 0,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "apachectl  -DFOREGROUND -e info",
+            "discos": [],
+            "servers": [
+                "httpd"
+            ],
+            "cmd_keywords": [
+                "info",
+                "apachectl",
+                "dforeground"
+            ],
+            "from": "debian",
+            "path": "/.docker/apache/Dockerfile",
+            "keywords": [
+                "apache",
+                "proxy",
+                "apt",
+                "httpd",
+                "data"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "debian:stretch"
+        },
+        {
+            "monitors": [],
+            "cmd": "php-fpm",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "cmd_keywords": [
+                "fpm",
+                "php"
+            ],
+            "from": "php",
+            "path": "/.docker/php/Dockerfile",
+            "keywords": [
+                "apt",
+                "phar",
+                "phpunit",
+                "etc",
+                "https"
+            ],
+            "buses": [],
+            "langs": [
+                "php"
+            ],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "from_full": "php:7.2.10-fpm"
+        }
+    ],
+    "num_dbs": 1,
+    "monitors": [],
+    "shared_dbs": true,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": ".docker/apache",
+                "image_full": ".docker/apache",
+                "discos": [],
+                "name": "apache",
+                "depends_on": [
+                    "php"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mysql",
+                "image_full": "mysql:5.7",
+                "discos": [],
+                "name": "db",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "phpmyadmin/phpmyadmin",
+                "image_full": "phpmyadmin/phpmyadmin",
+                "discos": [],
+                "name": "phpmyadmin",
+                "depends_on": [
+                    "db"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": ".docker/php",
+                "image_full": ".docker/php",
+                "discos": [],
+                "name": "php",
+                "depends_on": [
+                    "db"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "mysql"
+            ],
+            "services": [
+                "db"
+            ],
+            "shared_dbs": true
+        },
+        "num_services": 4,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 0,
+    "servers": [
+        "httpd",
+        "node"
+    ],
+    "url": "git://github.com/khachornchit/PHP-Symfony4-Micro-services.git",
+    "num_services": 4,
+    "gates": [],
+    "files": [],
+    "name": "khachornchit/PHP-Symfony4-Micro-services",
+    "languages": [
+        "php"
+    ],
+    "images": [
+        "php",
+        "debian"
+    ],
+    "dbs": [
+        "mysql"
+    ],
+    "num_servers": 2,
+    "num_langs": 1
+}

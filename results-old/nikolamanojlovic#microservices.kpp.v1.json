@@ -1,0 +1,253 @@
+{
+    "servers": [
+        "node"
+    ],
+    "languages": [
+        "typescript",
+        "c#"
+    ],
+    "url": "git://github.com/nikolamanojlovic/microservices.kpp.v1.git",
+    "gates": [],
+    "langs": [
+        "typescript",
+        "sql",
+        "c#"
+    ],
+    "discos": [],
+    "files": [
+        {
+            "servers": [
+                "node"
+            ],
+            "dbs": [],
+            "path": "/servisi/veb-kpp/react-kpp/package.json",
+            "buses": [],
+            "gates": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "dockers": [
+        {
+            "servers": [],
+            "from": "mcr.microsoft.com/mssql/server",
+            "gates": [],
+            "langs": [
+                "sql"
+            ],
+            "buses": [],
+            "keywords": [
+                "opt",
+                "mssql",
+                "bin",
+                "sqlservr",
+                "scripts"
+            ],
+            "discos": [],
+            "cmd": "",
+            "cmd_keywords": [],
+            "dbs": [
+                "sql"
+            ],
+            "path": "/servisi/baza-procesi/Dockerfile",
+            "monitors": [],
+            "from_full": "mcr.microsoft.com/mssql/server:2017-GA-ubuntu"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "gates": [],
+            "langs": [],
+            "buses": [],
+            "keywords": [
+                "npm",
+                "build",
+                "install",
+                "script",
+                "run"
+            ],
+            "discos": [],
+            "cmd": "npm start",
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "dbs": [],
+            "path": "/servisi/veb-kpp/Dockerfile",
+            "monitors": [],
+            "from_full": "node:8.16.0-alpine"
+        },
+        {
+            "servers": [],
+            "from": "mcr.microsoft.com/dotnet/core/aspnet",
+            "gates": [],
+            "langs": [],
+            "buses": [],
+            "keywords": [
+                "dotnet",
+                "chmod",
+                "build",
+                "procesi",
+                "release"
+            ],
+            "discos": [],
+            "cmd": "",
+            "cmd_keywords": [],
+            "dbs": [],
+            "path": "/servisi/mikroservis-procesi/Dockerfile",
+            "monitors": [],
+            "from_full": "mcr.microsoft.com/dotnet/core/aspnet:2.2-alpine3.9"
+        },
+        {
+            "servers": [],
+            "from": "mcr.microsoft.com/mssql/server",
+            "gates": [],
+            "langs": [
+                "sql"
+            ],
+            "buses": [],
+            "keywords": [
+                "opt",
+                "mssql",
+                "bin",
+                "sqlservr",
+                "scripts"
+            ],
+            "discos": [],
+            "cmd": "",
+            "cmd_keywords": [],
+            "dbs": [
+                "sql"
+            ],
+            "path": "/servisi/baza-zaposleni/Dockerfile",
+            "monitors": [],
+            "from_full": "mcr.microsoft.com/mssql/server:2017-GA-ubuntu"
+        },
+        {
+            "servers": [],
+            "from": "mcr.microsoft.com/dotnet/core/aspnet",
+            "gates": [],
+            "langs": [],
+            "buses": [],
+            "keywords": [
+                "dotnet",
+                "chmod",
+                "build",
+                "zaposleni",
+                "release"
+            ],
+            "discos": [],
+            "cmd": "",
+            "cmd_keywords": [],
+            "dbs": [],
+            "path": "/servisi/mikroservis-zaposleni/Dockerfile",
+            "monitors": [],
+            "from_full": "mcr.microsoft.com/dotnet/core/aspnet:2.2-alpine3.9"
+        }
+    ],
+    "images": [
+        "mcr.microsoft.com/mssql/server",
+        "mcr.microsoft.com/dotnet/core/aspnet",
+        "node"
+    ],
+    "num_monitors": 0,
+    "avg_size_service": 1471.4,
+    "size": 7357,
+    "num_dockers": 5,
+    "num_servers": 1,
+    "num_services": 5,
+    "num_discos": 0,
+    "name": "nikolamanojlovic/microservices.kpp.v1",
+    "shared_dbs": false,
+    "num_dbs": 1,
+    "num_buses": 0,
+    "num_langs": 3,
+    "buses": [],
+    "num_gates": 0,
+    "dbs": [
+        "sql"
+    ],
+    "num_files": 7,
+    "monitors": [],
+    "structure": {
+        "services": [
+            {
+                "servers": [],
+                "name": "kpp-mikroservis-procesi",
+                "image": "./servisi/mikroservis-procesi/",
+                "buses": [],
+                "depends_on": [
+                    "kpp-baza-procesi"
+                ],
+                "gates": [],
+                "discos": [],
+                "image_full": "./servisi/mikroservis-procesi/",
+                "monitors": [],
+                "dbs": []
+            },
+            {
+                "servers": [],
+                "name": "kpp-baza-procesi",
+                "image": "./servisi/baza-procesi/",
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "image_full": "./servisi/baza-procesi/",
+                "monitors": [],
+                "dbs": []
+            },
+            {
+                "servers": [],
+                "name": "kpp-veb",
+                "image": "./servisi/veb-kpp/",
+                "buses": [],
+                "depends_on": [
+                    "kpp-baza-zaposleni",
+                    "kpp-baza-procesi"
+                ],
+                "gates": [],
+                "discos": [],
+                "image_full": "./servisi/veb-kpp/",
+                "monitors": [],
+                "dbs": []
+            },
+            {
+                "servers": [],
+                "name": "kpp-baza-zaposleni",
+                "image": "./servisi/baza-zaposleni/",
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "image_full": "./servisi/baza-zaposleni/",
+                "monitors": [],
+                "dbs": []
+            },
+            {
+                "servers": [],
+                "name": "kpp-mikroservis-zaposleni",
+                "image": "./servisi/mikroservis-zaposleni/",
+                "buses": [],
+                "depends_on": [
+                    "kpp-baza-zaposleni"
+                ],
+                "gates": [],
+                "discos": [],
+                "image_full": "./servisi/mikroservis-zaposleni/",
+                "monitors": [],
+                "dbs": []
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "num_services": 5,
+        "detected_dbs": {
+            "services": [],
+            "num": 0,
+            "shared_dbs": false,
+            "names": []
+        }
+    }
+}

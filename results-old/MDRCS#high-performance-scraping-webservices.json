@@ -1,0 +1,177 @@
+{
+    "size": 19,
+    "num_files": 4,
+    "dockers": [
+        {
+            "from_full": "python:3",
+            "gates": [],
+            "discos": [],
+            "cmd": "nameko run --broker amqp://guest:guest@rabbitmq scraper_microservice.py",
+            "monitors": [],
+            "keywords": [
+                "nltk",
+                "nameko",
+                "data",
+                "python",
+                "pip"
+            ],
+            "from": "python",
+            "langs": [
+                "python"
+            ],
+            "cmd_keywords": [
+                "guest",
+                "nameko",
+                "amqp",
+                "run",
+                "microservice"
+            ],
+            "servers": [],
+            "buses": [
+                "amqp"
+            ],
+            "path": "/scraping_microservice/Dockerfile",
+            "dbs": []
+        },
+        {
+            "from_full": "python:3",
+            "gates": [],
+            "discos": [],
+            "cmd": "python api.py",
+            "monitors": [],
+            "keywords": [
+                "nameko",
+                "pip",
+                "flask",
+                "install",
+                "elasticsearch"
+            ],
+            "from": "python",
+            "langs": [
+                "python"
+            ],
+            "cmd_keywords": [
+                "python",
+                "api"
+            ],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "path": "/scraping_microservice/RestAPI/Dockerfile",
+            "dbs": []
+        }
+    ],
+    "avg_size_service": 9.5,
+    "num_services": 4,
+    "servers": [
+        "flask"
+    ],
+    "num_discos": 0,
+    "num_langs": 2,
+    "discos": [],
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "url": "git://github.com/MDRCS/high-performance-scraping-webservices.git",
+    "structure": {
+        "num_services": 4,
+        "path": "/scraping_microservice/docker-compose.yml",
+        "services": [
+            {
+                "servers": [],
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "depends_on": [],
+                "name": "elastic",
+                "dbs": [],
+                "gates": [],
+                "buses": [],
+                "discos": [],
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:6.1.1",
+                "monitors": []
+            },
+            {
+                "servers": [],
+                "image": "scraper-rest-api",
+                "depends_on": [],
+                "name": "api",
+                "dbs": [],
+                "gates": [],
+                "buses": [],
+                "discos": [],
+                "image_full": "scraper-rest-api",
+                "monitors": []
+            },
+            {
+                "servers": [],
+                "image": "scraping-microservice",
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "name": "scraper",
+                "dbs": [],
+                "gates": [],
+                "buses": [],
+                "discos": [],
+                "image_full": "scraping-microservice",
+                "monitors": []
+            },
+            {
+                "servers": [],
+                "image": "rabbitmq",
+                "depends_on": [],
+                "name": "rabbitmq",
+                "dbs": [],
+                "gates": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "image_full": "rabbitmq:3-management",
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "shared_dbs": false,
+            "services": []
+        }
+    },
+    "shared_dbs": false,
+    "gates": [],
+    "num_gates": 0,
+    "name": "MDRCS/high-performance-scraping-webservices",
+    "num_buses": 2,
+    "num_servers": 1,
+    "num_dbs": 0,
+    "monitors": [],
+    "langs": [
+        "html",
+        "python"
+    ],
+    "dbs": [],
+    "files": [
+        {
+            "servers": [],
+            "gates": [],
+            "discos": [],
+            "dbs": [],
+            "buses": [
+                "amqp"
+            ],
+            "path": "/requirements.txt",
+            "monitors": []
+        }
+    ],
+    "images": [
+        "python"
+    ],
+    "num_dockers": 2,
+    "languages": [
+        "python",
+        "html"
+    ],
+    "num_monitors": 0
+}

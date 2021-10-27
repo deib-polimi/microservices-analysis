@@ -1,0 +1,246 @@
+{
+    "gates": [],
+    "num_buses": 1,
+    "url": "git://github.com/OpenMatchmaking/bench-pathfinder.git",
+    "images": [
+        "openmatchmaking/docker-base-python-image",
+        "denvazh/gatling"
+    ],
+    "avg_size_service": 14.0,
+    "num_langs": 2,
+    "num_monitors": 0,
+    "num_dockers": 2,
+    "num_discos": 0,
+    "num_servers": 0,
+    "buses": [
+        "rabbitmq"
+    ],
+    "discos": [],
+    "dockers": [
+        {
+            "path": "/gatling/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "denvazh/gatling",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "denvazh/gatling:3.0.0",
+            "monitors": [],
+            "keywords": [],
+            "buses": []
+        },
+        {
+            "path": "/microservice-echo/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "openmatchmaking/docker-base-python-image",
+            "langs": [
+                "python"
+            ],
+            "servers": [],
+            "cmd": "",
+            "from_full": "openmatchmaking/docker-base-python-image:3.7",
+            "monitors": [],
+            "keywords": [
+                "pip",
+                "requirements",
+                "install",
+                "mkdir",
+                "txt"
+            ],
+            "buses": []
+        }
+    ],
+    "size": 28,
+    "name": "OpenMatchmaking/bench-pathfinder",
+    "num_services": 9,
+    "dbs": [
+        "redis",
+        "mongo"
+    ],
+    "shared_dbs": true,
+    "langs": [
+        "scala",
+        "python"
+    ],
+    "languages": [
+        "scala",
+        "python"
+    ],
+    "servers": [],
+    "num_files": 4,
+    "monitors": [],
+    "num_dbs": 2,
+    "num_gates": 0,
+    "files": [
+        {
+            "path": "/microservice-echo/requirements.txt",
+            "servers": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "dbs": [],
+            "buses": []
+        }
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 9,
+        "detected_dbs": {
+            "services": [
+                "mongodb_ui",
+                "redis",
+                "redis_ui",
+                "mongodb"
+            ],
+            "num": 4,
+            "names": [
+                "mongodb",
+                "redis",
+                "mongo"
+            ],
+            "shared_dbs": true
+        },
+        "services": [
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "mongodb"
+                ],
+                "servers": [],
+                "image_full": "adicom/admin-mongo:latest",
+                "name": "mongodb_ui",
+                "gates": [],
+                "image": "adicom/admin-mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "pathfinder"
+                ],
+                "servers": [],
+                "image_full": "gatling",
+                "name": "gatling",
+                "gates": [],
+                "image": "gatling",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "microservice_auth"
+                ],
+                "servers": [],
+                "image_full": "microservice-echo",
+                "name": "microservice_echo",
+                "gates": [],
+                "image": "microservice-echo",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "redis:latest",
+                "name": "redis",
+                "gates": [],
+                "image": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "microservice_auth"
+                ],
+                "servers": [],
+                "image_full": "openmatchmaking/pathfinder:latest",
+                "name": "pathfinder",
+                "gates": [],
+                "image": "openmatchmaking/pathfinder",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "mongodb",
+                    "redis"
+                ],
+                "servers": [],
+                "image_full": "openmatchmaking/microservice-auth:0.2.1",
+                "name": "microservice_auth",
+                "gates": [],
+                "image": "openmatchmaking/microservice-auth",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "redis"
+                ],
+                "servers": [],
+                "image_full": "tenstartups/redis-commander:latest",
+                "name": "redis_ui",
+                "gates": [],
+                "image": "tenstartups/redis-commander",
+                "dbs": [
+                    "redis"
+                ],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "bitnami/rabbitmq:latest",
+                "name": "rabbitmq",
+                "gates": [],
+                "image": "bitnami/rabbitmq",
+                "dbs": [],
+                "buses": [
+                    "rabbitmq"
+                ]
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "bitnami/mongodb:4.1",
+                "name": "mongodb",
+                "gates": [],
+                "image": "bitnami/mongodb",
+                "dbs": [
+                    "mongodb"
+                ],
+                "buses": []
+            }
+        ]
+    }
+}

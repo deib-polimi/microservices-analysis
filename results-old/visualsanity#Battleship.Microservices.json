@@ -1,0 +1,338 @@
+{
+    "num_files": 9,
+    "num_services": 8,
+    "num_discos": 0,
+    "gates": [
+        "nginx"
+    ],
+    "languages": [
+        "c#",
+        "typescript"
+    ],
+    "num_dbs": 1,
+    "dbs": [
+        "solid"
+    ],
+    "num_monitors": 0,
+    "structure": {
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 0,
+            "services": [],
+            "names": []
+        },
+        "num_services": 8,
+        "services": [
+            {
+                "image_full": "mcr.microsoft.com/mssql/server:2019-latest",
+                "image": "mcr.microsoft.com/mssql/server",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "db"
+            },
+            {
+                "image_full": "${DOCKER_REGISTRY-}battleshipscorecard",
+                "image": "${DOCKER_REGISTRY-}battleshipscorecard",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "db",
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "battleship.scorecard"
+            },
+            {
+                "image_full": "${DOCKER_REGISTRY-}battleshipstatistics",
+                "image": "${DOCKER_REGISTRY-}battleshipstatistics",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "db",
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "battleship.statistics"
+            },
+            {
+                "image_full": "${DOCKER_REGISTRY-}battleshipplayer",
+                "image": "${DOCKER_REGISTRY-}battleshipplayer",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "db",
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "battleship.player"
+            },
+            {
+                "image_full": "rabbitmq:3.8.4-management-alpine",
+                "image": "rabbitmq",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "name": "rabbitmq"
+            },
+            {
+                "image_full": "${DOCKER_REGISTRY-}battleshipgame",
+                "image": "${DOCKER_REGISTRY-}battleshipgame",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "db",
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "battleship.game"
+            },
+            {
+                "image_full": "${DOCKER_REGISTRY-}battleshipaudit",
+                "image": "${DOCKER_REGISTRY-}battleshipaudit",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "db",
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "battleship.audit"
+            },
+            {
+                "image_full": "${DOCKER_REGISTRY-}battleshipweb",
+                "image": "${DOCKER_REGISTRY-}battleshipweb",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "db",
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "battleship.web"
+            }
+        ],
+        "path": "/src/docker-compose.yml"
+    },
+    "discos": [],
+    "url": "git://github.com/visualsanity/Battleship.Microservices.git",
+    "num_buses": 1,
+    "files": [
+        {
+            "servers": [
+                "node"
+            ],
+            "dbs": [
+                "solid"
+            ],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/src/Battleship.Microservice.Web/package.json"
+        }
+    ],
+    "name": "visualsanity/Battleship.Microservices",
+    "servers": [
+        "node"
+    ],
+    "num_dockers": 7,
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_gates": 1,
+    "num_langs": 2,
+    "shared_dbs": false,
+    "monitors": [],
+    "dockers": [
+        {
+            "servers": [],
+            "from": "base",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/src/Battleship.Game/Dockerfile",
+            "keywords": [
+                "battleship",
+                "game",
+                "dotnet",
+                "csproj",
+                "publish"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "base"
+        },
+        {
+            "servers": [],
+            "from": "nginx",
+            "buses": [],
+            "gates": [
+                "nginx"
+            ],
+            "monitors": [],
+            "path": "/src/Battleship.Microservice.Web/Dockerfile",
+            "keywords": [
+                "npm",
+                "install",
+                "nginx",
+                "prod",
+                "usr"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "nginx:1.17.1-alpine"
+        },
+        {
+            "servers": [],
+            "from": "base",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/src/Battleship.ScoreCard/Dockerfile",
+            "keywords": [
+                "scorecard",
+                "battleship",
+                "dotnet",
+                "csproj",
+                "publish"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "base"
+        },
+        {
+            "servers": [],
+            "from": "base",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/src/Battleship.Statistics/Dockerfile",
+            "keywords": [
+                "battleship",
+                "statistics",
+                "dotnet",
+                "csproj",
+                "publish"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "base"
+        },
+        {
+            "servers": [],
+            "from": "base",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/src/Battleship.Player/Dockerfile",
+            "keywords": [
+                "battleship",
+                "player",
+                "dotnet",
+                "csproj",
+                "publish"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "base"
+        },
+        {
+            "servers": [],
+            "from": "base",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/src/Battleship.Audit/Dockerfile",
+            "keywords": [
+                "audit",
+                "battleship",
+                "dotnet",
+                "csproj",
+                "publish"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "base"
+        },
+        {
+            "servers": [],
+            "from": "microsoft/dotnet",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/src/Battleship.Warehouse/Dockerfile",
+            "keywords": [
+                "dotnet",
+                "restore",
+                "release",
+                "out",
+                "publish"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "microsoft/dotnet:3.1-aspnetcore-runtime"
+        }
+    ],
+    "langs": [
+        "typescript",
+        "c#"
+    ],
+    "num_servers": 1,
+    "size": 1592,
+    "images": [
+        "base",
+        "nginx",
+        "microsoft/dotnet"
+    ],
+    "avg_size_service": 227.42857142857142
+}

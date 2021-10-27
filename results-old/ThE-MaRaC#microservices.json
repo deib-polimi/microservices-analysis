@@ -1,0 +1,380 @@
+{
+    "name": "ThE-MaRaC/microservices",
+    "num_dbs": 1,
+    "num_services": 7,
+    "num_files": 16,
+    "servers": [
+        "node",
+        "spring"
+    ],
+    "url": "git://github.com/ThE-MaRaC/microservices.git",
+    "discos": [
+        "eureka"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "eureka-discovery-service",
+                "image_full": "mariobros/eureka-discovery-service:0.0.1-SNAPSHOT",
+                "image": "mariobros/eureka-discovery-service",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [
+                    "eureka"
+                ],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "config-server",
+                "image_full": "mariobros/config-server:0.0.1-SNAPSHOT",
+                "image": "mariobros/config-server",
+                "servers": [],
+                "depends_on": [
+                    "eureka-discovery-service"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "user-management-service",
+                "image_full": "mariobros/user-management-service:0.0.1-SNAPSHOT",
+                "image": "mariobros/user-management-service",
+                "servers": [],
+                "depends_on": [
+                    "config-server"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "angular-client",
+                "image_full": "mariobros/angular-client:0.0.1-SNAPSHOT",
+                "image": "mariobros/angular-client",
+                "servers": [],
+                "depends_on": [
+                    "zuul-gateway-service"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "admin-server",
+                "image_full": "mariobros/admin-server:0.0.1-SNAPSHOT",
+                "image": "mariobros/admin-server",
+                "servers": [],
+                "depends_on": [
+                    "config-server"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "react-client",
+                "image_full": "mariobros/react-client:0.0.1-SNAPSHOT",
+                "image": "mariobros/react-client",
+                "servers": [],
+                "depends_on": [
+                    "zuul-gateway-service"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "zuul-gateway-service",
+                "image_full": "mariobros/zuul-gateway-service:0.0.1-SNAPSHOT",
+                "image": "mariobros/zuul-gateway-service",
+                "servers": [],
+                "depends_on": [
+                    "config-server"
+                ],
+                "gates": [
+                    "zuul"
+                ],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [],
+            "num": 0,
+            "names": []
+        },
+        "num_services": 7
+    },
+    "num_buses": 0,
+    "size": 1634,
+    "dockers": [
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/user-management-service/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8-jre",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/react-client/Dockerfile",
+            "discos": [],
+            "from": "nginx",
+            "buses": [],
+            "from_full": "nginx",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/config-server/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8-jre",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/zuul-gateway-service/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8-jre",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/admin-server/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8-jre",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/angular-client/Dockerfile",
+            "discos": [],
+            "from": "nginx",
+            "buses": [],
+            "from_full": "nginx",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/eureka-discovery-service/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8-jre",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "languages": [
+        "typescript",
+        "java",
+        "javascript",
+        "html",
+        "css"
+    ],
+    "dbs": [
+        "solid"
+    ],
+    "monitors": [],
+    "shared_dbs": false,
+    "avg_size_service": 233.42857142857142,
+    "num_monitors": 0,
+    "files": [
+        {
+            "monitors": [],
+            "servers": [],
+            "path": "/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/user-management-service/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/config-server/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/zuul-gateway-service/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/admin-server/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/eureka-discovery-service/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "path": "/react-client/package.json",
+            "discos": [],
+            "dbs": [
+                "solid"
+            ],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "node"
+            ],
+            "path": "/angular-client/package.json",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        }
+    ],
+    "langs": [
+        "java",
+        "typescript",
+        "javascript",
+        "html",
+        "css"
+    ],
+    "num_servers": 2,
+    "buses": [],
+    "num_langs": 5,
+    "num_gates": 2,
+    "num_discos": 1,
+    "images": [
+        "openjdk",
+        "nginx"
+    ],
+    "num_dockers": 7,
+    "gates": [
+        "zuul",
+        "nginx"
+    ]
+}

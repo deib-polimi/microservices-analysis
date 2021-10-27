@@ -1,0 +1,137 @@
+{
+    "num_files": 2,
+    "num_services": 4,
+    "num_discos": 0,
+    "gates": [
+        "nginx"
+    ],
+    "languages": [
+        "dockerfile"
+    ],
+    "num_dbs": 0,
+    "dbs": [],
+    "num_monitors": 0,
+    "structure": {
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 0,
+            "services": [],
+            "names": []
+        },
+        "num_services": 4,
+        "services": [
+            {
+                "image_full": "./nginx/",
+                "image": "./nginx/",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "web-service",
+                    "users-service"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "name": "nginx"
+            },
+            {
+                "image_full": "https://github.com/gregsvo/flask-microservice-users.git#master:project/db",
+                "image": "https://github.com/gregsvo/flask-microservice-users.git#master:project/db",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [
+                    "flask"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "users-db"
+            },
+            {
+                "image_full": "['NODE_ENV=development', 'REACT_APP_USERS_SERVICE_URL=${REACT_APP_USERS_SERVICE_URL}']",
+                "image": "['NODE_ENV=development', 'REACT_APP_USERS_SERVICE_URL=${REACT_APP_USERS_SERVICE_URL}']",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "users-service"
+                ],
+                "discos": [],
+                "servers": [
+                    "node"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "web-service"
+            },
+            {
+                "image_full": "https://github.com/gregsvo/flask-microservice-users.git",
+                "image": "https://github.com/gregsvo/flask-microservice-users.git",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "users-db"
+                ],
+                "discos": [],
+                "servers": [
+                    "flask"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "users-service"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "discos": [],
+    "url": "git://github.com/gregsvo/flask-microservice-main.git",
+    "num_buses": 0,
+    "files": [],
+    "name": "gregsvo/flask-microservice-main",
+    "servers": [
+        "flask",
+        "node"
+    ],
+    "num_dockers": 1,
+    "buses": [],
+    "num_gates": 1,
+    "num_langs": 1,
+    "shared_dbs": false,
+    "monitors": [],
+    "dockers": [
+        {
+            "servers": [],
+            "from": "nginx",
+            "buses": [],
+            "gates": [
+                "nginx"
+            ],
+            "monitors": [],
+            "path": "/nginx/Dockerfile",
+            "keywords": [
+                "conf",
+                "nginx",
+                "etc",
+                "default"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "nginx:1.13.0"
+        }
+    ],
+    "langs": [
+        "dockerfile"
+    ],
+    "num_servers": 2,
+    "size": 4,
+    "images": [
+        "nginx"
+    ],
+    "avg_size_service": 4.0
+}

@@ -1,0 +1,257 @@
+{
+    "size": 178,
+    "num_discos": 0,
+    "num_services": 7,
+    "num_monitors": 0,
+    "num_langs": 1,
+    "dockers": [
+        {
+            "dbs": [],
+            "cmd": "",
+            "gates": [],
+            "from_full": "base",
+            "langs": [],
+            "keywords": [
+                "auth",
+                "api",
+                "dotnet",
+                "csproj",
+                "app"
+            ],
+            "path": "/Services/Auth/Auth.API/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "from": "base",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "cmd": "",
+            "gates": [],
+            "from_full": "base",
+            "langs": [],
+            "keywords": [
+                "department",
+                "api",
+                "dotnet",
+                "csproj",
+                "app"
+            ],
+            "path": "/Services/Department/Department.API/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "from": "base",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "cmd": "",
+            "gates": [],
+            "from_full": "base",
+            "langs": [],
+            "keywords": [
+                "employee",
+                "api",
+                "dotnet",
+                "csproj",
+                "app"
+            ],
+            "path": "/Services/Employee/Employee.API/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "from": "base",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "cmd": "",
+            "gates": [],
+            "from_full": "base",
+            "langs": [],
+            "keywords": [
+                "mobile",
+                "httpaggregator",
+                "csproj",
+                "dotnet",
+                "app"
+            ],
+            "path": "/ApiGateways/Mobile.Bff/Mobile.HttpAggregator/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "from": "base",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "cmd": "",
+            "gates": [],
+            "from_full": "base",
+            "langs": [],
+            "keywords": [
+                "ocelotbaseapigateway",
+                "dotnet",
+                "csproj",
+                "app",
+                "release"
+            ],
+            "path": "/ApiGateways/BaseApiGateway/OcelotBaseAPIGateway/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "from": "base",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        }
+    ],
+    "files": [],
+    "langs": [
+        "c#"
+    ],
+    "url": "git://github.com/erandika1986/MicroserviceDemo.git",
+    "buses": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "dbs": [],
+                "image_full": "demo/department.api:${TAG:-latest}",
+                "image": "demo/department.api",
+                "gates": [],
+                "name": "department.api",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [
+                    "sql.data"
+                ],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "demo/ocelotapigw:${TAGE:-latest}",
+                "image": "demo/ocelotapigw",
+                "gates": [],
+                "name": "mobileapigateway",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [
+                    "sql.data",
+                    "auth.api",
+                    "department.api",
+                    "employee.api"
+                ],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "demo/employee.api:${TAG:-latest}",
+                "image": "demo/employee.api",
+                "gates": [],
+                "name": "employee.api",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [
+                    "sql.data"
+                ],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "demo/mobileagg:${TAGE:-latest}",
+                "image": "demo/mobileagg",
+                "gates": [],
+                "name": "mobileagg",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [
+                    "sql.data",
+                    "auth.api",
+                    "department.api",
+                    "employee.api"
+                ],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "microsoft/mssql-server-linux:2017-latest",
+                "image": "microsoft/mssql-server-linux",
+                "gates": [],
+                "name": "sql.data",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "demo/ocelotapigw:${TAGE:-latest}",
+                "image": "demo/ocelotapigw",
+                "gates": [],
+                "name": "webapigateway",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [
+                    "sql.data",
+                    "auth.api",
+                    "department.api",
+                    "employee.api"
+                ],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "demo/auth.api:${TAG:-latest}",
+                "image": "demo/auth.api",
+                "gates": [],
+                "name": "auth.api",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [
+                    "sql.data"
+                ],
+                "buses": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [],
+            "services": [],
+            "shared_dbs": false,
+            "num": 0
+        },
+        "num_services": 7,
+        "path": "/docker-compose.yml"
+    },
+    "name": "erandika1986/MicroserviceDemo",
+    "num_buses": 0,
+    "servers": [],
+    "num_files": 6,
+    "num_dbs": 0,
+    "num_gates": 0,
+    "gates": [],
+    "monitors": [],
+    "avg_size_service": 35.6,
+    "languages": [
+        "c#"
+    ],
+    "num_dockers": 5,
+    "dbs": [],
+    "num_servers": 0,
+    "discos": [],
+    "images": [
+        "base"
+    ]
+}

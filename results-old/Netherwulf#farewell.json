@@ -1,0 +1,350 @@
+{
+    "dbs": [
+        "postgresql"
+    ],
+    "num_langs": 2,
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "monitors": [],
+    "num_services": 6,
+    "num_dbs": 1,
+    "num_servers": 3,
+    "discos": [],
+    "dockers": [
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "openjdk:8",
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/reservation_module/Dockerfile",
+            "keywords": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "openjdk:8",
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/authentication_module/Dockerfile",
+            "keywords": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "openjdk:8",
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/payment_module/Dockerfile",
+            "keywords": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "openjdk:8",
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/analytical_module/Dockerfile",
+            "keywords": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "off",
+                "daemon",
+                "nginx"
+            ],
+            "from_full": "nginx:1.12-alpine",
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "from": "nginx",
+            "cmd": "nginx -g daemon off;",
+            "discos": [],
+            "langs": [],
+            "path": "/web_client/Dockerfile",
+            "keywords": [
+                "yarn",
+                "conf",
+                "etc",
+                "build",
+                "nginx"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "openjdk:8",
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/purchase_module/Dockerfile",
+            "keywords": []
+        }
+    ],
+    "num_files": 15,
+    "num_dockers": 6,
+    "images": [
+        "openjdk",
+        "nginx"
+    ],
+    "size": 1736,
+    "servers": [
+        "node",
+        "tomcat",
+        "spring"
+    ],
+    "structure": {
+        "detected_dbs": {
+            "names": [],
+            "shared_dbs": false,
+            "services": [],
+            "num": 0
+        },
+        "num_services": 6,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "farewell/analytical_module:latest",
+                "name": "analyticalModule",
+                "depends_on": [
+                    "db",
+                    "reservation_module"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "farewell/analytical_module",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "web_client:latest",
+                "name": "web_client",
+                "depends_on": [
+                    "authentication_module"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "web_client",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "rabbitmq:management",
+                "name": "rabbitmq",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "image": "rabbitmq",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "farewell/reservation_module:latest",
+                "name": "reservation_module",
+                "depends_on": [
+                    "db"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "farewell/reservation_module",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "farewell/authentication_module:latest",
+                "name": "authentication_module",
+                "depends_on": [
+                    "db"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "farewell/authentication_module",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "postgres:11.7",
+                "name": "db",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "postgres",
+                "gates": [],
+                "monitors": []
+            }
+        ]
+    },
+    "num_discos": 0,
+    "files": [
+        {
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/reservation_module/build.gradle"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/payment_module/build.gradle"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "monitors": [],
+            "discos": [],
+            "path": "/reservation_module/pom.xml"
+        },
+        {
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "gates": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/authentication_module/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/payment_module/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "monitors": [],
+            "discos": [],
+            "path": "/analytical_module/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/purchase_module/pom.xml"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/web_client/package.json"
+        }
+    ],
+    "num_monitors": 0,
+    "num_buses": 2,
+    "num_gates": 1,
+    "gates": [
+        "nginx"
+    ],
+    "name": "Netherwulf/farewell",
+    "avg_size_service": 289.3333333333333,
+    "url": "git://github.com/Netherwulf/farewell.git",
+    "shared_dbs": false,
+    "langs": [
+        "java",
+        "javascript"
+    ],
+    "languages": [
+        "java",
+        "javascript"
+    ]
+}

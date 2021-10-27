@@ -1,0 +1,261 @@
+{
+    "languages": [
+        "java",
+        "go"
+    ],
+    "num_servers": 0,
+    "shared_dbs": false,
+    "name": "weissra/ProjektMicroservicesDocker_UniKs18",
+    "servers": [],
+    "num_monitors": 0,
+    "num_langs": 3,
+    "images": [
+        "java",
+        "golang"
+    ],
+    "langs": [
+        "java",
+        "golang",
+        "go"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [
+                "jar",
+                "celsiusservice"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "-jar /CelsiusService.jar",
+            "keywords": [],
+            "path": "/docker/CelsiusService/Dockerfile",
+            "gates": [],
+            "from": "java",
+            "from_full": "java:8",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "jar",
+                "purgeservice"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "-jar /PurgeService.jar",
+            "keywords": [],
+            "path": "/docker/PurgeService/Dockerfile",
+            "gates": [],
+            "from": "java",
+            "from_full": "java:8",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "jar",
+                "authenticationservice"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "-jar /AuthenticationService.jar",
+            "keywords": [],
+            "path": "/docker/AuthenticationService/Dockerfile",
+            "gates": [],
+            "from": "java",
+            "from_full": "java:8",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "golang"
+            ],
+            "cmd": "",
+            "keywords": [
+                "dep",
+                "get",
+                "ensure",
+                "github",
+                "echo"
+            ],
+            "path": "/Go/goservice/Dockerfile",
+            "gates": [],
+            "from": "golang",
+            "from_full": "golang:onbuild",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "golang"
+            ],
+            "cmd": "",
+            "keywords": [],
+            "path": "/Go/goweb/Dockerfile",
+            "gates": [],
+            "from": "golang",
+            "from_full": "golang:onbuild",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [],
+    "num_buses": 0,
+    "discos": [],
+    "monitors": [],
+    "num_files": 8,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "goweb",
+                "depends_on": [
+                    "esregistry"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "goweb",
+                "image": "goweb",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:6.2.1",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "esregistry",
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "auth",
+                "depends_on": [
+                    "esregistry",
+                    "mysqldb"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "auth",
+                "image": "auth",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "celsius",
+                "depends_on": [
+                    "esregistry"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "celsius",
+                "image": "celsius",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "celsius",
+                "depends_on": [
+                    "esregistry"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "celsius2",
+                "image": "celsius",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mysql",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "mysqldb",
+                "image": "mysql",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "services": [
+                "mysqldb"
+            ],
+            "names": [
+                "mysql"
+            ],
+            "num": 1,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [
+        "mysql"
+    ],
+    "num_dbs": 1,
+    "avg_size_service": 2706.0,
+    "num_services": 6,
+    "buses": [],
+    "files": [
+        {
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/Java_Microservices/build.gradle",
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/Java_Microservices/settings.gradle",
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "url": "git://github.com/weissra/ProjektMicroservicesDocker_UniKs18.git",
+    "num_dockers": 5,
+    "size": 13530,
+    "num_discos": 0,
+    "num_gates": 0
+}

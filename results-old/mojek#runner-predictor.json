@@ -1,0 +1,550 @@
+{
+    "num_servers": 3,
+    "num_gates": 0,
+    "num_dockers": 8,
+    "num_buses": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "from_full": "python:3.7-alpine",
+            "discos": [],
+            "from": "python",
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/prediction-service/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "code",
+                "pip",
+                "requirements",
+                "txt",
+                "flask"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "django"
+            ],
+            "buses": [],
+            "from_full": "python:3.7-alpine",
+            "discos": [],
+            "from": "python",
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/race-service/Dockerfile",
+            "dbs": [
+                "postgresql"
+            ],
+            "keywords": [
+                "apk",
+                "postgresql",
+                "build",
+                "deps",
+                "add"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "from_full": "python:3.7-alpine",
+            "discos": [],
+            "from": "python",
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/enduhub-fetcher-service/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "code",
+                "pip",
+                "requirements",
+                "txt",
+                "flask"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "from_full": "node:8.10.0-alpine",
+            "discos": [],
+            "from": "node",
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [
+                "run",
+                "dev",
+                "npm"
+            ],
+            "cmd": "npm run dev",
+            "path": "/front-vue-service/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "install",
+                "vue",
+                "npm",
+                "cli"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "from_full": "python:3.7-alpine",
+            "discos": [],
+            "from": "python",
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/data-preparation-service/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "code",
+                "pip",
+                "requirements",
+                "txt",
+                "flask"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "from_full": "python:3.7-alpine",
+            "discos": [],
+            "from": "python",
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/itra-results-fetcher-service/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "code",
+                "pip",
+                "requirements",
+                "txt",
+                "flask"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "django"
+            ],
+            "buses": [],
+            "from_full": "python:3.7-alpine",
+            "discos": [],
+            "from": "python",
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/users-management-service/Dockerfile",
+            "dbs": [
+                "postgresql"
+            ],
+            "keywords": [
+                "apk",
+                "postgresql",
+                "build",
+                "deps",
+                "add"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "django"
+            ],
+            "buses": [],
+            "from_full": "python:3.7-alpine",
+            "discos": [],
+            "from": "python",
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/runner-results-service/Dockerfile",
+            "dbs": [
+                "postgresql"
+            ],
+            "keywords": [
+                "apk",
+                "postgresql",
+                "build",
+                "deps",
+                "add"
+            ]
+        }
+    ],
+    "shared_dbs": false,
+    "languages": [
+        "python",
+        "jupyternotebook"
+    ],
+    "gates": [],
+    "avg_size_service": 62.125,
+    "discos": [],
+    "num_dbs": 2,
+    "monitors": [],
+    "servers": [
+        "node",
+        "flask",
+        "django"
+    ],
+    "num_langs": 2,
+    "buses": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "redis",
+                "image": "redis",
+                "buses": [],
+                "name": "endu_redis_cache",
+                "discos": [],
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ]
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "./race-service",
+                "image": "./race-service",
+                "buses": [],
+                "name": "resultapi",
+                "discos": [],
+                "depends_on": [
+                    "db_race_results"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "./runner-results-service",
+                "image": "./runner-results-service",
+                "buses": [],
+                "name": "runnerapi",
+                "discos": [],
+                "depends_on": [
+                    "db_runner_results"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "./users-management-service",
+                "image": "./users-management-service",
+                "buses": [],
+                "name": "djangoweb",
+                "discos": [],
+                "depends_on": [
+                    "db"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "postgres:11-alpine",
+                "image": "postgres",
+                "buses": [],
+                "name": "db",
+                "discos": [],
+                "depends_on": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "./itra-results-fetcher-service",
+                "image": "./itra-results-fetcher-service",
+                "buses": [],
+                "name": "itrafetcher",
+                "discos": [],
+                "depends_on": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "postgres:11-alpine",
+                "image": "postgres",
+                "buses": [],
+                "name": "db_race_results",
+                "discos": [],
+                "depends_on": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "./itra-results-fetcher-service",
+                "image": "./itra-results-fetcher-service",
+                "buses": [],
+                "name": "celery_worker_1",
+                "discos": [],
+                "depends_on": [
+                    "itra_redis_cache"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "./enduhub-fetcher-service",
+                "image": "./enduhub-fetcher-service",
+                "buses": [],
+                "name": "enduhubfetcher",
+                "discos": [],
+                "depends_on": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "./data-preparation-service",
+                "image": "./data-preparation-service",
+                "buses": [],
+                "name": "datapreparation",
+                "discos": [],
+                "depends_on": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "./enduhub-fetcher-service",
+                "image": "./enduhub-fetcher-service",
+                "buses": [],
+                "name": "celery_worker_2",
+                "discos": [],
+                "depends_on": [
+                    "endu_redis_cache"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "postgres:11-alpine",
+                "image": "postgres",
+                "buses": [],
+                "name": "db_runner_results",
+                "discos": [],
+                "depends_on": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "redis",
+                "image": "redis",
+                "buses": [],
+                "name": "itra_redis_cache",
+                "discos": [],
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ]
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "./front-vue-service",
+                "image": "./front-vue-service",
+                "buses": [],
+                "name": "frontservice",
+                "discos": [],
+                "depends_on": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "redis",
+                "image": "redis",
+                "buses": [],
+                "name": "datapreparation_redis",
+                "discos": [],
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "num": 3,
+            "services": [
+                "endu_redis_cache",
+                "itra_redis_cache",
+                "datapreparation_redis"
+            ],
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 15
+    },
+    "images": [
+        "node",
+        "python"
+    ],
+    "num_files": 16,
+    "num_services": 15,
+    "langs": [
+        "python",
+        "jupyternotebook"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "servers": [
+                "django"
+            ],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/race-service/requirements.txt",
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/enduhub-fetcher-service/requirements.txt",
+            "dbs": [
+                "redis"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/data-preparation-service/requirements.txt",
+            "dbs": [
+                "redis"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/itra-results-fetcher-service/requirements.txt",
+            "dbs": [
+                "redis"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "django"
+            ],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/users-management-service/requirements.txt",
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "django"
+            ],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/runner-results-service/requirements.txt",
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/front-vue-service/package.json",
+            "dbs": []
+        }
+    ],
+    "url": "git://github.com/mojek/runner-predictor.git",
+    "size": 497,
+    "name": "mojek/runner-predictor",
+    "num_discos": 0,
+    "num_monitors": 0,
+    "dbs": [
+        "postgresql",
+        "redis"
+    ]
+}

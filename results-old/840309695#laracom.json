@@ -1,0 +1,451 @@
+{
+    "num_dbs": 1,
+    "shared_dbs": false,
+    "structure": {
+        "num_services": 19,
+        "services": [
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [
+                    "nats"
+                ],
+                "image_full": "nats:latest",
+                "image": "nats",
+                "name": "laracom-nats",
+                "monitors": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "image_full": "bitnami/etcd:latest",
+                "image": "bitnami/etcd",
+                "name": "etcd1",
+                "monitors": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [
+                    "etcd"
+                ]
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "image_full": "soyking/e3w:latest",
+                "image": "soyking/e3w",
+                "name": "e3w",
+                "monitors": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "image_full": "./product-service",
+                "image": "./product-service",
+                "name": "laracom-product-service",
+                "monitors": [],
+                "depends_on": [
+                    "laracom-product-db"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "image_full": "bitnami/etcd:latest",
+                "image": "bitnami/etcd",
+                "name": "etcd3",
+                "monitors": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [
+                    "etcd"
+                ]
+            },
+            {
+                "dbs": [],
+                "servers": [
+                    "node"
+                ],
+                "buses": [],
+                "image_full": "prom/node-exporter",
+                "image": "prom/node-exporter",
+                "name": "node-exporter",
+                "monitors": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "image_full": "microhq/micro:latest",
+                "image": "microhq/micro",
+                "name": "laracom-web-dashboard",
+                "monitors": [],
+                "depends_on": [
+                    "laracom-user-service",
+                    "laracom-product-service"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "image_full": "prom/alertmanager",
+                "image": "prom/alertmanager",
+                "name": "alertmanager",
+                "monitors": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "image_full": "./demo-cli",
+                "image": "./demo-cli",
+                "name": "laracom-demo-cli",
+                "monitors": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "image_full": "bitnami/etcd:latest",
+                "image": "bitnami/etcd",
+                "name": "etcd2",
+                "monitors": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [
+                    "etcd"
+                ]
+            },
+            {
+                "dbs": [
+                    "mysql"
+                ],
+                "servers": [],
+                "buses": [],
+                "image_full": "mysql:5.7",
+                "image": "mysql",
+                "name": "laracom-product-db",
+                "monitors": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "image_full": "./demo-service",
+                "image": "./demo-service",
+                "name": "laracom-demo-service",
+                "monitors": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "dbs": [
+                    "mysql"
+                ],
+                "servers": [],
+                "buses": [],
+                "image_full": "mysql:5.7",
+                "image": "mysql",
+                "name": "laracom-user-db",
+                "monitors": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "image_full": "./user-service",
+                "image": "./user-service",
+                "name": "laracom-user-service",
+                "monitors": [],
+                "depends_on": [
+                    "laracom-user-db"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "image_full": "./user-cli",
+                "image": "./user-cli",
+                "name": "laracom-user-cli",
+                "monitors": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "image_full": "google/cadvisor",
+                "image": "google/cadvisor",
+                "name": "cadvisor",
+                "monitors": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "image_full": "prom/prometheus:v2.1.0",
+                "image": "prom/prometheus",
+                "name": "prometheus",
+                "monitors": [
+                    "prometheus"
+                ],
+                "depends_on": [
+                    "cadvisor"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "image_full": "grafana/grafana",
+                "image": "grafana/grafana",
+                "name": "grafana",
+                "monitors": [
+                    "grafana"
+                ],
+                "depends_on": [
+                    "prometheus"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "image_full": "microhq/micro:latest",
+                "image": "microhq/micro",
+                "name": "laracom-micro-api",
+                "monitors": [],
+                "depends_on": [
+                    "laracom-user-service",
+                    "laracom-product-service"
+                ],
+                "gates": [],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "laracom-product-db",
+                "laracom-user-db"
+            ],
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": false,
+            "num": 2
+        },
+        "path": "/docker-compose.yml"
+    },
+    "dbs": [
+        "mysql"
+    ],
+    "images": [
+        "alpine"
+    ],
+    "num_services": 19,
+    "name": "840309695/laracom",
+    "num_langs": 2,
+    "gates": [],
+    "discos": [
+        "etcd"
+    ],
+    "dockers": [
+        {
+            "from_full": "alpine:latest",
+            "keywords": [
+                "apk",
+                "repositories",
+                "org",
+                "com",
+                "alpinelinux"
+            ],
+            "buses": [],
+            "path": "/user-cli/Dockerfile",
+            "monitors": [],
+            "from": "alpine",
+            "dbs": [],
+            "servers": [],
+            "cmd": "",
+            "langs": [
+                "bash"
+            ],
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "from_full": "alpine:latest",
+            "keywords": [
+                "apk",
+                "repositories",
+                "org",
+                "com",
+                "alpinelinux"
+            ],
+            "buses": [],
+            "path": "/user-service/Dockerfile",
+            "monitors": [],
+            "from": "alpine",
+            "dbs": [],
+            "servers": [],
+            "cmd": "./laracom-user-service",
+            "langs": [
+                "bash"
+            ],
+            "cmd_keywords": [
+                "laracom",
+                "user",
+                "service"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "from_full": "alpine:latest",
+            "keywords": [
+                "app",
+                "mkdir"
+            ],
+            "buses": [],
+            "path": "/demo-cli/Dockerfile",
+            "monitors": [],
+            "from": "alpine",
+            "dbs": [],
+            "servers": [],
+            "cmd": "./demo-cli",
+            "langs": [],
+            "cmd_keywords": [
+                "cli",
+                "demo"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "from_full": "alpine:latest",
+            "keywords": [
+                "apk",
+                "repositories",
+                "org",
+                "goproxy",
+                "update"
+            ],
+            "buses": [],
+            "path": "/product-service/Dockerfile",
+            "monitors": [],
+            "from": "alpine",
+            "dbs": [],
+            "servers": [],
+            "cmd": "./laracom-product-service",
+            "langs": [
+                "bash"
+            ],
+            "cmd_keywords": [
+                "laracom",
+                "product",
+                "service"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "from_full": "alpine:latest",
+            "keywords": [
+                "apk",
+                "repositories",
+                "org",
+                "com",
+                "alpinelinux"
+            ],
+            "buses": [],
+            "path": "/demo-service/Dockerfile",
+            "monitors": [],
+            "from": "alpine",
+            "dbs": [],
+            "servers": [],
+            "cmd": "/usr/bin/supervisord -c /etc/supervisord.conf",
+            "langs": [
+                "bash"
+            ],
+            "cmd_keywords": [
+                "supervisord",
+                "usr",
+                "etc",
+                "conf",
+                "bin"
+            ],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "buses": [
+        "nats"
+    ],
+    "langs": [
+        "go",
+        "bash"
+    ],
+    "files": [],
+    "size": 66247,
+    "languages": [
+        "go"
+    ],
+    "num_files": 6,
+    "avg_size_service": 13249.4,
+    "monitors": [
+        "prometheus",
+        "grafana"
+    ],
+    "num_gates": 0,
+    "servers": [
+        "node"
+    ],
+    "num_monitors": 2,
+    "num_dockers": 5,
+    "num_buses": 1,
+    "url": "git://github.com/840309695/laracom.git",
+    "num_servers": 1,
+    "num_discos": 1
+}

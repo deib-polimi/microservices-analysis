@@ -1,0 +1,279 @@
+{
+    "languages": [
+        "c#",
+        "html"
+    ],
+    "num_servers": 0,
+    "shared_dbs": false,
+    "name": "SSRout/MicroservicesMyApp",
+    "servers": [],
+    "num_monitors": 0,
+    "num_langs": 2,
+    "images": [
+        "base"
+    ],
+    "langs": [
+        "html",
+        "c#"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "traditionalwebclient",
+                "csproj",
+                "dotnet",
+                "build",
+                "release"
+            ],
+            "path": "/src/WebClient/TraditionalWebClient/Dockerfile",
+            "gates": [],
+            "from": "base",
+            "from_full": "base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "ordering",
+                "api",
+                "csproj",
+                "dotnet",
+                "build"
+            ],
+            "path": "/src/Ordering/Ordering.API/Dockerfile",
+            "gates": [],
+            "from": "base",
+            "from_full": "base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "cart",
+                "api",
+                "csproj",
+                "dotnet",
+                "build"
+            ],
+            "path": "/src/Cart/Cart.API/Dockerfile",
+            "gates": [],
+            "from": "base",
+            "from_full": "base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "catalog",
+                "api",
+                "csproj",
+                "dotnet",
+                "build"
+            ],
+            "path": "/src/Catalog/Catalog.API/Dockerfile",
+            "gates": [],
+            "from": "base",
+            "from_full": "base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "ocelotgateway",
+                "csproj",
+                "dotnet",
+                "build",
+                "release"
+            ],
+            "path": "/src/ApiGateWays/OcelotGateWay/Dockerfile",
+            "gates": [],
+            "from": "base",
+            "from_full": "base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [],
+    "num_buses": 1,
+    "discos": [],
+    "monitors": [],
+    "num_files": 6,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "${DOCKER_REGISTRY-}catalogapi",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "catalog.api",
+                "image": "${DOCKER_REGISTRY-}catalogapi",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "${DOCKER_REGISTRY-}cartapi",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "cart.api",
+                "image": "${DOCKER_REGISTRY-}cartapi",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "rabbitmq:3-management-alpine",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "name": "rabbitmq",
+                "image": "rabbitmq",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "${DOCKER_REGISTRY-}orderingapi",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "ordering.api",
+                "image": "${DOCKER_REGISTRY-}orderingapi",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "redis",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "cartdb",
+                "image": "redis",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mongo",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "catalogdb",
+                "image": "mongo",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "${DOCKER_REGISTRY-}traditionalwebclient",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "traditionalwebclient",
+                "image": "${DOCKER_REGISTRY-}traditionalwebclient",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "${DOCKER_REGISTRY-}ocelotgateway",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "ocelotgateway",
+                "image": "${DOCKER_REGISTRY-}ocelotgateway",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mcr.microsoft.com/mssql/server",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "orderdb",
+                "image": "mcr.microsoft.com/mssql/server",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 9,
+        "detected_dbs": {
+            "services": [
+                "cartdb",
+                "catalogdb"
+            ],
+            "names": [
+                "redis",
+                "mongo"
+            ],
+            "num": 2,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [
+        "redis",
+        "mongo"
+    ],
+    "num_dbs": 2,
+    "avg_size_service": 898.4,
+    "num_services": 9,
+    "buses": [
+        "rabbitmq"
+    ],
+    "files": [],
+    "url": "git://github.com/SSRout/MicroservicesMyApp.git",
+    "num_dockers": 5,
+    "size": 4492,
+    "num_discos": 0,
+    "num_gates": 0
+}

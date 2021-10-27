@@ -1,0 +1,399 @@
+{
+    "size": 184,
+    "shared_dbs": false,
+    "num_servers": 4,
+    "name": "wphokomp/docker-elkstack-APM-Logstash",
+    "files": [
+        {
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/docker-apmserver-stack/pom.xml",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "express",
+                "node",
+                "mongoose"
+            ],
+            "path": "/docker-apmserver-stack/hero_api/package.json",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "express",
+                "node",
+                "mongoose"
+            ],
+            "path": "/docker-apmserver-stack/hero_api/target/package.json",
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "num_files": 11,
+    "num_langs": 3,
+    "dbs": [
+        "mysql"
+    ],
+    "servers": [
+        "express",
+        "spring",
+        "node",
+        "mongoose"
+    ],
+    "num_discos": 0,
+    "url": "git://github.com/wphokomp/docker-elkstack-APM-Logstash.git",
+    "gates": [],
+    "structure": {
+        "services": [
+            {
+                "image": "kibana",
+                "dbs": [],
+                "image_full": "kibana:6.5.2",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "kibana",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "elasticsearch"
+                ]
+            },
+            {
+                "image": "docker-logstash-elk/logstash",
+                "dbs": [],
+                "image_full": "docker-logstash-elk/logstash:1.0.0",
+                "buses": [],
+                "servers": [],
+                "monitors": [
+                    "elk"
+                ],
+                "name": "logstash",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "elasticsearch"
+                ]
+            },
+            {
+                "image": "docker-logstash-elk/elasticsearch",
+                "dbs": [],
+                "image_full": "docker-logstash-elk/elasticsearch:1.0.0",
+                "buses": [],
+                "servers": [],
+                "monitors": [
+                    "elk"
+                ],
+                "name": "elasticsearch",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "nodejs/heroes-api",
+                "dbs": [],
+                "image_full": "nodejs/heroes-api:1.0.0",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "heroes-api",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "apm"
+                ]
+            },
+            {
+                "image": "apm-java/app",
+                "dbs": [],
+                "image_full": "apm-java/app:1.0.0",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "user-microservice",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "apm",
+                    "mysql"
+                ]
+            },
+            {
+                "image": "mysql",
+                "dbs": [
+                    "mysql"
+                ],
+                "image_full": "mysql:8.0.13",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "mysql",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "docker-logstash-elk/filebeat",
+                "dbs": [],
+                "image_full": "docker-logstash-elk/filebeat:1.0.0",
+                "buses": [],
+                "servers": [],
+                "monitors": [
+                    "elk"
+                ],
+                "name": "filebeat",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "logstash"
+                ]
+            },
+            {
+                "image": "docker-logstash-elk/demo-app",
+                "dbs": [],
+                "image_full": "docker-logstash-elk/demo-app:1.0.0",
+                "buses": [],
+                "servers": [],
+                "monitors": [
+                    "elk"
+                ],
+                "name": "app",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "apm-java/apm-server",
+                "dbs": [],
+                "image_full": "apm-java/apm-server:1.0.0",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "apm",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "elasticsearch",
+                    "kibana"
+                ]
+            }
+        ],
+        "num_services": 9,
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "mysql"
+            ],
+            "services": [
+                "mysql"
+            ],
+            "shared_dbs": false
+        },
+        "path": "/docker-compose.yml"
+    },
+    "num_gates": 0,
+    "num_dockers": 7,
+    "num_dbs": 1,
+    "num_services": 9,
+    "langs": [
+        "java",
+        "dockerfile",
+        "javascript"
+    ],
+    "buses": [],
+    "num_buses": 0,
+    "num_monitors": 1,
+    "languages": [
+        "java",
+        "javascript",
+        "dockerfile"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "docker.elastic.co/apm/apm-server",
+            "monitors": [],
+            "from_full": "docker.elastic.co/apm/apm-server:6.5.4",
+            "servers": [],
+            "path": "/docker-apmserver-stack/apm-server/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "server",
+                "apm",
+                "yml",
+                "chown",
+                "share"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "npm",
+                "run",
+                "start"
+            ],
+            "cmd": "npm run start",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "node",
+            "monitors": [],
+            "from_full": "node:8",
+            "servers": [
+                "node"
+            ],
+            "path": "/docker-apmserver-stack/hero_api/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "npm",
+                "install"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "javaagent",
+                "opt",
+                "jvm"
+            ],
+            "cmd": "java -javaagent:/opt/app/apm-agent.jar $JVM_OPTIONS -jar $JAR_NAME",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "openjdk",
+            "monitors": [],
+            "from_full": "openjdk:8-jdk",
+            "servers": [],
+            "path": "/docker-apmserver-stack/java-microservice/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "apm",
+                "elastic",
+                "agent",
+                "jar",
+                "opt"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "docker.elastic.co/logstash/logstash",
+            "monitors": [],
+            "from_full": "docker.elastic.co/logstash/logstash:6.5.2",
+            "servers": [],
+            "path": "/docker-logstash-elk/logstash/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "logstash",
+                "conf",
+                "share",
+                "usr",
+                "pipeline"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "docker.elastic.co/beats/filebeat",
+            "monitors": [],
+            "from_full": "docker.elastic.co/beats/filebeat:6.5.2",
+            "servers": [],
+            "path": "/docker-logstash-elk/filebeat/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "filebeat",
+                "share",
+                "usr",
+                "mkdir",
+                "chmod"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "elasticsearch",
+                "level",
+                "elogger",
+                "info"
+            ],
+            "cmd": "elasticsearch -Elogger.level=INFO",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "docker.elastic.co/elasticsearch/elasticsearch",
+            "monitors": [],
+            "from_full": "docker.elastic.co/elasticsearch/elasticsearch:6.5.2",
+            "servers": [],
+            "path": "/docker-logstash-elk/elasticsearch/Dockerfile",
+            "dbs": [],
+            "keywords": [],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "app",
+                "demo",
+                "echo",
+                "running",
+                "done"
+            ],
+            "cmd": "while true; do sleep 2 ; echo \"{\\\"app\\\": \\\"Demo\\\", \\\"Test\\\": \\\"Demo app running.\\\"}\"; done",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "ubuntu",
+            "monitors": [],
+            "from_full": "ubuntu:18.04",
+            "servers": [],
+            "path": "/docker-logstash-elk/demo-app/Dockerfile",
+            "dbs": [],
+            "keywords": [],
+            "discos": []
+        }
+    ],
+    "monitors": [
+        "elk"
+    ],
+    "avg_size_service": 26.285714285714285,
+    "discos": [],
+    "images": [
+        "docker.elastic.co/apm/apm-server",
+        "ubuntu",
+        "openjdk",
+        "docker.elastic.co/elasticsearch/elasticsearch",
+        "docker.elastic.co/logstash/logstash",
+        "node",
+        "docker.elastic.co/beats/filebeat"
+    ]
+}

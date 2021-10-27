@@ -1,0 +1,623 @@
+{
+    "size": 903,
+    "num_dockers": 8,
+    "discos": [
+        "etcd"
+    ],
+    "num_files": 10,
+    "avg_size_service": 112.875,
+    "buses": [
+        "nats"
+    ],
+    "num_gates": 0,
+    "langs": [
+        "go",
+        "bash"
+    ],
+    "num_discos": 1,
+    "num_monitors": 2,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "alpine",
+            "path": "/user-cli/Dockerfile",
+            "keywords": [
+                "apk",
+                "repositories",
+                "etc",
+                "cdn",
+                "com"
+            ],
+            "buses": [],
+            "langs": [
+                "bash"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "alpine:latest"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "alpine",
+            "path": "/user-service/Dockerfile",
+            "keywords": [
+                "apk",
+                "repositories",
+                "etc",
+                "com",
+                "cdn"
+            ],
+            "buses": [],
+            "langs": [
+                "bash"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "alpine:latest"
+        },
+        {
+            "monitors": [],
+            "cmd": "./laracom-demo-cli",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "cli",
+                "laracom",
+                "demo"
+            ],
+            "from": "alpine",
+            "path": "/demo-cli/Dockerfile",
+            "keywords": [
+                "apk",
+                "repositories",
+                "etc",
+                "com",
+                "cdn"
+            ],
+            "buses": [],
+            "langs": [
+                "bash"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "alpine:latest"
+        },
+        {
+            "monitors": [],
+            "cmd": "mysqld",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "mysqld"
+            ],
+            "from": "mysql",
+            "path": "/mysql/Dockerfile",
+            "keywords": [
+                "conf",
+                "mysql",
+                "chmod",
+                "cnf",
+                "etc"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "from_full": "mysql:5.7"
+        },
+        {
+            "monitors": [],
+            "cmd": "./laracom-gelftail -port=12202",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "port",
+                "gelftail",
+                "laracom"
+            ],
+            "from": "alpine",
+            "path": "/gelftail/Dockerfile",
+            "keywords": [
+                "apk",
+                "repositories",
+                "etc",
+                "com",
+                "cdn"
+            ],
+            "buses": [],
+            "langs": [
+                "bash"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "alpine:latest"
+        },
+        {
+            "monitors": [],
+            "cmd": "./laracom-demo-api",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "laracom",
+                "demo",
+                "api"
+            ],
+            "from": "alpine",
+            "path": "/demo-api/Dockerfile",
+            "keywords": [
+                "apk",
+                "repositories",
+                "etc",
+                "com",
+                "cdn"
+            ],
+            "buses": [],
+            "langs": [
+                "bash"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "alpine:latest"
+        },
+        {
+            "monitors": [],
+            "cmd": "./laracom-product-service",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "product",
+                "laracom",
+                "service"
+            ],
+            "from": "alpine",
+            "path": "/product-service/Dockerfile",
+            "keywords": [
+                "apk",
+                "repositories",
+                "etc",
+                "com",
+                "cdn"
+            ],
+            "buses": [],
+            "langs": [
+                "bash"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "alpine:latest"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "alpine",
+            "path": "/demo-service/Dockerfile",
+            "keywords": [
+                "apk",
+                "repositories",
+                "etc",
+                "com",
+                "cdn"
+            ],
+            "buses": [],
+            "langs": [
+                "bash"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "alpine:latest"
+        }
+    ],
+    "num_dbs": 1,
+    "monitors": [
+        "grafana",
+        "prometheus"
+    ],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./demo-service",
+                "image_full": "./demo-service",
+                "discos": [],
+                "name": "laracom-demo-service",
+                "depends_on": [
+                    "etcd1",
+                    "etcd2",
+                    "etcd3",
+                    "jaeger"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "bitnami/etcd",
+                "image_full": "bitnami/etcd:latest",
+                "discos": [
+                    "etcd"
+                ],
+                "name": "etcd1",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "prom/alertmanager",
+                "image_full": "prom/alertmanager",
+                "discos": [],
+                "name": "alertmanager",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "laracom/productservice",
+                "image_full": "laracom/productservice",
+                "discos": [],
+                "name": "laracom-product-service",
+                "depends_on": [
+                    "laracom-product-db",
+                    "etcd1",
+                    "etcd2",
+                    "etcd3",
+                    "jaeger"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "google/cadvisor",
+                "image_full": "google/cadvisor",
+                "discos": [],
+                "name": "cadvisor",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./demo-cli",
+                "image_full": "./demo-cli",
+                "discos": [],
+                "name": "laracom-demo-cli",
+                "depends_on": [
+                    "laracom-demo-service"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./user-service",
+                "image_full": "./user-service",
+                "discos": [],
+                "name": "laracom-user-service",
+                "depends_on": [
+                    "kingshard",
+                    "laracom-nats",
+                    "etcd1",
+                    "etcd2",
+                    "etcd3"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "microhq/micro",
+                "image_full": "microhq/micro:latest",
+                "discos": [],
+                "name": "laracom-web-dashboard",
+                "depends_on": [
+                    "laracom-demo-api"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mysql/mysql-server",
+                "image_full": "mysql/mysql-server:5.7",
+                "discos": [],
+                "name": "user-db-slave-2",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "prom/node-exporter",
+                "image_full": "prom/node-exporter",
+                "discos": [],
+                "name": "node-exporter",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [
+                    "node"
+                ],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "soyking/e3w",
+                "image_full": "soyking/e3w:latest",
+                "discos": [],
+                "name": "e3w",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [
+                    "prometheus"
+                ],
+                "buses": [],
+                "image": "prom/prometheus",
+                "image_full": "prom/prometheus:v2.1.0",
+                "discos": [],
+                "name": "prometheus",
+                "depends_on": [
+                    "cadvisor"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [
+                    "grafana"
+                ],
+                "buses": [],
+                "image": "grafana/grafana",
+                "image_full": "grafana/grafana",
+                "discos": [],
+                "name": "grafana",
+                "depends_on": [
+                    "prometheus"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mysql/mysql-server",
+                "image_full": "mysql/mysql-server:5.7",
+                "discos": [],
+                "name": "user-db-master",
+                "depends_on": [
+                    "user-db-slave-1",
+                    "user-db-slave-2"
+                ],
+                "dbs": [
+                    "mysql"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "bitnami/etcd",
+                "image_full": "bitnami/etcd:latest",
+                "discos": [
+                    "etcd"
+                ],
+                "name": "etcd2",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "microhq/micro",
+                "image_full": "microhq/micro:latest",
+                "discos": [],
+                "name": "laracom-micro-api",
+                "depends_on": [
+                    "laracom-demo-api"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [
+                    "nats"
+                ],
+                "image": "nats",
+                "image_full": "nats:latest",
+                "discos": [],
+                "name": "laracom-nats",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mysql",
+                "image_full": "mysql:5.7",
+                "discos": [],
+                "name": "laracom-product-db",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "jaegertracing/all-in-one",
+                "image_full": "jaegertracing/all-in-one:1.6",
+                "discos": [],
+                "name": "jaeger",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./demo-api",
+                "image_full": "./demo-api",
+                "discos": [],
+                "name": "laracom-demo-api",
+                "depends_on": [
+                    "laracom-demo-service"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mysql/mysql-server",
+                "image_full": "mysql/mysql-server:5.7",
+                "discos": [],
+                "name": "user-db-slave-1",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "dockersamples/visualizer",
+                "image_full": "dockersamples/visualizer:stable",
+                "discos": [],
+                "name": "visualizer",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "matjazmav/kingshard",
+                "image_full": "matjazmav/kingshard",
+                "discos": [],
+                "name": "kingshard",
+                "depends_on": [
+                    "user-db-master"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "bitnami/etcd",
+                "image_full": "bitnami/etcd:latest",
+                "discos": [
+                    "etcd"
+                ],
+                "name": "etcd3",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 4,
+            "names": [
+                "mysql"
+            ],
+            "services": [
+                "user-db-slave-2",
+                "user-db-master",
+                "laracom-product-db",
+                "user-db-slave-1"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 24,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 1,
+    "servers": [
+        "node"
+    ],
+    "url": "git://github.com/nonfu/laracom.git",
+    "num_services": 24,
+    "gates": [],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/loadtest/pom.xml"
+        }
+    ],
+    "name": "nonfu/laracom",
+    "languages": [
+        "go"
+    ],
+    "images": [
+        "mysql",
+        "alpine"
+    ],
+    "dbs": [
+        "mysql"
+    ],
+    "num_servers": 1,
+    "num_langs": 2
+}

@@ -1,0 +1,539 @@
+{
+    "dbs": [
+        "mongo",
+        "redis",
+        "mysql",
+        "memcached"
+    ],
+    "size": 331,
+    "num_buses": 1,
+    "num_servers": 0,
+    "structure": {
+        "services": [
+            {
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "discos": [],
+                "image": "./mongo",
+                "image_full": "./mongo",
+                "depends_on": [],
+                "name": "mongo",
+                "servers": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "discos": [],
+                "image": {
+                    "context": "./php-worker",
+                    "args": [
+                        "PHP_VERSION=${PHP_VERSION}"
+                    ]
+                },
+                "image_full": {
+                    "context": "./php-worker",
+                    "args": [
+                        "PHP_VERSION=${PHP_VERSION}"
+                    ]
+                },
+                "depends_on": [],
+                "name": "php-worker",
+                "servers": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "discos": [],
+                "image": "./redis",
+                "image_full": "./redis",
+                "depends_on": [],
+                "name": "redis",
+                "servers": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "discos": [],
+                "image": "./elasticsearch",
+                "image_full": "./elasticsearch",
+                "depends_on": [
+                    "php"
+                ],
+                "name": "elasticsearch",
+                "servers": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "discos": [],
+                "image": "./beanstalkd",
+                "image_full": "./beanstalkd",
+                "depends_on": [
+                    "php"
+                ],
+                "name": "beanstalkd",
+                "servers": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "gates": [],
+                "dbs": [
+                    "mariadb"
+                ],
+                "discos": [],
+                "image": "mariadb",
+                "image_full": "mariadb",
+                "depends_on": [],
+                "name": "mysql",
+                "servers": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "discos": [],
+                "image": "./kibana",
+                "image_full": "./kibana",
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "name": "kibana",
+                "servers": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "discos": [],
+                "image": {
+                    "context": "./nginx",
+                    "args": [
+                        "PHP_UPSTREAM_CONTAINER=${NGINX_PHP_UPSTREAM_CONTAINER}",
+                        "PHP_UPSTREAM_PORT=${NGINX_PHP_UPSTREAM_PORT}"
+                    ]
+                },
+                "image_full": {
+                    "context": "./nginx",
+                    "args": [
+                        "PHP_UPSTREAM_CONTAINER=${NGINX_PHP_UPSTREAM_CONTAINER}",
+                        "PHP_UPSTREAM_PORT=${NGINX_PHP_UPSTREAM_PORT}"
+                    ]
+                },
+                "depends_on": [
+                    "php"
+                ],
+                "name": "nginx",
+                "servers": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "discos": [],
+                "image": "./memcached",
+                "image_full": "./memcached",
+                "depends_on": [
+                    "php"
+                ],
+                "name": "memcached",
+                "servers": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "discos": [],
+                "image": "./beanstalkd-console",
+                "image_full": "./beanstalkd-console",
+                "depends_on": [
+                    "beanstalkd"
+                ],
+                "name": "beanstalkd-console",
+                "servers": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "discos": [],
+                "image": {
+                    "context": "./php-fpm",
+                    "args": [
+                        "PHP_VERSION=${PHP_VERSION}",
+                        "INSTALL_XDEBUG=${PHP_FPM_INSTALL_XDEBUG}",
+                        "INSTALL_SOAP=${PHP_FPM_INSTALL_SOAP}",
+                        "INSTALL_IMAP=${PHP_FPM_INSTALL_IMAP}",
+                        "INSTALL_MONGO=${PHP_FPM_INSTALL_MONGO}",
+                        "INSTALL_AMQP=${PHP_FPM_INSTALL_AMQP}",
+                        "INSTALL_ZIP_ARCHIVE=${PHP_FPM_INSTALL_ZIP_ARCHIVE}",
+                        "INSTALL_BCMATH=${PHP_FPM_INSTALL_BCMATH}",
+                        "INSTALL_GMP=${PHP_FPM_INSTALL_GMP}",
+                        "INSTALL_PHPREDIS=${PHP_FPM_INSTALL_PHPREDIS}",
+                        "INSTALL_MEMCACHED=${PHP_FPM_INSTALL_MEMCACHED}",
+                        "INSTALL_OPCACHE=${PHP_FPM_INSTALL_OPCACHE}",
+                        "INSTALL_EXIF=${PHP_FPM_INSTALL_EXIF}",
+                        "INSTALL_MYSQLI=${PHP_FPM_INSTALL_MYSQLI}",
+                        "INSTALL_PGSQL=${PHP_FPM_INSTALL_PGSQL}",
+                        "INSTALL_PG_CLIENT=${PHP_FPM_INSTALL_PG_CLIENT}",
+                        "INSTALL_TOKENIZER=${PHP_FPM_INSTALL_TOKENIZER}",
+                        "INSTALL_INTL=${PHP_FPM_INSTALL_INTL}",
+                        "INSTALL_GHOSTSCRIPT=${PHP_FPM_INSTALL_GHOSTSCRIPT}",
+                        "INSTALL_LDAP=${PHP_FPM_INSTALL_LDAP}",
+                        "INSTALL_SWOOLE=${PHP_FPM_INSTALL_SWOOLE}",
+                        "INSTALL_IMAGE_OPTIMIZERS=${PHP_FPM_INSTALL_IMAGE_OPTIMIZERS}",
+                        "INSTALL_IMAGEMAGICK=${PHP_FPM_INSTALL_IMAGEMAGICK}"
+                    ]
+                },
+                "image_full": {
+                    "context": "./php-fpm",
+                    "args": [
+                        "PHP_VERSION=${PHP_VERSION}",
+                        "INSTALL_XDEBUG=${PHP_FPM_INSTALL_XDEBUG}",
+                        "INSTALL_SOAP=${PHP_FPM_INSTALL_SOAP}",
+                        "INSTALL_IMAP=${PHP_FPM_INSTALL_IMAP}",
+                        "INSTALL_MONGO=${PHP_FPM_INSTALL_MONGO}",
+                        "INSTALL_AMQP=${PHP_FPM_INSTALL_AMQP}",
+                        "INSTALL_ZIP_ARCHIVE=${PHP_FPM_INSTALL_ZIP_ARCHIVE}",
+                        "INSTALL_BCMATH=${PHP_FPM_INSTALL_BCMATH}",
+                        "INSTALL_GMP=${PHP_FPM_INSTALL_GMP}",
+                        "INSTALL_PHPREDIS=${PHP_FPM_INSTALL_PHPREDIS}",
+                        "INSTALL_MEMCACHED=${PHP_FPM_INSTALL_MEMCACHED}",
+                        "INSTALL_OPCACHE=${PHP_FPM_INSTALL_OPCACHE}",
+                        "INSTALL_EXIF=${PHP_FPM_INSTALL_EXIF}",
+                        "INSTALL_MYSQLI=${PHP_FPM_INSTALL_MYSQLI}",
+                        "INSTALL_PGSQL=${PHP_FPM_INSTALL_PGSQL}",
+                        "INSTALL_PG_CLIENT=${PHP_FPM_INSTALL_PG_CLIENT}",
+                        "INSTALL_TOKENIZER=${PHP_FPM_INSTALL_TOKENIZER}",
+                        "INSTALL_INTL=${PHP_FPM_INSTALL_INTL}",
+                        "INSTALL_GHOSTSCRIPT=${PHP_FPM_INSTALL_GHOSTSCRIPT}",
+                        "INSTALL_LDAP=${PHP_FPM_INSTALL_LDAP}",
+                        "INSTALL_SWOOLE=${PHP_FPM_INSTALL_SWOOLE}",
+                        "INSTALL_IMAGE_OPTIMIZERS=${PHP_FPM_INSTALL_IMAGE_OPTIMIZERS}",
+                        "INSTALL_IMAGEMAGICK=${PHP_FPM_INSTALL_IMAGEMAGICK}"
+                    ]
+                },
+                "depends_on": [],
+                "name": "php",
+                "servers": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "mysql"
+            ],
+            "shared_dbs": false,
+            "num": 1,
+            "names": [
+                "mariadb"
+            ]
+        },
+        "num_services": 11,
+        "path": "/docker-compose.yml"
+    },
+    "buses": [
+        "amqp"
+    ],
+    "dockers": [
+        {
+            "dbs": [
+                "memcached"
+            ],
+            "langs": [],
+            "cmd_keywords": [
+                "memcached"
+            ],
+            "buses": [],
+            "keywords": [],
+            "from_full": "memcached:latest",
+            "monitors": [],
+            "gates": [],
+            "cmd": "memcached",
+            "path": "/memcached/Dockerfile",
+            "discos": [],
+            "servers": [],
+            "from": "memcached"
+        },
+        {
+            "dbs": [
+                "mongo"
+            ],
+            "langs": [],
+            "cmd_keywords": [
+                "mongod"
+            ],
+            "buses": [],
+            "keywords": [],
+            "from_full": "mongo:latest",
+            "monitors": [],
+            "gates": [],
+            "cmd": "mongod",
+            "path": "/mongo/Dockerfile",
+            "discos": [],
+            "servers": [],
+            "from": "mongo"
+        },
+        {
+            "dbs": [],
+            "langs": [
+                "bash"
+            ],
+            "cmd_keywords": [
+                "nginx"
+            ],
+            "buses": [],
+            "keywords": [
+                "upstream",
+                "nginx",
+                "apk",
+                "conf",
+                "etc"
+            ],
+            "from_full": "nginx:alpine",
+            "monitors": [],
+            "gates": [
+                "nginx"
+            ],
+            "cmd": "nginx",
+            "path": "/nginx/Dockerfile",
+            "discos": [],
+            "servers": [],
+            "from": "nginx"
+        },
+        {
+            "dbs": [
+                "mysql"
+            ],
+            "langs": [
+                "php"
+            ],
+            "cmd_keywords": [],
+            "buses": [],
+            "keywords": [
+                "dev",
+                "php",
+                "pecl",
+                "docker",
+                "apk"
+            ],
+            "from_full": "php:${PHP_VERSION}-alpine",
+            "monitors": [],
+            "gates": [],
+            "cmd": "",
+            "path": "/php-worker/Dockerfile",
+            "discos": [],
+            "servers": [],
+            "from": "php"
+        },
+        {
+            "dbs": [
+                "redis"
+            ],
+            "langs": [],
+            "cmd_keywords": [
+                "redis",
+                "server"
+            ],
+            "buses": [],
+            "keywords": [],
+            "from_full": "redis:latest",
+            "monitors": [],
+            "gates": [],
+            "cmd": "redis-server",
+            "path": "/redis/Dockerfile",
+            "discos": [],
+            "servers": [],
+            "from": "redis"
+        },
+        {
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "keywords": [],
+            "from_full": "docker.elastic.co/kibana/kibana:5.4.1",
+            "monitors": [],
+            "gates": [],
+            "cmd": "",
+            "path": "/kibana/Dockerfile",
+            "discos": [],
+            "servers": [],
+            "from": "docker.elastic.co/kibana/kibana"
+        },
+        {
+            "dbs": [],
+            "langs": [
+                "php"
+            ],
+            "cmd_keywords": [
+                "bash",
+                "tcp",
+                "beanstalkd",
+                "port",
+                "servers"
+            ],
+            "buses": [],
+            "keywords": [
+                "apt",
+                "get",
+                "tmp",
+                "curl",
+                "tar"
+            ],
+            "from_full": "php:latest",
+            "monitors": [],
+            "gates": [],
+            "cmd": "bash -c 'BEANSTALK_SERVERS=$BEANSTALKD_PORT_11300_TCP_ADDR:11300 php -S 0.0.0.0:2080 -t /source/public'",
+            "path": "/beanstalkd-console/Dockerfile",
+            "discos": [],
+            "servers": [],
+            "from": "php"
+        },
+        {
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "beanstalkd",
+                "usr",
+                "bin"
+            ],
+            "buses": [],
+            "keywords": [
+                "apt",
+                "get",
+                "var",
+                "tmp",
+                "install"
+            ],
+            "from_full": "phusion/baseimage:latest",
+            "monitors": [],
+            "gates": [],
+            "cmd": "/usr/bin/beanstalkd",
+            "path": "/beanstalkd/Dockerfile",
+            "discos": [],
+            "servers": [],
+            "from": "phusion/baseimage"
+        },
+        {
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "keywords": [
+                "get",
+                "apt",
+                "install",
+                "update",
+                "letsencrypt"
+            ],
+            "from_full": "phusion/baseimage:latest",
+            "monitors": [],
+            "gates": [],
+            "cmd": "",
+            "path": "/certbot/Dockerfile",
+            "discos": [],
+            "servers": [],
+            "from": "phusion/baseimage"
+        },
+        {
+            "dbs": [
+                "redis"
+            ],
+            "langs": [
+                "php"
+            ],
+            "cmd_keywords": [
+                "php",
+                "fpm"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "keywords": [
+                "install",
+                "php",
+                "docker",
+                "then",
+                "ext"
+            ],
+            "from_full": "laradock/php-fpm:2.2-${PHP_VERSION}",
+            "monitors": [],
+            "gates": [],
+            "cmd": "php-fpm",
+            "path": "/php-fpm/Dockerfile",
+            "discos": [],
+            "servers": [],
+            "from": "laradock/php-fpm"
+        },
+        {
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "keywords": [],
+            "from_full": "docker.elastic.co/elasticsearch/elasticsearch:6.2.3",
+            "monitors": [],
+            "gates": [],
+            "cmd": "",
+            "path": "/elasticsearch/Dockerfile",
+            "discos": [],
+            "servers": [],
+            "from": "docker.elastic.co/elasticsearch/elasticsearch"
+        }
+    ],
+    "files": [],
+    "url": "git://github.com/ammardev/microservice-env.git",
+    "discos": [],
+    "num_monitors": 0,
+    "num_services": 11,
+    "num_langs": 4,
+    "num_dbs": 4,
+    "avg_size_service": 30.09090909090909,
+    "num_discos": 0,
+    "languages": [
+        "dockerfile",
+        "shell"
+    ],
+    "servers": [],
+    "num_files": 12,
+    "name": "ammardev/microservice-env",
+    "monitors": [],
+    "num_gates": 1,
+    "num_dockers": 11,
+    "gates": [
+        "nginx"
+    ],
+    "langs": [
+        "bash",
+        "dockerfile",
+        "shell",
+        "php"
+    ],
+    "images": [
+        "mongo",
+        "redis",
+        "laradock/php-fpm",
+        "phusion/baseimage",
+        "docker.elastic.co/kibana/kibana",
+        "nginx",
+        "memcached",
+        "docker.elastic.co/elasticsearch/elasticsearch",
+        "php"
+    ],
+    "shared_dbs": false
+}

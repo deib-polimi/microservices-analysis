@@ -1,0 +1,308 @@
+{
+    "servers": [
+        "node"
+    ],
+    "num_monitors": 1,
+    "num_gates": 1,
+    "num_dbs": 1,
+    "num_services": 8,
+    "num_langs": 2,
+    "shared_dbs": true,
+    "num_servers": 1,
+    "avg_size_service": 330.57142857142856,
+    "files": [
+        {
+            "path": "/dockerstack-application/Clients/Web/spa/package.json",
+            "dbs": [],
+            "buses": [],
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "size": 2314,
+    "num_buses": 0,
+    "buses": [],
+    "num_discos": 0,
+    "languages": [
+        "c#",
+        "typescript"
+    ],
+    "discos": [],
+    "num_dockers": 7,
+    "dbs": [
+        "redis"
+    ],
+    "num_files": 9,
+    "gates": [
+        "nginx"
+    ],
+    "images": [
+        "fluent/fluentd",
+        "nginx",
+        "microsoft/aspnetcore"
+    ],
+    "url": "git://github.com/sandhaka/MyMicroservicesApplication.git",
+    "monitors": [
+        "fluentd"
+    ],
+    "name": "sandhaka/MyMicroservicesApplication",
+    "dockers": [
+        {
+            "cmd": "",
+            "servers": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "from": "fluent/fluentd",
+            "from_full": "fluent/fluentd:v0.14-debian",
+            "monitors": [
+                "fluentd"
+            ],
+            "path": "/dockerstack-system/fluentd/Dockerfile",
+            "langs": [],
+            "buses": [],
+            "keywords": [
+                "install",
+                "gem",
+                "fluent",
+                "version",
+                "rdoc"
+            ],
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "cmd": "nginx -g daemon off;",
+            "servers": [],
+            "cmd_keywords": [
+                "daemon",
+                "nginx",
+                "off"
+            ],
+            "gates": [
+                "nginx"
+            ],
+            "from": "nginx",
+            "from_full": "nginx:1.13-alpine",
+            "monitors": [],
+            "path": "/dockerstack-application/Clients/Web/spa/Dockerfile",
+            "langs": [],
+            "buses": [],
+            "keywords": [
+                "conf",
+                "nginx",
+                "cert",
+                "name",
+                "etc"
+            ],
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "from": "microsoft/aspnetcore",
+            "from_full": "microsoft/aspnetcore:2.0.3",
+            "monitors": [],
+            "path": "/dockerstack-application/Services/Gateway/Api.Gateway/Dockerfile",
+            "langs": [],
+            "buses": [],
+            "keywords": [],
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "from": "microsoft/aspnetcore",
+            "from_full": "microsoft/aspnetcore:2.0.3",
+            "monitors": [],
+            "path": "/dockerstack-application/Services/Orders/Orders.Application/Dockerfile",
+            "langs": [],
+            "buses": [],
+            "keywords": [],
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "from": "microsoft/aspnetcore",
+            "from_full": "microsoft/aspnetcore:2.0.3",
+            "monitors": [],
+            "path": "/dockerstack-application/Services/AuthService/Dockerfile",
+            "langs": [],
+            "buses": [],
+            "keywords": [],
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "from": "microsoft/aspnetcore",
+            "from_full": "microsoft/aspnetcore:2.0.3",
+            "monitors": [],
+            "path": "/dockerstack-application/Services/Basket/Basket.Application/Dockerfile",
+            "langs": [],
+            "buses": [],
+            "keywords": [],
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "from": "microsoft/aspnetcore",
+            "from_full": "microsoft/aspnetcore:2.0.3",
+            "monitors": [],
+            "path": "/dockerstack-application/Services/Catalog/Catalog.Application/Dockerfile",
+            "langs": [],
+            "buses": [],
+            "keywords": [],
+            "discos": [],
+            "dbs": []
+        }
+    ],
+    "langs": [
+        "c#",
+        "typescript"
+    ],
+    "structure": {
+        "path": "/dockerstack-application/docker-compose.yml",
+        "detected_dbs": {
+            "names": [
+                "redis"
+            ],
+            "services": [
+                "redis.data"
+            ],
+            "shared_dbs": true,
+            "num": 1
+        },
+        "services": [
+            {
+                "dbs": [],
+                "image_full": "sandhaka/mymicsapp_apigw",
+                "name": "api_gw",
+                "monitors": [],
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "discos": [],
+                "image": "sandhaka/mymicsapp_apigw"
+            },
+            {
+                "dbs": [],
+                "image_full": "sandhaka/mymicsapp_basket",
+                "name": "basket",
+                "monitors": [],
+                "depends_on": [
+                    "redis.data"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "discos": [],
+                "image": "sandhaka/mymicsapp_basket"
+            },
+            {
+                "dbs": [
+                    "redis"
+                ],
+                "image_full": "redis",
+                "name": "redis.data",
+                "monitors": [],
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "discos": [],
+                "image": "redis"
+            },
+            {
+                "dbs": [],
+                "image_full": "sandhaka/mymicsapp_auth",
+                "name": "auth",
+                "monitors": [],
+                "depends_on": [
+                    "sql.data"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "discos": [],
+                "image": "sandhaka/mymicsapp_auth"
+            },
+            {
+                "dbs": [],
+                "image_full": "microsoft/mssql-server-linux",
+                "name": "sql.data",
+                "monitors": [],
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "discos": [],
+                "image": "microsoft/mssql-server-linux"
+            },
+            {
+                "dbs": [],
+                "image_full": "sandhaka/mymicsapp_webspa:${ENV}",
+                "name": "web_spa",
+                "monitors": [],
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "discos": [],
+                "image": "sandhaka/mymicsapp_webspa"
+            },
+            {
+                "dbs": [],
+                "image_full": "sandhaka/mymicsapp_orders",
+                "name": "orders",
+                "monitors": [],
+                "depends_on": [
+                    "sql.data",
+                    "redis.data"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "discos": [],
+                "image": "sandhaka/mymicsapp_orders"
+            },
+            {
+                "dbs": [],
+                "image_full": "sandhaka/mymicsapp_catalog",
+                "name": "catalog",
+                "monitors": [],
+                "depends_on": [
+                    "sql.data",
+                    "redis.data"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "discos": [],
+                "image": "sandhaka/mymicsapp_catalog"
+            }
+        ],
+        "num_services": 8
+    }
+}

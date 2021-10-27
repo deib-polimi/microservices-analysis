@@ -1,0 +1,197 @@
+{
+    "dbs": [],
+    "num_langs": 3,
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "monitors": [],
+    "num_services": 3,
+    "num_dbs": 0,
+    "num_servers": 2,
+    "discos": [],
+    "dockers": [
+        {
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "dist",
+                "main",
+                "node"
+            ],
+            "from_full": "node:12.18",
+            "gates": [],
+            "dbs": [],
+            "from": "node",
+            "cmd": "node dist/main",
+            "discos": [],
+            "langs": [],
+            "path": "/api-gateway/Dockerfile",
+            "keywords": [
+                "npm",
+                "install",
+                "only",
+                "development",
+                "production"
+            ]
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "dist",
+                "main",
+                "node"
+            ],
+            "from_full": "node:12.18",
+            "gates": [],
+            "dbs": [],
+            "from": "node",
+            "cmd": "node dist/main",
+            "discos": [],
+            "langs": [],
+            "path": "/logger-service/Dockerfile",
+            "keywords": [
+                "npm",
+                "install",
+                "only",
+                "development",
+                "production"
+            ]
+        }
+    ],
+    "num_files": 6,
+    "num_dockers": 2,
+    "images": [
+        "node"
+    ],
+    "size": 811,
+    "servers": [
+        "express",
+        "node"
+    ],
+    "structure": {
+        "detected_dbs": {
+            "names": [],
+            "shared_dbs": false,
+            "services": [],
+            "num": 0
+        },
+        "num_services": 3,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "./logger-service",
+                "name": "logger",
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "./logger-service",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "./api-gateway",
+                "name": "gateway",
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "./api-gateway",
+                "gates": [
+                    "gateway"
+                ],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "rabbitmq:3-management-alpine",
+                "name": "rabbitmq",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "image": "rabbitmq",
+                "gates": [],
+                "monitors": []
+            }
+        ]
+    },
+    "num_discos": 0,
+    "files": [
+        {
+            "servers": [],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/package.json"
+        },
+        {
+            "servers": [
+                "express",
+                "node"
+            ],
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [],
+            "buses": [
+                "amqp"
+            ],
+            "monitors": [],
+            "discos": [],
+            "path": "/api-gateway/package.json"
+        },
+        {
+            "servers": [
+                "express",
+                "node"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [
+                "amqp"
+            ],
+            "monitors": [],
+            "discos": [],
+            "path": "/logger-service/package.json"
+        }
+    ],
+    "num_monitors": 0,
+    "num_buses": 2,
+    "num_gates": 1,
+    "gates": [
+        "gateway"
+    ],
+    "name": "feelsantiago/microsservicer-docker",
+    "avg_size_service": 405.5,
+    "url": "git://github.com/feelsantiago/microsservicer-docker.git",
+    "shared_dbs": false,
+    "langs": [
+        "typescript",
+        "shell",
+        "javascript"
+    ],
+    "languages": [
+        "shell",
+        "typescript",
+        "javascript"
+    ]
+}

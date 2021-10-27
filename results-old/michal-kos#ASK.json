@@ -1,0 +1,229 @@
+{
+    "size": 805,
+    "shared_dbs": true,
+    "num_servers": 3,
+    "name": "michal-kos/ASK",
+    "files": [
+        {
+            "gates": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "buses": [],
+            "servers": [
+                "express",
+                "mongoose"
+            ],
+            "path": "/package.json",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "path": "/frontend/ask-project/package.json",
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "num_files": 5,
+    "num_langs": 1,
+    "dbs": [
+        "mongo"
+    ],
+    "servers": [
+        "express",
+        "node",
+        "mongoose"
+    ],
+    "num_discos": 1,
+    "url": "git://github.com/michal-kos/ASK.git",
+    "gates": [],
+    "structure": {
+        "services": [
+            {
+                "image": "osixia/openldap",
+                "dbs": [],
+                "image_full": "osixia/openldap",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "ask_openldap",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "osixia/phpldapadmin",
+                "dbs": [],
+                "image_full": "osixia/phpldapadmin:latest",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "ask_phpldapadmin",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "ask_openldap"
+                ]
+            },
+            {
+                "image": "askproject",
+                "dbs": [],
+                "image_full": "askproject:dev",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "ask_tickets",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "database",
+                    "ask_openldap",
+                    "traefik"
+                ]
+            },
+            {
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "image_full": "mongo:4.0.9",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "database",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "aksproject",
+                "dbs": [],
+                "image_full": "aksproject:front",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "frontend",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "askproject",
+                "dbs": [],
+                "image_full": "askproject:dev",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "ask_auth",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "database",
+                    "ask_openldap",
+                    "traefik"
+                ]
+            },
+            {
+                "image": "traefik",
+                "dbs": [],
+                "image_full": "traefik:v2.0",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "traefik",
+                "gates": [],
+                "discos": [
+                    "traefik"
+                ],
+                "depends_on": []
+            }
+        ],
+        "num_services": 7,
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "mongo"
+            ],
+            "services": [
+                "database"
+            ],
+            "shared_dbs": true
+        },
+        "path": "/docker-compose.yml"
+    },
+    "num_gates": 0,
+    "num_dockers": 2,
+    "num_dbs": 1,
+    "num_services": 7,
+    "langs": [
+        "javascript"
+    ],
+    "buses": [],
+    "num_buses": 0,
+    "num_monitors": 0,
+    "languages": [
+        "javascript"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "node",
+            "monitors": [],
+            "from_full": "node:12-buster",
+            "servers": [
+                "node"
+            ],
+            "path": "/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "env",
+                "echo",
+                "install",
+                "building",
+                "production"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "npm",
+                "run",
+                "start"
+            ],
+            "cmd": "npm run start",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "node",
+            "monitors": [],
+            "from_full": "node:12-buster",
+            "servers": [
+                "node"
+            ],
+            "path": "/frontend/ask-project/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "npm",
+                "install",
+                "save"
+            ],
+            "discos": []
+        }
+    ],
+    "monitors": [],
+    "avg_size_service": 402.5,
+    "discos": [
+        "traefik"
+    ],
+    "images": [
+        "node"
+    ]
+}

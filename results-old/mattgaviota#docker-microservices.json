@@ -1,0 +1,283 @@
+{
+    "dbs": [
+        "postgresql"
+    ],
+    "num_langs": 3,
+    "buses": [],
+    "monitors": [],
+    "num_services": 6,
+    "num_dbs": 1,
+    "num_servers": 3,
+    "discos": [],
+    "dockers": [
+        {
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "from_full": "node:12.16.1-alpine",
+            "gates": [],
+            "dbs": [],
+            "from": "node",
+            "cmd": "npm start",
+            "discos": [],
+            "langs": [],
+            "path": "/api-node/Dockerfile",
+            "keywords": [
+                "install",
+                "npm"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "supervisord",
+                "conf",
+                "etc",
+                "bin",
+                "usr"
+            ],
+            "from_full": "alpine:latest",
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "from": "alpine",
+            "cmd": "/usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf",
+            "discos": [],
+            "langs": [
+                "php"
+            ],
+            "path": "/api-php/Dockerfile",
+            "keywords": [
+                "php",
+                "curl",
+                "xmlreader",
+                "pdo",
+                "pgsql"
+            ]
+        },
+        {
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "tiangolo/meinheld-gunicorn-flask:python3.8-alpine3.11",
+            "gates": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "from": "tiangolo/meinheld-gunicorn-flask",
+            "cmd": "",
+            "discos": [],
+            "langs": [
+                "bash"
+            ],
+            "path": "/api-python/Dockerfile",
+            "keywords": [
+                "pip",
+                "install",
+                "cache",
+                "postgresql",
+                "dev"
+            ]
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "dev",
+                "npm",
+                "run"
+            ],
+            "from_full": "node:12.16.1-alpine",
+            "gates": [],
+            "dbs": [],
+            "from": "node",
+            "cmd": "npm run dev",
+            "discos": [],
+            "langs": [],
+            "path": "/frontend/Dockerfile",
+            "keywords": [
+                "npm",
+                "install",
+                "build",
+                "run"
+            ]
+        }
+    ],
+    "num_files": 8,
+    "num_dockers": 4,
+    "images": [
+        "tiangolo/meinheld-gunicorn-flask",
+        "alpine",
+        "node"
+    ],
+    "size": 878,
+    "servers": [
+        "express",
+        "flask",
+        "node"
+    ],
+    "structure": {
+        "detected_dbs": {
+            "names": [],
+            "shared_dbs": false,
+            "services": [],
+            "num": 0
+        },
+        "num_services": 6,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "discos": [],
+                "servers": [
+                    "node"
+                ],
+                "image_full": "./api-node/",
+                "name": "api-node",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "./api-node/",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "nginx:alpine",
+                "name": "proxy",
+                "depends_on": [
+                    "api-node",
+                    "api-php",
+                    "api-python",
+                    "nextjs"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "nginx",
+                "gates": [
+                    "nginx"
+                ],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "./api-php/",
+                "name": "api-php",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "./api-php/",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "./frontend/",
+                "name": "nextjs",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "./frontend/",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "postgres:11-alpine",
+                "name": "postgres",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "postgres",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "./api-python/",
+                "name": "api-python",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "./api-python/",
+                "gates": [],
+                "monitors": []
+            }
+        ]
+    },
+    "num_discos": 0,
+    "files": [
+        {
+            "servers": [
+                "flask"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/api-python/app/requirements.txt"
+        },
+        {
+            "servers": [
+                "express",
+                "node"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/api-node/package.json"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/frontend/package.json"
+        }
+    ],
+    "num_monitors": 0,
+    "num_buses": 0,
+    "num_gates": 1,
+    "gates": [
+        "nginx"
+    ],
+    "name": "mattgaviota/docker-microservices",
+    "avg_size_service": 219.5,
+    "url": "git://github.com/mattgaviota/docker-microservices.git",
+    "shared_dbs": false,
+    "langs": [
+        "bash",
+        "php",
+        "javascript"
+    ],
+    "languages": [
+        "javascript",
+        "php"
+    ]
+}

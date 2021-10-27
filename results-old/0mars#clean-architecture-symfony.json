@@ -1,0 +1,158 @@
+{
+    "num_discos": 0,
+    "buses": [],
+    "gates": [
+        "nginx"
+    ],
+    "num_servers": 0,
+    "num_gates": 1,
+    "num_dbs": 1,
+    "monitors": [],
+    "num_langs": 1,
+    "num_files": 3,
+    "structure": {
+        "services": [
+            {
+                "name": "php",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": {
+                    "args": {
+                        "TIMEZONE": "${TIMEZONE}"
+                    },
+                    "context": "./store"
+                },
+                "image_full": {
+                    "args": {
+                        "TIMEZONE": "${TIMEZONE}"
+                    },
+                    "context": "./store"
+                },
+                "monitors": [],
+                "depends_on": [
+                    "mongodb"
+                ]
+            },
+            {
+                "name": "mongodb",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "image": "mongo",
+                "image_full": "mongo:latest",
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "nginx",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "./docker/nginx",
+                "image_full": "./docker/nginx",
+                "monitors": [],
+                "depends_on": [
+                    "php"
+                ]
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "names": [
+                "mongo"
+            ],
+            "num": 1,
+            "services": [
+                "mongodb"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 3
+    },
+    "servers": [],
+    "shared_dbs": false,
+    "langs": [
+        "php"
+    ],
+    "dockers": [
+        {
+            "discos": [],
+            "cmd": "nginx",
+            "buses": [],
+            "path": "/docker/nginx/Dockerfile",
+            "from": "centos",
+            "cmd_keywords": [
+                "nginx"
+            ],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "nginx",
+                "rpm",
+                "web",
+                "etc",
+                "gpg"
+            ],
+            "dbs": [],
+            "gates": [
+                "nginx"
+            ],
+            "from_full": "centos:latest",
+            "langs": []
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/store/Dockerfile",
+            "from": "php",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "php",
+                "etc",
+                "xdebug",
+                "usr",
+                "docker"
+            ],
+            "dbs": [
+                "mongodb"
+            ],
+            "gates": [],
+            "from_full": "php:7.2.19-fpm-alpine",
+            "langs": [
+                "php"
+            ]
+        }
+    ],
+    "name": "0mars/clean-architecture-symfony",
+    "discos": [],
+    "avg_size_service": 1014.5,
+    "num_monitors": 0,
+    "images": [
+        "php",
+        "centos"
+    ],
+    "url": "git://github.com/0mars/clean-architecture-symfony.git",
+    "files": [],
+    "size": 2029,
+    "languages": [
+        "php"
+    ],
+    "dbs": [
+        "mongo"
+    ],
+    "num_buses": 0,
+    "num_services": 3,
+    "num_dockers": 2
+}

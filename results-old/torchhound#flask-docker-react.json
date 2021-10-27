@@ -1,0 +1,186 @@
+{
+    "dbs": [
+        "redis",
+        "mongo"
+    ],
+    "name": "torchhound/flask-docker-react",
+    "num_langs": 2,
+    "languages": [
+        "javascript",
+        "python"
+    ],
+    "shared_dbs": false,
+    "servers": [
+        "flask"
+    ],
+    "langs": [
+        "javascript",
+        "python"
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "nginx",
+                "off",
+                "daemon"
+            ],
+            "discos": [],
+            "cmd": "nginx -g daemon off;",
+            "path": "/docker/react/Dockerfile",
+            "from_full": "nginx:1.14.0-alpine",
+            "gates": [
+                "nginx"
+            ],
+            "from": "nginx",
+            "langs": [],
+            "keywords": [
+                "npm",
+                "install",
+                "silent",
+                "react",
+                "build"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "flask"
+            ],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/docker/flask/Dockerfile",
+            "from_full": "tiangolo/uwsgi-nginx-flask:python3.6",
+            "gates": [
+                "nginx"
+            ],
+            "from": "tiangolo/uwsgi-nginx-flask",
+            "langs": [],
+            "keywords": [
+                "install",
+                "pipenv",
+                "pip",
+                "cache",
+                "dir"
+            ]
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "size": 696,
+    "num_dockers": 2,
+    "num_discos": 0,
+    "num_buses": 0,
+    "buses": [],
+    "images": [
+        "tiangolo/uwsgi-nginx-flask",
+        "nginx"
+    ],
+    "num_servers": 1,
+    "num_services": 4,
+    "monitors": [],
+    "structure": {
+        "services": [
+            {
+                "buses": [],
+                "image": "./docker/flask/Dockerfile",
+                "dbs": [],
+                "gates": [],
+                "image_full": "./docker/flask/Dockerfile",
+                "monitors": [],
+                "name": "authentication",
+                "discos": [],
+                "servers": [
+                    "flask"
+                ],
+                "depends_on": [
+                    "database",
+                    "session"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "gates": [],
+                "image_full": "mongo",
+                "monitors": [],
+                "name": "database",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "gates": [],
+                "image_full": "redis",
+                "monitors": [],
+                "name": "session",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "./docker/react/Dockerfile",
+                "dbs": [],
+                "gates": [],
+                "image_full": "./docker/react/Dockerfile",
+                "monitors": [],
+                "name": "frontend",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "authentication"
+                ]
+            }
+        ],
+        "num_services": 4,
+        "detected_dbs": {
+            "num": 2,
+            "shared_dbs": false,
+            "names": [
+                "redis",
+                "mongo"
+            ],
+            "services": [
+                "database",
+                "session"
+            ]
+        },
+        "path": "/docker/docker-compose.yml"
+    },
+    "discos": [],
+    "num_files": 4,
+    "num_dbs": 2,
+    "num_monitors": 0,
+    "num_gates": 1,
+    "url": "git://github.com/torchhound/flask-docker-react.git",
+    "avg_size_service": 348.0,
+    "files": [
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/package.json"
+        }
+    ]
+}

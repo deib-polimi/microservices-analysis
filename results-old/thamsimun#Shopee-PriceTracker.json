@@ -1,0 +1,362 @@
+{
+    "files": [
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/grpc-price-microservice/requirements.txt",
+            "dbs": [
+                "mysql"
+            ],
+            "servers": []
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/front-end/entry-task-app/package.json",
+            "dbs": [],
+            "servers": []
+        }
+    ],
+    "num_services": 9,
+    "discos": [
+        "grpc"
+    ],
+    "dbs": [
+        "mysql"
+    ],
+    "avg_size_service": 13608.833333333334,
+    "name": "thamsimun/Shopee-PriceTracker",
+    "num_buses": 0,
+    "num_langs": 4,
+    "monitors": [
+        "prometheus",
+        "grafana"
+    ],
+    "num_files": 9,
+    "langs": [
+        "go",
+        "javascript",
+        "golang",
+        "python"
+    ],
+    "num_gates": 1,
+    "dockers": [
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "path": "/grpc-price-microservice/Dockerfile",
+            "cmd_keywords": [],
+            "from_full": "python:2.7",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "cmd": "",
+            "from": "python",
+            "keywords": [
+                "get",
+                "install",
+                "apt",
+                "dir",
+                "cache"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "gates": [
+                "gateway"
+            ],
+            "path": "/api-gateway/Dockerfile",
+            "cmd_keywords": [
+                "gateway",
+                "api"
+            ],
+            "from_full": "golang:1.12",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "golang"
+            ],
+            "cmd": "./api-gateway",
+            "from": "golang",
+            "keywords": [
+                "build",
+                "mod",
+                "download"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "path": "/db/Dockerfile",
+            "cmd_keywords": [],
+            "from_full": "mysql:8.0.20",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "from": "mysql",
+            "keywords": [
+                "mysql",
+                "docker",
+                "initdb",
+                "chown",
+                "entrypoint"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "path": "/grpc-user-microservice/Dockerfile",
+            "cmd_keywords": [],
+            "from_full": "golang:1.12",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "golang"
+            ],
+            "cmd": "",
+            "from": "golang",
+            "keywords": [
+                "get",
+                "apt",
+                "server",
+                "cmd",
+                "mod"
+            ]
+        },
+        {
+            "monitors": [
+                "prometheus"
+            ],
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "path": "/monitor/Dockerfile",
+            "cmd_keywords": [],
+            "from_full": "quay.io/prometheus/prometheus:v2.0.0",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "from": "quay.io/prometheus/prometheus",
+            "keywords": [
+                "prometheus",
+                "etc",
+                "chown"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "gates": [
+                "nginx"
+            ],
+            "path": "/front-end/Dockerfile",
+            "cmd_keywords": [],
+            "from_full": "nginx:alpine",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "from": "nginx",
+            "keywords": []
+        }
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "names": [
+                "mysql"
+            ],
+            "services": [
+                "db"
+            ],
+            "num": 1,
+            "shared_dbs": true
+        },
+        "num_services": 9,
+        "services": [
+            {
+                "monitors": [],
+                "image": "./front-end",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "react-nginx",
+                "depends_on": [
+                    "api-gateway"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "./front-end"
+            },
+            {
+                "monitors": [
+                    "prometheus"
+                ],
+                "image": "quay.io/prometheus/prometheus",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "prom",
+                "depends_on": [
+                    "exporter"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "quay.io/prometheus/prometheus:v2.0.0"
+            },
+            {
+                "monitors": [],
+                "image": "google/cadvisor",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "cadvisor",
+                "depends_on": [
+                    "api-gateway"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "google/cadvisor:latest"
+            },
+            {
+                "monitors": [],
+                "image": "prom/node-exporter",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "exporter",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [
+                    "node"
+                ],
+                "image_full": "prom/node-exporter:latest"
+            },
+            {
+                "monitors": [],
+                "image": "./grpc-user-microservice",
+                "discos": [
+                    "grpc"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "user-service",
+                "depends_on": [
+                    "db"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "./grpc-user-microservice"
+            },
+            {
+                "monitors": [],
+                "image": "mysql",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "db",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "servers": [],
+                "image_full": "mysql:8.0.20"
+            },
+            {
+                "monitors": [],
+                "image": "./grpc-price-microservice",
+                "discos": [
+                    "grpc"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "price-service",
+                "depends_on": [
+                    "db"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "./grpc-price-microservice"
+            },
+            {
+                "monitors": [],
+                "image": "./api-gateway",
+                "discos": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "name": "api-gateway",
+                "depends_on": [
+                    "user-service",
+                    "price-service"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "./api-gateway"
+            },
+            {
+                "monitors": [
+                    "grafana"
+                ],
+                "image": "grafana/grafana",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "grafana",
+                "depends_on": [
+                    "prom"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "grafana/grafana"
+            }
+        ]
+    },
+    "size": 81653,
+    "num_discos": 1,
+    "languages": [
+        "python",
+        "javascript",
+        "go"
+    ],
+    "url": "git://github.com/thamsimun/Shopee-PriceTracker.git",
+    "buses": [],
+    "gates": [
+        "nginx"
+    ],
+    "shared_dbs": true,
+    "servers": [
+        "node"
+    ],
+    "images": [
+        "mysql",
+        "quay.io/prometheus/prometheus",
+        "nginx",
+        "golang",
+        "python"
+    ],
+    "num_servers": 1,
+    "num_dockers": 6,
+    "num_monitors": 2,
+    "num_dbs": 1
+}

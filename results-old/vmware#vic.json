@@ -1,0 +1,262 @@
+{
+    "size": 159295,
+    "num_dockers": 6,
+    "discos": [],
+    "num_files": 7,
+    "avg_size_service": 26549.166666666668,
+    "buses": [],
+    "num_gates": 0,
+    "langs": [
+        "go",
+        "robotframework",
+        "python",
+        "golang"
+    ],
+    "num_discos": 0,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "golang",
+            "path": "/vendor/github.com/vdemeester/shakers/Dockerfile",
+            "keywords": [
+                "get",
+                "golang",
+                "com",
+                "tools",
+                "cmd"
+            ],
+            "buses": [],
+            "langs": [
+                "golang"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "golang:1.5"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "golang",
+            "path": "/infra/integration-image/Dockerfile",
+            "keywords": [
+                "docker",
+                "usr",
+                "bin",
+                "https",
+                "com"
+            ],
+            "buses": [],
+            "langs": [
+                "golang"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "golang:1.8"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "photon",
+            "path": "/cmd/vic-machine-server/Dockerfile",
+            "keywords": [
+                "vic",
+                "tdnf",
+                "set",
+                "machine",
+                "service"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "photon:2.0"
+        },
+        {
+            "monitors": [],
+            "cmd": "top",
+            "discos": [],
+            "servers": [
+                "busybox"
+            ],
+            "cmd_keywords": [
+                "top"
+            ],
+            "from": "busybox",
+            "path": "/tests/resources/dockerfiles/configs/depends_on/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "busybox:latest"
+        },
+        {
+            "monitors": [],
+            "cmd": "/mitmdump -s docker-mitm.py",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "mitmdump",
+                "mitm",
+                "docker"
+            ],
+            "from": "python",
+            "path": "/tests/resources/dockerfiles/docker-pull-mitm-proxy/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "python:3"
+        },
+        {
+            "monitors": [],
+            "cmd": "/etc/docker/registry/config.yml",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "docker",
+                "config",
+                "registry",
+                "etc",
+                "yml"
+            ],
+            "from": "alpine",
+            "path": "/tests/resources/dockerfiles/docker-pull-mitm-proxy/vendor/distribution-library-image/Dockerfile",
+            "keywords": [
+                "apk",
+                "set",
+                "utils",
+                "certificates",
+                "apache"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "alpine:3.4"
+        }
+    ],
+    "num_dbs": 1,
+    "monitors": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "redis",
+                "image_full": "redis:alpine",
+                "discos": [],
+                "name": "redis",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "victest/vote",
+                "image_full": "victest/vote",
+                "discos": [],
+                "name": "vote",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "victest/vote-result",
+                "image_full": "victest/vote-result",
+                "discos": [],
+                "name": "result",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "victest/vote-worker",
+                "image_full": "victest/vote-worker",
+                "discos": [],
+                "name": "worker",
+                "depends_on": [
+                    "redis",
+                    "db"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "postgres",
+                "image_full": "postgres:9.4",
+                "discos": [],
+                "name": "db",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "redis"
+            ],
+            "services": [
+                "redis"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 5,
+        "path": "/demos/compose/voting-app/docker-compose.yml"
+    },
+    "num_buses": 0,
+    "servers": [
+        "busybox"
+    ],
+    "url": "git://github.com/vmware/vic.git",
+    "num_services": 5,
+    "gates": [],
+    "files": [],
+    "name": "vmware/vic",
+    "languages": [
+        "go",
+        "robotframework"
+    ],
+    "images": [
+        "python",
+        "alpine",
+        "busybox",
+        "golang",
+        "photon"
+    ],
+    "dbs": [
+        "redis"
+    ],
+    "num_servers": 1,
+    "num_langs": 4
+}

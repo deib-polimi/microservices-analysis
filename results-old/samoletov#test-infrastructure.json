@@ -1,0 +1,240 @@
+{
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "reverse-proxy",
+                "dbs": [],
+                "depends_on": [],
+                "image": "reverse-proxy",
+                "image_full": "reverse-proxy",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "microservice",
+                "dbs": [],
+                "depends_on": [],
+                "image": "microservice",
+                "image_full": "microservice",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "monolith",
+                "dbs": [],
+                "depends_on": [],
+                "image": "monolith",
+                "image_full": "monolith",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "auth",
+                "dbs": [],
+                "depends_on": [],
+                "image": "auth",
+                "image_full": "auth",
+                "discos": []
+            }
+        ],
+        "num_services": 4,
+        "detected_dbs": {
+            "names": [],
+            "num": 0,
+            "services": [],
+            "shared_dbs": false
+        }
+    },
+    "discos": [],
+    "size": 251,
+    "num_gates": 1,
+    "num_langs": 2,
+    "servers": [
+        "node",
+        "express",
+        "django"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_servers": 3,
+    "num_buses": 0,
+    "files": [
+        {
+            "servers": [
+                "django"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/monolith/requirements.txt",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/microservice/package.json",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "node",
+                "express"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/auth/package.json",
+            "dbs": [
+                "sqlite"
+            ]
+        }
+    ],
+    "num_dockers": 4,
+    "buses": [],
+    "languages": [
+        "python",
+        "typescript"
+    ],
+    "monitors": [],
+    "dbs": [
+        "sqlite"
+    ],
+    "num_monitors": 0,
+    "num_files": 8,
+    "num_dbs": 1,
+    "num_services": 4,
+    "images": [
+        "node",
+        "nginx",
+        "python"
+    ],
+    "url": "git://github.com/samoletov/test-infrastructure.git",
+    "dockers": [
+        {
+            "cmd": "nginx",
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/reverse-proxy/Dockerfile",
+            "cmd_keywords": [
+                "nginx"
+            ],
+            "keywords": [],
+            "from_full": "nginx:1.15-alpine",
+            "gates": [
+                "nginx"
+            ],
+            "from": "nginx",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "cmd": "./manage.py runserver 0.0.0.0:8000",
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/monolith/Dockerfile",
+            "cmd_keywords": [
+                "manage",
+                "runserver"
+            ],
+            "keywords": [
+                "requirements",
+                "txt",
+                "install",
+                "pip"
+            ],
+            "from_full": "python:3.7-alpine",
+            "gates": [],
+            "from": "python",
+            "langs": [
+                "python"
+            ],
+            "dbs": []
+        },
+        {
+            "cmd": "yarn start",
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/microservice/Dockerfile",
+            "cmd_keywords": [
+                "yarn",
+                "start"
+            ],
+            "keywords": [
+                "app",
+                "tmp",
+                "install",
+                "yarn",
+                "usr"
+            ],
+            "from_full": "node:alpine",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "cmd": "yarn start",
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/auth/Dockerfile",
+            "cmd_keywords": [
+                "yarn",
+                "start"
+            ],
+            "keywords": [
+                "yarn",
+                "app",
+                "usr",
+                "tmp",
+                "install"
+            ],
+            "from_full": "node:alpine",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "dbs": []
+        }
+    ],
+    "avg_size_service": 62.75,
+    "shared_dbs": false,
+    "num_discos": 0,
+    "langs": [
+        "typescript",
+        "python"
+    ],
+    "name": "samoletov/test-infrastructure"
+}

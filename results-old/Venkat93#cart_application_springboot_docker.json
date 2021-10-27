@@ -1,0 +1,450 @@
+{
+    "size": 997,
+    "num_servers": 2,
+    "dbs": [
+        "mysql"
+    ],
+    "files": [
+        {
+            "path": "/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/zuulEdgeGateway/pom.xml",
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/config/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/inventory/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": [
+                "turbine"
+            ]
+        },
+        {
+            "path": "/customer/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": [
+                "turbine"
+            ]
+        },
+        {
+            "path": "/cartui/pom.xml",
+            "gates": [
+                "gateway"
+            ],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/invoice/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": [
+                "turbine"
+            ]
+        },
+        {
+            "path": "/servicediscovery/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/zipkinTimer/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/monitor/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "monitors": [
+                "turbine"
+            ]
+        },
+        {
+            "path": "/cartui/package.json",
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "structure": {
+        "num_services": 7,
+        "services": [
+            {
+                "name": "eureka",
+                "image": "hiteshjoshi1/microservice-docker-cart-example",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "hiteshjoshi1/microservice-docker-cart-example",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "config",
+                "image": "hiteshjoshi1/microservice-docker-cart-example",
+                "depends_on": [
+                    "eureka"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "hiteshjoshi1/microservice-docker-cart-example",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "db",
+                "image": "mysql",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "mysql:5.6",
+                "discos": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "monitors": []
+            },
+            {
+                "name": "customer1",
+                "image": "hiteshjoshi1/microservice-docker-cart-example",
+                "depends_on": [
+                    "invoice1",
+                    "config",
+                    "db"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "hiteshjoshi1/microservice-docker-cart-example",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "invoice1",
+                "image": "hiteshjoshi1/microservice-docker-cart-example",
+                "depends_on": [
+                    "config",
+                    "db"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "hiteshjoshi1/microservice-docker-cart-example",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "zuul",
+                "image": "hiteshjoshi1/microservice-docker-cart-example",
+                "depends_on": [
+                    "config"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "hiteshjoshi1/microservice-docker-cart-example",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "inventory1",
+                "image": "hiteshjoshi1/microservice-docker-cart-example",
+                "depends_on": [
+                    "config",
+                    "db"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "hiteshjoshi1/microservice-docker-cart-example",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": true,
+            "services": [
+                "db"
+            ]
+        }
+    },
+    "buses": [],
+    "images": [
+        "java"
+    ],
+    "num_discos": 1,
+    "url": "git://github.com/Venkat93/cart_application_springboot_docker.git",
+    "num_services": 7,
+    "langs": [
+        "tsql",
+        "typescript",
+        "java"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "num_gates": 1,
+    "shared_dbs": true,
+    "num_files": 18,
+    "num_monitors": 1,
+    "gates": [
+        "zuul"
+    ],
+    "servers": [
+        "spring",
+        "node"
+    ],
+    "num_langs": 3,
+    "languages": [
+        "java",
+        "tsql",
+        "typescript"
+    ],
+    "monitors": [
+        "turbine"
+    ],
+    "name": "Venkat93/cart_application_springboot_docker",
+    "num_buses": 0,
+    "avg_size_service": 166.16666666666666,
+    "dockers": [
+        {
+            "path": "/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "-?",
+            "keywords": [],
+            "from": "java",
+            "buses": [],
+            "from_full": "java:8-jre",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/config/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "touch",
+                "app",
+                "jar",
+                "bash"
+            ],
+            "from": "java",
+            "buses": [],
+            "from_full": "java:8",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/inventory/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "touch",
+                "app",
+                "jar",
+                "bash"
+            ],
+            "from": "java",
+            "buses": [],
+            "from_full": "java:8",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/customer/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "touch",
+                "app",
+                "jar",
+                "bash"
+            ],
+            "from": "java",
+            "buses": [],
+            "from_full": "java:8",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/invoice/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "touch",
+                "app",
+                "jar",
+                "bash"
+            ],
+            "from": "java",
+            "buses": [],
+            "from_full": "java:8",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/servicediscovery/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "touch",
+                "app",
+                "jar",
+                "bash"
+            ],
+            "from": "java",
+            "buses": [],
+            "from_full": "java:8",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        }
+    ],
+    "num_dbs": 1,
+    "num_dockers": 6
+}

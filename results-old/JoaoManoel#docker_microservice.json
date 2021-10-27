@@ -1,0 +1,169 @@
+{
+    "num_langs": 2,
+    "dbs": [],
+    "num_servers": 2,
+    "languages": [
+        "javascript",
+        "dockerfile"
+    ],
+    "num_discos": 0,
+    "avg_size_service": 10.0,
+    "dockers": [
+        {
+            "gates": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "node app.js",
+            "servers": [
+                "node"
+            ],
+            "keywords": [
+                "install",
+                "yarn",
+                "npm",
+                "payment",
+                "mkdir"
+            ],
+            "from": "node",
+            "cmd_keywords": [
+                "node",
+                "app"
+            ],
+            "from_full": "node:7.1.0",
+            "path": "/payment/Dockerfile",
+            "buses": [],
+            "langs": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "node app.js",
+            "servers": [
+                "node"
+            ],
+            "keywords": [
+                "install",
+                "yarn",
+                "api",
+                "npm",
+                "mkdir"
+            ],
+            "from": "node",
+            "cmd_keywords": [
+                "node",
+                "app"
+            ],
+            "from_full": "node:7.1.0",
+            "path": "/api/Dockerfile",
+            "buses": [],
+            "langs": [],
+            "discos": []
+        }
+    ],
+    "num_gates": 0,
+    "buses": [
+        "rabbitmq"
+    ],
+    "langs": [
+        "dockerfile",
+        "javascript"
+    ],
+    "num_buses": 1,
+    "discos": [],
+    "num_dbs": 0,
+    "num_files": 5,
+    "url": "git://github.com/JoaoManoel/docker_microservice.git",
+    "shared_dbs": false,
+    "monitors": [],
+    "num_services": 3,
+    "files": [
+        {
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "path": "/payment/package.json",
+            "servers": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "path": "/api/package.json",
+            "servers": [
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "servers": [
+        "express",
+        "node"
+    ],
+    "num_monitors": 0,
+    "gates": [],
+    "size": 20,
+    "num_dockers": 2,
+    "images": [
+        "node"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image": "rabbitmq",
+                "depends_on": [],
+                "dbs": [],
+                "name": "messsagebroker",
+                "image_full": "rabbitmq:3.6.5",
+                "discos": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "./api/",
+                "depends_on": [
+                    "messsagebroker"
+                ],
+                "dbs": [],
+                "name": "api",
+                "image_full": "./api/",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "./payment/",
+                "depends_on": [
+                    "messsagebroker"
+                ],
+                "dbs": [],
+                "name": "payment",
+                "image_full": "./payment/",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [],
+            "shared_dbs": false,
+            "num": 0,
+            "services": []
+        },
+        "num_services": 3
+    },
+    "name": "JoaoManoel/docker_microservice"
+}

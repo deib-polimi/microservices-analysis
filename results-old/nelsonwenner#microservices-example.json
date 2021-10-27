@@ -1,0 +1,377 @@
+{
+    "dbs": [],
+    "name": "nelsonwenner/microservices-example",
+    "num_langs": 2,
+    "languages": [
+        "javascript",
+        "shell"
+    ],
+    "shared_dbs": false,
+    "servers": [
+        "express",
+        "node"
+    ],
+    "langs": [
+        "javascript",
+        "shell"
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "start",
+                "npm",
+                "run"
+            ],
+            "discos": [],
+            "cmd": "npm run start",
+            "path": "/backend-product/Dockerfile",
+            "from_full": "node:10.16-slim",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "start",
+                "npm",
+                "run"
+            ],
+            "discos": [],
+            "cmd": "npm run start",
+            "path": "/backend-auth/Dockerfile",
+            "from_full": "node:10.16-slim",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "start",
+                "npm",
+                "run"
+            ],
+            "discos": [],
+            "cmd": "npm run start",
+            "path": "/backend-checkout/Dockerfile",
+            "from_full": "node:10.16-slim",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "start",
+                "npm",
+                "run"
+            ],
+            "discos": [],
+            "cmd": "npm run start",
+            "path": "/backend-payment/Dockerfile",
+            "from_full": "node:10.16-slim",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "start",
+                "npm",
+                "run"
+            ],
+            "discos": [],
+            "cmd": "npm run start",
+            "path": "/backend-order/Dockerfile",
+            "from_full": "node:10.16-slim",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "keywords": []
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "size": 1554,
+    "num_dockers": 5,
+    "num_discos": 0,
+    "num_buses": 1,
+    "buses": [
+        "rabbitmq"
+    ],
+    "images": [
+        "node"
+    ],
+    "num_servers": 2,
+    "num_services": 10,
+    "monitors": [],
+    "structure": {
+        "services": [
+            {
+                "buses": [],
+                "image": "node",
+                "dbs": [],
+                "gates": [],
+                "image_full": "node:10.16-slim",
+                "monitors": [],
+                "name": "product-api",
+                "discos": [],
+                "servers": [
+                    "node"
+                ],
+                "depends_on": [
+                    "product-postgres"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "node",
+                "dbs": [],
+                "gates": [],
+                "image_full": "node:10.16-slim",
+                "monitors": [],
+                "name": "payment-api",
+                "discos": [],
+                "servers": [
+                    "node"
+                ],
+                "depends_on": [
+                    "rabbitmq-queue"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "node",
+                "dbs": [],
+                "gates": [],
+                "image_full": "node:10.16-slim",
+                "monitors": [],
+                "name": "auth-api",
+                "discos": [],
+                "servers": [
+                    "node"
+                ],
+                "depends_on": [
+                    "auth-postgres"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "nginx",
+                "dbs": [],
+                "gates": [
+                    "nginx"
+                ],
+                "image_full": "nginx:latest",
+                "monitors": [],
+                "name": "nginx",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "product-api",
+                    "checkout-api",
+                    "auth-api",
+                    "order-api",
+                    "payment-api"
+                ]
+            },
+            {
+                "buses": [
+                    "rabbitmq"
+                ],
+                "image": "rabbitmq",
+                "dbs": [],
+                "gates": [],
+                "image_full": "rabbitmq:3-management",
+                "monitors": [],
+                "name": "rabbitmq-queue",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "library/postgres",
+                "dbs": [],
+                "gates": [],
+                "image_full": "library/postgres:9.6-alpine",
+                "monitors": [],
+                "name": "auth-postgres",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "node",
+                "dbs": [],
+                "gates": [],
+                "image_full": "node:10.16-slim",
+                "monitors": [],
+                "name": "order-api",
+                "discos": [],
+                "servers": [
+                    "node"
+                ],
+                "depends_on": [
+                    "order-postgres",
+                    "rabbitmq-queue"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "library/postgres",
+                "dbs": [],
+                "gates": [],
+                "image_full": "library/postgres:9.6-alpine",
+                "monitors": [],
+                "name": "order-postgres",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "library/postgres",
+                "dbs": [],
+                "gates": [],
+                "image_full": "library/postgres:9.6-alpine",
+                "monitors": [],
+                "name": "product-postgres",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "node",
+                "dbs": [],
+                "gates": [],
+                "image_full": "node:10.16-slim",
+                "monitors": [],
+                "name": "checkout-api",
+                "discos": [],
+                "servers": [
+                    "node"
+                ],
+                "depends_on": [
+                    "rabbitmq-queue"
+                ]
+            }
+        ],
+        "num_services": 10,
+        "detected_dbs": {
+            "num": 0,
+            "shared_dbs": false,
+            "names": [],
+            "services": []
+        },
+        "path": "/docker-compose.yml"
+    },
+    "discos": [],
+    "num_files": 12,
+    "num_dbs": 0,
+    "num_monitors": 0,
+    "num_gates": 1,
+    "url": "git://github.com/nelsonwenner/microservices-example.git",
+    "avg_size_service": 310.8,
+    "files": [
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [],
+            "path": "/frontend-catalog/package.json"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/backend-product/package.json"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/backend-auth/package.json"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/backend-checkout/package.json"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/backend-payment/package.json"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/backend-order/package.json"
+        }
+    ]
+}

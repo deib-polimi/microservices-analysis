@@ -1,0 +1,215 @@
+{
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "db",
+                "dbs": [
+                    "mongo"
+                ],
+                "depends_on": [],
+                "image": "mongo",
+                "image_full": "mongo:latest",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "monitors": [],
+                "name": "nginx",
+                "dbs": [],
+                "depends_on": [
+                    "db",
+                    "feedback"
+                ],
+                "image": "nginx",
+                "image_full": "nginx:latest",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "feedback",
+                "dbs": [],
+                "depends_on": [
+                    "db"
+                ],
+                "image": "./feedback",
+                "image_full": "./feedback",
+                "discos": []
+            }
+        ],
+        "num_services": 3,
+        "detected_dbs": {
+            "names": [
+                "mongo"
+            ],
+            "num": 1,
+            "services": [
+                "db"
+            ],
+            "shared_dbs": true
+        }
+    },
+    "discos": [],
+    "size": 107,
+    "num_gates": 1,
+    "num_langs": 1,
+    "servers": [
+        "node",
+        "express",
+        "mongoose"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_servers": 3,
+    "num_buses": 0,
+    "files": [
+        {
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/package.json",
+            "dbs": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/users/package.json",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "node",
+                "express",
+                "mongoose"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/feedback/package.json",
+            "dbs": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/web/package.json",
+            "dbs": []
+        }
+    ],
+    "num_dockers": 4,
+    "buses": [],
+    "languages": [
+        "javascript"
+    ],
+    "monitors": [],
+    "dbs": [
+        "mongo"
+    ],
+    "num_monitors": 0,
+    "num_files": 9,
+    "num_dbs": 1,
+    "num_services": 3,
+    "images": [
+        "node",
+        "mongo"
+    ],
+    "url": "git://github.com/sacwchiri/MicroserviceExample.git",
+    "dockers": [
+        {
+            "cmd": "mongod --auth --dbpath /data/db",
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/mongo/Dockerfile",
+            "cmd_keywords": [
+                "dbpath",
+                "auth",
+                "data",
+                "mongod"
+            ],
+            "keywords": [
+                "default",
+                "root",
+                "admin",
+                "authenticationdatabase",
+                "mongo"
+            ],
+            "from_full": "mongo:latest",
+            "gates": [],
+            "from": "mongo",
+            "langs": [],
+            "dbs": [
+                "mongo"
+            ]
+        },
+        {
+            "path": "/users/Dockerfile",
+            "cmd_keywords": [],
+            "from": "",
+            "cmd": ""
+        },
+        {
+            "cmd": "npx nodemon --exec npm start",
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/feedback/Dockerfile",
+            "cmd_keywords": [
+                "npx",
+                "nodemon",
+                "exec",
+                "npm",
+                "start"
+            ],
+            "keywords": [
+                "var",
+                "apt",
+                "www",
+                "tmp",
+                "clean"
+            ],
+            "from_full": "node:latest",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "path": "/web/Dockerfile",
+            "cmd_keywords": [],
+            "from": "",
+            "cmd": ""
+        }
+    ],
+    "avg_size_service": 26.75,
+    "shared_dbs": true,
+    "num_discos": 0,
+    "langs": [
+        "javascript"
+    ],
+    "name": "sacwchiri/MicroserviceExample"
+}

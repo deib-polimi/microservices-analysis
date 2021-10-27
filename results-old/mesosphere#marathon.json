@@ -1,0 +1,381 @@
+{
+    "discos": [
+        "zookeeper"
+    ],
+    "avg_size_service": 5147.8,
+    "buses": [],
+    "num_gates": 0,
+    "name": "mesosphere/marathon",
+    "structure": {
+        "path": "/tests/performance/config/docker-compose.yml",
+        "services": [
+            {
+                "name": "mesos_master",
+                "dbs": [],
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "discos": [],
+                "image_full": "mesosphere/mesos:${MESOS_VERSION}",
+                "image": "mesosphere/mesos",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "mesos_agent",
+                "dbs": [],
+                "depends_on": [
+                    "mesos_master"
+                ],
+                "discos": [],
+                "image_full": "mesosphere/mesos:${MESOS_VERSION}",
+                "image": "mesosphere/mesos",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "marathon",
+                "dbs": [],
+                "depends_on": [
+                    "mesos_master",
+                    "zookeeper"
+                ],
+                "discos": [],
+                "image_full": "mesosphere/marathon:${MARATHON_VERSION}",
+                "image": "mesosphere/marathon",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "zookeeper",
+                "dbs": [
+                    "zookeeper"
+                ],
+                "depends_on": [],
+                "discos": [
+                    "zookeeper"
+                ],
+                "image_full": "zookeeper:3.4",
+                "image": "zookeeper",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [
+                "zookeeper"
+            ],
+            "num": 1,
+            "shared_dbs": true,
+            "services": [
+                "zookeeper"
+            ]
+        },
+        "num_services": 4
+    },
+    "dbs": [
+        "zookeeper"
+    ],
+    "dockers": [
+        {
+            "langs": [
+                "bash"
+            ],
+            "cmd_keywords": [],
+            "from_full": "buildpack-deps:buster-curl",
+            "buses": [],
+            "monitors": [],
+            "from": "buildpack-deps",
+            "keywords": [
+                "dev",
+                "apt",
+                "get",
+                "ruby",
+                "install"
+            ],
+            "gates": [],
+            "path": "/docs/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        },
+        {
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [],
+            "from_full": "debian:stretch-slim",
+            "buses": [],
+            "monitors": [],
+            "from": "debian",
+            "keywords": [
+                "apt",
+                "get",
+                "list",
+                "marathon",
+                "bin"
+            ],
+            "gates": [],
+            "path": "/tools/packager/docker/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        },
+        {
+            "langs": [
+                "ruby"
+            ],
+            "cmd_keywords": [
+                "fpm"
+            ],
+            "from_full": "ruby:2.5",
+            "buses": [],
+            "monitors": [],
+            "from": "ruby",
+            "keywords": [
+                "install",
+                "version",
+                "fpm",
+                "get",
+                "apt"
+            ],
+            "gates": [],
+            "path": "/tools/packager/fpm-docker/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "fpm",
+            "servers": []
+        },
+        {
+            "langs": [
+                "bash"
+            ],
+            "cmd_keywords": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "buses": [],
+            "monitors": [],
+            "from": "openjdk",
+            "keywords": [
+                "amm",
+                "usr",
+                "apk",
+                "local",
+                "bin"
+            ],
+            "gates": [],
+            "path": "/tools/storage/ammonite-docker/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [],
+            "from_full": "mesosphere/openjdk-alpine-ammonite:2.0.4-2.13",
+            "buses": [],
+            "monitors": [],
+            "from": "mesosphere/openjdk-alpine-ammonite",
+            "keywords": [
+                "predef",
+                "worked",
+                "sys",
+                "amm",
+                "lib"
+            ],
+            "gates": [],
+            "path": "/tools/storage/src/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        },
+        {
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [],
+            "from_full": "centos:6",
+            "buses": [],
+            "monitors": [],
+            "from": "centos",
+            "keywords": [
+                "usr",
+                "java",
+                "yum",
+                "bin",
+                "openjdk"
+            ],
+            "gates": [],
+            "path": "/tests/package/centos6/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        },
+        {
+            "langs": [
+                "python"
+            ],
+            "cmd_keywords": [],
+            "from_full": "jrei/systemd-debian:9",
+            "buses": [],
+            "monitors": [],
+            "from": "jrei/systemd-debian",
+            "keywords": [
+                "apt",
+                "get",
+                "list",
+                "mesosphere",
+                "install"
+            ],
+            "gates": [],
+            "path": "/tests/package/debian9/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        },
+        {
+            "langs": [
+                "python"
+            ],
+            "cmd_keywords": [],
+            "from_full": "ubuntu:16.04",
+            "buses": [],
+            "monitors": [],
+            "from": "ubuntu",
+            "keywords": [
+                "apt",
+                "get",
+                "install",
+                "mesos",
+                "lsb"
+            ],
+            "gates": [],
+            "path": "/tests/package/ubuntu1604/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        },
+        {
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [],
+            "from_full": "centos:7",
+            "buses": [],
+            "monitors": [],
+            "from": "centos",
+            "keywords": [
+                "usr",
+                "mesos",
+                "yum",
+                "bin",
+                "java"
+            ],
+            "gates": [],
+            "path": "/tests/package/centos7/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [],
+            "from_full": "marathon-package-test:debian9",
+            "buses": [],
+            "monitors": [],
+            "from": "marathon-package-test",
+            "keywords": [
+                "zookeeper",
+                "systemctl",
+                "get",
+                "enable",
+                "apt"
+            ],
+            "gates": [],
+            "path": "/tests/package/mesos/Dockerfile",
+            "dbs": [
+                "zookeeper"
+            ],
+            "discos": [
+                "zookeeper"
+            ],
+            "cmd": "",
+            "servers": []
+        }
+    ],
+    "gates": [],
+    "size": 51478,
+    "num_monitors": 0,
+    "images": [
+        "buildpack-deps",
+        "jrei/systemd-debian",
+        "openjdk",
+        "marathon-package-test",
+        "mesosphere/openjdk-alpine-ammonite",
+        "ruby",
+        "debian",
+        "centos",
+        "ubuntu"
+    ],
+    "num_buses": 0,
+    "num_services": 4,
+    "servers": [
+        "node"
+    ],
+    "shared_dbs": true,
+    "monitors": [],
+    "num_discos": 1,
+    "languages": [
+        "scala"
+    ],
+    "url": "git://github.com/mesosphere/marathon.git",
+    "langs": [
+        "ruby",
+        "bash",
+        "python",
+        "java",
+        "scala"
+    ],
+    "num_dbs": 1,
+    "num_servers": 1,
+    "num_langs": 5,
+    "files": [
+        {
+            "path": "/tests/shakedown/requirements.txt",
+            "dbs": [],
+            "discos": [],
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "gates": []
+        },
+        {
+            "path": "/dcos/package.json",
+            "dbs": [],
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "monitors": [],
+            "gates": []
+        }
+    ],
+    "num_dockers": 10,
+    "num_files": 13
+}

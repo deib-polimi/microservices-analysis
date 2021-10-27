@@ -1,0 +1,336 @@
+{
+    "num_services": 11,
+    "dbs": [
+        "redis",
+        "mongo"
+    ],
+    "name": "PierreRAFFA/lexio-infrastructure",
+    "files": [
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/package.json",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": []
+        }
+    ],
+    "discos": [],
+    "num_gates": 1,
+    "num_buses": 0,
+    "langs": [
+        "dockerfile",
+        "shell",
+        "javascript"
+    ],
+    "gates": [
+        "gateway"
+    ],
+    "num_monitors": 0,
+    "monitors": [],
+    "images": [
+        "mongo"
+    ],
+    "structure": {
+        "num_services": 11,
+        "detected_dbs": {
+            "num": 5,
+            "services": [
+                "lexio-authentication-mongo",
+                "lexio-push-notification-mongo",
+                "lexio-game-mongo",
+                "lexio-purchase-mongo",
+                "redis"
+            ],
+            "names": [
+                "redis",
+                "mongo"
+            ],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "image_full": "./lexio-authentication-mongo",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "lexio-authentication-mongo",
+                "image": "./lexio-authentication-mongo"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "image_full": "./lexio-push-notification-mongo",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "lexio-push-notification-mongo",
+                "image": "./lexio-push-notification-mongo"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "image_full": "./lexio-game-mongo",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "lexio-game-mongo",
+                "image": "./lexio-game-mongo"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [
+                    "gateway"
+                ],
+                "dbs": [],
+                "image_full": "../lexio-gateway",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "lexio-gateway",
+                "image": "../lexio-gateway"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "image_full": "./lexio-purchase-mongo",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "lexio-purchase-mongo",
+                "image": "./lexio-purchase-mongo"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "lexio-purchase-mongo:mongohost"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "../lexio-purchase",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "lexio-purchase",
+                "image": "../lexio-purchase"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "lexio-game-mongo:mongohost",
+                    "lexio-authentication:lexio-authentication"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "../lexio-game",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "lexio-game",
+                "image": "../lexio-game"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "lexio-authentication-mongo:mongohost"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "../lexio-authentication",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "lexio-authentication",
+                "image": "../lexio-authentication"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "lexio-push-notification-mongo:mongohost"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "../lexio-push-notification",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "lexio-push-notification",
+                "image": "../lexio-push-notification"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "../lexio-cron",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "lexio-cron",
+                "image": "../lexio-cron"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [
+                    "redis"
+                ],
+                "image_full": "redis",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "redis",
+                "image": "redis"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "shared_dbs": false,
+    "languages": [
+        "shell",
+        "dockerfile",
+        "javascript"
+    ],
+    "avg_size_service": 5.25,
+    "buses": [],
+    "dockers": [
+        {
+            "from_full": "mongo",
+            "langs": [],
+            "dbs": [
+                "mongo"
+            ],
+            "path": "/lexio-purchase-mongo/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "smallfiles",
+                "auth",
+                "mongod"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "mongo",
+            "keywords": [
+                "initdb",
+                "docker",
+                "entrypoint",
+                "setup",
+                "sed"
+            ],
+            "cmd": "mongod --auth --smallfiles"
+        },
+        {
+            "from_full": "mongo",
+            "langs": [],
+            "dbs": [
+                "mongo"
+            ],
+            "path": "/lexio-game-mongo/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "smallfiles",
+                "auth",
+                "mongod"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "mongo",
+            "keywords": [
+                "initdb",
+                "docker",
+                "entrypoint",
+                "setup",
+                "sed"
+            ],
+            "cmd": "mongod --auth --smallfiles"
+        },
+        {
+            "from_full": "mongo",
+            "langs": [],
+            "dbs": [
+                "mongo"
+            ],
+            "path": "/lexio-authentication-mongo/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "smallfiles",
+                "auth",
+                "mongod"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "mongo",
+            "keywords": [
+                "initdb",
+                "docker",
+                "entrypoint",
+                "setup",
+                "sed"
+            ],
+            "cmd": "mongod --auth --smallfiles"
+        },
+        {
+            "from_full": "mongo",
+            "langs": [],
+            "dbs": [
+                "mongo"
+            ],
+            "path": "/lexio-push-notification-mongo/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "smallfiles",
+                "auth",
+                "mongod"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "mongo",
+            "keywords": [
+                "initdb",
+                "docker",
+                "entrypoint",
+                "setup",
+                "sed"
+            ],
+            "cmd": "mongod --auth --smallfiles"
+        }
+    ],
+    "servers": [],
+    "num_dockers": 4,
+    "url": "git://github.com/PierreRAFFA/lexio-infrastructure.git",
+    "num_dbs": 2,
+    "num_servers": 0,
+    "num_discos": 0,
+    "num_langs": 3,
+    "num_files": 6,
+    "size": 21
+}

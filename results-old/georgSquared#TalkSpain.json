@@ -1,0 +1,204 @@
+{
+    "dbs": [],
+    "num_langs": 2,
+    "buses": [],
+    "monitors": [],
+    "num_services": 3,
+    "num_dbs": 0,
+    "num_servers": 1,
+    "discos": [],
+    "dockers": [
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "python",
+                "translation",
+                "service"
+            ],
+            "from_full": "python:2.7-slim",
+            "gates": [],
+            "dbs": [],
+            "from": "python",
+            "cmd": "python translation_service.py",
+            "discos": [],
+            "langs": [
+                "python"
+            ],
+            "path": "/translation_service/Dockerfile",
+            "keywords": [
+                "install",
+                "apt",
+                "get",
+                "apertium",
+                "wget"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "speech",
+                "python",
+                "service"
+            ],
+            "from_full": "python:2.7-slim",
+            "gates": [],
+            "dbs": [],
+            "from": "python",
+            "cmd": "python speech_service.py",
+            "discos": [],
+            "langs": [
+                "python"
+            ],
+            "path": "/speech_service/Dockerfile",
+            "keywords": [
+                "install",
+                "make",
+                "apt",
+                "dev",
+                "get"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "python",
+                "service",
+                "sender"
+            ],
+            "from_full": "python:2.7-alpine3.6",
+            "gates": [],
+            "dbs": [],
+            "from": "python",
+            "cmd": "python sender_service.py",
+            "discos": [],
+            "langs": [
+                "python"
+            ],
+            "path": "/sender_service/Dockerfile",
+            "keywords": [
+                "requirements",
+                "install",
+                "pip",
+                "txt"
+            ]
+        }
+    ],
+    "num_files": 7,
+    "num_dockers": 3,
+    "images": [
+        "python"
+    ],
+    "size": 7,
+    "servers": [
+        "flask"
+    ],
+    "structure": {
+        "detected_dbs": {
+            "names": [],
+            "shared_dbs": false,
+            "services": [],
+            "num": 0
+        },
+        "num_services": 3,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "translation_service:latest",
+                "name": "translation_service",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "translation_service",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "speech_service:latest",
+                "name": "speech_service",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "speech_service",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "sender_service:latest",
+                "name": "sender_service",
+                "depends_on": [
+                    "speech_service",
+                    "translation_service"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "sender_service",
+                "gates": [],
+                "monitors": []
+            }
+        ]
+    },
+    "num_discos": 0,
+    "files": [
+        {
+            "servers": [
+                "flask"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/translation_service/requirements.txt"
+        },
+        {
+            "servers": [
+                "flask"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/speech_service/requirements.txt"
+        },
+        {
+            "servers": [
+                "flask"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/sender_service/requirements.txt"
+        }
+    ],
+    "num_monitors": 0,
+    "num_buses": 0,
+    "num_gates": 0,
+    "gates": [],
+    "name": "georgSquared/TalkSpain",
+    "avg_size_service": 2.3333333333333335,
+    "url": "git://github.com/georgSquared/TalkSpain.git",
+    "shared_dbs": false,
+    "langs": [
+        "python",
+        "dockerfile"
+    ],
+    "languages": [
+        "python",
+        "dockerfile"
+    ]
+}

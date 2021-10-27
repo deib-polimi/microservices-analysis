@@ -1,0 +1,250 @@
+{
+    "structure": {
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": false,
+            "services": [
+                "redis"
+            ]
+        },
+        "num_services": 5,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [],
+                "name": "worker",
+                "dbs": [],
+                "image": "./worker",
+                "monitors": [],
+                "servers": [],
+                "image_full": "./worker",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "name": "vote",
+                "dbs": [],
+                "image": "./vote",
+                "monitors": [],
+                "servers": [],
+                "image_full": "./vote",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "name": "result",
+                "dbs": [],
+                "image": "./result",
+                "monitors": [],
+                "servers": [],
+                "image_full": "./result",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "name": "db",
+                "dbs": [],
+                "image": "postgres",
+                "monitors": [],
+                "servers": [],
+                "image_full": "postgres:9.4",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "name": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "image": "redis",
+                "monitors": [],
+                "servers": [],
+                "image_full": "redis:3.2-alpine",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            }
+        ]
+    },
+    "dbs": [
+        "redis"
+    ],
+    "dockers": [
+        {
+            "dbs": [],
+            "path": "/worker/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "dll",
+                "dotnet",
+                "worker"
+            ],
+            "gates": [],
+            "discos": [],
+            "from_full": "microsoft/dotnet:1.0.0-preview2-sdk",
+            "langs": [],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "src",
+                "dotnet",
+                "nuget",
+                "minimal",
+                "release"
+            ],
+            "from": "microsoft/dotnet",
+            "cmd": "dotnet Worker.dll"
+        },
+        {
+            "dbs": [],
+            "path": "/result/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "node",
+                "server"
+            ],
+            "gates": [],
+            "discos": [],
+            "from_full": "node:5.11.0-slim",
+            "langs": [],
+            "monitors": [],
+            "servers": [
+                "node"
+            ],
+            "keywords": [
+                "npm",
+                "registry",
+                "node",
+                "modules",
+                "install"
+            ],
+            "from": "node",
+            "cmd": "node server.js"
+        },
+        {
+            "dbs": [],
+            "path": "/result/tests/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "tests",
+                "app"
+            ],
+            "gates": [],
+            "discos": [],
+            "from_full": "node",
+            "langs": [],
+            "monitors": [],
+            "servers": [
+                "node"
+            ],
+            "keywords": [
+                "phantomjs",
+                "install",
+                "npm"
+            ],
+            "from": "node",
+            "cmd": "/app/tests.sh"
+        },
+        {
+            "dbs": [],
+            "path": "/vote/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "app",
+                "file",
+                "logfile",
+                "gunicorn",
+                "access"
+            ],
+            "gates": [],
+            "discos": [],
+            "from_full": "python:2.7-alpine",
+            "langs": [
+                "python"
+            ],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "pip",
+                "install",
+                "txt",
+                "requirements"
+            ],
+            "from": "python",
+            "cmd": "gunicorn app:app -b 0.0.0.0:80 --log-file - --access-logfile - --workers 4 --keep-alive 0"
+        }
+    ],
+    "files": [
+        {
+            "dbs": [
+                "redis"
+            ],
+            "path": "/vote/requirements.txt",
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "path": "/result/package.json",
+            "monitors": [],
+            "servers": [
+                "express"
+            ],
+            "buses": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "languages": [
+        "javascript"
+    ],
+    "num_dbs": 1,
+    "num_monitors": 0,
+    "images": [
+        "node",
+        "microsoft/dotnet",
+        "python"
+    ],
+    "name": "batemansogq/06-managing-microservices-with-docker",
+    "shared_dbs": false,
+    "num_servers": 3,
+    "num_langs": 2,
+    "buses": [],
+    "num_services": 5,
+    "num_dockers": 4,
+    "size": 206,
+    "avg_size_service": 51.5,
+    "gates": [],
+    "discos": [],
+    "langs": [
+        "javascript",
+        "python"
+    ],
+    "num_files": 7,
+    "url": "git://github.com/batemansogq/06-managing-microservices-with-docker.git",
+    "monitors": [],
+    "servers": [
+        "node",
+        "flask",
+        "express"
+    ],
+    "num_buses": 0,
+    "num_discos": 0,
+    "num_gates": 0
+}

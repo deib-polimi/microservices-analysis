@@ -1,0 +1,235 @@
+{
+    "num_files": 8,
+    "num_services": 4,
+    "num_discos": 0,
+    "gates": [],
+    "languages": [
+        "typescript",
+        "javascript"
+    ],
+    "num_dbs": 1,
+    "dbs": [
+        "mongo"
+    ],
+    "num_monitors": 0,
+    "structure": {
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 1,
+            "services": [
+                "plants-db"
+            ],
+            "names": [
+                "mongo"
+            ]
+        },
+        "num_services": 4,
+        "services": [
+            {
+                "image_full": "node:lts",
+                "image": "node",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "servers": [
+                    "node"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "api"
+            },
+            {
+                "image_full": "bitnami/rabbitmq:latest",
+                "image": "bitnami/rabbitmq",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "name": "rabbitmq"
+            },
+            {
+                "image_full": "node:lts",
+                "image": "node",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "servers": [
+                    "node"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "plants-service"
+            },
+            {
+                "image_full": "mongo:latest",
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "plants-db"
+            }
+        ],
+        "path": "/infrastructure/docker-compose.yml"
+    },
+    "discos": [],
+    "url": "git://github.com/krzyurb/node-microservices.git",
+    "num_buses": 1,
+    "files": [
+        {
+            "servers": [],
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/package.json"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/packages/core/package.json"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/packages/shared/package.json"
+        },
+        {
+            "servers": [
+                "mongoose",
+                "node"
+            ],
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/services/plants/package.json"
+        },
+        {
+            "servers": [
+                "express",
+                "node"
+            ],
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/api/package.json"
+        }
+    ],
+    "name": "krzyurb/node-microservices",
+    "servers": [
+        "express",
+        "mongoose",
+        "node"
+    ],
+    "num_dockers": 2,
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_gates": 0,
+    "num_langs": 2,
+    "shared_dbs": false,
+    "monitors": [],
+    "dockers": [
+        {
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/infrastructure/services/plants/Dockerfile",
+            "keywords": [
+                "yarn",
+                "install",
+                "global",
+                "nodemon",
+                "typescript"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "cwd",
+                "plants",
+                "yarn",
+                "start",
+                "services"
+            ],
+            "discos": [],
+            "cmd": "yarn --cwd services/plants start",
+            "from_full": "node:lts"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/infrastructure/api/Dockerfile",
+            "keywords": [
+                "yarn",
+                "install",
+                "global",
+                "nodemon",
+                "typescript"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "cwd",
+                "packages",
+                "yarn",
+                "start",
+                "api"
+            ],
+            "discos": [],
+            "cmd": "yarn --cwd packages/api start",
+            "from_full": "node:lts"
+        }
+    ],
+    "langs": [
+        "typescript",
+        "javascript"
+    ],
+    "num_servers": 3,
+    "size": 292,
+    "images": [
+        "node"
+    ],
+    "avg_size_service": 146.0
+}

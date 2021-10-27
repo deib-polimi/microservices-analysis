@@ -1,0 +1,176 @@
+{
+    "size": 421,
+    "num_servers": 1,
+    "dbs": [],
+    "files": [
+        {
+            "path": "/micro-service/build.gradle",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": [
+                "fluentd"
+            ]
+        },
+        {
+            "path": "/micro-service/settings.gradle",
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "structure": {
+        "num_services": 4,
+        "services": [
+            {
+                "name": "micro-service",
+                "image": "micro-service",
+                "depends_on": [
+                    "fluentd"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "micro-service",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "elasticsearch",
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:7.2.0",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "fluentd",
+                "image": "./fluentd",
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "./fluentd",
+                "discos": [],
+                "dbs": [],
+                "monitors": [
+                    "fluentd"
+                ]
+            },
+            {
+                "name": "kibana",
+                "image": "docker.elastic.co/kibana/kibana",
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "docker.elastic.co/kibana/kibana:7.2.0",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "shared_dbs": false,
+            "services": []
+        }
+    },
+    "buses": [],
+    "images": [
+        "java",
+        "fluent/fluentd"
+    ],
+    "num_discos": 0,
+    "url": "git://github.com/albertllousas/centralized-logs-with-EFK-and-docker.git",
+    "num_services": 4,
+    "langs": [
+        "dockerfile",
+        "ruby",
+        "java"
+    ],
+    "discos": [],
+    "num_gates": 0,
+    "shared_dbs": false,
+    "num_files": 5,
+    "num_monitors": 1,
+    "gates": [],
+    "servers": [
+        "spring"
+    ],
+    "num_langs": 3,
+    "languages": [
+        "dockerfile",
+        "java"
+    ],
+    "monitors": [
+        "fluentd"
+    ],
+    "name": "albertllousas/centralized-logs-with-EFK-and-docker",
+    "num_buses": 0,
+    "avg_size_service": 210.5,
+    "dockers": [
+        {
+            "path": "/micro-service/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [],
+            "from": "java",
+            "buses": [],
+            "from_full": "java:8-jdk-alpine",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/fluentd/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "ruby"
+            ],
+            "cmd": "",
+            "keywords": [
+                "gem",
+                "build",
+                "sudo",
+                "apk",
+                "ruby"
+            ],
+            "from": "fluent/fluentd",
+            "buses": [],
+            "from_full": "fluent/fluentd:v1.6-1",
+            "discos": [],
+            "dbs": [],
+            "monitors": [
+                "fluentd"
+            ],
+            "cmd_keywords": []
+        }
+    ],
+    "num_dbs": 0,
+    "num_dockers": 2
+}

@@ -1,0 +1,349 @@
+{
+    "num_services": 10,
+    "dbs": [
+        "postgresql"
+    ],
+    "name": "hmcts/probate-back-office",
+    "files": [
+        {
+            "gates": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "path": "/build.gradle",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/settings.gradle",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/package.json",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "node"
+            ]
+        }
+    ],
+    "discos": [],
+    "num_gates": 0,
+    "num_buses": 0,
+    "langs": [
+        "java",
+        "html"
+    ],
+    "gates": [],
+    "num_monitors": 0,
+    "monitors": [],
+    "images": [
+        "docker.elastic.co/logstash/logstash",
+        "hmctspublic.azurecr.io/base/java",
+        "postgres"
+    ],
+    "structure": {
+        "num_services": 10,
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "names": [],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/auth/idam-database:latest",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "idam-database",
+                "image": "docker.artifactory.reform.hmcts.net/auth/idam-database"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "service-auth-provider-api",
+                    "pdf-service-api"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "hmctspublic.azurecr.io/probate/back-office",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "back-office",
+                "image": "hmctspublic.azurecr.io/probate/back-office"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "mailhog/mailhog",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "smtp-server",
+                "image": "mailhog/mailhog"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/fees-register/fees-database:${FEES_DATABASE_DOCKER_VERSION:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "fees-database",
+                "image": "docker.artifactory.reform.hmcts.net/fees-register/fees-database"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "hmctspublic.azurecr.io/rpe/service-auth-provider:latest",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "service-auth-provider-api",
+                "image": "hmctspublic.azurecr.io/rpe/service-auth-provider"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "idam-database",
+                    "smtp-server"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/auth/idam-api:latest",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "idam-api",
+                "image": "docker.artifactory.reform.hmcts.net/auth/idam-api"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "document-management-store-database",
+                    "idam-api",
+                    "service-auth-provider-api"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/evidence/document-management-store:latest",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "document-management-store",
+                "image": "docker.artifactory.reform.hmcts.net/evidence/document-management-store"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/evidence/document-management-store-database:latest",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "document-management-store-database",
+                "image": "docker.artifactory.reform.hmcts.net/evidence/document-management-store-database"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "hmctspublic.azurecr.io/cmc/pdf-service:latest",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "pdf-service-api",
+                "image": "hmctspublic.azurecr.io/cmc/pdf-service"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "fees-database"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/fees-register/fees-api:${FEES_API_DOCKER_VERSION:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "fees-api",
+                "image": "docker.artifactory.reform.hmcts.net/fees-register/fees-api"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "shared_dbs": false,
+    "languages": [
+        "html",
+        "java"
+    ],
+    "avg_size_service": 2485.4285714285716,
+    "buses": [],
+    "dockers": [
+        {
+            "from_full": "hmctspublic.azurecr.io/base/java:openjdk-8-distroless-1.4",
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "path": "/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "office",
+                "back",
+                "jar"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "hmctspublic.azurecr.io/base/java",
+            "keywords": [],
+            "cmd": "back-office.jar"
+        },
+        {
+            "from_full": "docker.elastic.co/logstash/logstash:6.4.2",
+            "langs": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "path": "/docker/logstash-probateman/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "docker.elastic.co/logstash/logstash",
+            "keywords": [
+                "postgresql",
+                "jar",
+                "download",
+                "drivers",
+                "jdbc"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "postgres:9.5.18",
+            "langs": [],
+            "dbs": [],
+            "path": "/docker/ccd-database/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "postgres",
+            "keywords": [],
+            "cmd": ""
+        },
+        {
+            "from_full": "docker.elastic.co/logstash/logstash:6.4.2",
+            "langs": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "path": "/docker/logstash/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "docker.elastic.co/logstash/logstash",
+            "keywords": [
+                "postgresql",
+                "drivers",
+                "jar",
+                "download",
+                "jdbc"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "postgres:9.6-alpine",
+            "langs": [],
+            "dbs": [],
+            "path": "/docker/probateman/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "postgres",
+            "keywords": [],
+            "cmd": ""
+        },
+        {
+            "from_full": "postgres:9.6",
+            "langs": [],
+            "dbs": [],
+            "path": "/docker/database/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "postgres",
+            "keywords": [],
+            "cmd": ""
+        },
+        {
+            "from_full": "postgres:9.6",
+            "langs": [],
+            "dbs": [],
+            "path": "/compose/database/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "postgres",
+            "keywords": [],
+            "cmd": ""
+        }
+    ],
+    "servers": [
+        "node",
+        "spring"
+    ],
+    "num_dockers": 7,
+    "url": "git://github.com/hmcts/probate-back-office.git",
+    "num_dbs": 1,
+    "num_servers": 2,
+    "num_discos": 0,
+    "num_langs": 2,
+    "num_files": 11,
+    "size": 17398
+}

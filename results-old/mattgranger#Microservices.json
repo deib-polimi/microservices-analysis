@@ -1,0 +1,189 @@
+{
+    "num_services": 5,
+    "dbs": [
+        "mongo"
+    ],
+    "name": "mattgranger/Microservices",
+    "files": [],
+    "discos": [],
+    "num_gates": 0,
+    "num_buses": 1,
+    "langs": [
+        "c#"
+    ],
+    "gates": [],
+    "num_monitors": 0,
+    "monitors": [],
+    "images": [
+        "base"
+    ],
+    "structure": {
+        "num_services": 5,
+        "detected_dbs": {
+            "num": 1,
+            "services": [
+                "nosql.data"
+            ],
+            "names": [
+                "mongo"
+            ],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "buses": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "nosql.data"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "microservices/mongoservice:${TAG:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "mongoservice",
+                "image": "microservices/mongoservice"
+            },
+            {
+                "buses": [
+                    "rabbitmq"
+                ],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "rabbitmq:3-management-alpine",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "rabbitmq",
+                "image": "rabbitmq"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "image_full": "mongo",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "nosql.data",
+                "image": "mongo"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "microservices/service1api:${TAG:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "service1.api",
+                "image": "microservices/service1api"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "microservices/rabbitmqservice:${TAG:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "rabbitmqservice",
+                "image": "microservices/rabbitmqservice"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "shared_dbs": false,
+    "languages": [
+        "c#"
+    ],
+    "avg_size_service": 35.333333333333336,
+    "buses": [
+        "rabbitmq"
+    ],
+    "dockers": [
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/RabbitMqService/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "rabbitmqservice",
+                "dotnet",
+                "csproj",
+                "release",
+                "app"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/Services/Service1.API/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "service",
+                "api",
+                "dotnet",
+                "csproj",
+                "release"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/Services/MongoService/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "mongoservice",
+                "dotnet",
+                "csproj",
+                "release",
+                "app"
+            ],
+            "cmd": ""
+        }
+    ],
+    "servers": [],
+    "num_dockers": 3,
+    "url": "git://github.com/mattgranger/Microservices.git",
+    "num_dbs": 1,
+    "num_servers": 0,
+    "num_discos": 0,
+    "num_langs": 1,
+    "num_files": 4,
+    "size": 106
+}

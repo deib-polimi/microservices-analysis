@@ -1,0 +1,211 @@
+{
+    "dbs": [],
+    "name": "nicolasiten/CalifornianHealthBlazor",
+    "num_langs": 4,
+    "languages": [
+        "c#",
+        "javascript",
+        "css",
+        "html"
+    ],
+    "shared_dbs": false,
+    "servers": [],
+    "langs": [
+        "c#",
+        "javascript",
+        "html",
+        "css"
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/src/Services/AppointmentBooking/Dockerfile",
+            "from_full": "base",
+            "gates": [],
+            "from": "base",
+            "langs": [],
+            "keywords": [
+                "appointmentbooking",
+                "csproj",
+                "dotnet",
+                "app",
+                "release"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/src/Services/Calendar/Dockerfile",
+            "from_full": "base",
+            "gates": [],
+            "from": "base",
+            "langs": [],
+            "keywords": [
+                "calendar",
+                "csproj",
+                "dotnet",
+                "publish",
+                "app"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/src/Web/CalifornianHealthBlazor/Dockerfile",
+            "from_full": "base",
+            "gates": [],
+            "from": "base",
+            "langs": [],
+            "keywords": [
+                "californianhealthblazor",
+                "csproj",
+                "dotnet",
+                "publish",
+                "app"
+            ]
+        }
+    ],
+    "gates": [],
+    "size": 2168,
+    "num_dockers": 3,
+    "num_discos": 0,
+    "num_buses": 1,
+    "buses": [
+        "rabbitmq"
+    ],
+    "images": [
+        "base"
+    ],
+    "num_servers": 0,
+    "num_services": 7,
+    "monitors": [],
+    "structure": {
+        "services": [
+            {
+                "buses": [
+                    "rabbitmq"
+                ],
+                "image": "rabbitmq",
+                "dbs": [],
+                "gates": [],
+                "image_full": "rabbitmq:3-management",
+                "monitors": [],
+                "name": "rabbitmq",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "${DOCKER_REGISTRY-}appointmentbooking",
+                "dbs": [],
+                "gates": [],
+                "image_full": "${DOCKER_REGISTRY-}appointmentbooking",
+                "monitors": [],
+                "name": "appointmentbooking",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "mcr.microsoft.com/mssql/server",
+                "dbs": [],
+                "gates": [],
+                "image_full": "mcr.microsoft.com/mssql/server:2019-latest",
+                "monitors": [],
+                "name": "sqlserver",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "${DOCKER_REGISTRY-}calendar",
+                "dbs": [],
+                "gates": [],
+                "image_full": "${DOCKER_REGISTRY-}calendar",
+                "monitors": [],
+                "name": "calendar",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "sqlserver"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "${DOCKER_REGISTRY-}californianhealthblazor",
+                "dbs": [],
+                "gates": [],
+                "image_full": "${DOCKER_REGISTRY-}californianhealthblazor",
+                "monitors": [],
+                "name": "californianhealthblazor",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "calendar",
+                    "appointmentbooking"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "dbs": [],
+                "gates": [],
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:7.6.2",
+                "monitors": [],
+                "name": "elasticsearch",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "docker.elastic.co/kibana/kibana",
+                "dbs": [],
+                "gates": [],
+                "image_full": "docker.elastic.co/kibana/kibana:7.6.2",
+                "monitors": [],
+                "name": "kibana",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "elasticsearch"
+                ]
+            }
+        ],
+        "num_services": 7,
+        "detected_dbs": {
+            "num": 0,
+            "shared_dbs": false,
+            "names": [],
+            "services": []
+        },
+        "path": "/src/docker-compose.yml"
+    },
+    "discos": [],
+    "num_files": 4,
+    "num_dbs": 0,
+    "num_monitors": 0,
+    "num_gates": 0,
+    "url": "git://github.com/nicolasiten/CalifornianHealthBlazor.git",
+    "avg_size_service": 722.6666666666666,
+    "files": []
+}

@@ -1,0 +1,361 @@
+{
+    "dbs": [
+        "redis",
+        "mysql"
+    ],
+    "name": "cca2016/course_selection_demo",
+    "num_langs": 2,
+    "languages": [
+        "java",
+        "python"
+    ],
+    "shared_dbs": false,
+    "servers": [
+        "spring"
+    ],
+    "langs": [
+        "java",
+        "python"
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/api-gateway-zuul/Dockerfile",
+            "from_full": "hub.mooc.com:8080/micro-service/openjdk:7-jre",
+            "gates": [],
+            "from": "hub.mooc.com",
+            "langs": [],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/course-dubbo-service/Dockerfile",
+            "from_full": "hub.mooc.com:8080/micro-service/openjdk:7-jre",
+            "gates": [],
+            "from": "hub.mooc.com",
+            "langs": [],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/course-edge-service/Dockerfile",
+            "from_full": "hub.mooc.com:8080/micro-service/openjdk:7-jre",
+            "gates": [],
+            "from": "hub.mooc.com",
+            "langs": [],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/user-thrift-service/Dockerfile",
+            "from_full": "hub.mooc.com:8080/micro-service/openjdk:7-jre",
+            "gates": [],
+            "from": "hub.mooc.com",
+            "langs": [],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/message-thrift-python-service/Dockerfile",
+            "from_full": "hub.mooc.com:8080/micro-service/python-base:latest",
+            "gates": [],
+            "from": "hub.mooc.com",
+            "langs": [],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/user-edge-service/Dockerfile",
+            "from_full": "hub.mooc.com:8080/micro-service/openjdk:7-jre",
+            "gates": [],
+            "from": "hub.mooc.com",
+            "langs": [],
+            "keywords": []
+        }
+    ],
+    "gates": [
+        "zuul"
+    ],
+    "size": 463,
+    "num_dockers": 6,
+    "num_discos": 1,
+    "num_buses": 0,
+    "buses": [],
+    "images": [
+        "hub.mooc.com"
+    ],
+    "num_servers": 1,
+    "num_services": 6,
+    "monitors": [],
+    "structure": {
+        "services": [
+            {
+                "buses": [],
+                "image": "user-edge-service",
+                "dbs": [],
+                "gates": [],
+                "image_full": "user-edge-service:latest",
+                "monitors": [],
+                "name": "user-edge-service",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "user-service",
+                    "message-service"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "message-service",
+                "dbs": [],
+                "gates": [],
+                "image_full": "message-service:latest",
+                "monitors": [],
+                "name": "message-service",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "course-service",
+                "dbs": [],
+                "gates": [],
+                "image_full": "course-service:latest",
+                "monitors": [],
+                "name": "course-service",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "user-service"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "user-service",
+                "dbs": [],
+                "gates": [],
+                "image_full": "user-service:latest",
+                "monitors": [],
+                "name": "user-service",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "course-edge-service",
+                "dbs": [],
+                "gates": [],
+                "image_full": "course-edge-service:latest",
+                "monitors": [],
+                "name": "course-edge-service",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "user-edge-service"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "api-gateway-zuul",
+                "dbs": [],
+                "gates": [
+                    "gateway"
+                ],
+                "image_full": "api-gateway-zuul:latest",
+                "monitors": [],
+                "name": "api-gateway-zuul",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "course-edge-service",
+                    "user-edge-service"
+                ]
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "num": 0,
+            "shared_dbs": false,
+            "names": [],
+            "services": []
+        },
+        "path": "/docker-compose.yml"
+    },
+    "discos": [
+        "thrift"
+    ],
+    "num_files": 17,
+    "num_dbs": 2,
+    "num_monitors": 0,
+    "num_gates": 1,
+    "url": "git://github.com/cca2016/course_selection_demo.git",
+    "avg_size_service": 77.16666666666667,
+    "files": [
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "monitors": [],
+            "discos": [
+                "thrift"
+            ],
+            "servers": [],
+            "path": "/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/api-gateway-zuul/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "thrift"
+            ],
+            "servers": [],
+            "path": "/course-dubbo-service-api/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "thrift"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/course-dubbo-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "thrift"
+            ],
+            "servers": [],
+            "path": "/message-thrift-service-api/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "thrift"
+            ],
+            "servers": [],
+            "path": "/user-thrift-service-api/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/course-edge-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "thrift"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/user-thrift-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [
+                "redis"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "thrift"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/user-edge-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "thrift"
+            ],
+            "servers": [],
+            "path": "/user-edge-service-client/pom.xml"
+        }
+    ]
+}

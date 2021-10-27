@@ -1,0 +1,233 @@
+{
+    "size": 47,
+    "num_dockers": 2,
+    "discos": [],
+    "num_files": 6,
+    "avg_size_service": 23.5,
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_gates": 1,
+    "langs": [
+        "javascript",
+        "php"
+    ],
+    "num_discos": 0,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "php ./index.php",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "php",
+                "index"
+            ],
+            "from": "php",
+            "path": "/services/users/Dockerfile",
+            "keywords": [
+                "ext",
+                "docker",
+                "install",
+                "sockets",
+                "php"
+            ],
+            "buses": [],
+            "langs": [
+                "php"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "php:7.4-fpm"
+        },
+        {
+            "monitors": [],
+            "cmd": "php ./index.php",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "php",
+                "index"
+            ],
+            "from": "php",
+            "path": "/services/posts/Dockerfile",
+            "keywords": [
+                "ext",
+                "docker",
+                "install",
+                "sockets",
+                "php"
+            ],
+            "buses": [],
+            "langs": [
+                "php"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "php:7.4-fpm"
+        }
+    ],
+    "num_dbs": 0,
+    "monitors": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "nginx",
+                "image_full": "nginx",
+                "discos": [],
+                "name": "web",
+                "depends_on": [
+                    "client-gui",
+                    "admin-gui"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": [
+                    "nginx"
+                ]
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "node",
+                "image_full": "node:13-alpine",
+                "discos": [],
+                "name": "admin-gui",
+                "depends_on": [
+                    "queue"
+                ],
+                "dbs": [],
+                "servers": [
+                    "node"
+                ],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "image": "rabbitmq",
+                "image_full": "rabbitmq:3-management",
+                "discos": [],
+                "name": "queue",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./services/posts",
+                "image_full": "./services/posts",
+                "discos": [],
+                "name": "posts",
+                "depends_on": [
+                    "queue"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./services/users",
+                "image_full": "./services/users",
+                "discos": [],
+                "name": "users",
+                "depends_on": [
+                    "queue"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "node",
+                "image_full": "node:13-alpine",
+                "discos": [],
+                "name": "client-gui",
+                "depends_on": [
+                    "queue"
+                ],
+                "dbs": [],
+                "servers": [
+                    "node"
+                ],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        },
+        "num_services": 6,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 1,
+    "servers": [
+        "node",
+        "express"
+    ],
+    "url": "git://github.com/PauMin/microservice.git",
+    "num_services": 6,
+    "gates": [
+        "nginx"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/package.json"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "path": "/services/client_gui/package.json"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "path": "/services/admin_gui/package.json"
+        }
+    ],
+    "name": "PauMin/microservice",
+    "languages": [
+        "php",
+        "javascript"
+    ],
+    "images": [
+        "php"
+    ],
+    "dbs": [],
+    "num_servers": 2,
+    "num_langs": 2
+}

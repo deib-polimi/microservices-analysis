@@ -1,0 +1,287 @@
+{
+    "num_langs": 5,
+    "dbs": [],
+    "num_servers": 1,
+    "languages": [
+        "go"
+    ],
+    "num_discos": 1,
+    "avg_size_service": 35475.0,
+    "dockers": [
+        {
+            "gates": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "",
+            "servers": [],
+            "keywords": [
+                "update",
+                "cache",
+                "apk",
+                "git",
+                "certificates"
+            ],
+            "from": "alpine",
+            "cmd_keywords": [],
+            "from_full": "alpine:3.7",
+            "path": "/Dockerfile",
+            "buses": [],
+            "langs": [
+                "bash"
+            ],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "/crossdock",
+            "servers": [],
+            "keywords": [],
+            "from": "scratch",
+            "cmd_keywords": [
+                "crossdock"
+            ],
+            "from_full": "scratch",
+            "path": "/vendor/github.com/uber/jaeger-client-go/crossdock/Dockerfile",
+            "buses": [],
+            "langs": [
+                "scratch"
+            ],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "-h",
+            "servers": [],
+            "keywords": [
+                "dev",
+                "install",
+                "apt",
+                "get",
+                "make"
+            ],
+            "from": "ubuntu",
+            "cmd_keywords": [],
+            "from_full": "ubuntu:trusty",
+            "path": "/vendor/golang.org/x/net/http2/Dockerfile",
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "",
+            "servers": [],
+            "keywords": [],
+            "from": "scratch",
+            "cmd_keywords": [],
+            "from_full": "scratch",
+            "path": "/vendor/golang.org/x/net/http2/h2demo/Dockerfile",
+            "buses": [],
+            "langs": [
+                "scratch"
+            ],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "",
+            "servers": [],
+            "keywords": [
+                "apt",
+                "gcc",
+                "linux",
+                "get",
+                "git"
+            ],
+            "from": "ubuntu",
+            "cmd_keywords": [],
+            "from_full": "ubuntu:18.04",
+            "path": "/vendor/golang.org/x/sys/unix/linux/Dockerfile",
+            "buses": [],
+            "langs": [
+                "golang"
+            ],
+            "discos": []
+        }
+    ],
+    "num_gates": 1,
+    "buses": [],
+    "langs": [
+        "bash",
+        "golang",
+        "scratch",
+        "python",
+        "go"
+    ],
+    "num_buses": 0,
+    "discos": [
+        "grpc"
+    ],
+    "num_dbs": 0,
+    "num_files": 11,
+    "url": "git://github.com/swagchat/rtm-api.git",
+    "shared_dbs": false,
+    "monitors": [],
+    "num_services": 5,
+    "files": [
+        {
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "path": "/vendor/github.com/elastic/go-sysinfo/testing/requirements.txt",
+            "servers": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "path": "/vendor/github.com/swagchat/protobuf/protoc-gen-js/package.json",
+            "servers": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "path": "/vendor/github.com/swagchat/protobuf/protoc-gen-js/node_modules/@types/google-protobuf/package.json",
+            "servers": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "path": "/vendor/github.com/swagchat/protobuf/protoc-gen-js/node_modules/google-protobuf/package.json",
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "path": "/vendor/github.com/grpc-ecosystem/grpc-gateway/examples/browser/package.json",
+            "servers": [],
+            "gates": [
+                "gateway"
+            ],
+            "discos": [
+                "grpc"
+            ]
+        }
+    ],
+    "servers": [
+        "node"
+    ],
+    "num_monitors": 0,
+    "gates": [
+        "gateway"
+    ],
+    "size": 177375,
+    "num_dockers": 5,
+    "images": [
+        "alpine",
+        "ubuntu",
+        "scratch"
+    ],
+    "structure": {
+        "path": "/vendor/github.com/uber/jaeger-client-go/crossdock/docker-compose.yml",
+        "services": [
+            {
+                "image": "crossdock/crossdock",
+                "depends_on": [
+                    "test_driver",
+                    "go",
+                    "java",
+                    "python"
+                ],
+                "dbs": [],
+                "name": "crossdock",
+                "image_full": "crossdock/crossdock",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "jaegertracing/test-driver",
+                "depends_on": [
+                    "jaeger-query",
+                    "jaeger-collector",
+                    "jaeger-agent"
+                ],
+                "dbs": [],
+                "name": "test_driver",
+                "image_full": "jaegertracing/test-driver",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "jaegertracing/xdock-java",
+                "depends_on": [
+                    "jaeger-agent"
+                ],
+                "dbs": [],
+                "name": "java",
+                "image_full": "jaegertracing/xdock-java",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "jaegertracing/xdock-py",
+                "depends_on": [],
+                "dbs": [],
+                "name": "python",
+                "image_full": "jaegertracing/xdock-py",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": ".",
+                "depends_on": [],
+                "dbs": [],
+                "name": "go",
+                "image_full": ".",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [],
+            "shared_dbs": false,
+            "num": 0,
+            "services": []
+        },
+        "num_services": 5
+    },
+    "name": "swagchat/rtm-api"
+}

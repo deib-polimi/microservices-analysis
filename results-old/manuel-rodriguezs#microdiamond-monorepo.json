@@ -1,0 +1,185 @@
+{
+    "languages": [
+        "java"
+    ],
+    "num_servers": 1,
+    "shared_dbs": false,
+    "name": "manuel-rodriguezs/microdiamond-monorepo",
+    "servers": [
+        "jboss"
+    ],
+    "num_monitors": 0,
+    "num_langs": 1,
+    "images": [
+        "library/postgres",
+        "kong"
+    ],
+    "langs": [
+        "java"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "path": "/docker/database/Dockerfile",
+            "gates": [],
+            "from": "library/postgres",
+            "from_full": "library/postgres",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "path": "/docker/kong/Dockerfile",
+            "gates": [
+                "kong"
+            ],
+            "from": "kong",
+            "from_full": "kong",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [
+        "kong"
+    ],
+    "num_buses": 0,
+    "discos": [],
+    "monitors": [],
+    "num_files": 6,
+    "structure": {
+        "path": "/docker/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "src/main/docker/Dockerfile.native",
+                "depends_on": [
+                    "md-api-gateway"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "md-auth",
+                "image": "src/main/docker/Dockerfile.native",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "bitnami/kong:latest",
+                "depends_on": [
+                    "md-db"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [
+                    "kong"
+                ],
+                "name": "md-api-gateway",
+                "image": "bitnami/kong",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "postgres",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "md-db",
+                "image": "postgres",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "src/main/docker/Dockerfile.native",
+                "depends_on": [
+                    "md-db",
+                    "md-api-gateway"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "md-users",
+                "image": "src/main/docker/Dockerfile.native",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 4,
+        "detected_dbs": {
+            "services": [],
+            "names": [],
+            "num": 0,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [
+        "postgresql",
+        "universe"
+    ],
+    "num_dbs": 2,
+    "avg_size_service": 136.5,
+    "num_services": 4,
+    "buses": [],
+    "files": [
+        {
+            "dbs": [
+                "postgresql",
+                "universe"
+            ],
+            "path": "/microdiamond-server-users/pom.xml",
+            "gates": [],
+            "servers": [
+                "jboss"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "universe"
+            ],
+            "path": "/commons/pom.xml",
+            "gates": [],
+            "servers": [
+                "jboss"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "universe"
+            ],
+            "path": "/microdiamond-server-auth/pom.xml",
+            "gates": [],
+            "servers": [
+                "jboss"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "url": "git://github.com/manuel-rodriguezs/microdiamond-monorepo.git",
+    "num_dockers": 2,
+    "size": 273,
+    "num_discos": 0,
+    "num_gates": 1
+}

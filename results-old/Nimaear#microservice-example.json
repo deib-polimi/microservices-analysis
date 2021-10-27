@@ -1,0 +1,323 @@
+{
+    "num_files": 13,
+    "num_services": 8,
+    "num_discos": 0,
+    "gates": [
+        "gateway"
+    ],
+    "languages": [
+        "javascript",
+        "java"
+    ],
+    "num_dbs": 0,
+    "dbs": [],
+    "num_monitors": 0,
+    "structure": {
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 0,
+            "services": [],
+            "names": []
+        },
+        "num_services": 8,
+        "services": [
+            {
+                "image_full": "postgres",
+                "image": "postgres",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "postgres"
+            },
+            {
+                "image_full": "launcher.gcr.io/google/rabbitmq3",
+                "image": "launcher.gcr.io/google/rabbitmq3",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "name": "rabbitmq"
+            },
+            {
+                "image_full": "pg-microservice",
+                "image": "pg-microservice",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "postgres"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "email"
+            },
+            {
+                "image_full": "java-math-service",
+                "image": "java-math-service",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "java-math"
+            },
+            {
+                "image_full": "java-queue-service",
+                "image": "java-queue-service",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "java-queue"
+            },
+            {
+                "image_full": "api-gateway",
+                "image": "api-gateway",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "name": "gateway"
+            },
+            {
+                "image_full": "math-microservice",
+                "image": "math-microservice",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "math"
+            },
+            {
+                "image_full": "queue-microservice",
+                "image": "queue-microservice",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "queue"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "discos": [],
+    "url": "git://github.com/Nimaear/microservice-example.git",
+    "num_buses": 2,
+    "files": [
+        {
+            "servers": [],
+            "dbs": [],
+            "discos": [],
+            "buses": [
+                "rabbitmq",
+                "amqp"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/java-queue-service/pom.xml"
+        },
+        {
+            "servers": [],
+            "dbs": [],
+            "discos": [],
+            "buses": [
+                "rabbitmq",
+                "amqp"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/java-math-service/pom.xml"
+        },
+        {
+            "path": "/pg-microservice/package.json"
+        },
+        {
+            "path": "/api-gateway/package.json"
+        },
+        {
+            "path": "/math-microservice/package.json"
+        },
+        {
+            "path": "/queue-microservice/package.json"
+        }
+    ],
+    "name": "Nimaear/microservice-example",
+    "servers": [
+        "node"
+    ],
+    "num_dockers": 6,
+    "buses": [
+        "rabbitmq",
+        "amqp"
+    ],
+    "num_gates": 1,
+    "num_langs": 2,
+    "shared_dbs": false,
+    "monitors": [],
+    "dockers": [
+        {
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/pg-microservice/Dockerfile",
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "node:latest"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/api-gateway/Dockerfile",
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "node:latest"
+        },
+        {
+            "servers": [],
+            "from": "maven",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/java-queue-service/Dockerfile",
+            "keywords": [
+                "package",
+                "mvn"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "maven:alpine"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/math-microservice/Dockerfile",
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "node:latest"
+        },
+        {
+            "servers": [],
+            "from": "maven",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/java-math-service/Dockerfile",
+            "keywords": [
+                "package",
+                "mvn"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "maven:alpine"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/queue-microservice/Dockerfile",
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "node:latest"
+        }
+    ],
+    "langs": [
+        "java",
+        "javascript"
+    ],
+    "num_servers": 1,
+    "size": 719,
+    "images": [
+        "maven",
+        "node"
+    ],
+    "avg_size_service": 119.83333333333333
+}

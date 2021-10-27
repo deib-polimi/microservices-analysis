@@ -1,0 +1,622 @@
+{
+    "dbs": [
+        "percona",
+        "redis",
+        "mysql"
+    ],
+    "num_buses": 0,
+    "avg_size_service": 1919.1666666666667,
+    "structure": {
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "names": [],
+            "shared_dbs": false
+        },
+        "num_services": 14,
+        "services": [
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "autodiscovery",
+                "image": "./autodiscovery/",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "./autodiscovery/"
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "source_secret",
+                "image": "nginx",
+                "gates": [
+                    "nginx"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "nginx:stable"
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "microservice_user_nginx",
+                "image": "./microservices/user/nginx/",
+                "gates": [
+                    "nginx"
+                ],
+                "monitors": [],
+                "depends_on": [
+                    "autodiscovery",
+                    "microservice_user_fpm"
+                ],
+                "discos": [],
+                "image_full": "./microservices/user/nginx/"
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "microservice_user_fpm",
+                "image": "./microservices/user/php-fpm/",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "autodiscovery"
+                ],
+                "discos": [],
+                "image_full": "./microservices/user/php-fpm/"
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "microservice_battle_nginx",
+                "image": "./microservices/battle/nginx/",
+                "gates": [
+                    "nginx"
+                ],
+                "monitors": [],
+                "depends_on": [
+                    "autodiscovery",
+                    "microservice_battle_fpm"
+                ],
+                "discos": [],
+                "image_full": "./microservices/battle/nginx/"
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "microservice_secret_database",
+                "image": "./microservices/secret/database/",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "./microservices/secret/database/"
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "microservice_secret_fpm",
+                "image": "./microservices/secret/php-fpm/",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "autodiscovery",
+                    "microservice_secret_database"
+                ],
+                "discos": [],
+                "image_full": "./microservices/secret/php-fpm/"
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "microservice_location_nginx",
+                "image": "./microservices/location/nginx/",
+                "gates": [
+                    "nginx"
+                ],
+                "monitors": [],
+                "depends_on": [
+                    "autodiscovery",
+                    "microservice_location_fpm"
+                ],
+                "discos": [],
+                "image_full": "./microservices/location/nginx/"
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "source_location",
+                "image": "nginx",
+                "gates": [
+                    "nginx"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "nginx:stable"
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "source_battle",
+                "image": "nginx",
+                "gates": [
+                    "nginx"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "nginx:stable"
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "microservice_secret_nginx",
+                "image": "./microservices/secret/nginx/",
+                "gates": [
+                    "nginx"
+                ],
+                "monitors": [],
+                "depends_on": [
+                    "autodiscovery",
+                    "microservice_secret_fpm"
+                ],
+                "discos": [],
+                "image_full": "./microservices/secret/nginx/"
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "source_user",
+                "image": "nginx",
+                "gates": [
+                    "nginx"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "nginx:stable"
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "microservice_battle_fpm",
+                "image": "./microservices/battle/php-fpm/",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "autodiscovery",
+                    "microservice_user_nginx"
+                ],
+                "discos": [],
+                "image_full": "./microservices/battle/php-fpm/"
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "microservice_location_fpm",
+                "image": "./microservices/location/php-fpm/",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "autodiscovery"
+                ],
+                "discos": [],
+                "image_full": "./microservices/location/php-fpm/"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "num_servers": 0,
+    "monitors": [],
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "from": "consul",
+            "dbs": [],
+            "langs": [],
+            "monitors": [],
+            "buses": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "from_full": "consul:v0.7.0",
+            "path": "/autodiscovery/Dockerfile",
+            "gates": [],
+            "cmd": "",
+            "discos": [
+                "consul"
+            ],
+            "keywords": []
+        },
+        {
+            "from": "nginx",
+            "dbs": [],
+            "langs": [],
+            "monitors": [],
+            "buses": [],
+            "cmd_keywords": [
+                "usr",
+                "off",
+                "nginx",
+                "local",
+                "daemon"
+            ],
+            "servers": [],
+            "from_full": "nginx:stable",
+            "path": "/microservices/secret/nginx/Dockerfile",
+            "gates": [
+                "nginx"
+            ],
+            "cmd": "/usr/local/bin/containerpilot nginx -g daemon off;",
+            "discos": [
+                "containerpilot"
+            ],
+            "keywords": [
+                "consul",
+                "template",
+                "containerpilot",
+                "tmp",
+                "tar"
+            ]
+        },
+        {
+            "from": "percona",
+            "dbs": [
+                "percona"
+            ],
+            "langs": [],
+            "monitors": [],
+            "buses": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "from_full": "percona:5.7",
+            "path": "/microservices/secret/database/Dockerfile",
+            "gates": [],
+            "cmd": "",
+            "discos": [],
+            "keywords": []
+        },
+        {
+            "from": "php",
+            "dbs": [
+                "mysql"
+            ],
+            "langs": [
+                "php"
+            ],
+            "monitors": [],
+            "buses": [],
+            "cmd_keywords": [
+                "usr",
+                "nodaemonize",
+                "local",
+                "fpm",
+                "containerpilot"
+            ],
+            "servers": [],
+            "from_full": "php:7.2-fpm",
+            "path": "/microservices/secret/php-fpm/Dockerfile",
+            "gates": [],
+            "cmd": "/usr/local/bin/containerpilot php-fpm --nodaemonize",
+            "discos": [
+                "containerpilot"
+            ],
+            "keywords": [
+                "tmp",
+                "consul",
+                "containerpilot",
+                "template",
+                "usr"
+            ]
+        },
+        {
+            "from": "nginx",
+            "dbs": [],
+            "langs": [],
+            "monitors": [],
+            "buses": [],
+            "cmd_keywords": [
+                "usr",
+                "off",
+                "nginx",
+                "local",
+                "daemon"
+            ],
+            "servers": [],
+            "from_full": "nginx:stable",
+            "path": "/microservices/user/nginx/Dockerfile",
+            "gates": [
+                "nginx"
+            ],
+            "cmd": "/usr/local/bin/containerpilot nginx -g daemon off;",
+            "discos": [
+                "containerpilot"
+            ],
+            "keywords": [
+                "consul",
+                "template",
+                "containerpilot",
+                "tmp",
+                "tar"
+            ]
+        },
+        {
+            "from": "php",
+            "dbs": [
+                "mysql"
+            ],
+            "langs": [
+                "php"
+            ],
+            "monitors": [],
+            "buses": [],
+            "cmd_keywords": [
+                "usr",
+                "nodaemonize",
+                "local",
+                "fpm",
+                "containerpilot"
+            ],
+            "servers": [],
+            "from_full": "php:7.2-fpm",
+            "path": "/microservices/user/php-fpm/Dockerfile",
+            "gates": [],
+            "cmd": "/usr/local/bin/containerpilot php-fpm --nodaemonize",
+            "discos": [
+                "containerpilot"
+            ],
+            "keywords": [
+                "tmp",
+                "consul",
+                "containerpilot",
+                "template",
+                "usr"
+            ]
+        },
+        {
+            "from": "nginx",
+            "dbs": [],
+            "langs": [],
+            "monitors": [],
+            "buses": [],
+            "cmd_keywords": [
+                "usr",
+                "off",
+                "nginx",
+                "local",
+                "daemon"
+            ],
+            "servers": [],
+            "from_full": "nginx:stable",
+            "path": "/microservices/base/nginx/Dockerfile",
+            "gates": [
+                "nginx"
+            ],
+            "cmd": "/usr/local/bin/containerpilot nginx -g daemon off;",
+            "discos": [
+                "containerpilot"
+            ],
+            "keywords": [
+                "consul",
+                "template",
+                "containerpilot",
+                "tmp",
+                "tar"
+            ]
+        },
+        {
+            "from": "php",
+            "dbs": [
+                "redis"
+            ],
+            "langs": [
+                "php"
+            ],
+            "monitors": [],
+            "buses": [],
+            "cmd_keywords": [
+                "usr",
+                "nodaemonize",
+                "local",
+                "fpm",
+                "containerpilot"
+            ],
+            "servers": [],
+            "from_full": "php:7.0-fpm",
+            "path": "/microservices/base/php-fpm/Dockerfile",
+            "gates": [],
+            "cmd": "/usr/local/bin/containerpilot php-fpm --nodaemonize",
+            "discos": [
+                "containerpilot"
+            ],
+            "keywords": [
+                "tmp",
+                "consul",
+                "containerpilot",
+                "template",
+                "dev"
+            ]
+        },
+        {
+            "from": "nginx",
+            "dbs": [],
+            "langs": [],
+            "monitors": [],
+            "buses": [],
+            "cmd_keywords": [
+                "usr",
+                "off",
+                "nginx",
+                "local",
+                "daemon"
+            ],
+            "servers": [],
+            "from_full": "nginx:stable",
+            "path": "/microservices/location/nginx/Dockerfile",
+            "gates": [
+                "nginx"
+            ],
+            "cmd": "/usr/local/bin/containerpilot nginx -g daemon off;",
+            "discos": [
+                "containerpilot"
+            ],
+            "keywords": [
+                "consul",
+                "template",
+                "containerpilot",
+                "tmp",
+                "tar"
+            ]
+        },
+        {
+            "from": "php",
+            "dbs": [
+                "mysql"
+            ],
+            "langs": [
+                "php"
+            ],
+            "monitors": [],
+            "buses": [],
+            "cmd_keywords": [
+                "usr",
+                "nodaemonize",
+                "local",
+                "fpm",
+                "containerpilot"
+            ],
+            "servers": [],
+            "from_full": "php:7.2-fpm",
+            "path": "/microservices/location/php-fpm/Dockerfile",
+            "gates": [],
+            "cmd": "/usr/local/bin/containerpilot php-fpm --nodaemonize",
+            "discos": [
+                "containerpilot"
+            ],
+            "keywords": [
+                "tmp",
+                "consul",
+                "containerpilot",
+                "template",
+                "usr"
+            ]
+        },
+        {
+            "from": "nginx",
+            "dbs": [],
+            "langs": [],
+            "monitors": [],
+            "buses": [],
+            "cmd_keywords": [
+                "usr",
+                "off",
+                "nginx",
+                "local",
+                "daemon"
+            ],
+            "servers": [],
+            "from_full": "nginx:stable",
+            "path": "/microservices/battle/nginx/Dockerfile",
+            "gates": [
+                "nginx"
+            ],
+            "cmd": "/usr/local/bin/containerpilot nginx -g daemon off;",
+            "discos": [
+                "containerpilot"
+            ],
+            "keywords": [
+                "consul",
+                "template",
+                "containerpilot",
+                "tmp",
+                "tar"
+            ]
+        },
+        {
+            "from": "php",
+            "dbs": [
+                "mysql"
+            ],
+            "langs": [
+                "php"
+            ],
+            "monitors": [],
+            "buses": [],
+            "cmd_keywords": [
+                "usr",
+                "nodaemonize",
+                "local",
+                "fpm",
+                "containerpilot"
+            ],
+            "servers": [],
+            "from_full": "php:7.2-fpm",
+            "path": "/microservices/battle/php-fpm/Dockerfile",
+            "gates": [],
+            "cmd": "/usr/local/bin/containerpilot php-fpm --nodaemonize",
+            "discos": [
+                "containerpilot"
+            ],
+            "keywords": [
+                "tmp",
+                "consul",
+                "containerpilot",
+                "template",
+                "usr"
+            ]
+        }
+    ],
+    "buses": [],
+    "num_dockers": 12,
+    "languages": [
+        "dockerfile",
+        "shell"
+    ],
+    "num_services": 14,
+    "gates": [
+        "nginx"
+    ],
+    "size": 23030,
+    "url": "git://github.com/ajikamaludin/sample_microservice.git",
+    "images": [
+        "nginx",
+        "consul",
+        "php",
+        "percona"
+    ],
+    "num_gates": 1,
+    "langs": [
+        "php",
+        "shell",
+        "dockerfile"
+    ],
+    "num_dbs": 3,
+    "num_files": 13,
+    "shared_dbs": false,
+    "num_langs": 3,
+    "files": [],
+    "servers": [],
+    "name": "ajikamaludin/sample_microservice",
+    "discos": [
+        "containerpilot",
+        "consul"
+    ],
+    "num_discos": 2
+}

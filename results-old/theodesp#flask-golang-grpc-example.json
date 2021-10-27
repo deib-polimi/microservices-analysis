@@ -1,0 +1,178 @@
+{
+    "avg_size_service": 3.5,
+    "discos": [],
+    "images": [
+        "alpine",
+        "python"
+    ],
+    "num_dockers": 2,
+    "num_servers": 1,
+    "langs": [
+        "makefile",
+        "python",
+        "dockerfile"
+    ],
+    "languages": [
+        "python",
+        "dockerfile",
+        "makefile"
+    ],
+    "num_services": 4,
+    "num_gates": 1,
+    "num_langs": 3,
+    "monitors": [],
+    "gates": [
+        "nginx"
+    ],
+    "servers": [
+        "flask"
+    ],
+    "num_monitors": 0,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [],
+                "image": "jwilder/nginx-proxy",
+                "image_full": "jwilder/nginx-proxy:alpine",
+                "gates": [
+                    "nginx"
+                ],
+                "name": "proxy",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "mongo",
+                "image_full": "mongo:latest",
+                "gates": [],
+                "name": "mongodb",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "proxy"
+                ],
+                "image": "./src/client",
+                "image_full": "./src/client",
+                "gates": [],
+                "name": "client",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "mongodb"
+                ],
+                "image": "./src/server",
+                "image_full": "./src/server",
+                "gates": [],
+                "name": "server",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            }
+        ],
+        "num_services": 4,
+        "detected_dbs": {
+            "names": [
+                "mongo"
+            ],
+            "num": 1,
+            "services": [
+                "mongodb"
+            ],
+            "shared_dbs": false
+        }
+    },
+    "size": 7,
+    "url": "git://github.com/theodesp/flask-golang-grpc-example.git",
+    "num_buses": 0,
+    "shared_dbs": false,
+    "files": [
+        {
+            "path": "/src/client/requirements.txt",
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "dbs": [],
+            "buses": []
+        }
+    ],
+    "num_discos": 0,
+    "dockers": [
+        {
+            "path": "/src/server/Dockerfile",
+            "from_full": "alpine:latest",
+            "from": "alpine",
+            "cmd": "./main",
+            "keywords": [
+                "app",
+                "main",
+                "installsuffix",
+                "certificates",
+                "build"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "main"
+            ],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/src/client/Dockerfile",
+            "from_full": "python:3.6",
+            "from": "python",
+            "cmd": "python3 app.py",
+            "keywords": [
+                "install",
+                "txt",
+                "pip",
+                "requirements"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [
+                "python"
+            ],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "app",
+                "python"
+            ],
+            "dbs": [],
+            "buses": []
+        }
+    ],
+    "name": "theodesp/flask-golang-grpc-example",
+    "buses": [],
+    "num_files": 4,
+    "dbs": [
+        "mongo"
+    ],
+    "num_dbs": 1
+}

@@ -1,0 +1,146 @@
+{
+    "gates": [],
+    "images": [
+        "python"
+    ],
+    "num_dbs": 1,
+    "structure": {
+        "num_services": 2,
+        "path": "/local_microservices_app/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "zookeeper:3.4.9",
+                "gates": [],
+                "image": "zookeeper",
+                "depends_on": [],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "name": "zoo1",
+                "buses": [],
+                "servers": [],
+                "discos": [
+                    "zookeeper"
+                ],
+                "monitors": []
+            },
+            {
+                "image_full": "confluentinc/cp-kafka:5.5.0",
+                "gates": [],
+                "image": "confluentinc/cp-kafka",
+                "depends_on": [
+                    "zoo1"
+                ],
+                "dbs": [],
+                "name": "kafka1",
+                "buses": [
+                    "kafka"
+                ],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 1,
+            "services": [
+                "zoo1"
+            ],
+            "shared_dbs": false,
+            "names": [
+                "zookeeper"
+            ]
+        }
+    },
+    "num_files": 3,
+    "num_gates": 0,
+    "discos": [
+        "zookeeper"
+    ],
+    "num_dockers": 2,
+    "shared_dbs": false,
+    "languages": [
+        "python"
+    ],
+    "name": "cdies/kafka",
+    "num_langs": 1,
+    "avg_size_service": 11.0,
+    "monitors": [],
+    "num_servers": 0,
+    "num_services": 2,
+    "dbs": [
+        "zookeeper"
+    ],
+    "langs": [
+        "python"
+    ],
+    "dockers": [
+        {
+            "gates": [],
+            "path": "/docker_microservices_app/backend/Dockerfile",
+            "langs": [
+                "python"
+            ],
+            "dbs": [],
+            "buses": [
+                "kafka"
+            ],
+            "servers": [],
+            "from": "python",
+            "discos": [],
+            "from_full": "python:3.7",
+            "cmd": "python producer.py",
+            "monitors": [],
+            "cmd_keywords": [
+                "producer",
+                "python"
+            ],
+            "keywords": [
+                "install",
+                "pip",
+                "python",
+                "confluent",
+                "kafka"
+            ]
+        },
+        {
+            "gates": [],
+            "path": "/docker_microservices_app/frontend/Dockerfile",
+            "langs": [
+                "python"
+            ],
+            "dbs": [],
+            "buses": [
+                "kafka"
+            ],
+            "servers": [],
+            "from": "python",
+            "discos": [],
+            "from_full": "python:3.7",
+            "cmd": "python graph_display.py",
+            "monitors": [],
+            "cmd_keywords": [
+                "display",
+                "graph",
+                "python"
+            ],
+            "keywords": [
+                "install",
+                "pip",
+                "python",
+                "dash",
+                "confluent"
+            ]
+        }
+    ],
+    "buses": [
+        "kafka"
+    ],
+    "servers": [],
+    "size": 22,
+    "files": [],
+    "num_buses": 1,
+    "num_monitors": 0,
+    "url": "git://github.com/cdies/kafka.git",
+    "num_discos": 1
+}

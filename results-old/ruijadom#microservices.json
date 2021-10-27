@@ -1,0 +1,238 @@
+{
+    "size": 456,
+    "avg_size_service": 152.0,
+    "name": "ruijadom/microservices",
+    "languages": [
+        "javascript"
+    ],
+    "servers": [
+        "node",
+        "express"
+    ],
+    "num_dbs": 1,
+    "images": [
+        "node"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 5,
+        "services": [
+            {
+                "depends_on": [],
+                "image_full": "mysql:5.7.29",
+                "monitors": [],
+                "name": "listings-service-db",
+                "image": "mysql",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "listings-service",
+                    "users-service"
+                ],
+                "image_full": "./api-gateway/Dockerfile",
+                "monitors": [],
+                "name": "api-gateway",
+                "image": "./api-gateway/Dockerfile",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [
+                    "gateway"
+                ],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "mysql:5.7.29",
+                "monitors": [],
+                "name": "users-service-db",
+                "image": "mysql",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "listings-service-db"
+                ],
+                "image_full": "./listings-service/Dockerfile",
+                "monitors": [],
+                "name": "listings-service",
+                "image": "./listings-service/Dockerfile",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "users-service-db"
+                ],
+                "image_full": "./users-service/Dockerfile",
+                "monitors": [],
+                "name": "users-service",
+                "image": "./users-service/Dockerfile",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "listings-service-db",
+                "users-service-db"
+            ],
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": false,
+            "num": 2
+        }
+    },
+    "num_dockers": 3,
+    "num_buses": 0,
+    "num_services": 5,
+    "dockers": [
+        {
+            "path": "/api-gateway/Dockerfile",
+            "from": "node",
+            "langs": [],
+            "cmd": "yarn watch",
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:12",
+            "keywords": [
+                "yarn"
+            ],
+            "cmd_keywords": [
+                "yarn",
+                "watch"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/listings-service/Dockerfile",
+            "from": "node",
+            "langs": [],
+            "cmd": "yarn watch",
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:12",
+            "keywords": [
+                "yarn"
+            ],
+            "cmd_keywords": [
+                "yarn",
+                "watch"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/users-service/Dockerfile",
+            "from": "node",
+            "langs": [],
+            "cmd": "yarn watch",
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:12",
+            "keywords": [
+                "yarn"
+            ],
+            "cmd_keywords": [
+                "yarn",
+                "watch"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "num_langs": 1,
+    "langs": [
+        "javascript"
+    ],
+    "discos": [],
+    "num_gates": 1,
+    "num_monitors": 0,
+    "num_files": 7,
+    "files": [
+        {
+            "path": "/api-gateway/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "express"
+            ],
+            "gates": [
+                "gateway"
+            ],
+            "discos": []
+        },
+        {
+            "path": "/listings-service/package.json",
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": [],
+            "servers": [
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/users-service/package.json",
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": [],
+            "servers": [
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_servers": 2,
+    "url": "git://github.com/ruijadom/microservices.git",
+    "dbs": [
+        "mysql"
+    ],
+    "num_discos": 0,
+    "gates": [
+        "gateway"
+    ],
+    "buses": []
+}

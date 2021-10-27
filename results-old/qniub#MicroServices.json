@@ -1,0 +1,462 @@
+{
+    "dbs": [
+        "redis"
+    ],
+    "name": "qniub/MicroServices",
+    "num_langs": 2,
+    "languages": [
+        "c#",
+        "html"
+    ],
+    "shared_dbs": true,
+    "servers": [],
+    "langs": [
+        "c#",
+        "html"
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/src/MicroServices.Nginx/Dockerfile",
+            "from_full": "nginx",
+            "gates": [
+                "nginx"
+            ],
+            "from": "nginx",
+            "langs": [],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/src/MicroServices.Orders/Dockerfile",
+            "from_full": "base",
+            "gates": [],
+            "from": "base",
+            "langs": [],
+            "keywords": [
+                "microservices",
+                "orders",
+                "csproj",
+                "dotnet",
+                "publish"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/src/MicroServices.Web/Dockerfile",
+            "from_full": "base",
+            "gates": [],
+            "from": "base",
+            "langs": [],
+            "keywords": [
+                "microservices",
+                "web",
+                "csproj",
+                "dotnet",
+                "publish"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/src/MicroServices.Api/Dockerfile",
+            "from_full": "base",
+            "gates": [],
+            "from": "base",
+            "langs": [],
+            "keywords": [
+                "microservices",
+                "api",
+                "csproj",
+                "dotnet",
+                "publish"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/src/MicroServices.Email/Dockerfile",
+            "from_full": "base",
+            "gates": [],
+            "from": "base",
+            "langs": [],
+            "keywords": [
+                "email",
+                "microservices",
+                "csproj",
+                "dotnet",
+                "publish"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/src/MicroServices.SMS/Dockerfile",
+            "from_full": "base",
+            "gates": [],
+            "from": "base",
+            "langs": [],
+            "keywords": [
+                "microservices",
+                "sms",
+                "csproj",
+                "dotnet",
+                "publish"
+            ]
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "size": 5376,
+    "num_dockers": 6,
+    "num_discos": 1,
+    "num_buses": 0,
+    "buses": [],
+    "images": [
+        "nginx",
+        "base"
+    ],
+    "num_servers": 0,
+    "num_services": 19,
+    "monitors": [],
+    "structure": {
+        "services": [
+            {
+                "buses": [],
+                "image": "consul",
+                "dbs": [],
+                "gates": [],
+                "image_full": "consul",
+                "monitors": [],
+                "name": "consul-client-1",
+                "discos": [
+                    "consul"
+                ],
+                "servers": [],
+                "depends_on": [
+                    "consul-server-bootstrap"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "${DOCKER_REGISTRY-}microservicesorders",
+                "dbs": [],
+                "gates": [],
+                "image_full": "${DOCKER_REGISTRY-}microservicesorders",
+                "monitors": [],
+                "name": "microservices.orders-2",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "consul-client-1"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "${DOCKER_REGISTRY-}microservicesemail",
+                "dbs": [],
+                "gates": [],
+                "image_full": "${DOCKER_REGISTRY-}microservicesemail",
+                "monitors": [],
+                "name": "microservices.email-1",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "consul-client-2"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "${DOCKER_REGISTRY-}microservicesweb",
+                "dbs": [],
+                "gates": [],
+                "image_full": "${DOCKER_REGISTRY-}microservicesweb",
+                "monitors": [],
+                "name": "microservices.web-1",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "cache",
+                    "consul-client-3"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "${DOCKER_REGISTRY-}microservicessms",
+                "dbs": [],
+                "gates": [],
+                "image_full": "${DOCKER_REGISTRY-}microservicessms",
+                "monitors": [],
+                "name": "microservices.sms-3",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "consul-client-1"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "consul",
+                "dbs": [],
+                "gates": [],
+                "image_full": "consul",
+                "monitors": [],
+                "name": "consul-server-bootstrap",
+                "discos": [
+                    "consul"
+                ],
+                "servers": [],
+                "depends_on": [
+                    "pgsql"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "${DOCKER_REGISTRY-}microservicessms",
+                "dbs": [],
+                "gates": [],
+                "image_full": "${DOCKER_REGISTRY-}microservicessms",
+                "monitors": [],
+                "name": "microservices.sms-1",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "consul-client-1"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "microservicesnginx",
+                "dbs": [],
+                "gates": [],
+                "image_full": "microservicesnginx",
+                "monitors": [],
+                "name": "microservices.nginx",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "microservices.web-1",
+                    "microservices.web-2"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "${DOCKER_REGISTRY-}microservicessms",
+                "dbs": [],
+                "gates": [],
+                "image_full": "${DOCKER_REGISTRY-}microservicessms",
+                "monitors": [],
+                "name": "microservices.sms-2",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "consul-client-1"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "consul",
+                "dbs": [],
+                "gates": [],
+                "image_full": "consul",
+                "monitors": [],
+                "name": "consul-client-2",
+                "discos": [
+                    "consul"
+                ],
+                "servers": [],
+                "depends_on": [
+                    "consul-server-bootstrap"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "${DOCKER_REGISTRY-}microservicesweb",
+                "dbs": [],
+                "gates": [],
+                "image_full": "${DOCKER_REGISTRY-}microservicesweb",
+                "monitors": [],
+                "name": "microservices.web-2",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "cache",
+                    "consul-client-3"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "consul",
+                "dbs": [],
+                "gates": [],
+                "image_full": "consul",
+                "monitors": [],
+                "name": "consul-server-2",
+                "discos": [
+                    "consul"
+                ],
+                "servers": [],
+                "depends_on": [
+                    "consul-server-bootstrap"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "gates": [],
+                "image_full": "redis",
+                "monitors": [],
+                "name": "cache",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "postgres",
+                "dbs": [],
+                "gates": [],
+                "image_full": "postgres",
+                "monitors": [],
+                "name": "pgsql",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "${DOCKER_REGISTRY-}microservicesemail",
+                "dbs": [],
+                "gates": [],
+                "image_full": "${DOCKER_REGISTRY-}microservicesemail",
+                "monitors": [],
+                "name": "microservices.email-2",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "consul-client-2"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "${DOCKER_REGISTRY-}microservicesapi",
+                "dbs": [],
+                "gates": [],
+                "image_full": "${DOCKER_REGISTRY-}microservicesapi",
+                "monitors": [],
+                "name": "microservices.gateway",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "microservices.orders-1",
+                    "microservices.orders-2"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "${DOCKER_REGISTRY-}microservicesorders",
+                "dbs": [],
+                "gates": [],
+                "image_full": "${DOCKER_REGISTRY-}microservicesorders",
+                "monitors": [],
+                "name": "microservices.orders-1",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "consul-client-1"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "consul",
+                "dbs": [],
+                "gates": [],
+                "image_full": "consul",
+                "monitors": [],
+                "name": "consul-client-3",
+                "discos": [
+                    "consul"
+                ],
+                "servers": [],
+                "depends_on": [
+                    "consul-server-bootstrap"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "consul",
+                "dbs": [],
+                "gates": [],
+                "image_full": "consul",
+                "monitors": [],
+                "name": "consul-server-1",
+                "discos": [
+                    "consul"
+                ],
+                "servers": [],
+                "depends_on": [
+                    "consul-server-bootstrap"
+                ]
+            }
+        ],
+        "num_services": 19,
+        "detected_dbs": {
+            "num": 1,
+            "shared_dbs": true,
+            "names": [
+                "redis"
+            ],
+            "services": [
+                "cache"
+            ]
+        },
+        "path": "/src/docker-compose.yml"
+    },
+    "discos": [
+        "consul"
+    ],
+    "num_files": 7,
+    "num_dbs": 1,
+    "num_monitors": 0,
+    "num_gates": 1,
+    "url": "git://github.com/qniub/MicroServices.git",
+    "avg_size_service": 896.0,
+    "files": []
+}

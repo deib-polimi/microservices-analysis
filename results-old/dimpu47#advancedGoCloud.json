@@ -1,0 +1,375 @@
+{
+    "structure": {
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "shared_dbs": false,
+            "services": []
+        },
+        "num_services": 2,
+        "path": "/Discovery/kubernetes/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [],
+                "name": "simple-k8s-server",
+                "dbs": [],
+                "image": "simple-k8s-server",
+                "monitors": [],
+                "servers": [],
+                "image_full": "simple-k8s-server:1.0.1",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "simple-k8s-server"
+                ],
+                "name": "simple-k8s-client",
+                "dbs": [],
+                "image": "simple-k8s-client",
+                "monitors": [],
+                "servers": [],
+                "image_full": "simple-k8s-client:1.0.1",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            }
+        ]
+    },
+    "dbs": [],
+    "dockers": [
+        {
+            "dbs": [],
+            "path": "/Discovery/kubernetes/server/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "server",
+                "sources"
+            ],
+            "gates": [],
+            "discos": [],
+            "from_full": "golang:1.8.1-alpine",
+            "langs": [
+                "golang"
+            ],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "enabled",
+                "sources",
+                "cgo",
+                "server",
+                "build"
+            ],
+            "from": "golang",
+            "cmd": "${SOURCES}server/server"
+        },
+        {
+            "dbs": [],
+            "path": "/Discovery/kubernetes/client/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "client",
+                "sources"
+            ],
+            "gates": [],
+            "discos": [],
+            "from_full": "golang:1.0.1-alpine",
+            "langs": [
+                "golang"
+            ],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "enabled",
+                "sources",
+                "cgo",
+                "client",
+                "build"
+            ],
+            "from": "golang",
+            "cmd": "${SOURCES}client/client"
+        },
+        {
+            "dbs": [],
+            "path": "/Discovery/Simple/server/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "server",
+                "sources"
+            ],
+            "gates": [],
+            "discos": [
+                "consul"
+            ],
+            "from_full": "golang:1.8.1-alpine",
+            "langs": [
+                "golang"
+            ],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "apk",
+                "api",
+                "sources",
+                "update",
+                "add"
+            ],
+            "from": "golang",
+            "cmd": "${SOURCES}server/server"
+        },
+        {
+            "dbs": [],
+            "path": "/Discovery/Simple/client/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "client",
+                "sources"
+            ],
+            "gates": [],
+            "discos": [
+                "consul"
+            ],
+            "from_full": "golang:1.8.1-alpine",
+            "langs": [
+                "golang"
+            ],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "apk",
+                "api",
+                "sources",
+                "update",
+                "add"
+            ],
+            "from": "golang",
+            "cmd": "${SOURCES}client/client"
+        },
+        {
+            "dbs": [],
+            "path": "/Frameworks/gin-microservice/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "sources",
+                "microservice",
+                "gin"
+            ],
+            "gates": [],
+            "discos": [],
+            "from_full": "golang:1.8.1-alpine",
+            "langs": [
+                "golang"
+            ],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "apk",
+                "gin",
+                "enabled",
+                "sources",
+                "update"
+            ],
+            "from": "golang",
+            "cmd": "${SOURCES}gin-microservice"
+        },
+        {
+            "dbs": [],
+            "path": "/Communication/RabbitMQ/producer/Dockerfile",
+            "buses": [
+                "amqp"
+            ],
+            "cmd_keywords": [
+                "producer",
+                "sources"
+            ],
+            "gates": [],
+            "discos": [],
+            "from_full": "golang:1.8.1-alpine",
+            "langs": [
+                "golang"
+            ],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "apk",
+                "streadway",
+                "amqp",
+                "update",
+                "producer"
+            ],
+            "from": "golang",
+            "cmd": "${SOURCES}producer/producer"
+        },
+        {
+            "dbs": [],
+            "path": "/Communication/RabbitMQ/consumer/Dockerfile",
+            "buses": [
+                "amqp"
+            ],
+            "cmd_keywords": [
+                "consumer",
+                "sources"
+            ],
+            "gates": [],
+            "discos": [],
+            "from_full": "golang:1.8.1-alpine",
+            "langs": [
+                "golang"
+            ],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "apk",
+                "streadway",
+                "amqp",
+                "update",
+                "enabled"
+            ],
+            "from": "golang",
+            "cmd": "${SOURCES}consumer/consumer"
+        },
+        {
+            "dbs": [],
+            "path": "/Communication/Kafka/subscriber/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "subscriber",
+                "sources"
+            ],
+            "gates": [],
+            "discos": [],
+            "from_full": "golang:1.8.1-alpine",
+            "langs": [
+                "golang"
+            ],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "apk",
+                "sources",
+                "update",
+                "add",
+                "git"
+            ],
+            "from": "golang",
+            "cmd": "${SOURCES}subscriber/subscriber"
+        },
+        {
+            "dbs": [],
+            "path": "/Communication/Kafka/producer/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "producer",
+                "sources"
+            ],
+            "gates": [],
+            "discos": [],
+            "from_full": "golang:1.8.1-alpine",
+            "langs": [
+                "golang"
+            ],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "apk",
+                "sources",
+                "producer",
+                "update",
+                "add"
+            ],
+            "from": "golang",
+            "cmd": "${SOURCES}producer/producer"
+        },
+        {
+            "dbs": [],
+            "path": "/Communication/Go-Micro/server/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "server",
+                "sources"
+            ],
+            "gates": [],
+            "discos": [],
+            "from_full": "golang:1.8.1-alpine",
+            "langs": [
+                "golang"
+            ],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "micro",
+                "apk",
+                "github",
+                "get",
+                "com"
+            ],
+            "from": "golang",
+            "cmd": "${SOURCES}server/server"
+        },
+        {
+            "dbs": [],
+            "path": "/Communication/Go-Micro/client/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "client",
+                "sources"
+            ],
+            "gates": [],
+            "discos": [],
+            "from_full": "golang:1.8.1-alpine",
+            "langs": [
+                "golang"
+            ],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "github",
+                "micro",
+                "com",
+                "get",
+                "apk"
+            ],
+            "from": "golang",
+            "cmd": "${SOURCES}client/client"
+        }
+    ],
+    "files": [],
+    "languages": [
+        "go",
+        "dockerfile"
+    ],
+    "num_dbs": 0,
+    "num_monitors": 0,
+    "images": [
+        "golang"
+    ],
+    "name": "dimpu47/advancedGoCloud",
+    "shared_dbs": false,
+    "num_servers": 0,
+    "num_langs": 3,
+    "buses": [
+        "amqp"
+    ],
+    "num_services": 2,
+    "num_dockers": 11,
+    "size": 74274,
+    "avg_size_service": 6752.181818181818,
+    "gates": [],
+    "discos": [
+        "consul"
+    ],
+    "langs": [
+        "golang",
+        "dockerfile",
+        "go"
+    ],
+    "num_files": 12,
+    "url": "git://github.com/dimpu47/advancedGoCloud.git",
+    "monitors": [],
+    "servers": [],
+    "num_buses": 1,
+    "num_discos": 1,
+    "num_gates": 0
+}

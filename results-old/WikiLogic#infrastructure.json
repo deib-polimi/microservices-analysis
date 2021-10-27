@@ -1,0 +1,201 @@
+{
+    "files": [],
+    "num_services": 3,
+    "discos": [],
+    "dbs": [
+        "db"
+    ],
+    "avg_size_service": 9.5,
+    "name": "WikiLogic/infrastructure",
+    "num_buses": 0,
+    "num_langs": 1,
+    "monitors": [],
+    "num_files": 5,
+    "langs": [
+        "dockerfile"
+    ],
+    "num_gates": 1,
+    "dockers": [
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "gates": [
+                "nginx"
+            ],
+            "path": "/_configs/_legacy/Dockerfile",
+            "cmd_keywords": [
+                "nginx"
+            ],
+            "from_full": "ubuntu:16.04",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "nginx",
+            "from": "ubuntu",
+            "keywords": [
+                "apt",
+                "var",
+                "www",
+                "nginx",
+                "get"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "gates": [
+                "nginx"
+            ],
+            "path": "/_configs/microservice-http/nginx/Dockerfile",
+            "cmd_keywords": [
+                "nginx"
+            ],
+            "from_full": "nginx",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "nginx",
+            "from": "nginx",
+            "keywords": []
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "path": "/_configs/microservice-http/api/Dockerfile",
+            "cmd_keywords": [
+                "nodemon",
+                "api",
+                "legacy",
+                "watch"
+            ],
+            "from_full": "node",
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "langs": [],
+            "cmd": "nodemon --legacy-watch api.js",
+            "from": "node",
+            "keywords": [
+                "install",
+                "npm",
+                "nodemon"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [
+                "arangodb"
+            ],
+            "gates": [
+                "nginx"
+            ],
+            "path": "/_configs/monolith-http/Dockerfile",
+            "cmd_keywords": [
+                "start",
+                "arangodb",
+                "nginx",
+                "npm"
+            ],
+            "from_full": "ubuntu:16.04",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "arangodb && npm start && nginx",
+            "from": "ubuntu",
+            "keywords": [
+                "install",
+                "apt",
+                "get",
+                "npm",
+                "lib"
+            ]
+        }
+    ],
+    "structure": {
+        "path": "/_configs/microservice-http/docker-compose.yml",
+        "detected_dbs": {
+            "names": [
+                "arangodb"
+            ],
+            "services": [
+                "arango"
+            ],
+            "num": 1,
+            "shared_dbs": false
+        },
+        "num_services": 3,
+        "services": [
+            {
+                "monitors": [],
+                "image": "arangodb/arangodb",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "arango",
+                "depends_on": [],
+                "dbs": [
+                    "arangodb"
+                ],
+                "servers": [],
+                "image_full": "arangodb/arangodb:3.2.2"
+            },
+            {
+                "monitors": [],
+                "image": "app",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "nginx",
+                "depends_on": [
+                    "api"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "app:0.5.0"
+            },
+            {
+                "monitors": [],
+                "image": "api",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "api",
+                "depends_on": [
+                    "arango"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "api:0.5.0"
+            }
+        ]
+    },
+    "size": 38,
+    "num_discos": 0,
+    "languages": [
+        "dockerfile"
+    ],
+    "url": "git://github.com/WikiLogic/infrastructure.git",
+    "buses": [],
+    "gates": [
+        "nginx"
+    ],
+    "shared_dbs": false,
+    "servers": [
+        "node"
+    ],
+    "images": [
+        "ubuntu",
+        "nginx",
+        "node"
+    ],
+    "num_servers": 1,
+    "num_dockers": 4,
+    "num_monitors": 0,
+    "num_dbs": 1
+}

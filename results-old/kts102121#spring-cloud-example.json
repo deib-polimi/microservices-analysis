@@ -1,0 +1,359 @@
+{
+    "size": 111,
+    "num_discos": 1,
+    "num_services": 6,
+    "num_monitors": 0,
+    "num_langs": 1,
+    "dockers": [
+        {
+            "dbs": [
+                "oracle"
+            ],
+            "cmd": "sh ./run.sh",
+            "gates": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [
+                "java"
+            ],
+            "keywords": [
+                "apk",
+                "jce",
+                "policy",
+                "zip",
+                "lib"
+            ],
+            "path": "/authservice/src/main/docker/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "run"
+            ],
+            "from": "openjdk",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "oracle"
+            ],
+            "cmd": "sh ./run.sh",
+            "gates": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [
+                "java"
+            ],
+            "keywords": [
+                "apk",
+                "jce",
+                "policy",
+                "zip",
+                "lib"
+            ],
+            "path": "/gatewayservice/src/main/docker/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "run"
+            ],
+            "from": "openjdk",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "oracle"
+            ],
+            "cmd": "sh ./run.sh",
+            "gates": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [
+                "java"
+            ],
+            "keywords": [
+                "apk",
+                "jce",
+                "policy",
+                "zip",
+                "lib"
+            ],
+            "path": "/configserver/src/main/docker/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "run"
+            ],
+            "from": "openjdk",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "oracle"
+            ],
+            "cmd": "sh ./run.sh",
+            "gates": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [
+                "java"
+            ],
+            "keywords": [
+                "apk",
+                "jce",
+                "policy",
+                "zip",
+                "lib"
+            ],
+            "path": "/inventoryservice/src/main/docker/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "run"
+            ],
+            "from": "openjdk",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "oracle"
+            ],
+            "cmd": "sh ./run.sh",
+            "gates": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [
+                "java"
+            ],
+            "keywords": [
+                "apk",
+                "jce",
+                "policy",
+                "zip",
+                "lib"
+            ],
+            "path": "/userservice/src/main/docker/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "run"
+            ],
+            "from": "openjdk",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        }
+    ],
+    "files": [
+        {
+            "dbs": [],
+            "gates": [],
+            "discos": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/pom.xml",
+            "buses": []
+        },
+        {
+            "dbs": [
+                "postgresql"
+            ],
+            "gates": [],
+            "discos": [
+                "consul"
+            ],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/authservice/pom.xml",
+            "buses": [
+                "kafka"
+            ]
+        },
+        {
+            "dbs": [],
+            "gates": [
+                "gateway"
+            ],
+            "discos": [
+                "consul"
+            ],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/gatewayservice/pom.xml",
+            "buses": []
+        },
+        {
+            "dbs": [],
+            "gates": [],
+            "discos": [
+                "consul"
+            ],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/configserver/pom.xml",
+            "buses": []
+        },
+        {
+            "dbs": [
+                "postgresql"
+            ],
+            "gates": [],
+            "discos": [
+                "consul"
+            ],
+            "monitors": [],
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "path": "/inventoryservice/pom.xml",
+            "buses": []
+        },
+        {
+            "dbs": [
+                "postgresql"
+            ],
+            "gates": [],
+            "discos": [
+                "consul"
+            ],
+            "monitors": [],
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "path": "/userservice/pom.xml",
+            "buses": [
+                "kafka"
+            ]
+        }
+    ],
+    "langs": [
+        "java"
+    ],
+    "url": "git://github.com/kts102121/spring-cloud-example.git",
+    "buses": [
+        "kafka"
+    ],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "dbs": [],
+                "image_full": "consul",
+                "image": "consul",
+                "gates": [],
+                "name": "consulserver",
+                "discos": [
+                    "consul"
+                ],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "ron/userservice:1.0-SNAPSHOT",
+                "image": "ron/userservice",
+                "gates": [],
+                "name": "userservice",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "ron/configserver:1.0-SNAPSHOT",
+                "image": "ron/configserver",
+                "gates": [],
+                "name": "configserver",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "ron/gatewayservice:1.0-SNAPSHOT",
+                "image": "ron/gatewayservice",
+                "gates": [],
+                "name": "gatewayservice",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "postgres:latest",
+                "image": "postgres",
+                "gates": [],
+                "name": "database",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "ron/inventoryservice:1.0-SNAPSHOT",
+                "image": "ron/inventoryservice",
+                "gates": [],
+                "name": "inventoryservice",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [],
+                "buses": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [],
+            "services": [],
+            "shared_dbs": false,
+            "num": 0
+        },
+        "num_services": 6,
+        "path": "/docker/dev/docker-compose.yml"
+    },
+    "name": "kts102121/spring-cloud-example",
+    "num_buses": 1,
+    "servers": [
+        "tomcat",
+        "spring"
+    ],
+    "num_files": 12,
+    "num_dbs": 2,
+    "num_gates": 1,
+    "gates": [
+        "gateway"
+    ],
+    "monitors": [],
+    "avg_size_service": 22.2,
+    "languages": [
+        "java"
+    ],
+    "num_dockers": 5,
+    "dbs": [
+        "postgresql",
+        "oracle"
+    ],
+    "num_servers": 2,
+    "discos": [
+        "consul"
+    ],
+    "images": [
+        "openjdk"
+    ]
+}

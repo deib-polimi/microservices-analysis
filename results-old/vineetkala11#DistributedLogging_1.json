@@ -1,0 +1,358 @@
+{
+    "dbs": [
+        "zookeeper"
+    ],
+    "size": 861,
+    "num_files": 16,
+    "files": [
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "path": "/Gateway/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "buses": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "path": "/CatalogData/pom.xml",
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [
+                "amqp"
+            ]
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "path": "/EurekaServer/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "path": "/CatalogService/pom.xml",
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [
+                "kafka"
+            ]
+        }
+    ],
+    "monitors": [],
+    "servers": [
+        "spring"
+    ],
+    "gates": [
+        "zuul"
+    ],
+    "num_dockers": 11,
+    "url": "git://github.com/vineetkala11/DistributedLogging_1.git",
+    "shared_dbs": false,
+    "num_gates": 1,
+    "discos": [
+        "zookeeper",
+        "eureka"
+    ],
+    "images": [
+        "bitnami/zookeeper",
+        "docker.elastic.co/elasticsearch/elasticsearch",
+        "rabbitmq",
+        "docker.elastic.co/kibana/kibana",
+        "obsidiandynamics/kafdrop",
+        "bitnami/kafka",
+        "docker.elastic.co/logstash/logstash",
+        "openjdk"
+    ],
+    "structure": {
+        "services": [
+            {
+                "servers": [],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "depends_on": [],
+                "name": "zookeeper",
+                "image_full": "zookeeper",
+                "image": "zookeeper",
+                "discos": [
+                    "zookeeper"
+                ],
+                "monitors": [],
+                "gates": [],
+                "buses": []
+            },
+            {
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "kafka"
+                ],
+                "name": "catalog-service",
+                "image_full": "catalog-service-1",
+                "image": "catalog-service-1",
+                "discos": [],
+                "monitors": [],
+                "gates": [],
+                "buses": []
+            },
+            {
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "name": "kafka",
+                "image_full": "kafka",
+                "image": "kafka",
+                "discos": [],
+                "monitors": [],
+                "gates": [],
+                "buses": [
+                    "kafka"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "names": [
+                "zookeeper"
+            ],
+            "services": [
+                "zookeeper"
+            ],
+            "num": 1,
+            "shared_dbs": false
+        },
+        "num_services": 3,
+        "path": "/docker-compose/docker-compose.yml"
+    },
+    "langs": [
+        "java"
+    ],
+    "languages": [
+        "java"
+    ],
+    "num_buses": 3,
+    "dockers": [
+        {
+            "keywords": [],
+            "dbs": [],
+            "langs": [],
+            "from_full": "docker.elastic.co/elasticsearch/elasticsearch:7.5.1",
+            "from": "docker.elastic.co/elasticsearch/elasticsearch",
+            "monitors": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "gates": [],
+            "path": "/es/Dockerfile",
+            "cmd": "",
+            "buses": [],
+            "discos": []
+        },
+        {
+            "keywords": [],
+            "dbs": [],
+            "langs": [],
+            "from_full": "openjdk:8",
+            "from": "openjdk",
+            "monitors": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "gates": [],
+            "path": "/Gateway/Dockerfile",
+            "cmd": "",
+            "buses": [],
+            "discos": []
+        },
+        {
+            "keywords": [],
+            "dbs": [],
+            "langs": [],
+            "from_full": "openjdk:8",
+            "from": "openjdk",
+            "monitors": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "gates": [],
+            "path": "/CatalogData/Dockerfile",
+            "cmd": "",
+            "buses": [],
+            "discos": []
+        },
+        {
+            "keywords": [],
+            "dbs": [
+                "zookeeper"
+            ],
+            "langs": [],
+            "from_full": "bitnami/zookeeper:3.5.6",
+            "from": "bitnami/zookeeper",
+            "monitors": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "gates": [],
+            "path": "/zookeeper/Dockerfile",
+            "cmd": "",
+            "buses": [],
+            "discos": [
+                "zookeeper"
+            ]
+        },
+        {
+            "keywords": [
+                "logstash",
+                "conf",
+                "share",
+                "usr",
+                "pipeline"
+            ],
+            "dbs": [],
+            "langs": [],
+            "from_full": "docker.elastic.co/logstash/logstash:7.5.1",
+            "from": "docker.elastic.co/logstash/logstash",
+            "monitors": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "gates": [],
+            "path": "/logstash/Dockerfile",
+            "cmd": "",
+            "buses": [],
+            "discos": []
+        },
+        {
+            "keywords": [
+                "kibana",
+                "share",
+                "config",
+                "usr",
+                "yml"
+            ],
+            "dbs": [],
+            "langs": [],
+            "from_full": "docker.elastic.co/kibana/kibana:7.5.1",
+            "from": "docker.elastic.co/kibana/kibana",
+            "monitors": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "gates": [],
+            "path": "/kibana/Dockerfile",
+            "cmd": "",
+            "buses": [],
+            "discos": []
+        },
+        {
+            "keywords": [],
+            "dbs": [],
+            "langs": [],
+            "from_full": "openjdk:8",
+            "from": "openjdk",
+            "monitors": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "gates": [],
+            "path": "/EurekaServer/Dockerfile",
+            "cmd": "",
+            "buses": [],
+            "discos": []
+        },
+        {
+            "keywords": [],
+            "dbs": [],
+            "langs": [],
+            "from_full": "bitnami/kafka:2.4.0-ol-7-r34",
+            "from": "bitnami/kafka",
+            "monitors": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "gates": [],
+            "path": "/kafka/Dockerfile",
+            "cmd": "",
+            "buses": [
+                "kafka"
+            ],
+            "discos": []
+        },
+        {
+            "keywords": [],
+            "dbs": [],
+            "langs": [],
+            "from_full": "rabbitmq:3.8.2-management",
+            "from": "rabbitmq",
+            "monitors": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "gates": [],
+            "path": "/rabbitmq/Dockerfile",
+            "cmd": "",
+            "buses": [
+                "rabbitmq"
+            ],
+            "discos": []
+        },
+        {
+            "keywords": [],
+            "dbs": [],
+            "langs": [],
+            "from_full": "obsidiandynamics/kafdrop:3.18.1",
+            "from": "obsidiandynamics/kafdrop",
+            "monitors": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "gates": [],
+            "path": "/Kafdrop/Dockerfile",
+            "cmd": "",
+            "buses": [],
+            "discos": []
+        },
+        {
+            "keywords": [],
+            "dbs": [],
+            "langs": [],
+            "from_full": "openjdk:8",
+            "from": "openjdk",
+            "monitors": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "gates": [],
+            "path": "/CatalogService/Dockerfile",
+            "cmd": "",
+            "buses": [],
+            "discos": []
+        }
+    ],
+    "buses": [
+        "amqp",
+        "kafka",
+        "rabbitmq"
+    ],
+    "num_discos": 2,
+    "num_servers": 1,
+    "num_dbs": 1,
+    "name": "vineetkala11/DistributedLogging_1",
+    "num_monitors": 0,
+    "avg_size_service": 78.27272727272727,
+    "num_services": 3,
+    "num_langs": 1
+}

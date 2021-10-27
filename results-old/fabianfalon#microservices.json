@@ -1,0 +1,309 @@
+{
+    "size": 57,
+    "num_dockers": 6,
+    "discos": [],
+    "num_files": 10,
+    "avg_size_service": 9.5,
+    "buses": [],
+    "num_gates": 1,
+    "langs": [
+        "python"
+    ],
+    "num_discos": 0,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "/start.sh",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "start"
+            ],
+            "from": "nginx",
+            "path": "/services/swagger/Dockerfile",
+            "keywords": [
+                "swagger",
+                "tmp",
+                "get",
+                "apt",
+                "nginx"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "from_full": "nginx:1.15.9-perl"
+        },
+        {
+            "monitors": [],
+            "cmd": "/usr/src/app/entrypoint.sh",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "usr",
+                "app",
+                "src",
+                "entrypoint"
+            ],
+            "from": "python",
+            "path": "/services/got/Dockerfile",
+            "keywords": [
+                "get",
+                "apt",
+                "install",
+                "netcat",
+                "app"
+            ],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "python:3.7.2-slim"
+        },
+        {
+            "monitors": [],
+            "cmd": "/usr/src/app/entrypoint.sh",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "usr",
+                "app",
+                "src",
+                "entrypoint"
+            ],
+            "from": "python",
+            "path": "/services/people/Dockerfile",
+            "keywords": [
+                "get",
+                "apt",
+                "install",
+                "netcat",
+                "app"
+            ],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "python:3.7.2-slim"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "postgres",
+            "path": "/services/people/src/db/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "postgres:11.2-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "/usr/src/app/entrypoint.sh",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "usr",
+                "app",
+                "src",
+                "entrypoint"
+            ],
+            "from": "python",
+            "path": "/services/place/Dockerfile",
+            "keywords": [
+                "get",
+                "apt",
+                "install",
+                "netcat",
+                "app"
+            ],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "python:3.7.2-slim"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "postgres",
+            "path": "/services/place/src/db/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "postgres:11.2-alpine"
+        }
+    ],
+    "num_dbs": 0,
+    "monitors": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./services/swagger",
+                "image_full": "./services/swagger",
+                "discos": [],
+                "name": "swagger",
+                "depends_on": [
+                    "places",
+                    "peoples"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./services/place/src/db",
+                "image_full": "./services/place/src/db",
+                "discos": [],
+                "name": "places-db",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./services/place",
+                "image_full": "./services/place",
+                "discos": [],
+                "name": "places",
+                "depends_on": [
+                    "places-db"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./services/got",
+                "image_full": "./services/got",
+                "discos": [],
+                "name": "got",
+                "depends_on": [
+                    "peoples-db",
+                    "places"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./services/people/src/db",
+                "image_full": "./services/people/src/db",
+                "discos": [],
+                "name": "peoples-db",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./services/people",
+                "image_full": "./services/people",
+                "discos": [],
+                "name": "peoples",
+                "depends_on": [
+                    "peoples-db",
+                    "places"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        },
+        "num_services": 6,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 0,
+    "servers": [
+        "flask"
+    ],
+    "url": "git://github.com/fabianfalon/microservices.git",
+    "num_services": 6,
+    "gates": [
+        "nginx"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/services/got/requirements.txt"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/services/people/requirements.txt"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/services/place/requirements.txt"
+        }
+    ],
+    "name": "fabianfalon/microservices",
+    "languages": [
+        "python"
+    ],
+    "images": [
+        "python",
+        "postgres",
+        "nginx"
+    ],
+    "dbs": [],
+    "num_servers": 1,
+    "num_langs": 1
+}

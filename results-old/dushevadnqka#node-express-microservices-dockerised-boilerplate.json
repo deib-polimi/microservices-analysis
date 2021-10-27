@@ -1,0 +1,292 @@
+{
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "node2",
+                "dbs": [],
+                "depends_on": [
+                    "mongodb",
+                    "redis"
+                ],
+                "image": "./",
+                "image_full": "./",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "mongodb",
+                "dbs": [
+                    "mongodb"
+                ],
+                "depends_on": [],
+                "image": "./images/mongodb",
+                "image_full": "./images/mongodb",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "depends_on": [],
+                "image": "./images/redis",
+                "image_full": "./images/redis",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "node3",
+                "dbs": [],
+                "depends_on": [
+                    "mongodb",
+                    "redis"
+                ],
+                "image": "./",
+                "image_full": "./",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "node",
+                "dbs": [],
+                "depends_on": [
+                    "mongodb",
+                    "redis"
+                ],
+                "image": "./",
+                "image_full": "./",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "monitors": [],
+                "name": "nginx",
+                "dbs": [],
+                "depends_on": [
+                    "node:node1",
+                    "node2:node2",
+                    "node3:node3"
+                ],
+                "image": "./images/nginx",
+                "image_full": "./images/nginx",
+                "discos": []
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "names": [
+                "mongodb",
+                "redis"
+            ],
+            "num": 2,
+            "services": [
+                "mongodb",
+                "redis"
+            ],
+            "shared_dbs": true
+        }
+    },
+    "discos": [],
+    "size": 111,
+    "num_gates": 1,
+    "num_langs": 2,
+    "servers": [
+        "node",
+        "express",
+        "mongoose"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_servers": 3,
+    "num_buses": 0,
+    "files": [
+        {
+            "servers": [
+                "node",
+                "express",
+                "mongoose"
+            ],
+            "buses": [],
+            "gates": [
+                "nginx"
+            ],
+            "monitors": [],
+            "discos": [],
+            "path": "/package.json",
+            "dbs": [
+                "mongo"
+            ]
+        }
+    ],
+    "num_dockers": 5,
+    "buses": [],
+    "languages": [
+        "dockerfile",
+        "javascript"
+    ],
+    "monitors": [],
+    "dbs": [
+        "redis",
+        "mongo"
+    ],
+    "num_monitors": 0,
+    "num_files": 7,
+    "num_dbs": 2,
+    "num_services": 6,
+    "images": [
+        "node",
+        "ubuntu",
+        "nginx"
+    ],
+    "url": "git://github.com/dushevadnqka/node-express-microservices-dockerised-boilerplate.git",
+    "dockers": [
+        {
+            "cmd": "nodemon server.js",
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/Dockerfile",
+            "cmd_keywords": [
+                "nodemon",
+                "server"
+            ],
+            "keywords": [
+                "nodemon",
+                "npm",
+                "install"
+            ],
+            "from_full": "node:latest",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/images/nginx/Dockerfile",
+            "cmd_keywords": [],
+            "keywords": [
+                "nginx",
+                "conf",
+                "etc"
+            ],
+            "from_full": "nginx:latest",
+            "gates": [
+                "nginx"
+            ],
+            "from": "nginx",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "cmd": "node node_modules/.bin/nodemon -L bin/www",
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/images/node/Dockerfile",
+            "cmd_keywords": [
+                "bin",
+                "node",
+                "www",
+                "nodemon",
+                "modules"
+            ],
+            "keywords": [
+                "src",
+                "mkdir"
+            ],
+            "from_full": "node:latest",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/images/mongodb/Dockerfile",
+            "cmd_keywords": [],
+            "keywords": [
+                "get",
+                "apt",
+                "server",
+                "redis",
+                "install"
+            ],
+            "from_full": "ubuntu",
+            "gates": [],
+            "from": "ubuntu",
+            "langs": [],
+            "dbs": [
+                "redis"
+            ]
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/images/redis/Dockerfile",
+            "cmd_keywords": [],
+            "keywords": [
+                "get",
+                "apt",
+                "server",
+                "redis",
+                "install"
+            ],
+            "from_full": "ubuntu",
+            "gates": [],
+            "from": "ubuntu",
+            "langs": [],
+            "dbs": [
+                "redis"
+            ]
+        }
+    ],
+    "avg_size_service": 22.2,
+    "shared_dbs": true,
+    "num_discos": 0,
+    "langs": [
+        "dockerfile",
+        "javascript"
+    ],
+    "name": "dushevadnqka/node-express-microservices-dockerised-boilerplate"
+}

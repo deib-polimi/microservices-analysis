@@ -1,0 +1,309 @@
+{
+    "structure": {
+        "path": "/docker/docker-compose.yml",
+        "services": [
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "customer-service-3",
+                "dbs": [],
+                "depends_on": [
+                    "tiergarten-config"
+                ],
+                "image": "tiergarten/customer-server",
+                "image_full": "tiergarten/customer-server",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "zookeeper-server",
+                "dbs": [
+                    "zookeeper"
+                ],
+                "depends_on": [],
+                "image": "zookeeper",
+                "image_full": "zookeeper",
+                "discos": [
+                    "zookeeper"
+                ]
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "customer-service-1",
+                "dbs": [],
+                "depends_on": [
+                    "tiergarten-config"
+                ],
+                "image": "tiergarten/customer-server",
+                "image_full": "tiergarten/customer-server",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "customer-service-2",
+                "dbs": [],
+                "depends_on": [
+                    "tiergarten-config"
+                ],
+                "image": "tiergarten/customer-server",
+                "image_full": "tiergarten/customer-server",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "tiergarten-config",
+                "dbs": [],
+                "depends_on": [],
+                "image": "tiergarten/config-server",
+                "image_full": "tiergarten/config-server",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "gutenberg-eureka",
+                "dbs": [],
+                "depends_on": [],
+                "image": "tiergarten/eureka-server",
+                "image_full": "tiergarten/eureka-server",
+                "discos": [
+                    "eureka"
+                ]
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "zuul"
+                ],
+                "monitors": [],
+                "name": "zuul-service",
+                "dbs": [],
+                "depends_on": [
+                    "tiergarten-config"
+                ],
+                "image": "tiergarten/zuul-server",
+                "image_full": "tiergarten/zuul-server",
+                "discos": []
+            }
+        ],
+        "num_services": 7,
+        "detected_dbs": {
+            "names": [
+                "zookeeper"
+            ],
+            "num": 1,
+            "services": [
+                "zookeeper-server"
+            ],
+            "shared_dbs": false
+        }
+    },
+    "discos": [
+        "eureka",
+        "zookeeper"
+    ],
+    "size": 447,
+    "num_gates": 1,
+    "num_langs": 2,
+    "servers": [
+        "spring"
+    ],
+    "gates": [
+        "zuul"
+    ],
+    "num_servers": 1,
+    "num_buses": 0,
+    "files": [
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "zookeeper"
+            ],
+            "path": "/cluster-monitor/pom.xml",
+            "dbs": [
+                "zookeeper"
+            ]
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "path": "/eureka-server/pom.xml",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka",
+                "zookeeper"
+            ],
+            "path": "/customer-server/pom.xml",
+            "dbs": [
+                "mongodb",
+                "zookeeper"
+            ]
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [
+                "zuul"
+            ],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "path": "/zuul-server/pom.xml",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/config-server/pom.xml",
+            "dbs": []
+        }
+    ],
+    "num_dockers": 4,
+    "buses": [],
+    "languages": [
+        "java",
+        "html"
+    ],
+    "monitors": [],
+    "dbs": [
+        "zookeeper"
+    ],
+    "num_monitors": 0,
+    "num_files": 10,
+    "num_dbs": 1,
+    "num_services": 7,
+    "images": [
+        "openjdk"
+    ],
+    "url": "git://github.com/dubersfeld/tiergarten-carmina.git",
+    "dockers": [
+        {
+            "cmd": "",
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/eureka-server/src/main/docker/Dockerfile",
+            "cmd_keywords": [],
+            "keywords": [
+                "wrapper",
+                "chmod"
+            ],
+            "from_full": "openjdk:8-jdk-alpine",
+            "gates": [],
+            "from": "openjdk",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/customer-server/src/main/docker/Dockerfile",
+            "cmd_keywords": [],
+            "keywords": [
+                "apk",
+                "update",
+                "netcat",
+                "wrapper",
+                "chmod"
+            ],
+            "from_full": "openjdk:8-jdk-alpine",
+            "gates": [],
+            "from": "openjdk",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/zuul-server/src/main/docker/Dockerfile",
+            "cmd_keywords": [],
+            "keywords": [
+                "wrapper",
+                "chmod"
+            ],
+            "from_full": "openjdk:8-jdk-alpine",
+            "gates": [],
+            "from": "openjdk",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/config-server/src/main/docker/Dockerfile",
+            "cmd_keywords": [],
+            "keywords": [
+                "wrapper",
+                "chmod"
+            ],
+            "from_full": "openjdk:8-jdk-alpine",
+            "gates": [],
+            "from": "openjdk",
+            "langs": [],
+            "dbs": []
+        }
+    ],
+    "avg_size_service": 111.75,
+    "shared_dbs": false,
+    "num_discos": 2,
+    "langs": [
+        "html",
+        "java"
+    ],
+    "name": "dubersfeld/tiergarten-carmina"
+}

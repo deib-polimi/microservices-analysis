@@ -1,0 +1,178 @@
+{
+    "size": 52,
+    "shared_dbs": false,
+    "num_servers": 0,
+    "name": "jtdv01/airflow-samples",
+    "files": [],
+    "num_files": 4,
+    "num_langs": 4,
+    "dbs": [],
+    "servers": [],
+    "num_discos": 0,
+    "url": "git://github.com/jtdv01/airflow-samples.git",
+    "gates": [],
+    "structure": {
+        "services": [
+            {
+                "image": "postgres",
+                "dbs": [],
+                "image_full": "postgres:11.1",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "postgreshost",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "airflow/",
+                "dbs": [],
+                "image_full": "airflow/",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "airflow",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "postgreshost"
+                ]
+            },
+            {
+                "image": "jupyter/",
+                "dbs": [],
+                "image_full": "jupyter/",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "jupyter",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "simple-microservice",
+                "dbs": [],
+                "image_full": "simple-microservice",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "microservice",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "postgreshost"
+                ]
+            }
+        ],
+        "num_services": 4,
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        },
+        "path": "/docker-compose.yml"
+    },
+    "num_gates": 0,
+    "num_dockers": 3,
+    "num_dbs": 0,
+    "num_services": 4,
+    "langs": [
+        "clojure",
+        "java",
+        "jupyternotebook",
+        "python"
+    ],
+    "buses": [],
+    "num_buses": 0,
+    "num_monitors": 0,
+    "languages": [
+        "jupyternotebook",
+        "clojure",
+        "python"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [
+                "microservice",
+                "jar",
+                "java",
+                "target",
+                "opt"
+            ],
+            "cmd": "java -jar /opt/microservice/target/simple-microservice-0.0.1-SNAPSHOT-standalone.jar",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "clojure",
+            "monitors": [],
+            "from_full": "clojure:openjdk-11-lein",
+            "servers": [],
+            "path": "/simple-microservice/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "lein",
+                "uberjar",
+                "deps",
+                "clean"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "make",
+                "airflow"
+            ],
+            "cmd": "make airflow",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "from": "python",
+            "monitors": [],
+            "from_full": "python:3.6",
+            "servers": [],
+            "path": "/airflow/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "make",
+                "install"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "jupyter/base-notebook",
+            "monitors": [],
+            "from_full": "jupyter/base-notebook:fa9ee3692919",
+            "servers": [],
+            "path": "/jupyter/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "pip",
+                "install",
+                "matplotlib",
+                "pandas",
+                "sqlalchemy"
+            ],
+            "discos": []
+        }
+    ],
+    "monitors": [],
+    "avg_size_service": 17.333333333333332,
+    "discos": [],
+    "images": [
+        "clojure",
+        "python",
+        "jupyter/base-notebook"
+    ]
+}

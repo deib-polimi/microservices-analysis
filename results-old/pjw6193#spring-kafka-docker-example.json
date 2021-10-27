@@ -1,0 +1,214 @@
+{
+    "num_services": 5,
+    "num_buses": 1,
+    "files": [
+        {
+            "gates": [],
+            "buses": [
+                "kafka"
+            ],
+            "monitors": [],
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "path": "/example/pom.xml",
+            "discos": [],
+            "dbs": [
+                "mongodb"
+            ]
+        },
+        {
+            "gates": [],
+            "buses": [
+                "kafka"
+            ],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/customer/pom.xml",
+            "discos": [],
+            "dbs": [
+                "mongodb"
+            ]
+        }
+    ],
+    "num_dbs": 2,
+    "num_discos": 1,
+    "languages": [
+        "javascript"
+    ],
+    "num_langs": 2,
+    "images": [
+        "java"
+    ],
+    "buses": [
+        "kafka"
+    ],
+    "size": 62504,
+    "servers": [
+        "spring",
+        "tomcat"
+    ],
+    "num_gates": 0,
+    "discos": [
+        "zookeeper"
+    ],
+    "num_monitors": 0,
+    "avg_size_service": 31252.0,
+    "langs": [
+        "javascript",
+        "java"
+    ],
+    "dockers": [
+        {
+            "keywords": [
+                "touch",
+                "jar",
+                "app",
+                "bash"
+            ],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "path": "/example/target/Dockerfile",
+            "cmd": "",
+            "gates": [],
+            "from": "java",
+            "monitors": [],
+            "servers": [],
+            "from_full": "java:8",
+            "discos": [],
+            "cmd_keywords": [],
+            "dbs": []
+        },
+        {
+            "keywords": [
+                "touch",
+                "jar",
+                "app",
+                "bash"
+            ],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "path": "/customer/target/Dockerfile",
+            "cmd": "",
+            "gates": [],
+            "from": "java",
+            "monitors": [],
+            "servers": [],
+            "from_full": "java:8",
+            "discos": [],
+            "cmd_keywords": [],
+            "dbs": []
+        }
+    ],
+    "name": "pjw6193/spring-kafka-docker-example",
+    "url": "git://github.com/pjw6193/spring-kafka-docker-example.git",
+    "gates": [],
+    "num_servers": 2,
+    "monitors": [],
+    "num_files": 5,
+    "shared_dbs": true,
+    "num_dockers": 2,
+    "dbs": [
+        "zookeeper",
+        "mongo"
+    ],
+    "structure": {
+        "num_services": 5,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "monitors": [],
+                "image": "jplock/zookeeper",
+                "image_full": "jplock/zookeeper:3.4.6",
+                "servers": [],
+                "discos": [
+                    "zookeeper"
+                ],
+                "depends_on": [],
+                "name": "zookeeper"
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "customer",
+                "image_full": "customer",
+                "servers": [],
+                "discos": [],
+                "depends_on": [
+                    "mongodb"
+                ],
+                "name": "consumer"
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "monitors": [],
+                "image": "mongo",
+                "image_full": "mongo:3.2",
+                "servers": [],
+                "discos": [],
+                "depends_on": [],
+                "name": "mongodb"
+            },
+            {
+                "gates": [],
+                "buses": [
+                    "kafka"
+                ],
+                "dbs": [],
+                "monitors": [],
+                "image": "wurstmeister/kafka",
+                "image_full": "wurstmeister/kafka:0.8.2.0",
+                "servers": [],
+                "discos": [],
+                "depends_on": [
+                    "zookeeper:zk"
+                ],
+                "name": "kafka"
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "example",
+                "image_full": "example",
+                "servers": [],
+                "discos": [],
+                "depends_on": [
+                    "mongodb"
+                ],
+                "name": "web"
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": true,
+            "num": 2,
+            "services": [
+                "zookeeper",
+                "mongodb"
+            ],
+            "names": [
+                "zookeeper",
+                "mongo"
+            ]
+        }
+    }
+}

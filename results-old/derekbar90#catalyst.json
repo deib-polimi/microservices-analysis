@@ -1,0 +1,641 @@
+{
+    "num_discos": 1,
+    "buses": [
+        "nats"
+    ],
+    "gates": [],
+    "num_servers": 2,
+    "num_gates": 0,
+    "num_dbs": 3,
+    "monitors": [
+        "jaeger"
+    ],
+    "num_langs": 4,
+    "num_files": 14,
+    "structure": {
+        "services": [
+            {
+                "name": "admin",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "catalyst_admin",
+                "image_full": "catalyst_admin",
+                "monitors": [],
+                "depends_on": [
+                    "nats",
+                    "redis",
+                    "postgresd",
+                    "traefik",
+                    "api"
+                ]
+            },
+            {
+                "name": "node-exporter",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "prom/node-exporter",
+                "image_full": "prom/node-exporter",
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "hydra",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "oryd/hydra",
+                "image_full": "oryd/hydra:${HYDRA_VERSION}",
+                "monitors": [],
+                "depends_on": [
+                    "postgresd",
+                    "hydra-migrate",
+                    "jaeger",
+                    "traefik"
+                ]
+            },
+            {
+                "name": "keto-migrate",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "oryd/keto",
+                "image_full": "oryd/keto:${KETO_VERSION}",
+                "monitors": [],
+                "depends_on": [
+                    "postgresd:postgresd"
+                ]
+            },
+            {
+                "name": "verification_code",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "catalyst_verification_code",
+                "image_full": "catalyst_verification_code",
+                "monitors": [],
+                "depends_on": [
+                    "nats",
+                    "redis",
+                    "postgresd"
+                ]
+            },
+            {
+                "name": "keto",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "oryd/keto",
+                "image_full": "oryd/keto:${KETO_VERSION}",
+                "monitors": [],
+                "depends_on": [
+                    "keto-migrate"
+                ]
+            },
+            {
+                "name": "jaeger",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "jaegertracing/all-in-one",
+                "image_full": "jaegertracing/all-in-one:latest",
+                "monitors": [],
+                "depends_on": [
+                    "traefik"
+                ]
+            },
+            {
+                "name": "grafana",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "grafana/grafana",
+                "image_full": "grafana/grafana",
+                "monitors": [],
+                "depends_on": [
+                    "prometheus",
+                    "traefik"
+                ]
+            },
+            {
+                "name": "redis",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [
+                    "redis"
+                ],
+                "image": "redis",
+                "image_full": "redis:alpine",
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "postgresd",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "postgres",
+                "image_full": "postgres:10",
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "cadvisor",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "google/cadvisor",
+                "image_full": "google/cadvisor",
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "nats",
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "nats"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image": "nats",
+                "image_full": "nats",
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "hydra-migrate",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "oryd/hydra",
+                "image_full": "oryd/hydra:${HYDRA_VERSION}",
+                "monitors": [],
+                "depends_on": [
+                    "postgresd"
+                ]
+            },
+            {
+                "name": "api",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "catalyst_api",
+                "image_full": "catalyst_api",
+                "monitors": [],
+                "depends_on": [
+                    "nats",
+                    "redis",
+                    "postgresd",
+                    "traefik",
+                    "hydra",
+                    "keto",
+                    "jaeger"
+                ]
+            },
+            {
+                "name": "prometheus",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "prom/prometheus",
+                "image_full": "prom/prometheus:v2.1.0",
+                "monitors": [],
+                "depends_on": [
+                    "cadvisor"
+                ]
+            },
+            {
+                "name": "traefik",
+                "discos": [
+                    "traefik"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "traefik",
+                "image_full": "traefik:alpine",
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "user",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "catalyst_user",
+                "image_full": "catalyst_user",
+                "monitors": [],
+                "depends_on": [
+                    "nats",
+                    "redis",
+                    "postgresd",
+                    "traefik",
+                    "jaeger"
+                ]
+            },
+            {
+                "name": "alertmanager",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "prom/alertmanager",
+                "image_full": "prom/alertmanager",
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "email",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "catalyst_email",
+                "image_full": "catalyst_email",
+                "monitors": [],
+                "depends_on": [
+                    "nats",
+                    "redis",
+                    "postgresd"
+                ]
+            },
+            {
+                "name": "configurator",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": {
+                    "args": [
+                        "HYDRA_VERSION=$HYDRA_VERSION",
+                        "KETO_VERSION=$KETO_VERSION",
+                        "OATHKEEPER_VERSION=$OATHKEEPER_VERSION"
+                    ],
+                    "dockerfile": "Dockerfile",
+                    "context": "./configurator"
+                },
+                "image_full": {
+                    "args": [
+                        "HYDRA_VERSION=$HYDRA_VERSION",
+                        "KETO_VERSION=$KETO_VERSION",
+                        "OATHKEEPER_VERSION=$OATHKEEPER_VERSION"
+                    ],
+                    "dockerfile": "Dockerfile",
+                    "context": "./configurator"
+                },
+                "monitors": [],
+                "depends_on": [
+                    "hydra",
+                    "keto"
+                ]
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "names": [
+                "redis"
+            ],
+            "num": 1,
+            "services": [
+                "redis"
+            ],
+            "shared_dbs": true
+        },
+        "num_services": 20
+    },
+    "servers": [
+        "express",
+        "node"
+    ],
+    "shared_dbs": true,
+    "langs": [
+        "typescript",
+        "javascript",
+        "bash",
+        "shell"
+    ],
+    "dockers": [
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/admin/Dockerfile",
+            "from": "node",
+            "cmd_keywords": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "keywords": [
+                "apk",
+                "update",
+                "mkdir",
+                "node",
+                "npm"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "node:12-alpine",
+            "langs": [
+                "bash"
+            ]
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/email/Dockerfile",
+            "from": "node",
+            "cmd_keywords": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "keywords": [
+                "npm",
+                "apk",
+                "update",
+                "build",
+                "mkdir"
+            ],
+            "dbs": [
+                "postgresql"
+            ],
+            "gates": [],
+            "from_full": "node:12-alpine",
+            "langs": [
+                "bash"
+            ]
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/hydra/Dockerfile",
+            "from": "oryd/hydra",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "apk",
+                "update",
+                "sdk",
+                "files",
+                "bash"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "oryd/hydra:v1.0.8-alpine",
+            "langs": [
+                "bash"
+            ]
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/verification_code/Dockerfile",
+            "from": "node",
+            "cmd_keywords": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "keywords": [
+                "npm",
+                "apk",
+                "update",
+                "build",
+                "run"
+            ],
+            "dbs": [
+                "postgresql"
+            ],
+            "gates": [],
+            "from_full": "node:12-alpine",
+            "langs": [
+                "bash"
+            ]
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/user/Dockerfile",
+            "from": "node",
+            "cmd_keywords": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "keywords": [
+                "npm",
+                "apk",
+                "update",
+                "build",
+                "client"
+            ],
+            "dbs": [
+                "postgresql"
+            ],
+            "gates": [],
+            "from_full": "node:12-alpine",
+            "langs": [
+                "bash"
+            ]
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/api/Dockerfile",
+            "from": "node",
+            "cmd_keywords": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "keywords": [
+                "npm",
+                "run",
+                "apk",
+                "update",
+                "build"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "node:12-alpine",
+            "langs": [
+                "bash"
+            ]
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/configurator/Dockerfile",
+            "from": "alpine",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "from_full": "alpine:3.10.3",
+            "dbs": [],
+            "gates": [],
+            "keywords": [
+                "deps",
+                "pip",
+                "apk",
+                "build",
+                "install"
+            ],
+            "langs": []
+        }
+    ],
+    "name": "derekbar90/catalyst",
+    "discos": [
+        "traefik"
+    ],
+    "avg_size_service": 1691.4285714285713,
+    "num_monitors": 1,
+    "images": [
+        "alpine",
+        "node",
+        "oryd/hydra"
+    ],
+    "url": "git://github.com/derekbar90/catalyst.git",
+    "files": [
+        {
+            "discos": [],
+            "buses": [],
+            "path": "/package.json",
+            "dbs": [],
+            "gates": [],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "buses": [],
+            "path": "/admin/package.json",
+            "dbs": [
+                "max"
+            ],
+            "gates": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "buses": [
+                "nats"
+            ],
+            "path": "/email/package.json",
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [
+                "jaeger"
+            ]
+        },
+        {
+            "discos": [],
+            "buses": [
+                "nats"
+            ],
+            "path": "/verification_code/package.json",
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [
+                "jaeger"
+            ]
+        },
+        {
+            "discos": [],
+            "buses": [
+                "nats"
+            ],
+            "path": "/user/package.json",
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [
+                "jaeger"
+            ]
+        },
+        {
+            "discos": [],
+            "buses": [
+                "nats"
+            ],
+            "path": "/api/package.json",
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [
+                "jaeger"
+            ]
+        }
+    ],
+    "size": 11840,
+    "languages": [
+        "typescript",
+        "javascript",
+        "shell"
+    ],
+    "dbs": [
+        "max",
+        "redis",
+        "postgresql"
+    ],
+    "num_buses": 1,
+    "num_services": 20,
+    "num_dockers": 7
+}

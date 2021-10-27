@@ -1,0 +1,199 @@
+{
+    "discos": [
+        "zookeeper"
+    ],
+    "avg_size_service": 498.0,
+    "buses": [
+        "kafka"
+    ],
+    "num_gates": 0,
+    "name": "devicehive/devicehive-docker",
+    "structure": {
+        "path": "/rdbms-image/docker-compose.yml",
+        "services": [
+            {
+                "name": "dh_proxy",
+                "dbs": [],
+                "depends_on": [
+                    "dh_auth",
+                    "dh_frontend"
+                ],
+                "discos": [],
+                "image_full": "devicehive/devicehive-proxy:${DH_PROXY_TAG:-3.5.0}",
+                "image": "devicehive/devicehive-proxy",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "kafka",
+                "dbs": [],
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "discos": [],
+                "image_full": "wurstmeister/kafka:1.0.0",
+                "image": "wurstmeister/kafka",
+                "servers": [],
+                "buses": [
+                    "kafka"
+                ],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "postgres",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "postgres:10",
+                "image": "postgres",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "zookeeper",
+                "dbs": [
+                    "zookeeper"
+                ],
+                "depends_on": [],
+                "discos": [
+                    "zookeeper"
+                ],
+                "image_full": "wurstmeister/zookeeper",
+                "image": "wurstmeister/zookeeper",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "wsproxy",
+                "dbs": [],
+                "depends_on": [
+                    "kafka"
+                ],
+                "discos": [],
+                "image_full": "devicehive/devicehive-ws-proxy:${DH_WS_PROXY_TAG:-1.1.0}",
+                "image": "devicehive/devicehive-ws-proxy",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "hazelcast",
+                "dbs": [
+                    "hazelcast"
+                ],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "devicehive/devicehive-hazelcast:${DH_TAG:-3.5.0}",
+                "image": "devicehive/devicehive-hazelcast",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "dh_auth",
+                "dbs": [],
+                "depends_on": [
+                    "kafka",
+                    "hazelcast",
+                    "postgres",
+                    "wsproxy",
+                    "zookeeper"
+                ],
+                "discos": [],
+                "image_full": "devicehive/devicehive-auth:${DH_TAG:-3.5.0}",
+                "image": "devicehive/devicehive-auth",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "dh_frontend",
+                "dbs": [],
+                "depends_on": [
+                    "postgres",
+                    "kafka",
+                    "zookeeper",
+                    "dh_backend",
+                    "dh_auth",
+                    "wsproxy"
+                ],
+                "discos": [],
+                "image_full": "devicehive/devicehive-frontend:${DH_TAG:-3.5.0}",
+                "image": "devicehive/devicehive-frontend",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "dh_backend",
+                "dbs": [],
+                "depends_on": [
+                    "hazelcast",
+                    "kafka",
+                    "postgres",
+                    "zookeeper",
+                    "wsproxy"
+                ],
+                "discos": [],
+                "image_full": "devicehive/devicehive-backend:${DH_TAG:-3.5.0}",
+                "image": "devicehive/devicehive-backend",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [
+                "hazelcast",
+                "zookeeper"
+            ],
+            "num": 2,
+            "shared_dbs": true,
+            "services": [
+                "zookeeper",
+                "hazelcast"
+            ]
+        },
+        "num_services": 9
+    },
+    "dbs": [
+        "hazelcast",
+        "zookeeper"
+    ],
+    "dockers": [],
+    "gates": [],
+    "size": 498,
+    "num_monitors": 0,
+    "images": [],
+    "num_buses": 1,
+    "num_services": 9,
+    "servers": [],
+    "shared_dbs": true,
+    "monitors": [],
+    "num_discos": 1,
+    "languages": [
+        "smarty"
+    ],
+    "url": "git://github.com/devicehive/devicehive-docker.git",
+    "langs": [
+        "smarty"
+    ],
+    "num_dbs": 2,
+    "num_servers": 0,
+    "num_langs": 1,
+    "files": [],
+    "num_dockers": 0,
+    "num_files": 1
+}

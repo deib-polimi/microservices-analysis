@@ -1,0 +1,240 @@
+{
+    "dbs": [
+        "mysql"
+    ],
+    "name": "maikjr/microservices-graphql-nodejs",
+    "num_langs": 1,
+    "languages": [
+        "javascript"
+    ],
+    "shared_dbs": false,
+    "servers": [
+        "express",
+        "node"
+    ],
+    "langs": [
+        "javascript"
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "watch",
+                "yarn"
+            ],
+            "discos": [],
+            "cmd": "yarn watch",
+            "path": "/api-gateway/Dockerfile",
+            "from_full": "node:12.15-alpine",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "keywords": [
+                "yarn"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "watch",
+                "yarn"
+            ],
+            "discos": [],
+            "cmd": "yarn watch",
+            "path": "/listings-service/Dockerfile",
+            "from_full": "node:12.15-alpine",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "keywords": [
+                "yarn"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "watch",
+                "yarn"
+            ],
+            "discos": [],
+            "cmd": "yarn watch",
+            "path": "/users-service/Dockerfile",
+            "from_full": "node:12.15-alpine",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "keywords": [
+                "yarn",
+                "add",
+                "global"
+            ]
+        }
+    ],
+    "gates": [
+        "gateway"
+    ],
+    "size": 528,
+    "num_dockers": 3,
+    "num_discos": 0,
+    "num_buses": 0,
+    "buses": [],
+    "images": [
+        "node"
+    ],
+    "num_servers": 2,
+    "num_services": 5,
+    "monitors": [],
+    "structure": {
+        "services": [
+            {
+                "buses": [],
+                "image": "mysql",
+                "dbs": [
+                    "mysql"
+                ],
+                "gates": [],
+                "image_full": "mysql:5.7.20",
+                "monitors": [],
+                "name": "users-service-db",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "./api-gateway",
+                "dbs": [],
+                "gates": [
+                    "gateway"
+                ],
+                "image_full": "./api-gateway",
+                "monitors": [],
+                "name": "api-gateway",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "listings-service",
+                    "users-service"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "mysql",
+                "dbs": [
+                    "mysql"
+                ],
+                "gates": [],
+                "image_full": "mysql:5.7.20",
+                "monitors": [],
+                "name": "listings-service-db",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "./users-service",
+                "dbs": [],
+                "gates": [],
+                "image_full": "./users-service",
+                "monitors": [],
+                "name": "users-service",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "users-service-db"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "./listings-service",
+                "dbs": [],
+                "gates": [],
+                "image_full": "./listings-service",
+                "monitors": [],
+                "name": "listings-service",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "listings-service-db"
+                ]
+            }
+        ],
+        "num_services": 5,
+        "detected_dbs": {
+            "num": 2,
+            "shared_dbs": false,
+            "names": [
+                "mysql"
+            ],
+            "services": [
+                "users-service-db",
+                "listings-service-db"
+            ]
+        },
+        "path": "/docker-compose.yml"
+    },
+    "discos": [],
+    "num_files": 7,
+    "num_dbs": 1,
+    "num_monitors": 0,
+    "num_gates": 1,
+    "url": "git://github.com/maikjr/microservices-graphql-nodejs.git",
+    "avg_size_service": 176.0,
+    "files": [
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [
+                "gateway"
+            ],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/api-gateway/package.json"
+        },
+        {
+            "buses": [],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/listings-service/package.json"
+        },
+        {
+            "buses": [],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/users-service/package.json"
+        }
+    ]
+}

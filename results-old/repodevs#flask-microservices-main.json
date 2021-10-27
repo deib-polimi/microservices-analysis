@@ -1,0 +1,137 @@
+{
+    "languages": [
+        "dockerfile"
+    ],
+    "num_servers": 2,
+    "shared_dbs": false,
+    "name": "repodevs/flask-microservices-main",
+    "servers": [
+        "flask",
+        "node"
+    ],
+    "num_monitors": 0,
+    "num_langs": 1,
+    "images": [
+        "nginx"
+    ],
+    "langs": [
+        "dockerfile"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "conf",
+                "default",
+                "nginx",
+                "etc"
+            ],
+            "path": "/nginx/Dockerfile",
+            "gates": [
+                "nginx"
+            ],
+            "from": "nginx",
+            "from_full": "nginx:latest",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_buses": 0,
+    "discos": [],
+    "monitors": [],
+    "num_files": 2,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "https://github.com/repodevs/flask-microservices-users.git#master:project/db",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "users-db",
+                "image": "https://github.com/repodevs/flask-microservices-users.git#master:project/db",
+                "servers": [
+                    "flask"
+                ],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "./nginx/",
+                "depends_on": [
+                    "web-service",
+                    "users-service"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "name": "nginx",
+                "image": "./nginx/",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "['NODE_ENV=development', 'REACT_APP_USERS_SERVICE_URL=${REACT_APP_USERS_SERVICE_URL}']",
+                "depends_on": [
+                    "users-service"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "web-service",
+                "image": "['NODE_ENV=development', 'REACT_APP_USERS_SERVICE_URL=${REACT_APP_USERS_SERVICE_URL}']",
+                "servers": [
+                    "node"
+                ],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "https://github.com/repodevs/flask-microservices-users.git",
+                "depends_on": [
+                    "users-db"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "users-service",
+                "image": "https://github.com/repodevs/flask-microservices-users.git",
+                "servers": [
+                    "flask"
+                ],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 4,
+        "detected_dbs": {
+            "services": [],
+            "names": [],
+            "num": 0,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [],
+    "num_dbs": 0,
+    "avg_size_service": 10.0,
+    "num_services": 4,
+    "buses": [],
+    "files": [],
+    "url": "git://github.com/repodevs/flask-microservices-main.git",
+    "num_dockers": 1,
+    "size": 10,
+    "num_discos": 0,
+    "num_gates": 1
+}

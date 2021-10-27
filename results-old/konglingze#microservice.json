@@ -1,0 +1,376 @@
+{
+    "structure": {
+        "path": "/microservice/docker-compose.yml",
+        "services": [
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "message-service",
+                "dbs": [],
+                "depends_on": [],
+                "image": "message-service",
+                "image_full": "message-service:latest",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "user-service",
+                "dbs": [],
+                "depends_on": [],
+                "image": "user-service",
+                "image_full": "user-service:latest",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "user-edge-service",
+                "dbs": [],
+                "depends_on": [
+                    "user-service",
+                    "message-service"
+                ],
+                "image": "user-edge-service",
+                "image_full": "user-edge-service:latest",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "monitors": [],
+                "name": "api-gateway-zuul",
+                "dbs": [],
+                "depends_on": [
+                    "course-edge-service",
+                    "user-edge-service"
+                ],
+                "image": "api-gateway-zuul",
+                "image_full": "api-gateway-zuul:latest",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "course-service",
+                "dbs": [],
+                "depends_on": [
+                    "user-service"
+                ],
+                "image": "course-service",
+                "image_full": "course-service:latest",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "course-edge-service",
+                "dbs": [],
+                "depends_on": [
+                    "user-edge-service"
+                ],
+                "image": "course-edge-service",
+                "image_full": "course-edge-service:latest",
+                "discos": []
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "names": [],
+            "num": 0,
+            "services": [],
+            "shared_dbs": false
+        }
+    },
+    "discos": [
+        "thrift"
+    ],
+    "size": 400,
+    "num_gates": 1,
+    "num_langs": 2,
+    "servers": [
+        "spring"
+    ],
+    "gates": [
+        "zuul"
+    ],
+    "num_servers": 1,
+    "num_buses": 0,
+    "files": [
+        {
+            "servers": [],
+            "buses": [],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "monitors": [],
+            "discos": [
+                "thrift"
+            ],
+            "path": "/microservice/pom.xml",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "monitors": [],
+            "discos": [],
+            "path": "/microservice/api-gateway-zuul/pom.xml",
+            "dbs": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "thrift"
+            ],
+            "path": "/microservice/course-dubbo-service-api/pom.xml",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "thrift"
+            ],
+            "path": "/microservice/course-dubbo-service/pom.xml",
+            "dbs": [
+                "mysql"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "thrift"
+            ],
+            "path": "/microservice/message-thrift-service-api/pom.xml",
+            "dbs": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "thrift"
+            ],
+            "path": "/microservice/user-thrift-service-api/pom.xml",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/microservice/course-edge-service/pom.xml",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "thrift"
+            ],
+            "path": "/microservice/user-thrift-service/pom.xml",
+            "dbs": [
+                "mysql"
+            ]
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "thrift"
+            ],
+            "path": "/microservice/user-edge-service/pom.xml",
+            "dbs": [
+                "redis"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "thrift"
+            ],
+            "path": "/microservice/user-edge-service-client/pom.xml",
+            "dbs": []
+        }
+    ],
+    "num_dockers": 7,
+    "buses": [],
+    "languages": [
+        "java",
+        "python"
+    ],
+    "monitors": [],
+    "dbs": [
+        "mysql",
+        "redis"
+    ],
+    "num_monitors": 0,
+    "num_files": 18,
+    "num_dbs": 2,
+    "num_services": 6,
+    "images": [
+        "hub.mooc.com"
+    ],
+    "url": "git://github.com/konglingze/microservice.git",
+    "dockers": [
+        {
+            "cmd": "",
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/microservice/api-gateway-zuul/Dockerfile",
+            "cmd_keywords": [],
+            "keywords": [],
+            "from_full": "hub.mooc.com:8080/micro-service/openjdk:7-jre",
+            "gates": [],
+            "from": "hub.mooc.com",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/microservice/course-dubbo-service/Dockerfile",
+            "cmd_keywords": [],
+            "keywords": [],
+            "from_full": "hub.mooc.com:8080/micro-service/openjdk:7-jre",
+            "gates": [],
+            "from": "hub.mooc.com",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/microservice/course-edge-service/Dockerfile",
+            "cmd_keywords": [],
+            "keywords": [],
+            "from_full": "hub.mooc.com:8080/micro-service/openjdk:7-jre",
+            "gates": [],
+            "from": "hub.mooc.com",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/microservice/user-thrift-service/Dockerfile",
+            "cmd_keywords": [],
+            "keywords": [],
+            "from_full": "hub.mooc.com:8080/micro-service/openjdk:7-jre",
+            "gates": [],
+            "from": "hub.mooc.com",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/microservice/message-thrift-python-service/Dockerfile",
+            "cmd_keywords": [],
+            "keywords": [],
+            "from_full": "hub.mooc.com:8080/micro-service/python-base:latest",
+            "gates": [],
+            "from": "hub.mooc.com",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/microservice/user-edge-service/Dockerfile",
+            "cmd_keywords": [],
+            "keywords": [],
+            "from_full": "hub.mooc.com:8080/micro-service/openjdk:7-jre",
+            "gates": [],
+            "from": "hub.mooc.com",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/message-thrift-python-service/Dockerfile",
+            "cmd_keywords": [],
+            "keywords": [],
+            "from_full": "hub.mooc.com:8080/micro-service/python-base:latest",
+            "gates": [],
+            "from": "hub.mooc.com",
+            "langs": [],
+            "dbs": []
+        }
+    ],
+    "avg_size_service": 57.142857142857146,
+    "shared_dbs": false,
+    "num_discos": 1,
+    "langs": [
+        "java",
+        "python"
+    ],
+    "name": "konglingze/microservice"
+}

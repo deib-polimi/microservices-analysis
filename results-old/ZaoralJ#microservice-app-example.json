@@ -1,0 +1,326 @@
+{
+    "size": 269,
+    "num_discos": 0,
+    "num_services": 10,
+    "num_monitors": 2,
+    "num_langs": 1,
+    "dockers": [
+        {
+            "dbs": [],
+            "cmd": "",
+            "gates": [],
+            "from_full": "base",
+            "langs": [],
+            "keywords": [
+                "machinesqldataservice",
+                "dotnet",
+                "csproj",
+                "release",
+                "app"
+            ],
+            "path": "/src/MachineSqlDataService/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "from": "base",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "cmd": "",
+            "gates": [],
+            "from_full": "base",
+            "langs": [],
+            "keywords": [
+                "machineinfluxdataservice",
+                "dotnet",
+                "csproj",
+                "release",
+                "app"
+            ],
+            "path": "/src/MachineInfluxDataService/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "from": "base",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "cmd": "",
+            "gates": [],
+            "from_full": "base",
+            "langs": [],
+            "keywords": [
+                "machinecommandservice",
+                "dotnet",
+                "csproj",
+                "release",
+                "app"
+            ],
+            "path": "/src/MachineCommandService/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "from": "base",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "cmd": "",
+            "gates": [],
+            "from_full": "base",
+            "langs": [],
+            "keywords": [
+                "machinedataapi",
+                "dotnet",
+                "csproj",
+                "release",
+                "app"
+            ],
+            "path": "/src/MachineDataApi/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "from": "base",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "cmd": "",
+            "gates": [],
+            "from_full": "base",
+            "langs": [],
+            "keywords": [
+                "machinestatusservice",
+                "dotnet",
+                "csproj",
+                "release",
+                "app"
+            ],
+            "path": "/src/MachineStatusService/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "from": "base",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "cmd": "",
+            "gates": [],
+            "from_full": "base",
+            "langs": [],
+            "keywords": [
+                "machineservice",
+                "dotnet",
+                "csproj",
+                "release",
+                "app"
+            ],
+            "path": "/src/MachineService/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "from": "base",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        }
+    ],
+    "files": [],
+    "langs": [
+        "c#"
+    ],
+    "url": "git://github.com/ZaoralJ/microservice-app-example.git",
+    "buses": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "dbs": [],
+                "image_full": "zaoralj/test-app-mssql",
+                "image": "zaoralj/test-app-mssql",
+                "gates": [],
+                "name": "mssql",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "zaoralj/testapp-machine-data-api",
+                "image": "zaoralj/testapp-machine-data-api",
+                "gates": [],
+                "name": "machine-data-api",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [
+                    "influxdb"
+                ],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "zaoralj/testapp-machine-influx-data-service",
+                "image": "zaoralj/testapp-machine-influx-data-service",
+                "gates": [],
+                "name": "machine-influx-data-service",
+                "discos": [],
+                "monitors": [
+                    "influx"
+                ],
+                "servers": [],
+                "depends_on": [
+                    "rabbit",
+                    "influxdb"
+                ],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "zaoralj/testapp-nginx",
+                "image": "zaoralj/testapp-nginx",
+                "gates": [
+                    "nginx"
+                ],
+                "name": "nginx",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "zaoralj/testapp-machine-service",
+                "image": "zaoralj/testapp-machine-service",
+                "gates": [],
+                "name": "machine-service",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [
+                    "rabbit"
+                ],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "zaoralj/testapp-machine-command-service",
+                "image": "zaoralj/testapp-machine-command-service",
+                "gates": [],
+                "name": "machine-command-service",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [
+                    "rabbit"
+                ],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "zaoralj/testapp-rabbit",
+                "image": "zaoralj/testapp-rabbit",
+                "gates": [],
+                "name": "rabbit",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "zaoralj/testapp-machine-status-service",
+                "image": "zaoralj/testapp-machine-status-service",
+                "gates": [],
+                "name": "machine-status-service",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [
+                    "rabbit"
+                ],
+                "buses": []
+            },
+            {
+                "dbs": [
+                    "sql"
+                ],
+                "image_full": "zaoralj/testapp-machine-sql-data-service",
+                "image": "zaoralj/testapp-machine-sql-data-service",
+                "gates": [],
+                "name": "machine-sql-data-service",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [
+                    "rabbit",
+                    "mssql"
+                ],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "influxdb",
+                "image": "influxdb",
+                "gates": [],
+                "name": "influxdb",
+                "discos": [],
+                "monitors": [
+                    "influxdb"
+                ],
+                "servers": [],
+                "depends_on": [],
+                "buses": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [
+                "sql"
+            ],
+            "services": [
+                "machine-sql-data-service"
+            ],
+            "shared_dbs": false,
+            "num": 1
+        },
+        "num_services": 10,
+        "path": "/src/docker-compose.yml"
+    },
+    "name": "ZaoralJ/microservice-app-example",
+    "num_buses": 0,
+    "servers": [],
+    "num_files": 7,
+    "num_dbs": 1,
+    "num_gates": 1,
+    "gates": [
+        "nginx"
+    ],
+    "monitors": [
+        "influx",
+        "influxdb"
+    ],
+    "avg_size_service": 44.833333333333336,
+    "languages": [
+        "c#"
+    ],
+    "num_dockers": 6,
+    "dbs": [
+        "sql"
+    ],
+    "num_servers": 0,
+    "discos": [],
+    "images": [
+        "base"
+    ]
+}

@@ -1,0 +1,283 @@
+{
+    "gates": [
+        "zuul"
+    ],
+    "num_buses": 0,
+    "url": "git://github.com/stomer90/stm-project-demo.git",
+    "images": [
+        "openjdk"
+    ],
+    "avg_size_service": 154.5,
+    "num_langs": 1,
+    "num_monitors": 0,
+    "num_dockers": 4,
+    "num_discos": 1,
+    "num_servers": 1,
+    "buses": [],
+    "discos": [
+        "eureka"
+    ],
+    "dockers": [
+        {
+            "path": "/stm-account-service/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "openjdk:8-jdk-alpine",
+            "monitors": [],
+            "keywords": [
+                "app",
+                "jar",
+                "touch"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/stm-payment-service/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "openjdk:8-jdk-alpine",
+            "monitors": [],
+            "keywords": [
+                "app",
+                "jar",
+                "touch"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/stm-zuul-edgeservice/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "openjdk:8-jdk-alpine",
+            "monitors": [],
+            "keywords": [
+                "app",
+                "jar",
+                "touch"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/stm-eureka-server/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "openjdk:8-jdk-alpine",
+            "monitors": [],
+            "keywords": [
+                "app",
+                "jar",
+                "touch"
+            ],
+            "buses": []
+        }
+    ],
+    "size": 618,
+    "name": "stomer90/stm-project-demo",
+    "num_services": 4,
+    "dbs": [],
+    "shared_dbs": false,
+    "langs": [
+        "java"
+    ],
+    "languages": [
+        "java"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "num_files": 12,
+    "monitors": [],
+    "num_dbs": 0,
+    "num_gates": 1,
+    "files": [
+        {
+            "path": "/stm-account-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/stm-shop-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/stm-payment-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/stm-zuul-edgeservice/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [
+                "zuul"
+            ],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/stm-eureka-server/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/stm-user-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/stm-auth-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [],
+            "dbs": [],
+            "buses": []
+        }
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 4,
+        "detected_dbs": {
+            "services": [],
+            "num": 0,
+            "names": [],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "discos": [
+                    "eureka"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "stm-eureka-server-image:latest",
+                "name": "stm-eureka-server",
+                "gates": [],
+                "image": "stm-eureka-server-image",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "stm-eureka-server"
+                ],
+                "servers": [],
+                "image_full": "stm-payment-service-image:latest",
+                "name": "stm-payment-service",
+                "gates": [],
+                "image": "stm-payment-service-image",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "stm-eureka-server",
+                    "stm-account-service",
+                    "stm-payment-service"
+                ],
+                "servers": [],
+                "image_full": "stm-zuul-edgeservice-image:latest",
+                "name": "stm-zuul-edgeservice",
+                "gates": [
+                    "zuul"
+                ],
+                "image": "stm-zuul-edgeservice-image",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "stm-eureka-server"
+                ],
+                "servers": [],
+                "image_full": "stm-account-service-image:latest",
+                "name": "stm-account-service",
+                "gates": [],
+                "image": "stm-account-service-image",
+                "dbs": [],
+                "buses": []
+            }
+        ]
+    }
+}

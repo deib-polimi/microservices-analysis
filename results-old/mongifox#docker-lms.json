@@ -1,0 +1,218 @@
+{
+    "gates": [],
+    "num_buses": 0,
+    "url": "git://github.com/mongifox/docker-lms.git",
+    "images": [
+        "openjdk"
+    ],
+    "avg_size_service": 0.8,
+    "num_langs": 2,
+    "num_monitors": 0,
+    "num_dockers": 5,
+    "num_discos": 0,
+    "num_servers": 0,
+    "buses": [],
+    "discos": [],
+    "dockers": [
+        {
+            "path": "/service_master/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "openjdk:8-jre-slim",
+            "monitors": [],
+            "keywords": [],
+            "buses": []
+        },
+        {
+            "path": "/borrower_microservice/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "openjdk:8-jre-slim",
+            "monitors": [],
+            "keywords": [],
+            "buses": []
+        },
+        {
+            "path": "/librarian_microservice/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "openjdk:8-jre-slim",
+            "monitors": [],
+            "keywords": [],
+            "buses": []
+        },
+        {
+            "path": "/admin_microservice/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "openjdk:8-jre-slim",
+            "monitors": [],
+            "keywords": [],
+            "buses": []
+        },
+        {
+            "path": "/monitor/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "openjdk:8-jre-slim",
+            "monitors": [],
+            "keywords": [],
+            "buses": []
+        }
+    ],
+    "size": 4,
+    "name": "mongifox/docker-lms",
+    "num_services": 6,
+    "dbs": [
+        "mysql"
+    ],
+    "shared_dbs": true,
+    "langs": [
+        "dockerfile",
+        "shell"
+    ],
+    "languages": [
+        "dockerfile",
+        "shell"
+    ],
+    "servers": [],
+    "num_files": 6,
+    "monitors": [],
+    "num_dbs": 1,
+    "num_gates": 0,
+    "files": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 6,
+        "detected_dbs": {
+            "services": [
+                "db"
+            ],
+            "num": 1,
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": true
+        },
+        "services": [
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "gcit/monitor",
+                "name": "monitor",
+                "gates": [],
+                "image": "gcit/monitor",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "db",
+                    "monitor"
+                ],
+                "servers": [],
+                "image_full": "gcit/librarian_microservice",
+                "name": "librarian-microservice",
+                "gates": [],
+                "image": "gcit/librarian_microservice",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "db",
+                    "monitor"
+                ],
+                "servers": [],
+                "image_full": "gcit/borrower_microservice",
+                "name": "borrower-microservice",
+                "gates": [],
+                "image": "gcit/borrower_microservice",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "db",
+                    "monitor"
+                ],
+                "servers": [],
+                "image_full": "gcit/admin_microservice",
+                "name": "admin-microservice",
+                "gates": [],
+                "image": "gcit/admin_microservice",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "mysql:5.5",
+                "name": "db",
+                "gates": [],
+                "image": "mysql",
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "monitor",
+                    "admin-microservice",
+                    "librarian-microservice",
+                    "borrower-microservice"
+                ],
+                "servers": [],
+                "image_full": "gcit/service_master",
+                "name": "service-master",
+                "gates": [],
+                "image": "gcit/service_master",
+                "dbs": [],
+                "buses": []
+            }
+        ]
+    }
+}

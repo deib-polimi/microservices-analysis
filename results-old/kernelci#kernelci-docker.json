@@ -1,0 +1,258 @@
+{
+    "discos": [],
+    "avg_size_service": 684.25,
+    "buses": [],
+    "num_gates": 1,
+    "name": "kernelci/kernelci-docker",
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "mongo:4.2",
+                "image": "mongo",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "proxy",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "./proxy",
+                "image": "./proxy",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "frontend",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "./frontend",
+                "image": "./frontend",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "celery",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "./backend/",
+                "image": "./backend/",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "backend",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "./backend/",
+                "image": "./backend/",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "redis:3.2",
+                "image": "redis",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [
+                "mongo",
+                "redis"
+            ],
+            "num": 2,
+            "shared_dbs": false,
+            "services": [
+                "mongo",
+                "redis"
+            ]
+        },
+        "num_services": 6
+    },
+    "dbs": [
+        "mongo",
+        "redis"
+    ],
+    "dockers": [
+        {
+            "langs": [
+                "python"
+            ],
+            "cmd_keywords": [
+                "srv",
+                "entrypoint"
+            ],
+            "from_full": "bitnami/minideb:buster",
+            "buses": [],
+            "monitors": [],
+            "from": "bitnami/minideb",
+            "keywords": [
+                "install",
+                "mongodb",
+                "python",
+                "org",
+                "bitnami"
+            ],
+            "gates": [],
+            "path": "/backend/Dockerfile",
+            "dbs": [
+                "mongodb"
+            ],
+            "discos": [],
+            "cmd": "/srv/entrypoint.sh",
+            "servers": [
+                "node"
+            ]
+        },
+        {
+            "langs": [
+                "python"
+            ],
+            "cmd_keywords": [
+                "usr",
+                "bin",
+                "entrypoint"
+            ],
+            "from_full": "nginx:1.13-alpine",
+            "buses": [],
+            "monitors": [],
+            "from": "nginx",
+            "keywords": [
+                "kernelci",
+                "backend",
+                "git",
+                "nginx",
+                "pip"
+            ],
+            "gates": [
+                "nginx"
+            ],
+            "path": "/proxy/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "/usr/bin/entrypoint.sh",
+            "servers": [
+                "node"
+            ]
+        },
+        {
+            "langs": [
+                "python"
+            ],
+            "cmd_keywords": [
+                "out",
+                "input",
+                "output"
+            ],
+            "from_full": "python:3.5-alpine",
+            "buses": [],
+            "monitors": [],
+            "from": "python",
+            "keywords": [
+                "pip",
+                "install",
+                "pyyaml"
+            ],
+            "gates": [],
+            "path": "/search/bin/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "--input /in --output /out",
+            "servers": []
+        },
+        {
+            "langs": [
+                "python"
+            ],
+            "cmd_keywords": [
+                "srv",
+                "entrypoint"
+            ],
+            "from_full": "bitnami/minideb:buster",
+            "buses": [],
+            "monitors": [],
+            "from": "bitnami/minideb",
+            "keywords": [
+                "python",
+                "bitnami",
+                "tar",
+                "linux",
+                "tmp"
+            ],
+            "gates": [],
+            "path": "/frontend/Dockerfile",
+            "dbs": [
+                "redis"
+            ],
+            "discos": [],
+            "cmd": "/srv/entrypoint.sh",
+            "servers": [
+                "node"
+            ]
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "size": 2737,
+    "num_monitors": 0,
+    "images": [
+        "nginx",
+        "python",
+        "bitnami/minideb"
+    ],
+    "num_buses": 0,
+    "num_services": 6,
+    "servers": [
+        "node"
+    ],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_discos": 0,
+    "languages": [
+        "shell",
+        "python",
+        "dockerfile"
+    ],
+    "url": "git://github.com/kernelci/kernelci-docker.git",
+    "langs": [
+        "dockerfile",
+        "python",
+        "shell"
+    ],
+    "num_dbs": 2,
+    "num_servers": 1,
+    "num_langs": 3,
+    "files": [],
+    "num_dockers": 4,
+    "num_files": 5
+}

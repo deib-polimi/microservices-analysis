@@ -1,0 +1,293 @@
+{
+    "avg_size_service": 10.5,
+    "discos": [],
+    "images": [
+        "mysql",
+        "alpine",
+        "nginx",
+        "php"
+    ],
+    "num_dockers": 6,
+    "num_servers": 0,
+    "langs": [
+        "shell",
+        "php",
+        "dockerfile",
+        "bash"
+    ],
+    "languages": [
+        "shell",
+        "dockerfile"
+    ],
+    "num_services": 6,
+    "num_gates": 1,
+    "num_langs": 4,
+    "monitors": [],
+    "gates": [
+        "nginx"
+    ],
+    "servers": [],
+    "num_monitors": 0,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [
+                    "data",
+                    "data_mysql"
+                ],
+                "image": "./mysql/",
+                "image_full": "./mysql/",
+                "gates": [],
+                "name": "mysql",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "data",
+                    "mysql"
+                ],
+                "image": "./php-fpm/",
+                "image_full": "./php-fpm/",
+                "gates": [],
+                "name": "php-fpm",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "mysql"
+                ],
+                "image": "./docker-mysql-backup",
+                "image_full": "./docker-mysql-backup",
+                "gates": [],
+                "name": "backup",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "./data/",
+                "image_full": "./data/",
+                "gates": [],
+                "name": "data",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "php-fpm"
+                ],
+                "image": "./nginx/",
+                "image_full": "./nginx/",
+                "gates": [
+                    "nginx"
+                ],
+                "name": "nginx",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "./data_mysql/",
+                "image_full": "./data_mysql/",
+                "gates": [],
+                "name": "data_mysql",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "discos": []
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "names": [
+                "mysql"
+            ],
+            "num": 3,
+            "services": [
+                "mysql",
+                "backup",
+                "data_mysql"
+            ],
+            "shared_dbs": true
+        }
+    },
+    "size": 63,
+    "url": "git://github.com/next-modnavarro/ampache.git",
+    "num_buses": 0,
+    "shared_dbs": true,
+    "files": [],
+    "num_discos": 0,
+    "dockers": [
+        {
+            "path": "/data_mysql/Dockerfile",
+            "from_full": "alpine:3.7",
+            "from": "alpine",
+            "cmd": "",
+            "keywords": [
+                "apk",
+                "pip",
+                "mkdir",
+                "docker",
+                "var"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [
+                "bash"
+            ],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/nginx/Dockerfile",
+            "from_full": "nginx:1.10",
+            "from": "nginx",
+            "cmd": "",
+            "keywords": [
+                "conf",
+                "chmod",
+                "nginx",
+                "entrypoint",
+                "etc"
+            ],
+            "servers": [],
+            "gates": [
+                "nginx"
+            ],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/docker-mysql-backup/Dockerfile",
+            "from_full": "alpine:latest",
+            "from": "alpine",
+            "cmd": "",
+            "keywords": [
+                "apk",
+                "pip",
+                "var",
+                "del",
+                "python"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [
+                "bash"
+            ],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/mysql/Dockerfile",
+            "from_full": "mysql:5.7",
+            "from": "mysql",
+            "cmd": "",
+            "keywords": [],
+            "servers": [],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/data/Dockerfile",
+            "from_full": "php:5.6-fpm",
+            "from": "php",
+            "cmd": "",
+            "keywords": [
+                "apt",
+                "www",
+                "var",
+                "composer",
+                "ampache"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [
+                "php"
+            ],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/php-fpm/Dockerfile",
+            "from_full": "php:5.6-fpm",
+            "from": "php",
+            "cmd": "php-fpm",
+            "keywords": [
+                "apt",
+                "install",
+                "dir",
+                "dev",
+                "get"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [
+                "php"
+            ],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "php",
+                "fpm"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": []
+        }
+    ],
+    "name": "next-modnavarro/ampache",
+    "buses": [],
+    "num_files": 7,
+    "dbs": [
+        "mysql"
+    ],
+    "num_dbs": 1
+}

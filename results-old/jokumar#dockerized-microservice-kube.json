@@ -1,0 +1,312 @@
+{
+    "name": "jokumar/dockerized-microservice-kube",
+    "buses": [],
+    "images": [
+        "maven"
+    ],
+    "num_langs": 1,
+    "num_discos": 1,
+    "num_buses": 0,
+    "dockers": [
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "maven",
+            "cmd_keywords": [
+                "boot",
+                "run",
+                "mvn",
+                "spring"
+            ],
+            "from_full": "maven:3.5.4-jdk-8-slim",
+            "keywords": [],
+            "path": "/currency-conversion-service/Dockerfile",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "cmd": "mvn spring-boot:run"
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "maven",
+            "cmd_keywords": [
+                "boot",
+                "run",
+                "mvn",
+                "spring"
+            ],
+            "from_full": "maven:3.5.4-jdk-8-slim",
+            "keywords": [],
+            "path": "/zuul-api-gateway/Dockerfile",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "cmd": "mvn spring-boot:run"
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "maven",
+            "cmd_keywords": [
+                "boot",
+                "run",
+                "mvn",
+                "spring"
+            ],
+            "from_full": "maven:3.5.4-jdk-8-slim",
+            "keywords": [],
+            "path": "/currency-exchange-service/Dockerfile",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "cmd": "mvn spring-boot:run"
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "maven",
+            "cmd_keywords": [
+                "boot",
+                "run",
+                "mvn",
+                "spring"
+            ],
+            "from_full": "maven:3.5.4-jdk-8-slim",
+            "keywords": [],
+            "path": "/configserver/Dockerfile",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "cmd": "mvn spring-boot:run"
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "maven",
+            "cmd_keywords": [
+                "boot",
+                "run",
+                "mvn",
+                "spring"
+            ],
+            "from_full": "maven:3.5.4-jdk-8-slim",
+            "keywords": [],
+            "path": "/netflix-eureka-naming-server/Dockerfile",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "cmd": "mvn spring-boot:run"
+        }
+    ],
+    "monitors": [],
+    "dbs": [],
+    "structure": {
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "names": [],
+            "shared_dbs": false
+        },
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "monitors": [],
+                "name": "zuul-api-gateway",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "netflix-eureka-naming-server"
+                ],
+                "image": "joy1987/zuul-api-gateway",
+                "image_full": "joy1987/zuul-api-gateway",
+                "gates": [
+                    "zuul"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "netflix-eureka-naming-server",
+                "servers": [],
+                "discos": [
+                    "eureka"
+                ],
+                "buses": [],
+                "depends_on": [],
+                "image": "joy1987/netflix-eureka-naming-server",
+                "image_full": "joy1987/netflix-eureka-naming-server",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "currency-conversion-service",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "netflix-eureka-naming-server"
+                ],
+                "image": "joy1987/currency-conversion-service",
+                "image_full": "joy1987/currency-conversion-service",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "currency-exchange-service",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "netflix-eureka-naming-server"
+                ],
+                "image": "joy1987/currency-exchange-service",
+                "image_full": "joy1987/currency-exchange-service",
+                "gates": [],
+                "dbs": []
+            }
+        ],
+        "num_services": 4
+    },
+    "gates": [
+        "zuul"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "path": "/currency-conversion-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "path": "/limit-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "path": "/zuul-api-gateway/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "path": "/currency-exchange-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/configserver/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/configserver/target/classes/META-INF/maven/com.examples/configserver/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "path": "/netflix-eureka-naming-server/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": []
+        }
+    ],
+    "avg_size_service": 5329.4,
+    "langs": [
+        "java"
+    ],
+    "num_dbs": 0,
+    "num_services": 4,
+    "num_monitors": 0,
+    "size": 26647,
+    "languages": [
+        "java"
+    ],
+    "num_files": 13,
+    "num_gates": 1,
+    "num_dockers": 5,
+    "shared_dbs": false,
+    "servers": [
+        "spring"
+    ],
+    "num_servers": 1,
+    "url": "git://github.com/jokumar/dockerized-microservice-kube.git",
+    "discos": [
+        "eureka"
+    ]
+}

@@ -1,0 +1,150 @@
+{
+    "size": 53,
+    "shared_dbs": false,
+    "num_servers": 0,
+    "name": "panghostlin/Launcher",
+    "files": [],
+    "num_files": 1,
+    "num_langs": 3,
+    "dbs": [],
+    "servers": [],
+    "num_discos": 0,
+    "url": "git://github.com/panghostlin/Launcher.git",
+    "gates": [
+        "nginx"
+    ],
+    "structure": {
+        "services": [
+            {
+                "image": "certbot/certbot",
+                "dbs": [],
+                "image_full": "certbot/certbot",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "panghostlin-certbot",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "panghostlin-nginx"
+                ]
+            },
+            {
+                "image": "nginx",
+                "dbs": [],
+                "image_full": "nginx:latest",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "panghostlin-nginx",
+                "gates": [
+                    "nginx"
+                ],
+                "discos": [],
+                "depends_on": [
+                    "panghostlin-webapp",
+                    "panghostlin-proxy"
+                ]
+            },
+            {
+                "image": "./src/Members",
+                "dbs": [],
+                "image_full": "./src/Members",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "panghostlin-members",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "panghostlin-postgre"
+                ]
+            },
+            {
+                "image": "./src/Proxy",
+                "dbs": [],
+                "image_full": "./src/Proxy",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "panghostlin-proxy",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "panghostlin-members",
+                    "panghostlin-pictures"
+                ]
+            },
+            {
+                "image": "./src/Webapp",
+                "dbs": [],
+                "image_full": "./src/Webapp",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "panghostlin-webapp",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "panghostlin-proxy"
+                ]
+            },
+            {
+                "image": "postgres",
+                "dbs": [],
+                "image_full": "postgres",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "panghostlin-postgre",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "./src/Pictures",
+                "dbs": [],
+                "image_full": "./src/Pictures",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "panghostlin-pictures",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "panghostlin-postgre"
+                ]
+            }
+        ],
+        "num_services": 7,
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        },
+        "path": "/docker-compose.yml"
+    },
+    "num_gates": 1,
+    "num_dockers": 0,
+    "num_dbs": 0,
+    "num_services": 7,
+    "langs": [
+        "makefile",
+        "shell",
+        "go"
+    ],
+    "buses": [],
+    "num_buses": 0,
+    "num_monitors": 0,
+    "languages": [
+        "shell",
+        "go",
+        "makefile"
+    ],
+    "dockers": [],
+    "monitors": [],
+    "avg_size_service": 53.0,
+    "discos": [],
+    "images": []
+}

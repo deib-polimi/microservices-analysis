@@ -1,0 +1,380 @@
+{
+    "num_discos": 1,
+    "buses": [
+        "kafka",
+        "rabbitmq",
+        "amqp"
+    ],
+    "gates": [
+        "zuul"
+    ],
+    "num_servers": 1,
+    "num_gates": 1,
+    "num_dbs": 3,
+    "monitors": [],
+    "num_langs": 1,
+    "num_files": 14,
+    "structure": {
+        "services": [
+            {
+                "name": "eureka-server",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "chan01.vse.cz/mi-eureka-server",
+                "image_full": "chan01.vse.cz/mi-eureka-server:1.0.0",
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "api-customer-8070",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "chan01.vse.cz/mi-api-customer",
+                "image_full": "chan01.vse.cz/mi-api-customer:1.0.0",
+                "monitors": [],
+                "depends_on": [
+                    "eureka-zuul"
+                ]
+            },
+            {
+                "name": "eureka-zuul",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "chan01.vse.cz/mi-eureka-zuul",
+                "image_full": "chan01.vse.cz/mi-eureka-zuul:1.0.0",
+                "monitors": [],
+                "depends_on": [
+                    "eureka-server"
+                ]
+            },
+            {
+                "name": "mi-redis",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [
+                    "redis"
+                ],
+                "image": "redis",
+                "image_full": "redis",
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "api-document-8090",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "chan01.vse.cz/mi-api-document",
+                "image_full": "chan01.vse.cz/mi-api-document:1.0.0",
+                "monitors": [],
+                "depends_on": [
+                    "eureka-zuul"
+                ]
+            },
+            {
+                "name": "mi-rabbitmq",
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image": "rabbitmq",
+                "image_full": "rabbitmq:management",
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "api-contract-8081",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "chan01.vse.cz/mi-api-contract",
+                "image_full": "chan01.vse.cz/mi-api-contract:1.0.0",
+                "monitors": [],
+                "depends_on": [
+                    "eureka-zuul"
+                ]
+            },
+            {
+                "name": "api-contract-8080",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "chan01.vse.cz/mi-api-contract",
+                "image_full": "chan01.vse.cz/mi-api-contract:1.0.0",
+                "monitors": [],
+                "depends_on": [
+                    "eureka-zuul"
+                ]
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "names": [
+                "redis"
+            ],
+            "num": 1,
+            "services": [
+                "mi-redis"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 8
+    },
+    "servers": [
+        "spring"
+    ],
+    "shared_dbs": false,
+    "langs": [
+        "java"
+    ],
+    "dockers": [
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/Dockerfile",
+            "from": "alpine",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "java",
+                "jdk",
+                "add",
+                "apk",
+                "opt"
+            ],
+            "dbs": [
+                "sql"
+            ],
+            "gates": [],
+            "from_full": "alpine:3.8",
+            "langs": [
+                "java"
+            ]
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/api-document/Dockerfile",
+            "from": "alpine",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "java",
+                "apk",
+                "glibc",
+                "sgerrand",
+                "add"
+            ],
+            "dbs": [
+                "sql"
+            ],
+            "gates": [],
+            "from_full": "alpine:3.8",
+            "langs": [
+                "java"
+            ]
+        }
+    ],
+    "name": "Nikolas-Charalambidis/spring-cloud-microservices-integration",
+    "discos": [
+        "eureka"
+    ],
+    "avg_size_service": 123.0,
+    "num_monitors": 0,
+    "images": [
+        "alpine"
+    ],
+    "url": "git://github.com/Nikolas-Charalambidis/spring-cloud-microservices-integration.git",
+    "files": [
+        {
+            "discos": [
+                "eureka"
+            ],
+            "buses": [
+                "rabbitmq"
+            ],
+            "path": "/pom.xml",
+            "dbs": [
+                "redis"
+            ],
+            "gates": [
+                "zuul"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "buses": [],
+            "path": "/swagger/pom.xml",
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "path": "/eureka-server/pom.xml",
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "buses": [],
+            "path": "/api-contract/pom.xml",
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [
+                "eureka"
+            ],
+            "buses": [
+                "rabbitmq",
+                "amqp"
+            ],
+            "path": "/eureka-sidecar-rabbitmq/pom.xml",
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "buses": [
+                "kafka"
+            ],
+            "path": "/api-notification-email/pom.xml",
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "buses": [],
+            "path": "/api-customer/pom.xml",
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "buses": [
+                "kafka"
+            ],
+            "path": "/api-notification-sms/pom.xml",
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "buses": [
+                "amqp",
+                "kafka"
+            ],
+            "path": "/api-document/pom.xml",
+            "dbs": [
+                "mongodb",
+                "mongo"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "path": "/eureka-sidecar-redis/pom.xml",
+            "dbs": [
+                "redis"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "path": "/eureka-zuul/pom.xml",
+            "dbs": [],
+            "gates": [
+                "zuul"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        }
+    ],
+    "size": 246,
+    "languages": [
+        "java"
+    ],
+    "dbs": [
+        "sql",
+        "redis",
+        "mongo"
+    ],
+    "num_buses": 3,
+    "num_services": 8,
+    "num_dockers": 2
+}

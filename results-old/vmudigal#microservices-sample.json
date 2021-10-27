@@ -1,0 +1,445 @@
+{
+    "dbs": [
+        "solid",
+        "mysql",
+        "mongo"
+    ],
+    "num_dbs": 3,
+    "shared_dbs": false,
+    "name": "vmudigal/microservices-sample",
+    "num_buses": 2,
+    "num_monitors": 0,
+    "monitors": [],
+    "langs": [
+        "typescript",
+        "javascript",
+        "java",
+        "html"
+    ],
+    "gates": [
+        "zuul",
+        "nginx"
+    ],
+    "size": 7888,
+    "languages": [
+        "java",
+        "html",
+        "typescript",
+        "javascript"
+    ],
+    "num_langs": 4,
+    "structure": {
+        "path": "/build/docker/docker-compose.yml",
+        "services": [
+            {
+                "discos": [
+                    "consul"
+                ],
+                "servers": [],
+                "dbs": [],
+                "image": "consul",
+                "name": "consul3",
+                "depends_on": [
+                    "consul",
+                    "consul2"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "consul:1.7.3"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "image": "mongo",
+                "name": "service-one-db",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "mongo:3.7"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "logstash",
+                "name": "logstash",
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "logstash:7.7.0"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "rabbitmq",
+                "name": "rabbit",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "image_full": "rabbitmq:3.8-management-alpine"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "../../service-two/target",
+                "name": "service-two",
+                "depends_on": [
+                    "rabbit",
+                    "service-two-db",
+                    "consul",
+                    "logstash"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "../../service-two/target"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "nginx",
+                "name": "web-application",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "image_full": "nginx:1.18.0-alpine"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "kibana",
+                "name": "kibana",
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "kibana:7.7.0"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "../../api-gateway/target",
+                "name": "api-gateway",
+                "depends_on": [
+                    "consul",
+                    "logstash"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "image_full": "../../api-gateway/target"
+            },
+            {
+                "discos": [
+                    "consul"
+                ],
+                "servers": [],
+                "dbs": [],
+                "image": "consul",
+                "name": "consul",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "consul:1.7.3"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "image": "mysql/mysql-server",
+                "name": "service-two-db",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "mysql/mysql-server:5.7"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "elasticsearch",
+                "name": "elasticsearch",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "elasticsearch:7.7.0"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "../../service-one/target",
+                "name": "service-one",
+                "depends_on": [
+                    "rabbit",
+                    "service-one-db",
+                    "consul",
+                    "logstash"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "../../service-one/target"
+            },
+            {
+                "discos": [
+                    "consul"
+                ],
+                "servers": [],
+                "dbs": [],
+                "image": "consul",
+                "name": "consul2",
+                "depends_on": [
+                    "consul"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "consul:1.7.3"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "weaveworks/scope",
+                "name": "scope",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "weaveworks/scope:1.13.1"
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "service-one-db",
+                "service-two-db"
+            ],
+            "names": [
+                "mysql",
+                "mongo"
+            ],
+            "shared_dbs": false,
+            "num": 2
+        },
+        "num_services": 14
+    },
+    "servers": [
+        "spring",
+        "node"
+    ],
+    "num_servers": 2,
+    "num_files": 10,
+    "images": [
+        "openjdk",
+        "node"
+    ],
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "avg_size_service": 1972.0,
+    "num_services": 14,
+    "files": [
+        {
+            "path": "/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [
+                "gateway"
+            ],
+            "buses": [],
+            "dbs": [],
+            "discos": []
+        },
+        {
+            "path": "/api-gateway/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "buses": [],
+            "dbs": [],
+            "discos": [
+                "consul"
+            ]
+        },
+        {
+            "path": "/service-one/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [
+                "amqp"
+            ],
+            "dbs": [
+                "mongo",
+                "mongodb"
+            ],
+            "discos": [
+                "consul"
+            ]
+        },
+        {
+            "path": "/service-two/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [
+                "amqp"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "discos": [
+                "consul"
+            ]
+        },
+        {
+            "path": "/web-application/package.json",
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "dbs": [
+                "solid"
+            ],
+            "discos": []
+        }
+    ],
+    "num_dockers": 4,
+    "dockers": [
+        {
+            "cmd": "",
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "openjdk:8-jre-alpine",
+            "path": "/api-gateway/src/main/docker/Dockerfile",
+            "from": "openjdk",
+            "monitors": [],
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "touch",
+                "jar",
+                "app",
+                "bin"
+            ]
+        },
+        {
+            "cmd": "npm start",
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:12-alpine",
+            "path": "/web-application/docker/Dockerfile",
+            "from": "node",
+            "monitors": [],
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "discos": [],
+            "keywords": [
+                "install",
+                "mkdir",
+                "app",
+                "usr",
+                "src"
+            ]
+        },
+        {
+            "cmd": "",
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "openjdk:8-jre-alpine",
+            "path": "/service-one/src/main/docker/Dockerfile",
+            "from": "openjdk",
+            "monitors": [],
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "touch",
+                "jar",
+                "app",
+                "bin"
+            ]
+        },
+        {
+            "cmd": "",
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "openjdk:8-jre-alpine",
+            "path": "/service-two/src/main/docker/Dockerfile",
+            "from": "openjdk",
+            "monitors": [],
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "touch",
+                "jar",
+                "app",
+                "bin"
+            ]
+        }
+    ],
+    "num_discos": 1,
+    "discos": [
+        "consul"
+    ],
+    "num_gates": 2,
+    "url": "git://github.com/vmudigal/microservices-sample.git"
+}

@@ -1,0 +1,256 @@
+{
+    "name": "LamineNouha/Dockerizing-microservices",
+    "buses": [],
+    "images": [
+        "openjdk"
+    ],
+    "num_langs": 2,
+    "num_discos": 1,
+    "num_buses": 0,
+    "dockers": [
+        {
+            "discos": [],
+            "langs": [
+                "java"
+            ],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "openjdk",
+            "cmd_keywords": [
+                "jar",
+                "utf",
+                "security",
+                "file",
+                "djava"
+            ],
+            "from_full": "openjdk:8",
+            "keywords": [],
+            "path": "/discovery-service/Dockerfile",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "cmd": "sleep 60  && \\ java -Dfile.encoding=UTF-8 -Djava.security.egd=file:/dev/./urandom -jar /discovery-spring-boot.jar"
+        },
+        {
+            "discos": [],
+            "langs": [
+                "java"
+            ],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "openjdk",
+            "cmd_keywords": [
+                "jar",
+                "utf",
+                "security",
+                "file",
+                "proxy"
+            ],
+            "from_full": "openjdk:8",
+            "keywords": [],
+            "path": "/proxy-service/Dockerfile",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "cmd": "sleep 100  && \\ java -Dfile.encoding=UTF-8 -Djava.security.egd=file:/dev/./urandom -jar /proxy-spring-boot.jar"
+        },
+        {
+            "discos": [],
+            "langs": [
+                "java"
+            ],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "openjdk",
+            "cmd_keywords": [
+                "jar",
+                "utf",
+                "security",
+                "config",
+                "file"
+            ],
+            "from_full": "openjdk:8",
+            "keywords": [],
+            "path": "/config-service/Dockerfile",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "cmd": "java -Dfile.encoding=UTF-8 -Djava.security.egd=file:/dev/./urandom -jar /config-spring-boot.jar"
+        },
+        {
+            "discos": [],
+            "langs": [
+                "java"
+            ],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "openjdk",
+            "cmd_keywords": [
+                "jar",
+                "utf",
+                "security",
+                "file",
+                "djava"
+            ],
+            "from_full": "openjdk:8",
+            "keywords": [],
+            "path": "/product-service/Dockerfile",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "cmd": "sleep 30  && \\ java -Dfile.encoding=UTF-8 -Djava.security.egd=file:/dev/./urandom -jar /product-spring-boot.jar"
+        }
+    ],
+    "monitors": [],
+    "dbs": [],
+    "structure": {
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "names": [],
+            "shared_dbs": false
+        },
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "monitors": [],
+                "name": "config-spring-boot",
+                "servers": [
+                    "spring"
+                ],
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image": "config-spring-boot",
+                "image_full": "config-spring-boot",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "discovery-spring-boot",
+                "servers": [
+                    "spring"
+                ],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "config-spring-boot"
+                ],
+                "image": "discovery-spring-boot",
+                "image_full": "discovery-spring-boot",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "product-spring-boot",
+                "servers": [
+                    "spring"
+                ],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "config-spring-boot"
+                ],
+                "image": "product-spring-boot",
+                "image_full": "product-spring-boot",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "proxy-spring-boot",
+                "servers": [
+                    "spring"
+                ],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "config-spring-boot"
+                ],
+                "image": "product-spring-boot",
+                "image_full": "product-spring-boot",
+                "gates": [],
+                "dbs": []
+            }
+        ],
+        "num_services": 4
+    },
+    "gates": [],
+    "files": [
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "path": "/discovery-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": []
+        },
+        {
+            "path": "/proxy-service/pom.xml"
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/config-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "path": "/product-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": []
+        }
+    ],
+    "avg_size_service": 75.25,
+    "langs": [
+        "dockerfile",
+        "java"
+    ],
+    "num_dbs": 0,
+    "num_services": 4,
+    "num_monitors": 0,
+    "size": 301,
+    "languages": [
+        "java",
+        "dockerfile"
+    ],
+    "num_files": 9,
+    "num_gates": 0,
+    "num_dockers": 4,
+    "shared_dbs": false,
+    "servers": [
+        "spring"
+    ],
+    "num_servers": 1,
+    "url": "git://github.com/LamineNouha/Dockerizing-microservices.git",
+    "discos": [
+        "eureka"
+    ]
+}

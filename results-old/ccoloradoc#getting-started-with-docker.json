@@ -1,0 +1,203 @@
+{
+    "servers": [
+        "node",
+        "express",
+        "mongoose"
+    ],
+    "name": "ccoloradoc/getting-started-with-docker",
+    "num_gates": 1,
+    "avg_size_service": 97.66666666666667,
+    "structure": {
+        "services": [
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "gettingstarteddocker_web:latest",
+                "servers": [],
+                "depends_on": [],
+                "name": "web",
+                "dbs": [],
+                "image": "gettingstarteddocker_web",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "gettingstarteddocker_microservice:latest",
+                "servers": [],
+                "depends_on": [
+                    "mongo"
+                ],
+                "name": "microservice",
+                "dbs": [],
+                "image": "gettingstarteddocker_microservice",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "mongo:latest",
+                "servers": [],
+                "depends_on": [],
+                "name": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "image": "mongo",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [
+                    "nginx"
+                ],
+                "buses": [],
+                "image_full": "./nginx",
+                "servers": [],
+                "depends_on": [
+                    "web",
+                    "microservice"
+                ],
+                "name": "gateway",
+                "dbs": [],
+                "image": "./nginx",
+                "monitors": [],
+                "discos": []
+            }
+        ],
+        "num_services": 4,
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "mongo"
+            ],
+            "services": [
+                "mongo"
+            ],
+            "shared_dbs": false
+        }
+    },
+    "num_dbs": 1,
+    "buses": [],
+    "langs": [
+        "javascript",
+        "html"
+    ],
+    "shared_dbs": false,
+    "files": [
+        {
+            "gates": [],
+            "buses": [],
+            "path": "/microservice/package.json",
+            "servers": [
+                "node",
+                "express",
+                "mongoose"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "size": 293,
+    "num_dockers": 3,
+    "url": "git://github.com/ccoloradoc/getting-started-with-docker.git",
+    "gates": [
+        "nginx"
+    ],
+    "num_servers": 3,
+    "images": [
+        "node",
+        "nginx"
+    ],
+    "num_services": 4,
+    "languages": [
+        "javascript",
+        "html"
+    ],
+    "num_files": 5,
+    "discos": [],
+    "dockers": [
+        {
+            "gates": [
+                "nginx"
+            ],
+            "from_full": "nginx",
+            "cmd_keywords": [],
+            "path": "/nginx/Dockerfile",
+            "servers": [],
+            "cmd": "",
+            "from": "nginx",
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "monitors": [],
+            "keywords": [
+                "nginx",
+                "conf",
+                "etc"
+            ]
+        },
+        {
+            "gates": [],
+            "from_full": "node:alpine",
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "path": "/microservice/Dockerfile",
+            "servers": [
+                "node"
+            ],
+            "cmd": "npm start",
+            "from": "node",
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "monitors": [],
+            "keywords": [
+                "mkdir",
+                "microservice"
+            ]
+        },
+        {
+            "gates": [
+                "nginx"
+            ],
+            "from_full": "nginx",
+            "cmd_keywords": [
+                "nginx",
+                "daemon",
+                "off"
+            ],
+            "path": "/web/Dockerfile",
+            "servers": [],
+            "cmd": "nginx -g \"daemon off;\"",
+            "from": "nginx",
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "monitors": [],
+            "keywords": [
+                "mkdir",
+                "var",
+                "portal",
+                "www"
+            ]
+        }
+    ],
+    "num_langs": 2,
+    "num_monitors": 0,
+    "num_buses": 0,
+    "dbs": [
+        "mongo"
+    ],
+    "monitors": [],
+    "num_discos": 0
+}

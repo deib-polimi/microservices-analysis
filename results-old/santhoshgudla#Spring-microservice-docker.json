@@ -1,0 +1,213 @@
+{
+    "avg_size_service": 353.0,
+    "buses": [],
+    "num_dbs": 2,
+    "files": [
+        {
+            "path": "/gateway-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "redis",
+                "mysql"
+            ],
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "gateway"
+            ]
+        },
+        {
+            "path": "/config-server/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": []
+        },
+        {
+            "path": "/security-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "redis",
+                "mysql"
+            ],
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": []
+        },
+        {
+            "path": "/eureka-serivce/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": []
+        }
+    ],
+    "num_dockers": 0,
+    "num_langs": 1,
+    "num_servers": 1,
+    "num_buses": 0,
+    "num_discos": 1,
+    "gates": [
+        "gateway"
+    ],
+    "images": [],
+    "size": 353,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 6,
+        "services": [
+            {
+                "buses": [],
+                "name": "eureka-server",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "sandocker1206/blog-eureka-service",
+                "image_full": "sandocker1206/blog-eureka-service",
+                "discos": [
+                    "eureka"
+                ],
+                "gates": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "name": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "monitors": [],
+                "servers": [],
+                "image": "redis",
+                "image_full": "redis:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "name": "gateway-service",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "sandocker1206/blog-gateway-service",
+                "image_full": "sandocker1206/blog-gateway-service",
+                "discos": [],
+                "gates": [
+                    "gateway"
+                ],
+                "depends_on": [
+                    "db",
+                    "eureka-server",
+                    "config-server",
+                    "security-service",
+                    "redis"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "db",
+                "dbs": [
+                    "mysql"
+                ],
+                "monitors": [],
+                "servers": [],
+                "image": "mysql",
+                "image_full": "mysql:5.7",
+                "discos": [],
+                "gates": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "name": "security-service",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "sandocker1206/blog-security-service",
+                "image_full": "sandocker1206/blog-security-service",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "db",
+                    "eureka-server",
+                    "config-server",
+                    "redis"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "config-server",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "sandocker1206/blog-config-server",
+                "image_full": "sandocker1206/blog-config-server",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "eureka-server"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": true,
+            "num": 2,
+            "names": [
+                "redis",
+                "mysql"
+            ],
+            "services": [
+                "redis",
+                "db"
+            ]
+        }
+    },
+    "num_files": 5,
+    "servers": [
+        "spring"
+    ],
+    "url": "git://github.com/santhoshgudla/Spring-microservice-docker.git",
+    "dbs": [
+        "redis",
+        "mysql"
+    ],
+    "monitors": [],
+    "dockers": [],
+    "languages": [
+        "java"
+    ],
+    "num_services": 6,
+    "num_gates": 1,
+    "name": "santhoshgudla/Spring-microservice-docker",
+    "shared_dbs": true,
+    "langs": [
+        "java"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "num_monitors": 0
+}

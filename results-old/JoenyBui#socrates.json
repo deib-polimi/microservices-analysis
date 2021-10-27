@@ -1,0 +1,371 @@
+{
+    "size": 2955,
+    "num_dockers": 7,
+    "discos": [
+        "zookeeper"
+    ],
+    "num_files": 9,
+    "avg_size_service": 422.14285714285717,
+    "buses": [
+        "kafka"
+    ],
+    "num_gates": 1,
+    "langs": [
+        "python",
+        "javascript",
+        "css",
+        "bash"
+    ],
+    "num_discos": 1,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "supervisord -n",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "supervisord"
+            ],
+            "from": "python",
+            "path": "/src/plato/Dockerfile",
+            "keywords": [
+                "install",
+                "pip",
+                "get",
+                "apt",
+                "pipenv"
+            ],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "python:3.7"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "boxfuse/flyway",
+            "path": "/src/flyway/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "boxfuse/flyway"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "tutum/nginx",
+            "path": "/src/nginx/Dockerfile",
+            "keywords": [
+                "default",
+                "sites",
+                "enabled",
+                "nginx",
+                "etc"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "from_full": "tutum/nginx"
+        },
+        {
+            "monitors": [],
+            "cmd": "node server.js",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "cmd_keywords": [
+                "node",
+                "server"
+            ],
+            "from": "node",
+            "path": "/src/node/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "node:6.14.2"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "postgres",
+            "path": "/src/db/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "postgres:9.6-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "start-kafka.sh",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "kafka",
+                "start"
+            ],
+            "from": "openjdk",
+            "path": "/src/kafka/Dockerfile",
+            "keywords": [
+                "version",
+                "tmp",
+                "kafka",
+                "glibc",
+                "apk"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "langs": [
+                "bash"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8u181-jre-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "python /app.py",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "app",
+                "python"
+            ],
+            "from": "python",
+            "path": "/src/app/Dockerfile",
+            "keywords": [
+                "install",
+                "requirements",
+                "txt",
+                "pip"
+            ],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "python:3.6.3"
+        }
+    ],
+    "num_dbs": 2,
+    "monitors": [],
+    "shared_dbs": true,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [
+                    "kafka"
+                ],
+                "image": "./src/kafka",
+                "image_full": "./src/kafka",
+                "discos": [],
+                "name": "kafka",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./src/plato",
+                "image_full": "./src/plato",
+                "discos": [],
+                "name": "plato",
+                "depends_on": [
+                    "redis",
+                    "postgres",
+                    "flyway"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "redis",
+                "image_full": "redis:3.2-alpine",
+                "discos": [],
+                "name": "redis",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./src/db",
+                "image_full": "./src/db",
+                "discos": [],
+                "name": "postgres",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./src/app",
+                "image_full": "./src/app",
+                "discos": [],
+                "name": "app",
+                "depends_on": [
+                    "redis",
+                    "postgres",
+                    "flyway"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./src/nginx",
+                "image_full": "./src/nginx",
+                "discos": [],
+                "name": "plato-nginx",
+                "depends_on": [
+                    "plato"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": [
+                    "nginx"
+                ]
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./src/node",
+                "image_full": "./src/node",
+                "discos": [],
+                "name": "node",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [
+                    "node"
+                ],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./src/flyway",
+                "image_full": "./src/flyway",
+                "discos": [],
+                "name": "flyway",
+                "depends_on": [
+                    "postgres"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "wurstmeister/zookeeper",
+                "image_full": "wurstmeister/zookeeper",
+                "discos": [
+                    "zookeeper"
+                ],
+                "name": "zookeeper",
+                "depends_on": [],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 2,
+            "names": [
+                "redis",
+                "zookeeper"
+            ],
+            "services": [
+                "redis",
+                "zookeeper"
+            ],
+            "shared_dbs": true
+        },
+        "num_services": 9,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 1,
+    "servers": [
+        "node",
+        "flask"
+    ],
+    "url": "git://github.com/JoenyBui/socrates.git",
+    "num_services": 9,
+    "gates": [
+        "nginx"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [
+                "redis"
+            ],
+            "servers": [
+                "flask"
+            ],
+            "path": "/src/app/requirements.txt"
+        }
+    ],
+    "name": "JoenyBui/socrates",
+    "languages": [
+        "javascript",
+        "css"
+    ],
+    "images": [
+        "boxfuse/flyway",
+        "postgres",
+        "tutum/nginx",
+        "node",
+        "openjdk",
+        "python"
+    ],
+    "dbs": [
+        "redis",
+        "zookeeper"
+    ],
+    "num_servers": 2,
+    "num_langs": 4
+}

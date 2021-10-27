@@ -1,0 +1,426 @@
+{
+    "name": "kbastani/event-sourcing-microservices-example",
+    "buses": [
+        "kafka"
+    ],
+    "images": [
+        "openjdk"
+    ],
+    "num_langs": 1,
+    "num_discos": 2,
+    "num_buses": 1,
+    "dockers": [
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "openjdk",
+            "cmd_keywords": [
+                "jar",
+                "event",
+                "basics",
+                "microservices",
+                "sourcing"
+            ],
+            "from_full": "openjdk:8-alpine",
+            "keywords": [
+                "dumb",
+                "init",
+                "usr",
+                "bin",
+                "local"
+            ],
+            "path": "/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": "-jar event-sourcing-microservices-basics.jar"
+        },
+        {
+            "discos": [],
+            "langs": [
+                "java"
+            ],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "openjdk",
+            "cmd_keywords": [
+                "usr",
+                "myservice",
+                "jar",
+                "bin",
+                "share"
+            ],
+            "from_full": "openjdk:11.0.1-jre-slim-sid",
+            "keywords": [],
+            "path": "/friend-service/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": "/usr/bin/java -jar /usr/share/myservice/myservice.jar"
+        },
+        {
+            "discos": [],
+            "langs": [
+                "java"
+            ],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "openjdk",
+            "cmd_keywords": [
+                "usr",
+                "myservice",
+                "jar",
+                "bin",
+                "share"
+            ],
+            "from_full": "openjdk:11.0.1-jre-slim-sid",
+            "keywords": [],
+            "path": "/user-service/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": "/usr/bin/java -jar /usr/share/myservice/myservice.jar"
+        },
+        {
+            "discos": [],
+            "langs": [
+                "java"
+            ],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "openjdk",
+            "cmd_keywords": [
+                "usr",
+                "myservice",
+                "jar",
+                "bin",
+                "share"
+            ],
+            "from_full": "openjdk:11.0.1-jre-slim-sid",
+            "keywords": [],
+            "path": "/edge-service/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": "/usr/bin/java -jar /usr/share/myservice/myservice.jar"
+        },
+        {
+            "discos": [],
+            "langs": [
+                "java"
+            ],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "openjdk",
+            "cmd_keywords": [
+                "usr",
+                "myservice",
+                "jar",
+                "bin",
+                "share"
+            ],
+            "from_full": "openjdk:11.0.1-jre-slim-sid",
+            "keywords": [],
+            "path": "/discovery-service/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": "/usr/bin/java -jar /usr/share/myservice/myservice.jar"
+        },
+        {
+            "discos": [],
+            "langs": [
+                "java"
+            ],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "openjdk",
+            "cmd_keywords": [
+                "usr",
+                "myservice",
+                "jar",
+                "bin",
+                "share"
+            ],
+            "from_full": "openjdk:11.0.1-jre-slim-sid",
+            "keywords": [],
+            "path": "/recommendation-service/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": "/usr/bin/java -jar /usr/share/myservice/myservice.jar"
+        }
+    ],
+    "monitors": [
+        "prometheus"
+    ],
+    "dbs": [
+        "zookeeper",
+        "postgresql"
+    ],
+    "structure": {
+        "detected_dbs": {
+            "num": 1,
+            "services": [
+                "zookeeper"
+            ],
+            "names": [
+                "zookeeper"
+            ],
+            "shared_dbs": false
+        },
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "monitors": [],
+                "name": "discovery-service",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image": "hyperskale/discovery-service",
+                "image_full": "hyperskale/discovery-service:0.0.1-SNAPSHOT",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "edge-service",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image": "hyperskale/edge-service",
+                "image_full": "hyperskale/edge-service:0.0.1-SNAPSHOT",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "zookeeper",
+                "servers": [],
+                "discos": [
+                    "zookeeper"
+                ],
+                "buses": [],
+                "depends_on": [],
+                "image": "confluentinc/cp-zookeeper",
+                "image_full": "confluentinc/cp-zookeeper:latest",
+                "gates": [],
+                "dbs": [
+                    "zookeeper"
+                ]
+            },
+            {
+                "monitors": [],
+                "name": "kafka",
+                "servers": [],
+                "discos": [],
+                "buses": [
+                    "kafka"
+                ],
+                "depends_on": [],
+                "image": "confluentinc/cp-kafka",
+                "image_full": "confluentinc/cp-kafka:latest",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "user-service",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image": "hyperskale/user-service",
+                "image_full": "hyperskale/user-service:0.0.2-SNAPSHOT",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "neo4j",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image": "neo4j",
+                "image_full": "neo4j:3.5.0",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "user-db",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image": "postgres",
+                "image_full": "postgres:latest",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "friend-db",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image": "postgres",
+                "image_full": "postgres:latest",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "recommendation-service",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image": "hyperskale/recommendation-service",
+                "image_full": "hyperskale/recommendation-service:0.0.1-SNAPSHOT",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "friend-service",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image": "hyperskale/friend-service",
+                "image_full": "hyperskale/friend-service:0.0.2-SNAPSHOT",
+                "gates": [],
+                "dbs": []
+            }
+        ],
+        "num_services": 10
+    },
+    "gates": [
+        "gateway"
+    ],
+    "files": [
+        {
+            "monitors": [
+                "prometheus"
+            ],
+            "discos": [],
+            "buses": [],
+            "path": "/pom.xml",
+            "servers": [
+                "glassfish",
+                "spring"
+            ],
+            "gates": [],
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "path": "/friend-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": [
+                "postgresql"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "path": "/user-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": [
+                "postgresql"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "path": "/edge-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "gates": [
+                "gateway"
+            ],
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "path": "/discovery-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "path": "/recommendation-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": []
+        }
+    ],
+    "avg_size_service": 69.33333333333333,
+    "langs": [
+        "java"
+    ],
+    "num_dbs": 2,
+    "num_services": 10,
+    "num_monitors": 1,
+    "size": 416,
+    "languages": [
+        "java"
+    ],
+    "num_files": 13,
+    "num_gates": 1,
+    "num_dockers": 6,
+    "shared_dbs": false,
+    "servers": [
+        "spring",
+        "glassfish"
+    ],
+    "num_servers": 2,
+    "url": "git://github.com/kbastani/event-sourcing-microservices-example.git",
+    "discos": [
+        "eureka",
+        "zookeeper"
+    ]
+}

@@ -1,0 +1,328 @@
+{
+    "gates": [
+        "zuul"
+    ],
+    "num_buses": 1,
+    "url": "git://github.com/CDCgov/fdns-ms-gateway.git",
+    "images": [
+        "openjdk"
+    ],
+    "avg_size_service": 56.0,
+    "num_langs": 2,
+    "num_monitors": 1,
+    "num_dockers": 1,
+    "num_discos": 1,
+    "num_servers": 1,
+    "buses": [
+        "kafka"
+    ],
+    "discos": [
+        "zookeeper"
+    ],
+    "dockers": [
+        {
+            "path": "/Dockerfile",
+            "cmd_keywords": [
+                "run",
+                "home"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "langs": [],
+            "servers": [],
+            "cmd": "/home/run.sh",
+            "from_full": "openjdk:8-jre-alpine",
+            "monitors": [],
+            "keywords": [
+                "keystore",
+                "run",
+                "home",
+                "apk",
+                "tmp"
+            ],
+            "buses": []
+        }
+    ],
+    "size": 56,
+    "name": "CDCgov/fdns-ms-gateway",
+    "num_services": 15,
+    "dbs": [
+        "zookeeper",
+        "foundation",
+        "mongo"
+    ],
+    "shared_dbs": false,
+    "langs": [
+        "java",
+        "html"
+    ],
+    "languages": [
+        "html",
+        "java"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "num_files": 3,
+    "monitors": [
+        "fluentd"
+    ],
+    "num_dbs": 3,
+    "num_gates": 1,
+    "files": [
+        {
+            "path": "/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "dbs": [
+                "foundation"
+            ],
+            "buses": []
+        }
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 15,
+        "detected_dbs": {
+            "services": [
+                "zookeeper",
+                "mongo"
+            ],
+            "num": 2,
+            "names": [
+                "zookeeper",
+                "mongo"
+            ],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "discos": [
+                    "zookeeper"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "confluentinc/cp-zookeeper:3.2.0",
+                "name": "zookeeper",
+                "gates": [],
+                "image": "confluentinc/cp-zookeeper",
+                "dbs": [
+                    "zookeeper"
+                ],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "mongo",
+                "name": "mongo",
+                "gates": [],
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [
+                    "fluentd"
+                ],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "fluent/fluentd",
+                "name": "fluentd",
+                "gates": [],
+                "image": "fluent/fluentd",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:5.3.0",
+                "name": "elastic",
+                "gates": [],
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "minio/minio",
+                "name": "minio",
+                "gates": [],
+                "image": "minio/minio",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "fluentd",
+                    "minio"
+                ],
+                "servers": [],
+                "image_full": "cdcgov/fdns-ms-storage",
+                "name": "fdns-ms-storage",
+                "gates": [],
+                "image": "cdcgov/fdns-ms-storage",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "fluentd",
+                    "fdns-ms-object"
+                ],
+                "servers": [],
+                "image_full": "cdcgov/fdns-ms-combiner",
+                "name": "fdns-ms-combiner",
+                "gates": [],
+                "image": "cdcgov/fdns-ms-combiner",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "fluentd"
+                ],
+                "servers": [],
+                "image_full": "cdcgov/fdns-ms-cda-utils",
+                "name": "fdns-ms-cda-utils",
+                "gates": [],
+                "image": "cdcgov/fdns-ms-cda-utils",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "fluentd",
+                    "kafka",
+                    "fdns-ms-combiner",
+                    "fdns-ms-object"
+                ],
+                "servers": [],
+                "image_full": "cdcgov/fdns-ms-reporting",
+                "name": "fdns-ms-reporting",
+                "gates": [],
+                "image": "cdcgov/fdns-ms-reporting",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "fluentd"
+                ],
+                "servers": [],
+                "image_full": "cdcgov/fdns-ms-msft-utils",
+                "name": "fdns-ms-msft-utils",
+                "gates": [],
+                "image": "cdcgov/fdns-ms-msft-utils",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "confluentinc/cp-kafka:3.2.0",
+                "name": "kafka",
+                "gates": [],
+                "image": "confluentinc/cp-kafka",
+                "dbs": [],
+                "buses": [
+                    "kafka"
+                ]
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "fluentd",
+                    "fdns-ms-object"
+                ],
+                "servers": [],
+                "image_full": "cdcgov/fdns-ms-rules",
+                "name": "fdns-ms-rules",
+                "gates": [],
+                "image": "cdcgov/fdns-ms-rules",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "fluentd",
+                    "fdns-ms-object"
+                ],
+                "servers": [],
+                "image_full": "cdcgov/fdns-ms-hl7-utils",
+                "name": "fdns-ms-hl7-utils",
+                "gates": [],
+                "image": "cdcgov/fdns-ms-hl7-utils",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "fluentd",
+                    "elastic",
+                    "fdns-ms-object"
+                ],
+                "servers": [],
+                "image_full": "cdcgov/fdns-ms-indexing",
+                "name": "fdns-ms-indexing",
+                "gates": [],
+                "image": "cdcgov/fdns-ms-indexing",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "fluentd",
+                    "mongo"
+                ],
+                "servers": [],
+                "image_full": "cdcgov/fdns-ms-object",
+                "name": "fdns-ms-object",
+                "gates": [],
+                "image": "cdcgov/fdns-ms-object",
+                "dbs": [],
+                "buses": []
+            }
+        ]
+    }
+}

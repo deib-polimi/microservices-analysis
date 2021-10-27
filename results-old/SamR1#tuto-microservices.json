@@ -1,0 +1,203 @@
+{
+    "dbs": [],
+    "name": "SamR1/tuto-microservices",
+    "num_langs": 2,
+    "languages": [
+        "python",
+        "javascript"
+    ],
+    "shared_dbs": false,
+    "servers": [
+        "node",
+        "flask"
+    ],
+    "langs": [
+        "javascript",
+        "python"
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "pushstate",
+                "server",
+                "build"
+            ],
+            "discos": [],
+            "cmd": "pushstate-server build",
+            "path": "/flask-microservices-client/Dockerfile",
+            "from_full": "node:latest",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "keywords": [
+                "npm",
+                "install",
+                "silent",
+                "run",
+                "server"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "runserver",
+                "manage",
+                "python"
+            ],
+            "discos": [],
+            "cmd": "python manage.py runserver -h 0.0.0.0",
+            "path": "/flask-microservices-users/Dockerfile",
+            "from_full": "python:3.6.1",
+            "gates": [],
+            "from": "python",
+            "langs": [
+                "python"
+            ],
+            "keywords": [
+                "install",
+                "get",
+                "apt",
+                "yqq",
+                "netcat"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/flask-microservices-users/project/db/Dockerfile",
+            "from_full": "postgres",
+            "gates": [],
+            "from": "postgres",
+            "langs": [],
+            "keywords": []
+        }
+    ],
+    "gates": [],
+    "size": 606,
+    "num_dockers": 3,
+    "num_discos": 0,
+    "num_buses": 0,
+    "buses": [],
+    "images": [
+        "node",
+        "postgres",
+        "python"
+    ],
+    "num_servers": 2,
+    "num_services": 3,
+    "monitors": [],
+    "structure": {
+        "services": [
+            {
+                "buses": [],
+                "image": "https://github.com/SamR1/tuto-microservices.git#master:flask-microservices-users/project/db",
+                "dbs": [],
+                "gates": [],
+                "image_full": "https://github.com/SamR1/tuto-microservices.git#master:flask-microservices-users/project/db",
+                "monitors": [],
+                "name": "users-db",
+                "discos": [],
+                "servers": [
+                    "flask"
+                ],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "['NODE_ENV=development', 'REACT_APP_USERS_SERVICE_URL=${REACT_APP_USERS_SERVICE_URL}']",
+                "dbs": [],
+                "gates": [],
+                "image_full": "['NODE_ENV=development', 'REACT_APP_USERS_SERVICE_URL=${REACT_APP_USERS_SERVICE_URL}']",
+                "monitors": [],
+                "name": "web-service",
+                "discos": [],
+                "servers": [
+                    "node"
+                ],
+                "depends_on": [
+                    "users-service"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "https://github.com/SamR1/tuto-microservices.git#master:flask-microservices-users/",
+                "dbs": [],
+                "gates": [],
+                "image_full": "https://github.com/SamR1/tuto-microservices.git#master:flask-microservices-users/",
+                "monitors": [],
+                "name": "users-service",
+                "discos": [],
+                "servers": [
+                    "flask"
+                ],
+                "depends_on": [
+                    "users-db"
+                ]
+            }
+        ],
+        "num_services": 3,
+        "detected_dbs": {
+            "num": 0,
+            "shared_dbs": false,
+            "names": [],
+            "services": []
+        },
+        "path": "/flask-microservices-main/docker-compose.yml"
+    },
+    "discos": [],
+    "num_files": 7,
+    "num_dbs": 0,
+    "num_monitors": 0,
+    "num_gates": 0,
+    "url": "git://github.com/SamR1/tuto-microservices.git",
+    "avg_size_service": 202.0,
+    "files": [
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/flask-microservices-users/requirements.txt"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/flask-microservices-client/package.json"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/flask-microservices-main/package.json"
+        }
+    ]
+}

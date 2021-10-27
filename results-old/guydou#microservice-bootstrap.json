@@ -1,0 +1,200 @@
+{
+    "dbs": [
+        "mongo"
+    ],
+    "num_dbs": 1,
+    "shared_dbs": false,
+    "name": "guydou/microservice-bootstrap",
+    "num_buses": 0,
+    "num_monitors": 0,
+    "monitors": [],
+    "langs": [
+        "css",
+        "javascript",
+        "html"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "size": 19,
+    "languages": [
+        "javascript",
+        "html",
+        "css"
+    ],
+    "num_langs": 3,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "user_service",
+                "name": "user_service",
+                "depends_on": [
+                    "user_storage"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "user_service"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "nginx",
+                "name": "reverse_proxy",
+                "depends_on": [
+                    "user_service",
+                    "website"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "image_full": "nginx"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "image": "mongo",
+                "name": "user_storage",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "mongo"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "website",
+                "name": "website",
+                "depends_on": [
+                    "user_service"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "website"
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "user_storage"
+            ],
+            "names": [
+                "mongo"
+            ],
+            "shared_dbs": false,
+            "num": 1
+        },
+        "num_services": 4
+    },
+    "servers": [
+        "mongoose",
+        "node",
+        "express"
+    ],
+    "num_servers": 3,
+    "num_files": 5,
+    "images": [
+        "node"
+    ],
+    "buses": [],
+    "avg_size_service": 9.5,
+    "num_services": 4,
+    "files": [
+        {
+            "path": "/website/package.json",
+            "servers": [
+                "node",
+                "express"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "discos": []
+        },
+        {
+            "path": "/user_service/package.json",
+            "servers": [
+                "mongoose",
+                "node",
+                "express"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "discos": []
+        }
+    ],
+    "num_dockers": 2,
+    "dockers": [
+        {
+            "cmd": "npm start",
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:argon",
+            "path": "/website/Dockerfile",
+            "from": "node",
+            "monitors": [],
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "discos": [],
+            "keywords": [
+                "install",
+                "mkdir",
+                "app",
+                "usr",
+                "src"
+            ]
+        },
+        {
+            "cmd": "npm start",
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:argon",
+            "path": "/user_service/Dockerfile",
+            "from": "node",
+            "monitors": [],
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "discos": [],
+            "keywords": [
+                "install",
+                "mkdir",
+                "app",
+                "usr",
+                "src"
+            ]
+        }
+    ],
+    "num_discos": 0,
+    "discos": [],
+    "num_gates": 1,
+    "url": "git://github.com/guydou/microservice-bootstrap.git"
+}

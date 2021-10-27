@@ -1,0 +1,2275 @@
+{
+    "size": 49336,
+    "avg_size_service": 9867.2,
+    "name": "seyidagha/MicroservicesDocker",
+    "languages": [
+        "java",
+        "shell"
+    ],
+    "servers": [
+        "node",
+        "spring",
+        "express"
+    ],
+    "num_dbs": 4,
+    "images": [
+        "node",
+        "openjdk"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 7,
+        "services": [
+            {
+                "depends_on": [
+                    "postgres",
+                    "kafka",
+                    "zookeeper"
+                ],
+                "image_full": "consumer",
+                "monitors": [],
+                "name": "consumer",
+                "image": "consumer",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "postgres"
+                ],
+                "image_full": "task-web-app",
+                "monitors": [],
+                "name": "task-web-app",
+                "image": "task-web-app",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "wurstmeister/zookeeper",
+                "monitors": [],
+                "name": "zookeeper",
+                "image": "wurstmeister/zookeeper",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "gates": [],
+                "discos": [
+                    "zookeeper"
+                ]
+            },
+            {
+                "depends_on": [],
+                "image_full": "Dockerfile",
+                "monitors": [],
+                "name": "kafka",
+                "image": "Dockerfile",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "nodejs",
+                "monitors": [],
+                "name": "nodejs",
+                "image": "nodejs",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "kafka",
+                    "zookeeper"
+                ],
+                "image_full": "publisher",
+                "monitors": [],
+                "name": "publisher",
+                "image": "publisher",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "postgres",
+                "monitors": [],
+                "name": "postgres",
+                "image": "postgres",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "zookeeper"
+            ],
+            "names": [
+                "zookeeper"
+            ],
+            "shared_dbs": true,
+            "num": 1
+        }
+    },
+    "num_dockers": 5,
+    "num_buses": 2,
+    "num_services": 7,
+    "dockers": [
+        {
+            "path": "/kafka-docker-master/Dockerfile",
+            "from": "openjdk",
+            "langs": [
+                "bash"
+            ],
+            "cmd": "start-kafka.sh",
+            "servers": [],
+            "from_full": "openjdk:8u212-jre-alpine",
+            "keywords": [
+                "version",
+                "tmp",
+                "kafka",
+                "glibc",
+                "apk"
+            ],
+            "cmd_keywords": [
+                "kafka",
+                "start"
+            ],
+            "monitors": [],
+            "buses": [
+                "kafka"
+            ],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/consumer/Dockerfile",
+            "from": "openjdk",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "openjdk",
+            "keywords": [],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/publisher/Dockerfile",
+            "from": "openjdk",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "openjdk",
+            "keywords": [],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/Dockerfile",
+            "from": "openjdk",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "openjdk",
+            "keywords": [],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/Dockerfile",
+            "from": "node",
+            "langs": [],
+            "cmd": "node app.js",
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:10",
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "cmd_keywords": [
+                "node",
+                "app"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "num_langs": 3,
+    "langs": [
+        "java",
+        "shell",
+        "bash"
+    ],
+    "discos": [
+        "zookeeper"
+    ],
+    "num_gates": 2,
+    "num_monitors": 1,
+    "num_files": 189,
+    "files": [
+        {
+            "path": "/consumer/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/publisher/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/socket.io-adapter/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/xmlhttprequest-ssl/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/parseqs/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/caseless/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/estraverse/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/cookie/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/after/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/isarray/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/pn/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/fast-json-stable-stringify/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/engine.io-client/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [
+                "zuul"
+            ],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/engine.io-client/node_modules/debug/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/webidl-conversions/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/finalhandler/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/html-encoding-sniffer/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/parse5/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/callsite/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/forwarded/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/jsbn/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/levn/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/jsprim/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/backo2/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/symbol-tree/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/toidentifier/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/acorn-globals/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/type-check/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/punycode/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/destroy/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/engine.io-parser/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [
+                "zuul"
+            ],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/bcrypt-pbkdf/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/abab/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/unpipe/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/tr46/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/on-finished/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/esprima/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/lodash.sortby/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/serve-static/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/request-promise-core/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/fresh/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/assert-plus/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/socket.io/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/socket.io/node_modules/debug/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/socket.io/node_modules/ms/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/cookie-signature/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/verror/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/to-array/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/http-signature/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/performance-now/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/has-binary2/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/asn1/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/har-validator/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/xmlchars/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/ws/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/body-parser/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/oauth-sign/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/getpass/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/aws-sign2/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/content-disposition/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/inherits/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/w3c-xmlserializer/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/form-data/package.json"
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/cssom/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/setprototypeof/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/yeast/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [
+                "zuul"
+            ],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/delayed-stream/package.json"
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/proxy-addr/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/array-equal/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/uuid/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/request/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/request/node_modules/punycode/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/request/node_modules/qs/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/request/node_modules/tough-cookie/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/mime-db/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [
+                "nginx"
+            ],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/domexception/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/request-promise-native/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/request-promise-native/node_modules/tough-cookie/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/encodeurl/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/send/package.json"
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/send/node_modules/ms/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/core-util-is/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/base64-arraybuffer/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/path-to-regexp/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/optionator/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/dashdash/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/json-schema/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/type-is/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/sshpk/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/is-typedarray/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/cssstyle/package.json"
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/merge-descriptors/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/json-schema-traverse/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/nwsapi/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/har-schema/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/accepts/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/safer-buffer/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/bytes/package.json"
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/ee-first/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/has-cors/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/methods/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/engine.io/package.json",
+            "monitors": [],
+            "dbs": [
+                "foundation"
+            ],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/engine.io/node_modules/cookie/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/engine.io/node_modules/debug/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/debug/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/range-parser/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/media-typer/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/isstream/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/depd/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/utils-merge/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/etag/package.json"
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/acorn/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/iconv-lite/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/mime/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/array-flatten/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/forever-agent/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/tweetnacl/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/uri-js/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/object-component/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/component-bind/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/ip-regex/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/prelude-ls/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/async-limiter/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/fast-deep-equal/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/escape-html/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/blob/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [
+                "zuul"
+            ],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/whatwg-mimetype/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/base64id/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/whatwg-url/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/parseuri/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/browser-process-hrtime/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/negotiator/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/indexof/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/data-urls/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/statuses/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [
+                "nginx"
+            ],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/qs/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/jsdom/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/jsdom/node_modules/ws/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/esutils/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/asynckit/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/aws4/package.json",
+            "monitors": [
+                "monitoring"
+            ],
+            "dbs": [],
+            "buses": [
+                "kinesis"
+            ],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/acorn-walk/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/ecc-jsbn/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/escodegen/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/better-assert/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/lodash/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/mime-types/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/vary/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/psl/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/saxes/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/express/package.json",
+            "monitors": [],
+            "dbs": [
+                "redis"
+            ],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/source-map/package.json"
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/http-errors/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/jquery/package.json",
+            "monitors": [],
+            "dbs": [
+                "foundation"
+            ],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/safe-buffer/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/whatwg-encoding/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/w3c-hr-time/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/extend/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/component-emitter/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/combined-stream/package.json"
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/parseurl/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/component-inherit/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/ms/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/tough-cookie/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/deep-is/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/arraybuffer.slice/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/raw-body/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/socket.io-client/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [
+                "zuul"
+            ],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/socket.io-client/node_modules/debug/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/tunnel-agent/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/fast-levenshtein/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/socket.io-parser/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [
+                "zuul"
+            ],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/socket.io-parser/node_modules/debug/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/json-stringify-safe/package.json"
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/stealthy-require/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/content-type/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/ajv/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/wordwrap/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/ipaddr.js/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/extsprintf/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/TaskWebApp/src/main/resources/static/js/nodeJS/node_modules/xml-name-validator/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "shared_dbs": true,
+    "monitors": [
+        "monitoring"
+    ],
+    "num_servers": 3,
+    "url": "git://github.com/seyidagha/MicroservicesDocker.git",
+    "dbs": [
+        "redis",
+        "foundation",
+        "postgresql",
+        "zookeeper"
+    ],
+    "num_discos": 1,
+    "gates": [
+        "nginx",
+        "zuul"
+    ],
+    "buses": [
+        "kafka",
+        "kinesis"
+    ]
+}

@@ -1,0 +1,1267 @@
+{
+    "num_gates": 2,
+    "images": [
+        "grafana/grafana",
+        "nginx",
+        "prom/prometheus",
+        "java",
+        "telegraf",
+        "openjdk"
+    ],
+    "discos": [
+        "consul",
+        "eureka"
+    ],
+    "num_buses": 1,
+    "name": "leiweibo/SaltedFish",
+    "gates": [
+        "nginx",
+        "zuul"
+    ],
+    "structure": {
+        "num_services": 6,
+        "detected_dbs": {
+            "services": [
+                "mysql"
+            ],
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": true,
+            "num": 1
+        },
+        "path": "/credit-facility-service/dockerfile/docker-compose.yml",
+        "services": [
+            {
+                "image": "credit-facility-image",
+                "image_full": "credit-facility-image",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "mysql"
+                ],
+                "servers": [],
+                "name": "credit-facility-service3",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "mysql",
+                "image_full": "mysql",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "mysql",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "mysql"
+                ]
+            },
+            {
+                "image": "credit-facility-image",
+                "image_full": "credit-facility-image",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "mysql"
+                ],
+                "servers": [],
+                "name": "credit-facility-service1",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "nginx",
+                "image_full": "nginx",
+                "discos": [],
+                "gates": [
+                    "nginx"
+                ],
+                "depends_on": [
+                    "mysql",
+                    "credit-facility-service1",
+                    "credit-facility-service2",
+                    "credit-facility-service3",
+                    "web"
+                ],
+                "servers": [],
+                "name": "nginx",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "credit-facility-image",
+                "image_full": "credit-facility-image",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "mysql",
+                    "credit-facility-service1",
+                    "credit-facility-service2",
+                    "credit-facility-service3"
+                ],
+                "servers": [],
+                "name": "web",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "credit-facility-image",
+                "image_full": "credit-facility-image",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "mysql"
+                ],
+                "servers": [],
+                "name": "credit-facility-service2",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            }
+        ]
+    },
+    "url": "git://github.com/leiweibo/SaltedFish.git",
+    "langs": [
+        "typescript",
+        "java"
+    ],
+    "num_dockers": 23,
+    "num_langs": 2,
+    "dbs": [
+        "enterprise",
+        "mysql",
+        "cassandra"
+    ],
+    "shared_dbs": true,
+    "size": 56325,
+    "dockers": [
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:8-jre-alpine",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "openjdk",
+            "cmd": "java -jar credit-facility-service.jar",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/credit-facility-service/dockerfile/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "service",
+                "credit",
+                "java",
+                "facility"
+            ]
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "openjdk",
+            "cmd": "./dockerize -wait tcp://bookstore-mysql-db:3306 -timeout 15m java -Djava.security.egd=file:/dev/./urandom -jar /account-service.jar",
+            "gates": [],
+            "keywords": [],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/bookstore-microservice/bookstore-account-service/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "bookstore",
+                "dockerize",
+                "urandom",
+                "tcp"
+            ]
+        },
+        {
+            "discos": [],
+            "monitors": [
+                "grafana"
+            ],
+            "from_full": "grafana/grafana",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "grafana/grafana",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/bookstore-microservice/bookstore-graphana/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/bookstore-microservice/bookstore-eureka-discovery-service/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "from_full": "prom/prometheus",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "prom/prometheus",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/bookstore-microservice/bookstore-prometheus/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/bookstore-microservice/bookstore-api-gateway-service/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "openjdk",
+            "cmd": "./dockerize -wait tcp://bookstore-mysql-db:3306 -timeout 15m java -Djava.security.egd=file:/dev/./urandom -jar /order-service.jar",
+            "gates": [],
+            "keywords": [],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/bookstore-microservice/bookstore-order-service/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "bookstore",
+                "dockerize",
+                "urandom",
+                "tcp"
+            ]
+        },
+        {
+            "discos": [],
+            "monitors": [
+                "influxdb"
+            ],
+            "from_full": "telegraf",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "telegraf",
+            "cmd": "./dockerize -wait tcp://bookstore-influxdb:8086 -timeout 15m telegraf",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/bookstore-microservice/bookstore-telegraph/Dockerfile",
+            "cmd_keywords": [
+                "bookstore",
+                "dockerize",
+                "tcp",
+                "timeout",
+                "wait"
+            ]
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "openjdk",
+            "cmd": "./dockerize -wait tcp://bookstore-mysql-db:3306 -timeout 15m java -Djava.security.egd=file:/dev/./urandom -jar /catalog-service.jar",
+            "gates": [],
+            "keywords": [],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/bookstore-microservice/bookstore-catalog-service/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "bookstore",
+                "dockerize",
+                "urandom",
+                "tcp"
+            ]
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "openjdk",
+            "cmd": "./dockerize -wait tcp://bookstore-mysql-db:3306 -timeout 15m java -Djava.security.egd=file:/dev/./urandom -jar /billing-service.jar",
+            "gates": [],
+            "keywords": [],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/bookstore-microservice/bookstore-billing-service/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "bookstore",
+                "dockerize",
+                "urandom",
+                "service"
+            ]
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "java:8",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "bash",
+                "touch",
+                "jar",
+                "app"
+            ],
+            "dbs": [],
+            "path": "/spring-petclinic-microservices-swagger/spring-petclinic-config-server/src/main/docker/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "java:8",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "bash",
+                "app",
+                "chmod",
+                "wait",
+                "touch"
+            ],
+            "dbs": [],
+            "path": "/spring-petclinic-microservices-swagger/spring-petclinic-tracing-server/src/main/docker/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "java:8",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "bash",
+                "app",
+                "chmod",
+                "wait",
+                "touch"
+            ],
+            "dbs": [],
+            "path": "/spring-petclinic-microservices-swagger/spring-petclinic-customers-service/src/main/docker/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "java:8",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "bash",
+                "app",
+                "chmod",
+                "wait",
+                "touch"
+            ],
+            "dbs": [],
+            "path": "/spring-petclinic-microservices-swagger/spring-petclinic-visits-service/src/main/docker/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "java:8",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "bash",
+                "app",
+                "chmod",
+                "wait",
+                "touch"
+            ],
+            "dbs": [],
+            "path": "/spring-petclinic-microservices-swagger/spring-petclinic-admin-server/src/main/docker/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "java:8",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "bash",
+                "app",
+                "chmod",
+                "wait",
+                "touch"
+            ],
+            "dbs": [],
+            "path": "/spring-petclinic-microservices-swagger/spring-petclinic-discovery-server/src/main/docker/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "java:8",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "bash",
+                "app",
+                "chmod",
+                "wait",
+                "touch"
+            ],
+            "dbs": [],
+            "path": "/spring-petclinic-microservices-swagger/spring-petclinic-api-gateway/src/main/docker/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "java:8",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "bash",
+                "app",
+                "chmod",
+                "wait",
+                "touch"
+            ],
+            "dbs": [],
+            "path": "/spring-petclinic-microservices-swagger/spring-petclinic-vets-service/src/main/docker/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "nginx",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "nginx",
+            "cmd": "",
+            "gates": [
+                "nginx"
+            ],
+            "keywords": [
+                "html",
+                "nginx",
+                "share",
+                "docker",
+                "index"
+            ],
+            "dbs": [],
+            "path": "/microservice/try-docker/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "java:8-jre",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "cmd": "java -Xmx200m -jar /app/microservice-gateway-zuul.jar",
+            "gates": [
+                "gateway"
+            ],
+            "keywords": [],
+            "dbs": [],
+            "path": "/microservice/microservice-gateway-zuul/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "xmx",
+                "zuul",
+                "microservice",
+                "java"
+            ]
+        },
+        {
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "from_full": "java:8-jre",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "cmd": "java -Xmx200m -jar /app/microservice-eureka-service.jar",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/microservice/microservice-eureka-server/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "xmx",
+                "service",
+                "microservice",
+                "java"
+            ]
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "java:8-jre",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "cmd": "java -Xmx200m -jar /app/microservice-orderservice.jar",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/microservice/microservice-orderservice/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "xmx",
+                "orderservice",
+                "microservice",
+                "java"
+            ]
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "java:8-jre",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "cmd": "java -Xmx200m -jar /app/microservice-userservice.jar",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/microservice/microservice-userservice/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "xmx",
+                "userservice",
+                "microservice",
+                "java"
+            ]
+        }
+    ],
+    "num_servers": 4,
+    "monitors": [
+        "grafana",
+        "influxdb",
+        "influx",
+        "prometheus"
+    ],
+    "num_services": 6,
+    "servers": [
+        "spring",
+        "glassfish",
+        "express",
+        "node"
+    ],
+    "num_monitors": 4,
+    "avg_size_service": 2448.913043478261,
+    "num_files": 70,
+    "buses": [
+        "kafka"
+    ],
+    "files": [
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "spring",
+                "glassfish"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/credit-facility-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/credit-facility-service/credit-facility-service-infrastructure/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/credit-facility-service/credit-facility-service-domain/pom.xml"
+        },
+        {
+            "path": "/credit-facility-service/start/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/credit-facility-service/credit-facility-service-controller/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "glassfish"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/credit-facility-service/credit-facility-service-app/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/credit-facility-service/credit-facility-service-client/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "gateway"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [
+                "influx",
+                "prometheus"
+            ],
+            "dbs": [],
+            "path": "/bookstore-microservice/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "consul",
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/bookstore-microservice/bookstore-commons/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/bookstore-microservice/bookstore-account-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "consul",
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/bookstore-microservice/bookstore-eureka-discovery-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/bookstore-microservice/bookstore-feign/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "consul",
+                "eureka"
+            ],
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/bookstore-microservice/bookstore-api-gateway-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/bookstore-microservice/bookstore-order-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/bookstore-microservice/bookstore-catalog-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "consul",
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/bookstore-microservice/bookstore-billing-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [
+                "gateway"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [
+                "monitoring"
+            ],
+            "dbs": [],
+            "path": "/spring-petclinic-microservices-swagger/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/spring-petclinic-microservices-swagger/spring-petclinic-config-server/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/spring-petclinic-microservices-swagger/spring-petclinic-tracing-server/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [
+                "monitoring"
+            ],
+            "dbs": [
+                "mysql",
+                "hsqldb"
+            ],
+            "path": "/spring-petclinic-microservices-swagger/spring-petclinic-customers-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [
+                "mysql",
+                "hsqldb"
+            ],
+            "path": "/spring-petclinic-microservices-swagger/spring-petclinic-visits-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring",
+                "glassfish"
+            ],
+            "monitors": [],
+            "dbs": [
+                "mysql",
+                "hsqldb"
+            ],
+            "path": "/spring-petclinic-microservices-swagger/spring-petclinic-admin-server/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/spring-petclinic-microservices-swagger/spring-petclinic-discovery-server/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/spring-petclinic-microservices-swagger/spring-petclinic-api-gateway/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [
+                "monitoring"
+            ],
+            "dbs": [],
+            "path": "/spring-petclinic-microservices-swagger/spring-petclinic-monitoring/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [
+                "mysql",
+                "hsqldb"
+            ],
+            "path": "/spring-petclinic-microservices-swagger/spring-petclinic-vets-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/asyncdemo/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "consul"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/consul/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "consul"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/consul/rest-service-consumer/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "consul"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/consul/rest-service/pom.xml"
+        },
+        {
+            "path": "/microservice/pom.xml"
+        },
+        {
+            "path": "/microservice/microservice-gateway-zuul/pom.xml"
+        },
+        {
+            "path": "/microservice/microservice-eureka-server/pom.xml"
+        },
+        {
+            "path": "/microservice/microservice-orderservice/pom.xml"
+        },
+        {
+            "path": "/microservice/microservice-userservice/pom.xml"
+        },
+        {
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring",
+                "glassfish"
+            ],
+            "monitors": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "path": "/my-moments/auth-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "servers": [
+                "spring",
+                "glassfish"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/my-moments/insta-api-gateway/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring",
+                "glassfish"
+            ],
+            "monitors": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "path": "/my-moments/insta-media-service/pom.xml"
+        },
+        {
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring",
+                "glassfish"
+            ],
+            "monitors": [],
+            "dbs": [
+                "cassandra"
+            ],
+            "path": "/my-moments/insta-feed-service/pom.xml"
+        },
+        {
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring",
+                "glassfish"
+            ],
+            "monitors": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "path": "/my-moments/insta-post-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring",
+                "glassfish"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/my-moments/insta-discovery/pom.xml"
+        },
+        {
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring",
+                "glassfish"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/my-moments/insta-graph-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/antd-app/working-app/package.json"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "monitors": [],
+            "dbs": [
+                "enterprise"
+            ],
+            "path": "/antd-app/umi-scafflod-v5/package.json"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "monitors": [],
+            "dbs": [
+                "enterprise"
+            ],
+            "path": "/antd-app/umi-scafflod-v4-complete/package.json"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/my-moments/instagram-clone-client/package.json"
+        }
+    ],
+    "languages": [
+        "typescript",
+        "java"
+    ],
+    "num_dbs": 3,
+    "num_discos": 2
+}

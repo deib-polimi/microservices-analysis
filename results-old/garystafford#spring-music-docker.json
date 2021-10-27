@@ -1,0 +1,201 @@
+{
+    "size": 53,
+    "num_dockers": 3,
+    "discos": [],
+    "num_files": 4,
+    "avg_size_service": 17.666666666666668,
+    "buses": [],
+    "num_gates": 1,
+    "langs": [
+        "shell",
+        "dockerfile"
+    ],
+    "num_discos": 0,
+    "num_monitors": 1,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "/usr/local/bin/start.sh",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "usr",
+                "local",
+                "bin",
+                "start"
+            ],
+            "from": "nginx",
+            "path": "/nginx/Dockerfile",
+            "keywords": [
+                "filebeat",
+                "log",
+                "file",
+                "get",
+                "apt"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "from_full": "nginx:latest"
+        },
+        {
+            "monitors": [],
+            "cmd": "mongod --smallfiles",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "mongod",
+                "smallfiles"
+            ],
+            "from": "mongo",
+            "path": "/mongodb/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [
+                "mongo"
+            ],
+            "from_full": "mongo:latest"
+        },
+        {
+            "monitors": [],
+            "cmd": "/usr/local/bin/start.sh",
+            "discos": [],
+            "servers": [
+                "tomcat"
+            ],
+            "cmd_keywords": [
+                "usr",
+                "local",
+                "bin",
+                "start"
+            ],
+            "from": "tomcat",
+            "path": "/tomcat/Dockerfile",
+            "keywords": [
+                "log",
+                "filebeat",
+                "local",
+                "usr",
+                "get"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "tomcat:8.5.4-jre8"
+        }
+    ],
+    "num_dbs": 1,
+    "monitors": [
+        "elk"
+    ],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "tomcat/",
+                "image_full": "tomcat/",
+                "discos": [],
+                "name": "app",
+                "depends_on": [
+                    "mongodb"
+                ],
+                "dbs": [],
+                "servers": [
+                    "tomcat"
+                ],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "nginx/",
+                "image_full": "nginx/",
+                "discos": [],
+                "name": "proxy",
+                "depends_on": [
+                    "app"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": [
+                    "nginx"
+                ]
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mongodb/",
+                "image_full": "mongodb/",
+                "discos": [],
+                "name": "mongodb",
+                "depends_on": [
+                    "elk"
+                ],
+                "dbs": [
+                    "mongodb"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [
+                    "elk"
+                ],
+                "buses": [],
+                "image": "sebp/elk",
+                "image_full": "sebp/elk:latest",
+                "discos": [],
+                "name": "elk",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "mongodb"
+            ],
+            "services": [
+                "mongodb"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 4,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 0,
+    "servers": [
+        "tomcat"
+    ],
+    "url": "git://github.com/garystafford/spring-music-docker.git",
+    "num_services": 4,
+    "gates": [
+        "nginx"
+    ],
+    "files": [],
+    "name": "garystafford/spring-music-docker",
+    "languages": [
+        "dockerfile",
+        "shell"
+    ],
+    "images": [
+        "tomcat",
+        "mongo",
+        "nginx"
+    ],
+    "dbs": [
+        "mongo"
+    ],
+    "num_servers": 1,
+    "num_langs": 2
+}

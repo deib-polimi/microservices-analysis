@@ -1,0 +1,311 @@
+{
+    "size": 263,
+    "num_dockers": 6,
+    "discos": [
+        "eureka"
+    ],
+    "num_files": 14,
+    "avg_size_service": 43.833333333333336,
+    "buses": [],
+    "num_gates": 0,
+    "langs": [
+        "java"
+    ],
+    "num_discos": 1,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/config/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/discovery/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/rentservice/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/client/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/carui/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/monitor/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine"
+        }
+    ],
+    "num_dbs": 1,
+    "monitors": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "am0awad/discovery",
+                "image_full": "am0awad/discovery",
+                "discos": [],
+                "name": "discovery",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "am0awad/monitor",
+                "image_full": "am0awad/monitor",
+                "discos": [],
+                "name": "monitor",
+                "depends_on": [
+                    "discovery",
+                    "config"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "am0awad/config",
+                "image_full": "am0awad/config",
+                "discos": [],
+                "name": "config",
+                "depends_on": [
+                    "discovery"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "am0awad/carui",
+                "image_full": "am0awad/carui",
+                "discos": [],
+                "name": "carui",
+                "depends_on": [
+                    "rentservice",
+                    "monitor"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "am0awad/rentservice",
+                "image_full": "am0awad/rentservice",
+                "discos": [],
+                "name": "rentservice",
+                "depends_on": [
+                    "discovery",
+                    "config"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        },
+        "num_services": 5,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 0,
+    "servers": [
+        "glassfish",
+        "spring",
+        "tomcat"
+    ],
+    "url": "git://github.com/ahmadmoawad/dockerized-microservice-architecture.git",
+    "num_services": 5,
+    "gates": [],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/config/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "glassfish",
+                "spring"
+            ],
+            "path": "/discovery/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "servers": [
+                "spring",
+                "tomcat"
+            ],
+            "path": "/rentservice/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/client/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/carui/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "servers": [
+                "spring",
+                "tomcat"
+            ],
+            "path": "/monitor/pom.xml"
+        }
+    ],
+    "name": "ahmadmoawad/dockerized-microservice-architecture",
+    "languages": [
+        "java"
+    ],
+    "images": [
+        "openjdk"
+    ],
+    "dbs": [
+        "mysql"
+    ],
+    "num_servers": 3,
+    "num_langs": 1
+}

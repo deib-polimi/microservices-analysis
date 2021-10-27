@@ -1,0 +1,249 @@
+{
+    "num_files": 6,
+    "num_services": 7,
+    "num_discos": 0,
+    "gates": [],
+    "languages": [
+        "c#"
+    ],
+    "num_dbs": 0,
+    "dbs": [],
+    "num_monitors": 0,
+    "structure": {
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 0,
+            "services": [],
+            "names": []
+        },
+        "num_services": 7,
+        "services": [
+            {
+                "image_full": "${DOCKER_REGISTRY-}ordermicroservice",
+                "image": "${DOCKER_REGISTRY-}ordermicroservice",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "ordermicroservice"
+            },
+            {
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:7.7.0",
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "elasticsearch"
+            },
+            {
+                "image_full": "${DOCKER_REGISTRY-}uiweb",
+                "image": "${DOCKER_REGISTRY-}uiweb",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "productmicroservice",
+                    "ordermicroservice",
+                    "ocelotgateway"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "ui.web"
+            },
+            {
+                "image_full": "${DOCKER_REGISTRY-}ocelotgateway",
+                "image": "${DOCKER_REGISTRY-}ocelotgateway",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "productmicroservice",
+                    "ordermicroservice"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "ocelotgateway"
+            },
+            {
+                "image_full": "rabbitmq:3-management",
+                "image": "rabbitmq",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "name": "rabbitMq"
+            },
+            {
+                "image_full": "${DOCKER_REGISTRY-}productmicroservice",
+                "image": "${DOCKER_REGISTRY-}productmicroservice",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "productmicroservice"
+            },
+            {
+                "image_full": "docker.elastic.co/kibana/kibana:7.7.0",
+                "image": "docker.elastic.co/kibana/kibana",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "kibana"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "discos": [],
+    "url": "git://github.com/MetehanT/microservice-sample-netcore.git",
+    "num_buses": 1,
+    "files": [],
+    "name": "MetehanT/microservice-sample-netcore",
+    "servers": [],
+    "num_dockers": 5,
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_gates": 0,
+    "num_langs": 1,
+    "shared_dbs": false,
+    "monitors": [],
+    "dockers": [
+        {
+            "servers": [],
+            "from": "base",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/ProductMicroservice/Dockerfile",
+            "keywords": [
+                "productmicroservice",
+                "dotnet",
+                "csproj",
+                "publish",
+                "release"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "base"
+        },
+        {
+            "servers": [],
+            "from": "base",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/OcelotGateway/Dockerfile",
+            "keywords": [
+                "ocelotgateway",
+                "dotnet",
+                "csproj",
+                "app",
+                "release"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "base"
+        },
+        {
+            "servers": [],
+            "from": "base",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/OrderMicroservice/Dockerfile",
+            "keywords": [
+                "ordermicroservice",
+                "dotnet",
+                "csproj",
+                "tlsv",
+                "release"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "base"
+        },
+        {
+            "servers": [],
+            "from": "base",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/IdentityMicroservice/Dockerfile",
+            "keywords": [
+                "identitymicroservice",
+                "dotnet",
+                "csproj",
+                "app",
+                "release"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "base"
+        },
+        {
+            "servers": [],
+            "from": "base",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/UI.Web/Dockerfile",
+            "keywords": [
+                "web",
+                "dotnet",
+                "csproj",
+                "app",
+                "tlsv"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "base"
+        }
+    ],
+    "langs": [
+        "c#"
+    ],
+    "num_servers": 0,
+    "size": 141742,
+    "images": [
+        "base"
+    ],
+    "avg_size_service": 28348.4
+}

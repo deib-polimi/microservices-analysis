@@ -1,0 +1,187 @@
+{
+    "size": 745,
+    "avg_size_service": 372.5,
+    "name": "carlosocarvalho/microservice-docker-laravel",
+    "languages": [
+        "php"
+    ],
+    "servers": [
+        "node",
+        "laravel"
+    ],
+    "num_dbs": 2,
+    "images": [
+        "nginx",
+        "php"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 4,
+        "services": [
+            {
+                "depends_on": [],
+                "image_full": "redis:5-alpine",
+                "monitors": [],
+                "name": "redis",
+                "image": "redis",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "redis"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "app"
+                ],
+                "image_full": "./.docker/nginx",
+                "monitors": [],
+                "name": "nginx",
+                "image": "./.docker/nginx",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [
+                    "nginx"
+                ],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "db",
+                    "redis"
+                ],
+                "image_full": "carlosocarvalho/microservice-docker-laravel:v2",
+                "monitors": [],
+                "name": "app",
+                "image": "carlosocarvalho/microservice-docker-laravel",
+                "servers": [
+                    "laravel"
+                ],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "mysql:5.7",
+                "monitors": [],
+                "name": "db",
+                "image": "mysql",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "gates": [],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "redis",
+                "db"
+            ],
+            "names": [
+                "redis",
+                "mysql"
+            ],
+            "shared_dbs": false,
+            "num": 2
+        }
+    },
+    "num_dockers": 2,
+    "num_buses": 0,
+    "num_services": 4,
+    "dockers": [
+        {
+            "path": "/Dockerfile",
+            "from": "php",
+            "langs": [
+                "php"
+            ],
+            "cmd": "",
+            "servers": [],
+            "from_full": "php:7.3.6-fpm-alpine3.9",
+            "keywords": [
+                "php",
+                "dockerize",
+                "tar",
+                "version",
+                "amd"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/.docker/nginx/Dockerfile",
+            "from": "nginx",
+            "langs": [
+                "bash"
+            ],
+            "cmd": "",
+            "servers": [],
+            "from_full": "nginx:1.17.0-alpine",
+            "keywords": [
+                "conf",
+                "nginx",
+                "apk",
+                "default",
+                "add"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [
+                "nginx"
+            ],
+            "discos": []
+        }
+    ],
+    "num_langs": 2,
+    "langs": [
+        "php",
+        "bash"
+    ],
+    "discos": [],
+    "num_gates": 1,
+    "num_monitors": 0,
+    "num_files": 4,
+    "files": [
+        {
+            "path": "/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "laravel"
+            ],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_servers": 2,
+    "url": "git://github.com/carlosocarvalho/microservice-docker-laravel.git",
+    "dbs": [
+        "redis",
+        "mysql"
+    ],
+    "num_discos": 0,
+    "gates": [
+        "nginx"
+    ],
+    "buses": []
+}

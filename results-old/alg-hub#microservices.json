@@ -1,0 +1,500 @@
+{
+    "num_discos": 0,
+    "buses": [],
+    "gates": [],
+    "num_servers": 1,
+    "num_gates": 0,
+    "num_dbs": 1,
+    "monitors": [
+        "prometheus"
+    ],
+    "num_langs": 4,
+    "num_files": 19,
+    "structure": {
+        "services": [
+            {
+                "name": "mongo_db",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "image": "mongo",
+                "image_full": "mongo:3.2",
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "post",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "${USERNAME}/post",
+                "image_full": "${USERNAME}/post:1.0",
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "comment",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "${USERNAME}/comment",
+                "image_full": "${USERNAME}/comment:1.0",
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "ui",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "${USERNAME}/ui",
+                "image_full": "${USERNAME}/ui:1.0",
+                "monitors": [],
+                "depends_on": []
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "names": [
+                "mongo"
+            ],
+            "num": 1,
+            "services": [
+                "mongo_db"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 4
+    },
+    "servers": [
+        "flask"
+    ],
+    "shared_dbs": false,
+    "langs": [
+        "ruby",
+        "golang",
+        "python",
+        "go"
+    ],
+    "dockers": [
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/post-py/Dockerfile",
+            "from": "python",
+            "cmd_keywords": [],
+            "servers": [
+                "flask"
+            ],
+            "monitors": [],
+            "keywords": [
+                "pip",
+                "flask",
+                "install",
+                "pymongo"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "python:3.6.0-alpine",
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/monitoring-2/post-py/Dockerfile",
+            "from": "python",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "pip",
+                "txt",
+                "requirements",
+                "install"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "python:3.6.0-alpine",
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/monitoring-2/alertmanager/Dockerfile",
+            "from": "prom/alertmanager",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [],
+            "dbs": [],
+            "gates": [],
+            "from_full": "prom/alertmanager",
+            "langs": []
+        },
+        {
+            "discos": [],
+            "cmd": "-h",
+            "buses": [],
+            "path": "/monitoring-2/cadvisor/vendor/golang.org/x/net/http2/Dockerfile",
+            "from": "ubuntu",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "dev",
+                "install",
+                "make",
+                "get",
+                "apt"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "ubuntu:trusty",
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/monitoring-2/cadvisor/deploy/Dockerfile",
+            "from": "alpine",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "apk",
+                "cache",
+                "mdns",
+                "add",
+                "thin"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "alpine:3.10",
+            "langs": []
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/monitoring-2/cadvisor/deploy/canary/Dockerfile",
+            "from": "golang",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "git",
+                "apt",
+                "google",
+                "github",
+                "cadvisor"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "golang:1.11",
+            "langs": [
+                "golang"
+            ]
+        },
+        {
+            "discos": [],
+            "cmd": "puma",
+            "buses": [],
+            "path": "/monitoring-2/ui/Dockerfile",
+            "from": "ubuntu",
+            "cmd_keywords": [
+                "puma"
+            ],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "install",
+                "gem",
+                "rubygems",
+                "get",
+                "org"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "ubuntu:16.04",
+            "langs": [
+                "ruby"
+            ]
+        },
+        {
+            "discos": [],
+            "cmd": "puma",
+            "buses": [],
+            "path": "/monitoring-2/comment/Dockerfile",
+            "from": "ruby",
+            "cmd_keywords": [
+                "puma"
+            ],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "install",
+                "https",
+                "rubygems",
+                "gem",
+                "org"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "ruby:2.2",
+            "langs": [
+                "ruby"
+            ]
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/monitoring-2/prometheus/Dockerfile",
+            "from": "prom/prometheus",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [],
+            "dbs": [],
+            "gates": [],
+            "from_full": "prom/prometheus",
+            "langs": []
+        },
+        {
+            "discos": [],
+            "cmd": "puma",
+            "buses": [],
+            "path": "/ui/Dockerfile",
+            "from": "ubuntu",
+            "cmd_keywords": [
+                "puma"
+            ],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "install",
+                "gem",
+                "rubygems",
+                "get",
+                "org"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "ubuntu:16.04",
+            "langs": [
+                "ruby"
+            ]
+        },
+        {
+            "discos": [],
+            "cmd": "puma",
+            "buses": [],
+            "path": "/comment/Dockerfile",
+            "from": "ruby",
+            "cmd_keywords": [
+                "puma"
+            ],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "install",
+                "https",
+                "rubygems",
+                "gem",
+                "org"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "ruby:2.2",
+            "langs": [
+                "ruby"
+            ]
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/prometheus/Dockerfile",
+            "from": "prom/prometheus",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [],
+            "dbs": [],
+            "gates": [],
+            "from_full": "prom/prometheus",
+            "langs": []
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/prometheus/post-py/Dockerfile",
+            "from": "python",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "pip",
+                "txt",
+                "requirements",
+                "install"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "python:3.6.0-alpine",
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "discos": [],
+            "cmd": "puma",
+            "buses": [],
+            "path": "/prometheus/ui/Dockerfile",
+            "from": "ubuntu",
+            "cmd_keywords": [
+                "puma"
+            ],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "install",
+                "gem",
+                "rubygems",
+                "get",
+                "org"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "ubuntu:16.04",
+            "langs": [
+                "ruby"
+            ]
+        },
+        {
+            "discos": [],
+            "cmd": "puma",
+            "buses": [],
+            "path": "/prometheus/comment/Dockerfile",
+            "from": "ruby",
+            "cmd_keywords": [
+                "puma"
+            ],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "install",
+                "https",
+                "rubygems",
+                "gem",
+                "org"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "ruby:2.2",
+            "langs": [
+                "ruby"
+            ]
+        },
+        {
+            "discos": [],
+            "cmd": "/start.sh",
+            "buses": [],
+            "path": "/monolith/Dockerfile",
+            "from": "ubuntu",
+            "cmd_keywords": [
+                "start"
+            ],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "git",
+                "install",
+                "get",
+                "ruby",
+                "apt"
+            ],
+            "dbs": [
+                "mongodb"
+            ],
+            "gates": [],
+            "from_full": "ubuntu:16.04",
+            "langs": [
+                "ruby"
+            ]
+        }
+    ],
+    "name": "alg-hub/microservices",
+    "discos": [],
+    "avg_size_service": 1920.875,
+    "num_monitors": 1,
+    "images": [
+        "golang",
+        "prom/alertmanager",
+        "ruby",
+        "prom/prometheus",
+        "alpine",
+        "ubuntu",
+        "python"
+    ],
+    "url": "git://github.com/alg-hub/microservices.git",
+    "files": [
+        {
+            "discos": [],
+            "buses": [],
+            "path": "/monitoring-2/post-py/requirements.txt",
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "monitors": [
+                "prometheus"
+            ]
+        },
+        {
+            "discos": [],
+            "buses": [],
+            "path": "/prometheus/post-py/requirements.txt",
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "monitors": [
+                "prometheus"
+            ]
+        }
+    ],
+    "size": 30734,
+    "languages": [
+        "go"
+    ],
+    "dbs": [
+        "mongo"
+    ],
+    "num_buses": 0,
+    "num_services": 4,
+    "num_dockers": 16
+}

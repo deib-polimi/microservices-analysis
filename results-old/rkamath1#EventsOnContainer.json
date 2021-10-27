@@ -1,0 +1,281 @@
+{
+    "num_files": 6,
+    "servers": [],
+    "langs": [
+        "css",
+        "html",
+        "c#"
+    ],
+    "num_monitors": 0,
+    "discos": [],
+    "num_servers": 0,
+    "images": [
+        "build"
+    ],
+    "dbs": [
+        "redis"
+    ],
+    "dockers": [
+        {
+            "from_full": "build",
+            "keywords": [
+                "dotnet",
+                "csproj",
+                "webmvc",
+                "release",
+                "publish"
+            ],
+            "path": "/WebMVC/Dockerfile",
+            "servers": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "discos": [],
+            "from": "build",
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "from_full": "build",
+            "keywords": [
+                "dotnet",
+                "csproj",
+                "cartapi",
+                "release",
+                "publish"
+            ],
+            "path": "/CartApi/Dockerfile",
+            "servers": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "discos": [],
+            "from": "build",
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "from_full": "build",
+            "keywords": [
+                "dotnet",
+                "csproj",
+                "tokenserviceapi",
+                "release",
+                "publish"
+            ],
+            "path": "/TokenServiceApi/Dockerfile",
+            "servers": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "discos": [],
+            "from": "build",
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "from_full": "build",
+            "keywords": [
+                "dotnet",
+                "orderapi",
+                "csproj",
+                "restore",
+                "release"
+            ],
+            "path": "/OrderApi/Dockerfile",
+            "servers": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "discos": [],
+            "from": "build",
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "from_full": "build",
+            "keywords": [
+                "eventcatalogapi",
+                "dotnet",
+                "csproj",
+                "release",
+                "publish"
+            ],
+            "path": "/EventCatalogAPI/Dockerfile",
+            "servers": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "discos": [],
+            "from": "build",
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "num_buses": 1,
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_gates": 0,
+    "languages": [
+        "c#",
+        "css",
+        "html"
+    ],
+    "num_langs": 3,
+    "num_services": 8,
+    "url": "git://github.com/rkamath1/EventsOnContainer.git",
+    "num_dbs": 1,
+    "num_dockers": 5,
+    "avg_size_service": 2902.4,
+    "name": "rkamath1/EventsOnContainer",
+    "files": [],
+    "size": 14512,
+    "monitors": [],
+    "gates": [],
+    "shared_dbs": false,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "events/tokenapis",
+                "monitors": [],
+                "gates": [],
+                "image": "events/tokenapis",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "tokenserver",
+                "discos": [],
+                "depends_on": [
+                    "mssqlserver"
+                ]
+            },
+            {
+                "image_full": "events/orderapis",
+                "monitors": [],
+                "gates": [],
+                "image": "events/orderapis",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "order",
+                "discos": [],
+                "depends_on": [
+                    "mssqlserver",
+                    "tokenserver",
+                    "rabbitmq"
+                ]
+            },
+            {
+                "image_full": "microsoft/mssql-server-linux:latest",
+                "monitors": [],
+                "gates": [],
+                "image": "microsoft/mssql-server-linux",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "mssqlserver",
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image_full": "events/webmvcs",
+                "monitors": [],
+                "gates": [],
+                "image": "events/webmvcs",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "webmvc",
+                "discos": [],
+                "depends_on": [
+                    "catalog",
+                    "tokenserver",
+                    "cart",
+                    "order"
+                ]
+            },
+            {
+                "image_full": "events/catalogapis",
+                "monitors": [],
+                "gates": [],
+                "image": "events/catalogapis",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "catalog",
+                "discos": [],
+                "depends_on": [
+                    "mssqlserver"
+                ]
+            },
+            {
+                "image_full": "rabbitmq:3-management",
+                "monitors": [],
+                "gates": [],
+                "image": "rabbitmq",
+                "dbs": [],
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "name": "rabbitmq",
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image_full": "events/cartapis",
+                "monitors": [],
+                "gates": [],
+                "image": "events/cartapis",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "cart",
+                "discos": [],
+                "depends_on": [
+                    "basket.data",
+                    "tokenserver",
+                    "rabbitmq"
+                ]
+            },
+            {
+                "image_full": "redis",
+                "monitors": [],
+                "gates": [],
+                "image": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "buses": [],
+                "name": "basket.data",
+                "discos": [],
+                "depends_on": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [
+                "redis"
+            ],
+            "services": [
+                "basket.data"
+            ],
+            "num": 1,
+            "shared_dbs": false
+        },
+        "num_services": 8
+    },
+    "num_discos": 0
+}

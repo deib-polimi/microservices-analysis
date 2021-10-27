@@ -1,0 +1,307 @@
+{
+    "avg_size_service": 68.33333333333333,
+    "discos": [],
+    "images": [
+        "node"
+    ],
+    "num_dockers": 3,
+    "num_servers": 2,
+    "langs": [
+        "dockerfile",
+        "javascript"
+    ],
+    "languages": [
+        "javascript",
+        "dockerfile"
+    ],
+    "num_services": 11,
+    "num_gates": 1,
+    "num_langs": 2,
+    "monitors": [],
+    "gates": [
+        "kong"
+    ],
+    "servers": [
+        "express",
+        "node"
+    ],
+    "num_monitors": 0,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "image": "docker.elastic.co/logstash/logstash",
+                "image_full": "docker.elastic.co/logstash/logstash:7.2.1",
+                "gates": [],
+                "name": "logstash",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "kong-database"
+                ],
+                "image": "pantsel/konga",
+                "image_full": "pantsel/konga:latest",
+                "gates": [],
+                "name": "konga",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "postgres",
+                "image_full": "postgres:11-alpine",
+                "gates": [],
+                "name": "kong-database",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "service-1",
+                "image_full": "service-1:1.0",
+                "gates": [],
+                "name": "service-1",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "service-1-replica",
+                "image_full": "service-1-replica:1.0",
+                "gates": [],
+                "name": "service-1-replica",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:7.2.1",
+                "gates": [],
+                "name": "elasticsearch",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "kong-migration",
+                    "kong-database"
+                ],
+                "image": "kong",
+                "image_full": "kong:2.0.3-alpine",
+                "gates": [
+                    "kong"
+                ],
+                "name": "kong",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "kong-database"
+                ],
+                "image": "kong",
+                "image_full": "kong:2.0.3-alpine",
+                "gates": [
+                    "kong"
+                ],
+                "name": "kong-migration",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "kong-database"
+                ],
+                "image": "pantsel/konga",
+                "image_full": "pantsel/konga:latest",
+                "gates": [],
+                "name": "konga-prepare",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "docker.elastic.co/kibana/kibana",
+                "image_full": "docker.elastic.co/kibana/kibana:7.2.1",
+                "gates": [],
+                "name": "kibana",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "service-2",
+                "image_full": "service-2:1.0",
+                "gates": [],
+                "name": "service-2",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            }
+        ],
+        "num_services": 11,
+        "detected_dbs": {
+            "names": [],
+            "num": 0,
+            "services": [],
+            "shared_dbs": false
+        }
+    },
+    "size": 205,
+    "url": "git://github.com/paulohenriq/implements-api-gateway.git",
+    "num_buses": 0,
+    "shared_dbs": false,
+    "files": [
+        {
+            "path": "/services/service-1-replica/package.json",
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/services/service-1/package.json",
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/services/service-2/package.json",
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "dbs": [],
+            "buses": []
+        }
+    ],
+    "num_discos": 0,
+    "dockers": [
+        {
+            "path": "/services/service-1-replica/Dockerfile",
+            "from_full": "node:12.8.1-alpine",
+            "from": "node",
+            "cmd": "node index.js",
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "node",
+                "index"
+            ],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/services/service-1/Dockerfile",
+            "from_full": "node:12.8.1-alpine",
+            "from": "node",
+            "cmd": "node index.js",
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "node",
+                "index"
+            ],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/services/service-2/Dockerfile",
+            "from_full": "node:12.8.1-alpine",
+            "from": "node",
+            "cmd": "node index.js",
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "node",
+                "index"
+            ],
+            "dbs": [],
+            "buses": []
+        }
+    ],
+    "name": "paulohenriq/implements-api-gateway",
+    "buses": [],
+    "num_files": 7,
+    "dbs": [],
+    "num_dbs": 0
+}

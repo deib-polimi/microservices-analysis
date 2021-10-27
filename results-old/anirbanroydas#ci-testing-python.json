@@ -1,0 +1,183 @@
+{
+    "num_services": 3,
+    "num_buses": 0,
+    "files": [],
+    "num_dbs": 1,
+    "num_discos": 0,
+    "languages": [
+        "shell",
+        "python",
+        "makefile"
+    ],
+    "num_langs": 3,
+    "images": [
+        "python",
+        "node"
+    ],
+    "buses": [],
+    "size": 102,
+    "servers": [
+        "node"
+    ],
+    "num_gates": 0,
+    "discos": [],
+    "num_monitors": 0,
+    "avg_size_service": 34.0,
+    "langs": [
+        "makefile",
+        "shell",
+        "python"
+    ],
+    "dockers": [
+        {
+            "keywords": [
+                "uwsgi",
+                "pip",
+                "deps",
+                "apk",
+                "install"
+            ],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "path": "/Dockerfile",
+            "cmd": "docker-entrypoint.sh",
+            "gates": [],
+            "from": "python",
+            "monitors": [],
+            "servers": [],
+            "from_full": "python:3.6-alpine",
+            "discos": [],
+            "cmd_keywords": [
+                "docker",
+                "entrypoint"
+            ],
+            "dbs": []
+        },
+        {
+            "keywords": [
+                "pip",
+                "install",
+                "requests",
+                "dev",
+                "requirements"
+            ],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "path": "/tests/component/Dockerfile",
+            "cmd": "wait-for-it.sh --host=identidock --port=5000 --timeout=10 -- pytest -v -s test_component_identidock.py",
+            "gates": [],
+            "from": "python",
+            "monitors": [],
+            "servers": [],
+            "from_full": "python:3.6-alpine",
+            "discos": [],
+            "cmd_keywords": [
+                "identidock",
+                "pytest",
+                "port",
+                "component",
+                "host"
+            ],
+            "dbs": []
+        },
+        {
+            "keywords": [
+                "install",
+                "npm",
+                "mountebank"
+            ],
+            "buses": [],
+            "langs": [],
+            "path": "/tests/component/mountebank/dnmonster/Dockerfile",
+            "cmd": "mb --configfile /mountebank/imposters.ejs --allowInjection",
+            "gates": [],
+            "from": "node",
+            "monitors": [],
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:7.7-alpine",
+            "discos": [],
+            "cmd_keywords": [
+                "allowinjection",
+                "ejs",
+                "configfile",
+                "mountebank",
+                "imposters"
+            ],
+            "dbs": []
+        }
+    ],
+    "name": "anirbanroydas/ci-testing-python",
+    "url": "git://github.com/anirbanroydas/ci-testing-python.git",
+    "gates": [],
+    "num_servers": 1,
+    "monitors": [],
+    "num_files": 4,
+    "shared_dbs": false,
+    "num_dockers": 3,
+    "dbs": [
+        "redis"
+    ],
+    "structure": {
+        "num_services": 3,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "amouat/dnmonster",
+                "image_full": "amouat/dnmonster:1.0",
+                "servers": [],
+                "discos": [],
+                "depends_on": [],
+                "name": "dnmonster"
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [
+                    "redis"
+                ],
+                "monitors": [],
+                "image": "redis",
+                "image_full": "redis:3.0-alpine",
+                "servers": [],
+                "discos": [],
+                "depends_on": [],
+                "name": "redis"
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "aroyd/identidock",
+                "image_full": "aroyd/identidock:${IDENTIDOCK_IMAGE_DEV_TAG:-latest-dev}",
+                "servers": [],
+                "discos": [],
+                "depends_on": [
+                    "dnmonster",
+                    "redis"
+                ],
+                "name": "identidock"
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 1,
+            "services": [
+                "redis"
+            ],
+            "names": [
+                "redis"
+            ]
+        }
+    }
+}

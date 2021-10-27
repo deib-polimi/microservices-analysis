@@ -1,0 +1,277 @@
+{
+    "dbs": [
+        "redis"
+    ],
+    "num_langs": 1,
+    "buses": [
+        "rabbitmq"
+    ],
+    "monitors": [],
+    "num_services": 8,
+    "num_dbs": 1,
+    "num_servers": 0,
+    "discos": [],
+    "dockers": [
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "base",
+            "gates": [],
+            "dbs": [],
+            "from": "base",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/JewelsOnContainers/WebMVC/Dockerfile",
+            "keywords": [
+                "dotnet",
+                "webmvc",
+                "csproj",
+                "publish",
+                "build"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "base",
+            "gates": [],
+            "dbs": [],
+            "from": "base",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/JewelsOnContainers/CartApi/Dockerfile",
+            "keywords": [
+                "dotnet",
+                "csproj",
+                "cartapi",
+                "publish",
+                "build"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "base",
+            "gates": [],
+            "dbs": [],
+            "from": "base",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/JewelsOnContainers/TokenServiceApi/Dockerfile",
+            "keywords": [
+                "dotnet",
+                "publish",
+                "restore",
+                "app",
+                "release"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "base",
+            "gates": [],
+            "dbs": [],
+            "from": "base",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/JewelsOnContainers/ProductCatalogApi/Dockerfile",
+            "keywords": [
+                "dotnet",
+                "productcatalogapi",
+                "csproj",
+                "publish",
+                "build"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "base",
+            "gates": [],
+            "dbs": [],
+            "from": "base",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/JewelsOnContainers/OrderApi/Dockerfile",
+            "keywords": [
+                "dotnet",
+                "orderapi",
+                "csproj",
+                "publish",
+                "build"
+            ]
+        }
+    ],
+    "num_files": 6,
+    "num_dockers": 5,
+    "images": [
+        "base"
+    ],
+    "size": 159265,
+    "servers": [],
+    "structure": {
+        "detected_dbs": {
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": false,
+            "services": [
+                "basket.data"
+            ],
+            "num": 1
+        },
+        "num_services": 8,
+        "path": "/JewelsOnContainers/docker-compose.yml",
+        "services": [
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "jewels/catalogserviceapi",
+                "name": "catalogservice",
+                "depends_on": [
+                    "mssqlserver"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "jewels/catalogserviceapi",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "jewels/tokenapi",
+                "name": "tokenserver",
+                "depends_on": [
+                    "mssqlserver"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "jewels/tokenapi",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "jewels/cartapi",
+                "name": "cart",
+                "depends_on": [
+                    "tokenserver",
+                    "basket.data",
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "jewels/cartapi",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "jewels/orderapi",
+                "name": "order",
+                "depends_on": [
+                    "mssqlserver",
+                    "tokenserver",
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "jewels/orderapi",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "redis",
+                "name": "basket.data",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "buses": [],
+                "image": "redis",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "microsoft/mssql-server-linux:latest",
+                "name": "mssqlserver",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "microsoft/mssql-server-linux",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "rabbitmq:3-management",
+                "name": "rabbitmq",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "image": "rabbitmq",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "jewels/webmvc",
+                "name": "webmvc",
+                "depends_on": [
+                    "catalogservice",
+                    "cart",
+                    "tokenserver",
+                    "order"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "jewels/webmvc",
+                "gates": [],
+                "monitors": []
+            }
+        ]
+    },
+    "num_discos": 0,
+    "files": [],
+    "num_monitors": 0,
+    "num_buses": 1,
+    "num_gates": 0,
+    "gates": [],
+    "name": "harikavaleti/WebApplication-JewelsOnContainer-MicroServices-",
+    "avg_size_service": 31853.0,
+    "url": "git://github.com/harikavaleti/WebApplication-JewelsOnContainer-MicroServices-.git",
+    "shared_dbs": false,
+    "langs": [
+        "c#"
+    ],
+    "languages": [
+        "c#"
+    ]
+}

@@ -1,0 +1,259 @@
+{
+    "size": 23,
+    "num_servers": 1,
+    "dbs": [
+        "mysql",
+        "redis"
+    ],
+    "files": [
+        {
+            "path": "/pom.xml",
+            "gates": [
+                "gateway"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/gateway/pom.xml",
+            "gates": [
+                "gateway"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/microservice/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "discos": [],
+            "dbs": [
+                "mysql",
+                "redis"
+            ],
+            "monitors": []
+        }
+    ],
+    "structure": {
+        "num_services": 7,
+        "services": [
+            {
+                "name": "gateway",
+                "image": "ms/gateway",
+                "depends_on": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "servers": [],
+                "image_full": "ms/gateway",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "microservice1",
+                "image": "ms/microservice",
+                "depends_on": [
+                    "gateway",
+                    "mysql",
+                    "redis",
+                    "rabbitmq"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "ms/microservice",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "microservice2",
+                "image": "ms/microservice",
+                "depends_on": [
+                    "gateway",
+                    "mysql",
+                    "redis",
+                    "rabbitmq"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "ms/microservice",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "microservice3",
+                "image": "ms/microservice",
+                "depends_on": [
+                    "gateway",
+                    "mysql",
+                    "redis",
+                    "rabbitmq"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "ms/microservice",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "rabbitmq",
+                "image": "rabbitmq",
+                "depends_on": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "servers": [],
+                "image_full": "rabbitmq:3.7.5-management",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "mysql",
+                "image": "mysql",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "mysql:5.7",
+                "discos": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "monitors": []
+            },
+            {
+                "name": "redis",
+                "image": "redis",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "redis:3",
+                "discos": [],
+                "dbs": [
+                    "redis"
+                ],
+                "monitors": []
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "num": 2,
+            "names": [
+                "mysql",
+                "redis"
+            ],
+            "shared_dbs": true,
+            "services": [
+                "mysql",
+                "redis"
+            ]
+        }
+    },
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "images": [
+        "java"
+    ],
+    "num_discos": 0,
+    "url": "git://github.com/viviennes7/spring-scalable-example.git",
+    "num_services": 7,
+    "langs": [
+        "java"
+    ],
+    "discos": [],
+    "num_gates": 1,
+    "shared_dbs": true,
+    "num_files": 6,
+    "num_monitors": 0,
+    "gates": [
+        "gateway"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "num_langs": 1,
+    "languages": [
+        "java"
+    ],
+    "monitors": [],
+    "name": "viviennes7/spring-scalable-example",
+    "num_buses": 2,
+    "avg_size_service": 11.5,
+    "dockers": [
+        {
+            "path": "/gateway/src/main/docker/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "bash",
+                "touch",
+                "wait",
+                "chmod",
+                "app"
+            ],
+            "from": "java",
+            "buses": [],
+            "from_full": "java:8",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/microservice/src/main/docker/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "bash",
+                "touch",
+                "wait",
+                "chmod",
+                "app"
+            ],
+            "from": "java",
+            "buses": [],
+            "from_full": "java:8",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        }
+    ],
+    "num_dbs": 2,
+    "num_dockers": 2
+}

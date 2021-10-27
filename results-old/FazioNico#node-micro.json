@@ -1,0 +1,293 @@
+{
+    "dbs": [
+        "mongo",
+        "redis"
+    ],
+    "num_langs": 3,
+    "buses": [],
+    "monitors": [],
+    "num_services": 4,
+    "num_dbs": 2,
+    "num_servers": 3,
+    "discos": [],
+    "dockers": [
+        {
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "start",
+                "npm",
+                "run"
+            ],
+            "from_full": "node:8.9-alpine",
+            "gates": [],
+            "dbs": [],
+            "from": "node",
+            "cmd": "npm run start",
+            "discos": [],
+            "langs": [],
+            "path": "/packages/apigateway/Dockerfile",
+            "keywords": [
+                "apigateway",
+                "node",
+                "usr",
+                "modules",
+                "yarn"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "nginx",
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "from": "nginx",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/packages/proxy/Dockerfile",
+            "keywords": [
+                "etc",
+                "conf",
+                "nginx"
+            ]
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "start",
+                "npm",
+                "run"
+            ],
+            "from_full": "node:8.9-alpine",
+            "gates": [],
+            "dbs": [],
+            "from": "node",
+            "cmd": "npm run start",
+            "discos": [],
+            "langs": [],
+            "path": "/packages/todos-service/Dockerfile",
+            "keywords": [
+                "service",
+                "node",
+                "usr",
+                "todos",
+                "modules"
+            ]
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "start",
+                "npm",
+                "run"
+            ],
+            "from_full": "node:8.9-alpine",
+            "gates": [],
+            "dbs": [],
+            "from": "node",
+            "cmd": "npm run start",
+            "discos": [],
+            "langs": [],
+            "path": "/packages/users-service/Dockerfile",
+            "keywords": [
+                "users",
+                "service",
+                "node",
+                "usr",
+                "modules"
+            ]
+        }
+    ],
+    "num_files": 10,
+    "num_dockers": 4,
+    "images": [
+        "nginx",
+        "node"
+    ],
+    "size": 77,
+    "servers": [
+        "express",
+        "mongoose",
+        "node"
+    ],
+    "structure": {
+        "detected_dbs": {
+            "names": [
+                "mongo"
+            ],
+            "shared_dbs": true,
+            "services": [
+                "database"
+            ],
+            "num": 1
+        },
+        "num_services": 4,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "./packages/users-service/",
+                "name": "users",
+                "depends_on": [
+                    "database"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "./packages/users-service/",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "mongo",
+                "name": "database",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "image": "mongo",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "./packages/gateway/",
+                "name": "gateway",
+                "depends_on": [
+                    "database",
+                    "users"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "./packages/gateway/",
+                "gates": [
+                    "gateway"
+                ],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "./packages/todos-service/",
+                "name": "todos",
+                "depends_on": [
+                    "database"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "./packages/todos-service/",
+                "gates": [],
+                "monitors": []
+            }
+        ]
+    },
+    "num_discos": 0,
+    "files": [
+        {
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/package.json"
+        },
+        {
+            "servers": [
+                "express",
+                "mongoose",
+                "node"
+            ],
+            "gates": [],
+            "dbs": [
+                "mongodb",
+                "redis"
+            ],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/packages/apigateway/package.json"
+        },
+        {
+            "servers": [],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/packages/proxy/package.json"
+        },
+        {
+            "servers": [
+                "express",
+                "mongoose",
+                "node"
+            ],
+            "gates": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/packages/todos-service/package.json"
+        },
+        {
+            "servers": [
+                "express",
+                "mongoose",
+                "node"
+            ],
+            "gates": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/packages/users-service/package.json"
+        }
+    ],
+    "num_monitors": 0,
+    "num_buses": 0,
+    "num_gates": 1,
+    "gates": [
+        "nginx"
+    ],
+    "name": "FazioNico/node-micro",
+    "avg_size_service": 19.25,
+    "url": "git://github.com/FazioNico/node-micro.git",
+    "shared_dbs": true,
+    "langs": [
+        "typescript",
+        "shell",
+        "javascript"
+    ],
+    "languages": [
+        "typescript",
+        "javascript",
+        "shell"
+    ]
+}

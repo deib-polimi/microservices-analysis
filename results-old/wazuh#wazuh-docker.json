@@ -1,0 +1,210 @@
+{
+    "discos": [],
+    "avg_size_service": 17.75,
+    "buses": [],
+    "num_gates": 1,
+    "name": "wazuh/wazuh-docker",
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "nginx",
+                "dbs": [],
+                "depends_on": [
+                    "kibana"
+                ],
+                "discos": [],
+                "image_full": "wazuh/wazuh-nginx:3.13.1_7.8.0",
+                "image": "wazuh/wazuh-nginx",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": [
+                    "nginx"
+                ]
+            },
+            {
+                "name": "wazuh",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "wazuh/wazuh:3.13.1_7.8.0",
+                "image": "wazuh/wazuh",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "kibana",
+                "dbs": [],
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "discos": [],
+                "image_full": "wazuh/wazuh-kibana:3.13.1_7.8.0",
+                "image": "wazuh/wazuh-kibana",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "elasticsearch",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "wazuh/wazuh-elasticsearch:3.13.1_7.8.0",
+                "image": "wazuh/wazuh-elasticsearch",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [],
+            "num": 0,
+            "shared_dbs": false,
+            "services": []
+        },
+        "num_services": 4
+    },
+    "dbs": [
+        "universe",
+        "max"
+    ],
+    "dockers": [
+        {
+            "langs": [],
+            "cmd_keywords": [],
+            "from_full": "nginx:latest",
+            "buses": [],
+            "monitors": [],
+            "from": "nginx",
+            "keywords": [
+                "apt",
+                "get",
+                "tmp",
+                "var",
+                "utils"
+            ],
+            "gates": [
+                "nginx"
+            ],
+            "path": "/nginx/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [],
+            "from_full": "docker.elastic.co/kibana/kibana:7.8.0",
+            "buses": [],
+            "monitors": [],
+            "from": "docker.elastic.co/kibana/kibana",
+            "keywords": [
+                "wazuh",
+                "chmod",
+                "config",
+                "kibana",
+                "welcome"
+            ],
+            "gates": [],
+            "path": "/kibana/Dockerfile",
+            "dbs": [
+                "max"
+            ],
+            "discos": [],
+            "cmd": "",
+            "servers": [
+                "node"
+            ]
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "elasticsearch"
+            ],
+            "from_full": "docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}",
+            "buses": [],
+            "monitors": [],
+            "from": "docker.elastic.co/elasticsearch/elasticsearch",
+            "keywords": [
+                "chmod",
+                "plugin",
+                "config",
+                "batch",
+                "cluster"
+            ],
+            "gates": [],
+            "path": "/elasticsearch/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "elasticsearch",
+            "servers": []
+        },
+        {
+            "langs": [
+                "bash"
+            ],
+            "cmd_keywords": [],
+            "from_full": "phusion/baseimage:latest",
+            "buses": [],
+            "monitors": [],
+            "from": "phusion/baseimage",
+            "keywords": [
+                "wazuh",
+                "filebeat",
+                "etc",
+                "apt",
+                "chmod"
+            ],
+            "gates": [],
+            "path": "/wazuh/Dockerfile",
+            "dbs": [
+                "universe"
+            ],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "size": 71,
+    "num_monitors": 0,
+    "images": [
+        "docker.elastic.co/kibana/kibana",
+        "nginx",
+        "phusion/baseimage",
+        "docker.elastic.co/elasticsearch/elasticsearch"
+    ],
+    "num_buses": 0,
+    "num_services": 4,
+    "servers": [
+        "node"
+    ],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_discos": 0,
+    "languages": [
+        "shell",
+        "dockerfile"
+    ],
+    "url": "git://github.com/wazuh/wazuh-docker.git",
+    "langs": [
+        "dockerfile",
+        "bash",
+        "shell"
+    ],
+    "num_dbs": 2,
+    "num_servers": 1,
+    "num_langs": 3,
+    "files": [],
+    "num_dockers": 4,
+    "num_files": 5
+}

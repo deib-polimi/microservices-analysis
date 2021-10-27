@@ -1,0 +1,197 @@
+{
+    "size": 283,
+    "num_dockers": 0,
+    "discos": [
+        "registrator",
+        "consul"
+    ],
+    "num_files": 2,
+    "avg_size_service": 283.0,
+    "buses": [],
+    "num_gates": 0,
+    "langs": [
+        "html"
+    ],
+    "num_discos": 2,
+    "num_monitors": 2,
+    "dockers": [],
+    "num_dbs": 0,
+    "monitors": [
+        "grafana",
+        "prometheus"
+    ],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "gliderlabs/registrator",
+                "image_full": "gliderlabs/registrator:v7",
+                "discos": [
+                    "registrator"
+                ],
+                "name": "registrator",
+                "depends_on": [
+                    "consul-server",
+                    "cadvisor"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "google/cadvisor",
+                "image_full": "google/cadvisor:v0.23.2",
+                "discos": [],
+                "name": "cadvisor",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "prom/node-exporter",
+                "image_full": "prom/node-exporter:0.12.0",
+                "discos": [],
+                "name": "node-exporter-container1",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [
+                    "node"
+                ],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "maven",
+                "image_full": "maven:3-jdk-8",
+                "discos": [],
+                "name": "java-restapp",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "prom/node-exporter",
+                "image_full": "prom/node-exporter:0.12.0",
+                "discos": [],
+                "name": "node-exporter-host",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [
+                    "node"
+                ],
+                "gates": []
+            },
+            {
+                "monitors": [
+                    "prometheus"
+                ],
+                "buses": [],
+                "image": "prom/prometheus",
+                "image_full": "prom/prometheus:0.19.2",
+                "discos": [],
+                "name": "promserver",
+                "depends_on": [
+                    "node-exporter-container1",
+                    "node-exporter-container2",
+                    "cadvisor",
+                    "consul-server"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [
+                    "grafana"
+                ],
+                "buses": [],
+                "image": "grafana/grafana",
+                "image_full": "grafana/grafana:3.0.4",
+                "discos": [],
+                "name": "grafana",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "prom/node-exporter",
+                "image_full": "prom/node-exporter:0.12.0",
+                "discos": [],
+                "name": "node-exporter-container2",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [
+                    "node"
+                ],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "gliderlabs/consul-server",
+                "image_full": "gliderlabs/consul-server:0.6",
+                "discos": [
+                    "consul"
+                ],
+                "name": "consul-server",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        },
+        "num_services": 9,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 0,
+    "servers": [
+        "glassfish",
+        "node"
+    ],
+    "url": "git://github.com/Perdjesk/monitoring-containerized.git",
+    "num_services": 9,
+    "gates": [],
+    "files": [
+        {
+            "monitors": [
+                "prometheus"
+            ],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "glassfish"
+            ],
+            "path": "/java-restapp/pom.xml"
+        }
+    ],
+    "name": "Perdjesk/monitoring-containerized",
+    "languages": [
+        "html"
+    ],
+    "images": [],
+    "dbs": [],
+    "num_servers": 2,
+    "num_langs": 1
+}

@@ -1,0 +1,145 @@
+{
+    "dbs": [
+        "redis"
+    ],
+    "num_langs": 1,
+    "buses": [],
+    "monitors": [],
+    "num_services": 2,
+    "num_dbs": 1,
+    "num_servers": 0,
+    "discos": [],
+    "dockers": [
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "php:7.4-fpm-alpine",
+            "gates": [],
+            "dbs": [
+                "redis"
+            ],
+            "from": "php",
+            "cmd": "",
+            "discos": [],
+            "langs": [
+                "php"
+            ],
+            "path": "/backend/Dockerfile",
+            "keywords": [
+                "apk",
+                "install",
+                "php",
+                "docker",
+                "data"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "php:$TAG",
+            "gates": [],
+            "dbs": [
+                "redis"
+            ],
+            "from": "php",
+            "cmd": "",
+            "discos": [],
+            "langs": [
+                "php"
+            ],
+            "path": "/backend/compose/Dockerfile",
+            "keywords": [
+                "apk",
+                "php",
+                "install",
+                "docker",
+                "ext"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "nginx:$TAG",
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "from": "nginx",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/webserver/Dockerfile",
+            "keywords": []
+        }
+    ],
+    "num_files": 4,
+    "num_dockers": 3,
+    "images": [
+        "php",
+        "nginx"
+    ],
+    "size": 321,
+    "servers": [],
+    "structure": {
+        "detected_dbs": {
+            "names": [],
+            "shared_dbs": false,
+            "services": [],
+            "num": 0
+        },
+        "num_services": 2,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "['TAG=${BACKEND_TAG}']",
+                "name": "lumen_backend",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "['TAG=${BACKEND_TAG}']",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "['TAG=${WEBSERVER_TAG}']",
+                "name": "webserver",
+                "depends_on": [
+                    "${BACKEND_NAME}"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "['TAG=${WEBSERVER_TAG}']",
+                "gates": [],
+                "monitors": []
+            }
+        ]
+    },
+    "num_discos": 0,
+    "files": [],
+    "num_monitors": 0,
+    "num_buses": 0,
+    "num_gates": 1,
+    "gates": [
+        "nginx"
+    ],
+    "name": "apwebmaster/docker-lumen-infrastructure",
+    "avg_size_service": 107.0,
+    "url": "git://github.com/apwebmaster/docker-lumen-infrastructure.git",
+    "shared_dbs": false,
+    "langs": [
+        "php"
+    ],
+    "languages": [
+        "php"
+    ]
+}

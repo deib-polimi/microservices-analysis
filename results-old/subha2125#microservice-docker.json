@@ -1,0 +1,351 @@
+{
+    "name": "subha2125/microservice-docker",
+    "num_dbs": 1,
+    "num_services": 8,
+    "num_files": 13,
+    "servers": [
+        "spring",
+        "glassfish"
+    ],
+    "url": "git://github.com/subha2125/microservice-docker.git",
+    "discos": [
+        "eureka"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "zipkin-service",
+                "image_full": "openzipkin/zipkin",
+                "image": "openzipkin/zipkin",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "hystrix-service",
+                "image_full": "hystrix",
+                "image": "hystrix",
+                "servers": [],
+                "depends_on": [
+                    "eureka"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "mysql",
+                "image_full": "mysql",
+                "image": "mysql",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "employee-salary-service",
+                "image_full": "employee-salary-service",
+                "image": "employee-salary-service",
+                "servers": [],
+                "depends_on": [
+                    "eureka"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "employee-info-service",
+                "image_full": "employee-info-service",
+                "image": "employee-info-service",
+                "servers": [],
+                "depends_on": [
+                    "mysql",
+                    "eureka"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "employee-details-service",
+                "image_full": "employee-details-service",
+                "image": "employee-details-service",
+                "servers": [],
+                "depends_on": [
+                    "eureka",
+                    "config-server",
+                    "zipkin-service"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "config-server",
+                "image_full": "config-server",
+                "image": "config-server",
+                "servers": [],
+                "depends_on": [
+                    "eureka"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "eureka",
+                "image_full": "eureka",
+                "image": "eureka",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [
+                    "eureka"
+                ],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [
+                "mysql"
+            ],
+            "num": 1,
+            "names": [
+                "mysql"
+            ]
+        },
+        "num_services": 8
+    },
+    "num_buses": 0,
+    "size": 38922,
+    "dockers": [
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "path": "/employee-salary-service/Dockerfile",
+            "discos": [],
+            "from": "java",
+            "buses": [],
+            "from_full": "java:8",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "path": "/employee-info-service/Dockerfile",
+            "discos": [],
+            "from": "java",
+            "buses": [],
+            "from_full": "java:8",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "path": "/discoveryServer/Dockerfile",
+            "discos": [],
+            "from": "java",
+            "buses": [],
+            "from_full": "java:8",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "path": "/hystrix/Dockerfile",
+            "discos": [],
+            "from": "java",
+            "buses": [],
+            "from_full": "java:8",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "path": "/employee-details-service/Dockerfile",
+            "discos": [],
+            "from": "java",
+            "buses": [],
+            "from_full": "java:8",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "languages": [
+        "java"
+    ],
+    "dbs": [
+        "mysql"
+    ],
+    "monitors": [],
+    "shared_dbs": false,
+    "avg_size_service": 7784.4,
+    "num_monitors": 0,
+    "files": [
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/pom.xml",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/employee-salary-service/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/employee-info-service/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring",
+                "glassfish"
+            ],
+            "path": "/discoveryServer/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/configserver/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/hystrix/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/employee-details-service/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "buses": []
+        }
+    ],
+    "langs": [
+        "java"
+    ],
+    "num_servers": 2,
+    "buses": [],
+    "num_langs": 1,
+    "num_gates": 0,
+    "num_discos": 1,
+    "images": [
+        "java"
+    ],
+    "num_dockers": 5,
+    "gates": []
+}

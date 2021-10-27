@@ -1,0 +1,443 @@
+{
+    "size": 182,
+    "num_dockers": 6,
+    "discos": [
+        "zookeeper"
+    ],
+    "num_files": 14,
+    "avg_size_service": 30.333333333333332,
+    "buses": [
+        "kafka"
+    ],
+    "num_gates": 1,
+    "langs": [
+        "java",
+        "python",
+        "scala",
+        "bash"
+    ],
+    "num_discos": 1,
+    "num_monitors": 2,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "sh /code/packages/meerkat/.docker/entrypoint.sh",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "code",
+                "docker",
+                "packages",
+                "meerkat",
+                "entrypoint"
+            ],
+            "from": "python",
+            "path": "/packages/meerkat/Dockerfile",
+            "keywords": [
+                "pip",
+                "dev",
+                "install",
+                "cache",
+                "npm"
+            ],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "from_full": "python:3.7-alpine"
+        },
+        {
+            "monitors": [
+                "prometheus"
+            ],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "java",
+            "path": "/.docker/prometheus-jmx-exporter/Dockerfile",
+            "keywords": [
+                "jmx",
+                "prometheus",
+                "httpserver",
+                "jar",
+                "maven"
+            ],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "java:8"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "elasticsearch",
+            "path": "/.docker/es/Dockerfile",
+            "keywords": [
+                "apk",
+                "curl",
+                "add",
+                "cache"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "elasticsearch:5-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "hseeberger/scala-sbt",
+            "path": "/.docker/kafka-man/Dockerfile",
+            "keywords": [
+                "version",
+                "tmp",
+                "kafka",
+                "manager",
+                "tar"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "langs": [
+                "scala"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "hseeberger/scala-sbt"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "nginx",
+            "path": "/.docker/nginx/Dockerfile",
+            "keywords": [
+                "apk",
+                "add",
+                "update",
+                "nginx",
+                "bash"
+            ],
+            "buses": [],
+            "langs": [
+                "bash"
+            ],
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "from_full": "nginx:stable-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [
+                "zookeeper"
+            ],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "java",
+            "path": "/.docker/zookeeper/Dockerfile",
+            "keywords": [
+                "zookeeper",
+                "opt",
+                "tar",
+                "var",
+                "sky"
+            ],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "gates": [],
+            "dbs": [
+                "zookeeper"
+            ],
+            "from_full": "java:8"
+        }
+    ],
+    "num_dbs": 3,
+    "monitors": [
+        "grafana",
+        "prometheus"
+    ],
+    "shared_dbs": true,
+    "structure": {
+        "services": [
+            {
+                "monitors": [
+                    "prometheus"
+                ],
+                "buses": [],
+                "image": "prom/prometheus",
+                "image_full": "prom/prometheus:v2.10.0",
+                "discos": [],
+                "name": "skel_prometheus",
+                "depends_on": [
+                    "skel_kafka-jmx-exporter"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [
+                    "kafka"
+                ],
+                "image": "wurstmeister/kafka",
+                "image_full": "wurstmeister/kafka:2.12-2.2.1",
+                "discos": [],
+                "name": "skel_kafka",
+                "depends_on": [
+                    "skel_zookeeper"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [
+                    "grafana"
+                ],
+                "buses": [],
+                "image": "grafana/grafana",
+                "image_full": "grafana/grafana:6.2.2",
+                "discos": [],
+                "name": "skel_grafana",
+                "depends_on": [
+                    "skel_prometheus"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": ".docker/zookeeper",
+                "image_full": ".docker/zookeeper",
+                "discos": [
+                    "zookeeper"
+                ],
+                "name": "skel_zookeeper",
+                "depends_on": [],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [
+                    "prometheus"
+                ],
+                "buses": [],
+                "image": "./.docker/prometheus-jmx-exporter",
+                "image_full": "./.docker/prometheus-jmx-exporter",
+                "discos": [],
+                "name": "skel_kafka-jmx-exporter",
+                "depends_on": [
+                    "skel_kafka"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./packages/meerkat",
+                "image_full": "./packages/meerkat",
+                "discos": [],
+                "name": "meerkat",
+                "depends_on": [
+                    "skel_zookeeper",
+                    "skel_kafka",
+                    "skel_es",
+                    "skel_db"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./.docker/nginx/",
+                "image_full": "./.docker/nginx/",
+                "discos": [],
+                "name": "nginx",
+                "depends_on": [
+                    "meerkat"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": [
+                    "nginx"
+                ]
+            },
+            {
+                "monitors": [],
+                "buses": [
+                    "kafka"
+                ],
+                "image": "hlebalbau/kafka-manager",
+                "image_full": "hlebalbau/kafka-manager:stable",
+                "discos": [],
+                "name": "kafka_manager",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./.docker/es",
+                "image_full": "./.docker/es",
+                "discos": [],
+                "name": "skel_es",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mongo",
+                "image_full": "mongo:latest",
+                "discos": [],
+                "name": "skel_db",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 2,
+            "names": [
+                "mongo",
+                "zookeeper"
+            ],
+            "services": [
+                "skel_zookeeper",
+                "skel_db"
+            ],
+            "shared_dbs": true
+        },
+        "num_services": 10,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 1,
+    "servers": [],
+    "url": "git://github.com/0mars/monoskel.git",
+    "num_services": 10,
+    "gates": [
+        "nginx"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/packages/injector_provider/requirements.txt"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/packages/meerkat/requirements.txt"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/package.json"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/packages/injector_provider/package.json"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/packages/meerkat/package.json"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/packages/monomanage/package.json"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/packages/registry/package.json"
+        }
+    ],
+    "name": "0mars/monoskel",
+    "languages": [
+        "python"
+    ],
+    "images": [
+        "java",
+        "python",
+        "elasticsearch",
+        "nginx",
+        "hseeberger/scala-sbt"
+    ],
+    "dbs": [
+        "postgresql",
+        "mongo",
+        "zookeeper"
+    ],
+    "num_servers": 0,
+    "num_langs": 4
+}

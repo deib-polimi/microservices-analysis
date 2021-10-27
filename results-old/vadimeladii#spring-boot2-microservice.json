@@ -1,0 +1,542 @@
+{
+    "num_gates": 1,
+    "images": [
+        "java"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "num_buses": 0,
+    "name": "vadimeladii/spring-boot2-microservice",
+    "gates": [
+        "zuul"
+    ],
+    "structure": {
+        "num_services": 8,
+        "detected_dbs": {
+            "services": [],
+            "names": [],
+            "shared_dbs": false,
+            "num": 0
+        },
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image": "postgres",
+                "image_full": "postgres:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "db-product",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "postgres",
+                "image_full": "postgres:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "db-user",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "vadimeladii7/spring-boot2-microservice-product-management",
+                "image_full": "vadimeladii7/spring-boot2-microservice-product-management:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "db-product",
+                    "eureka-app"
+                ],
+                "servers": [
+                    "spring"
+                ],
+                "name": "product-management",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "vadimeladii7/spring-boot2-microservice-tracking-management",
+                "image_full": "vadimeladii7/spring-boot2-microservice-tracking-management:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "eureka-app"
+                ],
+                "servers": [
+                    "spring"
+                ],
+                "name": "tracking-management",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "vadimeladii7/spring-boot2-microservice-eureka",
+                "image_full": "vadimeladii7/spring-boot2-microservice-eureka:latest",
+                "discos": [
+                    "eureka"
+                ],
+                "gates": [],
+                "depends_on": [],
+                "servers": [
+                    "spring"
+                ],
+                "name": "eureka-app",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "vadimeladii7/spring-boot2-microservice-user-management",
+                "image_full": "vadimeladii7/spring-boot2-microservice-user-management:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "db-user",
+                    "eureka-app"
+                ],
+                "servers": [
+                    "spring"
+                ],
+                "name": "user-management",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "vadimeladii7/spring-boot2-microservice-geolocation-management",
+                "image_full": "vadimeladii7/spring-boot2-microservice-geolocation-management:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "eureka-app"
+                ],
+                "servers": [
+                    "spring"
+                ],
+                "name": "geolocation-management",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "vadimeladii7/spring-boot2-microservice-zuul",
+                "image_full": "vadimeladii7/spring-boot2-microservice-zuul:latest",
+                "discos": [],
+                "gates": [
+                    "zuul"
+                ],
+                "depends_on": [
+                    "eureka-app"
+                ],
+                "servers": [
+                    "spring"
+                ],
+                "name": "zuul-app",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            }
+        ]
+    },
+    "url": "git://github.com/vadimeladii/spring-boot2-microservice.git",
+    "langs": [
+        "java"
+    ],
+    "num_dockers": 6,
+    "num_langs": 1,
+    "dbs": [
+        "postgresql"
+    ],
+    "shared_dbs": false,
+    "size": 477,
+    "dockers": [
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "java:8-jre",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "cmd": "java -jar /app/zuul-0.0.1-SNAPSHOT.jar",
+            "gates": [
+                "zuul"
+            ],
+            "keywords": [],
+            "dbs": [],
+            "path": "/zuul/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "zuul",
+                "snapshot",
+                "java",
+                "app"
+            ]
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "java:8-jre",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "cmd": "java -jar /app/webservice-0.0.1-SNAPSHOT.jar",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/tracking-management/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "snapshot",
+                "webservice",
+                "java",
+                "app"
+            ]
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "java:8-jre",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "cmd": "java -jar /app/webservice-0.0.1-SNAPSHOT.jar",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/user-management/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "snapshot",
+                "webservice",
+                "java",
+                "app"
+            ]
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "java:8-jre",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "cmd": "java -jar /app/webservice-0.0.1-SNAPSHOT.jar",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/product-management/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "snapshot",
+                "webservice",
+                "java",
+                "app"
+            ]
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "java:8-jre",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "cmd": "java -jar /app/webservice-0.0.1-SNAPSHOT.jar",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/geolocation-management/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "snapshot",
+                "webservice",
+                "java",
+                "app"
+            ]
+        },
+        {
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "from_full": "java:8-jre",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "cmd": "java -jar /app/eureka-0.0.1-SNAPSHOT.jar",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/eureka/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "snapshot",
+                "java",
+                "app",
+                "eureka"
+            ]
+        }
+    ],
+    "num_servers": 1,
+    "monitors": [],
+    "num_services": 8,
+    "servers": [
+        "spring"
+    ],
+    "num_monitors": 0,
+    "avg_size_service": 79.5,
+    "num_files": 27,
+    "buses": [],
+    "files": [
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/build.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "zuul"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/settings.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "zuul"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/zuul/build.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [
+                "zuul"
+            ],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/zuul/settings.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/tracking-management/build.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/tracking-management/webservice/build.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "path": "/user-management/build.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/user-management/webservice/build.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/user-management/repository/build.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/user-management/business/build.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/user-management/common/build.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "path": "/product-management/build.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/product-management/webservice/build.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/product-management/repository/build.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/product-management/business/build.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/product-management/common/build.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/geolocation-management/build.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/geolocation-management/webservice/build.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/eureka/build.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/eureka/settings.gradle"
+        }
+    ],
+    "languages": [
+        "java"
+    ],
+    "num_dbs": 1,
+    "num_discos": 1
+}

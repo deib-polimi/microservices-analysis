@@ -1,0 +1,193 @@
+{
+    "languages": [
+        "c#",
+        "vue",
+        "html"
+    ],
+    "num_servers": 1,
+    "shared_dbs": false,
+    "name": "xuyae573/CommerceOnContainer",
+    "servers": [
+        "node"
+    ],
+    "num_monitors": 0,
+    "num_langs": 3,
+    "images": [
+        "base",
+        "node"
+    ],
+    "langs": [
+        "html",
+        "vue",
+        "c#"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [
+                "dist",
+                "http",
+                "server"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "http-server dist",
+            "keywords": [
+                "npm",
+                "install",
+                "run",
+                "http",
+                "build"
+            ],
+            "path": "/SPA/VueClient/Dockerfile",
+            "gates": [],
+            "from": "node",
+            "from_full": "node:lts-alpine",
+            "servers": [
+                "node"
+            ],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "restore",
+                "dotnet",
+                "release",
+                "app",
+                "build"
+            ],
+            "path": "/IdentityServerAPI/Dockerfile",
+            "gates": [],
+            "from": "base",
+            "from_full": "base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "restore",
+                "dotnet",
+                "release",
+                "app",
+                "build"
+            ],
+            "path": "/CatalogAPI/Dockerfile",
+            "gates": [],
+            "from": "base",
+            "from_full": "base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [],
+    "num_buses": 0,
+    "discos": [],
+    "monitors": [],
+    "num_files": 5,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "${REGISTRY:-xuyae573}/webspa:${PLATFORM:-linux}-${TAG:-latest}",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "webspa",
+                "image": "${REGISTRY",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "redis:alpine",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "catalog.redis",
+                "image": "redis",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "${REGISTRY:-xuyae573}/identity.api:${PLATFORM:-linux}-${TAG:-latest}",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "identity.api",
+                "image": "${REGISTRY",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "${REGISTRY:-xuyae573}/catalog.api:${PLATFORM:-linux}-${TAG:-latest}",
+                "depends_on": [
+                    "catalog.redis"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "catalog.api",
+                "image": "${REGISTRY",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 4,
+        "detected_dbs": {
+            "services": [
+                "catalog.redis"
+            ],
+            "names": [
+                "redis"
+            ],
+            "num": 1,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [
+        "redis"
+    ],
+    "num_dbs": 1,
+    "avg_size_service": 2030.6666666666667,
+    "num_services": 4,
+    "buses": [],
+    "files": [
+        {
+            "dbs": [],
+            "path": "/SPA/VueClient/package.json",
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "url": "git://github.com/xuyae573/CommerceOnContainer.git",
+    "num_dockers": 3,
+    "size": 6092,
+    "num_discos": 0,
+    "num_gates": 0
+}

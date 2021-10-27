@@ -1,0 +1,288 @@
+{
+    "size": 654,
+    "num_dockers": 3,
+    "discos": [],
+    "num_files": 10,
+    "avg_size_service": 218.0,
+    "buses": [],
+    "num_gates": 1,
+    "langs": [
+        "java",
+        "javascript"
+    ],
+    "num_discos": 0,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "java -Xmx200m -jar /app/api-gateway.jar",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "api",
+                "java",
+                "gateway"
+            ],
+            "from": "openjdk",
+            "path": "/api-gateway/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "java -Xmx200m -jar /app/account-service.jar",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "service",
+                "java",
+                "xmx"
+            ],
+            "from": "openjdk",
+            "path": "/account-service/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "java -Xmx200m -jar /app/team-service.jar",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "team",
+                "service",
+                "java"
+            ],
+            "from": "openjdk",
+            "path": "/team-service/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine"
+        }
+    ],
+    "num_dbs": 1,
+    "monitors": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mongo-express",
+                "image_full": "mongo-express",
+                "discos": [],
+                "name": "mongo-express",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "servers": [
+                    "express"
+                ],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./account-service",
+                "image_full": "./account-service",
+                "discos": [],
+                "name": "account-service",
+                "depends_on": [
+                    "account-service-mongo-db"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./team-service",
+                "image_full": "./team-service",
+                "discos": [],
+                "name": "team-service",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./api-gateway",
+                "image_full": "./api-gateway",
+                "discos": [],
+                "name": "api-gateway",
+                "depends_on": [
+                    "account-service"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": [
+                    "gateway"
+                ]
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mongo",
+                "image_full": "mongo",
+                "discos": [],
+                "name": "team-service-mongo-db",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mongo",
+                "image_full": "mongo",
+                "discos": [],
+                "name": "account-service-mongo-db",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 3,
+            "names": [
+                "mongo"
+            ],
+            "services": [
+                "mongo-express",
+                "team-service-mongo-db",
+                "account-service-mongo-db"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 6,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 0,
+    "servers": [
+        "spring",
+        "express"
+    ],
+    "url": "git://github.com/mickygeehan/teameez.git",
+    "num_services": 6,
+    "gates": [
+        "gateway"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [],
+            "servers": [],
+            "path": "/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/api-gateway/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/team-gui/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/account-service/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/team-service/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/team-gui/team-gui/package.json"
+        }
+    ],
+    "name": "mickygeehan/teameez",
+    "languages": [
+        "javascript",
+        "java"
+    ],
+    "images": [
+        "openjdk"
+    ],
+    "dbs": [
+        "mongo"
+    ],
+    "num_servers": 2,
+    "num_langs": 2
+}

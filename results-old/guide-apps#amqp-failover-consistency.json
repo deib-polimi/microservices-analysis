@@ -1,0 +1,295 @@
+{
+    "num_discos": 0,
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "name": "guide-apps/amqp-failover-consistency",
+    "dbs": [],
+    "num_services": 7,
+    "avg_size_service": 12.5,
+    "num_monitors": 0,
+    "monitors": [],
+    "discos": [],
+    "servers": [],
+    "url": "git://github.com/guide-apps/amqp-failover-consistency.git",
+    "num_dockers": 4,
+    "files": [
+        {
+            "discos": [],
+            "path": "/reports-app/pom.xml",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "path": "/delivery-app/pom.xml",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "path": "/checkout-app/pom.xml",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "path": "/notifications-app/pom.xml",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": []
+        }
+    ],
+    "shared_dbs": false,
+    "size": 50,
+    "languages": [
+        "java",
+        "dockerfile"
+    ],
+    "gates": [],
+    "num_langs": 2,
+    "structure": {
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "shared_dbs": false,
+            "names": []
+        },
+        "num_services": 7,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "checkout_db",
+                "image_full": "postgres",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "postgres"
+            },
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "notifications_db",
+                "image_full": "postgres",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "postgres"
+            },
+            {
+                "depends_on": [
+                    "rabbitmq_slave"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "name": "rabbitmq_master",
+                "image_full": "rabbitmq:3-management",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "rabbitmq"
+            },
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "mail_server",
+                "image_full": "schickling/mailcatcher",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "schickling/mailcatcher"
+            },
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "name": "rabbitmq_slave",
+                "image_full": "rabbitmq:3-management",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "rabbitmq"
+            },
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "reports_db",
+                "image_full": "postgres",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "postgres"
+            },
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "delivery_db",
+                "image_full": "postgres",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "postgres"
+            }
+        ]
+    },
+    "dockers": [
+        {
+            "from_full": "registry.gitlab.com/guide-apps/amqp-failover-consistency:spring-builds-jdk8",
+            "servers": [],
+            "buses": [
+                "amqp"
+            ],
+            "dbs": [],
+            "cmd": "['java', '-jar', 'target/reports-app.jar']",
+            "langs": [
+                "java"
+            ],
+            "from": "registry.gitlab.com/guide-apps/amqp-failover-consistency",
+            "monitors": [],
+            "discos": [],
+            "path": "/reports-app/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "target",
+                "reports",
+                "app"
+            ],
+            "gates": [],
+            "keywords": [
+                "package",
+                "clean",
+                "mvn"
+            ]
+        },
+        {
+            "from_full": "registry.gitlab.com/guide-apps/amqp-failover-consistency:spring-builds-jdk8",
+            "servers": [],
+            "buses": [
+                "amqp"
+            ],
+            "dbs": [],
+            "cmd": "['java', '-jar', '/app/target/delivery-app.jar']",
+            "langs": [
+                "java"
+            ],
+            "from": "registry.gitlab.com/guide-apps/amqp-failover-consistency",
+            "monitors": [],
+            "discos": [],
+            "path": "/delivery-app/Dockerfile",
+            "cmd_keywords": [
+                "app",
+                "jar",
+                "java",
+                "target",
+                "delivery"
+            ],
+            "gates": [],
+            "keywords": [
+                "package",
+                "clean",
+                "mvn"
+            ]
+        },
+        {
+            "from_full": "registry.gitlab.com/guide-apps/amqp-failover-consistency:spring-builds-jdk8",
+            "servers": [],
+            "buses": [
+                "amqp"
+            ],
+            "dbs": [],
+            "cmd": "['java', '-jar', 'target/checkout-app.jar']",
+            "langs": [
+                "java"
+            ],
+            "from": "registry.gitlab.com/guide-apps/amqp-failover-consistency",
+            "monitors": [],
+            "discos": [],
+            "path": "/checkout-app/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "checkout",
+                "target",
+                "app"
+            ],
+            "gates": [],
+            "keywords": [
+                "package",
+                "clean",
+                "mvn"
+            ]
+        },
+        {
+            "from_full": "registry.gitlab.com/guide-apps/amqp-failover-consistency:spring-builds-jdk8",
+            "servers": [],
+            "buses": [
+                "amqp"
+            ],
+            "dbs": [],
+            "cmd": "['java', '-jar', 'target/notifications-app.jar']",
+            "langs": [
+                "java"
+            ],
+            "from": "registry.gitlab.com/guide-apps/amqp-failover-consistency",
+            "monitors": [],
+            "discos": [],
+            "path": "/notifications-app/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "target",
+                "notifications",
+                "app"
+            ],
+            "gates": [],
+            "keywords": [
+                "package",
+                "clean",
+                "mvn"
+            ]
+        }
+    ],
+    "num_files": 9,
+    "num_gates": 0,
+    "num_dbs": 0,
+    "langs": [
+        "dockerfile",
+        "java"
+    ],
+    "images": [
+        "registry.gitlab.com/guide-apps/amqp-failover-consistency"
+    ],
+    "num_buses": 2,
+    "num_servers": 0
+}

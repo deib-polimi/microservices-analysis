@@ -1,0 +1,366 @@
+{
+    "size": 1692,
+    "num_dockers": 6,
+    "discos": [],
+    "num_files": 12,
+    "avg_size_service": 282.0,
+    "buses": [],
+    "num_gates": 1,
+    "langs": [
+        "python",
+        "html",
+        "php"
+    ],
+    "num_discos": 0,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "php",
+            "path": "/laravel/Dockerfile",
+            "keywords": [
+                "apt",
+                "install",
+                "get",
+                "sqlsrv",
+                "ini"
+            ],
+            "buses": [],
+            "langs": [
+                "php"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "php:7.3-fpm-stretch"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "nginx",
+            "path": "/nginx/Dockerfile",
+            "keywords": [
+                "npm",
+                "configuration",
+                "force",
+                "out",
+                "cache"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "from_full": "nginx"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "python",
+            "path": "/django/Dockerfile",
+            "keywords": [
+                "apt",
+                "get",
+                "install",
+                "dev",
+                "update"
+            ],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "python:3.7.4-stretch"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "maven",
+            "path": "/springboot/Dockerfile",
+            "keywords": [
+                "mvn",
+                "install",
+                "clean"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "maven"
+        },
+        {
+            "monitors": [],
+            "cmd": "uwsgi app.ini",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "app",
+                "uwsgi",
+                "ini"
+            ],
+            "from": "python",
+            "path": "/flask/Dockerfile",
+            "keywords": [
+                "apt",
+                "get",
+                "install",
+                "dev",
+                "update"
+            ],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "python:3.7.4-stretch"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "cmd_keywords": [],
+            "from": "node",
+            "path": "/express/Dockerfile",
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "node:12.13-stretch"
+        }
+    ],
+    "num_dbs": 0,
+    "monitors": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./django",
+                "image_full": "./django",
+                "discos": [],
+                "name": "django",
+                "depends_on": [
+                    "mssql-server"
+                ],
+                "dbs": [],
+                "servers": [
+                    "django"
+                ],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./nginx",
+                "image_full": "./nginx",
+                "discos": [],
+                "name": "nginx",
+                "depends_on": [
+                    "flask",
+                    "django",
+                    "springboot",
+                    "laravel",
+                    "express"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": [
+                    "nginx"
+                ]
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mcr.microsoft.com/mssql/server",
+                "image_full": "mcr.microsoft.com/mssql/server:2017-latest-ubuntu",
+                "discos": [],
+                "name": "mssql-server",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./springboot",
+                "image_full": "./springboot",
+                "discos": [],
+                "name": "springboot",
+                "depends_on": [
+                    "mssql-server"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./laravel",
+                "image_full": "./laravel",
+                "discos": [],
+                "name": "laravel",
+                "depends_on": [
+                    "mssql-server"
+                ],
+                "dbs": [],
+                "servers": [
+                    "laravel"
+                ],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./express",
+                "image_full": "./express",
+                "discos": [],
+                "name": "express",
+                "depends_on": [
+                    "mssql-server"
+                ],
+                "dbs": [],
+                "servers": [
+                    "express"
+                ],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./flask",
+                "image_full": "./flask",
+                "discos": [],
+                "name": "flask",
+                "depends_on": [
+                    "mssql-server"
+                ],
+                "dbs": [],
+                "servers": [
+                    "flask"
+                ],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        },
+        "num_services": 7,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 0,
+    "servers": [
+        "spring",
+        "express",
+        "flask",
+        "django",
+        "node",
+        "laravel"
+    ],
+    "url": "git://github.com/fmunirdev/planetary.git",
+    "num_services": 7,
+    "gates": [
+        "nginx"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "django"
+            ],
+            "path": "/django/requirements.txt"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/flask/requirements.txt"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/springboot/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "path": "/nginx/ng-planetary/package.json"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/express/package.json"
+        }
+    ],
+    "name": "fmunirdev/planetary",
+    "languages": [
+        "php",
+        "html",
+        "python"
+    ],
+    "images": [
+        "python",
+        "node",
+        "maven",
+        "nginx",
+        "php"
+    ],
+    "dbs": [],
+    "num_servers": 6,
+    "num_langs": 3
+}

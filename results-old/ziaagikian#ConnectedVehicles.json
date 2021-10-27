@@ -1,0 +1,343 @@
+{
+    "size": 1503,
+    "num_dockers": 4,
+    "discos": [
+        "registrator",
+        "consul"
+    ],
+    "num_files": 9,
+    "avg_size_service": 375.75,
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_gates": 1,
+    "langs": [
+        "html",
+        "javascript"
+    ],
+    "num_discos": 2,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "$codePath/libs/wait-for-it.sh localhost:15672 -t $queueTimeout;  /bin/sh ./start.sh",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "cmd_keywords": [
+                "bin",
+                "localhost",
+                "start",
+                "codepath",
+                "libs"
+            ],
+            "from": "node",
+            "path": "/api-gateway/Dockerfile",
+            "keywords": [
+                "npm",
+                "install",
+                "chmod",
+                "prune",
+                "for"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "node"
+        },
+        {
+            "monitors": [],
+            "cmd": "$codePath/libs/wait-for-it.sh localhost:15672 -t ${queueTimeout};  /bin/sh ./start.sh",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "cmd_keywords": [
+                "bin",
+                "localhost",
+                "start",
+                "codepath",
+                "libs"
+            ],
+            "from": "node",
+            "path": "/vehicle_service/Dockerfile",
+            "keywords": [
+                "npm",
+                "install",
+                "chmod",
+                "prune",
+                "for"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "node"
+        },
+        {
+            "monitors": [],
+            "cmd": "$codePath/libs/wait-for-it.sh localhost:15672 -t $queueTimeout;  /bin/sh ./start.sh",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "cmd_keywords": [
+                "bin",
+                "localhost",
+                "start",
+                "codepath",
+                "libs"
+            ],
+            "from": "node",
+            "path": "/customer_service/Dockerfile",
+            "keywords": [
+                "npm",
+                "install",
+                "chmod",
+                "prune",
+                "for"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "node"
+        },
+        {
+            "monitors": [],
+            "cmd": "nginx -g daemon off;",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "daemon",
+                "nginx",
+                "off"
+            ],
+            "from": "nginx",
+            "path": "/frontend/Dockerfile",
+            "keywords": [
+                "npm",
+                "install",
+                "angular",
+                "deploy",
+                "certificates"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "from_full": "nginx:alpine"
+        }
+    ],
+    "num_dbs": 1,
+    "monitors": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "gliderlabs/registrator",
+                "image_full": "gliderlabs/registrator:v7",
+                "discos": [
+                    "registrator"
+                ],
+                "name": "registrator",
+                "depends_on": [
+                    "consul"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./customer_service/",
+                "image_full": "./customer_service/",
+                "discos": [],
+                "name": "customer-service",
+                "depends_on": [
+                    "api-gateway",
+                    "redis"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "redis",
+                "image_full": "redis",
+                "discos": [],
+                "name": "redis",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "consul",
+                "image_full": "consul:1.3.0",
+                "discos": [
+                    "consul"
+                ],
+                "name": "consul",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./vehicle_service/",
+                "image_full": "./vehicle_service/",
+                "discos": [],
+                "name": "vehicle-service",
+                "depends_on": [
+                    "api-gateway"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./api-gateway/",
+                "image_full": "./api-gateway/",
+                "discos": [],
+                "name": "api-gateway",
+                "depends_on": [
+                    "rabbitmq-service"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": [
+                    "gateway"
+                ]
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./frontend",
+                "image_full": "./frontend",
+                "discos": [],
+                "name": "frontend-app",
+                "depends_on": [
+                    "api-gateway"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "image": "rabbitmq",
+                "image_full": "rabbitmq:3-management",
+                "discos": [],
+                "name": "rabbitmq-service",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "redis"
+            ],
+            "services": [
+                "redis"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 8,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 1,
+    "servers": [
+        "node",
+        "express"
+    ],
+    "url": "git://github.com/ziaagikian/ConnectedVehicles.git",
+    "num_services": 8,
+    "gates": [
+        "nginx"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/api-gateway/package.json"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/vehicle_service/package.json"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [
+                "redis"
+            ],
+            "servers": [],
+            "path": "/customer_service/package.json"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "path": "/frontend/package.json"
+        }
+    ],
+    "name": "ziaagikian/ConnectedVehicles",
+    "languages": [
+        "html",
+        "javascript"
+    ],
+    "images": [
+        "node",
+        "nginx"
+    ],
+    "dbs": [
+        "redis"
+    ],
+    "num_servers": 2,
+    "num_langs": 2
+}

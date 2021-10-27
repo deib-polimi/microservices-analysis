@@ -1,0 +1,134 @@
+{
+    "langs": [
+        "ruby",
+        "php"
+    ],
+    "languages": [
+        "php"
+    ],
+    "url": "git://github.com/angeloglirazan/Docker-Microservices-PoC.git",
+    "files": [],
+    "gates": [],
+    "discos": [],
+    "num_monitors": 0,
+    "num_dockers": 2,
+    "num_dbs": 0,
+    "avg_size_service": 75.0,
+    "num_gates": 0,
+    "num_servers": 0,
+    "name": "angeloglirazan/Docker-Microservices-PoC",
+    "num_discos": 0,
+    "num_files": 3,
+    "num_buses": 1,
+    "servers": [],
+    "dbs": [],
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "depends_on": [],
+                "image": "./sender-lumen",
+                "servers": [],
+                "gates": [],
+                "image_full": "./sender-lumen",
+                "buses": [],
+                "dbs": [],
+                "discos": [],
+                "name": "web"
+            },
+            {
+                "monitors": [],
+                "depends_on": [],
+                "image": "rabbitmq",
+                "servers": [],
+                "gates": [],
+                "image_full": "rabbitmq:3",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "discos": [],
+                "name": "rabbitmq"
+            },
+            {
+                "monitors": [],
+                "depends_on": [],
+                "image": "./receive-rb",
+                "servers": [],
+                "gates": [],
+                "image_full": "./receive-rb",
+                "buses": [],
+                "dbs": [],
+                "discos": [],
+                "name": "receiver-service"
+            }
+        ],
+        "num_services": 3,
+        "detected_dbs": {
+            "names": [],
+            "services": [],
+            "shared_dbs": false,
+            "num": 0
+        },
+        "path": "/docker-compose.yml"
+    },
+    "monitors": [],
+    "size": 150,
+    "dockers": [
+        {
+            "langs": [
+                "ruby"
+            ],
+            "buses": [],
+            "servers": [],
+            "from_full": "ruby:2.3-onbuild",
+            "gates": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "./receive.rb",
+            "keywords": [
+                "receive",
+                "chmod"
+            ],
+            "path": "/receive-rb/Dockerfile",
+            "from": "ruby",
+            "cmd_keywords": [
+                "receive"
+            ]
+        },
+        {
+            "langs": [
+                "php"
+            ],
+            "buses": [],
+            "servers": [],
+            "from_full": "php:5.6-apache",
+            "gates": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "",
+            "keywords": [
+                "php",
+                "composer",
+                "install",
+                "setup",
+                "apt"
+            ],
+            "path": "/sender-lumen/Dockerfile",
+            "from": "php",
+            "cmd_keywords": []
+        }
+    ],
+    "images": [
+        "ruby",
+        "php"
+    ],
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_services": 3,
+    "num_langs": 2,
+    "shared_dbs": false
+}

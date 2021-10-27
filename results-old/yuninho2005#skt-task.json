@@ -1,0 +1,284 @@
+{
+    "size": 55,
+    "num_servers": 2,
+    "dbs": [
+        "mysql"
+    ],
+    "files": [
+        {
+            "path": "/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/microservice-app/pom.xml",
+            "gates": [],
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "discos": [],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": []
+        },
+        {
+            "path": "/common-library/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/management-app/pom.xml",
+            "gates": [],
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/cloud-config-server/pom.xml",
+            "gates": [],
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "structure": {
+        "num_services": 6,
+        "services": [
+            {
+                "name": "myadmin",
+                "image": "phpmyadmin/phpmyadmin",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "phpmyadmin/phpmyadmin",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "magementapp",
+                "image": "skt/management-app",
+                "depends_on": [
+                    "rabbitmq",
+                    "cloudconfigserver"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "skt/management-app:latest",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "cloudconfigserver",
+                "image": "skt/cloud-config-server",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "skt/cloud-config-server:latest",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "mysql",
+                "image": "mysql",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "mysql:8.0.15",
+                "discos": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "monitors": []
+            },
+            {
+                "name": "rabbitmq",
+                "image": "rabbitmq",
+                "depends_on": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "servers": [],
+                "image_full": "rabbitmq:3.7.13-management-alpine",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "microserviceapp",
+                "image": "skt/microservice-app",
+                "depends_on": [
+                    "rabbitmq",
+                    "cloudconfigserver",
+                    "mysql"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "skt/microservice-app:latest",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": false,
+            "services": [
+                "mysql"
+            ]
+        }
+    },
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "images": [
+        "tomcat"
+    ],
+    "num_discos": 0,
+    "url": "git://github.com/yuninho2005/skt-task.git",
+    "num_services": 6,
+    "langs": [
+        "java"
+    ],
+    "discos": [],
+    "num_gates": 0,
+    "shared_dbs": false,
+    "num_files": 9,
+    "num_monitors": 0,
+    "gates": [],
+    "servers": [
+        "tomcat",
+        "spring"
+    ],
+    "num_langs": 1,
+    "languages": [
+        "java"
+    ],
+    "monitors": [],
+    "name": "yuninho2005/skt-task",
+    "num_buses": 2,
+    "avg_size_service": 18.333333333333332,
+    "dockers": [
+        {
+            "path": "/microservice-app/src/main/resources/docker/Dockerfile",
+            "gates": [],
+            "servers": [
+                "tomcat"
+            ],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "touch",
+                "app",
+                "war",
+                "webapps",
+                "usr"
+            ],
+            "from": "tomcat",
+            "buses": [],
+            "from_full": "tomcat:8.5-alpine",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/management-app/src/main/resources/docker/Dockerfile",
+            "gates": [],
+            "servers": [
+                "tomcat"
+            ],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "touch",
+                "app",
+                "war",
+                "webapps",
+                "usr"
+            ],
+            "from": "tomcat",
+            "buses": [],
+            "from_full": "tomcat:8.5-alpine",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/cloud-config-server/src/main/resources/docker/Dockerfile",
+            "gates": [],
+            "servers": [
+                "tomcat"
+            ],
+            "langs": [
+                "java"
+            ],
+            "cmd": "sh -c java -Xmx512m -Djava.security.egd=file:/dev/./urandom -Dserver.port=$PORT -jar /usr/local/tomcat/webapps/app.war",
+            "keywords": [
+                "touch",
+                "app",
+                "war",
+                "webapps",
+                "usr"
+            ],
+            "from": "tomcat",
+            "buses": [],
+            "from_full": "tomcat:8.5-alpine",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "port",
+                "app",
+                "urandom",
+                "djava",
+                "usr"
+            ]
+        }
+    ],
+    "num_dbs": 1,
+    "num_dockers": 3
+}

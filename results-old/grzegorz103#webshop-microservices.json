@@ -1,0 +1,433 @@
+{
+    "num_services": 9,
+    "dbs": [
+        "postgresql"
+    ],
+    "name": "grzegorz103/webshop-microservices",
+    "files": [
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/pom.xml",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "path": "/order-service/pom.xml",
+            "buses": [
+                "amqp"
+            ],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/user-service/pom.xml",
+            "buses": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/common-module/pom.xml",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": []
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "path": "/price-service/pom.xml",
+            "buses": [
+                "amqp"
+            ],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/discovery-service/pom.xml",
+            "buses": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "gates": [
+                "zuul"
+            ],
+            "dbs": [],
+            "path": "/proxy-service/pom.xml",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/event-service/pom.xml",
+            "buses": [
+                "amqp"
+            ],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "path": "/product-service/pom.xml",
+            "buses": [
+                "amqp"
+            ],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/angular-ui/package.json",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "node"
+            ]
+        }
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "num_gates": 1,
+    "num_buses": 2,
+    "langs": [
+        "java",
+        "typescript",
+        "html"
+    ],
+    "gates": [
+        "zuul"
+    ],
+    "num_monitors": 0,
+    "monitors": [],
+    "images": [
+        "openjdk"
+    ],
+    "structure": {
+        "num_services": 9,
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "names": [],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "postgres",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "db-postgres",
+                "image": "postgres"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "discovery",
+                    "elasticsearch",
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "microservice-docker-user-service:0.0.1-SNAPSHOT",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "user-service",
+                "image": "microservice-docker-user-service"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:7.6.2",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "elasticsearch",
+                "image": "docker.elastic.co/elasticsearch/elasticsearch"
+            },
+            {
+                "buses": [
+                    "rabbitmq"
+                ],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "rabbitmq",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "rabbitmq",
+                "image": "rabbitmq"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "discovery",
+                    "rabbitmq",
+                    "db-postgres"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "microservice-docker-product-service:0.0.1-SNAPSHOT",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "product-service",
+                "image": "microservice-docker-product-service"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "microservice-docker-discovery-service:0.0.1-SNAPSHOT",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "discovery",
+                "image": "microservice-docker-discovery-service"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "discovery"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "microservice-docker-proxy-service:0.0.1-SNAPSHOT",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "proxy-service",
+                "image": "microservice-docker-proxy-service"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "discovery",
+                    "rabbitmq",
+                    "db-postgres"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "microservice-docker-event-service:0.0.1-SNAPSHOT",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "event-service",
+                "image": "microservice-docker-event-service"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "discovery",
+                    "rabbitmq",
+                    "db-postgres"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "microservice-docker-order-service:0.0.1-SNAPSHOT",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "order-service",
+                "image": "microservice-docker-order-service"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "shared_dbs": false,
+    "languages": [
+        "java",
+        "typescript",
+        "html"
+    ],
+    "avg_size_service": 241.0,
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "dockers": [
+        {
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [],
+            "dbs": [],
+            "path": "/order-service/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "openjdk",
+            "keywords": [],
+            "cmd": ""
+        },
+        {
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [],
+            "dbs": [],
+            "path": "/user-service/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "openjdk",
+            "keywords": [],
+            "cmd": ""
+        },
+        {
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [],
+            "dbs": [],
+            "path": "/price-service/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "openjdk",
+            "keywords": [],
+            "cmd": ""
+        },
+        {
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [],
+            "dbs": [],
+            "path": "/discovery-service/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "openjdk",
+            "keywords": [],
+            "cmd": ""
+        },
+        {
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [],
+            "dbs": [],
+            "path": "/proxy-service/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "openjdk",
+            "keywords": [],
+            "cmd": ""
+        },
+        {
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [],
+            "dbs": [],
+            "path": "/event-service/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "openjdk",
+            "keywords": [],
+            "cmd": ""
+        },
+        {
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [],
+            "dbs": [],
+            "path": "/product-service/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "openjdk",
+            "keywords": [],
+            "cmd": ""
+        }
+    ],
+    "servers": [
+        "node",
+        "spring"
+    ],
+    "num_dockers": 7,
+    "url": "git://github.com/grzegorz103/webshop-microservices.git",
+    "num_dbs": 1,
+    "num_servers": 2,
+    "num_discos": 1,
+    "num_langs": 3,
+    "num_files": 18,
+    "size": 1687
+}

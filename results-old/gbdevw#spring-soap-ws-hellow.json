@@ -1,0 +1,201 @@
+{
+    "size": 263,
+    "avg_size_service": 65.75,
+    "name": "gbdevw/spring-soap-ws-hellow",
+    "languages": [
+        "java"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "num_dbs": 0,
+    "images": [
+        "grafana/grafana",
+        "openjdk",
+        "prom/prometheus",
+        "grafana/promtail"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 5,
+        "services": [
+            {
+                "depends_on": [],
+                "image_full": "grafana/loki:latest",
+                "monitors": [
+                    "grafana"
+                ],
+                "name": "loki",
+                "image": "grafana/loki",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "sayhello"
+                ],
+                "image_full": "${DOCKERHUB_REPO}:${PROMTAIL_BASE_TAG}-${IMAGES_VERSION}",
+                "monitors": [],
+                "name": "promtail",
+                "image": "${DOCKERHUB_REPO}",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "${DOCKERHUB_REPO}:${SAYHELLO_BASE_TAG}-${IMAGES_VERSION}",
+                "monitors": [],
+                "name": "sayhello",
+                "image": "${DOCKERHUB_REPO}",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "${DOCKERHUB_REPO}:${GRAFANA_BASE_TAG}-${IMAGES_VERSION}",
+                "monitors": [],
+                "name": "grafana",
+                "image": "${DOCKERHUB_REPO}",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "./monitoring/prometheus/compose",
+                "monitors": [
+                    "monitoring"
+                ],
+                "name": "prometheus",
+                "image": "./monitoring/prometheus/compose",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [],
+            "names": [],
+            "shared_dbs": false,
+            "num": 0
+        }
+    },
+    "num_dockers": 4,
+    "num_buses": 0,
+    "num_services": 5,
+    "dockers": [
+        {
+            "path": "/Dockerfile",
+            "from": "openjdk",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "keywords": [],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/monitoring/grafana/Dockerfile",
+            "from": "grafana/grafana",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "grafana/grafana:6.4.3",
+            "keywords": [],
+            "cmd_keywords": [],
+            "monitors": [
+                "grafana"
+            ],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/monitoring/promtail/Dockerfile",
+            "from": "grafana/promtail",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "grafana/promtail:latest",
+            "keywords": [],
+            "cmd_keywords": [],
+            "monitors": [
+                "grafana"
+            ],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/monitoring/prometheus/compose/Dockerfile",
+            "from": "prom/prometheus",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "prom/prometheus:latest",
+            "keywords": [],
+            "cmd_keywords": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "num_langs": 1,
+    "langs": [
+        "java"
+    ],
+    "discos": [],
+    "num_gates": 0,
+    "num_monitors": 2,
+    "num_files": 6,
+    "files": [
+        {
+            "path": "/pom.xml",
+            "monitors": [
+                "prometheus"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "shared_dbs": false,
+    "monitors": [
+        "grafana",
+        "prometheus"
+    ],
+    "num_servers": 1,
+    "url": "git://github.com/gbdevw/spring-soap-ws-hellow.git",
+    "dbs": [],
+    "num_discos": 0,
+    "gates": [],
+    "buses": []
+}

@@ -1,0 +1,167 @@
+{
+    "avg_size_service": 5.5,
+    "buses": [],
+    "num_dbs": 1,
+    "files": [
+        {
+            "path": "/kotlingateway/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [
+                "zuul",
+                "gateway"
+            ]
+        },
+        {
+            "path": "/kotlinuserservice/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "mongodb"
+            ],
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": []
+        }
+    ],
+    "num_dockers": 2,
+    "num_langs": 2,
+    "num_servers": 1,
+    "num_buses": 0,
+    "num_discos": 0,
+    "gates": [
+        "zuul"
+    ],
+    "images": [
+        "frolvlad/alpine-oraclejdk8"
+    ],
+    "size": 11,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 3,
+        "services": [
+            {
+                "buses": [],
+                "name": "kotlin-mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "monitors": [],
+                "servers": [],
+                "image": "mongo",
+                "image_full": "mongo",
+                "discos": [],
+                "gates": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "name": "kotlinuserservice",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "kotlinuserservice",
+                "image_full": "kotlinuserservice",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "kotlin-mongo"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "kotlingateway",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "kotlingateway",
+                "image_full": "kotlingateway",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "kotlinuserservice"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 1,
+            "names": [
+                "mongo"
+            ],
+            "services": [
+                "kotlin-mongo"
+            ]
+        }
+    },
+    "num_files": 5,
+    "servers": [
+        "spring"
+    ],
+    "url": "git://github.com/Murugar/KotlinMicroServicesDocker.git",
+    "dbs": [
+        "mongo"
+    ],
+    "monitors": [],
+    "dockers": [
+        {
+            "from_full": "frolvlad/alpine-oraclejdk8:8.131.11-slim",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/kotlingateway/Dockerfile",
+            "from": "frolvlad/alpine-oraclejdk8",
+            "cmd": "",
+            "cmd_keywords": [],
+            "servers": [],
+            "keywords": [
+                "app",
+                "jar",
+                "touch"
+            ],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "frolvlad/alpine-oraclejdk8:8.131.11-slim",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/kotlinuserservice/Dockerfile",
+            "from": "frolvlad/alpine-oraclejdk8",
+            "cmd": "",
+            "cmd_keywords": [],
+            "servers": [],
+            "keywords": [
+                "app",
+                "jar",
+                "touch"
+            ],
+            "discos": [],
+            "langs": []
+        }
+    ],
+    "languages": [
+        "kotlin",
+        "dockerfile"
+    ],
+    "num_services": 3,
+    "num_gates": 1,
+    "name": "Murugar/KotlinMicroServicesDocker",
+    "shared_dbs": false,
+    "langs": [
+        "dockerfile",
+        "kotlin"
+    ],
+    "discos": [],
+    "num_monitors": 0
+}

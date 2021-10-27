@@ -1,0 +1,311 @@
+{
+    "size": 20,
+    "shared_dbs": false,
+    "num_servers": 1,
+    "name": "hefnawi/demo-store-api",
+    "files": [
+        {
+            "gates": [],
+            "dbs": [
+                "redis"
+            ],
+            "buses": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/services/products/requirements.txt",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "redis"
+            ],
+            "buses": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/services/orders/requirements.txt",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "redis"
+            ],
+            "buses": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/auth/requirements.txt",
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "num_files": 10,
+    "num_langs": 2,
+    "dbs": [
+        "redis"
+    ],
+    "servers": [
+        "flask"
+    ],
+    "num_discos": 0,
+    "url": "git://github.com/hefnawi/demo-store-api.git",
+    "gates": [
+        "nginx"
+    ],
+    "structure": {
+        "services": [
+            {
+                "image": "hefnawi/orders-microservice-api",
+                "dbs": [],
+                "image_full": "hefnawi/orders-microservice-api:v0.1",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "orders",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "hefnawi/products-microservice-api",
+                "dbs": [],
+                "image_full": "hefnawi/products-microservice-api:v0.1",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "products",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "image_full": "redis:5.0-alpine",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "redis",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "hefnawi/nginx-api",
+                "dbs": [],
+                "image_full": "hefnawi/nginx-api:v0.1",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "nginx",
+                "gates": [
+                    "nginx"
+                ],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "hefnawi/auth-microservice-api",
+                "dbs": [],
+                "image_full": "hefnawi/auth-microservice-api:v0.1",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "auth",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            }
+        ],
+        "num_services": 5,
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "redis"
+            ],
+            "services": [
+                "redis"
+            ],
+            "shared_dbs": false
+        },
+        "path": "/orchestra/docker-compose.yml"
+    },
+    "num_gates": 1,
+    "num_dockers": 6,
+    "num_dbs": 1,
+    "num_services": 5,
+    "langs": [
+        "python",
+        "dockerfile"
+    ],
+    "buses": [],
+    "num_buses": 0,
+    "num_monitors": 0,
+    "languages": [
+        "python",
+        "dockerfile"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [
+                "nginx"
+            ],
+            "buses": [],
+            "langs": [],
+            "from": "nginx",
+            "monitors": [],
+            "from_full": "nginx:1.14-alpine",
+            "servers": [],
+            "path": "/nginx/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "conf",
+                "default",
+                "etc",
+                "nginx"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "app",
+                "api",
+                "gunicorn"
+            ],
+            "cmd": "gunicorn api:app -b 0.0.0.0:5000",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "from": "python",
+            "monitors": [],
+            "from_full": "python:3.6-alpine",
+            "servers": [],
+            "path": "/services/products/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "pip",
+                "install",
+                "txt",
+                "requirements",
+                "mkdir"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "app",
+                "api",
+                "gunicorn"
+            ],
+            "cmd": "gunicorn api:app -b 0.0.0.0:5000",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "from": "python",
+            "monitors": [],
+            "from_full": "python:3.6-alpine",
+            "servers": [],
+            "path": "/services/orders/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "pip",
+                "install",
+                "txt",
+                "requirements",
+                "mkdir"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "redis",
+            "monitors": [],
+            "from_full": "redis:5.0-alpine3.8",
+            "servers": [],
+            "path": "/redis/Dockerfile",
+            "dbs": [
+                "redis"
+            ],
+            "keywords": [],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "api",
+                "python"
+            ],
+            "cmd": "python ./api.py",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "from": "python",
+            "monitors": [],
+            "from_full": "python:3.6-alpine",
+            "servers": [],
+            "path": "/common/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "pip",
+                "install",
+                "txt",
+                "requirements",
+                "cache"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "app",
+                "api",
+                "gunicorn"
+            ],
+            "cmd": "gunicorn api:app -b 0.0.0.0:5000",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "from": "python",
+            "monitors": [],
+            "from_full": "python:3.6-alpine",
+            "servers": [],
+            "path": "/auth/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "pip",
+                "install",
+                "txt",
+                "requirements",
+                "cache"
+            ],
+            "discos": []
+        }
+    ],
+    "monitors": [],
+    "avg_size_service": 3.3333333333333335,
+    "discos": [],
+    "images": [
+        "redis",
+        "python",
+        "nginx"
+    ]
+}

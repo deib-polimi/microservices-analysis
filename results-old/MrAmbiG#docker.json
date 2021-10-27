@@ -1,0 +1,448 @@
+{
+    "discos": [],
+    "avg_size_service": 5.214285714285714,
+    "buses": [],
+    "num_gates": 1,
+    "name": "MrAmbiG/docker",
+    "structure": {
+        "path": "/2tier_pgadmin_gunicorn/docker-compose.yml",
+        "services": [
+            {
+                "name": "web",
+                "dbs": [],
+                "depends_on": [
+                    "db"
+                ],
+                "discos": [],
+                "image_full": "./web",
+                "image": "./web",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "db",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "postgres:10.1-alpine",
+                "image": "postgres",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "dba",
+                "dbs": [],
+                "depends_on": [
+                    "db"
+                ],
+                "discos": [],
+                "image_full": "dpage/pgadmin4",
+                "image": "dpage/pgadmin4",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [],
+            "num": 0,
+            "shared_dbs": false,
+            "services": []
+        },
+        "num_services": 3
+    },
+    "dbs": [
+        "postgresql"
+    ],
+    "dockers": [
+        {
+            "langs": [
+                "python"
+            ],
+            "cmd_keywords": [
+                "django",
+                "hello",
+                "bind",
+                "chdir",
+                "code"
+            ],
+            "from_full": "python:3.7-alpine3.7",
+            "buses": [],
+            "monitors": [],
+            "from": "python",
+            "keywords": [
+                "apk",
+                "dev",
+                "code",
+                "tree",
+                "add"
+            ],
+            "gates": [],
+            "path": "/2tier_pgadmin_gunicorn/web/Dockerfile",
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [],
+            "cmd": "gunicorn --chdir /code/hello_django --bind :8001 hello_django.wsgi:application",
+            "servers": [
+                "django"
+            ]
+        },
+        {
+            "langs": [
+                "python"
+            ],
+            "cmd_keywords": [
+                "pipenv",
+                "runserver",
+                "django",
+                "hello",
+                "code"
+            ],
+            "from_full": "python:3.7-slim",
+            "buses": [],
+            "monitors": [],
+            "from": "python",
+            "keywords": [
+                "pipenv",
+                "install",
+                "code",
+                "mkdir",
+                "pip"
+            ],
+            "gates": [],
+            "path": "/1tier/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "pipenv run python /code/hello_django/manage.py runserver 0.0.0.0:8001",
+            "servers": [
+                "django"
+            ]
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [],
+            "from_full": "postgres:11-alpine",
+            "buses": [],
+            "monitors": [],
+            "from": "postgres",
+            "keywords": [],
+            "gates": [],
+            "path": "/django_gunicorn_db_nginx_pgadmin_beta/postgres/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [],
+            "from_full": "nginx:1.15.0-alpine",
+            "buses": [],
+            "monitors": [],
+            "from": "nginx",
+            "keywords": [
+                "conf",
+                "nginx",
+                "etc",
+                "default"
+            ],
+            "gates": [
+                "nginx"
+            ],
+            "path": "/django_gunicorn_db_nginx_pgadmin_beta/nginx/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [],
+            "from_full": "dpage/pgadmin4",
+            "buses": [],
+            "monitors": [],
+            "from": "dpage/pgadmin4",
+            "keywords": [],
+            "gates": [],
+            "path": "/django_gunicorn_db_nginx_pgadmin_beta/pgadmin/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        },
+        {
+            "langs": [
+                "python"
+            ],
+            "cmd_keywords": [
+                "djangoapp",
+                "wsgi",
+                "bind",
+                "gunicorn",
+                "application"
+            ],
+            "from_full": "python:3.7-alpine3.7",
+            "buses": [],
+            "monitors": [],
+            "from": "python",
+            "keywords": [
+                "apk",
+                "dev",
+                "python",
+                "djangoapp",
+                "add"
+            ],
+            "gates": [],
+            "path": "/django_gunicorn_db_nginx_pgadmin_beta/django/Dockerfile",
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [],
+            "cmd": "gunicorn --bind :8000 djangoapp.wsgi:application",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [],
+            "from_full": "postgres:11-alpine",
+            "buses": [],
+            "monitors": [],
+            "from": "postgres",
+            "keywords": [],
+            "gates": [],
+            "path": "/django_gunicorn_db_nginx/postgres/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [],
+            "from_full": "nginx:1.15.0-alpine",
+            "buses": [],
+            "monitors": [],
+            "from": "nginx",
+            "keywords": [
+                "conf",
+                "nginx",
+                "etc",
+                "default"
+            ],
+            "gates": [
+                "nginx"
+            ],
+            "path": "/django_gunicorn_db_nginx/nginx/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        },
+        {
+            "langs": [
+                "python"
+            ],
+            "cmd_keywords": [
+                "djangoapp",
+                "wsgi",
+                "bind",
+                "gunicorn",
+                "application"
+            ],
+            "from_full": "python:3.7-alpine3.7",
+            "buses": [],
+            "monitors": [],
+            "from": "python",
+            "keywords": [
+                "apk",
+                "dev",
+                "python",
+                "djangoapp",
+                "add"
+            ],
+            "gates": [],
+            "path": "/django_gunicorn_db_nginx/django/Dockerfile",
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [],
+            "cmd": "gunicorn --bind :8000 djangoapp.wsgi:application",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [],
+            "from_full": "postgres:11-alpine",
+            "buses": [],
+            "monitors": [],
+            "from": "postgres",
+            "keywords": [],
+            "gates": [],
+            "path": "/2tier/db/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        },
+        {
+            "langs": [
+                "python"
+            ],
+            "cmd_keywords": [],
+            "from_full": "python:3.7-alpine3.7",
+            "buses": [],
+            "monitors": [],
+            "from": "python",
+            "keywords": [
+                "apk",
+                "dev",
+                "code",
+                "tree",
+                "add"
+            ],
+            "gates": [],
+            "path": "/2tier/web/Dockerfile",
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        },
+        {
+            "langs": [
+                "python"
+            ],
+            "cmd_keywords": [],
+            "from_full": "python:3.7-alpine3.7",
+            "buses": [],
+            "monitors": [],
+            "from": "python",
+            "keywords": [
+                "apk",
+                "dev",
+                "code",
+                "tree",
+                "add"
+            ],
+            "gates": [],
+            "path": "/2tier_pgadmin/web/Dockerfile",
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [],
+            "from_full": "nginx:1.15.0-alpine",
+            "buses": [],
+            "monitors": [],
+            "from": "nginx",
+            "keywords": [
+                "conf",
+                "nginx",
+                "etc",
+                "default"
+            ],
+            "gates": [
+                "nginx"
+            ],
+            "path": "/django_gunicorn_nginx/nginx/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        },
+        {
+            "langs": [
+                "python"
+            ],
+            "cmd_keywords": [
+                "djangoapp",
+                "wsgi",
+                "bind",
+                "gunicorn",
+                "application"
+            ],
+            "from_full": "python:3.7-alpine3.7",
+            "buses": [],
+            "monitors": [],
+            "from": "python",
+            "keywords": [
+                "apk",
+                "dev",
+                "python",
+                "djangoapp",
+                "add"
+            ],
+            "gates": [],
+            "path": "/django_gunicorn_nginx/django/Dockerfile",
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [],
+            "cmd": "gunicorn --bind :8000 djangoapp.wsgi:application",
+            "servers": []
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "size": 73,
+    "num_monitors": 0,
+    "images": [
+        "dpage/pgadmin4",
+        "nginx",
+        "python",
+        "postgres"
+    ],
+    "num_buses": 0,
+    "num_services": 3,
+    "servers": [
+        "django"
+    ],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_discos": 0,
+    "languages": [
+        "python"
+    ],
+    "url": "git://github.com/MrAmbiG/docker.git",
+    "langs": [
+        "python"
+    ],
+    "num_dbs": 1,
+    "num_servers": 1,
+    "num_langs": 1,
+    "files": [
+        {
+            "path": "/2tier_pgadmin_gunicorn/web/code/requirements.txt"
+        },
+        {
+            "path": "/django_gunicorn_db_nginx_pgadmin_beta/django/requirements.txt"
+        },
+        {
+            "path": "/django_gunicorn_db_nginx/django/requirements.txt"
+        },
+        {
+            "path": "/2tier/web/code/requirements.txt"
+        },
+        {
+            "path": "/2tier_pgadmin/web/code/requirements.txt"
+        },
+        {
+            "path": "/django_gunicorn_nginx/django/requirements.txt"
+        }
+    ],
+    "num_dockers": 14,
+    "num_files": 21
+}

@@ -1,0 +1,652 @@
+{
+    "languages": [
+        "html",
+        "javascript",
+        "css"
+    ],
+    "num_servers": 1,
+    "shared_dbs": true,
+    "name": "carloselpapa10/MDEForge-Microservices",
+    "servers": [
+        "spring"
+    ],
+    "num_monitors": 0,
+    "num_langs": 4,
+    "images": [
+        "java",
+        "openjdk"
+    ],
+    "langs": [
+        "javascript",
+        "java",
+        "html",
+        "css"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "bash",
+                "app",
+                "chmod",
+                "jar",
+                "wait"
+            ],
+            "path": "/workspace-service/src/main/docker/Dockerfile",
+            "gates": [],
+            "from": "java",
+            "from_full": "java:8",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "java",
+                "jar",
+                "opts",
+                "mdeforge",
+                "admin"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "java ${JAVA_OPTS} -jar mdeforge-admin.jar",
+            "keywords": [],
+            "path": "/mdeforge-admin/Dockerfile",
+            "gates": [],
+            "from": "openjdk",
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "bash",
+                "app",
+                "chmod",
+                "jar",
+                "wait"
+            ],
+            "path": "/user-service/src/main/docker/Dockerfile",
+            "gates": [],
+            "from": "java",
+            "from_full": "java:8",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "bash",
+                "app",
+                "chmod",
+                "jar",
+                "wait"
+            ],
+            "path": "/artifact-service/src/main/docker/Dockerfile",
+            "gates": [],
+            "from": "java",
+            "from_full": "java:8",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "app",
+                "bash",
+                "jar",
+                "touch"
+            ],
+            "path": "/apigateway-service/src/main/docker/Dockerfile",
+            "gates": [],
+            "from": "java",
+            "from_full": "java:8",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "app",
+                "bash",
+                "jar",
+                "touch"
+            ],
+            "path": "/mdeforge-ui/src/main/docker/Dockerfile",
+            "gates": [],
+            "from": "java",
+            "from_full": "java:8",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "bash",
+                "app",
+                "chmod",
+                "jar",
+                "wait"
+            ],
+            "path": "/project-service/src/main/docker/Dockerfile",
+            "gates": [],
+            "from": "java",
+            "from_full": "java:8",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "bash",
+                "app",
+                "chmod",
+                "jar",
+                "wait"
+            ],
+            "path": "/mdeforgeview-service/src/main/docker/Dockerfile",
+            "gates": [],
+            "from": "java",
+            "from_full": "java:8",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [
+        "gateway"
+    ],
+    "num_buses": 1,
+    "discos": [
+        "zookeeper"
+    ],
+    "monitors": [],
+    "num_files": 27,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "mdeforge/user-service",
+                "depends_on": [
+                    "mysql",
+                    "kafka",
+                    "zookeeper",
+                    "cdcservice",
+                    "mdeforge-admin-service"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "user-service",
+                "image": "mdeforge/user-service",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mdeforge/mdeforgeview-service",
+                "depends_on": [
+                    "mysql",
+                    "kafka",
+                    "zookeeper",
+                    "cdcservice",
+                    "mdeforge-admin-service"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "mdeforgeview-service",
+                "image": "mdeforge/mdeforgeview-service",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mdeforge/apigateway-service",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "apigateway-service",
+                "image": "mdeforge/apigateway-service",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "./mdeforge-admin",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "mdeforge-admin-service",
+                "image": "./mdeforge-admin",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mdeforge/artifact-service",
+                "depends_on": [
+                    "mysql",
+                    "kafka",
+                    "zookeeper",
+                    "cdcservice",
+                    "mdeforge-admin-service"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "artifact-service",
+                "image": "mdeforge/artifact-service",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "eventuateio/eventuate-tram-sagas-mysql:0.3.0.RELEASE",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "mysql",
+                "image": "eventuateio/eventuate-tram-sagas-mysql",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "eventuateio/eventuateio-local-kafka:0.14.0",
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "dbs": [],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "name": "kafka",
+                "image": "eventuateio/eventuateio-local-kafka",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mdeforge/workspace-service",
+                "depends_on": [
+                    "mysql",
+                    "kafka",
+                    "zookeeper",
+                    "cdcservice",
+                    "mdeforge-admin-service"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "workspace-service",
+                "image": "mdeforge/workspace-service",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mdeforge/project-service",
+                "depends_on": [
+                    "mysql",
+                    "kafka",
+                    "zookeeper",
+                    "cdcservice",
+                    "mdeforge-admin-service"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "project-service",
+                "image": "mdeforge/project-service",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "eventuateio/eventuateio-local-zookeeper:0.14.0",
+                "depends_on": [],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "zookeeper",
+                "image": "eventuateio/eventuateio-local-zookeeper",
+                "servers": [],
+                "discos": [
+                    "zookeeper"
+                ],
+                "monitors": []
+            },
+            {
+                "image_full": "mdeforge/mdeforge-ui",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "mdeforge-ui",
+                "image": "mdeforge/mdeforge-ui",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mongo:3.0.15",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "mongodb",
+                "image": "mongo",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "eventuateio/eventuate-tram-cdc-mysql-service:0.3.0.RELEASE",
+                "depends_on": [
+                    "mysql",
+                    "kafka",
+                    "zookeeper"
+                ],
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "cdcservice",
+                "image": "eventuateio/eventuate-tram-cdc-mysql-service",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 13,
+        "detected_dbs": {
+            "services": [
+                "mysql",
+                "zookeeper",
+                "mongodb",
+                "cdcservice"
+            ],
+            "names": [
+                "zookeeper",
+                "mysql",
+                "mongo"
+            ],
+            "num": 4,
+            "shared_dbs": true
+        }
+    },
+    "dbs": [
+        "mysql",
+        "zookeeper",
+        "mongo"
+    ],
+    "num_dbs": 3,
+    "avg_size_service": 6897.5,
+    "num_services": 13,
+    "buses": [
+        "kafka"
+    ],
+    "files": [
+        {
+            "dbs": [],
+            "path": "/pom.xml",
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "mongodb",
+                "mysql"
+            ],
+            "path": "/workspace-service/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/eventuate-tram-aggregate-domain-events/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/mdeforge-admin/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "mongodb",
+                "mysql"
+            ],
+            "path": "/user-service/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "mongodb",
+                "mysql"
+            ],
+            "path": "/artifact-service/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/service-model/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/apigateway-service/pom.xml",
+            "gates": [
+                "gateway"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/mdeforge-ui/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "mongodb",
+                "mysql"
+            ],
+            "path": "/project-service/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "mongodb",
+                "mysql"
+            ],
+            "path": "/mdeforgeview-service/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/mdeforge-ui/src/main/resources/static/theme/scripts/rating/package.json",
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "path": "/mdeforge-ui/src/main/resources/static/theme/scripts/plugins/system/jquery-ui/development-bundle/package.json"
+        },
+        {
+            "dbs": [],
+            "path": "/mdeforge-ui/src/main/resources/static/theme/scripts/plugins/other/holder/package.json",
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "path": "/mdeforge-ui/src/main/resources/static/theme/scripts/plugins/forms/jquery-validation/package.json"
+        },
+        {
+            "dbs": [],
+            "path": "/mdeforge-ui/src/main/resources/static/theme/scripts/plugins/tables/DataTables/package.json",
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/mdeforge-ui/src/main/resources/static/theme/scripts/charts/package.json",
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/mdeforge-ui/src/main/resources/static/bootstrap/extend/bootstrap-image-gallery/package.json",
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "url": "git://github.com/carloselpapa10/MDEForge-Microservices.git",
+    "num_dockers": 8,
+    "size": 55180,
+    "num_discos": 1,
+    "num_gates": 1
+}

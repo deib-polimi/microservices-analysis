@@ -1,0 +1,155 @@
+{
+    "monitors": [],
+    "structure": {
+        "path": "/docker/docker-compose.yml",
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [],
+            "names": [],
+            "num": 0
+        },
+        "services": [
+            {
+                "image": "logstash",
+                "buses": [],
+                "monitors": [],
+                "image_full": "logstash",
+                "gates": [],
+                "name": "logstash",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "elasticsearch"
+                ]
+            },
+            {
+                "image": "vertx/metadataservice",
+                "buses": [],
+                "monitors": [],
+                "image_full": "vertx/metadataservice",
+                "gates": [],
+                "name": "metadata-service",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "logstash"
+                ]
+            },
+            {
+                "image": "vertx/accountservice",
+                "buses": [],
+                "monitors": [],
+                "image_full": "vertx/accountservice",
+                "gates": [],
+                "name": "account-service",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "logstash"
+                ]
+            },
+            {
+                "image": "kibana",
+                "buses": [],
+                "monitors": [],
+                "image_full": "kibana",
+                "gates": [],
+                "name": "kibana",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "logstash",
+                    "elasticsearch"
+                ]
+            },
+            {
+                "image": "vertx/gateway",
+                "buses": [],
+                "monitors": [],
+                "image_full": "vertx/gateway",
+                "gates": [
+                    "gateway"
+                ],
+                "name": "api-gateway",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "logstash",
+                    "metadata-service",
+                    "account-service"
+                ]
+            },
+            {
+                "image": "elasticsearch",
+                "buses": [],
+                "monitors": [],
+                "image_full": "elasticsearch",
+                "gates": [],
+                "name": "elasticsearch",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            }
+        ],
+        "num_services": 6
+    },
+    "num_langs": 1,
+    "name": "ssubashs/galaxy",
+    "num_dockers": 0,
+    "buses": [],
+    "dbs": [
+        "mysql",
+        "hazelcast"
+    ],
+    "size": 16,
+    "num_discos": 0,
+    "shared_dbs": false,
+    "discos": [],
+    "images": [],
+    "num_servers": 1,
+    "files": [
+        {
+            "gates": [
+                "gateway"
+            ],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "jboss"
+            ],
+            "path": "/pom.xml",
+            "discos": [],
+            "dbs": [
+                "mysql",
+                "hazelcast"
+            ]
+        }
+    ],
+    "dockers": [],
+    "url": "git://github.com/ssubashs/galaxy.git",
+    "gates": [
+        "gateway"
+    ],
+    "num_files": 2,
+    "num_services": 6,
+    "num_gates": 1,
+    "num_dbs": 2,
+    "avg_size_service": 16.0,
+    "langs": [
+        "shell"
+    ],
+    "num_buses": 0,
+    "languages": [
+        "shell"
+    ],
+    "num_monitors": 0,
+    "servers": [
+        "jboss"
+    ]
+}

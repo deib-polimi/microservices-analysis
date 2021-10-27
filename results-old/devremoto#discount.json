@@ -1,0 +1,229 @@
+{
+    "dbs": [
+        "mongo"
+    ],
+    "discos": [
+        "grpc"
+    ],
+    "servers": [
+        "node",
+        "express",
+        "mongoose"
+    ],
+    "num_dockers": 3,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "dbs": [],
+                "discos": [],
+                "name": "discount-service",
+                "depends_on": [
+                    "discount-mongodb"
+                ],
+                "image": "discount/service",
+                "servers": [],
+                "gates": [],
+                "buses": [],
+                "monitors": [],
+                "image_full": "discount/service"
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "name": "discount-front",
+                "depends_on": [
+                    "discount-api"
+                ],
+                "image": "discount/front",
+                "servers": [],
+                "gates": [],
+                "buses": [],
+                "monitors": [],
+                "image_full": "discount/front"
+            },
+            {
+                "dbs": [
+                    "mongo"
+                ],
+                "discos": [],
+                "name": "discount-mongodb",
+                "depends_on": [],
+                "image": "docker.io/mongo",
+                "servers": [],
+                "gates": [],
+                "buses": [],
+                "monitors": [],
+                "image_full": "docker.io/mongo"
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "name": "discount-api",
+                "depends_on": [
+                    "discount-mongodb",
+                    "discount-service"
+                ],
+                "image": "discount/api",
+                "servers": [],
+                "gates": [],
+                "buses": [],
+                "monitors": [],
+                "image_full": "discount/api"
+            }
+        ],
+        "num_services": 4,
+        "detected_dbs": {
+            "names": [
+                "mongo"
+            ],
+            "num": 1,
+            "shared_dbs": true,
+            "services": [
+                "discount-mongodb"
+            ]
+        }
+    },
+    "files": [
+        {
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "path": "/Frontend/package.json",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "mongodb",
+                "mongo"
+            ],
+            "discos": [
+                "grpc"
+            ],
+            "buses": [],
+            "servers": [
+                "node",
+                "express",
+                "mongoose"
+            ],
+            "path": "/ProductApi/package.json",
+            "gates": [],
+            "monitors": []
+        }
+    ],
+    "images": [
+        "mcr.microsoft.com/dotnet/core/aspnet",
+        "node",
+        "nginx"
+    ],
+    "num_servers": 3,
+    "monitors": [],
+    "shared_dbs": true,
+    "dockers": [
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "mcr.microsoft.com/dotnet/core/aspnet",
+            "langs": [],
+            "from": "mcr.microsoft.com/dotnet/core/aspnet",
+            "cmd": "",
+            "path": "/DiscountService/DiscountService/Dockerfile",
+            "monitors": [],
+            "keywords": [
+                "discountservice",
+                "csproj",
+                "dotnet",
+                "out",
+                "publish"
+            ],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [
+                "nginx",
+                "daemon",
+                "off"
+            ],
+            "buses": [],
+            "servers": [],
+            "from_full": "nginx:alpine",
+            "langs": [],
+            "from": "nginx",
+            "cmd": "nginx -g daemon off;",
+            "path": "/Frontend/Dockerfile",
+            "monitors": [],
+            "keywords": [
+                "npm",
+                "apk",
+                "app",
+                "prod",
+                "set"
+            ],
+            "gates": [
+                "nginx"
+            ]
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:alpine",
+            "langs": [],
+            "from": "node",
+            "cmd": "npm start",
+            "path": "/ProductApi/Dockerfile",
+            "monitors": [],
+            "keywords": [
+                "npm",
+                "clean",
+                "install",
+                "rebuild"
+            ],
+            "gates": []
+        }
+    ],
+    "num_discos": 1,
+    "size": 672,
+    "name": "devremoto/discount",
+    "buses": [],
+    "languages": [
+        "javascript",
+        "typescript",
+        "c#",
+        "html"
+    ],
+    "num_buses": 0,
+    "langs": [
+        "javascript",
+        "html",
+        "typescript",
+        "c#"
+    ],
+    "num_services": 4,
+    "num_langs": 4,
+    "num_files": 6,
+    "avg_size_service": 224.0,
+    "num_monitors": 0,
+    "url": "git://github.com/devremoto/discount.git",
+    "num_dbs": 1,
+    "gates": [
+        "nginx"
+    ],
+    "num_gates": 1
+}

@@ -1,0 +1,225 @@
+{
+    "structure": {
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "shared_dbs": false,
+            "services": []
+        },
+        "num_services": 6,
+        "path": "/src/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [],
+                "name": "database_sql",
+                "dbs": [],
+                "image": "microsoft/mssql-server-linux",
+                "monitors": [],
+                "servers": [],
+                "image_full": "microsoft/mssql-server-linux:latest",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "database_sql",
+                    "eventstore",
+                    "rabbitmq"
+                ],
+                "name": "trackers",
+                "dbs": [],
+                "image": "trackers",
+                "monitors": [],
+                "servers": [],
+                "image_full": "trackers",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "name": "rabbitmq",
+                "dbs": [],
+                "image": "rabbitmq",
+                "monitors": [],
+                "servers": [],
+                "image_full": "rabbitmq:3-management",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "database_sql"
+                ],
+                "name": "eventstore",
+                "dbs": [],
+                "image": "eventstore",
+                "monitors": [],
+                "servers": [],
+                "image_full": "eventstore",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "trackers",
+                    "vehicles",
+                    "rabbitmq"
+                ],
+                "name": "servicegateway",
+                "dbs": [],
+                "image": "servicegateway",
+                "monitors": [],
+                "servers": [],
+                "image_full": "servicegateway",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "database_sql",
+                    "eventstore",
+                    "rabbitmq"
+                ],
+                "name": "vehicles",
+                "dbs": [],
+                "image": "vehicles",
+                "monitors": [],
+                "servers": [],
+                "image_full": "vehicles",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            }
+        ]
+    },
+    "dbs": [],
+    "dockers": [
+        {
+            "dbs": [],
+            "path": "/src/Gateway/ServicesGateway/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [
+                "gateway"
+            ],
+            "discos": [],
+            "from_full": "base",
+            "langs": [],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "servicesgateway",
+                "csproj",
+                "dotnet",
+                "app",
+                "release"
+            ],
+            "from": "base",
+            "cmd": ""
+        },
+        {
+            "dbs": [],
+            "path": "/src/MicroServices/Trackers/Trackers.Service/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": [],
+            "from_full": "base",
+            "langs": [],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "trackers",
+                "service",
+                "csproj",
+                "dotnet",
+                "release"
+            ],
+            "from": "base",
+            "cmd": ""
+        },
+        {
+            "dbs": [],
+            "path": "/src/MicroServices/Vehicles/Vehicles.Service/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": [],
+            "from_full": "base",
+            "langs": [],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "vehicles",
+                "service",
+                "csproj",
+                "dotnet",
+                "app"
+            ],
+            "from": "base",
+            "cmd": ""
+        },
+        {
+            "dbs": [],
+            "path": "/src/Apps/EventStore.App/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": [],
+            "from_full": "base",
+            "langs": [],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "app",
+                "eventstore",
+                "csproj",
+                "dotnet",
+                "release"
+            ],
+            "from": "base",
+            "cmd": ""
+        }
+    ],
+    "files": [],
+    "languages": [
+        "c#"
+    ],
+    "num_dbs": 0,
+    "num_monitors": 0,
+    "images": [
+        "base"
+    ],
+    "name": "MongkonEiadon/VehicleTracker",
+    "shared_dbs": false,
+    "num_servers": 0,
+    "num_langs": 1,
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_services": 6,
+    "num_dockers": 4,
+    "size": 5028,
+    "avg_size_service": 1257.0,
+    "gates": [
+        "gateway"
+    ],
+    "discos": [],
+    "langs": [
+        "c#"
+    ],
+    "num_files": 5,
+    "url": "git://github.com/MongkonEiadon/VehicleTracker.git",
+    "monitors": [],
+    "servers": [],
+    "num_buses": 1,
+    "num_discos": 0,
+    "num_gates": 1
+}

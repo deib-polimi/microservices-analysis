@@ -1,0 +1,137 @@
+{
+    "gates": [],
+    "num_buses": 0,
+    "url": "git://github.com/tieto-devops-demos/microservice-demo-order.git",
+    "images": [
+        "openjdk"
+    ],
+    "avg_size_service": 67.0,
+    "num_langs": 2,
+    "num_monitors": 0,
+    "num_dockers": 1,
+    "num_discos": 1,
+    "num_servers": 1,
+    "buses": [],
+    "discos": [
+        "eureka"
+    ],
+    "dockers": [
+        {
+            "path": "/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "usr",
+                "xms",
+                "snapshot",
+                "file"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "cmd": "/usr/bin/java -Xmx400m -Xms400m -Djava.security.egd=file:/dev/./urandom -jar microservice-demo-order-0.0.1-SNAPSHOT.jar",
+            "from_full": "openjdk:8-jre",
+            "monitors": [],
+            "keywords": [],
+            "buses": []
+        }
+    ],
+    "size": 67,
+    "name": "tieto-devops-demos/microservice-demo-order",
+    "num_services": 3,
+    "dbs": [
+        "mongo"
+    ],
+    "shared_dbs": false,
+    "langs": [
+        "java",
+        "html"
+    ],
+    "languages": [
+        "java",
+        "html"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "num_files": 3,
+    "monitors": [],
+    "num_dbs": 1,
+    "num_gates": 0,
+    "files": [
+        {
+            "path": "/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [],
+            "dbs": [
+                "mongodb",
+                "mongo"
+            ],
+            "buses": []
+        }
+    ],
+    "structure": {
+        "path": "/src/test/resources/docker-compose.yml",
+        "num_services": 3,
+        "detected_dbs": {
+            "services": [
+                "demodb"
+            ],
+            "num": 1,
+            "names": [
+                "mongo"
+            ],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "mongo:3.5.5",
+                "name": "demodb",
+                "gates": [],
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "order:$GO_PIPELINE_COUNTER",
+                "name": "order",
+                "gates": [],
+                "image": "order",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "andon/customer:latest",
+                "name": "customer",
+                "gates": [],
+                "image": "andon/customer",
+                "dbs": [],
+                "buses": []
+            }
+        ]
+    }
+}

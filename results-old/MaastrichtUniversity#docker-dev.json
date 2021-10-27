@@ -1,0 +1,492 @@
+{
+    "dockers": [
+        {
+            "keywords": [
+                "irods",
+                "apt",
+                "version",
+                "filebeat",
+                "get"
+            ],
+            "servers": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "from_full": "ubuntu:16.04",
+            "cmd": "",
+            "langs": [
+                "perl"
+            ],
+            "monitors": [],
+            "path": "/icat/Dockerfile",
+            "discos": [],
+            "from": "ubuntu",
+            "gates": [],
+            "cmd_keywords": [],
+            "buses": []
+        },
+        {
+            "keywords": [
+                "irods",
+                "apt",
+                "get",
+                "https",
+                "list"
+            ],
+            "servers": [],
+            "dbs": [],
+            "from_full": "ubuntu:16.04",
+            "cmd": "",
+            "langs": [
+                "bash"
+            ],
+            "monitors": [],
+            "path": "/irods-icommands/Dockerfile",
+            "discos": [],
+            "from": "ubuntu",
+            "gates": [],
+            "cmd_keywords": [],
+            "buses": []
+        },
+        {
+            "keywords": [
+                "irods",
+                "version",
+                "apt",
+                "dockerize",
+                "env"
+            ],
+            "servers": [],
+            "dbs": [],
+            "from_full": "ubuntu:16.04",
+            "cmd": "dockerize -wait tcp://irods.dh.local:1247 -timeout 200s /opt/irods/bootstrap.sh",
+            "langs": [
+                "perl"
+            ],
+            "monitors": [],
+            "path": "/ires/Dockerfile",
+            "discos": [],
+            "from": "ubuntu",
+            "gates": [],
+            "cmd_keywords": [
+                "irods",
+                "opt",
+                "local",
+                "dockerize",
+                "timeout"
+            ],
+            "buses": []
+        },
+        {
+            "keywords": [
+                "irods",
+                "version",
+                "env",
+                "apt",
+                "dockerize"
+            ],
+            "servers": [],
+            "dbs": [],
+            "from_full": "ubuntu:16.04",
+            "cmd": "dockerize -wait tcp://irods.dh.local:1247 -timeout 200s /opt/irods/bootstrap.sh",
+            "langs": [
+                "perl"
+            ],
+            "monitors": [],
+            "path": "/ires-s3/Dockerfile",
+            "discos": [],
+            "from": "ubuntu",
+            "gates": [],
+            "cmd_keywords": [
+                "irods",
+                "opt",
+                "local",
+                "dockerize",
+                "timeout"
+            ],
+            "buses": []
+        },
+        {
+            "keywords": [
+                "irods",
+                "rpm",
+                "version",
+                "env",
+                "dockerize"
+            ],
+            "servers": [],
+            "dbs": [],
+            "from_full": "centos:7",
+            "cmd": "dockerize -wait tcp://irods.dh.local:1247 -timeout 200s /opt/irods/bootstrap.sh",
+            "langs": [
+                "perl"
+            ],
+            "monitors": [],
+            "path": "/ires-centos/Dockerfile",
+            "discos": [],
+            "from": "centos",
+            "gates": [],
+            "cmd_keywords": [
+                "irods",
+                "opt",
+                "local",
+                "dockerize",
+                "timeout"
+            ],
+            "buses": []
+        }
+    ],
+    "languages": [
+        "shell",
+        "dockerfile",
+        "python"
+    ],
+    "name": "MaastrichtUniversity/docker-dev",
+    "num_buses": 0,
+    "structure": {
+        "detected_dbs": {
+            "num": 1,
+            "shared_dbs": false,
+            "services": [
+                "db"
+            ],
+            "names": [
+                "mysql"
+            ]
+        },
+        "num_services": 21,
+        "services": [
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "irods"
+                ],
+                "name": "metalnx",
+                "image_full": "externals/rit-metalnx-web/",
+                "image": "externals/rit-metalnx-web/",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [
+                    "node"
+                ],
+                "depends_on": [
+                    "irods",
+                    "ires",
+                    "db",
+                    "crossref-lookup",
+                    "keycloak",
+                    "sram-sync"
+                ],
+                "name": "pacman",
+                "image_full": "['ENV_XDEBUG_VERSION', 'ENV_COMPOSER_VERSION', 'ENV_NODE_VERSION', 'ENV_DRUSH_VERSION', 'ENV_DRUPAL_VERSION', 'ENV_DRUPAL_VERSION_MD5', 'ENV_ISLANDORA_VERSION', 'ENV_DOCKERIZE_VERSION', 'ENV_SIMPLESAML_VERSION', 'ENV_SIMPLESAML_HASH', 'ENV_FILEBEAT_VERSION', 'ENV_HTTP_PROXY']",
+                "image": "['ENV_XDEBUG_VERSION', 'ENV_COMPOSER_VERSION', 'ENV_NODE_VERSION', 'ENV_DRUSH_VERSION', 'ENV_DRUPAL_VERSION', 'ENV_DRUPAL_VERSION_MD5', 'ENV_ISLANDORA_VERSION', 'ENV_DOCKERIZE_VERSION', 'ENV_SIMPLESAML_VERSION', 'ENV_SIMPLESAML_HASH', 'ENV_FILEBEAT_VERSION', 'ENV_HTTP_PROXY']",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [],
+                "name": "minio1",
+                "image_full": "minio/minio:RELEASE.2019-05-23T00-29-34Z",
+                "image": "minio/minio",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [],
+                "name": "irods-frontend",
+                "image_full": "['ENV_IRODS_REST_VERSION', 'ENV_CLOUDBROWSER_VERSION', 'ENV_FILEBEAT_VERSION']",
+                "image": "['ENV_IRODS_REST_VERSION', 'ENV_CLOUDBROWSER_VERSION', 'ENV_FILEBEAT_VERSION']",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [
+                    "mysql"
+                ],
+                "discos": [],
+                "servers": [],
+                "depends_on": [],
+                "name": "db",
+                "image_full": "mysql:${ENV_MYSQL_VERSION}",
+                "image": "mysql",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "irods-db",
+                    "mirthconnect"
+                ],
+                "name": "irods",
+                "image_full": "['ENV_POSTGRES_VERSION', 'ENV_IRODS_VERSION', 'ENV_IRODS_MSI_CURL_VERSION', 'ENV_IRODS_EXT_CLANG_VERSION', 'ENV_IRODS_EXT_CLANG_RUNTIME_VERSION', 'ENV_FILEBEAT_VERSION']",
+                "image": "['ENV_POSTGRES_VERSION', 'ENV_IRODS_VERSION', 'ENV_IRODS_MSI_CURL_VERSION', 'ENV_IRODS_EXT_CLANG_VERSION', 'ENV_IRODS_EXT_CLANG_RUNTIME_VERSION', 'ENV_FILEBEAT_VERSION']",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "mirth-db",
+                    "epicpid",
+                    "irods-frontend"
+                ],
+                "name": "mirthconnect",
+                "image_full": "['ENV_MIRTH_CONNECT_VERSION', 'ENV_FILEBEAT_VERSION']",
+                "image": "['ENV_MIRTH_CONNECT_VERSION', 'ENV_FILEBEAT_VERSION']",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "irods",
+                    "ldap"
+                ],
+                "name": "sram-sync",
+                "image_full": "externals/sram-sync/",
+                "image": "externals/sram-sync/",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [],
+                "name": "minio2",
+                "image_full": "minio/minio:RELEASE.2019-05-23T00-29-34Z",
+                "image": "minio/minio",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [],
+                "name": "irods-db",
+                "image_full": "postgres:${ENV_POSTGRES_VERSION}",
+                "image": "postgres",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [],
+                "name": "ldap",
+                "image_full": "osixia/openldap:1.3.0",
+                "image": "osixia/openldap",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [],
+                "name": "open-access-worker",
+                "image_full": "externals/irods-open-access-repo/docker",
+                "image": "externals/irods-open-access-repo/docker",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "irods",
+                    "ires",
+                    "minio1"
+                ],
+                "name": "ires-s3-1",
+                "image_full": "['ENV_IRODS_VERSION', 'ENV_IRODS_MSI_CURL_VERSION', 'ENV_IRODS_EXT_CLANG_VERSION', 'ENV_IRODS_EXT_CLANG_RUNTIME_VERSION', 'ENV_IRODS_RESC_PLUGIN_S3_VERSION', 'ENV_DOCKERIZE_VERSION', 'ENV_FILEBEAT_VERSION']",
+                "image": "['ENV_IRODS_VERSION', 'ENV_IRODS_MSI_CURL_VERSION', 'ENV_IRODS_EXT_CLANG_VERSION', 'ENV_IRODS_EXT_CLANG_RUNTIME_VERSION', 'ENV_IRODS_RESC_PLUGIN_S3_VERSION', 'ENV_DOCKERIZE_VERSION', 'ENV_FILEBEAT_VERSION']",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "irods"
+                ],
+                "name": "davrods",
+                "image_full": "['ENV_DAVRODS_IRODS_VERSION', 'ENV_DAVRODS_VERSION']",
+                "image": "['ENV_DAVRODS_IRODS_VERSION', 'ENV_DAVRODS_VERSION']",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [],
+                "name": "mirth-db",
+                "image_full": "postgres:${ENV_MIRTH_POSTGRES_VERSION}",
+                "image": "postgres",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "irods"
+                ],
+                "name": "ires-centos",
+                "image_full": "['ENV_IRODS_VERSION', 'ENV_IRODS_MSI_CURL_VERSION', 'ENV_IRODS_EXT_CLANG_VERSION', 'ENV_IRODS_EXT_CLANG_RUNTIME_VERSION', 'ENV_DOCKERIZE_VERSION', 'ENV_FILEBEAT_VERSION']",
+                "image": "['ENV_IRODS_VERSION', 'ENV_IRODS_MSI_CURL_VERSION', 'ENV_IRODS_EXT_CLANG_VERSION', 'ENV_IRODS_EXT_CLANG_RUNTIME_VERSION', 'ENV_DOCKERIZE_VERSION', 'ENV_FILEBEAT_VERSION']",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [],
+                "name": "crossref-lookup",
+                "image_full": "externals/crossref-lookup",
+                "image": "externals/crossref-lookup",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [],
+                "name": "epicpid",
+                "image_full": "externals/epicpid-microservice/docker",
+                "image": "externals/epicpid-microservice/docker",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [
+                    "jboss"
+                ],
+                "depends_on": [
+                    "ldap"
+                ],
+                "name": "keycloak",
+                "image_full": "jboss/keycloak:6.0.1",
+                "image": "jboss/keycloak",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "irods",
+                    "ires",
+                    "minio2"
+                ],
+                "name": "ires-s3-2",
+                "image_full": "['ENV_IRODS_VERSION', 'ENV_IRODS_MSI_CURL_VERSION', 'ENV_IRODS_EXT_CLANG_VERSION', 'ENV_IRODS_EXT_CLANG_RUNTIME_VERSION', 'ENV_IRODS_RESC_PLUGIN_S3_VERSION', 'ENV_DOCKERIZE_VERSION', 'ENV_FILEBEAT_VERSION']",
+                "image": "['ENV_IRODS_VERSION', 'ENV_IRODS_MSI_CURL_VERSION', 'ENV_IRODS_EXT_CLANG_VERSION', 'ENV_IRODS_EXT_CLANG_RUNTIME_VERSION', 'ENV_IRODS_RESC_PLUGIN_S3_VERSION', 'ENV_DOCKERIZE_VERSION', 'ENV_FILEBEAT_VERSION']",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "irods"
+                ],
+                "name": "ires",
+                "image_full": "['ENV_IRODS_VERSION', 'ENV_IRODS_MSI_CURL_VERSION', 'ENV_IRODS_EXT_CLANG_VERSION', 'ENV_IRODS_EXT_CLANG_RUNTIME_VERSION', 'ENV_DOCKERIZE_VERSION', 'ENV_FILEBEAT_VERSION']",
+                "image": "['ENV_IRODS_VERSION', 'ENV_IRODS_MSI_CURL_VERSION', 'ENV_IRODS_EXT_CLANG_VERSION', 'ENV_IRODS_EXT_CLANG_RUNTIME_VERSION', 'ENV_DOCKERIZE_VERSION', 'ENV_FILEBEAT_VERSION']",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "num_dockers": 5,
+    "num_servers": 2,
+    "num_monitors": 0,
+    "discos": [],
+    "gates": [],
+    "shared_dbs": false,
+    "num_dbs": 2,
+    "num_files": 6,
+    "num_discos": 0,
+    "files": [],
+    "url": "git://github.com/MaastrichtUniversity/docker-dev.git",
+    "images": [
+        "ubuntu",
+        "centos"
+    ],
+    "avg_size_service": 72.2,
+    "num_services": 21,
+    "dbs": [
+        "postgresql",
+        "mysql"
+    ],
+    "servers": [
+        "node",
+        "jboss"
+    ],
+    "langs": [
+        "perl",
+        "dockerfile",
+        "shell",
+        "bash",
+        "python"
+    ],
+    "num_gates": 0,
+    "size": 361,
+    "num_langs": 5,
+    "monitors": [],
+    "buses": []
+}

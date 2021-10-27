@@ -1,0 +1,293 @@
+{
+    "monitors": [],
+    "structure": {
+        "path": "/docker-compose/docker-compose.yml",
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [
+                "mysql"
+            ],
+            "names": [
+                "mysql"
+            ],
+            "num": 1
+        },
+        "services": [
+            {
+                "image": "../eureka-server",
+                "buses": [],
+                "monitors": [],
+                "image_full": "../eureka-server",
+                "gates": [],
+                "name": "eureka",
+                "discos": [
+                    "eureka"
+                ],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "../ms-got",
+                "buses": [],
+                "monitors": [],
+                "image_full": "../ms-got",
+                "gates": [],
+                "name": "ms-got",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "eureka"
+                ]
+            },
+            {
+                "image": "mysql",
+                "buses": [],
+                "monitors": [],
+                "image_full": "mysql:5.7.19",
+                "gates": [],
+                "name": "mysql",
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "depends_on": []
+            },
+            {
+                "image": "../zuul",
+                "buses": [],
+                "monitors": [],
+                "image_full": "../zuul",
+                "gates": [
+                    "zuul"
+                ],
+                "name": "zuul",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "eureka",
+                    "ms-got",
+                    "auth-server"
+                ]
+            },
+            {
+                "image": "../auth-server",
+                "buses": [],
+                "monitors": [],
+                "image_full": "../auth-server",
+                "gates": [],
+                "name": "auth-server",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "eureka"
+                ]
+            }
+        ],
+        "num_services": 5
+    },
+    "num_langs": 2,
+    "name": "enr1c091/microservices-oauth",
+    "num_dockers": 4,
+    "buses": [],
+    "dbs": [
+        "mysql"
+    ],
+    "size": 312,
+    "num_discos": 1,
+    "shared_dbs": false,
+    "discos": [
+        "eureka"
+    ],
+    "images": [
+        "openjdk"
+    ],
+    "num_servers": 1,
+    "files": [
+        {
+            "gates": [
+                "zuul"
+            ],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": []
+        },
+        {
+            "gates": [
+                "zuul"
+            ],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/zuul/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/auth-server/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [
+                "mysql"
+            ]
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/eureka-server/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/ms-got/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [
+                "mysql"
+            ]
+        }
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "openjdk",
+            "path": "/zuul/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "cmd": "",
+            "keywords": [
+                "etc",
+                "time",
+                "zone",
+                "usr",
+                "timezone"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "openjdk",
+            "path": "/auth-server/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "cmd": "",
+            "keywords": [
+                "etc",
+                "time",
+                "zone",
+                "usr",
+                "timezone"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "openjdk",
+            "path": "/eureka-server/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "cmd": "",
+            "keywords": [
+                "etc",
+                "time",
+                "zone",
+                "usr",
+                "timezone"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "openjdk",
+            "path": "/ms-got/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "cmd": "",
+            "keywords": [
+                "etc",
+                "time",
+                "zone",
+                "usr",
+                "timezone"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        }
+    ],
+    "url": "git://github.com/enr1c091/microservices-oauth.git",
+    "gates": [
+        "zuul"
+    ],
+    "num_files": 10,
+    "num_services": 5,
+    "num_gates": 1,
+    "num_dbs": 1,
+    "avg_size_service": 78.0,
+    "langs": [
+        "tsql",
+        "java"
+    ],
+    "num_buses": 0,
+    "languages": [
+        "java",
+        "tsql"
+    ],
+    "num_monitors": 0,
+    "servers": [
+        "spring"
+    ]
+}

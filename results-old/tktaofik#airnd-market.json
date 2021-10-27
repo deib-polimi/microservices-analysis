@@ -1,0 +1,470 @@
+{
+    "dockers": [
+        {
+            "servers": [],
+            "monitors": [],
+            "langs": [],
+            "buses": [],
+            "gates": [],
+            "path": "/services/sentry/cron/Dockerfile",
+            "from": "${BASE_IMAGE}",
+            "from_full": "${BASE_IMAGE}",
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [],
+            "keywords": [
+                "apt",
+                "get",
+                "install",
+                "var",
+                "cron"
+            ],
+            "cmd": ""
+        },
+        {
+            "servers": [],
+            "monitors": [],
+            "langs": [],
+            "buses": [],
+            "gates": [],
+            "path": "/services/sentry/sentry/Dockerfile",
+            "from": "${SENTRY_IMAGE",
+            "from_full": "${SENTRY_IMAGE:-getsentry/sentry:latest}",
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [],
+            "keywords": [
+                "then",
+                "conf",
+                "sentry",
+                "config",
+                "txt"
+            ],
+            "cmd": ""
+        },
+        {
+            "servers": [],
+            "monitors": [],
+            "langs": [
+                "python"
+            ],
+            "buses": [],
+            "gates": [],
+            "path": "/services/job/Dockerfile",
+            "from": "python",
+            "from_full": "python:3.8.1",
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [
+                "python",
+                "main"
+            ],
+            "keywords": [
+                "install",
+                "apt",
+                "get",
+                "requirements",
+                "nodesource"
+            ],
+            "cmd": "python main.py"
+        },
+        {
+            "servers": [],
+            "monitors": [],
+            "langs": [
+                "python"
+            ],
+            "buses": [],
+            "gates": [],
+            "path": "/services/user/Dockerfile",
+            "from": "python",
+            "from_full": "python:3.8.1",
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [
+                "python",
+                "main"
+            ],
+            "keywords": [
+                "install",
+                "apt",
+                "get",
+                "requirements",
+                "nodesource"
+            ],
+            "cmd": "python main.py"
+        }
+    ],
+    "shared_dbs": true,
+    "servers": [],
+    "gates": [],
+    "num_monitors": 0,
+    "num_langs": 2,
+    "dbs": [
+        "memcached",
+        "redis"
+    ],
+    "num_dbs": 2,
+    "images": [
+        "${BASE_IMAGE}",
+        "python",
+        "${SENTRY_IMAGE"
+    ],
+    "monitors": [],
+    "num_buses": 0,
+    "buses": [],
+    "num_dockers": 4,
+    "size": 1058,
+    "langs": [
+        "python",
+        "shell"
+    ],
+    "structure": {
+        "detected_dbs": {
+            "names": [
+                "memcached",
+                "redis"
+            ],
+            "shared_dbs": true,
+            "services": [
+                "redis",
+                "memcached"
+            ],
+            "num": 2
+        },
+        "path": "/services/sentry/docker-compose.yml",
+        "services": [
+            {
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "redis",
+                    "clickhouse",
+                    "kafka"
+                ],
+                "image_full": "snuba-cleanup-onpremise-local",
+                "gates": [],
+                "name": "snuba-cleanup",
+                "image": "snuba-cleanup-onpremise-local",
+                "dbs": []
+            },
+            {
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "image_full": "confluentinc/cp-zookeeper:5.1.2",
+                "gates": [],
+                "name": "zookeeper",
+                "image": "confluentinc/cp-zookeeper",
+                "dbs": []
+            },
+            {
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "redis",
+                    "postgres",
+                    "memcached",
+                    "smtp",
+                    "snuba-api",
+                    "snuba-consumer",
+                    "snuba-replacer",
+                    "symbolicator",
+                    "kafka"
+                ],
+                "image_full": "sentry-cleanup-onpremise-local",
+                "gates": [],
+                "name": "sentry-cleanup",
+                "image": "sentry-cleanup-onpremise-local",
+                "dbs": []
+            },
+            {
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "image_full": "confluentinc/cp-kafka:5.1.2",
+                "gates": [],
+                "name": "kafka",
+                "image": "confluentinc/cp-kafka",
+                "dbs": []
+            },
+            {
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "image_full": "redis:5.0-alpine",
+                "gates": [],
+                "name": "redis",
+                "image": "redis",
+                "dbs": [
+                    "redis"
+                ]
+            },
+            {
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "redis",
+                    "postgres",
+                    "memcached",
+                    "smtp",
+                    "snuba-api",
+                    "snuba-consumer",
+                    "snuba-replacer",
+                    "symbolicator",
+                    "kafka"
+                ],
+                "image_full": "sentry-onpremise-local",
+                "gates": [],
+                "name": "post-process-forwarder",
+                "image": "sentry-onpremise-local",
+                "dbs": []
+            },
+            {
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "image_full": "tianon/exim4",
+                "gates": [],
+                "name": "smtp",
+                "image": "tianon/exim4",
+                "dbs": []
+            },
+            {
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "redis",
+                    "clickhouse",
+                    "kafka"
+                ],
+                "image_full": "getsentry/snuba:latest",
+                "gates": [],
+                "name": "snuba-replacer",
+                "image": "getsentry/snuba",
+                "dbs": []
+            },
+            {
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "redis",
+                    "clickhouse",
+                    "kafka"
+                ],
+                "image_full": "getsentry/snuba:latest",
+                "gates": [],
+                "name": "snuba-api",
+                "image": "getsentry/snuba",
+                "dbs": []
+            },
+            {
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "redis",
+                    "postgres",
+                    "memcached",
+                    "smtp",
+                    "snuba-api",
+                    "snuba-consumer",
+                    "snuba-replacer",
+                    "symbolicator",
+                    "kafka"
+                ],
+                "image_full": "sentry-onpremise-local",
+                "gates": [],
+                "name": "web",
+                "image": "sentry-onpremise-local",
+                "dbs": []
+            },
+            {
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "redis",
+                    "postgres",
+                    "memcached",
+                    "smtp",
+                    "snuba-api",
+                    "snuba-consumer",
+                    "snuba-replacer",
+                    "symbolicator",
+                    "kafka"
+                ],
+                "image_full": "sentry-onpremise-local",
+                "gates": [],
+                "name": "cron",
+                "image": "sentry-onpremise-local",
+                "dbs": []
+            },
+            {
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "image_full": "yandex/clickhouse-server:19.4",
+                "gates": [],
+                "name": "clickhouse",
+                "image": "yandex/clickhouse-server",
+                "dbs": []
+            },
+            {
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "image_full": "getsentry/symbolicator:latest",
+                "gates": [],
+                "name": "symbolicator",
+                "image": "getsentry/symbolicator",
+                "dbs": []
+            },
+            {
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "image_full": "memcached:1.5-alpine",
+                "gates": [],
+                "name": "memcached",
+                "image": "memcached",
+                "dbs": [
+                    "memcached"
+                ]
+            },
+            {
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "redis",
+                    "postgres",
+                    "memcached",
+                    "smtp",
+                    "snuba-api",
+                    "snuba-consumer",
+                    "snuba-replacer",
+                    "symbolicator",
+                    "kafka"
+                ],
+                "image_full": "sentry-onpremise-local",
+                "gates": [],
+                "name": "worker",
+                "image": "sentry-onpremise-local",
+                "dbs": []
+            },
+            {
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "redis",
+                    "clickhouse",
+                    "kafka"
+                ],
+                "image_full": "getsentry/snuba:latest",
+                "gates": [],
+                "name": "snuba-consumer",
+                "image": "getsentry/snuba",
+                "dbs": []
+            },
+            {
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "image_full": "postgres:9.6",
+                "gates": [],
+                "name": "postgres",
+                "image": "postgres",
+                "dbs": []
+            },
+            {
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "image_full": "symbolicator-cleanup-onpremise-local",
+                "gates": [],
+                "name": "symbolicator-cleanup",
+                "image": "symbolicator-cleanup-onpremise-local",
+                "dbs": []
+            }
+        ],
+        "num_services": 18
+    },
+    "url": "git://github.com/tktaofik/airnd-market.git",
+    "num_servers": 0,
+    "files": [
+        {
+            "servers": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/services/sentry/sentry/requirements.txt",
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "servers": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/services/job/requirements.txt",
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "servers": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/services/user/requirements.txt",
+            "dbs": [],
+            "buses": []
+        }
+    ],
+    "num_files": 8,
+    "name": "tktaofik/airnd-market",
+    "num_gates": 0,
+    "languages": [
+        "python",
+        "shell"
+    ],
+    "discos": [],
+    "num_services": 18,
+    "avg_size_service": 264.5,
+    "num_discos": 0
+}

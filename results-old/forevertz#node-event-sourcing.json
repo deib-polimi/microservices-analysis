@@ -1,0 +1,404 @@
+{
+    "num_services": 8,
+    "dbs": [
+        "zookeeper",
+        "redis"
+    ],
+    "name": "forevertz/node-event-sourcing",
+    "files": [
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/package.json",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "node"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/examples/with-custom-event-store/with-elasticsearch/package.json",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "node"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/examples/simple/package.json",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "node"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/examples/complete-with-microservices/receiver-microservice/package.json",
+            "buses": [
+                "kafka"
+            ],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "node"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "redis"
+            ],
+            "path": "/examples/complete-with-microservices/event-processor/package.json",
+            "buses": [
+                "kafka"
+            ],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "node"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/examples/complete-with-microservices/event-archivist/package.json",
+            "buses": [
+                "kafka"
+            ],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "node"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "redis"
+            ],
+            "path": "/examples/complete-with-microservices/myapp/package.json",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "node"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "redis"
+            ],
+            "path": "/examples/with-custom-queue/with-redis/package.json",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "node"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/examples/with-custom-queue/with-kafka/package.json",
+            "buses": [
+                "kafka"
+            ],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "node"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "redis"
+            ],
+            "path": "/examples/with-custom-state-store/with-redis/package.json",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "node"
+            ]
+        }
+    ],
+    "discos": [
+        "zookeeper"
+    ],
+    "num_gates": 0,
+    "num_buses": 1,
+    "langs": [
+        "javascript"
+    ],
+    "gates": [],
+    "num_monitors": 0,
+    "monitors": [],
+    "images": [
+        "node"
+    ],
+    "structure": {
+        "num_services": 8,
+        "detected_dbs": {
+            "num": 2,
+            "services": [
+                "zookeeper",
+                "redis"
+            ],
+            "names": [
+                "redis",
+                "zookeeper"
+            ],
+            "shared_dbs": true
+        },
+        "services": [
+            {
+                "buses": [
+                    "kafka"
+                ],
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "wurstmeister/kafka",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "kafka",
+                "image": "wurstmeister/kafka"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "redis"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "./myapp",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "myapp",
+                "image": "./myapp"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "image_full": "wurstmeister/zookeeper",
+                "monitors": [],
+                "discos": [
+                    "zookeeper"
+                ],
+                "servers": [],
+                "name": "zookeeper",
+                "image": "wurstmeister/zookeeper"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "zookeeper",
+                    "kafka",
+                    "redis"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "./event-processor",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "eventprocessor",
+                "image": "./event-processor"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:6.4.0",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "elasticsearch",
+                "image": "docker.elastic.co/elasticsearch/elasticsearch"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "zookeeper",
+                    "kafka"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "./receiver-microservice",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "receiver",
+                "image": "./receiver-microservice"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "zookeeper",
+                    "kafka",
+                    "elasticsearch"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "./event-archivist",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "archivist",
+                "image": "./event-archivist"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [
+                    "redis"
+                ],
+                "image_full": "redis:alpine",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "redis",
+                "image": "redis"
+            }
+        ],
+        "path": "/examples/complete-with-microservices/docker-compose.yml"
+    },
+    "shared_dbs": true,
+    "languages": [
+        "javascript"
+    ],
+    "avg_size_service": 68.25,
+    "buses": [
+        "kafka"
+    ],
+    "dockers": [
+        {
+            "from_full": "node:alpine",
+            "langs": [],
+            "dbs": [],
+            "path": "/examples/complete-with-microservices/receiver-microservice/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "keywords": [
+                "npm",
+                "install",
+                "production"
+            ],
+            "cmd": "npm start"
+        },
+        {
+            "from_full": "node:alpine",
+            "langs": [],
+            "dbs": [],
+            "path": "/examples/complete-with-microservices/event-processor/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "keywords": [
+                "npm",
+                "install",
+                "production"
+            ],
+            "cmd": "npm start"
+        },
+        {
+            "from_full": "node:alpine",
+            "langs": [],
+            "dbs": [],
+            "path": "/examples/complete-with-microservices/event-archivist/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "keywords": [
+                "npm",
+                "install",
+                "production"
+            ],
+            "cmd": "npm start"
+        },
+        {
+            "from_full": "node:alpine",
+            "langs": [],
+            "dbs": [],
+            "path": "/examples/complete-with-microservices/myapp/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "keywords": [
+                "npm",
+                "install",
+                "production"
+            ],
+            "cmd": "npm start"
+        }
+    ],
+    "servers": [
+        "node"
+    ],
+    "num_dockers": 4,
+    "url": "git://github.com/forevertz/node-event-sourcing.git",
+    "num_dbs": 2,
+    "num_servers": 1,
+    "num_discos": 1,
+    "num_langs": 1,
+    "num_files": 15,
+    "size": 273
+}

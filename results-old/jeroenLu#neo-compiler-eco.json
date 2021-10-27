@@ -1,0 +1,363 @@
+{
+    "gates": [],
+    "langs": [
+        "html",
+        "golang",
+        "bash",
+        "javascript",
+        "python"
+    ],
+    "structure": {
+        "detected_dbs": {
+            "names": [],
+            "services": [],
+            "num": 0,
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "image": "eco-neo-csharp-node",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [],
+                "dbs": [],
+                "servers": [
+                    "node"
+                ],
+                "image_full": "eco-neo-csharp-node:latest",
+                "name": "eco-neo-csharp-node4-running",
+                "discos": [],
+                "buses": []
+            },
+            {
+                "image": "eco-neo-csharp-node",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "eco-neo-csharp-node1-running"
+                ],
+                "dbs": [],
+                "servers": [
+                    "node"
+                ],
+                "image_full": "eco-neo-csharp-node:latest",
+                "name": "eco-neo-csharp-noderpc1-running",
+                "discos": [],
+                "buses": []
+            },
+            {
+                "image": "registry.gitlab.com/cityofzion/neo-scan/api",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "eco-neo-scan-sync-running",
+                    "eco-neo-scan-postgresql-running",
+                    "eco-neo-python-rest-running",
+                    "eco-neo-csharp-node1-running",
+                    "eco-neo-csharp-node2-running",
+                    "eco-neo-csharp-node3-running",
+                    "eco-neo-csharp-node4-running",
+                    "eco-neo-csharp-noderpc1-running"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "registry.gitlab.com/cityofzion/neo-scan/api:49607618-master",
+                "name": "eco-neo-scan-api-running",
+                "discos": [],
+                "buses": []
+            },
+            {
+                "image": "postgres",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "eco-neo-csharp-node1-running",
+                    "eco-neo-csharp-node2-running",
+                    "eco-neo-csharp-node3-running",
+                    "eco-neo-csharp-node4-running",
+                    "eco-neo-csharp-noderpc1-running",
+                    "eco-neo-python-rest-running"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "postgres:10.5",
+                "name": "eco-neo-scan-postgresql-running",
+                "discos": [],
+                "buses": []
+            },
+            {
+                "image": "eco-neo-csharp-node",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [],
+                "dbs": [],
+                "servers": [
+                    "node"
+                ],
+                "image_full": "eco-neo-csharp-node:latest",
+                "name": "eco-neo-csharp-node2-running",
+                "discos": [],
+                "buses": []
+            },
+            {
+                "image": "eco-neo-csharp-node",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [],
+                "dbs": [],
+                "servers": [
+                    "node"
+                ],
+                "image_full": "eco-neo-csharp-node:latest",
+                "name": "eco-neo-csharp-node3-running",
+                "discos": [],
+                "buses": []
+            },
+            {
+                "image": "eco-neo-csharp-node",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [],
+                "dbs": [],
+                "servers": [
+                    "node"
+                ],
+                "image_full": "eco-neo-csharp-node:latest",
+                "name": "eco-neo-csharp-node1-running",
+                "discos": [],
+                "buses": []
+            },
+            {
+                "image": "eco-neo-python",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "eco-neo-csharp-node1-running",
+                    "eco-neo-csharp-node2-running",
+                    "eco-neo-csharp-node3-running",
+                    "eco-neo-csharp-node4-running",
+                    "eco-neo-csharp-noderpc1-running"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "eco-neo-python:latest",
+                "name": "eco-neo-python-rest-running",
+                "discos": [],
+                "buses": []
+            },
+            {
+                "image": "registry.gitlab.com/cityofzion/neo-scan/sync",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "eco-neo-scan-postgresql-running",
+                    "eco-neo-python-rest-running",
+                    "eco-neo-csharp-node1-running",
+                    "eco-neo-csharp-node2-running",
+                    "eco-neo-csharp-node3-running",
+                    "eco-neo-csharp-node4-running",
+                    "eco-neo-csharp-noderpc1-running"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "registry.gitlab.com/cityofzion/neo-scan/sync:49607618-master",
+                "name": "eco-neo-scan-sync-running",
+                "discos": [],
+                "buses": []
+            }
+        ],
+        "num_services": 9,
+        "path": "/docker-compose-eco-network/docker-compose.yml"
+    },
+    "num_langs": 5,
+    "dockers": [
+        {
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "servers": [],
+            "from": "microsoft/dotnet",
+            "cmd": "",
+            "monitors": [],
+            "path": "/compilers/docker-compiler-csharp/Dockerfile",
+            "cmd_keywords": [],
+            "from_full": "microsoft/dotnet:2.2-sdk-bionic",
+            "keywords": [
+                "neo",
+                "apt",
+                "dotnet",
+                "microsoft",
+                "list"
+            ],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "golang"
+            ],
+            "dbs": [],
+            "servers": [],
+            "from": "golang",
+            "cmd": "",
+            "monitors": [],
+            "path": "/compilers/docker-compiler-go/Dockerfile",
+            "cmd_keywords": [],
+            "from_full": "golang:alpine",
+            "keywords": [
+                "dep",
+                "apk",
+                "git",
+                "app",
+                "directory"
+            ],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "servers": [],
+            "from": "microsoft/dotnet",
+            "cmd": "",
+            "monitors": [],
+            "path": "/compilers/docker-compiler-java/Dockerfile",
+            "cmd_keywords": [],
+            "from_full": "microsoft/dotnet:2.2-sdk-bionic",
+            "keywords": [
+                "apt",
+                "get",
+                "openjdk",
+                "install",
+                "xxd"
+            ],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "dbs": [],
+            "servers": [],
+            "from": "ubuntu",
+            "cmd": "/printavm.sh",
+            "monitors": [],
+            "path": "/compilers/docker-compiler-python/Dockerfile",
+            "cmd_keywords": [
+                "printavm"
+            ],
+            "from_full": "ubuntu:18.04",
+            "keywords": [
+                "install",
+                "pip",
+                "apt",
+                "python",
+                "get"
+            ],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "bash"
+            ],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "from": "microsoft/dotnet",
+            "cmd": "/bin/bash /opt/run.sh",
+            "monitors": [],
+            "path": "/docker-neo-csharp-node/Dockerfile",
+            "cmd_keywords": [
+                "run",
+                "bin",
+                "opt",
+                "bash"
+            ],
+            "from_full": "microsoft/dotnet:2.2-sdk-bionic",
+            "keywords": [
+                "apt",
+                "opt",
+                "get",
+                "install",
+                "unzip"
+            ],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "dbs": [],
+            "servers": [],
+            "from": "ubuntu",
+            "cmd": "",
+            "monitors": [],
+            "path": "/docker-neo-python/Dockerfile",
+            "cmd_keywords": [],
+            "from_full": "ubuntu:18.04",
+            "keywords": [
+                "python",
+                "git",
+                "neo",
+                "apt",
+                "dev"
+            ],
+            "discos": []
+        }
+    ],
+    "shared_dbs": false,
+    "num_servers": 2,
+    "num_discos": 0,
+    "languages": [
+        "javascript",
+        "html"
+    ],
+    "avg_size_service": 2733.5,
+    "num_dbs": 0,
+    "num_services": 9,
+    "discos": [],
+    "num_dockers": 6,
+    "num_gates": 0,
+    "dbs": [],
+    "servers": [
+        "express",
+        "node"
+    ],
+    "size": 16401,
+    "name": "jeroenLu/neo-compiler-eco",
+    "url": "git://github.com/jeroenLu/neo-compiler-eco.git",
+    "monitors": [],
+    "num_monitors": 0,
+    "num_buses": 0,
+    "num_files": 8,
+    "buses": [],
+    "images": [
+        "golang",
+        "microsoft/dotnet",
+        "ubuntu"
+    ],
+    "files": [
+        {
+            "gates": [],
+            "monitors": [],
+            "path": "/package.json",
+            "dbs": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "buses": [],
+            "discos": []
+        }
+    ]
+}

@@ -1,0 +1,232 @@
+{
+    "buses": [],
+    "avg_size_service": 297.0,
+    "num_dbs": 1,
+    "num_services": 4,
+    "langs": [
+        "javascript",
+        "java",
+        "bash"
+    ],
+    "num_langs": 3,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [],
+                "image_full": "postgres:10-alpine",
+                "name": "postgres_db",
+                "dbs": [],
+                "servers": [],
+                "image": "postgres",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "postgres_db",
+                    "myapp_api_java"
+                ],
+                "image_full": "myapp-api-node:latest",
+                "name": "myapp_api_node",
+                "dbs": [],
+                "servers": [
+                    "node"
+                ],
+                "image": "myapp-api-node",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "postgres_db"
+                ],
+                "image_full": "myapp-api-java:latest",
+                "name": "myapp_api_java",
+                "dbs": [],
+                "servers": [],
+                "image": "myapp-api-java",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "myapp_api_node"
+                ],
+                "image_full": "myapp-ui-react:latest",
+                "name": "myapp_ui_react",
+                "dbs": [],
+                "servers": [],
+                "image": "myapp-ui-react",
+                "gates": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "names": [],
+            "num": 0,
+            "services": []
+        },
+        "num_services": 4
+    },
+    "shared_dbs": false,
+    "num_buses": 0,
+    "dockers": [
+        {
+            "buses": [],
+            "from_full": "alpine:edge",
+            "cmd": "npm run start",
+            "from": "alpine",
+            "path": "/api-node/Dockerfile",
+            "langs": [
+                "bash"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "run",
+                "start",
+                "npm"
+            ],
+            "discos": [],
+            "keywords": [
+                "etc",
+                "echo",
+                "node",
+                "alias",
+                "aliases"
+            ],
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "node"
+            ]
+        },
+        {
+            "buses": [],
+            "from_full": "httpd:2.4-alpine",
+            "cmd": "",
+            "from": "httpd",
+            "path": "/ui-react/Dockerfile",
+            "langs": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "conf",
+                "apache",
+                "local",
+                "usr",
+                "httpd"
+            ],
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "httpd"
+            ]
+        },
+        {
+            "buses": [],
+            "from_full": "alpine:edge",
+            "cmd": "/usr/bin/java -jar /opt/app/java-api.jar --spring.config.location=file:/opt/app",
+            "from": "alpine",
+            "path": "/api-java/Dockerfile",
+            "langs": [
+                "java"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "app",
+                "jar",
+                "opt",
+                "java",
+                "config"
+            ],
+            "discos": [],
+            "keywords": [
+                "apk",
+                "etc",
+                "cache",
+                "add",
+                "sydney"
+            ],
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ]
+        }
+    ],
+    "dbs": [
+        "mysql"
+    ],
+    "languages": [
+        "javascript"
+    ],
+    "gates": [],
+    "servers": [
+        "express",
+        "node",
+        "spring",
+        "httpd"
+    ],
+    "num_gates": 0,
+    "name": "digitalspider/microservices",
+    "num_monitors": 0,
+    "monitors": [],
+    "discos": [],
+    "files": [
+        {
+            "buses": [],
+            "discos": [],
+            "dbs": [
+                "mysql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/api-java/pom.xml",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/api-node/package.json",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/ui-react/package.json",
+            "gates": [],
+            "monitors": []
+        }
+    ],
+    "size": 891,
+    "num_dockers": 3,
+    "num_files": 7,
+    "url": "git://github.com/digitalspider/microservices.git",
+    "num_servers": 4,
+    "images": [
+        "alpine",
+        "httpd"
+    ],
+    "num_discos": 0
+}

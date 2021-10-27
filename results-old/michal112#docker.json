@@ -1,0 +1,183 @@
+{
+    "avg_size_service": 283.0,
+    "discos": [],
+    "images": [
+        "openjdk"
+    ],
+    "num_dockers": 1,
+    "num_servers": 2,
+    "langs": [
+        "java",
+        "html"
+    ],
+    "languages": [
+        "java",
+        "html"
+    ],
+    "num_services": 4,
+    "num_gates": 0,
+    "num_langs": 2,
+    "monitors": [],
+    "gates": [],
+    "servers": [
+        "spring",
+        "jboss"
+    ],
+    "num_monitors": 0,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [
+                    "mongodb"
+                ],
+                "image": "product",
+                "image_full": "product:latest",
+                "gates": [],
+                "name": "product",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "mongo",
+                "image_full": "mongo:3-xenial",
+                "gates": [],
+                "name": "mongodb",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "product",
+                    "category"
+                ],
+                "image": "integration",
+                "image_full": "integration:latest",
+                "gates": [],
+                "name": "integration",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "mongodb"
+                ],
+                "image": "category",
+                "image_full": "category:latest",
+                "gates": [],
+                "name": "category",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            }
+        ],
+        "num_services": 4,
+        "detected_dbs": {
+            "names": [
+                "mongo"
+            ],
+            "num": 1,
+            "services": [
+                "mongodb"
+            ],
+            "shared_dbs": true
+        }
+    },
+    "size": 283,
+    "url": "git://github.com/michal112/docker.git",
+    "num_buses": 0,
+    "shared_dbs": true,
+    "files": [
+        {
+            "path": "/integration/pom.xml",
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "jboss"
+            ],
+            "dbs": [
+                "universe"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/product/pom.xml",
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "jboss"
+            ],
+            "dbs": [
+                "universe",
+                "mongodb",
+                "enterprise"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/category/pom.xml",
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "mongodb"
+            ],
+            "buses": []
+        }
+    ],
+    "num_discos": 0,
+    "dockers": [
+        {
+            "path": "/category/Dockerfile",
+            "from_full": "openjdk:8-jre-alpine",
+            "from": "openjdk",
+            "cmd": "java -jar app.jar",
+            "keywords": [
+                "app",
+                "mkdir"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [
+                "java"
+            ],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "java"
+            ],
+            "dbs": [],
+            "buses": []
+        }
+    ],
+    "name": "michal112/docker",
+    "buses": [],
+    "num_files": 5,
+    "dbs": [
+        "universe",
+        "mongo",
+        "enterprise"
+    ],
+    "num_dbs": 3
+}

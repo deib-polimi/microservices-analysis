@@ -1,0 +1,236 @@
+{
+    "num_services": 8,
+    "dbs": [
+        "mysql",
+        "redis"
+    ],
+    "name": "DoReVo/fyp-compose",
+    "files": [],
+    "discos": [],
+    "num_gates": 0,
+    "num_buses": 0,
+    "langs": [
+        "dockerfile",
+        "php"
+    ],
+    "gates": [],
+    "num_monitors": 0,
+    "monitors": [],
+    "images": [
+        "php",
+        "redis",
+        "locustio/locust"
+    ],
+    "structure": {
+        "num_services": 8,
+        "detected_dbs": {
+            "num": 2,
+            "services": [
+                "database-service",
+                "redis-service"
+            ],
+            "names": [
+                "mysql",
+                "redis"
+            ],
+            "shared_dbs": true
+        },
+        "services": [
+            {
+                "buses": [],
+                "depends_on": [
+                    "database-service"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "phpmyadmin/phpmyadmin",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "phpmyadmin",
+                "image": "phpmyadmin/phpmyadmin"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "database-service",
+                    "redis-service"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "./apache",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "invoice-service",
+                "image": "./apache"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "image_full": "mysql",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "database-service",
+                "image": "mysql"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "invoice-service",
+                    "payment-service"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "./apache",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "api-gateaway",
+                "image": "./apache"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "database-service",
+                    "redis-service",
+                    "invoice-service"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "./apache",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "payment-service",
+                "image": "./apache"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [
+                    "redis"
+                ],
+                "image_full": "redis:latest",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "redis-service",
+                "image": "redis"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "api-gateaway"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "locustio/locust",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "locust-jwt",
+                "image": "locustio/locust"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "api-gateaway"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "locustio/locust",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "locust-session",
+                "image": "locustio/locust"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "shared_dbs": true,
+    "languages": [
+        "dockerfile"
+    ],
+    "avg_size_service": 0.6666666666666666,
+    "buses": [],
+    "dockers": [
+        {
+            "from_full": "php:7.4-apache",
+            "langs": [
+                "php"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/apache/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "php",
+            "keywords": [
+                "www",
+                "pdo",
+                "var",
+                "data",
+                "ext"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "redis:latest",
+            "langs": [],
+            "dbs": [
+                "redis"
+            ],
+            "path": "/redis/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "redis",
+            "keywords": [
+                "set",
+                "cli",
+                "redis"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "locustio/locust",
+            "langs": [],
+            "dbs": [],
+            "path": "/locust/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "locustio/locust",
+            "keywords": [],
+            "cmd": ""
+        }
+    ],
+    "servers": [],
+    "num_dockers": 3,
+    "url": "git://github.com/DoReVo/fyp-compose.git",
+    "num_dbs": 2,
+    "num_servers": 0,
+    "num_discos": 0,
+    "num_langs": 2,
+    "num_files": 4,
+    "size": 2
+}

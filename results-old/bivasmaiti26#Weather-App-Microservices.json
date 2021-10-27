@@ -1,0 +1,439 @@
+{
+    "dbs": [
+        "zookeeper"
+    ],
+    "name": "bivasmaiti26/Weather-App-Microservices",
+    "num_langs": 3,
+    "languages": [
+        "javascript",
+        "python",
+        "java"
+    ],
+    "shared_dbs": true,
+    "servers": [
+        "express",
+        "spring",
+        "node"
+    ],
+    "langs": [
+        "javascript",
+        "java",
+        "python"
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "mvn",
+                "spring",
+                "run",
+                "boot"
+            ],
+            "discos": [],
+            "cmd": "mvn spring-boot:run",
+            "path": "/sessionmanagement/Dockerfile",
+            "from_full": "maven",
+            "gates": [],
+            "from": "maven",
+            "langs": [],
+            "keywords": [
+                "mvn",
+                "install",
+                "clean"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "discos": [],
+            "cmd": "npm start",
+            "path": "/UI/Dockerfile",
+            "from_full": "node:13",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "keywords": [
+                "install",
+                "npm"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "retrieval",
+                "data",
+                "python"
+            ],
+            "discos": [],
+            "cmd": "python data_retrieval.py",
+            "path": "/weather_service/data_retrieval/Dockerfile",
+            "from_full": "python:3.7",
+            "gates": [],
+            "from": "python",
+            "langs": [
+                "python"
+            ],
+            "keywords": [
+                "pip",
+                "install",
+                "txt",
+                "requirement"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "executor",
+                "model",
+                "python"
+            ],
+            "discos": [],
+            "cmd": "python model_executor.py",
+            "path": "/weather_service/model_executor/Dockerfile",
+            "from_full": "python:3.7",
+            "gates": [],
+            "from": "python",
+            "langs": [
+                "python"
+            ],
+            "keywords": [
+                "pip",
+                "install",
+                "txt",
+                "requirement"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "postprocess",
+                "data",
+                "python"
+            ],
+            "discos": [],
+            "cmd": "python data_postprocess.py",
+            "path": "/weather_service/data_post_analysis/Dockerfile",
+            "from_full": "python:3.7",
+            "gates": [],
+            "from": "python",
+            "langs": [
+                "python"
+            ],
+            "keywords": [
+                "pip",
+                "install",
+                "txt",
+                "requirement"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "init",
+                "src",
+                "python"
+            ],
+            "discos": [],
+            "cmd": "python -m src.__init__",
+            "path": "/user_management/Dockerfile",
+            "from_full": "python:3.7",
+            "gates": [],
+            "from": "python",
+            "langs": [
+                "python"
+            ],
+            "keywords": [
+                "pip",
+                "install",
+                "txt",
+                "requirement"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "start",
+                "npm",
+                "run"
+            ],
+            "discos": [],
+            "cmd": "npm run start",
+            "path": "/APIGateway/Dockerfile",
+            "from_full": "node:13",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "keywords": [
+                "install",
+                "npm"
+            ]
+        }
+    ],
+    "gates": [
+        "gateway"
+    ],
+    "size": 21070,
+    "num_dockers": 7,
+    "num_discos": 1,
+    "num_buses": 1,
+    "buses": [
+        "kafka"
+    ],
+    "images": [
+        "node",
+        "maven",
+        "python"
+    ],
+    "num_servers": 3,
+    "num_services": 10,
+    "monitors": [],
+    "structure": {
+        "services": [
+            {
+                "buses": [],
+                "image": "model-executer",
+                "dbs": [],
+                "gates": [],
+                "image_full": "model-executer:1.0",
+                "monitors": [],
+                "name": "modelexec",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "dataret",
+                    "datapost",
+                    "zookeeper",
+                    "kafka"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "data-retrieval",
+                "dbs": [],
+                "gates": [],
+                "image_full": "data-retrieval:1.0",
+                "monitors": [],
+                "name": "dataret",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "postgres",
+                "dbs": [],
+                "gates": [],
+                "image_full": "postgres:10",
+                "monitors": [],
+                "name": "postgres",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "confluentinc/cp-zookeeper",
+                "dbs": [
+                    "zookeeper"
+                ],
+                "gates": [],
+                "image_full": "confluentinc/cp-zookeeper:5.3.1",
+                "monitors": [],
+                "name": "zookeeper",
+                "discos": [
+                    "zookeeper"
+                ],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "user-interface",
+                "dbs": [],
+                "gates": [],
+                "image_full": "user-interface:1.0",
+                "monitors": [],
+                "name": "ui",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "api"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "session-management",
+                "dbs": [],
+                "gates": [],
+                "image_full": "session-management:1.0",
+                "monitors": [],
+                "name": "session",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "zookeeper"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "data-post-process",
+                "dbs": [],
+                "gates": [],
+                "image_full": "data-post-process:1.0",
+                "monitors": [],
+                "name": "datapost",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "api-gateway",
+                "dbs": [],
+                "gates": [
+                    "gateway"
+                ],
+                "image_full": "api-gateway:1.0",
+                "monitors": [],
+                "name": "api",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "zookeeper",
+                    "kafka"
+                ]
+            },
+            {
+                "buses": [
+                    "kafka"
+                ],
+                "image": "confluentinc/cp-kafka",
+                "dbs": [],
+                "gates": [],
+                "image_full": "confluentinc/cp-kafka:5.3.1",
+                "monitors": [],
+                "name": "kafka",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "zookeeper"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "user-management",
+                "dbs": [],
+                "gates": [],
+                "image_full": "user-management:1.0",
+                "monitors": [],
+                "name": "usermgmt",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "postgres",
+                    "zookeeper"
+                ]
+            }
+        ],
+        "num_services": 10,
+        "detected_dbs": {
+            "num": 1,
+            "shared_dbs": true,
+            "names": [
+                "zookeeper"
+            ],
+            "services": [
+                "zookeeper"
+            ]
+        },
+        "path": "/docker-compose.yml"
+    },
+    "discos": [
+        "zookeeper"
+    ],
+    "num_files": 11,
+    "num_dbs": 1,
+    "num_monitors": 0,
+    "num_gates": 1,
+    "url": "git://github.com/bivasmaiti26/Weather-App-Microservices.git",
+    "avg_size_service": 3010.0,
+    "files": [
+        {
+            "buses": [
+                "kafka"
+            ],
+            "dbs": [
+                "zookeeper",
+                "mongodb"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "zookeeper"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/sessionmanagement/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [],
+            "path": "/UI/package.json"
+        },
+        {
+            "buses": [
+                "kafka"
+            ],
+            "dbs": [
+                "zookeeper"
+            ],
+            "gates": [
+                "gateway"
+            ],
+            "monitors": [],
+            "discos": [
+                "zookeeper"
+            ],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/APIGateway/package.json"
+        }
+    ]
+}

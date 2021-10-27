@@ -1,0 +1,247 @@
+{
+    "gates": [],
+    "num_gates": 0,
+    "size": 10,
+    "shared_dbs": false,
+    "num_services": 11,
+    "num_dbs": 1,
+    "name": "pkdone/sharded-mongodb-docker",
+    "dbs": [
+        "mongo"
+    ],
+    "buses": [],
+    "num_dockers": 2,
+    "images": [
+        "mongo"
+    ],
+    "monitors": [],
+    "files": [],
+    "structure": {
+        "detected_dbs": {
+            "services": [],
+            "names": [],
+            "num": 0,
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "gates": [],
+                "monitors": [],
+                "dbs": [],
+                "buses": [],
+                "depends_on": [],
+                "image_full": "mongod",
+                "image": "mongod",
+                "servers": [],
+                "discos": [],
+                "name": "shard1-replica0"
+            },
+            {
+                "gates": [],
+                "monitors": [],
+                "dbs": [],
+                "buses": [],
+                "depends_on": [],
+                "image_full": "mongod",
+                "image": "mongod",
+                "servers": [],
+                "discos": [],
+                "name": "shard0-replica1"
+            },
+            {
+                "gates": [],
+                "monitors": [],
+                "dbs": [],
+                "buses": [],
+                "depends_on": [],
+                "image_full": "mongod",
+                "image": "mongod",
+                "servers": [],
+                "discos": [],
+                "name": "shard1-replica1"
+            },
+            {
+                "gates": [],
+                "monitors": [],
+                "dbs": [],
+                "buses": [],
+                "depends_on": [],
+                "image_full": "mongod",
+                "image": "mongod",
+                "servers": [],
+                "discos": [],
+                "name": "shard0-replica2"
+            },
+            {
+                "gates": [],
+                "monitors": [],
+                "dbs": [],
+                "buses": [],
+                "depends_on": [
+                    "shard0-replica0",
+                    "shard0-replica1",
+                    "shard0-replica2",
+                    "shard1-replica0",
+                    "shard1-replica1",
+                    "shard1-replica2",
+                    "configdb-replica0",
+                    "configdb-replica1",
+                    "configdb-replica2"
+                ],
+                "image_full": "mongos",
+                "image": "mongos",
+                "servers": [],
+                "discos": [],
+                "name": "mongos-router0"
+            },
+            {
+                "gates": [],
+                "monitors": [],
+                "dbs": [],
+                "buses": [],
+                "depends_on": [],
+                "image_full": "mongod",
+                "image": "mongod",
+                "servers": [],
+                "discos": [],
+                "name": "configdb-replica2"
+            },
+            {
+                "gates": [],
+                "monitors": [],
+                "dbs": [],
+                "buses": [],
+                "depends_on": [],
+                "image_full": "mongod",
+                "image": "mongod",
+                "servers": [],
+                "discos": [],
+                "name": "shard1-replica2"
+            },
+            {
+                "gates": [],
+                "monitors": [],
+                "dbs": [],
+                "buses": [],
+                "depends_on": [],
+                "image_full": "mongod",
+                "image": "mongod",
+                "servers": [],
+                "discos": [],
+                "name": "configdb-replica0"
+            },
+            {
+                "gates": [],
+                "monitors": [],
+                "dbs": [],
+                "buses": [],
+                "depends_on": [],
+                "image_full": "mongod",
+                "image": "mongod",
+                "servers": [],
+                "discos": [],
+                "name": "configdb-replica1"
+            },
+            {
+                "gates": [],
+                "monitors": [],
+                "dbs": [],
+                "buses": [],
+                "depends_on": [],
+                "image_full": "mongos",
+                "image": "mongos",
+                "servers": [],
+                "discos": [],
+                "name": "mongos-router1"
+            },
+            {
+                "gates": [],
+                "monitors": [],
+                "dbs": [],
+                "buses": [],
+                "depends_on": [],
+                "image_full": "mongod",
+                "image": "mongod",
+                "servers": [],
+                "discos": [],
+                "name": "shard0-replica0"
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "num_services": 11
+    },
+    "servers": [],
+    "num_discos": 0,
+    "discos": [],
+    "num_monitors": 0,
+    "url": "git://github.com/pkdone/sharded-mongodb-docker.git",
+    "langs": [
+        "shell",
+        "dockerfile"
+    ],
+    "num_langs": 2,
+    "dockers": [
+        {
+            "gates": [],
+            "keywords": [
+                "local",
+                "mongod",
+                "bin",
+                "apt",
+                "get"
+            ],
+            "discos": [],
+            "path": "/mongod/Dockerfile",
+            "langs": [],
+            "cmd_keywords": [
+                "mongod",
+                "conf",
+                "etc"
+            ],
+            "dbs": [
+                "mongo"
+            ],
+            "servers": [],
+            "cmd": "mongod -f /etc/mongod.conf",
+            "from_full": "mongo:latest",
+            "buses": [],
+            "from": "mongo",
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "keywords": [
+                "local",
+                "bin",
+                "apt",
+                "get",
+                "mongos"
+            ],
+            "discos": [],
+            "path": "/mongos/Dockerfile",
+            "langs": [],
+            "cmd_keywords": [
+                "port",
+                "mongos",
+                "bind"
+            ],
+            "dbs": [
+                "mongo"
+            ],
+            "servers": [],
+            "cmd": "mongos --port 27017 --bind_ip 0.0.0.0",
+            "from_full": "mongo:latest",
+            "buses": [],
+            "from": "mongo",
+            "monitors": []
+        }
+    ],
+    "avg_size_service": 5.0,
+    "languages": [
+        "shell",
+        "dockerfile"
+    ],
+    "num_buses": 0,
+    "num_files": 3,
+    "num_servers": 0
+}

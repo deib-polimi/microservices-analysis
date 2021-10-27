@@ -1,0 +1,340 @@
+{
+    "size": 1086,
+    "num_dockers": 5,
+    "discos": [],
+    "num_files": 10,
+    "avg_size_service": 217.2,
+    "buses": [],
+    "num_gates": 1,
+    "langs": [
+        "vue",
+        "typescript"
+    ],
+    "num_discos": 0,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "nginx",
+            "path": "/api-gateway/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "from_full": "nginx"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "cmd_keywords": [],
+            "from": "node",
+            "path": "/invoices-service/Dockerfile",
+            "keywords": [
+                "npm",
+                "install",
+                "run",
+                "build"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "node:lts-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "cmd_keywords": [],
+            "from": "node",
+            "path": "/products-service/Dockerfile",
+            "keywords": [
+                "npm",
+                "install",
+                "run",
+                "build"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "node:lts-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "nginx",
+            "path": "/webapp/Dockerfile",
+            "keywords": [
+                "npm",
+                "app",
+                "install",
+                "mkdir",
+                "build"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "from_full": "nginx"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "cmd_keywords": [],
+            "from": "node",
+            "path": "/customers-service/Dockerfile",
+            "keywords": [
+                "npm",
+                "install",
+                "run",
+                "build"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "node:lts-alpine"
+        }
+    ],
+    "num_dbs": 1,
+    "monitors": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "redis",
+                "image_full": "redis",
+                "discos": [],
+                "name": "products_db",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "embair/swarm-demo",
+                "image_full": "embair/swarm-demo:webapp",
+                "discos": [],
+                "name": "webapp",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "embair/swarm-demo",
+                "image_full": "embair/swarm-demo:customers",
+                "discos": [],
+                "name": "customers",
+                "depends_on": [
+                    "customers_db"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "embair/swarm-demo",
+                "image_full": "embair/swarm-demo:invoices",
+                "discos": [],
+                "name": "invoices",
+                "depends_on": [
+                    "invoices_db"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "redis",
+                "image_full": "redis",
+                "discos": [],
+                "name": "customers_db",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "redis",
+                "image_full": "redis",
+                "discos": [],
+                "name": "invoices_db",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "embair/swarm-demo",
+                "image_full": "embair/swarm-demo:products",
+                "discos": [],
+                "name": "products",
+                "depends_on": [
+                    "products_db"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "embair/swarm-demo",
+                "image_full": "embair/swarm-demo:api-gateway",
+                "discos": [],
+                "name": "api-gateway",
+                "depends_on": [
+                    "customers",
+                    "products",
+                    "invoices",
+                    "webapp"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "dockersamples/visualizer",
+                "image_full": "dockersamples/visualizer:latest",
+                "discos": [],
+                "name": "viz",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 3,
+            "names": [
+                "redis"
+            ],
+            "services": [
+                "products_db",
+                "customers_db",
+                "invoices_db"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 9,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 0,
+    "servers": [
+        "node",
+        "express"
+    ],
+    "url": "git://github.com/michal-bures/docker-swarm-demo.git",
+    "num_services": 9,
+    "gates": [
+        "nginx"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/invoices-service/package.json"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/products-service/package.json"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/webapp/package.json"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/customers-service/package.json"
+        }
+    ],
+    "name": "michal-bures/docker-swarm-demo",
+    "languages": [
+        "typescript",
+        "vue"
+    ],
+    "images": [
+        "node",
+        "nginx"
+    ],
+    "dbs": [
+        "redis"
+    ],
+    "num_servers": 2,
+    "num_langs": 2
+}

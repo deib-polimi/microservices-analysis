@@ -1,0 +1,351 @@
+{
+    "structure": {
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": false,
+            "services": [
+                "db"
+            ]
+        },
+        "num_services": 7,
+        "path": "/docker/common/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [],
+                "name": "rabbitmq",
+                "dbs": [],
+                "image": "rabbitmq",
+                "monitors": [],
+                "servers": [],
+                "image_full": "rabbitmq:management",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "name": "eurekaserver",
+                "dbs": [],
+                "image": "notix/eurekaserver",
+                "monitors": [],
+                "servers": [],
+                "image_full": "notix/eurekaserver:n1",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "eurekaserver",
+                    "rabbitmq",
+                    "zipkin"
+                ],
+                "name": "zuulserver",
+                "dbs": [],
+                "image": "notix/zuulgateway",
+                "monitors": [],
+                "servers": [],
+                "image_full": "notix/zuulgateway:n1",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "eurekaserver",
+                    "rabbitmq",
+                    "zipkin",
+                    "db"
+                ],
+                "name": "exchange",
+                "dbs": [],
+                "image": "notix/exhangeservice",
+                "monitors": [],
+                "servers": [],
+                "image_full": "notix/exhangeservice:n1",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "name": "zipkin",
+                "dbs": [],
+                "image": "openzipkin/zipkin",
+                "monitors": [],
+                "servers": [],
+                "image_full": "openzipkin/zipkin",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "eurekaserver",
+                    "rabbitmq",
+                    "zipkin"
+                ],
+                "name": "converter",
+                "dbs": [],
+                "image": "notix/currencyconverter",
+                "monitors": [],
+                "servers": [],
+                "image_full": "notix/currencyconverter:n1",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "name": "db",
+                "dbs": [
+                    "mysql"
+                ],
+                "image": "mysql",
+                "monitors": [],
+                "servers": [],
+                "image_full": "mysql:latest",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            }
+        ]
+    },
+    "dbs": [
+        "mysql",
+        "max"
+    ],
+    "dockers": [
+        {
+            "dbs": [],
+            "path": "/currency-conversion-service/src/main/docker/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "run"
+            ],
+            "gates": [],
+            "discos": [],
+            "from_full": "openjdk:8u171-jdk-alpine3.8",
+            "langs": [
+                "bash"
+            ],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "apk",
+                "add",
+                "local",
+                "chmod",
+                "usr"
+            ],
+            "from": "openjdk",
+            "cmd": "./run.sh"
+        },
+        {
+            "dbs": [],
+            "path": "/currency-exchange-service/src/main/docker/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "run"
+            ],
+            "gates": [],
+            "discos": [],
+            "from_full": "openjdk:8u171-jdk-alpine3.8",
+            "langs": [
+                "bash"
+            ],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "apk",
+                "add",
+                "local",
+                "chmod",
+                "usr"
+            ],
+            "from": "openjdk",
+            "cmd": "./run.sh"
+        },
+        {
+            "dbs": [],
+            "path": "/netflix-zuul-api-gateway/src/main/docker/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "run"
+            ],
+            "gates": [],
+            "discos": [],
+            "from_full": "openjdk:8u171-jdk-alpine3.8",
+            "langs": [
+                "bash"
+            ],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "apk",
+                "add",
+                "local",
+                "chmod",
+                "usr"
+            ],
+            "from": "openjdk",
+            "cmd": "./run.sh"
+        },
+        {
+            "dbs": [],
+            "path": "/netflix-eureka-naming-server/src/main/docker/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "run"
+            ],
+            "gates": [],
+            "discos": [],
+            "from_full": "openjdk:8u171-jdk-alpine3.8",
+            "langs": [
+                "bash"
+            ],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "apk",
+                "add",
+                "local",
+                "chmod",
+                "usr"
+            ],
+            "from": "openjdk",
+            "cmd": "./run.sh"
+        }
+    ],
+    "files": [
+        {
+            "dbs": [
+                "max"
+            ],
+            "path": "/pom.xml",
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "dbs": [],
+            "path": "/currency-conversion-service/pom.xml",
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/currency-exchange-service/pom.xml",
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "dbs": [],
+            "path": "/netflix-zuul-api-gateway/pom.xml",
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "dbs": [],
+            "path": "/netflix-eureka-naming-server/pom.xml",
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ]
+        }
+    ],
+    "languages": [
+        "java",
+        "shell"
+    ],
+    "num_dbs": 2,
+    "num_monitors": 0,
+    "images": [
+        "openjdk"
+    ],
+    "name": "rajput92/docker-microservice-demo-COMPLETED",
+    "shared_dbs": false,
+    "num_servers": 1,
+    "num_langs": 3,
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "num_services": 7,
+    "num_dockers": 4,
+    "size": 359,
+    "avg_size_service": 89.75,
+    "gates": [
+        "zuul"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "langs": [
+        "bash",
+        "java",
+        "shell"
+    ],
+    "num_files": 10,
+    "url": "git://github.com/rajput92/docker-microservice-demo-COMPLETED.git",
+    "monitors": [],
+    "servers": [
+        "spring"
+    ],
+    "num_buses": 2,
+    "num_discos": 1,
+    "num_gates": 1
+}

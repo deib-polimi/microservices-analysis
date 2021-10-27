@@ -1,0 +1,226 @@
+{
+    "name": "ahsanfarooq216/JewelsOnContainers",
+    "buses": [],
+    "images": [
+        "base"
+    ],
+    "num_langs": 3,
+    "num_discos": 0,
+    "num_buses": 0,
+    "dockers": [
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "base",
+            "cmd_keywords": [],
+            "from_full": "base",
+            "keywords": [
+                "dotnet",
+                "webmvc",
+                "csproj",
+                "release",
+                "app"
+            ],
+            "path": "/WebMvc/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": ""
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "base",
+            "cmd_keywords": [],
+            "from_full": "base",
+            "keywords": [
+                "dotnet",
+                "csproj",
+                "cartapi",
+                "release",
+                "app"
+            ],
+            "path": "/CartApi/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": ""
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "base",
+            "cmd_keywords": [],
+            "from_full": "base",
+            "keywords": [
+                "productcatalogapi",
+                "dotnet",
+                "csproj",
+                "release",
+                "app"
+            ],
+            "path": "/ProductCatalogAPI/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": ""
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "base",
+            "cmd_keywords": [],
+            "from_full": "base",
+            "keywords": [
+                "dotnet",
+                "publish",
+                "release",
+                "app",
+                "restore"
+            ],
+            "path": "/TokenServiceApi/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": ""
+        }
+    ],
+    "monitors": [],
+    "dbs": [
+        "redis"
+    ],
+    "structure": {
+        "detected_dbs": {
+            "num": 1,
+            "services": [
+                "basket.data"
+            ],
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": false
+        },
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "monitors": [],
+                "name": "mssqlserver",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image": "microsoft/mssql-server-linux",
+                "image_full": "microsoft/mssql-server-linux:latest",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "tokenserver",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "mssqlserver"
+                ],
+                "image": "jewels/tokenapi",
+                "image_full": "jewels/tokenapi",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "webmvc",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "catalog",
+                    "cart",
+                    "tokenserver"
+                ],
+                "image": "jewels/webmvc",
+                "image_full": "jewels/webmvc",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "basket.data",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image": "redis",
+                "image_full": "redis",
+                "gates": [],
+                "dbs": [
+                    "redis"
+                ]
+            },
+            {
+                "monitors": [],
+                "name": "catalog",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "mssqlserver"
+                ],
+                "image": "jewels/catalogapi",
+                "image_full": "jewels/catalogapi",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "cart",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "tokenserver",
+                    "basket.data"
+                ],
+                "image": "jewels/cartapi",
+                "image_full": "jewels/cartapi",
+                "gates": [],
+                "dbs": []
+            }
+        ],
+        "num_services": 6
+    },
+    "gates": [],
+    "files": [],
+    "avg_size_service": 3034.25,
+    "langs": [
+        "css",
+        "c#",
+        "html"
+    ],
+    "num_dbs": 1,
+    "num_services": 6,
+    "num_monitors": 0,
+    "size": 12137,
+    "languages": [
+        "c#",
+        "css",
+        "html"
+    ],
+    "num_files": 5,
+    "num_gates": 0,
+    "num_dockers": 4,
+    "shared_dbs": false,
+    "servers": [],
+    "num_servers": 0,
+    "url": "git://github.com/ahsanfarooq216/JewelsOnContainers.git",
+    "discos": []
+}

@@ -1,0 +1,209 @@
+{
+    "gates": [],
+    "num_buses": 0,
+    "url": "git://github.com/aki0fj/microservice-sample-integration.git",
+    "images": [
+        "node"
+    ],
+    "avg_size_service": 1.0,
+    "num_langs": 3,
+    "num_monitors": 0,
+    "num_dockers": 3,
+    "num_discos": 0,
+    "num_servers": 1,
+    "buses": [],
+    "discos": [],
+    "dockers": [
+        {
+            "path": "/services/microservice-sample-tweet/Dockerfile",
+            "cmd_keywords": [
+                "wait",
+                "start",
+                "yarn"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "node",
+            "langs": [],
+            "servers": [
+                "node"
+            ],
+            "cmd": "/wait && yarn start",
+            "from_full": "node:14.2-alpine",
+            "monitors": [],
+            "keywords": [
+                "prune",
+                "install",
+                "node",
+                "curl",
+                "com"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/services/microservice-sample-user/Dockerfile",
+            "cmd_keywords": [
+                "wait",
+                "start",
+                "yarn"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "node",
+            "langs": [],
+            "servers": [
+                "node"
+            ],
+            "cmd": "/wait && yarn start",
+            "from_full": "node:14.2-alpine",
+            "monitors": [],
+            "keywords": [
+                "prune",
+                "install",
+                "node",
+                "curl",
+                "com"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/services/microservice-sample-web/Dockerfile",
+            "cmd_keywords": [
+                "start",
+                "yarn"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "node",
+            "langs": [
+                "python"
+            ],
+            "servers": [
+                "node"
+            ],
+            "cmd": "yarn start",
+            "from_full": "node:14.2-alpine",
+            "monitors": [],
+            "keywords": [
+                "prune",
+                "install",
+                "apk",
+                "node",
+                "yarn"
+            ],
+            "buses": []
+        }
+    ],
+    "size": 3,
+    "name": "aki0fj/microservice-sample-integration",
+    "num_services": 5,
+    "dbs": [
+        "mongo"
+    ],
+    "shared_dbs": false,
+    "langs": [
+        "dockerfile",
+        "python",
+        "makefile"
+    ],
+    "languages": [
+        "dockerfile",
+        "makefile"
+    ],
+    "servers": [
+        "node"
+    ],
+    "num_files": 4,
+    "monitors": [],
+    "num_dbs": 1,
+    "num_gates": 0,
+    "files": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 5,
+        "detected_dbs": {
+            "services": [
+                "user-db",
+                "tweet-db"
+            ],
+            "num": 2,
+            "names": [
+                "mongo"
+            ],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "tweet-db"
+                ],
+                "servers": [],
+                "image_full": "microservice_tweet:1.0",
+                "name": "tweet",
+                "gates": [],
+                "image": "microservice_tweet",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "microservice_web:1.0",
+                "name": "web",
+                "gates": [],
+                "image": "microservice_web",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "mongo",
+                "name": "user-db",
+                "gates": [],
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "user-db"
+                ],
+                "servers": [],
+                "image_full": "microservice_user:1.0",
+                "name": "user",
+                "gates": [],
+                "image": "microservice_user",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "mongo",
+                "name": "tweet-db",
+                "gates": [],
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": []
+            }
+        ]
+    }
+}

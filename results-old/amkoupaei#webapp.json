@@ -1,0 +1,190 @@
+{
+    "avg_size_service": 56.0,
+    "buses": [],
+    "num_dbs": 0,
+    "files": [
+        {
+            "path": "/app/requirements.txt",
+            "servers": [
+                "django"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": []
+        }
+    ],
+    "num_dockers": 3,
+    "num_langs": 1,
+    "num_servers": 1,
+    "num_buses": 0,
+    "num_discos": 0,
+    "gates": [
+        "nginx"
+    ],
+    "images": [
+        "nginx",
+        "python"
+    ],
+    "size": 168,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 4,
+        "services": [
+            {
+                "buses": [],
+                "name": "nginx",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "./nginx",
+                "image_full": "./nginx",
+                "discos": [],
+                "gates": [
+                    "nginx"
+                ],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "name": "ldapdaemon",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "./ldapdaemon",
+                "image_full": "./ldapdaemon",
+                "discos": [],
+                "gates": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "name": "webtest",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "Dockerfile",
+                "image_full": "Dockerfile",
+                "discos": [],
+                "gates": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "name": "ldapserver",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "osixia/openldap",
+                "image_full": "osixia/openldap:1.4.0",
+                "discos": [],
+                "gates": [],
+                "depends_on": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 0,
+            "names": [],
+            "services": []
+        }
+    },
+    "num_files": 5,
+    "servers": [
+        "django"
+    ],
+    "url": "git://github.com/amkoupaei/webapp.git",
+    "dbs": [],
+    "monitors": [],
+    "dockers": [
+        {
+            "from_full": "nginx:1.19.0-alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [
+                "nginx"
+            ],
+            "path": "/nginx/Dockerfile",
+            "from": "nginx",
+            "cmd": "",
+            "cmd_keywords": [],
+            "servers": [],
+            "keywords": [
+                "nginx",
+                "etc",
+                "logs",
+                "conf",
+                "mkdir"
+            ],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "python:${PYTHON_VERSION}-alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [
+                "nginx"
+            ],
+            "path": "/ldapdaemon/Dockerfile",
+            "from": "python",
+            "cmd": "python /usr/src/app/nginx-ldap-auth-daemon.py --host 0.0.0.0 --port 8888",
+            "cmd_keywords": [
+                "port",
+                "python",
+                "host",
+                "app",
+                "auth"
+            ],
+            "servers": [],
+            "keywords": [
+                "apk",
+                "add",
+                "build",
+                "dependencies",
+                "cache"
+            ],
+            "discos": [],
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "from_full": "python:3.8.3-alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/bkenddaemon/Dockerfile",
+            "from": "python",
+            "cmd": "python backend-sample-app.py",
+            "cmd_keywords": [
+                "sample",
+                "python",
+                "app",
+                "backend"
+            ],
+            "servers": [],
+            "keywords": [],
+            "discos": [],
+            "langs": [
+                "python"
+            ]
+        }
+    ],
+    "languages": [
+        "python"
+    ],
+    "num_services": 4,
+    "num_gates": 1,
+    "name": "amkoupaei/webapp",
+    "shared_dbs": false,
+    "langs": [
+        "python"
+    ],
+    "discos": [],
+    "num_monitors": 0
+}

@@ -1,0 +1,158 @@
+{
+    "num_gates": 1,
+    "images": [
+        "nginx",
+        "microsoft/dotnet"
+    ],
+    "discos": [],
+    "num_buses": 0,
+    "name": "opage/sfeirpuppy",
+    "gates": [
+        "nginx"
+    ],
+    "structure": {
+        "num_services": 3,
+        "detected_dbs": {
+            "services": [
+                "nosql.data"
+            ],
+            "names": [
+                "mongo"
+            ],
+            "shared_dbs": false,
+            "num": 1
+        },
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image": "mongo",
+                "image_full": "mongo",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "nosql.data",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "mongo"
+                ]
+            },
+            {
+                "image": "sfeirapi",
+                "image_full": "sfeirapi:${TAG:-latest}",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "nosql.data"
+                ],
+                "servers": [],
+                "name": "sfeirapi",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "sfeirfront",
+                "image_full": "sfeirfront:${TAG:-latest}",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "sfeirapi"
+                ],
+                "servers": [],
+                "name": "sfeirfront",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            }
+        ]
+    },
+    "url": "git://github.com/opage/sfeirpuppy.git",
+    "langs": [
+        "javascript",
+        "c#"
+    ],
+    "num_dockers": 2,
+    "num_langs": 2,
+    "dbs": [
+        "mongo"
+    ],
+    "shared_dbs": false,
+    "size": 481,
+    "dockers": [
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "microsoft/dotnet:2.1-aspnetcore-runtime",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "microsoft/dotnet",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "dotnet",
+                "restore",
+                "release",
+                "publish",
+                "out"
+            ],
+            "dbs": [],
+            "path": "/back/sfeirapi/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "nginx:1.13.3-alpine",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "nginx",
+            "cmd": "nginx -g daemon off;",
+            "gates": [
+                "nginx"
+            ],
+            "keywords": [
+                "npm",
+                "set",
+                "nginx",
+                "force",
+                "false"
+            ],
+            "dbs": [],
+            "path": "/front/sfeirfront/Dockerfile",
+            "cmd_keywords": [
+                "nginx",
+                "off",
+                "daemon"
+            ]
+        }
+    ],
+    "num_servers": 0,
+    "monitors": [],
+    "num_services": 3,
+    "servers": [],
+    "num_monitors": 0,
+    "avg_size_service": 240.5,
+    "num_files": 4,
+    "buses": [],
+    "files": [
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/front/sfeirfront/package.json"
+        }
+    ],
+    "languages": [
+        "javascript",
+        "c#"
+    ],
+    "num_dbs": 1,
+    "num_discos": 0
+}

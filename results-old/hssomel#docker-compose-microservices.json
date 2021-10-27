@@ -1,0 +1,268 @@
+{
+    "monitors": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "shared_dbs": true,
+            "services": [
+                "mongo",
+                "dashboard"
+            ],
+            "names": [
+                "mongo"
+            ],
+            "num": 2
+        },
+        "services": [
+            {
+                "image": "hssomel/haproxy",
+                "buses": [],
+                "monitors": [],
+                "image_full": "hssomel/haproxy:latest",
+                "gates": [],
+                "name": "haproxy",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "statistics",
+                    "static",
+                    "mongo",
+                    "dashboard"
+                ]
+            },
+            {
+                "image": "hssomel/statistics",
+                "buses": [],
+                "monitors": [],
+                "image_full": "hssomel/statistics:latest",
+                "gates": [],
+                "name": "statistics",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "mongo"
+                ]
+            },
+            {
+                "image": "hssomel/static",
+                "buses": [],
+                "monitors": [],
+                "image_full": "hssomel/static:latest",
+                "gates": [],
+                "name": "static",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "mongo",
+                "buses": [],
+                "monitors": [],
+                "image_full": "mongo:4.2.6-bionic",
+                "gates": [],
+                "name": "mongo",
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "depends_on": []
+            },
+            {
+                "image": "mongo-express",
+                "buses": [],
+                "monitors": [],
+                "image_full": "mongo-express:0.54.0",
+                "gates": [],
+                "name": "dashboard",
+                "discos": [],
+                "servers": [
+                    "express"
+                ],
+                "dbs": [
+                    "mongo"
+                ],
+                "depends_on": [
+                    "mongo",
+                    "statistics"
+                ]
+            }
+        ],
+        "num_services": 5
+    },
+    "num_langs": 4,
+    "name": "hssomel/docker-compose-microservices",
+    "num_dockers": 5,
+    "buses": [],
+    "dbs": [
+        "mongo"
+    ],
+    "size": 336,
+    "num_discos": 0,
+    "shared_dbs": true,
+    "discos": [],
+    "images": [
+        "centos",
+        "node",
+        "docker",
+        "haproxy"
+    ],
+    "num_servers": 2,
+    "files": [
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/static/package.json",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/statistics/package.json",
+            "discos": [],
+            "dbs": [
+                "mongodb"
+            ]
+        }
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "haproxy",
+            "path": "/haproxy/Dockerfile",
+            "from_full": "haproxy:2.0.14",
+            "cmd": "",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "index"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "node",
+            "path": "/static/Dockerfile",
+            "from_full": "node:12.16.3-stretch-slim",
+            "cmd": "index.js",
+            "keywords": [
+                "nodeserver",
+                "install",
+                "useradd",
+                "npm"
+            ],
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "index"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "node",
+            "path": "/statistics/Dockerfile",
+            "from_full": "node:12.16.3-stretch-slim",
+            "cmd": "index.js",
+            "keywords": [
+                "nodeserver",
+                "install",
+                "useradd",
+                "npm"
+            ],
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "docker",
+            "path": "/docker-in-docker/Dockerfile",
+            "from_full": "docker:18.09.9",
+            "cmd": "",
+            "keywords": [
+                "envsubst",
+                "kompose",
+                "kubectl",
+                "https",
+                "chmod"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "sleep"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "centos",
+            "path": "/centos7/Dockerfile",
+            "from_full": "centos:7",
+            "cmd": "sleep 99999999999999",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        }
+    ],
+    "url": "git://github.com/hssomel/docker-compose-microservices.git",
+    "gates": [],
+    "num_files": 8,
+    "num_services": 5,
+    "num_gates": 0,
+    "num_dbs": 1,
+    "avg_size_service": 67.2,
+    "langs": [
+        "html",
+        "javascript",
+        "smarty",
+        "shell"
+    ],
+    "num_buses": 0,
+    "languages": [
+        "smarty",
+        "shell",
+        "html",
+        "javascript"
+    ],
+    "num_monitors": 0,
+    "servers": [
+        "express",
+        "node"
+    ]
+}

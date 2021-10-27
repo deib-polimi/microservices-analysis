@@ -1,0 +1,242 @@
+{
+    "dbs": [],
+    "name": "loliksamuel/spring-decoupling-dockerized-k8s-hpa",
+    "num_langs": 3,
+    "languages": [
+        "java",
+        "html",
+        "dockerfile"
+    ],
+    "shared_dbs": false,
+    "servers": [
+        "spring",
+        "node"
+    ],
+    "langs": [
+        "html",
+        "dockerfile",
+        "java"
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/Dockerfile",
+            "from_full": "openjdk:10.0.1-10-jre-slim",
+            "gates": [],
+            "from": "openjdk",
+            "langs": [],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "jar",
+                "boot",
+                "java",
+                "spring",
+                "snapshot"
+            ],
+            "discos": [],
+            "cmd": "java -jar spring-boot-k8s-hpa-0.0.3-SNAPSHOT.jar",
+            "path": "/docker/release/Dockerfile",
+            "from_full": "openjdk:10.0.1-10-jre-slim",
+            "gates": [],
+            "from": "openjdk",
+            "langs": [
+                "java"
+            ],
+            "keywords": [
+                "true",
+                "skip",
+                "dmaven",
+                "mvn",
+                "package"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "jar",
+                "suspend",
+                "hpa",
+                "java",
+                "spring"
+            ],
+            "discos": [],
+            "cmd": "java -agentlib:jdwp=transport=dt_socket,address=50505,suspend=n,server=y -jar spring-boot-k8s-hpa-0.0.3-SNAPSHOT.jar",
+            "path": "/docker/debug/Dockerfile",
+            "from_full": "openjdk:10.0.1-10-jre-slim",
+            "gates": [],
+            "from": "openjdk",
+            "langs": [
+                "java"
+            ],
+            "keywords": [
+                "true",
+                "skip",
+                "dmaven",
+                "mvn",
+                "package"
+            ]
+        }
+    ],
+    "gates": [],
+    "size": 152,
+    "num_dockers": 3,
+    "num_discos": 0,
+    "num_buses": 1,
+    "buses": [
+        "activemq"
+    ],
+    "images": [
+        "openjdk"
+    ],
+    "num_servers": 2,
+    "num_services": 6,
+    "monitors": [
+        "grafana",
+        "prometheus"
+    ],
+    "structure": {
+        "services": [
+            {
+                "buses": [],
+                "image": "spring-boot-hpa3",
+                "dbs": [],
+                "gates": [],
+                "image_full": "spring-boot-hpa3:v1",
+                "monitors": [],
+                "name": "backend",
+                "discos": [],
+                "servers": [
+                    "spring"
+                ],
+                "depends_on": [
+                    "queue"
+                ]
+            },
+            {
+                "buses": [
+                    "activemq"
+                ],
+                "image": "webcenter/activemq",
+                "dbs": [],
+                "gates": [],
+                "image_full": "webcenter/activemq:5.14.3",
+                "monitors": [],
+                "name": "queue",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "grafana/grafana",
+                "dbs": [],
+                "gates": [],
+                "image_full": "grafana/grafana:4.3.2",
+                "monitors": [
+                    "grafana"
+                ],
+                "name": "grafana",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "prometheus"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "prom/prometheus",
+                "dbs": [],
+                "gates": [],
+                "image_full": "prom/prometheus:v2.0.0",
+                "monitors": [
+                    "prometheus"
+                ],
+                "name": "prometheus",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "node-exporter"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "prom/node-exporter",
+                "dbs": [],
+                "gates": [],
+                "image_full": "prom/node-exporter:v0.15.1",
+                "monitors": [],
+                "name": "node-exporter",
+                "discos": [],
+                "servers": [
+                    "node"
+                ],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "spring-boot-hpa3",
+                "dbs": [],
+                "gates": [],
+                "image_full": "spring-boot-hpa3:v1",
+                "monitors": [],
+                "name": "frontend",
+                "discos": [],
+                "servers": [
+                    "spring"
+                ],
+                "depends_on": [
+                    "queue"
+                ]
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "num": 0,
+            "shared_dbs": false,
+            "names": [],
+            "services": []
+        },
+        "path": "/docker-compose.yml"
+    },
+    "discos": [],
+    "num_files": 5,
+    "num_dbs": 0,
+    "num_monitors": 2,
+    "num_gates": 0,
+    "url": "git://github.com/loliksamuel/spring-decoupling-dockerized-k8s-hpa.git",
+    "avg_size_service": 50.666666666666664,
+    "files": [
+        {
+            "buses": [
+                "activemq"
+            ],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/pom.xml"
+        }
+    ]
+}

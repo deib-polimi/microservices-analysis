@@ -1,0 +1,305 @@
+{
+    "dbs": [
+        "mongo"
+    ],
+    "num_langs": 3,
+    "buses": [],
+    "monitors": [
+        "grafana",
+        "prometheus"
+    ],
+    "num_services": 9,
+    "num_dbs": 1,
+    "num_servers": 2,
+    "discos": [],
+    "dockers": [
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "python:3.6.0-alpine",
+            "gates": [],
+            "dbs": [],
+            "from": "python",
+            "cmd": "",
+            "discos": [],
+            "langs": [
+                "python"
+            ],
+            "path": "/post-py/Dockerfile",
+            "keywords": [
+                "requirements",
+                "install",
+                "pip",
+                "txt"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "prom/alertmanager",
+            "gates": [],
+            "dbs": [],
+            "from": "prom/alertmanager",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/alertmanager/Dockerfile",
+            "keywords": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "puma"
+            ],
+            "from_full": "ruby:2.2",
+            "gates": [],
+            "dbs": [],
+            "from": "ruby",
+            "cmd": "puma",
+            "discos": [],
+            "langs": [
+                "ruby"
+            ],
+            "path": "/comment/Dockerfile",
+            "keywords": [
+                "install",
+                "apt",
+                "get",
+                "home",
+                "bundle"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "cmd_keywords": [],
+            "from_full": "prom/prometheus:latest",
+            "gates": [],
+            "dbs": [],
+            "from": "prom/prometheus",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/prometheus/Dockerfile",
+            "keywords": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "start"
+            ],
+            "from_full": "ubuntu:16.04",
+            "gates": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "from": "ubuntu",
+            "cmd": "/start.sh",
+            "discos": [],
+            "langs": [
+                "ruby"
+            ],
+            "path": "/monolith/Dockerfile",
+            "keywords": [
+                "install",
+                "git",
+                "apt",
+                "ruby",
+                "reddit"
+            ]
+        }
+    ],
+    "num_files": 7,
+    "num_dockers": 5,
+    "images": [
+        "prom/alertmanager",
+        "python",
+        "ruby",
+        "prom/prometheus",
+        "ubuntu"
+    ],
+    "size": 113,
+    "servers": [
+        "flask",
+        "node"
+    ],
+    "structure": {
+        "detected_dbs": {
+            "names": [
+                "mongo"
+            ],
+            "shared_dbs": false,
+            "services": [
+                "mongo_db"
+            ],
+            "num": 1
+        },
+        "num_services": 9,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "grafana/grafana",
+                "name": "grafana",
+                "depends_on": [
+                    "prometheus"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "grafana/grafana",
+                "gates": [],
+                "monitors": [
+                    "grafana"
+                ]
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "mongo:${MONGO_VERSION}",
+                "name": "mongo_db",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "image": "mongo",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "${USER_NAME}/ui:${LATEST_VERSION}",
+                "name": "ui",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "${USER_NAME}/ui",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "${USER_NAME}/alertmanager",
+                "name": "alertmanager",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "${USER_NAME}/alertmanager",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "${USER_NAME}/post:${LATEST_VERSION}",
+                "name": "post",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "${USER_NAME}/post",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "${USER_NAME}/comment:${LATEST_VERSION}",
+                "name": "comment",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "${USER_NAME}/comment",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "google/cadvisor:latest",
+                "name": "cadvisor",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "google/cadvisor",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "${USER_NAME}/prometheus",
+                "name": "prometheus",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "${USER_NAME}/prometheus",
+                "gates": [],
+                "monitors": [
+                    "prometheus"
+                ]
+            },
+            {
+                "discos": [],
+                "servers": [
+                    "node"
+                ],
+                "image_full": "prom/node-exporter:v0.15.0",
+                "name": "node-exporter",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "prom/node-exporter",
+                "gates": [],
+                "monitors": []
+            }
+        ]
+    },
+    "num_discos": 0,
+    "files": [
+        {
+            "servers": [
+                "flask"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "discos": [],
+            "path": "/post-py/requirements.txt"
+        }
+    ],
+    "num_monitors": 2,
+    "num_buses": 0,
+    "num_gates": 0,
+    "gates": [],
+    "name": "shevchenkoav/Microservices",
+    "avg_size_service": 22.6,
+    "url": "git://github.com/shevchenkoav/Microservices.git",
+    "shared_dbs": false,
+    "langs": [
+        "html",
+        "ruby",
+        "python"
+    ],
+    "languages": [
+        "ruby",
+        "html",
+        "python"
+    ]
+}

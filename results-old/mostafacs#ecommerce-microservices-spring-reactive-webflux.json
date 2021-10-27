@@ -1,0 +1,486 @@
+{
+    "buses": [],
+    "num_langs": 1,
+    "dbs": [
+        "psql",
+        "postgresql"
+    ],
+    "languages": [
+        "java"
+    ],
+    "files": [
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "monitors": [
+                "monitoring"
+            ],
+            "path": "/pom.xml",
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "gateway"
+            ]
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "monitors": [],
+            "path": "/system/config/pom.xml",
+            "dbs": [],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "monitors": [],
+            "path": "/system/discovery-server/pom.xml",
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "monitors": [],
+            "path": "/system/authentication/pom.xml",
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "monitors": [
+                "monitoring"
+            ],
+            "path": "/system/monitoring/pom.xml",
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "monitors": [],
+            "path": "/system/gateway/pom.xml",
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "gateway"
+            ]
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "monitors": [],
+            "path": "/services/product/pom.xml",
+            "dbs": [],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "monitors": [],
+            "path": "/services/order/pom.xml",
+            "dbs": [],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "path": "/components/model/pom.xml",
+            "dbs": [],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "path": "/components/framework/pom.xml",
+            "dbs": [],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "path": "/storage/migration/pom.xml",
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [],
+            "gates": []
+        }
+    ],
+    "size": 113,
+    "name": "mostafacs/ecommerce-microservices-spring-reactive-webflux",
+    "num_servers": 1,
+    "structure": {
+        "num_services": 9,
+        "services": [
+            {
+                "image": "storage/postgresdb",
+                "servers": [],
+                "name": "postgresdb",
+                "monitors": [],
+                "dbs": [],
+                "image_full": "storage/postgresdb",
+                "buses": [],
+                "discos": [],
+                "depends_on": [],
+                "gates": []
+            },
+            {
+                "image": "services/product",
+                "servers": [],
+                "name": "product-service",
+                "monitors": [],
+                "dbs": [],
+                "image_full": "services/product",
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "authentication-server"
+                ],
+                "gates": []
+            },
+            {
+                "image": "services/order",
+                "servers": [],
+                "name": "order-service",
+                "monitors": [],
+                "dbs": [],
+                "image_full": "services/order",
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "authentication-server"
+                ],
+                "gates": []
+            },
+            {
+                "image": "storage/migration",
+                "servers": [],
+                "name": "migration",
+                "monitors": [],
+                "dbs": [],
+                "image_full": "storage/migration",
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "postgresdb"
+                ],
+                "gates": []
+            },
+            {
+                "image": "system/config",
+                "servers": [],
+                "name": "config-server",
+                "monitors": [],
+                "dbs": [],
+                "image_full": "system/config",
+                "buses": [],
+                "discos": [],
+                "depends_on": [],
+                "gates": []
+            },
+            {
+                "image": "system/authentication",
+                "servers": [],
+                "name": "authentication-server",
+                "monitors": [],
+                "dbs": [],
+                "image_full": "system/authentication",
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "postgresdb",
+                    "discovery-server"
+                ],
+                "gates": []
+            },
+            {
+                "image": "system/discovery-server",
+                "servers": [],
+                "name": "discovery-server",
+                "monitors": [],
+                "dbs": [],
+                "image_full": "system/discovery-server",
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "config-server"
+                ],
+                "gates": []
+            },
+            {
+                "image": "system/gateway",
+                "servers": [],
+                "name": "gateway",
+                "monitors": [],
+                "dbs": [],
+                "image_full": "system/gateway",
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "product-service",
+                    "order-service"
+                ],
+                "gates": [
+                    "gateway"
+                ]
+            },
+            {
+                "image": "system/monitoring",
+                "servers": [],
+                "name": "monitor",
+                "monitors": [
+                    "monitoring"
+                ],
+                "dbs": [],
+                "image_full": "system/monitoring",
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "discovery-server"
+                ],
+                "gates": []
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "names": [],
+            "num": 0,
+            "services": [],
+            "shared_dbs": false
+        }
+    },
+    "shared_dbs": false,
+    "num_services": 9,
+    "num_dbs": 2,
+    "discos": [
+        "eureka"
+    ],
+    "gates": [
+        "gateway"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "images": [
+        "java",
+        "postgres"
+    ],
+    "num_gates": 1,
+    "num_buses": 0,
+    "dockers": [
+        {
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "keywords": [],
+            "from_full": "java:8",
+            "monitors": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "discos": [],
+            "gates": [],
+            "cmd": "",
+            "cmd_keywords": [],
+            "path": "/system/config/Dockerfile"
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "keywords": [],
+            "from_full": "java:8",
+            "monitors": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "discos": [],
+            "gates": [],
+            "cmd": "",
+            "cmd_keywords": [],
+            "path": "/system/discovery-server/Dockerfile"
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "keywords": [],
+            "from_full": "java:8",
+            "monitors": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "discos": [],
+            "gates": [],
+            "cmd": "",
+            "cmd_keywords": [],
+            "path": "/system/authentication/Dockerfile"
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "keywords": [],
+            "from_full": "java:8",
+            "monitors": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "discos": [],
+            "gates": [],
+            "cmd": "",
+            "cmd_keywords": [],
+            "path": "/system/monitoring/Dockerfile"
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "keywords": [],
+            "from_full": "java:8",
+            "monitors": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "discos": [],
+            "gates": [],
+            "cmd": "",
+            "cmd_keywords": [],
+            "path": "/system/gateway/Dockerfile"
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "keywords": [],
+            "from_full": "java:8",
+            "monitors": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "discos": [],
+            "gates": [],
+            "cmd": "",
+            "cmd_keywords": [],
+            "path": "/services/product/Dockerfile"
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "keywords": [],
+            "from_full": "java:8",
+            "monitors": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "discos": [],
+            "gates": [],
+            "cmd": "",
+            "cmd_keywords": [],
+            "path": "/services/order/Dockerfile"
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "keywords": [],
+            "from_full": "java:8",
+            "monitors": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "discos": [],
+            "gates": [],
+            "cmd": "",
+            "cmd_keywords": [],
+            "path": "/storage/migration/Dockerfile"
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "dbs": [
+                "psql"
+            ],
+            "keywords": [
+                "database",
+                "password",
+                "postgres",
+                "user",
+                "command"
+            ],
+            "from_full": "postgres:11",
+            "monitors": [],
+            "langs": [],
+            "from": "postgres",
+            "discos": [],
+            "gates": [],
+            "cmd": "",
+            "cmd_keywords": [],
+            "path": "/storage/postgresdb/Dockerfile"
+        }
+    ],
+    "num_discos": 1,
+    "num_dockers": 9,
+    "monitors": [
+        "monitoring"
+    ],
+    "url": "git://github.com/mostafacs/ecommerce-microservices-spring-reactive-webflux.git",
+    "langs": [
+        "java"
+    ],
+    "num_files": 21,
+    "num_monitors": 1,
+    "avg_size_service": 12.555555555555555
+}

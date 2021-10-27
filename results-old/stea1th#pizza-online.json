@@ -1,0 +1,465 @@
+{
+    "size": 3305,
+    "num_dockers": 1,
+    "discos": [
+        "zookeeper",
+        "eureka"
+    ],
+    "num_files": 18,
+    "avg_size_service": 3305.0,
+    "buses": [
+        "stomp",
+        "kafka"
+    ],
+    "num_gates": 2,
+    "langs": [
+        "java",
+        "typescript"
+    ],
+    "num_discos": 2,
+    "num_monitors": 2,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "nginx",
+            "path": "/angular/src/main/angular-app/Dockerfile",
+            "keywords": [
+                "npm",
+                "install",
+                "run",
+                "build"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "from_full": "nginx:alpine"
+        }
+    ],
+    "num_dbs": 3,
+    "monitors": [
+        "grafana",
+        "prometheus"
+    ],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [
+                    "kafka"
+                ],
+                "image": "bitnami/kafka",
+                "image_full": "bitnami/kafka:latest",
+                "discos": [],
+                "name": "kafka",
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "jboss/keycloak",
+                "image_full": "jboss/keycloak:8.0.2",
+                "discos": [],
+                "name": "authorization",
+                "depends_on": [
+                    "keycloak-database"
+                ],
+                "dbs": [],
+                "servers": [
+                    "jboss"
+                ],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./angular/src/main/angular-app",
+                "image_full": "./angular/src/main/angular-app",
+                "discos": [],
+                "name": "frontend",
+                "depends_on": [
+                    "authorization"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "postgres",
+                "image_full": "postgres:latest",
+                "discos": [],
+                "name": "database",
+                "depends_on": [
+                    "kafka"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "postgres",
+                "image_full": "postgres:latest",
+                "discos": [],
+                "name": "keycloak-database",
+                "depends_on": [
+                    "kafka"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [
+                    "grafana"
+                ],
+                "buses": [],
+                "image": "grafana/grafana",
+                "image_full": "grafana/grafana",
+                "discos": [],
+                "name": "grafana",
+                "depends_on": [
+                    "prometheus"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [
+                    "prometheus"
+                ],
+                "buses": [],
+                "image": "prom/prometheus",
+                "image_full": "prom/prometheus",
+                "discos": [],
+                "name": "prometheus",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "bitnami/zookeeper",
+                "image_full": "bitnami/zookeeper:latest",
+                "discos": [
+                    "zookeeper"
+                ],
+                "name": "zookeeper",
+                "depends_on": [],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "zookeeper"
+            ],
+            "services": [
+                "zookeeper"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 8,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 2,
+    "servers": [
+        "spring",
+        "tomcat",
+        "node",
+        "jboss"
+    ],
+    "url": "git://github.com/stea1th/pizza-online.git",
+    "num_services": 8,
+    "gates": [
+        "zuul",
+        "nginx"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/pom.xml"
+        },
+        {
+            "monitors": [
+                "prometheus"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/person-service/pom.xml"
+        },
+        {
+            "monitors": [
+                "prometheus"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/eureka-server/pom.xml"
+        },
+        {
+            "monitors": [
+                "prometheus"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/order-service/pom.xml"
+        },
+        {
+            "monitors": [
+                "prometheus"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/gateway-service/pom.xml"
+        },
+        {
+            "monitors": [
+                "prometheus"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/cloud-gateway-service/pom.xml"
+        },
+        {
+            "monitors": [
+                "prometheus"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/order-websocket-service/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/commons/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "path": "/angular/pom.xml"
+        },
+        {
+            "monitors": [
+                "prometheus"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/product-service/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/pdf-creator/pom.xml"
+        },
+        {
+            "monitors": [
+                "prometheus"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "zuul"
+            ],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/completed-order-service/pom.xml"
+        },
+        {
+            "monitors": [
+                "prometheus"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/order-product-service/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/persist/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring",
+                "tomcat"
+            ],
+            "path": "/web/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [
+                "stomp"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [
+                "solid"
+            ],
+            "servers": [
+                "node"
+            ],
+            "path": "/angular/src/main/angular-app/package.json"
+        }
+    ],
+    "name": "stea1th/pizza-online",
+    "languages": [
+        "java",
+        "typescript"
+    ],
+    "images": [
+        "nginx"
+    ],
+    "dbs": [
+        "postgresql",
+        "solid",
+        "zookeeper"
+    ],
+    "num_servers": 4,
+    "num_langs": 2
+}

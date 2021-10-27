@@ -1,0 +1,333 @@
+{
+    "size": 860,
+    "num_files": 13,
+    "dockers": [
+        {
+            "from_full": "docker.elastic.co/elasticsearch/elasticsearch:7.5.1",
+            "gates": [],
+            "discos": [],
+            "cmd": "",
+            "monitors": [],
+            "keywords": [],
+            "from": "docker.elastic.co/elasticsearch/elasticsearch",
+            "langs": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "buses": [],
+            "path": "/es/Dockerfile",
+            "dbs": []
+        },
+        {
+            "from_full": "openjdk:8",
+            "gates": [],
+            "discos": [],
+            "cmd": "",
+            "monitors": [],
+            "keywords": [],
+            "from": "openjdk",
+            "langs": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "buses": [],
+            "path": "/Gateway/Dockerfile",
+            "dbs": []
+        },
+        {
+            "from_full": "openjdk:8",
+            "gates": [],
+            "discos": [],
+            "cmd": "",
+            "monitors": [],
+            "keywords": [],
+            "from": "openjdk",
+            "langs": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "buses": [],
+            "path": "/CatalogData/Dockerfile",
+            "dbs": []
+        },
+        {
+            "from_full": "docker.elastic.co/logstash/logstash:7.5.1",
+            "gates": [],
+            "discos": [],
+            "cmd": "",
+            "monitors": [],
+            "keywords": [
+                "logstash",
+                "share",
+                "conf",
+                "pipeline",
+                "usr"
+            ],
+            "from": "docker.elastic.co/logstash/logstash",
+            "langs": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "buses": [],
+            "path": "/logstash/Dockerfile",
+            "dbs": []
+        },
+        {
+            "from_full": "docker.elastic.co/kibana/kibana:7.5.1",
+            "gates": [],
+            "discos": [],
+            "cmd": "",
+            "monitors": [],
+            "keywords": [
+                "kibana",
+                "share",
+                "yml",
+                "config",
+                "usr"
+            ],
+            "from": "docker.elastic.co/kibana/kibana",
+            "langs": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "buses": [],
+            "path": "/kibana/Dockerfile",
+            "dbs": []
+        },
+        {
+            "from_full": "openjdk:8",
+            "gates": [],
+            "discos": [],
+            "cmd": "",
+            "monitors": [],
+            "keywords": [],
+            "from": "openjdk",
+            "langs": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "buses": [],
+            "path": "/EurekaServer/Dockerfile",
+            "dbs": []
+        },
+        {
+            "from_full": "rabbitmq:3.8.2-management",
+            "gates": [],
+            "discos": [],
+            "cmd": "",
+            "monitors": [],
+            "keywords": [],
+            "from": "rabbitmq",
+            "langs": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "buses": [
+                "rabbitmq"
+            ],
+            "path": "/rabbitmq/Dockerfile",
+            "dbs": []
+        },
+        {
+            "from_full": "openjdk:8",
+            "gates": [],
+            "discos": [],
+            "cmd": "",
+            "monitors": [],
+            "keywords": [],
+            "from": "openjdk",
+            "langs": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "buses": [],
+            "path": "/CatalogService/Dockerfile",
+            "dbs": []
+        }
+    ],
+    "avg_size_service": 107.5,
+    "num_services": 6,
+    "servers": [
+        "spring"
+    ],
+    "num_discos": 1,
+    "num_langs": 1,
+    "discos": [
+        "eureka"
+    ],
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "url": "git://github.com/vineetkala11/DistributedLogging.git",
+    "structure": {
+        "num_services": 6,
+        "path": "/docker-compose/docker-compose.yml",
+        "services": [
+            {
+                "servers": [],
+                "image": "catalog-data-1",
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "name": "catalog-data",
+                "dbs": [],
+                "gates": [],
+                "buses": [],
+                "discos": [],
+                "image_full": "catalog-data-1",
+                "monitors": []
+            },
+            {
+                "servers": [],
+                "image": "logstash",
+                "depends_on": [
+                    "rabbitmq",
+                    "els"
+                ],
+                "name": "logstash",
+                "dbs": [],
+                "gates": [],
+                "buses": [],
+                "discos": [],
+                "image_full": "logstash",
+                "monitors": []
+            },
+            {
+                "servers": [],
+                "image": "catalog-service-1",
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "name": "catalog-service",
+                "dbs": [],
+                "gates": [],
+                "buses": [],
+                "discos": [],
+                "image_full": "catalog-service-1",
+                "monitors": []
+            },
+            {
+                "servers": [],
+                "image": "elastic-search",
+                "depends_on": [],
+                "name": "els",
+                "dbs": [],
+                "gates": [],
+                "buses": [],
+                "discos": [],
+                "image_full": "elastic-search",
+                "monitors": []
+            },
+            {
+                "servers": [],
+                "image": "rabbitmq-mng",
+                "depends_on": [],
+                "name": "rabbitmq",
+                "dbs": [],
+                "gates": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "image_full": "rabbitmq-mng",
+                "monitors": []
+            },
+            {
+                "servers": [],
+                "image": "kibana",
+                "depends_on": [
+                    "els"
+                ],
+                "name": "kibana",
+                "dbs": [],
+                "gates": [],
+                "buses": [],
+                "discos": [],
+                "image_full": "kibana",
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "shared_dbs": false,
+            "services": []
+        }
+    },
+    "shared_dbs": false,
+    "gates": [
+        "zuul"
+    ],
+    "num_gates": 1,
+    "name": "vineetkala11/DistributedLogging",
+    "num_buses": 2,
+    "num_servers": 1,
+    "num_dbs": 0,
+    "monitors": [],
+    "langs": [
+        "java"
+    ],
+    "dbs": [],
+    "files": [
+        {
+            "servers": [
+                "spring"
+            ],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [],
+            "path": "/Gateway/pom.xml",
+            "monitors": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": [],
+            "dbs": [],
+            "buses": [
+                "amqp"
+            ],
+            "path": "/CatalogData/pom.xml",
+            "monitors": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [],
+            "path": "/EurekaServer/pom.xml",
+            "monitors": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": [],
+            "dbs": [],
+            "buses": [
+                "amqp"
+            ],
+            "path": "/CatalogService/pom.xml",
+            "monitors": []
+        }
+    ],
+    "images": [
+        "docker.elastic.co/logstash/logstash",
+        "docker.elastic.co/elasticsearch/elasticsearch",
+        "docker.elastic.co/kibana/kibana",
+        "openjdk",
+        "rabbitmq"
+    ],
+    "num_dockers": 8,
+    "languages": [
+        "java"
+    ],
+    "num_monitors": 0
+}

@@ -1,0 +1,183 @@
+{
+    "servers": [],
+    "name": "paisit04/php-microservices",
+    "num_gates": 1,
+    "avg_size_service": 3.3333333333333335,
+    "structure": {
+        "services": [
+            {
+                "gates": [
+                    "nginx"
+                ],
+                "buses": [],
+                "image_full": "./microservices/base/nginx/",
+                "servers": [],
+                "depends_on": [
+                    "autodiscovery",
+                    "microservice_base_fpm"
+                ],
+                "name": "microservice_base_nginx",
+                "dbs": [],
+                "image": "./microservices/base/nginx/",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "./autodiscovery/",
+                "servers": [],
+                "depends_on": [],
+                "name": "autodiscovery",
+                "dbs": [],
+                "image": "./autodiscovery/",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "./microservices/base/php-fpm/",
+                "servers": [],
+                "depends_on": [
+                    "autodiscovery"
+                ],
+                "name": "microservice_base_fpm",
+                "dbs": [],
+                "image": "./microservices/base/php-fpm/",
+                "monitors": [],
+                "discos": []
+            }
+        ],
+        "num_services": 3,
+        "path": "/docker/docker-compose.yml",
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        }
+    },
+    "num_dbs": 1,
+    "buses": [],
+    "langs": [
+        "php",
+        "dockerfile",
+        "shell"
+    ],
+    "shared_dbs": false,
+    "files": [],
+    "size": 10,
+    "num_dockers": 3,
+    "url": "git://github.com/paisit04/php-microservices.git",
+    "gates": [
+        "nginx"
+    ],
+    "num_servers": 0,
+    "images": [
+        "consul",
+        "nginx",
+        "php"
+    ],
+    "num_services": 3,
+    "languages": [
+        "dockerfile",
+        "shell"
+    ],
+    "num_files": 4,
+    "discos": [
+        "consul",
+        "containerpilot"
+    ],
+    "dockers": [
+        {
+            "gates": [],
+            "from_full": "consul:v0.7.0",
+            "cmd_keywords": [],
+            "path": "/docker/autodiscovery/Dockerfile",
+            "servers": [],
+            "cmd": "",
+            "from": "consul",
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [
+                "consul"
+            ],
+            "monitors": [],
+            "keywords": []
+        },
+        {
+            "gates": [
+                "nginx"
+            ],
+            "from_full": "nginx:stable",
+            "cmd_keywords": [
+                "local",
+                "daemon",
+                "bin",
+                "off",
+                "containerpilot"
+            ],
+            "path": "/docker/microservices/base/nginx/Dockerfile",
+            "servers": [],
+            "cmd": "/usr/local/bin/containerpilot nginx -g daemon off;",
+            "from": "nginx",
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [
+                "containerpilot"
+            ],
+            "monitors": [],
+            "keywords": [
+                "consul",
+                "template",
+                "containerpilot",
+                "tmp",
+                "tar"
+            ]
+        },
+        {
+            "gates": [],
+            "from_full": "php:7.0-fpm",
+            "cmd_keywords": [
+                "local",
+                "php",
+                "nodaemonize",
+                "bin",
+                "containerpilot"
+            ],
+            "path": "/docker/microservices/base/php-fpm/Dockerfile",
+            "servers": [],
+            "cmd": "/usr/local/bin/containerpilot php-fpm --nodaemonize",
+            "from": "php",
+            "buses": [],
+            "langs": [
+                "php"
+            ],
+            "dbs": [
+                "redis"
+            ],
+            "discos": [
+                "containerpilot"
+            ],
+            "monitors": [],
+            "keywords": [
+                "tmp",
+                "containerpilot",
+                "consul",
+                "template",
+                "dev"
+            ]
+        }
+    ],
+    "num_langs": 3,
+    "num_monitors": 0,
+    "num_buses": 0,
+    "dbs": [
+        "redis"
+    ],
+    "monitors": [],
+    "num_discos": 2
+}

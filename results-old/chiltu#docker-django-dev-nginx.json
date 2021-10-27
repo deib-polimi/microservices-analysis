@@ -1,0 +1,183 @@
+{
+    "num_dbs": 1,
+    "dbs": [
+        "redis"
+    ],
+    "images": [
+        "python"
+    ],
+    "langs": [
+        "python"
+    ],
+    "size": 22,
+    "num_discos": 0,
+    "dockers": [
+        {
+            "dbs": [],
+            "from": "python",
+            "keywords": [
+                "uwsgi",
+                "code",
+                "etc",
+                "mkdir",
+                "ini"
+            ],
+            "from_full": "python:2.7",
+            "langs": [
+                "python"
+            ],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "",
+            "path": "/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "servers": [
+        "django"
+    ],
+    "monitors": [],
+    "num_dockers": 1,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 6,
+        "detected_dbs": {
+            "services": [
+                "redis"
+            ],
+            "names": [
+                "redis"
+            ],
+            "num": 1,
+            "shared_dbs": true
+        },
+        "services": [
+            {
+                "image": "rabbitmq",
+                "dbs": [],
+                "depends_on": [],
+                "image_full": "rabbitmq:3",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "name": "rabbitmq",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "Dockerfile-celery",
+                "dbs": [],
+                "depends_on": [
+                    "redis",
+                    "rabbitmq"
+                ],
+                "image_full": "Dockerfile-celery",
+                "buses": [],
+                "name": "celery",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": ".",
+                "dbs": [],
+                "depends_on": [
+                    "db",
+                    "redis",
+                    "rabbitmq"
+                ],
+                "image_full": ".",
+                "buses": [],
+                "name": "web",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "postgres",
+                "dbs": [],
+                "depends_on": [],
+                "image_full": "postgres:latest",
+                "buses": [],
+                "name": "db",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "depends_on": [],
+                "image_full": "redis:latest",
+                "buses": [],
+                "name": "redis",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "Dockerfile-nginx",
+                "dbs": [],
+                "depends_on": [
+                    "web"
+                ],
+                "image_full": "Dockerfile-nginx",
+                "buses": [],
+                "name": "nginx",
+                "monitors": [],
+                "gates": [
+                    "nginx"
+                ],
+                "discos": [],
+                "servers": []
+            }
+        ]
+    },
+    "num_buses": 1,
+    "gates": [
+        "nginx"
+    ],
+    "discos": [],
+    "num_gates": 1,
+    "num_services": 6,
+    "name": "chiltu/docker-django-dev-nginx",
+    "shared_dbs": true,
+    "avg_size_service": 22.0,
+    "num_langs": 1,
+    "num_servers": 1,
+    "languages": [
+        "python"
+    ],
+    "buses": [
+        "rabbitmq"
+    ],
+    "files": [
+        {
+            "dbs": [
+                "redis"
+            ],
+            "buses": [],
+            "path": "/requirements.txt",
+            "monitors": [],
+            "gates": [],
+            "discos": [],
+            "servers": [
+                "django"
+            ]
+        }
+    ],
+    "url": "git://github.com/chiltu/docker-django-dev-nginx.git",
+    "num_files": 3,
+    "num_monitors": 0
+}

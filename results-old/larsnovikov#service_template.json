@@ -1,0 +1,138 @@
+{
+    "gates": [
+        "nginx"
+    ],
+    "images": [
+        "debian",
+        "php"
+    ],
+    "num_dbs": 1,
+    "structure": {
+        "num_services": 2,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "fpm_app",
+                "gates": [],
+                "image": "fpm_app",
+                "depends_on": [],
+                "dbs": [],
+                "name": "fpm_app",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "nginx_app",
+                "gates": [
+                    "nginx"
+                ],
+                "image": "nginx_app",
+                "depends_on": [
+                    "fpm_app"
+                ],
+                "dbs": [],
+                "name": "nginx_app",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "shared_dbs": false,
+            "names": []
+        }
+    },
+    "num_files": 3,
+    "num_gates": 1,
+    "discos": [],
+    "num_dockers": 2,
+    "shared_dbs": false,
+    "languages": [
+        "shell",
+        "dockerfile"
+    ],
+    "name": "larsnovikov/service_template",
+    "num_langs": 3,
+    "avg_size_service": 5.5,
+    "monitors": [],
+    "num_servers": 0,
+    "num_services": 2,
+    "dbs": [
+        "mysql"
+    ],
+    "langs": [
+        "dockerfile",
+        "shell",
+        "php"
+    ],
+    "dockers": [
+        {
+            "gates": [
+                "nginx"
+            ],
+            "path": "/nginx_app/Dockerfile",
+            "langs": [
+                "php"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "debian",
+            "discos": [],
+            "from_full": "debian:jessie",
+            "cmd": "nginx",
+            "monitors": [],
+            "cmd_keywords": [
+                "nginx"
+            ],
+            "keywords": [
+                "nginx",
+                "etc",
+                "apt",
+                "upstream",
+                "conf"
+            ]
+        },
+        {
+            "gates": [],
+            "path": "/fpm_app/Dockerfile",
+            "langs": [
+                "php"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": [],
+            "servers": [],
+            "from": "php",
+            "discos": [],
+            "from_full": "php:7.1-fpm",
+            "cmd": "php-fpm -F",
+            "monitors": [],
+            "cmd_keywords": [
+                "fpm",
+                "php"
+            ],
+            "keywords": [
+                "install",
+                "apt",
+                "get",
+                "php",
+                "ext"
+            ]
+        }
+    ],
+    "buses": [],
+    "servers": [],
+    "size": 11,
+    "files": [],
+    "num_buses": 0,
+    "num_monitors": 0,
+    "url": "git://github.com/larsnovikov/service_template.git",
+    "num_discos": 0
+}

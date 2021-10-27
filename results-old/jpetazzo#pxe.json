@@ -1,0 +1,75 @@
+{
+    "size": 10,
+    "num_dockers": 1,
+    "discos": [],
+    "num_files": 2,
+    "avg_size_service": 10.0,
+    "buses": [],
+    "num_gates": 0,
+    "langs": [
+        "shell",
+        "dockerfile"
+    ],
+    "num_discos": 0,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "echo Setting up iptables... &&    iptables -t nat -A POSTROUTING -j MASQUERADE &&    echo Waiting for pipework to give us the eth1 interface... &&    /pipework --wait &&    myIP=$(ip addr show dev eth1 | awk -F '[ /]+' '/global/ {print $3}') &&    mySUBNET=$(echo $myIP | cut -d '.' -f 1,2,3) &&    echo Starting DHCP+TFTP server...&&    dnsmasq --interface=eth1     \t    --dhcp-range=$mySUBNET.101,$mySUBNET.199,255.255.255.0,1h \t    --dhcp-boot=pxelinux.0,pxeserver,$myIP \t    --pxe-service=x86PC,\"Install Linux\",pxelinux \t    --enable-tftp --tftp-root=/tftp/ --no-daemon",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "echo",
+                "tftp",
+                "eth",
+                "dhcp",
+                "mysubnet"
+            ],
+            "from": "stackbrew/debian",
+            "path": "/Dockerfile",
+            "keywords": [
+                "debian",
+                "arch",
+                "installer",
+                "wget",
+                "linux"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "stackbrew/debian:jessie"
+        }
+    ],
+    "num_dbs": 0,
+    "monitors": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [],
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        },
+        "num_services": 0,
+        "path": []
+    },
+    "num_buses": 0,
+    "servers": [],
+    "url": "git://github.com/jpetazzo/pxe.git",
+    "num_services": 0,
+    "gates": [],
+    "files": [],
+    "name": "jpetazzo/pxe",
+    "languages": [
+        "shell",
+        "dockerfile"
+    ],
+    "images": [
+        "stackbrew/debian"
+    ],
+    "dbs": [],
+    "num_servers": 0,
+    "num_langs": 2
+}

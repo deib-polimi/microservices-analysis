@@ -1,0 +1,158 @@
+{
+    "langs": [
+        "shell",
+        "dockerfile"
+    ],
+    "languages": [
+        "shell",
+        "dockerfile"
+    ],
+    "url": "git://github.com/keyax/couchbase_core.git",
+    "files": [],
+    "gates": [],
+    "discos": [
+        "consul"
+    ],
+    "num_monitors": 0,
+    "num_dockers": 2,
+    "num_dbs": 1,
+    "avg_size_service": 26.5,
+    "num_gates": 0,
+    "num_servers": 1,
+    "name": "keyax/couchbase_core",
+    "num_discos": 1,
+    "num_files": 3,
+    "num_buses": 0,
+    "servers": [
+        "node"
+    ],
+    "dbs": [
+        "couchbase"
+    ],
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "depends_on": [],
+                "image": "progrium/consul",
+                "servers": [],
+                "gates": [],
+                "image_full": "progrium/consul",
+                "buses": [],
+                "dbs": [],
+                "discos": [
+                    "consul"
+                ],
+                "name": "myconsul"
+            },
+            {
+                "monitors": [],
+                "depends_on": [
+                    "couchbase"
+                ],
+                "image": "keyax/node_core",
+                "servers": [
+                    "node"
+                ],
+                "gates": [],
+                "image_full": "keyax/node_core",
+                "buses": [],
+                "dbs": [],
+                "discos": [],
+                "name": "nodeweb"
+            },
+            {
+                "monitors": [],
+                "depends_on": [],
+                "image": "keyax/couchbase_core",
+                "servers": [],
+                "gates": [],
+                "image_full": "keyax/couchbase_core",
+                "buses": [],
+                "dbs": [
+                    "couchbase"
+                ],
+                "discos": [],
+                "name": "couchbase"
+            }
+        ],
+        "num_services": 3,
+        "detected_dbs": {
+            "names": [
+                "couchbase"
+            ],
+            "services": [
+                "couchbase"
+            ],
+            "shared_dbs": false,
+            "num": 1
+        },
+        "path": "/kyxnet/docker-compose.yml"
+    },
+    "monitors": [],
+    "size": 53,
+    "dockers": [
+        {
+            "langs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "from_full": "keyax/ubuntu_lts",
+            "gates": [],
+            "discos": [],
+            "dbs": [
+                "couchbase"
+            ],
+            "monitors": [],
+            "cmd": "/configure-cluster-node.sh",
+            "keywords": [
+                "bin",
+                "apt",
+                "dummy",
+                "get",
+                "package"
+            ],
+            "path": "/Dockerfile",
+            "from": "keyax/ubuntu_lts",
+            "cmd_keywords": [
+                "configure",
+                "cluster",
+                "node"
+            ]
+        },
+        {
+            "langs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "from_full": "couchbase",
+            "gates": [],
+            "discos": [],
+            "dbs": [
+                "couchbase"
+            ],
+            "monitors": [],
+            "cmd": "/opt/couchbase/configure-cluster-node.sh",
+            "keywords": [],
+            "path": "/scripts/Dockerfile",
+            "from": "couchbase",
+            "cmd_keywords": [
+                "configure",
+                "opt",
+                "couchbase",
+                "cluster",
+                "node"
+            ]
+        }
+    ],
+    "images": [
+        "couchbase",
+        "keyax/ubuntu_lts"
+    ],
+    "buses": [],
+    "num_services": 3,
+    "num_langs": 2,
+    "shared_dbs": false
+}

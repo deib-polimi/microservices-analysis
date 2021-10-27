@@ -1,0 +1,408 @@
+{
+    "num_gates": 0,
+    "images": [
+        "base",
+        "node"
+    ],
+    "discos": [],
+    "num_buses": 2,
+    "name": "strahinja16/soa-microservices",
+    "gates": [],
+    "structure": {
+        "num_services": 10,
+        "detected_dbs": {
+            "services": [
+                "mongoseneca",
+                "mongostatistic"
+            ],
+            "names": [
+                "mongo"
+            ],
+            "shared_dbs": false,
+            "num": 2
+        },
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image": "['NODE_ENV=development']",
+                "image_full": "['NODE_ENV=development']",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "expressmicroservice",
+                    "statisticmicroservice",
+                    "senecamicroservice"
+                ],
+                "servers": [
+                    "node"
+                ],
+                "name": "dashboardmicroservice",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "mongo",
+                "image_full": "mongo",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "mongoseneca",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "mongo"
+                ]
+            },
+            {
+                "image": "eclipse-mosquitto",
+                "image_full": "eclipse-mosquitto",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "mqtt-service",
+                "monitors": [],
+                "buses": [
+                    "mosquitto"
+                ],
+                "dbs": []
+            },
+            {
+                "image": "./SenecaMicroservice",
+                "image_full": "./SenecaMicroservice",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "apimicroservice",
+                    "mongoseneca",
+                    "mqtt-service"
+                ],
+                "servers": [],
+                "name": "senecamicroservice",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "microsoft/mssql-server-linux",
+                "image_full": "microsoft/mssql-server-linux",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "database",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "./ExpressMicroservice",
+                "image_full": "./ExpressMicroservice",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "statisticmicroservice",
+                    "senecamicroservice",
+                    "mqtt-service"
+                ],
+                "servers": [],
+                "name": "expressmicroservice",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "${DOCKER_REGISTRY-}apimicroservice",
+                "image_full": "${DOCKER_REGISTRY-}apimicroservice",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "datamicroservice",
+                    "database"
+                ],
+                "servers": [],
+                "name": "apimicroservice",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "${DOCKER_REGISTRY-}datamicroservice",
+                "image_full": "${DOCKER_REGISTRY-}datamicroservice",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "datamicroservice",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "mongo",
+                "image_full": "mongo",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "mongostatistic",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "mongo"
+                ]
+            },
+            {
+                "image": "${DOCKER_REGISTRY-}statisticmicroservice",
+                "image_full": "${DOCKER_REGISTRY-}statisticmicroservice",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "apimicroservice",
+                    "mongostatistic",
+                    "mqtt-service"
+                ],
+                "servers": [],
+                "name": "statisticmicroservice",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            }
+        ]
+    },
+    "url": "git://github.com/strahinja16/soa-microservices.git",
+    "langs": [
+        "bash",
+        "javascript",
+        "c#"
+    ],
+    "num_dockers": 6,
+    "num_langs": 3,
+    "dbs": [
+        "mongo"
+    ],
+    "shared_dbs": false,
+    "size": 8363,
+    "dockers": [
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "node:latest",
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "langs": [
+                "bash"
+            ],
+            "from": "node",
+            "cmd": "npm run start",
+            "gates": [],
+            "keywords": [
+                "install",
+                "npm",
+                "apt",
+                "get",
+                "bash"
+            ],
+            "dbs": [],
+            "path": "/SenecaMicroservice/Dockerfile",
+            "cmd_keywords": [
+                "run",
+                "start",
+                "npm"
+            ]
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "base",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "base",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "datamicroservice",
+                "dotnet",
+                "csproj",
+                "release",
+                "app"
+            ],
+            "dbs": [],
+            "path": "/DataMicroservice/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "base",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "base",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "apimicroservice",
+                "dotnet",
+                "csproj",
+                "release",
+                "app"
+            ],
+            "dbs": [],
+            "path": "/ApiMicroservice/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "node:latest",
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "langs": [
+                "bash"
+            ],
+            "from": "node",
+            "cmd": "node /app/src/bin/www",
+            "gates": [],
+            "keywords": [
+                "install",
+                "npm",
+                "apt",
+                "get",
+                "bash"
+            ],
+            "dbs": [],
+            "path": "/ExpressMicroservice/Dockerfile",
+            "cmd_keywords": [
+                "src",
+                "bin",
+                "node",
+                "app",
+                "www"
+            ]
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "node:latest",
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "langs": [
+                "bash"
+            ],
+            "from": "node",
+            "cmd": "npm run start:dev",
+            "gates": [],
+            "keywords": [
+                "get",
+                "apt",
+                "mkdir",
+                "bash",
+                "update"
+            ],
+            "dbs": [],
+            "path": "/DashboardMicroservice/Dockerfile",
+            "cmd_keywords": [
+                "dev",
+                "run",
+                "start",
+                "npm"
+            ]
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "base",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "base",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "statisticmicroservice",
+                "dotnet",
+                "csproj",
+                "release",
+                "app"
+            ],
+            "dbs": [],
+            "path": "/StatisticMicroservice/Dockerfile",
+            "cmd_keywords": []
+        }
+    ],
+    "num_servers": 3,
+    "monitors": [],
+    "num_services": 10,
+    "servers": [
+        "mongoose",
+        "express",
+        "node"
+    ],
+    "num_monitors": 0,
+    "avg_size_service": 1393.8333333333333,
+    "num_files": 10,
+    "buses": [
+        "mosquitto",
+        "mqtt"
+    ],
+    "files": [
+        {
+            "buses": [
+                "mqtt"
+            ],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "mongoose",
+                "express",
+                "node"
+            ],
+            "monitors": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "path": "/SenecaMicroservice/package.json"
+        },
+        {
+            "buses": [
+                "mqtt"
+            ],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/ExpressMicroservice/package.json"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/DashboardMicroservice/package.json"
+        }
+    ],
+    "languages": [
+        "c#",
+        "javascript"
+    ],
+    "num_dbs": 1,
+    "num_discos": 0
+}

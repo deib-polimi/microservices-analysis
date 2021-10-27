@@ -1,0 +1,287 @@
+{
+    "languages": [
+        "c#",
+        "javascript"
+    ],
+    "num_servers": 0,
+    "shared_dbs": false,
+    "name": "Gru97/eShopOnContainers",
+    "servers": [],
+    "num_monitors": 0,
+    "num_langs": 2,
+    "images": [
+        "base"
+    ],
+    "langs": [
+        "javascript",
+        "c#"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "ordering",
+                "api",
+                "csproj",
+                "dotnet",
+                "release"
+            ],
+            "path": "/src/Services/Ordering/Ordering.API/Dockerfile",
+            "gates": [],
+            "from": "base",
+            "from_full": "base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "basket",
+                "api",
+                "csproj",
+                "dotnet",
+                "release"
+            ],
+            "path": "/src/Services/Basket/Basket.API/Dockerfile",
+            "gates": [],
+            "from": "base",
+            "from_full": "base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "identity",
+                "api",
+                "csproj",
+                "dotnet",
+                "release"
+            ],
+            "path": "/src/Services/Identity/Identity.API/Dockerfile",
+            "gates": [],
+            "from": "base",
+            "from_full": "base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "catalog",
+                "api",
+                "csproj",
+                "dotnet",
+                "release"
+            ],
+            "path": "/src/Services/Catalog/Catalog.API/Dockerfile",
+            "gates": [],
+            "from": "base",
+            "from_full": "base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "ocelotapigw",
+                "csproj",
+                "dotnet",
+                "app",
+                "release"
+            ],
+            "path": "/src/ApiGateways/ApiGw-Base/OcelotApiGw/Dockerfile",
+            "gates": [],
+            "from": "base",
+            "from_full": "base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [],
+    "num_buses": 1,
+    "discos": [],
+    "monitors": [],
+    "num_files": 6,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "${DOCKER_REGISTRY-}catalogapi",
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "catalog.api",
+                "image": "${DOCKER_REGISTRY-}catalogapi",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "${DOCKER_REGISTRY-}basketapi",
+                "depends_on": [
+                    "rabbitmq",
+                    "redis"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "basket.api",
+                "image": "${DOCKER_REGISTRY-}basketapi",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:7.3.2",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "elasticsearch",
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "rabbitmq",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "name": "rabbitmq",
+                "image": "rabbitmq",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "${DOCKER_REGISTRY-}orderingapi",
+                "depends_on": [
+                    "rabbitmq",
+                    "mongo"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "ordering.api",
+                "image": "${DOCKER_REGISTRY-}orderingapi",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mongo",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "mongo",
+                "image": "mongo",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "${DOCKER_REGISTRY-}identityapi",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "identity.api",
+                "image": "${DOCKER_REGISTRY-}identityapi",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "${DOCKER_REGISTRY-}ocelotapigw",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "ocelotapigw",
+                "image": "${DOCKER_REGISTRY-}ocelotapigw",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "redis",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "redis",
+                "image": "redis",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 9,
+        "detected_dbs": {
+            "services": [
+                "mongo",
+                "redis"
+            ],
+            "names": [
+                "redis",
+                "mongo"
+            ],
+            "num": 2,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [
+        "redis",
+        "mongo"
+    ],
+    "num_dbs": 2,
+    "avg_size_service": 2778.4,
+    "num_services": 9,
+    "buses": [
+        "rabbitmq"
+    ],
+    "files": [],
+    "url": "git://github.com/Gru97/eShopOnContainers.git",
+    "num_dockers": 5,
+    "size": 13892,
+    "num_discos": 0,
+    "num_gates": 0
+}

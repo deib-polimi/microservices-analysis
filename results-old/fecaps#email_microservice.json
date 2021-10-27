@@ -1,0 +1,215 @@
+{
+    "size": 459,
+    "avg_size_service": 153.0,
+    "name": "fecaps/email_microservice",
+    "languages": [
+        "php"
+    ],
+    "servers": [
+        "node",
+        "laravel"
+    ],
+    "num_dbs": 1,
+    "images": [
+        "nginx",
+        "php"
+    ],
+    "structure": {
+        "path": "/infrastructure/docker-compose.yml",
+        "num_services": 5,
+        "services": [
+            {
+                "depends_on": [],
+                "image_full": "rabbitmq:3.8-rc-management-alpine",
+                "monitors": [],
+                "name": "rabbitmq",
+                "image": "rabbitmq",
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "infrastructure/email_microservice/Dockerfile.dev",
+                "monitors": [],
+                "name": "email",
+                "image": "infrastructure/email_microservice/Dockerfile.dev",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "infrastructure/nginx/Dockerfile",
+                "monitors": [],
+                "name": "nginx",
+                "image": "infrastructure/nginx/Dockerfile",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [
+                    "nginx"
+                ],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "postgres",
+                "monitors": [],
+                "name": "postgres",
+                "image": "postgres",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "infrastructure/email_microservice_consumer/Dockerfile.dev",
+                "monitors": [],
+                "name": "email_consumer",
+                "image": "infrastructure/email_microservice_consumer/Dockerfile.dev",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [],
+            "names": [],
+            "shared_dbs": false,
+            "num": 0
+        }
+    },
+    "num_dockers": 3,
+    "num_buses": 2,
+    "num_services": 5,
+    "dockers": [
+        {
+            "path": "/infrastructure/email_microservice_consumer/Dockerfile",
+            "from": "php",
+            "langs": [
+                "php"
+            ],
+            "cmd": "php artisan migrate --force && php artisan consumer:emails",
+            "servers": [],
+            "from_full": "php:7.3-cli",
+            "keywords": [
+                "php",
+                "dev",
+                "pgsql",
+                "www",
+                "ext"
+            ],
+            "cmd_keywords": [
+                "php",
+                "artisan",
+                "consumer",
+                "migrate",
+                "force"
+            ],
+            "monitors": [],
+            "buses": [
+                "amqp"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/infrastructure/nginx/Dockerfile",
+            "from": "nginx",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "nginx:1.15",
+            "keywords": [],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [
+                "nginx"
+            ],
+            "discos": []
+        },
+        {
+            "path": "/infrastructure/email_microservice/Dockerfile",
+            "from": "php",
+            "langs": [
+                "php"
+            ],
+            "cmd": "php-fpm",
+            "servers": [],
+            "from_full": "php:7.3-fpm",
+            "keywords": [
+                "php",
+                "dev",
+                "pgsql",
+                "www",
+                "ext"
+            ],
+            "cmd_keywords": [
+                "php",
+                "fpm"
+            ],
+            "monitors": [],
+            "buses": [
+                "amqp"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "num_langs": 1,
+    "langs": [
+        "php"
+    ],
+    "discos": [],
+    "num_gates": 1,
+    "num_monitors": 0,
+    "num_files": 5,
+    "files": [
+        {
+            "path": "/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "laravel"
+            ],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_servers": 2,
+    "url": "git://github.com/fecaps/email_microservice.git",
+    "dbs": [
+        "mysql"
+    ],
+    "num_discos": 0,
+    "gates": [
+        "nginx"
+    ],
+    "buses": [
+        "rabbitmq",
+        "amqp"
+    ]
+}

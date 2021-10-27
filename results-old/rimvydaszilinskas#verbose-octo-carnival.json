@@ -1,0 +1,170 @@
+{
+    "avg_size_service": 30.0,
+    "discos": [
+        "zookeeper"
+    ],
+    "images": [
+        "python"
+    ],
+    "num_dockers": 1,
+    "num_servers": 1,
+    "langs": [
+        "python"
+    ],
+    "languages": [
+        "python"
+    ],
+    "num_services": 5,
+    "num_gates": 0,
+    "num_langs": 1,
+    "monitors": [],
+    "gates": [],
+    "servers": [
+        "django"
+    ],
+    "num_monitors": 0,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [
+                    "ticketing_kafka",
+                    "ticketing_postgres"
+                ],
+                "image": ".",
+                "image_full": ".",
+                "gates": [],
+                "name": "ticketing_kafka_listener",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "wurstmeister/zookeeper",
+                "image_full": "wurstmeister/zookeeper",
+                "gates": [],
+                "name": "ticketing_zookeeper",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "discos": [
+                    "zookeeper"
+                ]
+            },
+            {
+                "depends_on": [
+                    "ticketing_postgres",
+                    "ticketing_kafka"
+                ],
+                "image": ".",
+                "image_full": ".",
+                "gates": [],
+                "name": "ticketing_app",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "postgres",
+                "image_full": "postgres",
+                "gates": [],
+                "name": "ticketing_postgres",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "ticketing_zookeeper"
+                ],
+                "image": "wurstmeister/kafka",
+                "image_full": "wurstmeister/kafka",
+                "gates": [],
+                "name": "ticketing_kafka",
+                "buses": [
+                    "kafka"
+                ],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            }
+        ],
+        "num_services": 5,
+        "detected_dbs": {
+            "names": [
+                "zookeeper"
+            ],
+            "num": 1,
+            "services": [
+                "ticketing_zookeeper"
+            ],
+            "shared_dbs": false
+        }
+    },
+    "size": 30,
+    "url": "git://github.com/rimvydaszilinskas/verbose-octo-carnival.git",
+    "num_buses": 1,
+    "shared_dbs": false,
+    "files": [
+        {
+            "path": "/requirements.txt",
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "django"
+            ],
+            "dbs": [],
+            "buses": [
+                "kafka"
+            ]
+        }
+    ],
+    "num_discos": 1,
+    "dockers": [
+        {
+            "path": "/Dockerfile",
+            "from_full": "python:3",
+            "from": "python",
+            "cmd": "",
+            "keywords": [
+                "code",
+                "chmod",
+                "start",
+                "txt",
+                "get"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [
+                "python"
+            ],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": []
+        }
+    ],
+    "name": "rimvydaszilinskas/verbose-octo-carnival",
+    "buses": [
+        "kafka"
+    ],
+    "num_files": 3,
+    "dbs": [
+        "zookeeper"
+    ],
+    "num_dbs": 1
+}

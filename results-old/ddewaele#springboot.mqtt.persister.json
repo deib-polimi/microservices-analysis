@@ -1,0 +1,152 @@
+{
+    "gates": [
+        "gateway"
+    ],
+    "num_buses": 2,
+    "url": "git://github.com/ddewaele/springboot.mqtt.persister.git",
+    "images": [
+        "frolvlad/alpine-oraclejdk8"
+    ],
+    "avg_size_service": 52.0,
+    "num_langs": 1,
+    "num_monitors": 0,
+    "num_dockers": 1,
+    "num_discos": 0,
+    "num_servers": 1,
+    "buses": [
+        "mqtt",
+        "mosquitto"
+    ],
+    "discos": [],
+    "dockers": [
+        {
+            "path": "/src/main/docker/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "frolvlad/alpine-oraclejdk8",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "frolvlad/alpine-oraclejdk8:slim",
+            "monitors": [],
+            "keywords": [
+                "app",
+                "docker",
+                "chmod",
+                "jar",
+                "entrypoint"
+            ],
+            "buses": []
+        }
+    ],
+    "size": 52,
+    "name": "ddewaele/springboot.mqtt.persister",
+    "num_services": 4,
+    "dbs": [
+        "postgresql"
+    ],
+    "shared_dbs": false,
+    "langs": [
+        "java"
+    ],
+    "languages": [
+        "java"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "num_files": 3,
+    "monitors": [],
+    "num_dbs": 1,
+    "num_gates": 1,
+    "files": [
+        {
+            "path": "/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "buses": [
+                "mqtt"
+            ]
+        }
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 4,
+        "detected_dbs": {
+            "services": [],
+            "num": 0,
+            "names": [],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "healthcheck/postgres",
+                "name": "postgres",
+                "gates": [],
+                "image": "healthcheck/postgres",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "mosquitto"
+                ],
+                "servers": [],
+                "image_full": "loraserver/lora-gateway-bridge",
+                "name": "gatewaybridge",
+                "gates": [
+                    "gateway"
+                ],
+                "image": "loraserver/lora-gateway-bridge",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "eclipse-mosquitto",
+                "name": "mosquitto",
+                "gates": [],
+                "image": "eclipse-mosquitto",
+                "dbs": [],
+                "buses": [
+                    "mosquitto"
+                ]
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "postgres",
+                    "mosquitto"
+                ],
+                "servers": [],
+                "image_full": "ddewaele/springboot.mqtt.persister",
+                "name": "springboot-mqtt-persister",
+                "gates": [],
+                "image": "ddewaele/springboot.mqtt.persister",
+                "dbs": [],
+                "buses": [
+                    "mqtt"
+                ]
+            }
+        ]
+    }
+}

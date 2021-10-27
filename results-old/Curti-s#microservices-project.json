@@ -1,0 +1,245 @@
+{
+    "buses": [],
+    "num_langs": 3,
+    "dbs": [
+        "postgresql"
+    ],
+    "languages": [
+        "css",
+        "javascript",
+        "python"
+    ],
+    "files": [
+        {
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "monitors": [],
+            "path": "/requirements.txt",
+            "dbs": [],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "servers": [
+                "flask",
+                "node",
+                "express",
+                "mongoose"
+            ],
+            "buses": [],
+            "monitors": [],
+            "path": "/flask_client/package.json",
+            "dbs": [],
+            "discos": [],
+            "gates": []
+        }
+    ],
+    "size": 3064,
+    "name": "Curti-s/microservices-project",
+    "num_servers": 4,
+    "structure": {
+        "num_services": 4,
+        "services": [
+            {
+                "image": "./flask_users/db",
+                "servers": [
+                    "flask"
+                ],
+                "name": "users-db",
+                "monitors": [],
+                "dbs": [],
+                "image_full": "./flask_users/db",
+                "buses": [],
+                "discos": [],
+                "depends_on": [],
+                "gates": []
+            },
+            {
+                "image": "./flask_client",
+                "servers": [
+                    "flask"
+                ],
+                "name": "web-service",
+                "monitors": [],
+                "dbs": [],
+                "image_full": "./flask_client",
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "users-service"
+                ],
+                "gates": []
+            },
+            {
+                "image": ".",
+                "servers": [],
+                "name": "users-service",
+                "monitors": [],
+                "dbs": [],
+                "image_full": ".",
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "users-db"
+                ],
+                "gates": []
+            },
+            {
+                "image": "./flask_users/nginx/",
+                "servers": [
+                    "flask"
+                ],
+                "name": "nginx",
+                "monitors": [],
+                "dbs": [],
+                "image_full": "./flask_users/nginx/",
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "web-service",
+                    "users-service"
+                ],
+                "gates": [
+                    "nginx"
+                ]
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "names": [],
+            "num": 0,
+            "services": [],
+            "shared_dbs": false
+        }
+    },
+    "shared_dbs": false,
+    "num_services": 4,
+    "num_dbs": 1,
+    "discos": [],
+    "gates": [
+        "nginx"
+    ],
+    "servers": [
+        "mongoose",
+        "flask",
+        "express",
+        "node"
+    ],
+    "images": [
+        "node",
+        "postgres",
+        "python",
+        "nginx"
+    ],
+    "num_gates": 1,
+    "num_buses": 0,
+    "dockers": [
+        {
+            "servers": [],
+            "buses": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "keywords": [
+                "dev",
+                "apk",
+                "add",
+                "mkdir",
+                "base"
+            ],
+            "from_full": "python:3.6-alpine",
+            "monitors": [],
+            "langs": [
+                "python"
+            ],
+            "from": "python",
+            "discos": [],
+            "gates": [],
+            "cmd": "python manage.py runserver -h 0.0.0.0",
+            "cmd_keywords": [
+                "manage",
+                "python",
+                "runserver"
+            ],
+            "path": "/Dockerfile"
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "keywords": [
+                "conf",
+                "default",
+                "etc",
+                "nginx"
+            ],
+            "from_full": "nginx",
+            "monitors": [],
+            "langs": [],
+            "from": "nginx",
+            "discos": [],
+            "gates": [
+                "nginx"
+            ],
+            "cmd": "",
+            "cmd_keywords": [],
+            "path": "/flask_users/nginx/Dockerfile"
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "keywords": [],
+            "from_full": "postgres:alpine",
+            "monitors": [],
+            "langs": [],
+            "from": "postgres",
+            "discos": [],
+            "gates": [],
+            "cmd": "",
+            "cmd_keywords": [],
+            "path": "/flask_users/db/Dockerfile"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "dbs": [],
+            "keywords": [
+                "yarn",
+                "install",
+                "build",
+                "mkdir",
+                "global"
+            ],
+            "from_full": "node:latest",
+            "monitors": [],
+            "langs": [],
+            "from": "node",
+            "discos": [],
+            "gates": [],
+            "cmd": "live-server build",
+            "cmd_keywords": [
+                "live",
+                "build",
+                "server"
+            ],
+            "path": "/flask_client/Dockerfile"
+        }
+    ],
+    "num_discos": 0,
+    "num_dockers": 4,
+    "monitors": [],
+    "url": "git://github.com/Curti-s/microservices-project.git",
+    "langs": [
+        "javascript",
+        "css",
+        "python"
+    ],
+    "num_files": 7,
+    "num_monitors": 0,
+    "avg_size_service": 766.0
+}

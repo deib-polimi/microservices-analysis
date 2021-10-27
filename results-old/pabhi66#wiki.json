@@ -1,0 +1,318 @@
+{
+    "avg_size_service": 190.8,
+    "buses": [],
+    "num_dbs": 1,
+    "files": [
+        {
+            "path": "/wiki-pages-postput/build.gradle",
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "postgresql"
+            ],
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "path": "/wiki-pages-postput/settings.gradle",
+            "servers": [],
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "path": "/wiki-api-gateway/package.json",
+            "servers": [
+                "express",
+                "node"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [
+                "gateway"
+            ]
+        },
+        {
+            "path": "/wiki-user/package.json",
+            "servers": [
+                "express",
+                "node"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "path": "/wiki-frontend/package.json",
+            "servers": [
+                "node"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "path": "/wiki-pages-get/package.json",
+            "servers": [
+                "express",
+                "node"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": []
+        }
+    ],
+    "num_dockers": 5,
+    "num_langs": 3,
+    "num_servers": 3,
+    "num_buses": 0,
+    "num_discos": 0,
+    "gates": [
+        "gateway"
+    ],
+    "images": [
+        "postgres",
+        "openjdk",
+        "node"
+    ],
+    "size": 954,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 5,
+        "services": [
+            {
+                "buses": [],
+                "name": "wiki-pages-get",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "wiki-pages-get",
+                "image_full": "wiki-pages-get",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "postgres"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "wiki-pages-postput",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "wiki-pages-postput",
+                "image_full": "wiki-pages-postput",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "postgres"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "wiki-user",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "wiki-user",
+                "image_full": "wiki-user",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "postgres"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "wiki-api-gateway",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "wiki-api-gateway",
+                "image_full": "wiki-api-gateway",
+                "discos": [],
+                "gates": [
+                    "gateway"
+                ],
+                "depends_on": [
+                    "wiki-user",
+                    "wiki-pages-get",
+                    "wiki-pages-postput"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "postgres",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "db",
+                "image_full": "db",
+                "discos": [],
+                "gates": [],
+                "depends_on": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 0,
+            "names": [],
+            "services": []
+        }
+    },
+    "num_files": 12,
+    "servers": [
+        "express",
+        "node",
+        "spring"
+    ],
+    "url": "git://github.com/pabhi66/wiki.git",
+    "dbs": [
+        "postgresql"
+    ],
+    "monitors": [],
+    "dockers": [
+        {
+            "from_full": "node",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/wiki-api-gateway/Dockerfile",
+            "from": "node",
+            "cmd": "npm start",
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "servers": [
+                "node"
+            ],
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "node",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/wiki-user/Dockerfile",
+            "from": "node",
+            "cmd": "npm start",
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "servers": [
+                "node"
+            ],
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "postgres:9.3",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/db/Dockerfile",
+            "from": "postgres",
+            "cmd": "",
+            "cmd_keywords": [],
+            "servers": [],
+            "keywords": [],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "openjdk:8-alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/wiki-pages-postput/Dockerfile",
+            "from": "openjdk",
+            "cmd": "java -jar reducepostput-0.0.2.jar",
+            "cmd_keywords": [
+                "jar",
+                "reducepostput",
+                "java"
+            ],
+            "servers": [],
+            "keywords": [
+                "gradle",
+                "getdeps",
+                "build",
+                "offline"
+            ],
+            "discos": [],
+            "langs": [
+                "java"
+            ]
+        },
+        {
+            "from_full": "node:6",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/wiki-pages-get/Dockerfile",
+            "from": "node",
+            "cmd": "npm start",
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "servers": [
+                "node"
+            ],
+            "keywords": [
+                "install",
+                "app",
+                "usr",
+                "mkdir",
+                "npm"
+            ],
+            "discos": [],
+            "langs": []
+        }
+    ],
+    "languages": [
+        "typescript",
+        "javascript",
+        "java"
+    ],
+    "num_services": 5,
+    "num_gates": 1,
+    "name": "pabhi66/wiki",
+    "shared_dbs": false,
+    "langs": [
+        "javascript",
+        "typescript",
+        "java"
+    ],
+    "discos": [],
+    "num_monitors": 0
+}

@@ -1,0 +1,254 @@
+{
+    "num_discos": 0,
+    "buses": [],
+    "gates": [
+        "nginx"
+    ],
+    "num_servers": 2,
+    "num_gates": 1,
+    "num_dbs": 1,
+    "monitors": [],
+    "num_langs": 3,
+    "num_files": 7,
+    "structure": {
+        "services": [
+            {
+                "name": "users",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": {
+                    "dockerfile": "Dockerfile",
+                    "context": "./services/users"
+                },
+                "image_full": {
+                    "dockerfile": "Dockerfile",
+                    "context": "./services/users"
+                },
+                "monitors": [],
+                "depends_on": [
+                    "users-db"
+                ]
+            },
+            {
+                "name": "client",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": {
+                    "dockerfile": "Dockerfile",
+                    "context": "./services/client"
+                },
+                "image_full": {
+                    "dockerfile": "Dockerfile",
+                    "context": "./services/client"
+                },
+                "monitors": [],
+                "depends_on": [
+                    "users"
+                ]
+            },
+            {
+                "name": "users-db",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": {
+                    "dockerfile": "Dockerfile",
+                    "context": "./services/users/project/db"
+                },
+                "image_full": {
+                    "dockerfile": "Dockerfile",
+                    "context": "./services/users/project/db"
+                },
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "nginx",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": {
+                    "dockerfile": "Dockerfile",
+                    "context": "./services/nginx"
+                },
+                "image_full": {
+                    "dockerfile": "Dockerfile",
+                    "context": "./services/nginx"
+                },
+                "monitors": [],
+                "depends_on": [
+                    "users",
+                    "client"
+                ]
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "names": [],
+            "num": 0,
+            "services": [],
+            "shared_dbs": false
+        },
+        "num_services": 4
+    },
+    "servers": [
+        "flask",
+        "node"
+    ],
+    "shared_dbs": false,
+    "langs": [
+        "html",
+        "javascript",
+        "python"
+    ],
+    "dockers": [
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/services/nginx/Dockerfile",
+            "from": "nginx",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "conf",
+                "etc",
+                "nginx",
+                "default"
+            ],
+            "dbs": [],
+            "gates": [
+                "nginx"
+            ],
+            "from_full": "nginx:1.15.9-alpine",
+            "langs": []
+        },
+        {
+            "discos": [],
+            "cmd": "/usr/src/app/entrypoint.sh",
+            "buses": [],
+            "path": "/services/users/Dockerfile",
+            "from": "python",
+            "cmd_keywords": [
+                "entrypoint",
+                "app",
+                "src",
+                "usr"
+            ],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "apk",
+                "dev",
+                "add",
+                "app",
+                "src"
+            ],
+            "dbs": [
+                "postgresql"
+            ],
+            "gates": [],
+            "from_full": "python:3.7.2-alpine",
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/services/users/project/db/Dockerfile",
+            "from": "postgres",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [],
+            "dbs": [],
+            "gates": [],
+            "from_full": "postgres:11.2-alpine",
+            "langs": []
+        },
+        {
+            "discos": [],
+            "cmd": "npm start",
+            "buses": [],
+            "path": "/services/client/Dockerfile",
+            "from": "node",
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "keywords": [
+                "npm",
+                "react",
+                "scripts",
+                "install",
+                "silent"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "node:11.12.0-alpine",
+            "langs": []
+        }
+    ],
+    "name": "ntn23/flask-tdd",
+    "discos": [],
+    "avg_size_service": 139.75,
+    "num_monitors": 0,
+    "images": [
+        "postgres",
+        "nginx",
+        "python",
+        "node"
+    ],
+    "url": "git://github.com/ntn23/flask-tdd.git",
+    "files": [
+        {
+            "discos": [],
+            "buses": [],
+            "path": "/services/users/requirements.txt",
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "buses": [],
+            "path": "/services/client/package.json",
+            "dbs": [],
+            "gates": [],
+            "servers": [],
+            "monitors": []
+        }
+    ],
+    "size": 559,
+    "languages": [
+        "python",
+        "javascript",
+        "html"
+    ],
+    "dbs": [
+        "postgresql"
+    ],
+    "num_buses": 0,
+    "num_services": 4,
+    "num_dockers": 4
+}

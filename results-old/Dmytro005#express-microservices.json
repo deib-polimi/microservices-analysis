@@ -1,0 +1,293 @@
+{
+    "files": [
+        {
+            "buses": [],
+            "path": "/services/users/package.json",
+            "monitors": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "servers": [
+                "node",
+                "express",
+                "mongoose"
+            ],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "buses": [],
+            "path": "/services/books/package.json",
+            "monitors": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "servers": [
+                "node",
+                "express",
+                "mongoose"
+            ],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "buses": [],
+            "path": "/services/common/package.json",
+            "monitors": [],
+            "dbs": [],
+            "servers": [],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "buses": [],
+            "path": "/services/auth/package.json",
+            "monitors": [],
+            "dbs": [
+                "redis"
+            ],
+            "servers": [
+                "node"
+            ],
+            "discos": [],
+            "gates": []
+        }
+    ],
+    "size": 395,
+    "url": "git://github.com/Dmytro005/express-microservices.git",
+    "num_monitors": 0,
+    "languages": [
+        "javascript"
+    ],
+    "langs": [
+        "javascript"
+    ],
+    "discos": [],
+    "gates": [
+        "nginx"
+    ],
+    "num_servers": 3,
+    "num_dockers": 3,
+    "shared_dbs": false,
+    "images": [
+        "node"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 3,
+            "names": [
+                "redis",
+                "mongo"
+            ],
+            "services": [
+                "users-db",
+                "books-db",
+                "tokens-db"
+            ]
+        },
+        "services": [
+            {
+                "depends_on": [
+                    "books",
+                    "users",
+                    "auth"
+                ],
+                "buses": [],
+                "image": "nginx",
+                "monitors": [],
+                "image_full": "nginx:latest",
+                "dbs": [],
+                "name": "public-api-gateway",
+                "servers": [],
+                "discos": [],
+                "gates": [
+                    "nginx"
+                ]
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "mongo",
+                "monitors": [],
+                "image_full": "mongo:latest",
+                "dbs": [
+                    "mongo"
+                ],
+                "name": "users-db",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "mongo",
+                "monitors": [],
+                "image_full": "mongo:latest",
+                "dbs": [
+                    "mongo"
+                ],
+                "name": "books-db",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "redis",
+                "monitors": [],
+                "image_full": "redis:latest",
+                "dbs": [
+                    "redis"
+                ],
+                "name": "tokens-db",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "books-db"
+                ],
+                "buses": [],
+                "image": ".",
+                "monitors": [],
+                "image_full": ".",
+                "dbs": [],
+                "name": "books",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "users-db"
+                ],
+                "buses": [],
+                "image": ".",
+                "monitors": [],
+                "image_full": ".",
+                "dbs": [],
+                "name": "users",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "tokens-db"
+                ],
+                "buses": [],
+                "image": ".",
+                "monitors": [],
+                "image_full": ".",
+                "dbs": [],
+                "name": "auth",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            }
+        ],
+        "num_services": 7
+    },
+    "num_gates": 1,
+    "buses": [],
+    "num_dbs": 2,
+    "avg_size_service": 131.66666666666666,
+    "num_discos": 0,
+    "servers": [
+        "node",
+        "express",
+        "mongoose"
+    ],
+    "num_buses": 0,
+    "dockers": [
+        {
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "gates": [],
+            "cmd_keywords": [
+                "npm",
+                "wait",
+                "start"
+            ],
+            "cmd": "/wait && npm start",
+            "path": "/services/users/Dockerfile",
+            "monitors": [],
+            "from_full": "node:11",
+            "keywords": [
+                "npm",
+                "install",
+                "chmod",
+                "wait"
+            ]
+        },
+        {
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "gates": [],
+            "cmd_keywords": [
+                "npm",
+                "wait",
+                "start"
+            ],
+            "cmd": "/wait && npm start",
+            "path": "/services/books/Dockerfile",
+            "monitors": [],
+            "from_full": "node:11",
+            "keywords": [
+                "npm",
+                "install",
+                "chmod",
+                "wait"
+            ]
+        },
+        {
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "gates": [],
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "cmd": "npm start",
+            "path": "/services/auth/Dockerfile",
+            "monitors": [],
+            "from_full": "node:11",
+            "keywords": [
+                "npm",
+                "install"
+            ]
+        }
+    ],
+    "monitors": [],
+    "num_files": 8,
+    "dbs": [
+        "redis",
+        "mongo"
+    ],
+    "name": "Dmytro005/express-microservices",
+    "num_langs": 1,
+    "num_services": 7
+}

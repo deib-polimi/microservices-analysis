@@ -1,0 +1,300 @@
+{
+    "languages": [
+        "python",
+        "html",
+        "css",
+        "r"
+    ],
+    "num_servers": 1,
+    "shared_dbs": false,
+    "name": "rsarten/microservice-server",
+    "servers": [
+        "flask"
+    ],
+    "num_monitors": 0,
+    "num_langs": 4,
+    "images": [
+        "nginx",
+        "rocker/shiny",
+        "python"
+    ],
+    "langs": [
+        "css",
+        "r",
+        "html",
+        "python"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "nginx",
+                "share",
+                "usr",
+                "etc",
+                "conf"
+            ],
+            "path": "/nginx-static/Dockerfile",
+            "gates": [
+                "nginx"
+            ],
+            "from": "nginx",
+            "from_full": "nginx:alpine",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "confsurf",
+                "python"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "cmd": "python confSURF.py",
+            "keywords": [],
+            "path": "/flask-confsurf/Dockerfile",
+            "gates": [],
+            "from": "python",
+            "from_full": "python:3-onbuild",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "conf",
+                "nginx",
+                "etc"
+            ],
+            "path": "/nginx-proxy/Dockerfile",
+            "gates": [
+                "nginx"
+            ],
+            "from": "nginx",
+            "from_full": "nginx:alpine",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "api",
+                "python"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "cmd": "python api.py",
+            "keywords": [],
+            "path": "/flask-test/Dockerfile",
+            "gates": [],
+            "from": "python",
+            "from_full": "python:3-onbuild",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "packages",
+                "install",
+                "shiny",
+                "sudo"
+            ],
+            "path": "/shiny-test/Dockerfile",
+            "gates": [],
+            "from": "rocker/shiny",
+            "from_full": "rocker/shiny",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "news",
+                "app",
+                "python"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "cmd": "python news_app.py",
+            "keywords": [],
+            "path": "/flask-news/Dockerfile",
+            "gates": [],
+            "from": "python",
+            "from_full": "python:3-onbuild",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_buses": 0,
+    "discos": [],
+    "monitors": [],
+    "num_files": 10,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "nginx-proxy",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "name": "nginx-proxy",
+                "image": "nginx-proxy",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "nginx-static",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "name": "nginx-static",
+                "image": "nginx-static",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "flask-test",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "flask-test",
+                "image": "flask-test",
+                "servers": [
+                    "flask"
+                ],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "flask-confsurf",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "flask-confsurf",
+                "image": "flask-confsurf",
+                "servers": [
+                    "flask"
+                ],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "shiny-test",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "shiny-test",
+                "image": "shiny-test",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "flask-news",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "flask-news",
+                "image": "flask-news",
+                "servers": [
+                    "flask"
+                ],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "services": [],
+            "names": [],
+            "num": 0,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [],
+    "num_dbs": 0,
+    "avg_size_service": 133.0,
+    "num_services": 6,
+    "buses": [],
+    "files": [
+        {
+            "dbs": [],
+            "path": "/flask-confsurf/requirements.txt",
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/flask-test/requirements.txt",
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/flask-news/requirements.txt",
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "url": "git://github.com/rsarten/microservice-server.git",
+    "num_dockers": 6,
+    "size": 798,
+    "num_discos": 0,
+    "num_gates": 1
+}

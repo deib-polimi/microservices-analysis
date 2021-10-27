@@ -1,0 +1,233 @@
+{
+    "buses": [],
+    "avg_size_service": 279.0,
+    "num_dbs": 3,
+    "num_services": 4,
+    "langs": [
+        "javascript",
+        "gcc",
+        "vue",
+        "python"
+    ],
+    "num_langs": 4,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [],
+                "image_full": "xidianwlc/qconf:1.2.1",
+                "name": "qconf",
+                "dbs": [],
+                "servers": [],
+                "image": "xidianwlc/qconf",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [],
+                "image_full": "redis:2.8.23",
+                "name": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "image": "redis",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [
+                    "zookeeper"
+                ],
+                "depends_on": [],
+                "image_full": "zookeeper:3.5.5",
+                "name": "zk",
+                "dbs": [
+                    "zookeeper"
+                ],
+                "servers": [],
+                "image": "zookeeper",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [],
+                "image_full": "mysql:5.7.24",
+                "name": "mysql",
+                "dbs": [
+                    "mysql"
+                ],
+                "servers": [],
+                "image": "mysql",
+                "gates": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "names": [
+                "zookeeper",
+                "redis",
+                "mysql"
+            ],
+            "num": 3,
+            "services": [
+                "redis",
+                "zk",
+                "mysql"
+            ]
+        },
+        "num_services": 4
+    },
+    "shared_dbs": false,
+    "num_buses": 0,
+    "dockers": [
+        {
+            "buses": [],
+            "from_full": "centos:centos7.2.1511",
+            "cmd": "",
+            "from": "centos",
+            "path": "/qconf/Dockerfile",
+            "langs": [
+                "gcc"
+            ],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "devel",
+                "yum",
+                "install",
+                "qconf",
+                "rpm"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "servers": []
+        },
+        {
+            "buses": [],
+            "from_full": "centos:centos7.2.1511",
+            "cmd": "python3.6 cli.py -f conf/dev/conf.yml",
+            "from": "centos",
+            "path": "/api/Dockerfile",
+            "langs": [
+                "python"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "conf",
+                "cli",
+                "yml",
+                "python",
+                "dev"
+            ],
+            "discos": [],
+            "keywords": [
+                "install",
+                "devel",
+                "yum",
+                "python",
+                "release"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "servers": []
+        },
+        {
+            "buses": [],
+            "from_full": "python:3.7.3",
+            "cmd": "python ./cli.py -f ./conf/dev/conf.yml --route=all --port=7654 --prefork=1 -D --allow-origin=http://127.0.0.1:8081",
+            "from": "python",
+            "path": "/api/docker/dev/Dockerfile",
+            "langs": [
+                "python"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "conf",
+                "prefork",
+                "port",
+                "origin",
+                "http"
+            ],
+            "discos": [],
+            "keywords": [
+                "txt",
+                "cache",
+                "requirements",
+                "dir",
+                "pip"
+            ],
+            "dbs": [],
+            "gates": [],
+            "servers": []
+        }
+    ],
+    "dbs": [
+        "zookeeper",
+        "redis",
+        "mysql"
+    ],
+    "languages": [
+        "python",
+        "vue",
+        "javascript"
+    ],
+    "gates": [],
+    "servers": [
+        "node"
+    ],
+    "num_gates": 0,
+    "name": "smpcode/smp",
+    "num_monitors": 0,
+    "monitors": [],
+    "discos": [
+        "zookeeper"
+    ],
+    "files": [
+        {
+            "buses": [],
+            "discos": [],
+            "dbs": [
+                "redis"
+            ],
+            "servers": [],
+            "path": "/api/requirements.txt",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "path": "/ui/package.json",
+            "gates": [],
+            "monitors": []
+        }
+    ],
+    "size": 837,
+    "num_dockers": 3,
+    "num_files": 6,
+    "url": "git://github.com/smpcode/smp.git",
+    "num_servers": 1,
+    "images": [
+        "centos",
+        "python"
+    ],
+    "num_discos": 1
+}

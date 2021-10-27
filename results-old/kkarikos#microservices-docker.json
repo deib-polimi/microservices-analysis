@@ -1,0 +1,444 @@
+{
+    "num_discos": 0,
+    "buses": [
+        "rabbitmq"
+    ],
+    "name": "kkarikos/microservices-docker",
+    "dbs": [
+        "redis",
+        "mongo"
+    ],
+    "num_services": 9,
+    "avg_size_service": 3.888888888888889,
+    "num_monitors": 0,
+    "monitors": [],
+    "discos": [],
+    "servers": [
+        "express",
+        "node",
+        "mongoose"
+    ],
+    "url": "git://github.com/kkarikos/microservices-docker.git",
+    "num_dockers": 9,
+    "files": [
+        {
+            "discos": [],
+            "path": "/payments/package.json",
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "path": "/authentication/package.json",
+            "servers": [
+                "express",
+                "node",
+                "mongoose"
+            ],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "path": "/node/package.json",
+            "servers": [
+                "express",
+                "node"
+            ],
+            "buses": [],
+            "dbs": [
+                "redis",
+                "mongodb"
+            ],
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "path": "/worker/package.json",
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "path": "/web/app/package.json",
+            "servers": [
+                "express",
+                "node"
+            ],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": []
+        }
+    ],
+    "shared_dbs": true,
+    "size": 35,
+    "languages": [
+        "javascript"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_langs": 1,
+    "structure": {
+        "detected_dbs": {
+            "num": 2,
+            "services": [
+                "redis",
+                "mongo"
+            ],
+            "shared_dbs": true,
+            "names": [
+                "redis",
+                "mongo"
+            ]
+        },
+        "num_services": 9,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "redis",
+                "image_full": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "gates": [],
+                "monitors": [],
+                "image": "redis"
+            },
+            {
+                "depends_on": [
+                    "redis",
+                    "mongo"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "authentication",
+                "image_full": "./authentication",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "./authentication"
+            },
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "mongo",
+                "image_full": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "gates": [],
+                "monitors": [],
+                "image": "mongo"
+            },
+            {
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "worker",
+                "image_full": "./worker",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "./worker"
+            },
+            {
+                "depends_on": [
+                    "node1:node1",
+                    "node2:node2",
+                    "authentication:authentication"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "nginx",
+                "image_full": "./nginx",
+                "dbs": [],
+                "gates": [
+                    "nginx"
+                ],
+                "monitors": [],
+                "image": "./nginx"
+            },
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "name": "rabbitmq",
+                "image_full": "rabbitmq:3-management",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "rabbitmq"
+            },
+            {
+                "depends_on": [
+                    "redis",
+                    "mongo",
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "servers": [
+                    "node"
+                ],
+                "buses": [],
+                "name": "node1",
+                "image_full": "./node",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "./node"
+            },
+            {
+                "depends_on": [
+                    "redis",
+                    "mongo",
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "servers": [
+                    "node"
+                ],
+                "buses": [],
+                "name": "node2",
+                "image_full": "./node",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "./node"
+            },
+            {
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "payments",
+                "image_full": "./payments",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "./payments"
+            }
+        ]
+    },
+    "dockers": [
+        {
+            "from_full": "node:argon",
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "dbs": [],
+            "cmd": "npm start",
+            "langs": [],
+            "from": "node",
+            "monitors": [],
+            "discos": [],
+            "path": "/payments/Dockerfile",
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "gates": [],
+            "keywords": [
+                "mkdir",
+                "usr",
+                "install",
+                "npm",
+                "src"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "",
+            "langs": [],
+            "from": "",
+            "monitors": [],
+            "discos": [],
+            "path": "/mongo/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "keywords": []
+        },
+        {
+            "from_full": "node:argon",
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "dbs": [],
+            "cmd": "npm start",
+            "langs": [],
+            "from": "node",
+            "monitors": [],
+            "discos": [],
+            "path": "/authentication/Dockerfile",
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "gates": [],
+            "keywords": [
+                "mkdir",
+                "usr",
+                "install",
+                "npm",
+                "src"
+            ]
+        },
+        {
+            "from_full": "nginx",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "",
+            "langs": [],
+            "from": "nginx",
+            "monitors": [],
+            "discos": [],
+            "path": "/nginx/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [
+                "nginx"
+            ],
+            "keywords": []
+        },
+        {
+            "from_full": "node:argon",
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "dbs": [],
+            "cmd": "npm start",
+            "langs": [],
+            "from": "node",
+            "monitors": [],
+            "discos": [],
+            "path": "/node/Dockerfile",
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "gates": [],
+            "keywords": [
+                "mkdir",
+                "usr",
+                "install",
+                "npm",
+                "src"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "",
+            "langs": [],
+            "from": "",
+            "monitors": [],
+            "discos": [],
+            "path": "/redis/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "keywords": []
+        },
+        {
+            "from_full": "node:argon",
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "dbs": [],
+            "cmd": "npm start",
+            "langs": [],
+            "from": "node",
+            "monitors": [],
+            "discos": [],
+            "path": "/worker/Dockerfile",
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "gates": [],
+            "keywords": [
+                "mkdir",
+                "usr",
+                "install",
+                "npm",
+                "src"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "",
+            "langs": [],
+            "from": "",
+            "monitors": [],
+            "discos": [],
+            "path": "/rabbitmq/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "keywords": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "",
+            "langs": [],
+            "from": "",
+            "monitors": [],
+            "discos": [],
+            "path": "/web/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "keywords": []
+        }
+    ],
+    "num_files": 15,
+    "num_gates": 1,
+    "num_dbs": 2,
+    "langs": [
+        "javascript"
+    ],
+    "images": [
+        "node",
+        "nginx"
+    ],
+    "num_buses": 1,
+    "num_servers": 3
+}

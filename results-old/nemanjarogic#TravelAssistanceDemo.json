@@ -1,0 +1,159 @@
+{
+    "avg_size_service": 52.0,
+    "discos": [],
+    "images": [
+        "base"
+    ],
+    "num_dockers": 2,
+    "num_servers": 0,
+    "langs": [
+        "c#"
+    ],
+    "languages": [
+        "c#"
+    ],
+    "num_services": 5,
+    "num_gates": 0,
+    "num_langs": 1,
+    "monitors": [],
+    "gates": [],
+    "servers": [],
+    "num_monitors": 0,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [],
+                "image": "rabbitmq",
+                "image_full": "rabbitmq:3-management",
+                "gates": [],
+                "name": "rabbitmq",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "postgres",
+                "image_full": "postgres:latest",
+                "gates": [],
+                "name": "customer_database",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "rabbitmq",
+                    "customer_database"
+                ],
+                "image": "${DOCKER_REGISTRY-}customerapi",
+                "image_full": "${DOCKER_REGISTRY-}customerapi",
+                "gates": [],
+                "name": "customer.api",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "postgres",
+                "image_full": "postgres:latest",
+                "gates": [],
+                "name": "reservation_database",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "rabbitmq",
+                    "reservation_database"
+                ],
+                "image": "${DOCKER_REGISTRY-}reservationapi",
+                "image_full": "${DOCKER_REGISTRY-}reservationapi",
+                "gates": [],
+                "name": "reservation.api",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            }
+        ],
+        "num_services": 5,
+        "detected_dbs": {
+            "names": [],
+            "num": 0,
+            "services": [],
+            "shared_dbs": false
+        }
+    },
+    "size": 104,
+    "url": "git://github.com/nemanjarogic/TravelAssistanceDemo.git",
+    "num_buses": 1,
+    "shared_dbs": false,
+    "files": [],
+    "num_discos": 0,
+    "dockers": [
+        {
+            "path": "/Services/Customer/Customer.API/Dockerfile",
+            "from_full": "base",
+            "from": "base",
+            "cmd": "",
+            "keywords": [
+                "customer",
+                "api",
+                "dotnet",
+                "csproj",
+                "build"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/Services/Reservation/Reservation.API/Dockerfile",
+            "from_full": "base",
+            "from": "base",
+            "cmd": "",
+            "keywords": [
+                "reservation",
+                "api",
+                "dotnet",
+                "csproj",
+                "app"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": []
+        }
+    ],
+    "name": "nemanjarogic/TravelAssistanceDemo",
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_files": 3,
+    "dbs": [],
+    "num_dbs": 0
+}

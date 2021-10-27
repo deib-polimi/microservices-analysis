@@ -1,0 +1,197 @@
+{
+    "servers": [
+        "spring",
+        "node"
+    ],
+    "num_monitors": 0,
+    "num_gates": 0,
+    "num_dbs": 0,
+    "num_services": 3,
+    "num_langs": 2,
+    "shared_dbs": false,
+    "num_servers": 2,
+    "avg_size_service": 10.0,
+    "files": [
+        {
+            "path": "/pom.xml",
+            "dbs": [],
+            "buses": [],
+            "gates": [],
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "path": "/synoptic-client/pom.xml",
+            "dbs": [],
+            "buses": [
+                "kafka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring",
+                "node"
+            ],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "path": "/synoptic-domain/pom.xml",
+            "dbs": [],
+            "buses": [],
+            "gates": [],
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "path": "/synoptic-service/pom.xml",
+            "dbs": [],
+            "buses": [
+                "kafka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "path": "/synoptic-client/package.json",
+            "dbs": [],
+            "buses": [],
+            "gates": [],
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "size": 20,
+    "num_buses": 1,
+    "buses": [
+        "kafka"
+    ],
+    "num_discos": 0,
+    "languages": [
+        "java",
+        "javascript"
+    ],
+    "discos": [],
+    "num_dockers": 2,
+    "dbs": [],
+    "num_files": 8,
+    "gates": [],
+    "images": [
+        "java"
+    ],
+    "url": "git://github.com/vballada/react-cloud-synoptic.git",
+    "monitors": [],
+    "name": "vballada/react-cloud-synoptic",
+    "dockers": [
+        {
+            "cmd": "java -Djava.security.egd=file:/dev/./urandom -jar /app/synoptic-client-0.0.1-SNAPSHOT.jar",
+            "servers": [],
+            "cmd_keywords": [
+                "jar",
+                "file",
+                "urandom",
+                "egd",
+                "dev"
+            ],
+            "gates": [],
+            "from": "java",
+            "from_full": "java:8",
+            "monitors": [],
+            "path": "/synoptic-client/Dockerfile",
+            "langs": [
+                "java"
+            ],
+            "buses": [],
+            "keywords": [],
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "cmd": "java -Djava.security.egd=file:/dev/./urandom -jar /app/synoptic-service-0.0.1-SNAPSHOT.jar",
+            "servers": [],
+            "cmd_keywords": [
+                "jar",
+                "file",
+                "urandom",
+                "app",
+                "egd"
+            ],
+            "gates": [],
+            "from": "java",
+            "from_full": "java:8",
+            "monitors": [],
+            "path": "/synoptic-service/Dockerfile",
+            "langs": [
+                "java"
+            ],
+            "buses": [],
+            "keywords": [],
+            "discos": [],
+            "dbs": []
+        }
+    ],
+    "langs": [
+        "java",
+        "javascript"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "names": [],
+            "services": [],
+            "shared_dbs": false,
+            "num": 0
+        },
+        "services": [
+            {
+                "dbs": [],
+                "image_full": "spotify/kafka",
+                "name": "kafka",
+                "monitors": [],
+                "depends_on": [],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "servers": [],
+                "discos": [],
+                "image": "spotify/kafka"
+            },
+            {
+                "dbs": [],
+                "image_full": "vballada/synoptic-client",
+                "name": "synopticclient",
+                "monitors": [],
+                "depends_on": [
+                    "kafka"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "discos": [],
+                "image": "vballada/synoptic-client"
+            },
+            {
+                "dbs": [],
+                "image_full": "vballada/synoptic-service",
+                "name": "synopticservice",
+                "monitors": [],
+                "depends_on": [
+                    "kafka"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "discos": [],
+                "image": "vballada/synoptic-service"
+            }
+        ],
+        "num_services": 3
+    }
+}

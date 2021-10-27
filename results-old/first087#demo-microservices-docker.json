@@ -1,0 +1,158 @@
+{
+    "dbs": [
+        "redis"
+    ],
+    "num_langs": 2,
+    "buses": [],
+    "monitors": [],
+    "num_services": 3,
+    "num_dbs": 1,
+    "num_servers": 2,
+    "discos": [],
+    "dockers": [
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "nginx:1.13-alpine",
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "from": "nginx",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/nginx/Dockerfile",
+            "keywords": []
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "from_full": "node:9.3.0-alpine",
+            "gates": [],
+            "dbs": [],
+            "from": "node",
+            "cmd": "npm start",
+            "discos": [],
+            "langs": [],
+            "path": "/node/Dockerfile",
+            "keywords": [
+                "install",
+                "npm"
+            ]
+        }
+    ],
+    "num_files": 4,
+    "num_dockers": 2,
+    "images": [
+        "node",
+        "nginx"
+    ],
+    "size": 15,
+    "servers": [
+        "express",
+        "node"
+    ],
+    "structure": {
+        "detected_dbs": {
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": false,
+            "services": [
+                "redis"
+            ],
+            "num": 1
+        },
+        "num_services": 3,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "redis:4.0-alpine",
+                "name": "redis",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "buses": [],
+                "image": "redis",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "first087/demo-microservices-docker-nodeapp:nodeapp",
+                "name": "nodeapp",
+                "depends_on": [
+                    "redis"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "first087/demo-microservices-docker-nodeapp",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "first087/demo-microservices-docker-nodeapp:nginx",
+                "name": "web",
+                "depends_on": [
+                    "nodeapp"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "first087/demo-microservices-docker-nodeapp",
+                "gates": [],
+                "monitors": []
+            }
+        ]
+    },
+    "num_discos": 0,
+    "files": [
+        {
+            "servers": [
+                "express",
+                "node"
+            ],
+            "gates": [],
+            "dbs": [
+                "redis"
+            ],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/node/package.json"
+        }
+    ],
+    "num_monitors": 0,
+    "num_buses": 0,
+    "num_gates": 1,
+    "gates": [
+        "nginx"
+    ],
+    "name": "first087/demo-microservices-docker",
+    "avg_size_service": 7.5,
+    "url": "git://github.com/first087/demo-microservices-docker.git",
+    "shared_dbs": false,
+    "langs": [
+        "dockerfile",
+        "javascript"
+    ],
+    "languages": [
+        "javascript",
+        "dockerfile"
+    ]
+}

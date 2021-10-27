@@ -1,0 +1,255 @@
+{
+    "buses": [
+        "kafka"
+    ],
+    "num_servers": 1,
+    "languages": [
+        "java"
+    ],
+    "dbs": [
+        "zookeeper"
+    ],
+    "num_services": 7,
+    "avg_size_service": 231.5,
+    "servers": [
+        "spring"
+    ],
+    "structure": {
+        "num_services": 7,
+        "detected_dbs": {
+            "services": [
+                "zookeeper"
+            ],
+            "shared_dbs": true,
+            "num": 1,
+            "names": [
+                "zookeeper"
+            ]
+        },
+        "services": [
+            {
+                "image": "confluentinc/cp-kafka-rest",
+                "buses": [
+                    "kafka"
+                ],
+                "image_full": "confluentinc/cp-kafka-rest:5.1.0",
+                "dbs": [],
+                "depends_on": [
+                    "zookeeper",
+                    "kafka"
+                ],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "kafka-rest-proxy",
+                "gates": []
+            },
+            {
+                "image": "confluentinc/cp-zookeeper",
+                "buses": [],
+                "image_full": "confluentinc/cp-zookeeper:5.1.0",
+                "dbs": [
+                    "zookeeper"
+                ],
+                "depends_on": [],
+                "servers": [],
+                "monitors": [],
+                "discos": [
+                    "zookeeper"
+                ],
+                "name": "zookeeper",
+                "gates": []
+            },
+            {
+                "image": "landoop/kafka-topics-ui",
+                "buses": [
+                    "kafka"
+                ],
+                "image_full": "landoop/kafka-topics-ui:0.9.4",
+                "dbs": [],
+                "depends_on": [
+                    "kafka-rest-proxy"
+                ],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "kafka-topics-ui",
+                "gates": []
+            },
+            {
+                "image": "docker.mycompany.com/kafka-docker-consumer",
+                "buses": [
+                    "kafka"
+                ],
+                "image_full": "docker.mycompany.com/kafka-docker-consumer",
+                "dbs": [],
+                "depends_on": [
+                    "kafka-topics-ui"
+                ],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "consumer-btc",
+                "gates": []
+            },
+            {
+                "image": "docker.mycompany.com/kafka-docker-producer",
+                "buses": [
+                    "kafka"
+                ],
+                "image_full": "docker.mycompany.com/kafka-docker-producer:latest",
+                "dbs": [],
+                "depends_on": [
+                    "consumer-btc",
+                    "consumer-ltc"
+                ],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "producer",
+                "gates": []
+            },
+            {
+                "image": "confluentinc/cp-kafka",
+                "buses": [
+                    "kafka"
+                ],
+                "image_full": "confluentinc/cp-kafka:5.1.0",
+                "dbs": [],
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "kafka",
+                "gates": []
+            },
+            {
+                "image": "docker.mycompany.com/kafka-docker-consumer",
+                "buses": [
+                    "kafka"
+                ],
+                "image_full": "docker.mycompany.com/kafka-docker-consumer",
+                "dbs": [],
+                "depends_on": [
+                    "kafka-topics-ui"
+                ],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "consumer-ltc",
+                "gates": []
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "monitors": [],
+    "num_buses": 1,
+    "images": [
+        "openjdk"
+    ],
+    "gates": [],
+    "num_gates": 0,
+    "num_langs": 1,
+    "langs": [
+        "java"
+    ],
+    "url": "git://github.com/wagnerjfr/springboot-crypto-kafka-docker.git",
+    "num_discos": 1,
+    "num_files": 6,
+    "files": [
+        {
+            "buses": [
+                "kafka"
+            ],
+            "path": "/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "buses": [
+                "kafka"
+            ],
+            "path": "/kafka-docker-consumer/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "buses": [
+                "kafka"
+            ],
+            "path": "/kafka-docker-producer/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "discos": [],
+            "gates": []
+        }
+    ],
+    "shared_dbs": true,
+    "num_monitors": 0,
+    "name": "wagnerjfr/springboot-crypto-kafka-docker",
+    "num_dbs": 1,
+    "discos": [
+        "zookeeper"
+    ],
+    "dockers": [
+        {
+            "langs": [],
+            "dbs": [],
+            "path": "/kafka-docker-consumer/docker/Dockerfile",
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "certificates",
+                "apk",
+                "update",
+                "wget",
+                "add"
+            ],
+            "cmd": "",
+            "buses": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "from": "openjdk",
+            "discos": [],
+            "cmd_keywords": [],
+            "gates": []
+        },
+        {
+            "langs": [],
+            "dbs": [],
+            "path": "/kafka-docker-producer/docker/Dockerfile",
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "certificates",
+                "apk",
+                "update",
+                "wget",
+                "add"
+            ],
+            "cmd": "",
+            "buses": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "from": "openjdk",
+            "discos": [],
+            "cmd_keywords": [],
+            "gates": []
+        }
+    ],
+    "num_dockers": 2,
+    "size": 463
+}

@@ -1,0 +1,290 @@
+{
+    "size": 18,
+    "num_servers": 0,
+    "dbs": [
+        "percona",
+        "sqlite",
+        "redis"
+    ],
+    "files": [],
+    "structure": {
+        "num_services": 6,
+        "services": [
+            {
+                "name": "autodiscovery",
+                "image": "./autodiscovery/",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "./autodiscovery/",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "source_base",
+                "image": "nginx",
+                "depends_on": [],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "servers": [],
+                "image_full": "nginx:stable",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "microservice_base_fpm",
+                "image": "./microservices/base/php-fpm/",
+                "depends_on": [
+                    "autodiscovery",
+                    "microservice_base_database"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "./microservices/base/php-fpm/",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "microservice_base_nginx",
+                "image": "./microservices/base/nginx/",
+                "depends_on": [
+                    "microservice_base_fpm",
+                    "microservice_base_database"
+                ],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "servers": [],
+                "image_full": "./microservices/base/nginx/",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "telemetry",
+                "image": "./telemetry/",
+                "depends_on": [
+                    "autodiscovery"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "./telemetry/",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "microservice_base_database",
+                "image": "./microservices/base/database/",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "./microservices/base/database/",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "shared_dbs": false,
+            "services": []
+        }
+    },
+    "buses": [],
+    "images": [
+        "php",
+        "percona",
+        "consul",
+        "nginx",
+        "jenkins/jenkins",
+        "prom/prometheus"
+    ],
+    "num_discos": 2,
+    "url": "git://github.com/cfaguilera20/docker-base.git",
+    "num_services": 6,
+    "langs": [
+        "php",
+        "dockerfile",
+        "shell"
+    ],
+    "discos": [
+        "consul",
+        "containerpilot"
+    ],
+    "num_gates": 1,
+    "shared_dbs": false,
+    "num_files": 7,
+    "num_monitors": 1,
+    "gates": [
+        "nginx"
+    ],
+    "servers": [],
+    "num_langs": 3,
+    "languages": [
+        "dockerfile",
+        "shell"
+    ],
+    "monitors": [
+        "prometheus"
+    ],
+    "name": "cfaguilera20/docker-base",
+    "num_buses": 0,
+    "avg_size_service": 3.0,
+    "dockers": [
+        {
+            "path": "/jenkins/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "php"
+            ],
+            "cmd": "",
+            "keywords": [
+                "php",
+                "usr",
+                "composer",
+                "jenkins",
+                "bin"
+            ],
+            "from": "jenkins/jenkins",
+            "buses": [],
+            "from_full": "jenkins/jenkins:lts",
+            "discos": [],
+            "dbs": [
+                "sqlite"
+            ],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/telemetry/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "from": "prom/prometheus",
+            "buses": [],
+            "from_full": "prom/prometheus:latest",
+            "discos": [],
+            "dbs": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/autodiscovery/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "from": "consul",
+            "buses": [],
+            "from_full": "consul:v0.7.0",
+            "discos": [
+                "consul"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/microservices/base/nginx/Dockerfile",
+            "gates": [
+                "nginx"
+            ],
+            "servers": [],
+            "langs": [],
+            "cmd": "/usr/local/bin/containerpilot nginx -g daemon off;",
+            "keywords": [
+                "pem",
+                "consul",
+                "key",
+                "containerpilot",
+                "template"
+            ],
+            "from": "nginx",
+            "buses": [],
+            "from_full": "nginx:stable",
+            "discos": [
+                "containerpilot"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "containerpilot",
+                "off",
+                "daemon",
+                "usr",
+                "local"
+            ]
+        },
+        {
+            "path": "/microservices/base/database/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "from": "percona",
+            "buses": [],
+            "from_full": "percona:5.7",
+            "discos": [],
+            "dbs": [
+                "percona"
+            ],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/microservices/base/php-fpm/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "php"
+            ],
+            "cmd": "/usr/local/bin/containerpilot php-fpm --nodaemonize",
+            "keywords": [
+                "usr",
+                "consul",
+                "tmp",
+                "containerpilot",
+                "template"
+            ],
+            "from": "php",
+            "buses": [],
+            "from_full": "php:7.0-fpm",
+            "discos": [
+                "containerpilot"
+            ],
+            "dbs": [
+                "redis"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "fpm",
+                "containerpilot",
+                "php",
+                "usr",
+                "local"
+            ]
+        }
+    ],
+    "num_dbs": 3,
+    "num_dockers": 6
+}

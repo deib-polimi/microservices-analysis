@@ -1,0 +1,379 @@
+{
+    "gates": [
+        "nginx"
+    ],
+    "langs": [
+        "php",
+        "dockerfile",
+        "scala"
+    ],
+    "structure": {
+        "detected_dbs": {
+            "names": [
+                "zookeeper",
+                "enterprise"
+            ],
+            "services": [
+                "broker",
+                "control-center",
+                "zookeeper"
+            ],
+            "num": 3,
+            "shared_dbs": true
+        },
+        "services": [
+            {
+                "image": "confluentinc/cp-schema-registry",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "zookeeper",
+                    "broker"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "confluentinc/cp-schema-registry",
+                "name": "schema_registry",
+                "discos": [],
+                "buses": []
+            },
+            {
+                "image": "confluentinc/cp-enterprise-kafka",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "dbs": [
+                    "enterprise"
+                ],
+                "servers": [],
+                "image_full": "confluentinc/cp-enterprise-kafka",
+                "name": "broker",
+                "discos": [],
+                "buses": [
+                    "kafka"
+                ]
+            },
+            {
+                "image": "confluentinc/cp-enterprise-control-center",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "zookeeper",
+                    "broker",
+                    "schema_registry",
+                    "connect"
+                ],
+                "dbs": [
+                    "enterprise"
+                ],
+                "servers": [],
+                "image_full": "confluentinc/cp-enterprise-control-center",
+                "name": "control-center",
+                "discos": [],
+                "buses": []
+            },
+            {
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "connect"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:5.5.3",
+                "name": "elasticsearch",
+                "discos": [],
+                "buses": []
+            },
+            {
+                "image": "docker/scala-akka-stream",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "broker",
+                    "schema_registry"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "docker/scala-akka-stream",
+                "name": "akka-stream",
+                "discos": [],
+                "buses": []
+            },
+            {
+                "image": "landoop/schema-registry-ui",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "schema_registry"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "landoop/schema-registry-ui",
+                "name": "schema-registry-ui",
+                "discos": [],
+                "buses": []
+            },
+            {
+                "image": "confluentinc/cp-kafka-connect",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "zookeeper",
+                    "broker",
+                    "schema_registry"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "confluentinc/cp-kafka-connect",
+                "name": "connect",
+                "discos": [],
+                "buses": [
+                    "kafka"
+                ]
+            },
+            {
+                "image": "confluentinc/cp-zookeeper",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "servers": [],
+                "image_full": "confluentinc/cp-zookeeper",
+                "name": "zookeeper",
+                "discos": [
+                    "zookeeper"
+                ],
+                "buses": []
+            },
+            {
+                "image": "docker/php",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "docker/php",
+                "name": "php",
+                "discos": [],
+                "buses": []
+            },
+            {
+                "image": "docker/nginx",
+                "gates": [
+                    "nginx"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "docker/nginx",
+                "name": "nginx",
+                "discos": [],
+                "buses": []
+            },
+            {
+                "image": "postgres",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "connect"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "postgres",
+                "name": "postgres",
+                "discos": [],
+                "buses": []
+            },
+            {
+                "image": "confluentinc/cp-kafka-rest",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "broker",
+                    "schema_registry"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "confluentinc/cp-kafka-rest",
+                "name": "kafka-rest",
+                "discos": [],
+                "buses": [
+                    "kafka"
+                ]
+            },
+            {
+                "image": "landoop/kafka-topics-ui",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "broker"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "landoop/kafka-topics-ui",
+                "name": "kafka-topics-ui",
+                "discos": [],
+                "buses": [
+                    "kafka"
+                ]
+            },
+            {
+                "image": "landoop/kafka-connect-ui",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "connect"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "landoop/kafka-connect-ui",
+                "name": "connect-ui",
+                "discos": [],
+                "buses": [
+                    "kafka"
+                ]
+            },
+            {
+                "image": "alpine",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "broker"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "alpine:3.4",
+                "name": "app",
+                "discos": [],
+                "buses": []
+            }
+        ],
+        "num_services": 15,
+        "path": "/docker-compose.yml"
+    },
+    "num_langs": 3,
+    "dockers": [
+        {
+            "gates": [
+                "nginx"
+            ],
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "servers": [],
+            "from": "nginx",
+            "cmd": "",
+            "monitors": [],
+            "path": "/docker/nginx/Dockerfile",
+            "cmd_keywords": [],
+            "from_full": "nginx:1.10-alpine",
+            "keywords": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "scala"
+            ],
+            "dbs": [],
+            "servers": [],
+            "from": "maven",
+            "cmd": "mvn -f /scala-akka-stream clean package; java -jar /scala-akka-stream/target/*uber.jar",
+            "monitors": [],
+            "path": "/docker/scala-akka-stream/Dockerfile",
+            "cmd_keywords": [
+                "stream",
+                "scala",
+                "jar",
+                "akka",
+                "java"
+            ],
+            "from_full": "maven:3.5.0-jdk-8",
+            "keywords": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "php"
+            ],
+            "dbs": [],
+            "servers": [],
+            "from": "php",
+            "cmd": "",
+            "monitors": [],
+            "path": "/docker/php/Dockerfile",
+            "cmd_keywords": [],
+            "from_full": "php:7.1-fpm-alpine",
+            "keywords": [
+                "php",
+                "composer",
+                "setup",
+                "tmp",
+                "dev"
+            ],
+            "discos": []
+        }
+    ],
+    "shared_dbs": true,
+    "num_servers": 0,
+    "num_discos": 2,
+    "languages": [
+        "php",
+        "scala",
+        "dockerfile"
+    ],
+    "avg_size_service": 32.0,
+    "num_dbs": 2,
+    "num_services": 15,
+    "discos": [
+        "avro",
+        "zookeeper"
+    ],
+    "num_dockers": 3,
+    "num_gates": 1,
+    "dbs": [
+        "zookeeper",
+        "enterprise"
+    ],
+    "servers": [],
+    "size": 96,
+    "name": "spotahome/ddd-arch-poc",
+    "url": "git://github.com/spotahome/ddd-arch-poc.git",
+    "monitors": [],
+    "num_monitors": 0,
+    "num_buses": 1,
+    "num_files": 5,
+    "buses": [
+        "kafka"
+    ],
+    "images": [
+        "php",
+        "nginx",
+        "maven"
+    ],
+    "files": [
+        {
+            "gates": [],
+            "monitors": [],
+            "path": "/scala-akka-stream/pom.xml",
+            "dbs": [],
+            "servers": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "avro"
+            ]
+        }
+    ]
+}

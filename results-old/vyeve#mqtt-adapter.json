@@ -1,0 +1,200 @@
+{
+    "num_services": 4,
+    "dbs": [],
+    "name": "vyeve/mqtt-adapter",
+    "files": [],
+    "discos": [],
+    "num_gates": 0,
+    "num_buses": 2,
+    "langs": [
+        "go",
+        "golang"
+    ],
+    "gates": [],
+    "num_monitors": 0,
+    "monitors": [],
+    "images": [
+        "golang"
+    ],
+    "structure": {
+        "num_services": 4,
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "names": [],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "buses": [
+                    "mqtt"
+                ],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "flaneurtv/microservice-adapter-mqtt",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "microservice-adapter-mqtt",
+                "image": "flaneurtv/microservice-adapter-mqtt"
+            },
+            {
+                "buses": [
+                    "mosquitto"
+                ],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "eclipse-mosquitto",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "mqtt",
+                "image": "eclipse-mosquitto"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "microservice-adapter-mqtt",
+                    "mqtt"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "flaneurtv/microservice-ticker",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "ticker",
+                "image": "flaneurtv/microservice-ticker"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "microservice-adapter-mqtt",
+                    "mqtt"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "flaneurtv/microservice-tick-responder",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "tick-responder",
+                "image": "flaneurtv/microservice-tick-responder"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "shared_dbs": false,
+    "languages": [
+        "go"
+    ],
+    "avg_size_service": 31.333333333333332,
+    "buses": [
+        "mqtt",
+        "mosquitto"
+    ],
+    "dockers": [
+        {
+            "from_full": "golang:1.11-alpine3.8",
+            "langs": [
+                "golang"
+            ],
+            "dbs": [],
+            "path": "/Dockerfile",
+            "buses": [
+                "mqtt"
+            ],
+            "cmd_keywords": [
+                "adapter",
+                "microservice",
+                "mqtt"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "golang",
+            "keywords": [
+                "glide",
+                "git",
+                "add",
+                "apk",
+                "linux"
+            ],
+            "cmd": "microservice-adapter-mqtt"
+        },
+        {
+            "from_full": "golang:1.11-alpine3.8",
+            "langs": [
+                "golang"
+            ],
+            "dbs": [],
+            "path": "/examples/tick-responder/Dockerfile",
+            "buses": [
+                "mqtt"
+            ],
+            "cmd_keywords": [
+                "txt",
+                "adapter",
+                "srv",
+                "microservice",
+                "responder"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "golang",
+            "keywords": [
+                "bash",
+                "gettext",
+                "add",
+                "apk",
+                "linux"
+            ],
+            "cmd": "microservice-adapter-mqtt  --subs=/srv/tick-responder/subscriptions.txt"
+        },
+        {
+            "from_full": "golang:1.11-alpine3.8",
+            "langs": [
+                "golang"
+            ],
+            "dbs": [],
+            "path": "/examples/ticker/Dockerfile",
+            "buses": [
+                "mqtt"
+            ],
+            "cmd_keywords": [
+                "txt",
+                "adapter",
+                "srv",
+                "microservice",
+                "subs"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "golang",
+            "keywords": [
+                "bash",
+                "gettext",
+                "add",
+                "apk",
+                "linux"
+            ],
+            "cmd": "microservice-adapter-mqtt  --subs=/srv/ticker/subscriptions.txt"
+        }
+    ],
+    "servers": [],
+    "num_dockers": 3,
+    "url": "git://github.com/vyeve/mqtt-adapter.git",
+    "num_dbs": 0,
+    "num_servers": 0,
+    "num_discos": 0,
+    "num_langs": 2,
+    "num_files": 4,
+    "size": 94
+}

@@ -1,0 +1,144 @@
+{
+    "discos": [],
+    "avg_size_service": 76.0,
+    "buses": [],
+    "num_gates": 1,
+    "name": "fabrom/mirth-connect-docker",
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "rp-https",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "nginx:latest",
+                "image": "nginx",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": [
+                    "nginx"
+                ]
+            },
+            {
+                "name": "phpmyadmin",
+                "dbs": [],
+                "depends_on": [
+                    "mirth-database"
+                ],
+                "discos": [],
+                "image_full": "phpmyadmin/phpmyadmin:latest",
+                "image": "phpmyadmin/phpmyadmin",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "mirth-database",
+                "dbs": [
+                    "mysql"
+                ],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "mysql:5.6",
+                "image": "mysql",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "mirth-connect",
+                "dbs": [],
+                "depends_on": [
+                    "mirth-database",
+                    "rp-https"
+                ],
+                "discos": [],
+                "image_full": "fabrom/mirth-connect",
+                "image": "fabrom/mirth-connect",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [
+                "mysql"
+            ],
+            "num": 1,
+            "shared_dbs": true,
+            "services": [
+                "mirth-database"
+            ]
+        },
+        "num_services": 4
+    },
+    "dbs": [
+        "mysql"
+    ],
+    "dockers": [
+        {
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [
+                "jar",
+                "server",
+                "launcher",
+                "java",
+                "mirth"
+            ],
+            "from_full": "openjdk:11-jre",
+            "buses": [],
+            "monitors": [],
+            "from": "openjdk",
+            "keywords": [
+                "mirth",
+                "connect",
+                "apt",
+                "get",
+                "tar"
+            ],
+            "gates": [],
+            "path": "/mirth-connect/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "java -jar mirth-server-launcher.jar",
+            "servers": []
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "size": 76,
+    "num_monitors": 0,
+    "images": [
+        "openjdk"
+    ],
+    "num_buses": 0,
+    "num_services": 4,
+    "servers": [],
+    "shared_dbs": true,
+    "monitors": [],
+    "num_discos": 0,
+    "languages": [
+        "dockerfile",
+        "shell"
+    ],
+    "url": "git://github.com/fabrom/mirth-connect-docker.git",
+    "langs": [
+        "dockerfile",
+        "java",
+        "shell"
+    ],
+    "num_dbs": 1,
+    "num_servers": 0,
+    "num_langs": 3,
+    "files": [],
+    "num_dockers": 1,
+    "num_files": 2
+}

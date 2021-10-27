@@ -1,0 +1,288 @@
+{
+    "languages": [
+        "ruby",
+        "smarty",
+        "html",
+        "hcl",
+        "dockerfile"
+    ],
+    "num_servers": 1,
+    "shared_dbs": true,
+    "name": "jugatsu/microservices",
+    "servers": [
+        "flask"
+    ],
+    "num_monitors": 1,
+    "num_langs": 7,
+    "images": [
+        "prom/prometheus",
+        "alpine",
+        "prom/blackbox-exporter",
+        "prom/alertmanager"
+    ],
+    "langs": [
+        "smarty",
+        "perl",
+        "hcl",
+        "dockerfile",
+        "python",
+        "ruby",
+        "html"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "path": "/monitoring/prometheus/config/Dockerfile",
+            "gates": [],
+            "from": "prom/prometheus",
+            "from_full": "prom/prometheus:v1.8.2",
+            "servers": [],
+            "discos": [],
+            "monitors": [
+                "prometheus"
+            ]
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "path": "/monitoring/prometheus/alertmanager/Dockerfile",
+            "gates": [],
+            "from": "prom/alertmanager",
+            "from_full": "prom/alertmanager:latest",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "buses": [],
+            "langs": [
+                "perl"
+            ],
+            "cmd": "",
+            "keywords": [
+                "git",
+                "github",
+                "mongodb",
+                "exporter",
+                "com"
+            ],
+            "path": "/monitoring/prometheus/mongodb-exporter/Dockerfile",
+            "gates": [],
+            "from": "alpine",
+            "from_full": "alpine:3.4",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "path": "/monitoring/prometheus/blackbox-exporter/Dockerfile",
+            "gates": [],
+            "from": "prom/blackbox-exporter",
+            "from_full": "prom/blackbox-exporter:latest",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "cmd": "",
+            "keywords": [
+                "pip",
+                "install",
+                "requirements",
+                "flask",
+                "cache"
+            ],
+            "path": "/src/post-py/Dockerfile",
+            "gates": [],
+            "from": "alpine",
+            "from_full": "alpine:3.6",
+            "servers": [
+                "flask"
+            ],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "puma"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "ruby"
+            ],
+            "cmd": "puma",
+            "keywords": [
+                "ruby",
+                "cache",
+                "apk",
+                "build",
+                "add"
+            ],
+            "path": "/src/ui/Dockerfile",
+            "gates": [],
+            "from": "alpine",
+            "from_full": "alpine:3.6",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "puma"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "ruby"
+            ],
+            "cmd": "puma",
+            "keywords": [
+                "ruby",
+                "cache",
+                "apk",
+                "build",
+                "add"
+            ],
+            "path": "/src/comment/Dockerfile",
+            "gates": [],
+            "from": "alpine",
+            "from_full": "alpine:3.6",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [],
+    "num_buses": 0,
+    "discos": [],
+    "monitors": [
+        "prometheus"
+    ],
+    "num_files": 9,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "mongo:${MONGO_VERSION}",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "mongo",
+                "image": "mongo",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "${USER_NAME}/comment:${COMMENT_VERSION}",
+                "depends_on": [
+                    "mongo"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "comment",
+                "image": "${USER_NAME}/comment",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "${USER_NAME}/ui:${UI_VERSION}",
+                "depends_on": [
+                    "post",
+                    "comment"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "ui",
+                "image": "${USER_NAME}/ui",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "${USER_NAME}/post:${POST_VERSION}",
+                "depends_on": [
+                    "mongo"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "post",
+                "image": "${USER_NAME}/post",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 4,
+        "detected_dbs": {
+            "services": [
+                "mongo"
+            ],
+            "names": [
+                "mongo"
+            ],
+            "num": 1,
+            "shared_dbs": true
+        }
+    },
+    "dbs": [
+        "mongo"
+    ],
+    "num_dbs": 1,
+    "avg_size_service": 45.42857142857143,
+    "num_services": 4,
+    "buses": [],
+    "files": [
+        {
+            "dbs": [],
+            "path": "/src/post-py/requirements.txt",
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": [
+                "prometheus"
+            ]
+        }
+    ],
+    "url": "git://github.com/jugatsu/microservices.git",
+    "num_dockers": 7,
+    "size": 318,
+    "num_discos": 0,
+    "num_gates": 0
+}

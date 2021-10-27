@@ -1,0 +1,199 @@
+{
+    "size": 94,
+    "num_dockers": 3,
+    "discos": [],
+    "num_files": 4,
+    "avg_size_service": 31.333333333333332,
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_gates": 0,
+    "langs": [
+        "c#"
+    ],
+    "num_discos": 0,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "mcr.microsoft.com/dotnet/core/aspnet",
+            "path": "/publisher_api/Dockerfile",
+            "keywords": [
+                "dotnet",
+                "release",
+                "out",
+                "publish",
+                "restore"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "mcr.microsoft.com/dotnet/core/aspnet:3.0"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "mcr.microsoft.com/dotnet/core/aspnet",
+            "path": "/hot-chocolate-dataloader/Dockerfile",
+            "keywords": [
+                "dotnet",
+                "release",
+                "out",
+                "publish",
+                "restore"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "mcr.microsoft.com/dotnet/core/aspnet:3.0"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "mcr.microsoft.com/dotnet/core/aspnet",
+            "path": "/worker/Dockerfile",
+            "keywords": [
+                "dotnet",
+                "release",
+                "out",
+                "publish",
+                "restore"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "mcr.microsoft.com/dotnet/core/aspnet:3.0"
+        }
+    ],
+    "num_dbs": 1,
+    "monitors": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "my_publisher_api",
+                "image_full": "my_publisher_api:latest",
+                "discos": [],
+                "name": "publisher_api",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mongo",
+                "image_full": "mongo",
+                "discos": [],
+                "name": "mongo",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "my_worker",
+                "image_full": "my_worker:latest",
+                "discos": [],
+                "name": "worker",
+                "depends_on": [
+                    "publisher_api",
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "hot-chocolate-dataloader",
+                "image_full": "hot-chocolate-dataloader:latest",
+                "discos": [],
+                "name": "hot-chocolate-dataloader",
+                "depends_on": [
+                    "mongo"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "image": "rabbitmq",
+                "image_full": "rabbitmq:3-management",
+                "discos": [],
+                "name": "rabbitmq",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "datalust/seq",
+                "image_full": "datalust/seq:latest",
+                "discos": [],
+                "name": "seq",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "mongo"
+            ],
+            "services": [
+                "mongo"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 6,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 1,
+    "servers": [],
+    "url": "git://github.com/Buzzology/microservicesDockerRabbitMQ.git",
+    "num_services": 6,
+    "gates": [],
+    "files": [],
+    "name": "Buzzology/microservicesDockerRabbitMQ",
+    "languages": [
+        "c#"
+    ],
+    "images": [
+        "mcr.microsoft.com/dotnet/core/aspnet"
+    ],
+    "dbs": [
+        "mongo"
+    ],
+    "num_servers": 0,
+    "num_langs": 1
+}

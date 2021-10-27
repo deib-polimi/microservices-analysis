@@ -1,0 +1,290 @@
+{
+    "num_servers": 1,
+    "num_gates": 0,
+    "num_dockers": 5,
+    "num_buses": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "ubuntu:16.04",
+            "discos": [],
+            "from": "ubuntu",
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [
+                "ctl",
+                "foreground",
+                "apache"
+            ],
+            "cmd": "apache2ctl -D FOREGROUND",
+            "path": "/docker/apache/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "proxy",
+                "apt",
+                "apache",
+                "get",
+                "mkdir"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "postgres:9.6.3",
+            "discos": [],
+            "from": "postgres",
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/docker/postgres/Dockerfile",
+            "dbs": [],
+            "keywords": []
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "ewolff/docker-java",
+            "discos": [],
+            "from": "ewolff/docker-java",
+            "langs": [
+                "java"
+            ],
+            "gates": [],
+            "cmd_keywords": [
+                "jar",
+                "usr",
+                "order",
+                "atom",
+                "bin"
+            ],
+            "cmd": "/usr/bin/java -Xmx400m -Xms400m -jar microservice-atom-order-0.0.1-SNAPSHOT.jar",
+            "path": "/microservice-atom/microservice-atom-order/Dockerfile",
+            "dbs": [],
+            "keywords": []
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "ewolff/docker-java",
+            "discos": [],
+            "from": "ewolff/docker-java",
+            "langs": [
+                "java"
+            ],
+            "gates": [],
+            "cmd_keywords": [
+                "jar",
+                "usr",
+                "atom",
+                "bin",
+                "java"
+            ],
+            "cmd": "/usr/bin/java -Xmx400m -Xms400m -jar microservice-atom-invoicing-0.0.1-SNAPSHOT.jar",
+            "path": "/microservice-atom/microservice-atom-invoicing/Dockerfile",
+            "dbs": [],
+            "keywords": []
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "ewolff/docker-java",
+            "discos": [],
+            "from": "ewolff/docker-java",
+            "langs": [
+                "java"
+            ],
+            "gates": [],
+            "cmd_keywords": [
+                "jar",
+                "usr",
+                "atom",
+                "bin",
+                "java"
+            ],
+            "cmd": "/usr/bin/java -Xmx400m -Xms400m -jar microservice-atom-shipping-0.0.1-SNAPSHOT.jar",
+            "path": "/microservice-atom/microservice-atom-shipping/Dockerfile",
+            "dbs": [],
+            "keywords": []
+        }
+    ],
+    "shared_dbs": false,
+    "languages": [
+        "java",
+        "html"
+    ],
+    "gates": [],
+    "avg_size_service": 38.8,
+    "discos": [],
+    "num_dbs": 1,
+    "monitors": [],
+    "servers": [
+        "spring"
+    ],
+    "num_langs": 2,
+    "buses": [],
+    "structure": {
+        "path": "/docker/docker-compose.yml",
+        "services": [
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "../microservice-atom/microservice-atom-order",
+                "image": "../microservice-atom/microservice-atom-order",
+                "buses": [],
+                "name": "order",
+                "discos": [],
+                "depends_on": [
+                    "postgres"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "postgres",
+                "image": "postgres",
+                "buses": [],
+                "name": "postgres",
+                "discos": [],
+                "depends_on": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "../microservice-atom/microservice-atom-shipping",
+                "image": "../microservice-atom/microservice-atom-shipping",
+                "buses": [],
+                "name": "shipping",
+                "discos": [],
+                "depends_on": [
+                    "order",
+                    "postgres"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "apache",
+                "image": "apache",
+                "buses": [],
+                "name": "apache",
+                "discos": [],
+                "depends_on": [
+                    "order",
+                    "shipping",
+                    "invoicing"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "../microservice-atom/microservice-atom-invoicing",
+                "image": "../microservice-atom/microservice-atom-invoicing",
+                "buses": [],
+                "name": "invoicing",
+                "discos": [],
+                "depends_on": [
+                    "order",
+                    "postgres"
+                ],
+                "dbs": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "names": [],
+            "shared_dbs": false
+        },
+        "num_services": 5
+    },
+    "images": [
+        "ewolff/docker-java",
+        "ubuntu",
+        "postgres"
+    ],
+    "num_files": 10,
+    "num_services": 5,
+    "langs": [
+        "html",
+        "java"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/microservice-atom/pom.xml",
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/microservice-atom/microservice-atom-order/pom.xml",
+            "dbs": [
+                "postgresql",
+                "hsqldb"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/microservice-atom/microservice-atom-invoicing/pom.xml",
+            "dbs": [
+                "postgresql",
+                "hsqldb"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/microservice-atom/microservice-atom-shipping/pom.xml",
+            "dbs": [
+                "postgresql",
+                "hsqldb"
+            ]
+        }
+    ],
+    "url": "git://github.com/ewolff/microservice-atom.git",
+    "size": 194,
+    "name": "ewolff/microservice-atom",
+    "num_discos": 0,
+    "num_monitors": 0,
+    "dbs": [
+        "postgresql"
+    ]
+}

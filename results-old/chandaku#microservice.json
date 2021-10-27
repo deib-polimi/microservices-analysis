@@ -1,0 +1,304 @@
+{
+    "num_files": 15,
+    "num_services": 3,
+    "num_discos": 1,
+    "gates": [
+        "zuul"
+    ],
+    "languages": [
+        "java"
+    ],
+    "num_dbs": 0,
+    "dbs": [],
+    "num_monitors": 0,
+    "structure": {
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 0,
+            "services": [],
+            "names": []
+        },
+        "num_services": 3,
+        "services": [
+            {
+                "image_full": "eureka-server:latest",
+                "image": "eureka-server",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [
+                    "eureka"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "eureka-server"
+            },
+            {
+                "image_full": "config-server:latest",
+                "image": "config-server",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "config-server"
+            },
+            {
+                "image_full": "employeesearch:latest",
+                "image": "employeesearch",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "config-server",
+                    "eureka-server"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "EmployeeSearchService"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "discos": [
+        "eureka"
+    ],
+    "url": "git://github.com/chandaku/microservice.git",
+    "num_buses": 0,
+    "files": [
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/MicroserviceConfigServer/build.gradle"
+        },
+        {
+            "servers": [],
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/MicroserviceConfigServer/settings.gradle"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/MicroServiceClient/build.gradle"
+        },
+        {
+            "servers": [],
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/MicroServiceClient/settings.gradle"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/EurekaNetflixRegistryServer/build.gradle"
+        },
+        {
+            "servers": [],
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/EurekaNetflixRegistryServer/settings.gradle"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/MicroServiceClientDashBoard/build.gradle"
+        },
+        {
+            "servers": [],
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/MicroServiceClientDashBoard/settings.gradle"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "gates": [
+                "zuul"
+            ],
+            "monitors": [],
+            "path": "/MicroServiceGateway/pom.xml"
+        }
+    ],
+    "name": "chandaku/microservice",
+    "servers": [
+        "spring"
+    ],
+    "num_dockers": 5,
+    "buses": [],
+    "num_gates": 1,
+    "num_langs": 1,
+    "shared_dbs": false,
+    "monitors": [],
+    "dockers": [
+        {
+            "servers": [],
+            "from": "alpine",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/MicroserviceConfigServer/Dockerfile",
+            "keywords": [
+                "apk",
+                "openjdk",
+                "add",
+                "cache"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "alpine:edge"
+        },
+        {
+            "servers": [],
+            "from": "alpine-jdk",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/MicroServiceClient/Dockerfile",
+            "keywords": [
+                "apk",
+                "netcat",
+                "add",
+                "openbsd",
+                "cache"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "jar",
+                "lib",
+                "microserviceclient",
+                "opt"
+            ],
+            "discos": [],
+            "cmd": "-jar /opt/lib/MicroServiceClient.jar",
+            "from_full": "alpine-jdk:base"
+        },
+        {
+            "servers": [],
+            "from": "alpine-jdk",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/MicroServiceGateway/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "jar",
+                "lib",
+                "opt",
+                "microservicegateway"
+            ],
+            "discos": [],
+            "cmd": "-jar /opt/lib/MicroServiceGateway.jar",
+            "from_full": "alpine-jdk:base"
+        },
+        {
+            "servers": [],
+            "from": "alpine-jdk",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/EurekaNetflixRegistryServer/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "jar",
+                "lib",
+                "opt",
+                "eurekanetflixregistryserver"
+            ],
+            "discos": [],
+            "cmd": "-jar /opt/lib/EurekaNetflixRegistryServer.jar",
+            "from_full": "alpine-jdk:base"
+        },
+        {
+            "servers": [],
+            "from": "alpine-jdk",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/MicroServiceClientDashBoard/Dockerfile",
+            "keywords": [
+                "apk",
+                "chmod",
+                "netcat",
+                "bin",
+                "cache"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "alpine-jdk:base"
+        }
+    ],
+    "langs": [
+        "java"
+    ],
+    "num_servers": 1,
+    "size": 336,
+    "images": [
+        "alpine-jdk",
+        "alpine"
+    ],
+    "avg_size_service": 67.2
+}

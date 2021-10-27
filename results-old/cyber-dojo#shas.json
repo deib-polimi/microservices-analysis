@@ -1,0 +1,154 @@
+{
+    "languages": [
+        "ruby",
+        "shell"
+    ],
+    "num_servers": 0,
+    "shared_dbs": false,
+    "name": "cyber-dojo/shas",
+    "servers": [],
+    "num_monitors": 0,
+    "num_langs": 2,
+    "images": [
+        "cyberdojo/sinatra-base",
+        "nginx"
+    ],
+    "langs": [
+        "shell",
+        "ruby"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [
+                "app"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "/app/up.sh",
+            "keywords": [],
+            "path": "/src/server/Dockerfile",
+            "gates": [],
+            "from": "cyberdojo/sinatra-base",
+            "from_full": "cyberdojo/sinatra-base:0fcdde3",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "dir",
+                "sha",
+                "nginx",
+                "chmod",
+                "echo"
+            ],
+            "path": "/src/nginx_stub/Dockerfile",
+            "gates": [
+                "nginx"
+            ],
+            "from": "nginx",
+            "from_full": "nginx:latest",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "app"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "/app/up.sh",
+            "keywords": [],
+            "path": "/src/client/Dockerfile",
+            "gates": [],
+            "from": "cyberdojo/sinatra-base",
+            "from_full": "cyberdojo/sinatra-base:0fcdde3",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_buses": 0,
+    "discos": [],
+    "monitors": [],
+    "num_files": 4,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "cyberdojo/nginx-shas-stub",
+                "depends_on": [
+                    "client"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "name": "nginx",
+                "image": "cyberdojo/nginx-shas-stub",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "${CYBER_DOJO_SHAS_IMAGE}",
+                "depends_on": [
+                    "selenium"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "shas",
+                "image": "${CYBER_DOJO_SHAS_IMAGE}",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "cyberdojo/${CYBER_DOJO_SERVER_NAME}-client",
+                "depends_on": [
+                    "${CYBER_DOJO_SERVER_NAME}",
+                    "selenium"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "client",
+                "image": "cyberdojo/${CYBER_DOJO_SERVER_NAME}-client",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 3,
+        "detected_dbs": {
+            "services": [],
+            "names": [],
+            "num": 0,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [],
+    "num_dbs": 0,
+    "avg_size_service": 101.0,
+    "num_services": 3,
+    "buses": [],
+    "files": [],
+    "url": "git://github.com/cyber-dojo/shas.git",
+    "num_dockers": 3,
+    "size": 303,
+    "num_discos": 0,
+    "num_gates": 1
+}

@@ -1,0 +1,265 @@
+{
+    "size": 3600,
+    "num_dockers": 7,
+    "discos": [
+        "etcd"
+    ],
+    "num_files": 8,
+    "avg_size_service": 514.2857142857143,
+    "buses": [],
+    "num_gates": 1,
+    "langs": [
+        "ruby",
+        "javascript"
+    ],
+    "num_discos": 1,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "/app/bin/kontena-agent",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "app",
+                "kontena",
+                "agent",
+                "bin"
+            ],
+            "from": "alpine",
+            "path": "/agent/Dockerfile",
+            "keywords": [
+                "ruby",
+                "apk",
+                "dev",
+                "update",
+                "build"
+            ],
+            "buses": [],
+            "langs": [
+                "ruby"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "alpine:3.6"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [
+                "etcd"
+            ],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "alpine",
+            "path": "/agent/etcd/Dockerfile",
+            "keywords": [
+                "etcd",
+                "release",
+                "linux",
+                "amd",
+                "tar"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "alpine:3.4"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "gliderlabs/alpine",
+            "path": "/agent/cadvisor/Dockerfile",
+            "keywords": [
+                "apk",
+                "chmod",
+                "bin",
+                "certificates",
+                "usr"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "gliderlabs/alpine:3.2"
+        },
+        {
+            "monitors": [],
+            "cmd": "./run.sh",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "run"
+            ],
+            "from": "alpine",
+            "path": "/server/Dockerfile",
+            "keywords": [
+                "ruby",
+                "apk",
+                "dev",
+                "update",
+                "build"
+            ],
+            "buses": [],
+            "langs": [
+                "ruby"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "alpine:3.6"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "nginx",
+            "path": "/server/docs/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "from_full": "nginx:1-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "alpine",
+            "path": "/cli/Dockerfile",
+            "keywords": [
+                "docker",
+                "ruby",
+                "apk",
+                "tgz",
+                "build"
+            ],
+            "buses": [],
+            "langs": [
+                "ruby"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "alpine:3.6"
+        },
+        {
+            "monitors": [],
+            "cmd": "ruby server.rb",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "ruby",
+                "server"
+            ],
+            "from": "alpine",
+            "path": "/test/spec/fixtures/stack/healthcheck/Dockerfile",
+            "keywords": [
+                "apk",
+                "update",
+                "ruby",
+                "add"
+            ],
+            "buses": [],
+            "langs": [
+                "ruby"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "alpine"
+        }
+    ],
+    "num_dbs": 1,
+    "monitors": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "agent",
+                "image_full": "agent",
+                "discos": [],
+                "name": "agent",
+                "depends_on": [
+                    "api"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mongo",
+                "image_full": "mongo:3.0",
+                "discos": [],
+                "name": "mongodb",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "server",
+                "image_full": "server",
+                "discos": [],
+                "name": "api",
+                "depends_on": [
+                    "mongodb"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "mongo"
+            ],
+            "services": [
+                "mongodb"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 3,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 0,
+    "servers": [],
+    "url": "git://github.com/kontena/kontena.git",
+    "num_services": 3,
+    "gates": [
+        "nginx"
+    ],
+    "files": [],
+    "name": "kontena/kontena",
+    "languages": [
+        "ruby",
+        "javascript"
+    ],
+    "images": [
+        "alpine",
+        "nginx",
+        "gliderlabs/alpine"
+    ],
+    "dbs": [
+        "mongo"
+    ],
+    "num_servers": 0,
+    "num_langs": 2
+}

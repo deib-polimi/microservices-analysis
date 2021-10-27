@@ -1,0 +1,222 @@
+{
+    "name": "madhusudan-m-k/docker-naming-api-gateway-microservice",
+    "num_dbs": 1,
+    "num_services": 4,
+    "num_files": 8,
+    "servers": [
+        "spring"
+    ],
+    "url": "git://github.com/madhusudan-m-k/docker-naming-api-gateway-microservice.git",
+    "discos": [
+        "eureka",
+        "consul"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "currency-conversion-service",
+                "image_full": "Dockerfile",
+                "image": "Dockerfile",
+                "servers": [],
+                "depends_on": [
+                    "currency-conversion-db",
+                    "namingserver"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "currency-exchange-service",
+                "image_full": "Dockerfile",
+                "image": "Dockerfile",
+                "servers": [],
+                "depends_on": [
+                    "currency-conversion-service",
+                    "namingserver"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "namingserver",
+                "image_full": "consul:latest",
+                "image": "consul",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [
+                    "consul"
+                ],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "currency-conversion-db",
+                "image_full": "/db/Dockerfile",
+                "image": "/db/Dockerfile",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [],
+            "num": 0,
+            "names": []
+        },
+        "num_services": 4
+    },
+    "num_buses": 0,
+    "size": 284,
+    "dockers": [
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/ccy-conversion-service/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:11-ea-11-jdk",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/ccy-conversion-service/db/Dockerfile",
+            "discos": [],
+            "from": "mysql",
+            "buses": [],
+            "from_full": "mysql:8.0.18",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/ccy-exchange-service/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:11-ea-11-jdk",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/ccy-naming-service/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:11-ea-11-jdk",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "languages": [
+        "java"
+    ],
+    "dbs": [
+        "mysql"
+    ],
+    "monitors": [],
+    "shared_dbs": false,
+    "avg_size_service": 71.0,
+    "num_monitors": 0,
+    "files": [
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/ccy-conversion-service/pom.xml",
+            "discos": [
+                "eureka",
+                "consul"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/ccy-exchange-service/pom.xml",
+            "discos": [
+                "eureka",
+                "consul"
+            ],
+            "dbs": [],
+            "gates": [
+                "loadbalancer"
+            ],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/ccy-naming-service/pom.xml",
+            "discos": [
+                "eureka",
+                "consul"
+            ],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        }
+    ],
+    "langs": [
+        "java"
+    ],
+    "num_servers": 1,
+    "buses": [],
+    "num_langs": 1,
+    "num_gates": 1,
+    "num_discos": 2,
+    "images": [
+        "mysql",
+        "openjdk"
+    ],
+    "num_dockers": 4,
+    "gates": [
+        "loadbalancer"
+    ]
+}

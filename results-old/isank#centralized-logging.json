@@ -1,0 +1,348 @@
+{
+    "servers": [
+        "spring"
+    ],
+    "langs": [
+        "java"
+    ],
+    "num_dbs": 0,
+    "num_dockers": 5,
+    "url": "git://github.com/isank/centralized-logging.git",
+    "images": [
+        "fluent/fluentd",
+        "amazoncorretto"
+    ],
+    "avg_size_service": 71.4,
+    "monitors": [],
+    "num_services": 7,
+    "buses": [],
+    "name": "isank/centralized-logging",
+    "dbs": [],
+    "num_servers": 1,
+    "num_monitors": 0,
+    "size": 357,
+    "num_discos": 1,
+    "shared_dbs": false,
+    "num_gates": 1,
+    "files": [
+        {
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "path": "/build.gradle"
+        },
+        {
+            "gates": [
+                "gateway"
+            ],
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "path": "/settings.gradle"
+        },
+        {
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "path": "/gateway/build.gradle"
+        },
+        {
+            "gates": [
+                "gateway"
+            ],
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "path": "/gateway/settings.gradle"
+        },
+        {
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "path": "/discovery/build.gradle"
+        },
+        {
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "path": "/discovery/settings.gradle"
+        },
+        {
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "path": "/greeter/build.gradle"
+        },
+        {
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "path": "/greeter/settings.gradle"
+        },
+        {
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "path": "/quotes/build.gradle"
+        },
+        {
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "path": "/quotes/settings.gradle"
+        }
+    ],
+    "languages": [
+        "java"
+    ],
+    "num_langs": 1,
+    "num_files": 16,
+    "structure": {
+        "num_services": 7,
+        "detected_dbs": {
+            "shared_dbs": false,
+            "names": [],
+            "num": 0,
+            "services": []
+        },
+        "services": [
+            {
+                "gates": [],
+                "servers": [],
+                "buses": [],
+                "name": "greeter",
+                "monitors": [],
+                "discos": [],
+                "image_full": "greeter",
+                "image": "greeter",
+                "dbs": [],
+                "depends_on": [
+                    "discovery",
+                    "log-shipper"
+                ]
+            },
+            {
+                "gates": [],
+                "servers": [],
+                "buses": [],
+                "name": "log-shipper",
+                "monitors": [],
+                "discos": [],
+                "image_full": "log-shipper",
+                "image": "log-shipper",
+                "dbs": [],
+                "depends_on": [
+                    "elasticsearch",
+                    "kibana"
+                ]
+            },
+            {
+                "gates": [],
+                "servers": [],
+                "buses": [],
+                "name": "kibana",
+                "monitors": [],
+                "discos": [],
+                "image_full": "docker.elastic.co/kibana/kibana:7.5.1",
+                "image": "docker.elastic.co/kibana/kibana",
+                "dbs": [],
+                "depends_on": [
+                    "elasticsearch"
+                ]
+            },
+            {
+                "gates": [],
+                "servers": [],
+                "buses": [],
+                "name": "elasticsearch",
+                "monitors": [],
+                "discos": [],
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:7.5.1",
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "gates": [],
+                "servers": [],
+                "buses": [],
+                "name": "quotes",
+                "monitors": [],
+                "discos": [],
+                "image_full": "quotes",
+                "image": "quotes",
+                "dbs": [],
+                "depends_on": [
+                    "discovery",
+                    "log-shipper"
+                ]
+            },
+            {
+                "gates": [
+                    "gateway"
+                ],
+                "servers": [],
+                "buses": [],
+                "name": "gateway",
+                "monitors": [],
+                "discos": [],
+                "image_full": "gateway",
+                "image": "gateway",
+                "dbs": [],
+                "depends_on": [
+                    "discovery",
+                    "log-shipper"
+                ]
+            },
+            {
+                "gates": [],
+                "servers": [],
+                "buses": [],
+                "name": "discovery",
+                "monitors": [],
+                "discos": [],
+                "image_full": "discovery",
+                "image": "discovery",
+                "dbs": [],
+                "depends_on": [
+                    "log-shipper"
+                ]
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "gates": [
+        "gateway"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "dockers": [
+        {
+            "servers": [],
+            "from": "amazoncorretto",
+            "monitors": [],
+            "from_full": "amazoncorretto:11",
+            "keywords": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "langs": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/gateway/Dockerfile"
+        },
+        {
+            "servers": [],
+            "from": "amazoncorretto",
+            "monitors": [],
+            "from_full": "amazoncorretto:11",
+            "keywords": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "langs": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/discovery/Dockerfile"
+        },
+        {
+            "servers": [],
+            "from": "amazoncorretto",
+            "monitors": [],
+            "from_full": "amazoncorretto:11",
+            "keywords": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "langs": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/greeter/Dockerfile"
+        },
+        {
+            "servers": [],
+            "from": "fluent/fluentd",
+            "monitors": [],
+            "from_full": "fluent/fluentd:latest",
+            "keywords": [
+                "gem",
+                "install",
+                "plugin",
+                "elasticsearch",
+                "fluent"
+            ],
+            "cmd_keywords": [],
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "langs": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/log-shipper/Dockerfile"
+        },
+        {
+            "servers": [],
+            "from": "amazoncorretto",
+            "monitors": [],
+            "from_full": "amazoncorretto:11",
+            "keywords": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "langs": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/quotes/Dockerfile"
+        }
+    ],
+    "num_buses": 0
+}

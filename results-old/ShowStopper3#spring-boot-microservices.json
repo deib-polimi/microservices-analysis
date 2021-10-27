@@ -1,0 +1,444 @@
+{
+    "size": 379355,
+    "num_dockers": 7,
+    "discos": [
+        "zookeeper",
+        "eureka"
+    ],
+    "num_files": 17,
+    "avg_size_service": 54193.57142857143,
+    "buses": [
+        "kafka"
+    ],
+    "num_gates": 1,
+    "langs": [
+        "java"
+    ],
+    "num_discos": 2,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/eureka-server/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:13-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/order-service/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:13-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/zuul-server/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:13-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/config-server/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:13-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/admin-server/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:13-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/customer-service/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:13-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/oauth2-server/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:13-jdk-alpine"
+        }
+    ],
+    "num_dbs": 2,
+    "monitors": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./zuul-server",
+                "image_full": "./zuul-server",
+                "discos": [],
+                "name": "zuul-server",
+                "depends_on": [
+                    "eureka-server"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": [
+                    "zuul"
+                ]
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./customer-service",
+                "image_full": "./customer-service",
+                "discos": [],
+                "name": "customer-service",
+                "depends_on": [
+                    "eureka-server"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [
+                    "kafka"
+                ],
+                "image": "wurstmeister/kafka",
+                "image_full": "wurstmeister/kafka:2.12-2.4.0",
+                "discos": [],
+                "name": "kafka",
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./eureka-server",
+                "image_full": "./eureka-server",
+                "discos": [
+                    "eureka"
+                ],
+                "name": "eureka-server",
+                "depends_on": [
+                    "admin-server"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./admin-server",
+                "image_full": "./admin-server",
+                "discos": [],
+                "name": "admin-server",
+                "depends_on": [
+                    "mysql"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mysql/mysql-server",
+                "image_full": "mysql/mysql-server:5.7",
+                "discos": [],
+                "name": "mysql",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./order-service",
+                "image_full": "./order-service",
+                "discos": [],
+                "name": "order-service",
+                "depends_on": [
+                    "eureka-server"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./config-server",
+                "image_full": "./config-server",
+                "discos": [],
+                "name": "config-server",
+                "depends_on": [
+                    "eureka-server"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "oauth2-server",
+                "image_full": "oauth2-server",
+                "discos": [],
+                "name": "oauth2-server",
+                "depends_on": [
+                    "config-server"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "wurstmeister/zookeeper",
+                "image_full": "wurstmeister/zookeeper:latest",
+                "discos": [
+                    "zookeeper"
+                ],
+                "name": "zookeeper",
+                "depends_on": [],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 2,
+            "names": [
+                "mysql",
+                "zookeeper"
+            ],
+            "services": [
+                "mysql",
+                "zookeeper"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 10,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 1,
+    "servers": [
+        "spring"
+    ],
+    "url": "git://github.com/ShowStopper3/spring-boot-microservices.git",
+    "num_services": 10,
+    "gates": [
+        "zuul"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "zuul"
+            ],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/eureka-server/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/order-service/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "zuul"
+            ],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/zuul-server/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/config-server/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/admin-server/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/customer-service/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/common-service/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/oauth2-server/pom.xml"
+        }
+    ],
+    "name": "ShowStopper3/spring-boot-microservices",
+    "languages": [
+        "java"
+    ],
+    "images": [
+        "openjdk"
+    ],
+    "dbs": [
+        "mysql",
+        "zookeeper"
+    ],
+    "num_servers": 1,
+    "num_langs": 1
+}

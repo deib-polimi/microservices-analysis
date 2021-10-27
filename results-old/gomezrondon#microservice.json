@@ -1,0 +1,312 @@
+{
+    "monitors": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [
+                "db"
+            ],
+            "names": [
+                "mysql"
+            ],
+            "num": 1
+        },
+        "services": [
+            {
+                "image": "./micro-proxy/build/libs",
+                "buses": [],
+                "monitors": [],
+                "image_full": "./micro-proxy/build/libs",
+                "gates": [],
+                "name": "micro-proxy",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "eureka-server"
+                ]
+            },
+            {
+                "image": "./eureka-service/build/libs",
+                "buses": [],
+                "monitors": [],
+                "image_full": "./eureka-service/build/libs",
+                "gates": [],
+                "name": "stock",
+                "discos": [
+                    "eureka"
+                ],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "eureka-server"
+                ]
+            },
+            {
+                "image": "./db-service/build/libs",
+                "buses": [],
+                "monitors": [],
+                "image_full": "./db-service/build/libs",
+                "gates": [],
+                "name": "db-stock",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "eureka-server"
+                ]
+            },
+            {
+                "image": "./config-server/build/libs",
+                "buses": [],
+                "monitors": [],
+                "image_full": "./config-server/build/libs",
+                "gates": [],
+                "name": "config",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "mysql",
+                "buses": [],
+                "monitors": [],
+                "image_full": "mysql:5.7",
+                "gates": [],
+                "name": "db",
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "depends_on": []
+            },
+            {
+                "image": "./eureka-register/build/libs",
+                "buses": [],
+                "monitors": [],
+                "image_full": "./eureka-register/build/libs",
+                "gates": [],
+                "name": "eureka-server",
+                "discos": [
+                    "eureka"
+                ],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "config"
+                ]
+            }
+        ],
+        "num_services": 6
+    },
+    "num_langs": 1,
+    "name": "gomezrondon/microservice",
+    "num_dockers": 5,
+    "buses": [],
+    "dbs": [
+        "mysql"
+    ],
+    "size": 402,
+    "num_discos": 1,
+    "shared_dbs": false,
+    "discos": [
+        "eureka"
+    ],
+    "images": [
+        "openjdk"
+    ],
+    "num_servers": 1,
+    "files": [
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [],
+            "path": "/build.gradle",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [],
+            "path": "/settings.gradle",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/config-server/build.gradle",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": []
+        },
+        {
+            "gates": [
+                "zuul"
+            ],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/micro-proxy/build.gradle",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/db-service/build.gradle",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [
+                "mysql"
+            ]
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/eureka-register/build.gradle",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/eureka-service/build.gradle",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": []
+        }
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "openjdk",
+            "path": "/config-server/src/main/docker/Dockerfile",
+            "from_full": "openjdk:alpine",
+            "cmd": "",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "openjdk",
+            "path": "/micro-proxy/src/main/docker/Dockerfile",
+            "from_full": "openjdk:alpine",
+            "cmd": "",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "openjdk",
+            "path": "/db-service/src/main/docker/Dockerfile",
+            "from_full": "openjdk:alpine",
+            "cmd": "",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "openjdk",
+            "path": "/eureka-register/src/main/docker/Dockerfile",
+            "from_full": "openjdk:alpine",
+            "cmd": "",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "openjdk",
+            "path": "/eureka-service/src/main/docker/Dockerfile",
+            "from_full": "openjdk:alpine",
+            "cmd": "",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        }
+    ],
+    "url": "git://github.com/gomezrondon/microservice.git",
+    "gates": [
+        "zuul"
+    ],
+    "num_files": 13,
+    "num_services": 6,
+    "num_gates": 1,
+    "num_dbs": 1,
+    "avg_size_service": 80.4,
+    "langs": [
+        "java"
+    ],
+    "num_buses": 0,
+    "languages": [
+        "java"
+    ],
+    "num_monitors": 0,
+    "servers": [
+        "spring"
+    ]
+}

@@ -1,0 +1,257 @@
+{
+    "size": 331,
+    "num_monitors": 0,
+    "num_discos": 0,
+    "shared_dbs": true,
+    "langs": [
+        "javascript",
+        "java",
+        "typescript",
+        "shell"
+    ],
+    "buses": [],
+    "num_langs": 4,
+    "num_dbs": 2,
+    "discos": [],
+    "avg_size_service": 110.33333333333333,
+    "images": [
+        "java",
+        "mhart/alpine-node"
+    ],
+    "gates": [],
+    "dockers": [
+        {
+            "monitors": [],
+            "from": "java",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "buses": [],
+            "cmd_keywords": [
+                "jar",
+                "with",
+                "worker",
+                "dependencies",
+                "java"
+            ],
+            "cmd": "java -jar target/worker-jar-with-dependencies.jar",
+            "path": "/worker/Dockerfile",
+            "keywords": [
+                "maven",
+                "usr",
+                "mvn",
+                "version",
+                "share"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "java:openjdk-8-jdk-alpine",
+            "discos": []
+        },
+        {
+            "monitors": [],
+            "from": "mhart/alpine-node",
+            "langs": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/api/Dockerfile",
+            "keywords": [
+                "npm",
+                "node",
+                "registry",
+                "modules",
+                "app"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "mhart/alpine-node:5.11.0",
+            "discos": []
+        },
+        {
+            "monitors": [],
+            "from": "mhart/alpine-node",
+            "langs": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "cmd_keywords": [
+                "check",
+                "disable",
+                "serve",
+                "port",
+                "host"
+            ],
+            "cmd": "ng serve -H 0.0.0.0 --port 80 --disable-host-check",
+            "path": "/web/Dockerfile",
+            "keywords": [
+                "yarn",
+                "install",
+                "add",
+                "cli",
+                "angular"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "mhart/alpine-node:8.3.0",
+            "discos": []
+        }
+    ],
+    "structure": {
+        "detected_dbs": {
+            "num": 2,
+            "shared_dbs": true,
+            "services": [
+                "redis",
+                "mongo"
+            ],
+            "names": [
+                "mongo",
+                "redis"
+            ]
+        },
+        "services": [
+            {
+                "image": "redis",
+                "depends_on": [],
+                "discos": [],
+                "monitors": [],
+                "image_full": "redis:3.2.5",
+                "gates": [],
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "buses": [],
+                "name": "redis"
+            },
+            {
+                "image": "./web",
+                "depends_on": [
+                    "api"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "./web",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "web"
+            },
+            {
+                "image": "mongo",
+                "depends_on": [],
+                "discos": [],
+                "monitors": [],
+                "image_full": "mongo:3.2.11",
+                "gates": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "servers": [],
+                "buses": [],
+                "name": "mongo"
+            },
+            {
+                "image": "./api",
+                "depends_on": [
+                    "mongo",
+                    "redis"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "./api",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "api"
+            },
+            {
+                "image": "./worker",
+                "depends_on": [
+                    "mongo",
+                    "redis"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "./worker",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "worker"
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "num_services": 5
+    },
+    "num_dockers": 3,
+    "num_files": 7,
+    "num_services": 5,
+    "num_gates": 0,
+    "name": "emmetog/demo-docker-microservice-app",
+    "url": "git://github.com/emmetog/demo-docker-microservice-app.git",
+    "monitors": [],
+    "servers": [
+        "node",
+        "express"
+    ],
+    "dbs": [
+        "mongo",
+        "redis"
+    ],
+    "num_servers": 2,
+    "num_buses": 0,
+    "files": [
+        {
+            "path": "/worker/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "mongo",
+                "redis",
+                "mongodb"
+            ],
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "discos": []
+        },
+        {
+            "path": "/api/package.json",
+            "monitors": [],
+            "dbs": [
+                "redis",
+                "mongodb"
+            ],
+            "gates": [],
+            "servers": [
+                "express"
+            ],
+            "buses": [],
+            "discos": []
+        },
+        {
+            "path": "/web/package.json",
+            "monitors": [],
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "discos": []
+        }
+    ],
+    "languages": [
+        "typescript",
+        "shell",
+        "javascript"
+    ]
+}

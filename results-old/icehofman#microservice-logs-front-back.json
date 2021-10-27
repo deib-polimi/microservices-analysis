@@ -1,0 +1,203 @@
+{
+    "servers": [
+        "node"
+    ],
+    "name": "icehofman/microservice-logs-front-back",
+    "num_gates": 1,
+    "avg_size_service": 619.3333333333334,
+    "structure": {
+        "services": [
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "./poc-microservice-frontend",
+                "servers": [],
+                "depends_on": [
+                    "fluentd"
+                ],
+                "name": "nginx",
+                "dbs": [],
+                "image": "./poc-microservice-frontend",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "elasticsearch",
+                "servers": [],
+                "depends_on": [],
+                "name": "elasticsearch",
+                "dbs": [],
+                "image": "elasticsearch",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "kibana",
+                "servers": [],
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "name": "kibana",
+                "dbs": [],
+                "image": "kibana",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "./fluentd",
+                "servers": [],
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "name": "fluentd",
+                "dbs": [],
+                "image": "./fluentd",
+                "monitors": [
+                    "fluentd"
+                ],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "./poc-restify",
+                "servers": [],
+                "depends_on": [
+                    "fluentd"
+                ],
+                "name": "restapi",
+                "dbs": [],
+                "image": "./poc-restify",
+                "monitors": [],
+                "discos": []
+            }
+        ],
+        "num_services": 5,
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        }
+    },
+    "num_dbs": 0,
+    "buses": [],
+    "langs": [
+        "javascript"
+    ],
+    "shared_dbs": false,
+    "files": [
+        {
+            "gates": [],
+            "buses": [],
+            "path": "/poc-restify/package.json",
+            "servers": [
+                "node"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "size": 1858,
+    "num_dockers": 3,
+    "url": "git://github.com/icehofman/microservice-logs-front-back.git",
+    "gates": [
+        "nginx"
+    ],
+    "num_servers": 1,
+    "images": [
+        "node",
+        "nginx",
+        "fluent/fluentd"
+    ],
+    "num_services": 5,
+    "languages": [
+        "javascript"
+    ],
+    "num_files": 5,
+    "discos": [],
+    "dockers": [
+        {
+            "gates": [
+                "nginx"
+            ],
+            "from_full": "nginx",
+            "cmd_keywords": [],
+            "path": "/poc-microservice-frontend/Dockerfile",
+            "servers": [],
+            "cmd": "",
+            "from": "nginx",
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "monitors": [],
+            "keywords": []
+        },
+        {
+            "gates": [],
+            "from_full": "node:0.12.0",
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "path": "/poc-restify/Dockerfile",
+            "servers": [
+                "node"
+            ],
+            "cmd": "npm start",
+            "from": "node",
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "monitors": [],
+            "keywords": [
+                "install",
+                "src",
+                "mkdir",
+                "app",
+                "usr"
+            ]
+        },
+        {
+            "gates": [],
+            "from_full": "fluent/fluentd:latest",
+            "cmd_keywords": [],
+            "path": "/fluentd/Dockerfile",
+            "servers": [],
+            "cmd": "",
+            "from": "fluent/fluentd",
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "monitors": [
+                "fluentd"
+            ],
+            "keywords": [
+                "fluent",
+                "elasticsearch",
+                "version",
+                "plugin",
+                "gem"
+            ]
+        }
+    ],
+    "num_langs": 1,
+    "num_monitors": 1,
+    "num_buses": 0,
+    "dbs": [],
+    "monitors": [
+        "fluentd"
+    ],
+    "num_discos": 0
+}

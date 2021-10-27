@@ -1,0 +1,177 @@
+{
+    "dbs": [
+        "nexus",
+        "mongo"
+    ],
+    "num_dbs": 2,
+    "shared_dbs": false,
+    "name": "ibek/vacation-planner",
+    "num_buses": 0,
+    "num_monitors": 0,
+    "monitors": [],
+    "langs": [
+        "java",
+        "html"
+    ],
+    "gates": [],
+    "size": 654,
+    "languages": [
+        "html",
+        "java"
+    ],
+    "num_langs": 2,
+    "structure": {
+        "path": [],
+        "services": [],
+        "detected_dbs": {
+            "services": [],
+            "names": [],
+            "shared_dbs": false,
+            "num": 0
+        },
+        "num_services": 0
+    },
+    "servers": [
+        "jboss",
+        "node"
+    ],
+    "num_servers": 2,
+    "num_files": 8,
+    "images": [
+        "vertx/vertx3",
+        "jboss/wildfly"
+    ],
+    "buses": [],
+    "avg_size_service": 218.0,
+    "num_services": 0,
+    "files": [
+        {
+            "path": "/vacation-service/pom.xml",
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "dbs": [
+                "mongo"
+            ],
+            "discos": []
+        },
+        {
+            "path": "/vacation-process/pom.xml",
+            "servers": [
+                "jboss"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "dbs": [
+                "nexus"
+            ],
+            "discos": []
+        },
+        {
+            "path": "/usermgmt-service/pom.xml",
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "dbs": [
+                "mongo"
+            ],
+            "discos": []
+        },
+        {
+            "path": "/vacation-app/package.json",
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "discos": []
+        }
+    ],
+    "num_dockers": 3,
+    "dockers": [
+        {
+            "cmd": "vertx run -Dmongo.host=${MONGO_PORT_27017_TCP_ADDR} -Dmongo.port=${MONGO_PORT_27017_TCP_PORT} $VERTICLE_NAME -cp $VERTICLE_HOME/*",
+            "dbs": [
+                "mongo"
+            ],
+            "buses": [],
+            "servers": [],
+            "from_full": "vertx/vertx3",
+            "path": "/vacation-service/src/main/docker/Dockerfile",
+            "from": "vertx/vertx3",
+            "monitors": [],
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [
+                "port",
+                "verticle",
+                "mongo",
+                "dmongo",
+                "tcp"
+            ],
+            "discos": [],
+            "keywords": []
+        },
+        {
+            "cmd": "./start_kie-server.sh",
+            "dbs": [
+                "nexus"
+            ],
+            "buses": [],
+            "servers": [
+                "jboss"
+            ],
+            "from_full": "jboss/wildfly:8.1.0.Final",
+            "path": "/vacation-process/src/main/docker/Dockerfile",
+            "from": "jboss/wildfly",
+            "monitors": [],
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [
+                "start",
+                "kie",
+                "server"
+            ],
+            "discos": [],
+            "keywords": [
+                "jboss",
+                "home",
+                "kie",
+                "server",
+                "standalone"
+            ]
+        },
+        {
+            "cmd": "vertx run -Dmongo.host=${MONGO_PORT_27017_TCP_ADDR} -Dmongo.port=${MONGO_PORT_27017_TCP_PORT} $VERTICLE_NAME -cp $VERTICLE_HOME/*",
+            "dbs": [
+                "mongo"
+            ],
+            "buses": [],
+            "servers": [],
+            "from_full": "vertx/vertx3",
+            "path": "/usermgmt-service/src/main/docker/Dockerfile",
+            "from": "vertx/vertx3",
+            "monitors": [],
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [
+                "port",
+                "verticle",
+                "mongo",
+                "dmongo",
+                "tcp"
+            ],
+            "discos": [],
+            "keywords": []
+        }
+    ],
+    "num_discos": 0,
+    "discos": [],
+    "num_gates": 0,
+    "url": "git://github.com/ibek/vacation-planner.git"
+}

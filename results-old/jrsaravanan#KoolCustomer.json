@@ -1,0 +1,348 @@
+{
+    "languages": [
+        "java",
+        "html"
+    ],
+    "num_servers": 2,
+    "shared_dbs": false,
+    "name": "jrsaravanan/KoolCustomer",
+    "servers": [
+        "spring",
+        "jetty"
+    ],
+    "num_monitors": 0,
+    "num_langs": 2,
+    "images": [
+        "openjdk"
+    ],
+    "langs": [
+        "java",
+        "html"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "path": "/customer-auth/Dockerfile",
+            "gates": [],
+            "from": "openjdk",
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "path": "/customer-discovery/Dockerfile",
+            "gates": [],
+            "from": "openjdk",
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "path": "/customer-service/Dockerfile",
+            "gates": [],
+            "from": "openjdk",
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "path": "/customer-service/docker/Dockerfile",
+            "gates": [],
+            "from": "openjdk",
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "path": "/customer-admin/Dockerfile",
+            "gates": [],
+            "from": "openjdk",
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "path": "/customer-edge-service/Dockerfile",
+            "gates": [],
+            "from": "openjdk",
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [
+        "zuul"
+    ],
+    "num_buses": 0,
+    "discos": [
+        "eureka"
+    ],
+    "monitors": [],
+    "num_files": 14,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "jrsaravanan/customer-discovery",
+                "depends_on": [
+                    "admin-ui"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "discovery",
+                "image": "jrsaravanan/customer-discovery",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "jrsaravanan/customer-admin",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "admin-ui",
+                "image": "jrsaravanan/customer-admin",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mysql:5.6",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "customer-auth-db",
+                "image": "mysql",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "jrsaravanan/customer-service",
+                "depends_on": [
+                    "customerdb",
+                    "admin-ui",
+                    "discovery"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "customer-service",
+                "image": "jrsaravanan/customer-service",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mysql:5.6",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "customerdb",
+                "image": "mysql",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "jrsaravanan/customer-auth",
+                "depends_on": [
+                    "customer-auth-db",
+                    "admin-ui",
+                    "discovery"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "auth-service",
+                "image": "jrsaravanan/customer-auth",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "jrsaravanan/customer-edge-service",
+                "depends_on": [
+                    "discovery",
+                    "auth-service",
+                    "customer-service"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "api-service",
+                "image": "jrsaravanan/customer-edge-service",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 7,
+        "detected_dbs": {
+            "services": [
+                "customer-auth-db",
+                "customerdb"
+            ],
+            "names": [
+                "mysql"
+            ],
+            "num": 2,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [
+        "mysql"
+    ],
+    "num_dbs": 1,
+    "avg_size_service": 110.83333333333333,
+    "num_services": 7,
+    "buses": [],
+    "files": [
+        {
+            "dbs": [],
+            "path": "/pom.xml",
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/customer-auth/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/customer-bdd/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring",
+                "jetty"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/customer-discovery/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/customer-service/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/customer-admin/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/customer-edge-service/pom.xml",
+            "gates": [
+                "zuul"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": []
+        }
+    ],
+    "url": "git://github.com/jrsaravanan/KoolCustomer.git",
+    "num_dockers": 6,
+    "size": 665,
+    "num_discos": 1,
+    "num_gates": 1
+}

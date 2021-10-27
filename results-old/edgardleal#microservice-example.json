@@ -1,0 +1,262 @@
+{
+    "size": 334,
+    "num_dockers": 4,
+    "discos": [],
+    "num_files": 8,
+    "avg_size_service": 83.5,
+    "buses": [],
+    "num_gates": 1,
+    "langs": [
+        "makefile",
+        "html",
+        "typescript"
+    ],
+    "num_discos": 0,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "nginx",
+            "path": "/nginx/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "from_full": "nginx:alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "npm start:watch",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "cmd_keywords": [
+                "start",
+                "watch",
+                "npm"
+            ],
+            "from": "node",
+            "path": "/users/Dockerfile",
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "node:10.6.0"
+        },
+        {
+            "monitors": [],
+            "cmd": "npm start",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "from": "node",
+            "path": "/bff/Dockerfile",
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "node:10.6.0"
+        },
+        {
+            "monitors": [],
+            "cmd": "npm start:watch",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "cmd_keywords": [
+                "start",
+                "watch",
+                "npm"
+            ],
+            "from": "node",
+            "path": "/address/Dockerfile",
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "node:10.6.0"
+        }
+    ],
+    "num_dbs": 1,
+    "monitors": [],
+    "shared_dbs": true,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./nginx",
+                "image_full": "./nginx",
+                "discos": [],
+                "name": "nginx",
+                "depends_on": [
+                    "bff"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": [
+                    "nginx"
+                ]
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mongo",
+                "image_full": "mongo:4",
+                "discos": [],
+                "name": "mongo",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./users",
+                "image_full": "./users",
+                "discos": [],
+                "name": "users",
+                "depends_on": [
+                    "mongo",
+                    "address"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./bff",
+                "image_full": "./bff",
+                "discos": [],
+                "name": "bff",
+                "depends_on": [
+                    "mongo",
+                    "users"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./address",
+                "image_full": "./address",
+                "discos": [],
+                "name": "address",
+                "depends_on": [
+                    "mongo"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "mongo"
+            ],
+            "services": [
+                "mongo"
+            ],
+            "shared_dbs": true
+        },
+        "num_services": 5,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 0,
+    "servers": [
+        "node",
+        "express"
+    ],
+    "url": "git://github.com/edgardleal/microservice-example.git",
+    "num_services": 5,
+    "gates": [
+        "nginx"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/users/package.json"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/bff/package.json"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/address/package.json"
+        }
+    ],
+    "name": "edgardleal/microservice-example",
+    "languages": [
+        "html",
+        "typescript",
+        "makefile"
+    ],
+    "images": [
+        "node",
+        "nginx"
+    ],
+    "dbs": [
+        "mongo"
+    ],
+    "num_servers": 2,
+    "num_langs": 3
+}

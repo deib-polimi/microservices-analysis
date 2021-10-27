@@ -1,0 +1,300 @@
+{
+    "dbs": [],
+    "name": "deeteear/COPCloudELK",
+    "num_langs": 1,
+    "languages": [
+        "java"
+    ],
+    "shared_dbs": false,
+    "servers": [
+        "spring"
+    ],
+    "langs": [
+        "java"
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "java"
+            ],
+            "discos": [],
+            "cmd": "java -jar /app.jar",
+            "path": "/sensor/Dockerfile",
+            "from_full": "openjdk:8-jre-alpine",
+            "gates": [],
+            "from": "openjdk",
+            "langs": [
+                "java"
+            ],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "java"
+            ],
+            "discos": [],
+            "cmd": "java -jar /app.jar",
+            "path": "/aggregator/Dockerfile",
+            "from_full": "openjdk:8-jre-alpine",
+            "gates": [],
+            "from": "openjdk",
+            "langs": [
+                "java"
+            ],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/extensions/logspout/Dockerfile",
+            "from_full": "gliderlabs/logspout:master",
+            "gates": [],
+            "from": "gliderlabs/logspout",
+            "langs": [],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/logstash/Dockerfile",
+            "from_full": "docker.elastic.co/logstash/logstash:5.6.2",
+            "gates": [],
+            "from": "docker.elastic.co/logstash/logstash",
+            "langs": [],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/kibana/Dockerfile",
+            "from_full": "docker.elastic.co/kibana/kibana:5.6.2",
+            "gates": [],
+            "from": "docker.elastic.co/kibana/kibana",
+            "langs": [],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/elasticsearch/Dockerfile",
+            "from_full": "docker.elastic.co/elasticsearch/elasticsearch:5.6.2",
+            "gates": [],
+            "from": "docker.elastic.co/elasticsearch/elasticsearch",
+            "langs": [],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "java"
+            ],
+            "discos": [],
+            "cmd": "java -jar /app.jar",
+            "path": "/controlUnit/Dockerfile",
+            "from_full": "openjdk:8-jre-alpine",
+            "gates": [],
+            "from": "openjdk",
+            "langs": [
+                "java"
+            ],
+            "keywords": []
+        }
+    ],
+    "gates": [],
+    "size": 51,
+    "num_dockers": 7,
+    "num_discos": 0,
+    "num_buses": 0,
+    "buses": [],
+    "images": [
+        "docker.elastic.co/kibana/kibana",
+        "openjdk",
+        "docker.elastic.co/elasticsearch/elasticsearch",
+        "gliderlabs/logspout",
+        "docker.elastic.co/logstash/logstash"
+    ],
+    "num_servers": 1,
+    "num_services": 6,
+    "monitors": [
+        "elk"
+    ],
+    "structure": {
+        "services": [
+            {
+                "buses": [],
+                "image": "aggregator",
+                "dbs": [],
+                "gates": [],
+                "image_full": "aggregator",
+                "monitors": [],
+                "name": "aggregator",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "logstash"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "controlUnit",
+                "dbs": [],
+                "gates": [],
+                "image_full": "controlUnit",
+                "monitors": [],
+                "name": "controlunit",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "logstash"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "kibana/",
+                "dbs": [],
+                "gates": [],
+                "image_full": "kibana/",
+                "monitors": [],
+                "name": "kibana",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "elasticsearch"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "sensor",
+                "dbs": [],
+                "gates": [],
+                "image_full": "sensor",
+                "monitors": [],
+                "name": "sensor",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "logstash"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "elasticsearch/",
+                "dbs": [],
+                "gates": [],
+                "image_full": "elasticsearch/",
+                "monitors": [],
+                "name": "elasticsearch",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "logstash/",
+                "dbs": [],
+                "gates": [],
+                "image_full": "logstash/",
+                "monitors": [],
+                "name": "logstash",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "elasticsearch"
+                ]
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "num": 0,
+            "shared_dbs": false,
+            "names": [],
+            "services": []
+        },
+        "path": "/docker-compose.yml"
+    },
+    "discos": [],
+    "num_files": 11,
+    "num_dbs": 0,
+    "num_monitors": 1,
+    "num_gates": 0,
+    "url": "git://github.com/deeteear/COPCloudELK.git",
+    "avg_size_service": 7.285714285714286,
+    "files": [
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [
+                "elk"
+            ],
+            "discos": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/sensor/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [
+                "elk"
+            ],
+            "discos": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/aggregator/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [
+                "elk"
+            ],
+            "discos": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/controlUnit/pom.xml"
+        }
+    ]
+}

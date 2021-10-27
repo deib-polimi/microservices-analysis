@@ -1,0 +1,116 @@
+{
+    "servers": [],
+    "langs": [],
+    "num_dbs": 0,
+    "num_dockers": 0,
+    "url": "git://github.com/rads-io/docker-composer-kong-gateway.git",
+    "images": [],
+    "avg_size_service": 48.0,
+    "monitors": [],
+    "num_services": 5,
+    "buses": [],
+    "name": "rads-io/docker-composer-kong-gateway",
+    "dbs": [],
+    "num_servers": 0,
+    "num_monitors": 0,
+    "size": 48,
+    "num_discos": 0,
+    "shared_dbs": false,
+    "num_gates": 2,
+    "files": [],
+    "languages": [],
+    "num_langs": 0,
+    "num_files": 1,
+    "structure": {
+        "num_services": 5,
+        "detected_dbs": {
+            "shared_dbs": false,
+            "names": [],
+            "num": 0,
+            "services": []
+        },
+        "services": [
+            {
+                "gates": [
+                    "nginx"
+                ],
+                "servers": [],
+                "buses": [],
+                "name": "nginx-proxy",
+                "monitors": [],
+                "discos": [],
+                "image_full": "nginx:latest",
+                "image": "nginx",
+                "dbs": [],
+                "depends_on": [
+                    "u-service-account"
+                ]
+            },
+            {
+                "gates": [],
+                "servers": [],
+                "buses": [],
+                "name": "kong-database",
+                "monitors": [],
+                "discos": [],
+                "image_full": "postgres:9.5",
+                "image": "postgres",
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "gates": [],
+                "servers": [],
+                "buses": [],
+                "name": "u-service-account",
+                "monitors": [],
+                "discos": [],
+                "image_full": "./volumes/private/account",
+                "image": "./volumes/private/account",
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "gates": [
+                    "kong"
+                ],
+                "servers": [],
+                "buses": [],
+                "name": "kong-migration",
+                "monitors": [],
+                "discos": [],
+                "image_full": "kong",
+                "image": "kong",
+                "dbs": [],
+                "depends_on": [
+                    "kong-database"
+                ]
+            },
+            {
+                "gates": [
+                    "kong"
+                ],
+                "servers": [],
+                "buses": [],
+                "name": "kong",
+                "monitors": [],
+                "discos": [],
+                "image_full": "kong",
+                "image": "kong",
+                "dbs": [],
+                "depends_on": [
+                    "kong-database",
+                    "kong-migration"
+                ]
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "gates": [
+        "nginx",
+        "kong"
+    ],
+    "discos": [],
+    "dockers": [],
+    "num_buses": 0
+}

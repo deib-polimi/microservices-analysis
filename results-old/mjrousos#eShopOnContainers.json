@@ -1,0 +1,313 @@
+{
+    "num_discos": 0,
+    "buses": [],
+    "name": "mjrousos/eShopOnContainers",
+    "dbs": [
+        "redis"
+    ],
+    "num_services": 8,
+    "avg_size_service": 7270.0,
+    "num_monitors": 0,
+    "monitors": [],
+    "discos": [],
+    "servers": [
+        "node"
+    ],
+    "url": "git://github.com/mjrousos/eShopOnContainers.git",
+    "num_dockers": 7,
+    "files": [
+        {
+            "discos": [],
+            "path": "/src/Web/WebMVC/wwwroot/lib/bootstrap/package.json",
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "path": "/src/Web/WebMVC/wwwroot/lib/tether/package.json",
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "path": "/src/Web/WebSPA/package.json",
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": []
+        }
+    ],
+    "shared_dbs": false,
+    "size": 50890,
+    "languages": [
+        "c#",
+        "javascript",
+        "html"
+    ],
+    "gates": [],
+    "num_langs": 3,
+    "structure": {
+        "detected_dbs": {
+            "num": 1,
+            "services": [
+                "basket.data"
+            ],
+            "shared_dbs": false,
+            "names": [
+                "redis"
+            ]
+        },
+        "num_services": 8,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [
+                    "sql.data"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "catalog.api",
+                "image_full": "eshop/catalog.api",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "eshop/catalog.api"
+            },
+            {
+                "depends_on": [
+                    "sql.data"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "ordering.api",
+                "image_full": "eshop/ordering.api",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "eshop/ordering.api"
+            },
+            {
+                "depends_on": [
+                    "catalog.api",
+                    "ordering.api",
+                    "identity.api",
+                    "basket.api"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "webmvc",
+                "image_full": "eshop/webmvc",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "eshop/webmvc"
+            },
+            {
+                "depends_on": [
+                    "identity.api",
+                    "basket.api"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "webspa",
+                "image_full": "eshop/webspa",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "eshop/webspa"
+            },
+            {
+                "depends_on": [
+                    "sql.data"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "identity.api",
+                "image_full": "eshop/identity.api",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "eshop/identity.api"
+            },
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "sql.data",
+                "image_full": "microsoft/mssql-server-linux",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "microsoft/mssql-server-linux"
+            },
+            {
+                "depends_on": [
+                    "basket.data",
+                    "identity.api"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "basket.api",
+                "image_full": "eshop/basket.api",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "eshop/basket.api"
+            },
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "basket.data",
+                "image_full": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "gates": [],
+                "monitors": [],
+                "image": "redis"
+            }
+        ]
+    },
+    "dockers": [
+        {
+            "from_full": "microsoft/aspnetcore:1.1",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "",
+            "langs": [],
+            "from": "microsoft/aspnetcore",
+            "monitors": [],
+            "discos": [],
+            "path": "/src/Services/Ordering/Ordering.API/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "keywords": []
+        },
+        {
+            "from_full": "microsoft/aspnetcore:1.1",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "",
+            "langs": [],
+            "from": "microsoft/aspnetcore",
+            "monitors": [],
+            "discos": [],
+            "path": "/src/Services/Basket/Basket.API/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "keywords": []
+        },
+        {
+            "from_full": "microsoft/aspnetcore:1.1",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "",
+            "langs": [],
+            "from": "microsoft/aspnetcore",
+            "monitors": [],
+            "discos": [],
+            "path": "/src/Services/Identity/Identity.API/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "keywords": []
+        },
+        {
+            "from_full": "microsoft/aspnetcore:1.1",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "",
+            "langs": [],
+            "from": "microsoft/aspnetcore",
+            "monitors": [],
+            "discos": [],
+            "path": "/src/Services/Catalog/Catalog.API/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "keywords": []
+        },
+        {
+            "from_full": "microsoft/aspnetcore:1.1",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "",
+            "langs": [],
+            "from": "microsoft/aspnetcore",
+            "monitors": [],
+            "discos": [],
+            "path": "/src/Web/WebMVC/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "keywords": []
+        },
+        {
+            "from_full": "microsoft/aspnetcore:1.1",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "",
+            "langs": [],
+            "from": "microsoft/aspnetcore",
+            "monitors": [],
+            "discos": [],
+            "path": "/src/Web/WebSPA/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "keywords": []
+        },
+        {
+            "from_full": "microsoft/aspnetcore:1.1",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "",
+            "langs": [],
+            "from": "microsoft/aspnetcore",
+            "monitors": [],
+            "discos": [],
+            "path": "/src/Web/WebMonolithic/eShopWeb/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "keywords": []
+        }
+    ],
+    "num_files": 11,
+    "num_gates": 0,
+    "num_dbs": 1,
+    "langs": [
+        "c#",
+        "javascript",
+        "html"
+    ],
+    "images": [
+        "microsoft/aspnetcore"
+    ],
+    "num_buses": 0,
+    "num_servers": 1
+}

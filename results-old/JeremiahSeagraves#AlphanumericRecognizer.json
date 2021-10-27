@@ -1,0 +1,384 @@
+{
+    "dbs": [],
+    "num_langs": 4,
+    "buses": [],
+    "monitors": [],
+    "num_services": 7,
+    "num_dbs": 0,
+    "num_servers": 3,
+    "discos": [
+        "eureka"
+    ],
+    "dockers": [
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "openjdk:11",
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/admin/Dockerfile",
+            "keywords": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "openjdk:11",
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/zuul-proxy/Dockerfile",
+            "keywords": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "openjdk:11",
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/discovery-server/Dockerfile",
+            "keywords": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "openjdk:11",
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/ml-agent/Dockerfile",
+            "keywords": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "openjdk:11",
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/app-thymeleaf/Dockerfile",
+            "keywords": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "openjdk:11",
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/api/Dockerfile",
+            "keywords": []
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "host",
+                "serve"
+            ],
+            "from_full": "node:12.8-alpine",
+            "gates": [],
+            "dbs": [],
+            "from": "node",
+            "cmd": "ng serve --host 0.0.0.0",
+            "discos": [],
+            "langs": [
+                "bash"
+            ],
+            "path": "/app-angular/Dockerfile",
+            "keywords": [
+                "bash",
+                "app",
+                "npm",
+                "add",
+                "apk"
+            ]
+        }
+    ],
+    "num_files": 16,
+    "num_dockers": 7,
+    "images": [
+        "openjdk",
+        "node"
+    ],
+    "size": 2302,
+    "servers": [
+        "glassfish",
+        "node",
+        "spring"
+    ],
+    "structure": {
+        "detected_dbs": {
+            "names": [],
+            "shared_dbs": false,
+            "services": [],
+            "num": 0
+        },
+        "num_services": 7,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "com.jeremiahseagraves.ai.alphanumeric-recognizer-discovery-server:1.0-SNAPSHOT",
+                "name": "discovery-service",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "com.jeremiahseagraves.ai.alphanumeric-recognizer-discovery-server",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "com.jeremiahseagraves.ai.alphanumeric-recognizer-admin-service:1.0-SNAPSHOT",
+                "name": "admin-service",
+                "depends_on": [
+                    "discovery-service"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "com.jeremiahseagraves.ai.alphanumeric-recognizer-admin-service",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "Dockerfile",
+                "name": "ui-angular-app",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "Dockerfile",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "com.jeremiahseagraves.ai.alphanumeric-recognizer-zuul-proxy:1.0-SNAPSHOT",
+                "name": "zuul-proxy",
+                "depends_on": [
+                    "discovery-service"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "com.jeremiahseagraves.ai.alphanumeric-recognizer-zuul-proxy",
+                "gates": [
+                    "zuul"
+                ],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "com.jeremiahseagraves.ai.alphanumeric-recognizer-app-thymeleaf:1.0-SNAPSHOT",
+                "name": "ui-thymeleaf-app",
+                "depends_on": [
+                    "discovery-service",
+                    "admin-service"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "com.jeremiahseagraves.ai.alphanumeric-recognizer-app-thymeleaf",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "com.jeremiahseagraves.ai.alphanumeric-recognizer-ml-agent:1.0-SNAPSHOT",
+                "name": "ml-agent",
+                "depends_on": [
+                    "discovery-service",
+                    "admin-service"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "com.jeremiahseagraves.ai.alphanumeric-recognizer-ml-agent",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "com.jeremiahseagraves.ai.alphanumeric-recognizer-api-service:1.0-SNAPSHOT",
+                "name": "api-service",
+                "depends_on": [
+                    "discovery-service",
+                    "admin-service"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "com.jeremiahseagraves.ai.alphanumeric-recognizer-api-service",
+                "gates": [],
+                "monitors": []
+            }
+        ]
+    },
+    "num_discos": 1,
+    "files": [
+        {
+            "servers": [
+                "spring"
+            ],
+            "gates": [
+                "zuul"
+            ],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "path": "/admin/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "gates": [
+                "zuul"
+            ],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "path": "/zuul-proxy/pom.xml"
+        },
+        {
+            "servers": [
+                "glassfish",
+                "spring"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "path": "/discovery-server/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "path": "/ml-agent/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "path": "/app-thymeleaf/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "path": "/api/pom.xml"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/app-angular/package.json"
+        }
+    ],
+    "num_monitors": 0,
+    "num_buses": 0,
+    "num_gates": 1,
+    "gates": [
+        "zuul"
+    ],
+    "name": "JeremiahSeagraves/AlphanumericRecognizer",
+    "avg_size_service": 328.85714285714283,
+    "url": "git://github.com/JeremiahSeagraves/AlphanumericRecognizer.git",
+    "shared_dbs": false,
+    "langs": [
+        "html",
+        "java",
+        "bash",
+        "typescript"
+    ],
+    "languages": [
+        "html",
+        "java",
+        "typescript"
+    ]
+}

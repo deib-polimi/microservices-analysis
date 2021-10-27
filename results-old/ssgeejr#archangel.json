@@ -1,0 +1,219 @@
+{
+    "languages": [
+        "java",
+        "shell",
+        "css"
+    ],
+    "num_servers": 2,
+    "shared_dbs": false,
+    "name": "ssgeejr/archangel",
+    "servers": [
+        "jetty",
+        "tomcat"
+    ],
+    "num_monitors": 0,
+    "num_langs": 3,
+    "images": [
+        "java",
+        "mongo"
+    ],
+    "langs": [
+        "shell",
+        "java",
+        "css"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "archangelfrontend"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "java -jar archAngelFrontEnd.jar",
+            "keywords": [],
+            "path": "/archangelui/docker/Dockerfile",
+            "gates": [],
+            "from": "java",
+            "from_full": "java:8",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "archangelservice"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "java -jar archAngelService.jar",
+            "keywords": [],
+            "path": "/archangelms/docker/Dockerfile",
+            "gates": [],
+            "from": "java",
+            "from_full": "java:8",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "mongod",
+                "etc",
+                "mongodb",
+                "config",
+                "conf"
+            ],
+            "dbs": [
+                "mongo"
+            ],
+            "buses": [],
+            "langs": [],
+            "cmd": "mongod --config /etc/mongodb.conf --smallfiles",
+            "keywords": [
+                "data",
+                "mongodb",
+                "dbpath",
+                "files",
+                "chown"
+            ],
+            "path": "/archangeldb/docker/Dockerfile",
+            "gates": [],
+            "from": "mongo",
+            "from_full": "mongo:latest",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [],
+    "num_buses": 0,
+    "discos": [],
+    "monitors": [],
+    "num_files": 7,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "172.31.20.70:8080/sprint/archangeldb",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "archangeldb",
+                "image": "172.31.20.70",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "172.31.20.70:8080/sprint/archangelms",
+                "depends_on": [
+                    "archangeldb"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "service",
+                "image": "172.31.20.70",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "amir20/dozzle",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "dozzle",
+                "image": "amir20/dozzle",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "172.31.20.70:8080/sprint/archangelui",
+                "depends_on": [
+                    "service"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "ui",
+                "image": "172.31.20.70",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 4,
+        "detected_dbs": {
+            "services": [],
+            "names": [],
+            "num": 0,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [
+        "mongo"
+    ],
+    "num_dbs": 1,
+    "avg_size_service": 126.66666666666667,
+    "num_services": 4,
+    "buses": [],
+    "files": [
+        {
+            "dbs": [],
+            "path": "/pom.xml",
+            "gates": [],
+            "servers": [
+                "tomcat"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/archangelui/pom.xml",
+            "gates": [],
+            "servers": [
+                "jetty",
+                "tomcat"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "mongodb",
+                "mongo"
+            ],
+            "path": "/archangelms/pom.xml",
+            "gates": [],
+            "servers": [
+                "jetty",
+                "tomcat"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "url": "git://github.com/ssgeejr/archangel.git",
+    "num_dockers": 3,
+    "size": 380,
+    "num_discos": 0,
+    "num_gates": 0
+}

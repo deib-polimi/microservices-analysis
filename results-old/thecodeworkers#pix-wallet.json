@@ -1,0 +1,122 @@
+{
+    "size": 1,
+    "shared_dbs": true,
+    "num_servers": 0,
+    "name": "thecodeworkers/pix-wallet",
+    "files": [],
+    "num_files": 1,
+    "num_langs": 0,
+    "dbs": [
+        "mongo"
+    ],
+    "servers": [],
+    "num_discos": 0,
+    "url": "git://github.com/thecodeworkers/pix-wallet.git",
+    "gates": [
+        "gateway"
+    ],
+    "structure": {
+        "services": [
+            {
+                "image": "rabbitmq",
+                "dbs": [],
+                "image_full": "rabbitmq:3.8-management-alpine",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "servers": [],
+                "monitors": [],
+                "name": "rabbit_server",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "./pix-wallet-app-gateway",
+                "dbs": [],
+                "image_full": "./pix-wallet-app-gateway",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "pix_wallet_app_gateway",
+                "gates": [
+                    "gateway"
+                ],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "./resources-microservice",
+                "dbs": [],
+                "image_full": "./resources-microservice",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "resources_microservice",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "mongodb",
+                    "rabbit_server"
+                ]
+            },
+            {
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "image_full": "mongo:4.2.8-bionic",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "mongodb",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "./providers-microservice",
+                "dbs": [],
+                "image_full": "./providers-microservice",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "providers_microservice",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "mongodb",
+                    "rabbit_server"
+                ]
+            }
+        ],
+        "num_services": 5,
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "mongo"
+            ],
+            "services": [
+                "mongodb"
+            ],
+            "shared_dbs": true
+        },
+        "path": "/docker-compose.yml"
+    },
+    "num_gates": 1,
+    "num_dockers": 0,
+    "num_dbs": 1,
+    "num_services": 5,
+    "langs": [],
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_buses": 1,
+    "num_monitors": 0,
+    "languages": [],
+    "dockers": [],
+    "monitors": [],
+    "avg_size_service": 1.0,
+    "discos": [],
+    "images": []
+}

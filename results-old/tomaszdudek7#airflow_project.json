@@ -1,0 +1,286 @@
+{
+    "buses": [],
+    "num_servers": 0,
+    "languages": [
+        "jupyternotebook",
+        "python"
+    ],
+    "dbs": [
+        "redis"
+    ],
+    "num_services": 7,
+    "avg_size_service": 42.5,
+    "servers": [],
+    "structure": {
+        "num_services": 7,
+        "detected_dbs": {
+            "services": [
+                "redis"
+            ],
+            "shared_dbs": true,
+            "num": 1,
+            "names": [
+                "redis"
+            ]
+        },
+        "services": [
+            {
+                "image": "redis",
+                "buses": [],
+                "image_full": "redis:3.2.7",
+                "dbs": [
+                    "redis"
+                ],
+                "depends_on": [],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "redis",
+                "gates": []
+            },
+            {
+                "image": "postgres",
+                "buses": [],
+                "image_full": "postgres:9.6",
+                "dbs": [],
+                "depends_on": [],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "postgres",
+                "gates": []
+            },
+            {
+                "image": "puckel-airflow-with-docker-inside",
+                "buses": [],
+                "image_full": "puckel-airflow-with-docker-inside:latest",
+                "dbs": [],
+                "depends_on": [
+                    "redis"
+                ],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "flower",
+                "gates": []
+            },
+            {
+                "image": "puckel-airflow-with-docker-inside",
+                "buses": [],
+                "image_full": "puckel-airflow-with-docker-inside:latest",
+                "dbs": [],
+                "depends_on": [
+                    "postgres",
+                    "redis"
+                ],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "webserver",
+                "gates": []
+            },
+            {
+                "image": "puckel-airflow-with-docker-inside",
+                "buses": [],
+                "image_full": "puckel-airflow-with-docker-inside:latest",
+                "dbs": [],
+                "depends_on": [
+                    "webserver"
+                ],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "scheduler",
+                "gates": []
+            },
+            {
+                "image": "bpack/socat",
+                "buses": [],
+                "image_full": "bpack/socat",
+                "dbs": [],
+                "depends_on": [],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "socat",
+                "gates": []
+            },
+            {
+                "image": "puckel-airflow-with-docker-inside",
+                "buses": [],
+                "image_full": "puckel-airflow-with-docker-inside:latest",
+                "dbs": [],
+                "depends_on": [
+                    "scheduler"
+                ],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "worker",
+                "gates": []
+            }
+        ],
+        "path": "/airflow/docker-compose.yml"
+    },
+    "monitors": [
+        "prometheus"
+    ],
+    "num_buses": 0,
+    "images": [
+        "puckel/docker-airflow",
+        "python"
+    ],
+    "gates": [],
+    "num_gates": 0,
+    "num_langs": 2,
+    "langs": [
+        "jupyternotebook",
+        "python"
+    ],
+    "url": "git://github.com/tomaszdudek7/airflow_project.git",
+    "num_discos": 0,
+    "num_files": 9,
+    "files": [
+        {
+            "buses": [],
+            "path": "/airflow/requirements.txt",
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "buses": [],
+            "path": "/docker/task1/requirements.txt",
+            "dbs": [],
+            "servers": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "buses": [],
+            "path": "/docker/task3/requirements.txt",
+            "dbs": [],
+            "servers": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "buses": [],
+            "path": "/docker/task2/requirements.txt",
+            "dbs": [],
+            "servers": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "discos": [],
+            "gates": []
+        }
+    ],
+    "shared_dbs": true,
+    "num_monitors": 1,
+    "name": "tomaszdudek7/airflow_project",
+    "num_dbs": 1,
+    "discos": [],
+    "dockers": [
+        {
+            "langs": [],
+            "dbs": [],
+            "path": "/airflow/Dockerfile",
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "docker",
+                "gid",
+                "airflow",
+                "usermod",
+                "groupadd"
+            ],
+            "cmd": "",
+            "buses": [],
+            "from_full": "puckel/docker-airflow:1.10.2",
+            "from": "puckel/docker-airflow",
+            "discos": [],
+            "cmd_keywords": [],
+            "gates": []
+        },
+        {
+            "langs": [
+                "python"
+            ],
+            "dbs": [],
+            "path": "/docker/task1/Dockerfile",
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "install",
+                "tmp",
+                "pip",
+                "airflow",
+                "jupyter"
+            ],
+            "cmd": "",
+            "buses": [],
+            "from_full": "python:3.6.8-jessie",
+            "from": "python",
+            "discos": [],
+            "cmd_keywords": [],
+            "gates": []
+        },
+        {
+            "langs": [
+                "python"
+            ],
+            "dbs": [],
+            "path": "/docker/task3/Dockerfile",
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "install",
+                "tmp",
+                "pip",
+                "airflow",
+                "jupyter"
+            ],
+            "cmd": "",
+            "buses": [],
+            "from_full": "python:3.6.8-jessie",
+            "from": "python",
+            "discos": [],
+            "cmd_keywords": [],
+            "gates": []
+        },
+        {
+            "langs": [
+                "python"
+            ],
+            "dbs": [],
+            "path": "/docker/task2/Dockerfile",
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "install",
+                "tmp",
+                "pip",
+                "airflow",
+                "jupyter"
+            ],
+            "cmd": "",
+            "buses": [],
+            "from_full": "python:3.6.8-jessie",
+            "from": "python",
+            "discos": [],
+            "cmd_keywords": [],
+            "gates": []
+        }
+    ],
+    "num_dockers": 4,
+    "size": 170
+}

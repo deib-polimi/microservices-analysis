@@ -1,0 +1,183 @@
+{
+    "size": 71,
+    "shared_dbs": true,
+    "num_servers": 1,
+    "name": "n-i-c-o-l-a-s/message-relay",
+    "files": [
+        {
+            "gates": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/pom.xml",
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "num_files": 3,
+    "num_langs": 1,
+    "dbs": [
+        "zookeeper",
+        "postgresql"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "num_discos": 1,
+    "url": "git://github.com/n-i-c-o-l-a-s/message-relay.git",
+    "gates": [],
+    "structure": {
+        "services": [
+            {
+                "image": "confluentinc/cp-server",
+                "dbs": [],
+                "image_full": "confluentinc/cp-server",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "broker",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "zookeeper"
+                ]
+            },
+            {
+                "image": "postgres",
+                "dbs": [],
+                "image_full": "postgres",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "postgres",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "obsidiandynamics/kafdrop",
+                "dbs": [],
+                "image_full": "obsidiandynamics/kafdrop",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "kafdrop",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "zookeeper",
+                    "broker"
+                ]
+            },
+            {
+                "image": "confluentinc/cp-zookeeper",
+                "dbs": [
+                    "zookeeper"
+                ],
+                "image_full": "confluentinc/cp-zookeeper",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "zookeeper",
+                "gates": [],
+                "discos": [
+                    "zookeeper"
+                ],
+                "depends_on": []
+            },
+            {
+                "image": "nicolaschambon/messagerelay",
+                "dbs": [],
+                "image_full": "nicolaschambon/messagerelay",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "messagerelay",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "postgres",
+                    "broker"
+                ]
+            },
+            {
+                "image": "dpage/pgadmin4",
+                "dbs": [],
+                "image_full": "dpage/pgadmin4",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "pgadmin",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "zookeeper"
+            ],
+            "services": [
+                "zookeeper"
+            ],
+            "shared_dbs": true
+        },
+        "path": "/src/test/containers/docker-compose.yml"
+    },
+    "num_gates": 0,
+    "num_dockers": 1,
+    "num_dbs": 2,
+    "num_services": 6,
+    "langs": [
+        "java"
+    ],
+    "buses": [
+        "kafka"
+    ],
+    "num_buses": 1,
+    "num_monitors": 0,
+    "languages": [
+        "java"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "monitors": [],
+            "from_full": "openjdk:8",
+            "servers": [
+                "spring"
+            ],
+            "path": "/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "spring",
+                "system",
+                "adduser",
+                "echo",
+                "jar"
+            ],
+            "discos": []
+        }
+    ],
+    "monitors": [],
+    "avg_size_service": 71.0,
+    "discos": [
+        "zookeeper"
+    ],
+    "images": [
+        "openjdk"
+    ]
+}

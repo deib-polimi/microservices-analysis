@@ -1,0 +1,472 @@
+{
+    "dbs": [
+        "db"
+    ],
+    "discos": [],
+    "servers": [
+        "node"
+    ],
+    "num_dockers": 11,
+    "structure": {
+        "path": "/Microservice-API-Gateway/kong_dock/docker-compose.yml",
+        "services": [
+            {
+                "dbs": [],
+                "discos": [],
+                "name": "kong",
+                "depends_on": [
+                    "kong_db",
+                    "kong_migration"
+                ],
+                "image": "kong",
+                "servers": [],
+                "gates": [
+                    "kong"
+                ],
+                "buses": [],
+                "monitors": [],
+                "image_full": "kong:2.0.2-alpine"
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "name": "prometheus",
+                "depends_on": [],
+                "image": "prom/prometheus",
+                "servers": [],
+                "gates": [],
+                "buses": [],
+                "monitors": [
+                    "prometheus"
+                ],
+                "image_full": "prom/prometheus:latest"
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "name": "kong_migration",
+                "depends_on": [
+                    "kong_db"
+                ],
+                "image": "kong",
+                "servers": [],
+                "gates": [
+                    "kong"
+                ],
+                "buses": [],
+                "monitors": [],
+                "image_full": "kong:latest"
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "name": "node_exporter",
+                "depends_on": [],
+                "image": "prom/node-exporter",
+                "servers": [
+                    "node"
+                ],
+                "gates": [],
+                "buses": [],
+                "monitors": [],
+                "image_full": "prom/node-exporter:latest"
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "name": "konga_db",
+                "depends_on": [],
+                "image": "postgres",
+                "servers": [],
+                "gates": [],
+                "buses": [],
+                "monitors": [],
+                "image_full": "postgres:9.6"
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "name": "konga",
+                "depends_on": [],
+                "image": "pantsel/konga",
+                "servers": [],
+                "gates": [],
+                "buses": [],
+                "monitors": [],
+                "image_full": "pantsel/konga"
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "name": "kong_db",
+                "depends_on": [],
+                "image": "postgres",
+                "servers": [],
+                "gates": [],
+                "buses": [],
+                "monitors": [],
+                "image_full": "postgres:9.6"
+            }
+        ],
+        "num_services": 7,
+        "detected_dbs": {
+            "names": [],
+            "num": 0,
+            "shared_dbs": false,
+            "services": []
+        }
+    },
+    "files": [
+        {
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "servers": [],
+            "path": "/Microservice/student_dock/python/requirements.txt",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "servers": [],
+            "path": "/Microservice/register_gateway_dock/python/requirements.txt",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "servers": [],
+            "path": "/Microservice/enroll_dock/python/requirements.txt",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "servers": [],
+            "path": "/Microservice/email_dock/python/requirements.txt",
+            "gates": [],
+            "monitors": []
+        }
+    ],
+    "images": [
+        "python",
+        "php",
+        "debian"
+    ],
+    "num_servers": 1,
+    "monitors": [
+        "prometheus"
+    ],
+    "shared_dbs": false,
+    "dockers": [
+        {
+            "dbs": [
+                "mariadb"
+            ],
+            "discos": [],
+            "cmd_keywords": [
+                "guest",
+                "amqp",
+                "rabbitmq",
+                "run",
+                "nameko"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "servers": [],
+            "from_full": "python:3.7.3-alpine3.8",
+            "langs": [
+                "python"
+            ],
+            "from": "python",
+            "cmd": "nameko run rpc --broker amqp://guest:guest@rabbitmq:5672",
+            "path": "/Microservice/student_dock/python/Dockerfile",
+            "monitors": [],
+            "keywords": [
+                "cache",
+                "pip",
+                "dir",
+                "txt",
+                "apk"
+            ],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [
+                "app",
+                "uvicorn",
+                "port",
+                "host",
+                "api"
+            ],
+            "buses": [],
+            "servers": [],
+            "from_full": "python:3.7.3-alpine3.8",
+            "langs": [
+                "python"
+            ],
+            "from": "python",
+            "cmd": "uvicorn api:app --host 0.0.0.0 --port 80",
+            "path": "/Microservice/register_gateway_dock/python/Dockerfile",
+            "monitors": [],
+            "keywords": [
+                "cache",
+                "requirements",
+                "apk",
+                "pip",
+                "dir"
+            ],
+            "gates": []
+        },
+        {
+            "dbs": [
+                "mariadb"
+            ],
+            "discos": [],
+            "cmd_keywords": [
+                "guest",
+                "amqp",
+                "rabbitmq",
+                "run",
+                "nameko"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "servers": [],
+            "from_full": "python:3.7.3-alpine3.8",
+            "langs": [
+                "python"
+            ],
+            "from": "python",
+            "cmd": "nameko run rpc --broker amqp://guest:guest@rabbitmq:5672",
+            "path": "/Microservice/enroll_dock/python/Dockerfile",
+            "monitors": [],
+            "keywords": [
+                "cache",
+                "pip",
+                "dir",
+                "txt",
+                "apk"
+            ],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [
+                "guest",
+                "amqp",
+                "rabbitmq",
+                "run",
+                "nameko"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "servers": [],
+            "from_full": "python:3.7.3-alpine3.8",
+            "langs": [
+                "python"
+            ],
+            "from": "python",
+            "cmd": "nameko run rpc --broker amqp://guest:guest@rabbitmq:5672",
+            "path": "/Microservice/email_dock/python/Dockerfile",
+            "monitors": [],
+            "keywords": [
+                "cache",
+                "requirements",
+                "apk",
+                "pip",
+                "dir"
+            ],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "php:7.4-fpm-alpine",
+            "langs": [
+                "php"
+            ],
+            "from": "php",
+            "cmd": "",
+            "path": "/Docker-Part3-LEMP-Stack/lemp_dock/php/Dockerfile",
+            "monitors": [],
+            "keywords": [
+                "mysqli",
+                "php",
+                "ext",
+                "install",
+                "docker"
+            ],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "python:3.7.2-alpine3.8",
+            "langs": [
+                "python"
+            ],
+            "from": "python",
+            "cmd": "",
+            "path": "/Docker-Part2/docker102/Dockerfile",
+            "monitors": [],
+            "keywords": [
+                "add",
+                "apk",
+                "update",
+                "git"
+            ],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "python:3.7.2-alpine3.8",
+            "langs": [
+                "python"
+            ],
+            "from": "python",
+            "cmd": "",
+            "path": "/Docker-Part2/web_dock/server/Dockerfile",
+            "monitors": [],
+            "keywords": [],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "debian:stable",
+            "langs": [],
+            "from": "debian",
+            "cmd": "",
+            "path": "/Docker-Part2/small_image/Dockerfile",
+            "monitors": [],
+            "keywords": [
+                "apt",
+                "get",
+                "install",
+                "curl",
+                "purge"
+            ],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "php:7.4-fpm-alpine",
+            "langs": [
+                "php"
+            ],
+            "from": "php",
+            "cmd": "",
+            "path": "/Docker-Part4-VPS-Encrypt/website1/php/Dockerfile",
+            "monitors": [],
+            "keywords": [
+                "mysqli",
+                "php",
+                "ext",
+                "install",
+                "docker"
+            ],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "php:7.4-fpm-alpine",
+            "langs": [
+                "php"
+            ],
+            "from": "php",
+            "cmd": "",
+            "path": "/Docker-Part4-VPS-Encrypt/website2/php/Dockerfile",
+            "monitors": [],
+            "keywords": [
+                "mysqli",
+                "php",
+                "ext",
+                "install",
+                "docker"
+            ],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [
+                "python",
+                "main"
+            ],
+            "buses": [],
+            "servers": [],
+            "from_full": "python:latest",
+            "langs": [
+                "python"
+            ],
+            "from": "python",
+            "cmd": "python ./main.py",
+            "path": "/Docker-Part1/docker101/Dockerfile",
+            "monitors": [],
+            "keywords": [],
+            "gates": []
+        }
+    ],
+    "num_discos": 0,
+    "size": 399158,
+    "name": "boriphuth/pjjop",
+    "buses": [
+        "amqp"
+    ],
+    "languages": [
+        "tsql",
+        "vba"
+    ],
+    "num_buses": 1,
+    "langs": [
+        "python",
+        "php",
+        "tsql",
+        "vba"
+    ],
+    "num_services": 7,
+    "num_langs": 4,
+    "num_files": 16,
+    "avg_size_service": 36287.09090909091,
+    "num_monitors": 1,
+    "url": "git://github.com/boriphuth/pjjop.git",
+    "num_dbs": 1,
+    "gates": [
+        "kong"
+    ],
+    "num_gates": 1
+}

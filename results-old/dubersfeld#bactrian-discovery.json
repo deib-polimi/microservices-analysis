@@ -1,0 +1,361 @@
+{
+    "dbs": [
+        "mysql"
+    ],
+    "num_langs": 2,
+    "buses": [],
+    "monitors": [],
+    "num_services": 7,
+    "num_dbs": 1,
+    "num_servers": 1,
+    "discos": [
+        "eureka"
+    ],
+    "dockers": [
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "mysql",
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "from": "mysql",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/docker/customers/Dockerfile",
+            "keywords": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "mysql",
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "from": "mysql",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/docker/users/Dockerfile",
+            "keywords": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/frontendsvr/src/main/docker/Dockerfile",
+            "keywords": [
+                "apk",
+                "openbsd",
+                "netcat",
+                "upgrade",
+                "add"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/confsvr/src/main/docker/Dockerfile",
+            "keywords": [
+                "wrapper",
+                "chmod"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/users-service/src/main/docker/Dockerfile",
+            "keywords": [
+                "apk",
+                "openbsd",
+                "netcat",
+                "upgrade",
+                "add"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/customers-service/src/main/docker/Dockerfile",
+            "keywords": [
+                "apk",
+                "openbsd",
+                "netcat",
+                "upgrade",
+                "add"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/eureka-service/src/main/docker/Dockerfile",
+            "keywords": [
+                "wrapper",
+                "chmod"
+            ]
+        }
+    ],
+    "num_files": 13,
+    "num_dockers": 7,
+    "images": [
+        "openjdk",
+        "mysql"
+    ],
+    "size": 731,
+    "servers": [
+        "spring"
+    ],
+    "structure": {
+        "detected_dbs": {
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": false,
+            "services": [
+                "customers-mysql",
+                "users-mysql"
+            ],
+            "num": 2
+        },
+        "num_services": 7,
+        "path": "/docker/docker-compose.yml",
+        "services": [
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "bactrian/customers-service",
+                "name": "customers-service",
+                "depends_on": [
+                    "customers-mysql",
+                    "bactrian-config"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "bactrian/customers-service",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "bactrian/users-service",
+                "name": "users-service",
+                "depends_on": [
+                    "users-mysql",
+                    "bactrian-config"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "bactrian/users-service",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "bactrian/confsvr",
+                "name": "bactrian-config",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "bactrian/confsvr",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "mysql",
+                "name": "customers-mysql",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "image": "mysql",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "mysql",
+                "name": "users-mysql",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "image": "mysql",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "bactrian/frontendsvr",
+                "name": "frontend",
+                "depends_on": [
+                    "customers-service",
+                    "users-service"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "bactrian/frontendsvr",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [
+                    "eureka"
+                ],
+                "servers": [],
+                "image_full": "bactrian/eureka-service",
+                "name": "bactrian-eureka",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "bactrian/eureka-service",
+                "gates": [],
+                "monitors": []
+            }
+        ]
+    },
+    "num_discos": 1,
+    "files": [
+        {
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "path": "/frontendsvr/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/confsvr/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "path": "/users-service/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "path": "/customers-service/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "path": "/eureka-service/pom.xml"
+        }
+    ],
+    "num_monitors": 0,
+    "num_buses": 0,
+    "num_gates": 0,
+    "gates": [],
+    "name": "dubersfeld/bactrian-discovery",
+    "avg_size_service": 104.42857142857143,
+    "url": "git://github.com/dubersfeld/bactrian-discovery.git",
+    "shared_dbs": false,
+    "langs": [
+        "html",
+        "java"
+    ],
+    "languages": [
+        "java",
+        "html"
+    ]
+}

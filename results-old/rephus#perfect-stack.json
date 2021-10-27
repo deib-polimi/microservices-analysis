@@ -1,0 +1,319 @@
+{
+    "num_servers": 3,
+    "num_gates": 1,
+    "num_dockers": 4,
+    "num_buses": 1,
+    "dockers": [
+        {
+            "monitors": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "from_full": "node:7-alpine",
+            "discos": [],
+            "from": "node",
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [
+                "app",
+                "supervisor"
+            ],
+            "cmd": "supervisor app.js",
+            "path": "/gateway/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "npm",
+                "install",
+                "silent",
+                "dev",
+                "useful"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "python:3-alpine",
+            "discos": [],
+            "from": "python",
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "cmd_keywords": [
+                "run"
+            ],
+            "cmd": "run.sh",
+            "path": "/user/Dockerfile",
+            "dbs": [
+                "postgresql"
+            ],
+            "keywords": [
+                "dev",
+                "apk",
+                "pip",
+                "update",
+                "requirements"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "from_full": "node:7-alpine",
+            "discos": [],
+            "from": "node",
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [
+                "node",
+                "app"
+            ],
+            "cmd": "node app.js",
+            "path": "/slack/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "silent",
+                "install",
+                "npm"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "python:3-alpine",
+            "discos": [],
+            "from": "python",
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "cmd_keywords": [
+                "behave"
+            ],
+            "cmd": "behave",
+            "path": "/bdd/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "txt",
+                "pip",
+                "install",
+                "requirements"
+            ]
+        }
+    ],
+    "shared_dbs": false,
+    "languages": [
+        "javascript",
+        "python"
+    ],
+    "gates": [
+        "gateway"
+    ],
+    "avg_size_service": 57.0,
+    "discos": [],
+    "num_dbs": 2,
+    "monitors": [],
+    "servers": [
+        "node",
+        "flask",
+        "express"
+    ],
+    "num_langs": 2,
+    "buses": [
+        "rabbitmq"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "slack",
+                "image": "slack",
+                "buses": [],
+                "name": "slack",
+                "discos": [],
+                "depends_on": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [
+                    "gateway"
+                ],
+                "image_full": "gateway",
+                "image": "gateway",
+                "buses": [],
+                "name": "gateway",
+                "discos": [],
+                "depends_on": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "user",
+                "image": "user",
+                "buses": [],
+                "name": "user",
+                "discos": [],
+                "depends_on": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "bdd",
+                "image": "bdd",
+                "buses": [],
+                "name": "bdd",
+                "discos": [],
+                "depends_on": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "rabbitmq:3-alpine",
+                "image": "rabbitmq",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "name": "rabbitmq",
+                "discos": [],
+                "depends_on": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "user",
+                "image": "user",
+                "buses": [],
+                "name": "user-queue",
+                "discos": [],
+                "depends_on": [
+                    "user"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "postgres:9-alpine",
+                "image": "postgres",
+                "buses": [],
+                "name": "postgres",
+                "discos": [],
+                "depends_on": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "redis:3-alpine",
+                "image": "redis",
+                "buses": [],
+                "name": "redis",
+                "discos": [],
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "num": 1,
+            "services": [
+                "redis"
+            ],
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 8
+    },
+    "images": [
+        "node",
+        "python"
+    ],
+    "num_files": 9,
+    "num_services": 8,
+    "langs": [
+        "python",
+        "javascript"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/user/requirements.txt",
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/bdd/requirements.txt",
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/gateway/package.json",
+            "dbs": [
+                "redis"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/slack/package.json",
+            "dbs": [
+                "redis"
+            ]
+        }
+    ],
+    "url": "git://github.com/rephus/perfect-stack.git",
+    "size": 228,
+    "name": "rephus/perfect-stack",
+    "num_discos": 0,
+    "num_monitors": 0,
+    "dbs": [
+        "postgresql",
+        "redis"
+    ]
+}

@@ -1,0 +1,206 @@
+{
+    "name": "taurussibi/MicroServices_B6_Docker_Files",
+    "num_dbs": 1,
+    "num_services": 10,
+    "num_files": 1,
+    "servers": [],
+    "url": "git://github.com/taurussibi/MicroServices_B6_Docker_Files.git",
+    "discos": [
+        "eureka"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "product-view",
+                "image_full": "product-view:latest",
+                "image": "product-view",
+                "servers": [],
+                "depends_on": [
+                    "eureka-server"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "product-ms",
+                "image_full": "product-ms:latest",
+                "image": "product-ms",
+                "servers": [],
+                "depends_on": [
+                    "config-server",
+                    "eureka-server",
+                    "zuul-gateway",
+                    "product-view",
+                    "db-product"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "price-ms",
+                "image_full": "price-ms:latest",
+                "image": "price-ms",
+                "servers": [],
+                "depends_on": [
+                    "config-server",
+                    "eureka-server",
+                    "zuul-gateway",
+                    "product-view",
+                    "db-price"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "config-server",
+                "image_full": "config-server:latest",
+                "image": "config-server",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "promotion-ms",
+                "image_full": "promotion-ms:latest",
+                "image": "promotion-ms",
+                "servers": [],
+                "depends_on": [
+                    "config-server",
+                    "eureka-server",
+                    "zuul-gateway",
+                    "product-view",
+                    "db-promotion"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "eureka-server",
+                "image_full": "eureka-server:latest",
+                "image": "eureka-server",
+                "servers": [],
+                "depends_on": [
+                    "config-server"
+                ],
+                "gates": [],
+                "discos": [
+                    "eureka"
+                ],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "db-promotion",
+                "image_full": "mysql:5.7.28",
+                "image": "mysql",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "zuul-gateway",
+                "image_full": "zuul-gateway:latest",
+                "image": "zuul-gateway",
+                "servers": [],
+                "depends_on": [
+                    "eureka-server"
+                ],
+                "gates": [
+                    "zuul"
+                ],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "db-price",
+                "image_full": "mysql:5.7.28",
+                "image": "mysql",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "db-product",
+                "image_full": "mysql:5.7.28",
+                "image": "mysql",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [
+                "db-promotion",
+                "db-price",
+                "db-product"
+            ],
+            "num": 3,
+            "names": [
+                "mysql"
+            ]
+        },
+        "num_services": 10
+    },
+    "num_buses": 0,
+    "size": 4,
+    "dockers": [],
+    "languages": [],
+    "dbs": [
+        "mysql"
+    ],
+    "monitors": [],
+    "shared_dbs": false,
+    "avg_size_service": 4.0,
+    "num_monitors": 0,
+    "files": [],
+    "langs": [],
+    "num_servers": 0,
+    "buses": [],
+    "num_langs": 0,
+    "num_gates": 1,
+    "num_discos": 1,
+    "images": [],
+    "num_dockers": 0,
+    "gates": [
+        "zuul"
+    ]
+}

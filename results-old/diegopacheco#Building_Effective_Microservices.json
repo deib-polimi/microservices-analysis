@@ -1,0 +1,292 @@
+{
+    "num_servers": 3,
+    "servers": [
+        "glassfish",
+        "tomcat",
+        "jetty"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "num_dbs": 1,
+    "files": [
+        {
+            "monitors": [],
+            "servers": [],
+            "discos": [],
+            "gates": [],
+            "buses": [],
+            "path": "/code/build.gradle",
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "discos": [],
+            "gates": [],
+            "buses": [],
+            "path": "/code/settings.gradle",
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "glassfish",
+                "jetty"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "loadbalancer"
+            ],
+            "buses": [],
+            "path": "/code/hystrix-producer/build.gradle",
+            "dbs": [
+                "redis"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "glassfish",
+                "jetty"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "loadbalancer"
+            ],
+            "buses": [],
+            "path": "/code/meetup-microservice/build.gradle",
+            "dbs": [
+                "redis"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "loadbalancer"
+            ],
+            "buses": [],
+            "path": "/code/client/build.gradle",
+            "dbs": []
+        }
+    ],
+    "langs": [
+        "java"
+    ],
+    "dockers": [
+        {
+            "keywords": [
+                "apt",
+                "get",
+                "update",
+                "http",
+                "app"
+            ],
+            "path": "/docker/hystrix-producer/Dockerfile",
+            "discos": [],
+            "cmd": "./gradlew run",
+            "from_full": "ubuntu:16.04",
+            "from": "ubuntu",
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "cmd_keywords": [
+                "gradlew",
+                "run"
+            ],
+            "dbs": []
+        },
+        {
+            "keywords": [
+                "hystrix",
+                "apt",
+                "git",
+                "dashboard",
+                "get"
+            ],
+            "path": "/docker/hystrix/Dockerfile",
+            "discos": [],
+            "cmd": "",
+            "from_full": "tomcat:8.5",
+            "from": "tomcat",
+            "servers": [
+                "tomcat"
+            ],
+            "langs": [
+                "java"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "cmd_keywords": [],
+            "dbs": []
+        },
+        {
+            "keywords": [
+                "apt",
+                "get",
+                "update",
+                "http",
+                "app"
+            ],
+            "path": "/docker/microservice/Dockerfile",
+            "discos": [],
+            "cmd": "./gradlew :meetup-microservice:run",
+            "from_full": "ubuntu:16.04",
+            "from": "ubuntu",
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "cmd_keywords": [
+                "meetup",
+                "microservice",
+                "gradlew",
+                "run"
+            ],
+            "dbs": []
+        },
+        {
+            "keywords": [
+                "eureka",
+                "apt",
+                "git",
+                "get",
+                "update"
+            ],
+            "path": "/docker/eureka/Dockerfile",
+            "discos": [
+                "eureka"
+            ],
+            "cmd": "",
+            "from_full": "tomcat:8.5",
+            "from": "tomcat",
+            "servers": [
+                "tomcat"
+            ],
+            "langs": [
+                "java"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "cmd_keywords": [],
+            "dbs": []
+        }
+    ],
+    "size": 134,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "dbs": [],
+                "servers": [],
+                "discos": [],
+                "image_full": "packt/microservice",
+                "gates": [],
+                "buses": [],
+                "name": "microservice",
+                "depends_on": [
+                    "redis",
+                    "eureka",
+                    "hystrixdash"
+                ],
+                "image": "packt/microservice"
+            },
+            {
+                "monitors": [],
+                "dbs": [],
+                "servers": [],
+                "discos": [],
+                "image_full": "packt/hystrixdash",
+                "gates": [],
+                "buses": [],
+                "name": "hystrixdash",
+                "depends_on": [],
+                "image": "packt/hystrixdash"
+            },
+            {
+                "monitors": [],
+                "dbs": [],
+                "servers": [],
+                "discos": [
+                    "eureka"
+                ],
+                "image_full": "packt/eureka",
+                "gates": [],
+                "buses": [],
+                "name": "eureka",
+                "depends_on": [],
+                "image": "packt/eureka"
+            },
+            {
+                "monitors": [],
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "discos": [],
+                "image_full": "redis",
+                "gates": [],
+                "buses": [],
+                "name": "redis",
+                "depends_on": [],
+                "image": "redis"
+            }
+        ],
+        "path": "/docker/docker-compose.yml",
+        "detected_dbs": {
+            "num": 1,
+            "services": [
+                "redis"
+            ],
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 4
+    },
+    "images": [
+        "ubuntu",
+        "tomcat"
+    ],
+    "num_files": 10,
+    "gates": [
+        "loadbalancer"
+    ],
+    "buses": [],
+    "num_langs": 1,
+    "name": "diegopacheco/Building_Effective_Microservices",
+    "url": "git://github.com/diegopacheco/Building_Effective_Microservices.git",
+    "num_gates": 1,
+    "num_buses": 0,
+    "num_discos": 1,
+    "num_monitors": 0,
+    "num_dockers": 4,
+    "num_services": 4,
+    "monitors": [],
+    "avg_size_service": 33.5,
+    "languages": [
+        "java"
+    ],
+    "dbs": [
+        "redis"
+    ],
+    "shared_dbs": false
+}

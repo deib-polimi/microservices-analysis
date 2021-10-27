@@ -1,0 +1,169 @@
+{
+    "discos": [],
+    "avg_size_service": 12.5,
+    "buses": [],
+    "num_gates": 1,
+    "name": "ruddra/docker-django",
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "nginx",
+                "dbs": [],
+                "depends_on": [
+                    "web"
+                ],
+                "discos": [],
+                "image_full": "nginx:alpine",
+                "image": "nginx",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": [
+                    "nginx"
+                ]
+            },
+            {
+                "name": "web",
+                "dbs": [],
+                "depends_on": [
+                    "db"
+                ],
+                "discos": [],
+                "image_full": ".",
+                "image": ".",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "db",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": ".",
+                "image": ".",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "redis:alpine",
+                "image": "redis",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [
+                "redis"
+            ],
+            "num": 1,
+            "shared_dbs": false,
+            "services": [
+                "redis"
+            ]
+        },
+        "num_services": 4
+    },
+    "dbs": [
+        "postgresql",
+        "redis"
+    ],
+    "dockers": [
+        {
+            "langs": [],
+            "cmd_keywords": [],
+            "from_full": "postgres:11-alpine",
+            "buses": [],
+            "monitors": [],
+            "from": "postgres",
+            "keywords": [
+                "usr",
+                "local",
+                "bin",
+                "maintenance",
+                "rmdir"
+            ],
+            "gates": [],
+            "path": "/compose/postgres/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        },
+        {
+            "langs": [
+                "python"
+            ],
+            "cmd_keywords": [
+                "python",
+                "manage",
+                "mydjango",
+                "input",
+                "tasks"
+            ],
+            "from_full": "python:3.7-alpine",
+            "buses": [],
+            "monitors": [],
+            "from": "python",
+            "keywords": [
+                "pip",
+                "dev",
+                "cache",
+                "apk",
+                "install"
+            ],
+            "gates": [],
+            "path": "/compose/django/Dockerfile",
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [],
+            "cmd": "sh -c python manage.py collectstatic --no-input; python manage.py migrate; gunicorn mydjango.wsgi -b 0.0.0.0:8000 & celery worker --app=myapp.tasks",
+            "servers": []
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "size": 25,
+    "num_monitors": 0,
+    "images": [
+        "python",
+        "postgres"
+    ],
+    "num_buses": 0,
+    "num_services": 4,
+    "servers": [],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_discos": 0,
+    "languages": [
+        "python",
+        "shell",
+        "dockerfile"
+    ],
+    "url": "git://github.com/ruddra/docker-django.git",
+    "langs": [
+        "dockerfile",
+        "python",
+        "shell"
+    ],
+    "num_dbs": 2,
+    "num_servers": 0,
+    "num_langs": 3,
+    "files": [],
+    "num_dockers": 2,
+    "num_files": 3
+}

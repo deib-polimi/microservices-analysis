@@ -1,0 +1,202 @@
+{
+    "gates": [],
+    "num_buses": 0,
+    "url": "git://github.com/harshjp722/hp-banking-system.git",
+    "images": [
+        "base"
+    ],
+    "avg_size_service": 1137.75,
+    "num_langs": 1,
+    "num_monitors": 0,
+    "num_dockers": 4,
+    "num_discos": 0,
+    "num_servers": 0,
+    "buses": [],
+    "discos": [],
+    "dockers": [
+        {
+            "path": "/src/ApiGateway/OcelotApiGateway/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "base",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "base",
+            "monitors": [],
+            "keywords": [
+                "ocelotapigateway",
+                "csproj",
+                "dotnet",
+                "release",
+                "app"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/src/Services/Loans/Loans.Api/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "base",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "base",
+            "monitors": [],
+            "keywords": [
+                "loans",
+                "api",
+                "csproj",
+                "dotnet",
+                "release"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/src/Services/Accounts/Accounts.Api/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "base",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "base",
+            "monitors": [],
+            "keywords": [
+                "accounts",
+                "api",
+                "csproj",
+                "dotnet",
+                "release"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/src/Services/Identity/Identity.Api/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "base",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "base",
+            "monitors": [],
+            "keywords": [
+                "identity",
+                "api",
+                "csproj",
+                "dotnet",
+                "release"
+            ],
+            "buses": []
+        }
+    ],
+    "size": 4551,
+    "name": "harshjp722/hp-banking-system",
+    "num_services": 5,
+    "dbs": [],
+    "shared_dbs": false,
+    "langs": [
+        "c#"
+    ],
+    "languages": [
+        "c#"
+    ],
+    "servers": [],
+    "num_files": 5,
+    "monitors": [],
+    "num_dbs": 0,
+    "num_gates": 0,
+    "files": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 5,
+        "detected_dbs": {
+            "services": [],
+            "num": 0,
+            "names": [],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "sql.data"
+                ],
+                "servers": [],
+                "image_full": "${DOCKER_REGISTRY-}loansapi",
+                "name": "loans.api",
+                "gates": [],
+                "image": "${DOCKER_REGISTRY-}loansapi",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "sql.data"
+                ],
+                "servers": [],
+                "image_full": "${DOCKER_REGISTRY-}accountsapi",
+                "name": "accounts.api",
+                "gates": [],
+                "image": "${DOCKER_REGISTRY-}accountsapi",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "microsoft/mssql-server-linux:2017-latest",
+                "name": "sql.data",
+                "gates": [],
+                "image": "microsoft/mssql-server-linux",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "sql.data"
+                ],
+                "servers": [],
+                "image_full": "${DOCKER_REGISTRY-}identityapi",
+                "name": "identity.api",
+                "gates": [],
+                "image": "${DOCKER_REGISTRY-}identityapi",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "sql.data",
+                    "accounts.api",
+                    "loans.api",
+                    "identity.api"
+                ],
+                "servers": [],
+                "image_full": "${DOCKER_REGISTRY-}ocelotapigateway",
+                "name": "ocelotapigateway",
+                "gates": [],
+                "image": "${DOCKER_REGISTRY-}ocelotapigateway",
+                "dbs": [],
+                "buses": []
+            }
+        ]
+    }
+}

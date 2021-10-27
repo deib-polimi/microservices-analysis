@@ -1,0 +1,202 @@
+{
+    "structure": {
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": true,
+            "services": [
+                "redis"
+            ]
+        },
+        "num_services": 7,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [
+                    "postgres"
+                ],
+                "name": "payment.api.v1.migrate",
+                "dbs": [],
+                "image": ".",
+                "monitors": [],
+                "servers": [],
+                "image_full": ".",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "name": "rabbitmq",
+                "dbs": [],
+                "image": "bitnami/rabbitmq",
+                "monitors": [],
+                "servers": [],
+                "image_full": "bitnami/rabbitmq:latest",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "name": "postgres",
+                "dbs": [],
+                "image": "postgres",
+                "monitors": [],
+                "servers": [],
+                "image_full": "postgres:11.2",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "postgres",
+                    "payment.api.v1.migrate",
+                    "redis",
+                    "rabbitmq",
+                    "payment.api.v1.celery-worker"
+                ],
+                "name": "payment.api.v1",
+                "dbs": [],
+                "image": ".",
+                "monitors": [],
+                "servers": [],
+                "image_full": ".",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "name": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "image": "bitnami/redis",
+                "monitors": [],
+                "servers": [],
+                "image_full": "bitnami/redis:latest",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "postgres",
+                    "payment.api.v1.migrate",
+                    "redis",
+                    "rabbitmq"
+                ],
+                "name": "payment.api.v1.celery-worker",
+                "dbs": [],
+                "image": ".",
+                "monitors": [],
+                "servers": [],
+                "image_full": ".",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "postgres",
+                    "redis",
+                    "rabbitmq"
+                ],
+                "name": "payment.api.v1.autotests",
+                "dbs": [],
+                "image": ".",
+                "monitors": [],
+                "servers": [],
+                "image_full": ".",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            }
+        ]
+    },
+    "dbs": [
+        "redis",
+        "postgresql"
+    ],
+    "dockers": [
+        {
+            "dbs": [
+                "postgresql"
+            ],
+            "path": "/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": [],
+            "from_full": "python:3.7.2",
+            "langs": [
+                "python"
+            ],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "install",
+                "pip",
+                "apt",
+                "dos",
+                "bin"
+            ],
+            "from": "python",
+            "cmd": ""
+        }
+    ],
+    "files": [
+        {
+            "dbs": [
+                "redis"
+            ],
+            "path": "/payment_api_v1/requirements.txt",
+            "monitors": [],
+            "servers": [
+                "django"
+            ],
+            "buses": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "languages": [
+        "python"
+    ],
+    "num_dbs": 2,
+    "num_monitors": 0,
+    "images": [
+        "python"
+    ],
+    "name": "dizpers/payment_api_v1",
+    "shared_dbs": true,
+    "num_servers": 1,
+    "num_langs": 1,
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_services": 7,
+    "num_dockers": 1,
+    "size": 68,
+    "avg_size_service": 68.0,
+    "gates": [],
+    "discos": [],
+    "langs": [
+        "python"
+    ],
+    "num_files": 3,
+    "url": "git://github.com/dizpers/payment_api_v1.git",
+    "monitors": [],
+    "servers": [
+        "django"
+    ],
+    "num_buses": 1,
+    "num_discos": 0,
+    "num_gates": 0
+}

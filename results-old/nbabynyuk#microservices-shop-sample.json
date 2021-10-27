@@ -1,0 +1,321 @@
+{
+    "avg_size_service": 34.5,
+    "buses": [],
+    "num_dbs": 2,
+    "files": [
+        {
+            "path": "/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "path": "/payments/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "mongodb",
+                "mongo"
+            ],
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": []
+        },
+        {
+            "path": "/orders-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "mongodb",
+                "mongo"
+            ],
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": []
+        },
+        {
+            "path": "/product-catalog/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "mongodb",
+                "mongo"
+            ],
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": []
+        },
+        {
+            "path": "/stock/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "mongodb",
+                "mongo"
+            ],
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": []
+        },
+        {
+            "path": "/discovery-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": []
+        },
+        {
+            "path": "/common/pom.xml",
+            "servers": [],
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "path": "/users-app/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": [
+                "prometheus"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": []
+        }
+    ],
+    "num_dockers": 4,
+    "num_langs": 1,
+    "num_servers": 1,
+    "num_buses": 0,
+    "num_discos": 1,
+    "gates": [],
+    "images": [
+        "adoptopenjdk/openjdk11",
+        "openjdk"
+    ],
+    "size": 138,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 6,
+        "services": [
+            {
+                "buses": [],
+                "name": "eureka-server",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "./discovery-service/",
+                "image_full": "./discovery-service/",
+                "discos": [],
+                "gates": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "name": "mongodb",
+                "dbs": [
+                    "mongo"
+                ],
+                "monitors": [],
+                "servers": [],
+                "image": "mongo",
+                "image_full": "mongo:3.2",
+                "discos": [],
+                "gates": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "name": "userappdb",
+                "dbs": [
+                    "mysql"
+                ],
+                "monitors": [],
+                "servers": [],
+                "image": "mysql",
+                "image_full": "mysql:5.7",
+                "discos": [],
+                "gates": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "name": "productcatalog",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "./product-catalog/",
+                "image_full": "./product-catalog/",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "mongodb"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "userapp",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "./users-app/",
+                "image_full": "./users-app/",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "eureka-server",
+                    "userappdb"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "payments",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "./payments/",
+                "image_full": "./payments/",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "mongodb"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": true,
+            "num": 2,
+            "names": [
+                "mysql",
+                "mongo"
+            ],
+            "services": [
+                "mongodb",
+                "userappdb"
+            ]
+        }
+    },
+    "num_files": 13,
+    "servers": [
+        "spring"
+    ],
+    "url": "git://github.com/nbabynyuk/microservices-shop-sample.git",
+    "dbs": [
+        "mysql",
+        "mongo"
+    ],
+    "monitors": [
+        "prometheus"
+    ],
+    "dockers": [
+        {
+            "from_full": "adoptopenjdk/openjdk11:alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/payments/Dockerfile",
+            "from": "adoptopenjdk/openjdk11",
+            "cmd": "",
+            "cmd_keywords": [],
+            "servers": [],
+            "keywords": [],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "openjdk:8-jdk-alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/product-catalog/Dockerfile",
+            "from": "openjdk",
+            "cmd": "",
+            "cmd_keywords": [],
+            "servers": [],
+            "keywords": [],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "adoptopenjdk/openjdk11:alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/discovery-service/Dockerfile",
+            "from": "adoptopenjdk/openjdk11",
+            "cmd": "",
+            "cmd_keywords": [],
+            "servers": [],
+            "keywords": [],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "openjdk:8-jdk-alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/users-app/Dockerfile",
+            "from": "openjdk",
+            "cmd": "",
+            "cmd_keywords": [],
+            "servers": [],
+            "keywords": [],
+            "discos": [],
+            "langs": []
+        }
+    ],
+    "languages": [
+        "java"
+    ],
+    "num_services": 6,
+    "num_gates": 0,
+    "name": "nbabynyuk/microservices-shop-sample",
+    "shared_dbs": true,
+    "langs": [
+        "java"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "num_monitors": 1
+}

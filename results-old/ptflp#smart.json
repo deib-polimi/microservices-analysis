@@ -1,0 +1,195 @@
+{
+    "num_services": 4,
+    "dbs": [],
+    "name": "ptflp/smart",
+    "files": [
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/flask/app/requirements.txt",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "flask"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/spring_cloud/build.gradle",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/spring_cloud/settings.gradle",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": []
+        }
+    ],
+    "discos": [],
+    "num_gates": 1,
+    "num_buses": 0,
+    "langs": [
+        "java",
+        "python"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_monitors": 0,
+    "monitors": [],
+    "images": [
+        "gradle",
+        "ubuntu"
+    ],
+    "structure": {
+        "num_services": 4,
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "names": [],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "portainer/portainer",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "portainer",
+                "image": "portainer/portainer"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "./spring_cloud",
+                "monitors": [],
+                "discos": [],
+                "servers": [
+                    "spring"
+                ],
+                "name": "cloud",
+                "image": "./spring_cloud"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [
+                    "nginx"
+                ],
+                "dbs": [],
+                "image_full": "jwilder/nginx-proxy",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "proxy",
+                "image": "jwilder/nginx-proxy"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "./flask",
+                "monitors": [],
+                "discos": [],
+                "servers": [
+                    "flask"
+                ],
+                "name": "flask",
+                "image": "./flask"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "shared_dbs": false,
+    "languages": [
+        "java"
+    ],
+    "avg_size_service": 38.0,
+    "buses": [],
+    "dockers": [
+        {
+            "from_full": "gradle:latest",
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "path": "/spring_cloud/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "active",
+                "app",
+                "dspring"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "gradle",
+            "keywords": [
+                "app",
+                "jar",
+                "gradle",
+                "build",
+                "beta"
+            ],
+            "cmd": "java -jar -Dspring.profiles.active=main app.jar"
+        },
+        {
+            "from_full": "ubuntu:latest",
+            "langs": [
+                "python"
+            ],
+            "dbs": [],
+            "path": "/flask/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "src",
+                "app"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "ubuntu",
+            "keywords": [
+                "apt",
+                "ubuntu",
+                "pip",
+                "get",
+                "install"
+            ],
+            "cmd": "src/app.py"
+        }
+    ],
+    "servers": [
+        "spring",
+        "flask"
+    ],
+    "num_dockers": 2,
+    "url": "git://github.com/ptflp/smart.git",
+    "num_dbs": 0,
+    "num_servers": 2,
+    "num_discos": 0,
+    "num_langs": 2,
+    "num_files": 6,
+    "size": 76
+}

@@ -1,0 +1,282 @@
+{
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [
+                    "prometheus"
+                ],
+                "name": "prometheus",
+                "dbs": [],
+                "depends_on": [
+                    "gate",
+                    "exporter"
+                ],
+                "image": "prom/prometheus",
+                "image_full": "prom/prometheus",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "monitors": [],
+                "name": "web03",
+                "dbs": [],
+                "depends_on": [],
+                "image": "nginx",
+                "image_full": "nginx",
+                "discos": []
+            },
+            {
+                "servers": [
+                    "node"
+                ],
+                "buses": [],
+                "gates": [],
+                "monitors": [
+                    "prometheus"
+                ],
+                "name": "exporter",
+                "dbs": [],
+                "depends_on": [],
+                "image": "quay.io/prometheus/node-exporter",
+                "image_full": "quay.io/prometheus/node-exporter",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "monitors": [],
+                "name": "web02",
+                "dbs": [],
+                "depends_on": [],
+                "image": "nginx",
+                "image_full": "nginx",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "monitors": [],
+                "name": "web01",
+                "dbs": [],
+                "depends_on": [],
+                "image": "nginx",
+                "image_full": "nginx",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "api03",
+                "dbs": [],
+                "depends_on": [],
+                "image": "golang",
+                "image_full": "golang",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "api01",
+                "dbs": [],
+                "depends_on": [],
+                "image": "golang",
+                "image_full": "golang",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "db",
+                "dbs": [],
+                "depends_on": [],
+                "image": "postgres",
+                "image_full": "postgres",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "monitors": [],
+                "name": "broker",
+                "dbs": [],
+                "depends_on": [],
+                "image": "rabbitmq",
+                "image_full": "rabbitmq:management",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "redis01",
+                "dbs": [
+                    "redis"
+                ],
+                "depends_on": [],
+                "image": "redis",
+                "image_full": "redis",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [
+                    "grafana"
+                ],
+                "name": "grafana",
+                "dbs": [],
+                "depends_on": [
+                    "db",
+                    "redis01"
+                ],
+                "image": "grafana/grafana",
+                "image_full": "grafana/grafana",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "gate",
+                "dbs": [],
+                "depends_on": [
+                    "redis01"
+                ],
+                "image": ".",
+                "image_full": ".",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "api02",
+                "dbs": [],
+                "depends_on": [],
+                "image": "golang",
+                "image_full": "golang",
+                "discos": []
+            }
+        ],
+        "num_services": 13,
+        "detected_dbs": {
+            "names": [
+                "redis"
+            ],
+            "num": 1,
+            "services": [
+                "redis01"
+            ],
+            "shared_dbs": true
+        }
+    },
+    "discos": [],
+    "size": 50,
+    "num_gates": 1,
+    "num_langs": 4,
+    "servers": [
+        "node"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_servers": 1,
+    "num_buses": 1,
+    "files": [],
+    "num_dockers": 1,
+    "buses": [
+        "rabbitmq"
+    ],
+    "languages": [
+        "dockerfile",
+        "tsql",
+        "go"
+    ],
+    "monitors": [
+        "prometheus",
+        "grafana"
+    ],
+    "dbs": [
+        "redis"
+    ],
+    "num_monitors": 2,
+    "num_files": 2,
+    "num_dbs": 1,
+    "num_services": 13,
+    "images": [
+        "buildpack-deps"
+    ],
+    "url": "git://github.com/jaswdr/gatekeeper.git",
+    "dockers": [
+        {
+            "cmd": "/usr/local/openresty/bin/openresty -g daemon off;",
+            "servers": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "discos": [],
+            "buses": [],
+            "path": "/Dockerfile",
+            "cmd_keywords": [
+                "openresty",
+                "off",
+                "bin",
+                "usr",
+                "local"
+            ],
+            "keywords": [
+                "with",
+                "module",
+                "http",
+                "openresty",
+                "tar"
+            ],
+            "from_full": "buildpack-deps",
+            "gates": [
+                "nginx"
+            ],
+            "from": "buildpack-deps",
+            "langs": [
+                "lua"
+            ],
+            "dbs": []
+        }
+    ],
+    "avg_size_service": 50.0,
+    "shared_dbs": true,
+    "num_discos": 0,
+    "langs": [
+        "go",
+        "dockerfile",
+        "tsql",
+        "lua"
+    ],
+    "name": "jaswdr/gatekeeper"
+}

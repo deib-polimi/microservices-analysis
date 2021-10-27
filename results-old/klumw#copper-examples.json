@@ -1,0 +1,248 @@
+{
+    "name": "klumw/copper-examples",
+    "num_dbs": 1,
+    "num_services": 4,
+    "num_files": 9,
+    "servers": [
+        "express",
+        "spring",
+        "glassfish"
+    ],
+    "url": "git://github.com/klumw/copper-examples.git",
+    "discos": [],
+    "structure": {
+        "path": "/copper-full/docker-compose.yml",
+        "services": [
+            {
+                "name": "mock",
+                "image_full": "klumw/copper-mock:5.201-jdk11",
+                "image": "klumw/copper-mock",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "copper",
+                "image_full": "klumw/payara-micro:5.201-jdk11",
+                "image": "klumw/payara-micro",
+                "servers": [],
+                "depends_on": [
+                    "postgres"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "postgres",
+                "image_full": "postgres:12.2-alpine",
+                "image": "postgres",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "monitoring",
+                "image_full": "copperengine/copper-monitoring",
+                "image": "copperengine/copper-monitoring",
+                "servers": [],
+                "depends_on": [
+                    "copper"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": [
+                    "monitoring"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [],
+            "num": 0,
+            "names": []
+        },
+        "num_services": 4
+    },
+    "num_buses": 0,
+    "size": 2687,
+    "dockers": [
+        {
+            "cmd": "-Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.rmi.port=1099 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dorg.copperengine.asm.api.version=7 -jar payara-micro.jar --port 8080 --deploymentDir /opt/payara/deployments --nocluster",
+            "servers": [],
+            "langs": [],
+            "path": "/copper-full/Dockerfile",
+            "discos": [],
+            "from": "klumw/payara-micro",
+            "buses": [],
+            "from_full": "klumw/payara-micro:5.201-jdk11",
+            "cmd_keywords": [
+                "management",
+                "dcom",
+                "jmxremote",
+                "sun",
+                "port"
+            ],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "-Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.rmi.port=1099 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dorg.copperengine.asm.api.version=7 -jar payara-micro.jar --port 8082 --deploymentDir /opt/payara/deployments --nocluster",
+            "servers": [],
+            "langs": [],
+            "path": "/copper-starter/Dockerfile",
+            "discos": [],
+            "from": "klumw/payara-micro",
+            "buses": [],
+            "from_full": "klumw/payara-micro:5.201-jdk11",
+            "cmd_keywords": [
+                "management",
+                "dcom",
+                "jmxremote",
+                "sun",
+                "port"
+            ],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "-jar payara-micro.jar --port 8080 --deploymentDir /opt/payara/deployments --name copper-mock",
+            "servers": [],
+            "langs": [],
+            "path": "/copper-mock/Dockerfile",
+            "discos": [],
+            "from": "klumw/payara-micro",
+            "buses": [],
+            "from_full": "klumw/payara-micro:5.201-jdk11",
+            "cmd_keywords": [
+                "jar",
+                "payara",
+                "name",
+                "deploymentdir",
+                "port"
+            ],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "-Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.rmi.port=1099 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dorg.copperengine.asm.api.version=7 -jar payara-micro.jar --port 8080 --deploymentDir /opt/payara/deployments --nocluster",
+            "servers": [],
+            "langs": [],
+            "path": "/copper-prometheus/Dockerfile",
+            "discos": [],
+            "from": "klumw/copper-full",
+            "buses": [],
+            "from_full": "klumw/copper-full:5.201-jdk11",
+            "cmd_keywords": [
+                "management",
+                "dcom",
+                "jmxremote",
+                "sun",
+                "port"
+            ],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "languages": [
+        "java"
+    ],
+    "dbs": [
+        "postgresql"
+    ],
+    "monitors": [
+        "monitoring"
+    ],
+    "shared_dbs": false,
+    "avg_size_service": 671.75,
+    "num_monitors": 1,
+    "files": [
+        {
+            "monitors": [],
+            "servers": [
+                "express",
+                "spring"
+            ],
+            "path": "/pom.xml",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "express",
+                "spring",
+                "glassfish"
+            ],
+            "path": "/copper-full/pom.xml",
+            "discos": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "express",
+                "spring",
+                "glassfish"
+            ],
+            "path": "/copper-starter/pom.xml",
+            "discos": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/copper-mock/pom.xml",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        }
+    ],
+    "langs": [
+        "java"
+    ],
+    "num_servers": 3,
+    "buses": [],
+    "num_langs": 1,
+    "num_gates": 0,
+    "num_discos": 0,
+    "images": [
+        "klumw/payara-micro",
+        "klumw/copper-full"
+    ],
+    "num_dockers": 4,
+    "gates": []
+}

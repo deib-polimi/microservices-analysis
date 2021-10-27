@@ -1,0 +1,245 @@
+{
+    "gates": [],
+    "images": [
+        "microsoft/aspnetcore"
+    ],
+    "num_dbs": 1,
+    "structure": {
+        "num_services": 8,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "reminders/reminders.api:${TAG:-latest}",
+                "gates": [],
+                "image": "reminders/reminders.api",
+                "depends_on": [
+                    "postgres.data",
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "name": "reminder.api",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mongo",
+                "gates": [],
+                "image": "mongo",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "name": "nosql.data",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "reminders/webstatus:${TAG:-latest}",
+                "gates": [],
+                "image": "reminders/webstatus",
+                "depends_on": [],
+                "dbs": [],
+                "name": "webstatus",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "reminders/audit.api:${TAG:-latest}",
+                "gates": [],
+                "image": "reminders/audit.api",
+                "depends_on": [
+                    "nosql.data",
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "name": "audit.api",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "reminders/webmvc:${TAG:-latest}",
+                "gates": [],
+                "image": "reminders/webmvc",
+                "depends_on": [
+                    "identity.api",
+                    "reminder.api",
+                    "audit.api"
+                ],
+                "dbs": [],
+                "name": "webmvc",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "reminders/identity.api:${TAG:-latest}",
+                "gates": [],
+                "image": "reminders/identity.api",
+                "depends_on": [
+                    "postgres.data",
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "name": "identity.api",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "postgres",
+                "gates": [],
+                "image": "postgres",
+                "depends_on": [],
+                "dbs": [],
+                "name": "postgres.data",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "rabbitmq:3-management",
+                "gates": [],
+                "image": "rabbitmq",
+                "depends_on": [],
+                "dbs": [],
+                "name": "rabbitmq",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 1,
+            "services": [
+                "nosql.data"
+            ],
+            "shared_dbs": false,
+            "names": [
+                "mongo"
+            ]
+        }
+    },
+    "num_files": 6,
+    "num_gates": 0,
+    "discos": [],
+    "num_dockers": 5,
+    "shared_dbs": false,
+    "languages": [
+        "c#",
+        "html"
+    ],
+    "name": "lkubis/RemindersOnContainers",
+    "num_langs": 2,
+    "avg_size_service": 896.4,
+    "monitors": [],
+    "num_servers": 0,
+    "num_services": 8,
+    "dbs": [
+        "mongo"
+    ],
+    "langs": [
+        "html",
+        "c#"
+    ],
+    "dockers": [
+        {
+            "gates": [],
+            "path": "/src/Services/Audit/Audit.API/Dockerfile",
+            "langs": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "microsoft/aspnetcore",
+            "discos": [],
+            "from_full": "microsoft/aspnetcore:2.0",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": []
+        },
+        {
+            "gates": [],
+            "path": "/src/Services/Reminder/Reminder.API/Dockerfile",
+            "langs": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "microsoft/aspnetcore",
+            "discos": [],
+            "from_full": "microsoft/aspnetcore:2.0",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": []
+        },
+        {
+            "gates": [],
+            "path": "/src/Services/Identity/Identity.API/Dockerfile",
+            "langs": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "microsoft/aspnetcore",
+            "discos": [],
+            "from_full": "microsoft/aspnetcore:2.0",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": []
+        },
+        {
+            "gates": [],
+            "path": "/src/Web/WebMVC/Dockerfile",
+            "langs": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "microsoft/aspnetcore",
+            "discos": [],
+            "from_full": "microsoft/aspnetcore:2.0",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": []
+        },
+        {
+            "gates": [],
+            "path": "/src/Web/WebStatus/Dockerfile",
+            "langs": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "microsoft/aspnetcore",
+            "discos": [],
+            "from_full": "microsoft/aspnetcore:2.0",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": []
+        }
+    ],
+    "buses": [
+        "rabbitmq"
+    ],
+    "servers": [],
+    "size": 4482,
+    "files": [],
+    "num_buses": 1,
+    "num_monitors": 0,
+    "url": "git://github.com/lkubis/RemindersOnContainers.git",
+    "num_discos": 0
+}

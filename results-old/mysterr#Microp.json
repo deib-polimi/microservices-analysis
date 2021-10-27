@@ -1,0 +1,211 @@
+{
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "products.queue",
+                "dbs": [],
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "image": "${DOCKER_REGISTRY-}productsqueue",
+                "image_full": "${DOCKER_REGISTRY-}productsqueue",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "products.database",
+                "dbs": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "mongo.data"
+                ],
+                "image": "${DOCKER_REGISTRY-}productsdatabase",
+                "image_full": "${DOCKER_REGISTRY-}productsdatabase",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "redis.data",
+                "dbs": [
+                    "redis"
+                ],
+                "depends_on": [],
+                "image": "redis",
+                "image_full": "redis",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "mongo.data",
+                "dbs": [
+                    "mongo"
+                ],
+                "depends_on": [],
+                "image": "mongo",
+                "image_full": "mongo:latest",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "monitors": [],
+                "name": "rabbitmq",
+                "dbs": [],
+                "depends_on": [],
+                "image": "rabbitmq",
+                "image_full": "rabbitmq:3-management-alpine",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "web",
+                "dbs": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "redis.data",
+                    "products.database",
+                    "products.queue"
+                ],
+                "image": "${DOCKER_REGISTRY-}web",
+                "image_full": "${DOCKER_REGISTRY-}web",
+                "discos": []
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "names": [
+                "mongo",
+                "redis"
+            ],
+            "num": 2,
+            "services": [
+                "redis.data",
+                "mongo.data"
+            ],
+            "shared_dbs": false
+        }
+    },
+    "discos": [],
+    "size": 4285,
+    "num_gates": 0,
+    "num_langs": 2,
+    "servers": [],
+    "gates": [],
+    "num_servers": 0,
+    "num_buses": 1,
+    "files": [],
+    "num_dockers": 3,
+    "buses": [
+        "rabbitmq"
+    ],
+    "languages": [
+        "javascript",
+        "c#"
+    ],
+    "monitors": [],
+    "dbs": [
+        "mongo",
+        "redis"
+    ],
+    "num_monitors": 0,
+    "num_files": 4,
+    "num_dbs": 2,
+    "num_services": 6,
+    "images": [
+        "base"
+    ],
+    "url": "git://github.com/mysterr/Microp.git",
+    "dockers": [
+        {
+            "cmd": "",
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/src/Services/Products.Database/Dockerfile",
+            "cmd_keywords": [],
+            "keywords": [
+                "database",
+                "products",
+                "csproj",
+                "dotnet",
+                "release"
+            ],
+            "from_full": "base",
+            "gates": [],
+            "from": "base",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/src/Services/Products.Queue/Dockerfile",
+            "cmd_keywords": [],
+            "keywords": [
+                "queue",
+                "products",
+                "csproj",
+                "dotnet",
+                "release"
+            ],
+            "from_full": "base",
+            "gates": [],
+            "from": "base",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/src/Web/Dockerfile",
+            "cmd_keywords": [],
+            "keywords": [
+                "web",
+                "csproj",
+                "dotnet",
+                "release",
+                "app"
+            ],
+            "from_full": "base",
+            "gates": [],
+            "from": "base",
+            "langs": [],
+            "dbs": []
+        }
+    ],
+    "avg_size_service": 1428.3333333333333,
+    "shared_dbs": false,
+    "num_discos": 0,
+    "langs": [
+        "c#",
+        "javascript"
+    ],
+    "name": "mysterr/Microp"
+}

@@ -1,0 +1,214 @@
+{
+    "num_discos": 0,
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "name": "avijitdas-tech2/docker-microservices-tkt",
+    "dbs": [
+        "mysql",
+        "mongo"
+    ],
+    "num_services": 5,
+    "avg_size_service": 11.5,
+    "num_monitors": 1,
+    "monitors": [
+        "monitoring"
+    ],
+    "discos": [],
+    "servers": [
+        "spring"
+    ],
+    "url": "git://github.com/avijitdas-tech2/docker-microservices-tkt.git",
+    "num_dockers": 2,
+    "files": [
+        {
+            "discos": [],
+            "path": "/ticket-engine-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "path": "/ticket-monitoring-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "dbs": [
+                "mongodb"
+            ],
+            "gates": [],
+            "monitors": [
+                "monitoring"
+            ]
+        }
+    ],
+    "shared_dbs": false,
+    "size": 23,
+    "languages": [
+        "java"
+    ],
+    "gates": [],
+    "num_langs": 1,
+    "structure": {
+        "detected_dbs": {
+            "num": 2,
+            "services": [
+                "mysqldb",
+                "mongodb"
+            ],
+            "shared_dbs": false,
+            "names": [
+                "mysql",
+                "mongo"
+            ]
+        },
+        "num_services": 5,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "mysqldb",
+                "image_full": "mysql:5.6",
+                "dbs": [
+                    "mysql"
+                ],
+                "gates": [],
+                "monitors": [],
+                "image": "mysql"
+            },
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "mongodb",
+                "image_full": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "gates": [],
+                "monitors": [],
+                "image": "mongo"
+            },
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "name": "rabbitmq",
+                "image_full": "rabbitmq:management",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "rabbitmq"
+            },
+            {
+                "depends_on": [
+                    "mongodb",
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "monitoringapp",
+                "image_full": "ticketmonitoringservice",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "ticketmonitoringservice"
+            },
+            {
+                "depends_on": [
+                    "mysqldb",
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "engineapp",
+                "image_full": "ticketengineservice",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "ticketengineservice"
+            }
+        ]
+    },
+    "dockers": [
+        {
+            "from_full": "java:8",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "",
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "monitors": [],
+            "discos": [],
+            "path": "/ticket-engine-service/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "keywords": [
+                "jar",
+                "engine",
+                "touch",
+                "bash"
+            ]
+        },
+        {
+            "from_full": "java:8",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "",
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "monitors": [
+                "monitoring"
+            ],
+            "discos": [],
+            "path": "/ticket-monitoring-service/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "keywords": [
+                "monitoring",
+                "jar",
+                "touch",
+                "bash"
+            ]
+        }
+    ],
+    "num_files": 5,
+    "num_gates": 0,
+    "num_dbs": 2,
+    "langs": [
+        "java"
+    ],
+    "images": [
+        "java"
+    ],
+    "num_buses": 2,
+    "num_servers": 1
+}

@@ -1,0 +1,292 @@
+{
+    "num_dbs": 0,
+    "dbs": [],
+    "images": [
+        "node",
+        "nginx"
+    ],
+    "langs": [
+        "javascript"
+    ],
+    "size": 10308,
+    "num_discos": 2,
+    "dockers": [
+        {
+            "dbs": [],
+            "from": "node",
+            "keywords": [
+                "node",
+                "mkdir",
+                "npm",
+                "foo",
+                "install"
+            ],
+            "from_full": "node:6.9.1",
+            "langs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "buses": [],
+            "cmd": "npm start",
+            "path": "/foo/Dockerfile",
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "from": "nginx",
+            "keywords": [
+                "html",
+                "local",
+                "var",
+                "www",
+                "public"
+            ],
+            "from_full": "nginx:stable-alpine",
+            "langs": [],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "startup-script.sh",
+            "path": "/nginx/Dockerfile",
+            "cmd_keywords": [
+                "startup",
+                "script"
+            ],
+            "gates": [
+                "nginx"
+            ],
+            "discos": [
+                "consul"
+            ]
+        },
+        {
+            "dbs": [],
+            "from": "node",
+            "keywords": [
+                "node",
+                "mkdir",
+                "install",
+                "root",
+                "npm"
+            ],
+            "from_full": "node:6.9.1",
+            "langs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "buses": [],
+            "cmd": "npm start",
+            "path": "/root/Dockerfile",
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "from": "node",
+            "keywords": [
+                "node",
+                "mkdir",
+                "install",
+                "npm",
+                "bar"
+            ],
+            "from_full": "node:6.9.1",
+            "langs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "buses": [],
+            "cmd": "npm start",
+            "path": "/bar/Dockerfile",
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "servers": [
+        "node",
+        "express"
+    ],
+    "monitors": [],
+    "num_dockers": 4,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 6,
+        "detected_dbs": {
+            "services": [],
+            "names": [],
+            "num": 0,
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "image": "./bar",
+                "dbs": [],
+                "depends_on": [
+                    "registrator"
+                ],
+                "image_full": "./bar",
+                "buses": [],
+                "name": "bar",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "gliderlabs/registrator",
+                "dbs": [],
+                "depends_on": [
+                    "consul"
+                ],
+                "image_full": "gliderlabs/registrator",
+                "buses": [],
+                "name": "registrator",
+                "monitors": [],
+                "gates": [],
+                "discos": [
+                    "registrator"
+                ],
+                "servers": []
+            },
+            {
+                "image": "./root",
+                "dbs": [],
+                "depends_on": [
+                    "registrator"
+                ],
+                "image_full": "./root",
+                "buses": [],
+                "name": "root",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "gliderlabs/consul-server",
+                "dbs": [],
+                "depends_on": [],
+                "image_full": "gliderlabs/consul-server",
+                "buses": [],
+                "name": "consul",
+                "monitors": [],
+                "gates": [],
+                "discos": [
+                    "consul"
+                ],
+                "servers": []
+            },
+            {
+                "image": "./foo",
+                "dbs": [],
+                "depends_on": [
+                    "registrator"
+                ],
+                "image_full": "./foo",
+                "buses": [],
+                "name": "foo",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "./nginx",
+                "dbs": [],
+                "depends_on": [
+                    "root",
+                    "foo",
+                    "bar"
+                ],
+                "image_full": "./nginx",
+                "buses": [],
+                "name": "nginx",
+                "monitors": [],
+                "gates": [
+                    "nginx"
+                ],
+                "discos": [],
+                "servers": []
+            }
+        ]
+    },
+    "num_buses": 0,
+    "gates": [
+        "nginx"
+    ],
+    "discos": [
+        "registrator",
+        "consul"
+    ],
+    "num_gates": 1,
+    "num_services": 6,
+    "name": "dzhitomirsky/docker-node-mircroservices",
+    "shared_dbs": false,
+    "avg_size_service": 2577.0,
+    "num_langs": 1,
+    "num_servers": 2,
+    "languages": [
+        "javascript"
+    ],
+    "buses": [],
+    "files": [
+        {
+            "dbs": [],
+            "buses": [],
+            "path": "/foo/package.json",
+            "monitors": [],
+            "gates": [],
+            "discos": [
+                "consul"
+            ],
+            "servers": [
+                "express"
+            ]
+        },
+        {
+            "dbs": [],
+            "buses": [],
+            "path": "/root/package.json",
+            "monitors": [],
+            "gates": [],
+            "discos": [
+                "consul"
+            ],
+            "servers": [
+                "express"
+            ]
+        },
+        {
+            "dbs": [],
+            "buses": [],
+            "path": "/bar/package.json",
+            "monitors": [],
+            "gates": [],
+            "discos": [
+                "consul"
+            ],
+            "servers": [
+                "express"
+            ]
+        }
+    ],
+    "url": "git://github.com/dzhitomirsky/docker-node-mircroservices.git",
+    "num_files": 8,
+    "num_monitors": 0
+}

@@ -1,0 +1,365 @@
+{
+    "num_services": 13,
+    "num_buses": 0,
+    "files": [
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/web-client/package.json",
+            "discos": [],
+            "dbs": []
+        }
+    ],
+    "num_dbs": 1,
+    "num_discos": 0,
+    "languages": [
+        "javascript",
+        "go",
+        "html"
+    ],
+    "num_langs": 5,
+    "images": [
+        "pgbi/kong-dashboard",
+        "nginx",
+        "golang",
+        "node"
+    ],
+    "buses": [],
+    "size": 9808,
+    "servers": [
+        "express",
+        "node"
+    ],
+    "num_gates": 2,
+    "discos": [],
+    "num_monitors": 0,
+    "avg_size_service": 2452.0,
+    "langs": [
+        "golang",
+        "javascript",
+        "go",
+        "bash",
+        "html"
+    ],
+    "dockers": [
+        {
+            "keywords": [
+                "init",
+                "dumb",
+                "node",
+                "usr",
+                "bin"
+            ],
+            "buses": [],
+            "langs": [
+                "bash"
+            ],
+            "path": "/web-client/Dockerfile",
+            "cmd": "node server.js",
+            "gates": [],
+            "from": "node",
+            "monitors": [],
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:6.9.2",
+            "discos": [],
+            "cmd_keywords": [
+                "server",
+                "node"
+            ],
+            "dbs": []
+        },
+        {
+            "keywords": [
+                "init",
+                "dumb",
+                "bin",
+                "local",
+                "usr"
+            ],
+            "buses": [],
+            "langs": [],
+            "path": "/kong-dashboard/Dockerfile",
+            "cmd": "",
+            "gates": [
+                "kong"
+            ],
+            "from": "pgbi/kong-dashboard",
+            "monitors": [],
+            "servers": [],
+            "from_full": "pgbi/kong-dashboard:v3.3.0",
+            "discos": [],
+            "cmd_keywords": [],
+            "dbs": []
+        },
+        {
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "path": "/rest-api-proxy/Dockerfile",
+            "cmd": "nginx-debug -g daemon off;",
+            "gates": [
+                "nginx"
+            ],
+            "from": "nginx",
+            "monitors": [],
+            "servers": [],
+            "from_full": "nginx:1.11.8",
+            "discos": [],
+            "cmd_keywords": [
+                "nginx",
+                "daemon",
+                "off",
+                "debug"
+            ],
+            "dbs": []
+        },
+        {
+            "keywords": [
+                "init",
+                "dumb",
+                "bin",
+                "local",
+                "github"
+            ],
+            "buses": [],
+            "langs": [
+                "golang"
+            ],
+            "path": "/rest-api-integration-tester/Dockerfile",
+            "cmd": "./test.sh",
+            "gates": [],
+            "from": "golang",
+            "monitors": [],
+            "servers": [],
+            "from_full": "golang:wheezy",
+            "discos": [],
+            "cmd_keywords": [
+                "test"
+            ],
+            "dbs": []
+        }
+    ],
+    "name": "kpage/microservices-demo",
+    "url": "git://github.com/kpage/microservices-demo.git",
+    "gates": [
+        "nginx",
+        "kong"
+    ],
+    "num_servers": 2,
+    "monitors": [],
+    "num_files": 6,
+    "shared_dbs": false,
+    "num_dockers": 4,
+    "dbs": [
+        "db"
+    ],
+    "structure": {
+        "num_services": 13,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "pagekb/golang-gin",
+                "image_full": "pagekb/golang-gin",
+                "servers": [],
+                "discos": [],
+                "depends_on": [
+                    "db:db"
+                ],
+                "name": "rest-api"
+            },
+            {
+                "gates": [
+                    "kong"
+                ],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "./kong-dashboard",
+                "image_full": "./kong-dashboard",
+                "servers": [],
+                "discos": [],
+                "depends_on": [
+                    "kong"
+                ],
+                "name": "kong-dashboard"
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "./rest-api-proxy",
+                "image_full": "./rest-api-proxy",
+                "servers": [],
+                "discos": [],
+                "depends_on": [
+                    "rest-api"
+                ],
+                "name": "rest-api-proxy"
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "mashupmill/kongfig",
+                "image_full": "mashupmill/kongfig",
+                "servers": [],
+                "discos": [],
+                "depends_on": [
+                    "kong"
+                ],
+                "name": "kongfig"
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "./rest-api-integration-tester",
+                "image_full": "./rest-api-integration-tester",
+                "servers": [],
+                "discos": [],
+                "depends_on": [
+                    "rest-api"
+                ],
+                "name": "rest-api-integration-tester"
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "postgres",
+                "image_full": "postgres:9.5",
+                "servers": [],
+                "discos": [],
+                "depends_on": [],
+                "name": "kong-database"
+            },
+            {
+                "gates": [
+                    "kong"
+                ],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "kong",
+                "image_full": "kong:0.13.1",
+                "servers": [],
+                "discos": [],
+                "depends_on": [
+                    "kong-database"
+                ],
+                "name": "kong-migration"
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "mashupmill/kongfig",
+                "image_full": "mashupmill/kongfig",
+                "servers": [],
+                "discos": [],
+                "depends_on": [
+                    "kong"
+                ],
+                "name": "kongfig-dump"
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "pagekb/docker-flyway",
+                "image_full": "pagekb/docker-flyway",
+                "servers": [],
+                "discos": [],
+                "depends_on": [
+                    "db"
+                ],
+                "name": "db-migrations"
+            },
+            {
+                "gates": [
+                    "kong"
+                ],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "kong",
+                "image_full": "kong:0.13.1",
+                "servers": [],
+                "discos": [],
+                "depends_on": [
+                    "kong-migration",
+                    "kong-database"
+                ],
+                "name": "kong"
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "pagekb/golang-gin",
+                "image_full": "pagekb/golang-gin",
+                "servers": [],
+                "discos": [],
+                "depends_on": [
+                    "db:db",
+                    "kong:kong"
+                ],
+                "name": "auth"
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [
+                    "mariadb"
+                ],
+                "monitors": [],
+                "image": "mariadb",
+                "image_full": "mariadb:10.3.7",
+                "servers": [],
+                "discos": [],
+                "depends_on": [],
+                "name": "db"
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "./web-client",
+                "image_full": "./web-client",
+                "servers": [],
+                "discos": [],
+                "depends_on": [],
+                "name": "web-client"
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 1,
+            "services": [
+                "db"
+            ],
+            "names": [
+                "mariadb"
+            ]
+        }
+    }
+}

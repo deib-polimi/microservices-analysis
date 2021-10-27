@@ -1,0 +1,206 @@
+{
+    "languages": [
+        "c#",
+        "javascript",
+        "html"
+    ],
+    "num_servers": 0,
+    "shared_dbs": false,
+    "name": "Nebbia/KetoPalOnContainers",
+    "servers": [],
+    "num_monitors": 0,
+    "num_langs": 3,
+    "images": [
+        "base"
+    ],
+    "langs": [
+        "javascript",
+        "html",
+        "c#"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "dotnet",
+                "ketopal",
+                "gateway",
+                "csproj",
+                "release"
+            ],
+            "path": "/src/Gateways/KetoPal.Gateway/Dockerfile",
+            "gates": [
+                "gateway"
+            ],
+            "from": "base",
+            "from_full": "base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "ketopal",
+                "dotnet",
+                "csproj",
+                "app",
+                "tests"
+            ],
+            "path": "/src/Services/API/KetoPal.Api/Dockerfile",
+            "gates": [],
+            "from": "base",
+            "from_full": "base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "scripts",
+                "restore",
+                "packages",
+                "release",
+                "dotnet"
+            ],
+            "path": "/src/Services/Identity/KetoPal.Identity/Dockerfile",
+            "gates": [],
+            "from": "base",
+            "from_full": "base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [
+        "gateway"
+    ],
+    "num_buses": 0,
+    "discos": [],
+    "monitors": [],
+    "num_files": 4,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "${REGISTRY:-ketopal}/identity:${PLATFORM:-linux}-${TAG:-latest}",
+                "depends_on": [
+                    "sql.data",
+                    "keystore.data"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "identity",
+                "image": "${REGISTRY",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "microsoft/mssql-server-linux:2017-latest",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "sql.data",
+                "image": "microsoft/mssql-server-linux",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "fgauna12/fooddb",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "api.data",
+                "image": "fgauna12/fooddb",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "${REGISTRY:-ketopal}/api:${PLATFORM:-linux}-${TAG:-latest}",
+                "depends_on": [
+                    "api.data",
+                    "identity"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "api",
+                "image": "${REGISTRY",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "${REGISTRY:-ketopal}/gateway:${PLATFORM:-linux}-${TAG:-latest}",
+                "depends_on": [
+                    "api"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "gateway",
+                "image": "${REGISTRY",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "redis",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "keystore.data",
+                "image": "redis",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "services": [
+                "keystore.data"
+            ],
+            "names": [
+                "redis"
+            ],
+            "num": 1,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [
+        "redis"
+    ],
+    "num_dbs": 1,
+    "avg_size_service": 1363.3333333333333,
+    "num_services": 6,
+    "buses": [],
+    "files": [],
+    "url": "git://github.com/Nebbia/KetoPalOnContainers.git",
+    "num_dockers": 3,
+    "size": 4090,
+    "num_discos": 0,
+    "num_gates": 1
+}

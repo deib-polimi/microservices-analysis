@@ -1,0 +1,169 @@
+{
+    "avg_size_service": 3667.3333333333335,
+    "num_langs": 3,
+    "servers": [],
+    "files": [],
+    "num_dockers": 3,
+    "num_files": 4,
+    "name": "JoshPhronesis/OnlineStore",
+    "url": "git://github.com/JoshPhronesis/OnlineStore.git",
+    "languages": [
+        "c#",
+        "css",
+        "html"
+    ],
+    "num_discos": 0,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 4,
+        "detected_dbs": {
+            "names": [],
+            "num": 0,
+            "shared_dbs": false,
+            "services": []
+        },
+        "services": [
+            {
+                "image": "microsoft/mssql-server-linux",
+                "name": "mssqlserver",
+                "depends_on": [],
+                "monitors": [],
+                "servers": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "microsoft/mssql-server-linux:latest"
+            },
+            {
+                "image": ".\\src\\Services\\TokenServiceApi",
+                "name": "tokenserver",
+                "depends_on": [
+                    "mssqlserver"
+                ],
+                "monitors": [],
+                "servers": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "image_full": ".\\src\\Services\\TokenServiceApi"
+            },
+            {
+                "image": ".\\src\\Web\\WebMvc",
+                "name": "webmvc",
+                "depends_on": [
+                    "catalog",
+                    "tokenserver"
+                ],
+                "monitors": [],
+                "servers": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "image_full": ".\\src\\Web\\WebMvc"
+            },
+            {
+                "image": ".\\src\\Services\\ProductCatalogApi",
+                "name": "catalog",
+                "depends_on": [
+                    "mssqlserver"
+                ],
+                "monitors": [],
+                "servers": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "image_full": ".\\src\\Services\\ProductCatalogApi"
+            }
+        ]
+    },
+    "langs": [
+        "c#",
+        "css",
+        "html"
+    ],
+    "dbs": [],
+    "num_gates": 0,
+    "size": 11002,
+    "num_dbs": 0,
+    "buses": [],
+    "num_servers": 0,
+    "shared_dbs": false,
+    "gates": [],
+    "dockers": [
+        {
+            "path": "/src/Services/TokenServiceApi/Dockerfile",
+            "from": "microsoft/aspnetcore",
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "servers": [],
+            "from_full": "microsoft/aspnetcore:2.0",
+            "langs": [],
+            "monitors": [],
+            "keywords": [
+                "dotnet",
+                "release",
+                "publish",
+                "restore",
+                "out"
+            ],
+            "cmd": "",
+            "dbs": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/src/Services/ProductCatalogApi/Dockerfile",
+            "from": "microsoft/aspnetcore",
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "servers": [],
+            "from_full": "microsoft/aspnetcore:2.0.0",
+            "langs": [],
+            "monitors": [],
+            "keywords": [
+                "dotnet",
+                "release",
+                "configuration",
+                "publish",
+                "out"
+            ],
+            "cmd": "",
+            "dbs": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/src/web/WebMvc/Dockerfile",
+            "from": "microsoft/aspnetcore",
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "servers": [],
+            "from_full": "microsoft/aspnetcore:2.0",
+            "langs": [],
+            "monitors": [],
+            "keywords": [
+                "dotnet",
+                "release",
+                "publish",
+                "restore",
+                "out"
+            ],
+            "cmd": "",
+            "dbs": [],
+            "cmd_keywords": []
+        }
+    ],
+    "num_services": 4,
+    "discos": [],
+    "num_monitors": 0,
+    "images": [
+        "microsoft/aspnetcore"
+    ],
+    "num_buses": 0,
+    "monitors": []
+}

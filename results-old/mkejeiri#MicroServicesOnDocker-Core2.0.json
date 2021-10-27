@@ -1,0 +1,280 @@
+{
+    "num_servers": 0,
+    "num_gates": 0,
+    "num_dockers": 5,
+    "num_buses": 1,
+    "dockers": [
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "microsoft/aspnetcore:latest",
+            "discos": [],
+            "from": "microsoft/aspnetcore",
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/src/Services/CartApi/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "dotnet",
+                "release",
+                "restore",
+                "publish",
+                "out"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "microsoft/aspnetcore:latest",
+            "discos": [],
+            "from": "microsoft/aspnetcore",
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/src/Services/TokenServiceApi/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "dotnet",
+                "configuration",
+                "restore",
+                "output",
+                "release"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "microsoft/aspnetcore:latest",
+            "discos": [],
+            "from": "microsoft/aspnetcore",
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/src/Services/ProductCatalogApi/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "dotnet",
+                "configuration",
+                "restore",
+                "output",
+                "release"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "microsoft/aspnetcore:latest",
+            "discos": [],
+            "from": "microsoft/aspnetcore",
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/src/Services/OrderApi/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "dotnet",
+                "release",
+                "restore",
+                "publish",
+                "out"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "microsoft/aspnetcore:latest",
+            "discos": [],
+            "from": "microsoft/aspnetcore",
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/src/Web/WebMvc/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "dotnet",
+                "configuration",
+                "restore",
+                "output",
+                "release"
+            ]
+        }
+    ],
+    "shared_dbs": false,
+    "languages": [
+        "c#",
+        "html",
+        "css"
+    ],
+    "gates": [],
+    "avg_size_service": 6231.6,
+    "discos": [],
+    "num_dbs": 1,
+    "monitors": [],
+    "servers": [],
+    "num_langs": 3,
+    "buses": [
+        "rabbitmq"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "shoes/order",
+                "image": "shoes/order",
+                "buses": [],
+                "name": "order",
+                "discos": [],
+                "depends_on": [
+                    "mssqlserver",
+                    "tokenserver",
+                    "rabbitmq"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "shoes/cart",
+                "image": "shoes/cart",
+                "buses": [],
+                "name": "cart",
+                "discos": [],
+                "depends_on": [
+                    "cart.data",
+                    "tokenserver"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "microsoft/mssql-server-linux:latest",
+                "image": "microsoft/mssql-server-linux",
+                "buses": [],
+                "name": "mssqlserver",
+                "discos": [],
+                "depends_on": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "shoes/mvc",
+                "image": "shoes/mvc",
+                "buses": [],
+                "name": "webmvc",
+                "discos": [],
+                "depends_on": [
+                    "catalog",
+                    "tokenserver",
+                    "cart",
+                    "order"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "redis",
+                "image": "redis",
+                "buses": [],
+                "name": "cart.data",
+                "discos": [],
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ]
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "shoes/tokenserver",
+                "image": "shoes/tokenserver",
+                "buses": [],
+                "name": "tokenserver",
+                "discos": [],
+                "depends_on": [
+                    "mssqlserver"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "shoes/catalog",
+                "image": "shoes/catalog",
+                "buses": [],
+                "name": "catalog",
+                "discos": [],
+                "depends_on": [
+                    "mssqlserver"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "rabbitmq:3-management",
+                "image": "rabbitmq",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "name": "rabbitmq",
+                "discos": [],
+                "depends_on": [],
+                "dbs": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 1,
+            "services": [
+                "cart.data"
+            ],
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 8
+    },
+    "images": [
+        "microsoft/aspnetcore"
+    ],
+    "num_files": 6,
+    "num_services": 8,
+    "langs": [
+        "html",
+        "css",
+        "c#"
+    ],
+    "files": [],
+    "url": "git://github.com/mkejeiri/MicroServicesOnDocker-Core2.0.git",
+    "size": 31158,
+    "name": "mkejeiri/MicroServicesOnDocker-Core2.0",
+    "num_discos": 0,
+    "num_monitors": 0,
+    "dbs": [
+        "redis"
+    ]
+}

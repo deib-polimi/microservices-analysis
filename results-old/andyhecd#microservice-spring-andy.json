@@ -1,0 +1,367 @@
+{
+    "size": 122,
+    "shared_dbs": true,
+    "num_servers": 1,
+    "name": "andyhecd/microservice-spring-andy",
+    "files": [
+        {
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [
+                "sap"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/pom.xml",
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "sap"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/eureka-server/pom.xml",
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "mysql",
+                "sap"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/organization-service/pom.xml",
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "sap"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/config-server/pom.xml",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [
+                "sap"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/gateway-server/pom.xml",
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "mysql",
+                "sap"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/licensing-service/pom.xml",
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        }
+    ],
+    "num_files": 12,
+    "num_langs": 1,
+    "dbs": [
+        "mysql",
+        "sap",
+        "oracle"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "num_discos": 1,
+    "url": "git://github.com/andyhecd/microservice-spring-andy.git",
+    "gates": [
+        "gateway"
+    ],
+    "structure": {
+        "services": [
+            {
+                "image": "andyhecd/config-server",
+                "dbs": [],
+                "image_full": "andyhecd/config-server:0.0.1-SNAPSHOT",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "config-server",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "andyhecd/licensing-service",
+                "dbs": [],
+                "image_full": "andyhecd/licensing-service:0.0.1-SNAPSHOT",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "licensing-service",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "config-server",
+                    "microservice-mysql",
+                    "eureka-server",
+                    "organization-service"
+                ]
+            },
+            {
+                "image": "andyhecd/organization-service",
+                "dbs": [],
+                "image_full": "andyhecd/organization-service:0.0.1-SNAPSHOT",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "organization-service",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "config-server",
+                    "microservice-mysql",
+                    "eureka-server"
+                ]
+            },
+            {
+                "image": "mysql",
+                "dbs": [
+                    "mysql"
+                ],
+                "image_full": "mysql",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "microservice-mysql",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "andyhecd/gateway-server",
+                "dbs": [],
+                "image_full": "andyhecd/gateway-server:0.0.1-SNAPSHOT",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "gateway-server",
+                "gates": [
+                    "gateway"
+                ],
+                "discos": [],
+                "depends_on": [
+                    "config-server",
+                    "eureka-server"
+                ]
+            },
+            {
+                "image": "andyhecd/eureka-server",
+                "dbs": [],
+                "image_full": "andyhecd/eureka-server:0.0.1-SNAPSHOT",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "eureka-server",
+                "gates": [],
+                "discos": [
+                    "eureka"
+                ],
+                "depends_on": [
+                    "config-server"
+                ]
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "mysql"
+            ],
+            "services": [
+                "microservice-mysql"
+            ],
+            "shared_dbs": true
+        },
+        "path": "/docker-compose.yml"
+    },
+    "num_gates": 1,
+    "num_dockers": 5,
+    "num_dbs": 3,
+    "num_services": 6,
+    "langs": [
+        "java"
+    ],
+    "buses": [],
+    "num_buses": 0,
+    "num_monitors": 0,
+    "languages": [
+        "java"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [
+                "run"
+            ],
+            "cmd": "./run.sh",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "monitors": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "path": "/eureka-server/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "apk",
+                "chmod",
+                "mkdir",
+                "openbsd",
+                "netcat"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "run"
+            ],
+            "cmd": "./run.sh",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "monitors": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "path": "/organization-service/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "apk",
+                "chmod",
+                "mkdir",
+                "openbsd",
+                "netcat"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "run"
+            ],
+            "cmd": "./run.sh",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "openjdk",
+            "monitors": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "path": "/config-server/Dockerfile",
+            "dbs": [
+                "oracle"
+            ],
+            "keywords": [
+                "jce",
+                "policy",
+                "apk",
+                "zip",
+                "tmp"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "run"
+            ],
+            "cmd": "./run.sh",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "monitors": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "path": "/gateway-server/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "apk",
+                "chmod",
+                "mkdir",
+                "openbsd",
+                "netcat"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "run"
+            ],
+            "cmd": "./run.sh",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "monitors": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "path": "/licensing-service/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "apk",
+                "chmod",
+                "mkdir",
+                "openbsd",
+                "netcat"
+            ],
+            "discos": []
+        }
+    ],
+    "monitors": [],
+    "avg_size_service": 24.4,
+    "discos": [
+        "eureka"
+    ],
+    "images": [
+        "openjdk"
+    ]
+}

@@ -1,0 +1,250 @@
+{
+    "monitors": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [
+                "redis"
+            ],
+            "names": [
+                "redis"
+            ],
+            "num": 1
+        },
+        "services": [
+            {
+                "image": "./result",
+                "buses": [],
+                "monitors": [],
+                "image_full": "./result",
+                "gates": [],
+                "name": "result",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "./worker",
+                "buses": [],
+                "monitors": [],
+                "image_full": "./worker",
+                "gates": [],
+                "name": "worker",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "postgres",
+                "buses": [],
+                "monitors": [],
+                "image_full": "postgres:9.4",
+                "gates": [],
+                "name": "db",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "redis",
+                "buses": [],
+                "monitors": [],
+                "image_full": "redis:5.0.7-alpine",
+                "gates": [],
+                "name": "redis",
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "redis"
+                ],
+                "depends_on": []
+            },
+            {
+                "image": "./vote",
+                "buses": [],
+                "monitors": [],
+                "image_full": "./vote",
+                "gates": [],
+                "name": "vote",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            }
+        ],
+        "num_services": 5
+    },
+    "num_langs": 2,
+    "name": "bdausses/docker_compose_example",
+    "num_dockers": 4,
+    "buses": [],
+    "dbs": [
+        "redis"
+    ],
+    "size": 209,
+    "num_discos": 0,
+    "shared_dbs": false,
+    "discos": [],
+    "images": [
+        "python",
+        "microsoft/dotnet",
+        "node"
+    ],
+    "num_servers": 3,
+    "files": [
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/vote/requirements.txt",
+            "discos": [],
+            "dbs": [
+                "redis"
+            ]
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/result/package.json",
+            "discos": [],
+            "dbs": []
+        }
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "worker",
+                "dll",
+                "dotnet"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "microsoft/dotnet",
+            "path": "/worker/Dockerfile",
+            "from_full": "microsoft/dotnet:1.0.0-preview2-sdk",
+            "cmd": "dotnet Worker.dll",
+            "keywords": [
+                "src",
+                "dotnet",
+                "nuget",
+                "worker",
+                "minimal"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "server",
+                "node"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "node",
+            "path": "/result/Dockerfile",
+            "from_full": "node:12.13.1-slim",
+            "cmd": "node server.js",
+            "keywords": [
+                "npm",
+                "node",
+                "install",
+                "modules",
+                "registry"
+            ],
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "tests",
+                "app"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "node",
+            "path": "/result/tests/Dockerfile",
+            "from_full": "node",
+            "cmd": "/app/tests.sh",
+            "keywords": [
+                "phantomjs",
+                "install",
+                "npm"
+            ],
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "app",
+                "gunicorn",
+                "log",
+                "keep",
+                "workers"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "python",
+            "path": "/vote/Dockerfile",
+            "from_full": "python:3.7.5-alpine",
+            "cmd": "gunicorn app:app -b 0.0.0.0:80 --log-file - --access-logfile - --workers 4 --keep-alive 0",
+            "keywords": [
+                "txt",
+                "pip",
+                "install",
+                "requirements"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": [
+                "python"
+            ]
+        }
+    ],
+    "url": "git://github.com/bdausses/docker_compose_example.git",
+    "gates": [],
+    "num_files": 7,
+    "num_services": 5,
+    "num_gates": 0,
+    "num_dbs": 1,
+    "avg_size_service": 52.25,
+    "langs": [
+        "python",
+        "javascript"
+    ],
+    "num_buses": 0,
+    "languages": [
+        "javascript"
+    ],
+    "num_monitors": 0,
+    "servers": [
+        "express",
+        "flask",
+        "node"
+    ]
+}

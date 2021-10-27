@@ -1,0 +1,337 @@
+{
+    "avg_size_service": 84.5,
+    "discos": [
+        "eureka"
+    ],
+    "images": [
+        "openjdk"
+    ],
+    "num_dockers": 6,
+    "num_servers": 3,
+    "langs": [
+        "java"
+    ],
+    "languages": [
+        "java"
+    ],
+    "num_services": 6,
+    "num_gates": 1,
+    "num_langs": 1,
+    "monitors": [],
+    "gates": [
+        "zuul"
+    ],
+    "servers": [
+        "glassfish",
+        "spring",
+        "tomcat"
+    ],
+    "num_monitors": 0,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [
+                    "naming-server",
+                    "zuul-gateway-server",
+                    "auth-server"
+                ],
+                "image": "FilePathService",
+                "image_full": "FilePathService",
+                "gates": [],
+                "name": "file-path-service",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "ServerEureka",
+                "image_full": "ServerEureka",
+                "gates": [],
+                "name": "naming-server",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "naming-server",
+                    "zuul-gateway-server"
+                ],
+                "image": "FileInfoService",
+                "image_full": "FileInfoService",
+                "gates": [],
+                "name": "file-info-service",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "naming-server",
+                    "zuul-gateway-server",
+                    "auth-server",
+                    "file-path-service"
+                ],
+                "image": "NoteCreatorService",
+                "image_full": "NoteCreatorService",
+                "gates": [],
+                "name": "note-create-service",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "naming-server"
+                ],
+                "image": "ServerProxyZuul",
+                "image_full": "ServerProxyZuul",
+                "gates": [],
+                "name": "zuul-gateway-server",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "naming-server"
+                ],
+                "image": "ServerOAuth2",
+                "image_full": "ServerOAuth2",
+                "gates": [],
+                "name": "auth-server",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "names": [],
+            "num": 0,
+            "services": [],
+            "shared_dbs": false
+        }
+    },
+    "size": 507,
+    "url": "git://github.com/pratik502/Docker-microservices-Spring.git",
+    "num_buses": 1,
+    "shared_dbs": false,
+    "files": [
+        {
+            "path": "/FilePathService/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "spring",
+                "tomcat"
+            ],
+            "dbs": [
+                "oracle"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/ServerOAuth2/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "spring",
+                "tomcat"
+            ],
+            "dbs": [
+                "oracle"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/ServerEureka/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "spring",
+                "tomcat"
+            ],
+            "dbs": [
+                "oracle"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/ServerProxyZuul/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "servers": [
+                "spring",
+                "tomcat"
+            ],
+            "dbs": [
+                "oracle"
+            ],
+            "buses": [
+                "amqp"
+            ]
+        },
+        {
+            "path": "/FileInfoService/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "spring",
+                "glassfish"
+            ],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/NoteCreatorService/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "spring",
+                "tomcat"
+            ],
+            "dbs": [
+                "oracle"
+            ],
+            "buses": []
+        }
+    ],
+    "num_discos": 1,
+    "dockers": [
+        {
+            "path": "/FilePathService/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "from": "openjdk",
+            "cmd": "",
+            "keywords": [],
+            "servers": [],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/ServerOAuth2/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "from": "openjdk",
+            "cmd": "",
+            "keywords": [],
+            "servers": [],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/ServerEureka/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "from": "openjdk",
+            "cmd": "",
+            "keywords": [],
+            "servers": [],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/ServerProxyZuul/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "from": "openjdk",
+            "cmd": "",
+            "keywords": [],
+            "servers": [],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/FileInfoService/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "from": "openjdk",
+            "cmd": "",
+            "keywords": [],
+            "servers": [],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/NoteCreatorService/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "from": "openjdk",
+            "cmd": "",
+            "keywords": [],
+            "servers": [],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": []
+        }
+    ],
+    "name": "pratik502/Docker-microservices-Spring",
+    "buses": [
+        "amqp"
+    ],
+    "num_files": 13,
+    "dbs": [
+        "oracle"
+    ],
+    "num_dbs": 1
+}

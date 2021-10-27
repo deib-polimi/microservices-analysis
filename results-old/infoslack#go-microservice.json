@@ -1,0 +1,259 @@
+{
+    "languages": [
+        "go",
+        "dockerfile"
+    ],
+    "num_servers": 0,
+    "shared_dbs": false,
+    "name": "infoslack/go-microservice",
+    "servers": [],
+    "num_monitors": 0,
+    "num_langs": 3,
+    "images": [
+        "alpine"
+    ],
+    "langs": [
+        "golang",
+        "dockerfile",
+        "go"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "golang"
+            ],
+            "cmd": "",
+            "keywords": [
+                "dep",
+                "cgo",
+                "golang",
+                "apk",
+                "installsuffix"
+            ],
+            "path": "/user-cli/Dockerfile",
+            "gates": [],
+            "from": "alpine",
+            "from_full": "alpine:latest",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "consignment",
+                "service"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "golang"
+            ],
+            "cmd": "./consignment-service",
+            "keywords": [
+                "dep",
+                "cgo",
+                "golang",
+                "ensure",
+                "add"
+            ],
+            "path": "/consignment-service/Dockerfile",
+            "gates": [],
+            "from": "alpine",
+            "from_full": "alpine:latest",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "user",
+                "service"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "golang"
+            ],
+            "cmd": "./user-service",
+            "keywords": [
+                "dep",
+                "cgo",
+                "golang",
+                "apk",
+                "installsuffix"
+            ],
+            "path": "/user-service/Dockerfile",
+            "gates": [],
+            "from": "alpine",
+            "from_full": "alpine:latest",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "service",
+                "vessel"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "golang"
+            ],
+            "cmd": "./vessel-service",
+            "keywords": [
+                "dep",
+                "cgo",
+                "golang",
+                "ensure",
+                "add"
+            ],
+            "path": "/vessel-service/Dockerfile",
+            "gates": [],
+            "from": "alpine",
+            "from_full": "alpine:latest",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "consignment",
+                "cli"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "golang"
+            ],
+            "cmd": "./consignment-cli",
+            "keywords": [
+                "dep",
+                "cgo",
+                "golang",
+                "apk",
+                "installsuffix"
+            ],
+            "path": "/consignment-cli/Dockerfile",
+            "gates": [],
+            "from": "alpine",
+            "from_full": "alpine:latest",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [],
+    "num_buses": 0,
+    "discos": [],
+    "monitors": [],
+    "num_files": 6,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "./consignment-service",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "consignment-service",
+                "image": "./consignment-service",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "./user-service",
+                "depends_on": [
+                    "pg"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "user-service",
+                "image": "./user-service",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "./vessel-service",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "vessel-service",
+                "image": "./vessel-service",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "postgres:9.6.8-alpine",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "pg",
+                "image": "postgres",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mongo",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "mongodb",
+                "image": "mongo",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "./consignment-cli",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "consignment-cli",
+                "image": "./consignment-cli",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "services": [
+                "mongodb"
+            ],
+            "names": [
+                "mongo"
+            ],
+            "num": 1,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [
+        "mongo"
+    ],
+    "num_dbs": 1,
+    "avg_size_service": 10.0,
+    "num_services": 6,
+    "buses": [],
+    "files": [],
+    "url": "git://github.com/infoslack/go-microservice.git",
+    "num_dockers": 5,
+    "size": 50,
+    "num_discos": 0,
+    "num_gates": 0
+}

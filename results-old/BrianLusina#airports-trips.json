@@ -1,0 +1,249 @@
+{
+    "languages": [
+        "python",
+        "dockerfile",
+        "shell"
+    ],
+    "num_servers": 0,
+    "shared_dbs": false,
+    "name": "BrianLusina/airports-trips",
+    "servers": [],
+    "num_monitors": 0,
+    "num_langs": 3,
+    "images": [
+        "python"
+    ],
+    "langs": [
+        "shell",
+        "dockerfile",
+        "python"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [
+                "run"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "cmd": "./run.sh",
+            "keywords": [
+                "get",
+                "apt",
+                "install",
+                "pip",
+                "run"
+            ],
+            "path": "/gateway/Dockerfile",
+            "gates": [],
+            "from": "python",
+            "from_full": "python:3",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "run"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "cmd": "./run.sh",
+            "keywords": [
+                "get",
+                "apt",
+                "install",
+                "pip",
+                "run"
+            ],
+            "path": "/trips/Dockerfile",
+            "gates": [],
+            "from": "python",
+            "from_full": "python:3",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "run"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "cmd": "./run.sh",
+            "keywords": [
+                "get",
+                "apt",
+                "install",
+                "pip",
+                "run"
+            ],
+            "path": "/airports/Dockerfile",
+            "gates": [],
+            "from": "python",
+            "from_full": "python:3",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [
+        "gateway"
+    ],
+    "num_buses": 2,
+    "discos": [],
+    "monitors": [],
+    "num_files": 7,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "rabbitmq:3.6-management",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "name": "rabbit",
+                "image": "rabbitmq",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "gateway",
+                "depends_on": [
+                    "rabbit"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "name": "gateway",
+                "image": "gateway",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "trips",
+                "depends_on": [
+                    "rabbit"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "trips",
+                "image": "trips",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "airports",
+                "depends_on": [
+                    "rabbit"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "airports",
+                "image": "airports",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "redis:4-alpine",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "redis",
+                "image": "redis",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 5,
+        "detected_dbs": {
+            "services": [
+                "redis"
+            ],
+            "names": [
+                "redis"
+            ],
+            "num": 1,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [
+        "redis"
+    ],
+    "num_dbs": 1,
+    "avg_size_service": 20.666666666666668,
+    "num_services": 5,
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "files": [
+        {
+            "dbs": [
+                "redis"
+            ],
+            "path": "/gateway/requirements.txt",
+            "gates": [],
+            "servers": [],
+            "buses": [
+                "amqp"
+            ],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "redis"
+            ],
+            "path": "/trips/requirements.txt",
+            "gates": [],
+            "servers": [],
+            "buses": [
+                "amqp"
+            ],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "redis"
+            ],
+            "path": "/airports/requirements.txt",
+            "gates": [],
+            "servers": [],
+            "buses": [
+                "amqp"
+            ],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "url": "git://github.com/BrianLusina/airports-trips.git",
+    "num_dockers": 3,
+    "size": 62,
+    "num_discos": 0,
+    "num_gates": 1
+}

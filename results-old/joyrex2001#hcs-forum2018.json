@@ -1,0 +1,297 @@
+{
+    "dockers": [
+        {
+            "from": "python",
+            "from_full": "python:3",
+            "cmd": "python -u ./app.py",
+            "gates": [],
+            "cmd_keywords": [
+                "python",
+                "app"
+            ],
+            "monitors": [],
+            "keywords": [
+                "install",
+                "pip",
+                "txt",
+                "cache",
+                "dir"
+            ],
+            "path": "/dashboard/Dockerfile",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "discos": [],
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "from": "nearform/centos7-s2i-nodejs",
+            "from_full": "nearform/centos7-s2i-nodejs:8.9",
+            "cmd": "npm run start",
+            "gates": [],
+            "cmd_keywords": [
+                "start",
+                "npm",
+                "run"
+            ],
+            "monitors": [],
+            "keywords": [
+                "npm",
+                "gulpfile",
+                "node",
+                "require",
+                "install"
+            ],
+            "path": "/game/Dockerfile",
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from": "maven",
+            "from_full": "maven:3.5-jdk-8-alpine",
+            "cmd": "java -jar /app/target/highscore-0.1.0.jar",
+            "gates": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "app",
+                "highscore",
+                "target"
+            ],
+            "monitors": [],
+            "keywords": [
+                "install",
+                "mvn"
+            ],
+            "path": "/highscore/Dockerfile",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "discos": [],
+            "langs": [
+                "java"
+            ]
+        }
+    ],
+    "dbs": [
+        "zookeeper",
+        "redis",
+        "postgresql"
+    ],
+    "num_dbs": 3,
+    "num_buses": 1,
+    "gates": [],
+    "num_dockers": 3,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "depends_on": [],
+                "name": "kafka",
+                "image_full": "wurstmeister/kafka:latest",
+                "gates": [],
+                "image": "wurstmeister/kafka",
+                "servers": [],
+                "buses": [
+                    "kafka"
+                ],
+                "discos": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "depends_on": [],
+                "name": "postgres",
+                "image_full": "postgres",
+                "gates": [],
+                "image": "postgres",
+                "servers": [],
+                "buses": [],
+                "discos": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "depends_on": [],
+                "name": "zookeeper",
+                "image_full": "wurstmeister/zookeeper:latest",
+                "gates": [],
+                "image": "wurstmeister/zookeeper",
+                "servers": [],
+                "buses": [],
+                "discos": [
+                    "zookeeper"
+                ],
+                "dbs": [
+                    "zookeeper"
+                ]
+            },
+            {
+                "monitors": [],
+                "depends_on": [],
+                "name": "redis",
+                "image_full": "redis",
+                "gates": [],
+                "image": "redis",
+                "servers": [],
+                "buses": [],
+                "discos": [],
+                "dbs": [
+                    "redis"
+                ]
+            },
+            {
+                "monitors": [],
+                "depends_on": [],
+                "name": "dashboard",
+                "image_full": "./dashboard",
+                "gates": [],
+                "image": "./dashboard",
+                "servers": [],
+                "buses": [],
+                "discos": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "depends_on": [],
+                "name": "highscore",
+                "image_full": "./highscore",
+                "gates": [],
+                "image": "./highscore",
+                "servers": [],
+                "buses": [],
+                "discos": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "depends_on": [],
+                "name": "game",
+                "image_full": "./game",
+                "gates": [],
+                "image": "./game",
+                "servers": [],
+                "buses": [],
+                "discos": [],
+                "dbs": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [
+                "zookeeper",
+                "redis"
+            ],
+            "num": 2,
+            "shared_dbs": false,
+            "services": [
+                "zookeeper",
+                "redis"
+            ]
+        },
+        "path": "/docker-compose.yml",
+        "num_services": 7
+    },
+    "num_langs": 4,
+    "num_discos": 1,
+    "num_services": 7,
+    "servers": [
+        "jetty",
+        "spring",
+        "tomcat",
+        "flask",
+        "node",
+        "express"
+    ],
+    "buses": [
+        "kafka"
+    ],
+    "num_gates": 0,
+    "avg_size_service": 2565.3333333333335,
+    "name": "joyrex2001/hcs-forum2018",
+    "langs": [
+        "python",
+        "java",
+        "javascript",
+        "html"
+    ],
+    "num_servers": 6,
+    "files": [
+        {
+            "monitors": [],
+            "path": "/dashboard/requirements.txt",
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "monitors": [
+                "prometheus"
+            ],
+            "path": "/highscore/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring",
+                "tomcat",
+                "jetty"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "dbs": [
+                "postgresql"
+            ]
+        },
+        {
+            "monitors": [],
+            "path": "/game/package.json",
+            "gates": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "dbs": [
+                "redis"
+            ]
+        }
+    ],
+    "num_monitors": 1,
+    "shared_dbs": false,
+    "monitors": [
+        "prometheus"
+    ],
+    "discos": [
+        "zookeeper"
+    ],
+    "images": [
+        "python",
+        "nearform/centos7-s2i-nodejs",
+        "maven"
+    ],
+    "num_files": 7,
+    "url": "git://github.com/joyrex2001/hcs-forum2018.git",
+    "languages": [
+        "javascript",
+        "java",
+        "html"
+    ],
+    "size": 7696
+}

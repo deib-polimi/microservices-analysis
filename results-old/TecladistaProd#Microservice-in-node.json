@@ -1,0 +1,185 @@
+{
+    "size": 216,
+    "avg_size_service": 108.0,
+    "name": "TecladistaProd/Microservice-in-node",
+    "languages": [
+        "javascript",
+        "html",
+        "css"
+    ],
+    "servers": [
+        "node",
+        "express"
+    ],
+    "num_dbs": 1,
+    "images": [
+        "node"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 4,
+        "services": [
+            {
+                "depends_on": [],
+                "image_full": "wurstmeister/zookeeper:latest",
+                "monitors": [],
+                "name": "zookeeper",
+                "image": "wurstmeister/zookeeper",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "gates": [],
+                "discos": [
+                    "zookeeper"
+                ]
+            },
+            {
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "image_full": "wurstmeister/kafka:2.11-1.1.0",
+                "monitors": [],
+                "name": "kafka",
+                "image": "wurstmeister/kafka",
+                "servers": [],
+                "buses": [
+                    "kafka"
+                ],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "kafka"
+                ],
+                "image_full": "./api/",
+                "monitors": [],
+                "name": "rest_api",
+                "image": "./api/",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "rest_api"
+                ],
+                "image_full": "./certification",
+                "monitors": [],
+                "name": "certification",
+                "image": "./certification",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "zookeeper"
+            ],
+            "names": [
+                "zookeeper"
+            ],
+            "shared_dbs": false,
+            "num": 1
+        }
+    },
+    "num_dockers": 2,
+    "num_buses": 1,
+    "num_services": 4,
+    "dockers": [
+        {
+            "path": "/api/Dockerfile",
+            "from": "node",
+            "langs": [],
+            "cmd": "",
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:12.8.0-stretch",
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/certification/Dockerfile",
+            "from": "node",
+            "langs": [],
+            "cmd": "",
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:12.8.0-stretch",
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "num_langs": 3,
+    "langs": [
+        "javascript",
+        "css",
+        "html"
+    ],
+    "discos": [
+        "zookeeper"
+    ],
+    "num_gates": 0,
+    "num_monitors": 0,
+    "num_files": 5,
+    "files": [
+        {
+            "path": "/api/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/certification/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_servers": 2,
+    "url": "git://github.com/TecladistaProd/Microservice-in-node.git",
+    "dbs": [
+        "zookeeper"
+    ],
+    "num_discos": 1,
+    "gates": [],
+    "buses": [
+        "kafka"
+    ]
+}

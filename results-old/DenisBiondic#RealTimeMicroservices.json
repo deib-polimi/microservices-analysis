@@ -1,0 +1,202 @@
+{
+    "size": 517,
+    "num_discos": 0,
+    "num_services": 4,
+    "num_monitors": 0,
+    "num_langs": 3,
+    "dockers": [
+        {
+            "dbs": [],
+            "cmd": "",
+            "gates": [],
+            "from_full": "mcr.microsoft.com/dotnet/core/aspnet",
+            "langs": [],
+            "keywords": [
+                "dotnet",
+                "publish",
+                "restore",
+                "release",
+                "out"
+            ],
+            "path": "/BackendForFrontend/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "from": "mcr.microsoft.com/dotnet/core/aspnet",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "cmd": "nginx -g daemon off;",
+            "gates": [
+                "nginx"
+            ],
+            "from_full": "nginx:1.13.3-alpine",
+            "langs": [],
+            "keywords": [
+                "npm",
+                "set",
+                "bin",
+                "app",
+                "build"
+            ],
+            "path": "/Frontend/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "off",
+                "daemon",
+                "nginx"
+            ],
+            "from": "nginx",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "cmd": "",
+            "gates": [],
+            "from_full": "mcr.microsoft.com/dotnet/core/runtime",
+            "langs": [],
+            "keywords": [
+                "dotnet",
+                "publish",
+                "restore",
+                "release",
+                "out"
+            ],
+            "path": "/NotificationProducer/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "from": "mcr.microsoft.com/dotnet/core/runtime",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        }
+    ],
+    "files": [
+        {
+            "dbs": [],
+            "gates": [],
+            "discos": [],
+            "monitors": [],
+            "servers": [
+                "node"
+            ],
+            "path": "/Frontend/package.json",
+            "buses": []
+        }
+    ],
+    "langs": [
+        "c#",
+        "typescript",
+        "powershell"
+    ],
+    "url": "git://github.com/DenisBiondic/RealTimeMicroservices.git",
+    "buses": [],
+    "shared_dbs": true,
+    "structure": {
+        "services": [
+            {
+                "dbs": [],
+                "image_full": "realtime/backend-for-frontend",
+                "image": "realtime/backend-for-frontend",
+                "gates": [],
+                "name": "backend-for-frontend",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [
+                    "redis"
+                ],
+                "buses": []
+            },
+            {
+                "dbs": [
+                    "redis"
+                ],
+                "image_full": "redis",
+                "image": "redis",
+                "gates": [],
+                "name": "redis",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "realtime/frontend",
+                "image": "realtime/frontend",
+                "gates": [],
+                "name": "frontend",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [
+                    "backend-for-frontend"
+                ],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "realtime/notification-producer",
+                "image": "realtime/notification-producer",
+                "gates": [],
+                "name": "notification-producer",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [
+                    "redis"
+                ],
+                "buses": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [
+                "redis"
+            ],
+            "services": [
+                "redis"
+            ],
+            "shared_dbs": true,
+            "num": 1
+        },
+        "num_services": 4,
+        "path": "/docker-compose.yml"
+    },
+    "name": "DenisBiondic/RealTimeMicroservices",
+    "num_buses": 0,
+    "servers": [
+        "node"
+    ],
+    "num_files": 5,
+    "num_dbs": 1,
+    "num_gates": 1,
+    "gates": [
+        "nginx"
+    ],
+    "monitors": [],
+    "avg_size_service": 172.33333333333334,
+    "languages": [
+        "typescript",
+        "c#",
+        "powershell"
+    ],
+    "num_dockers": 3,
+    "dbs": [
+        "redis"
+    ],
+    "num_servers": 1,
+    "discos": [],
+    "images": [
+        "mcr.microsoft.com/dotnet/core/aspnet",
+        "mcr.microsoft.com/dotnet/core/runtime",
+        "nginx"
+    ]
+}

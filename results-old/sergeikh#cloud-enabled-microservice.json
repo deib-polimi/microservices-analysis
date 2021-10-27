@@ -1,0 +1,317 @@
+{
+    "num_discos": 1,
+    "buses": [],
+    "name": "sergeikh/cloud-enabled-microservice",
+    "dbs": [
+        "mysql"
+    ],
+    "num_services": 0,
+    "avg_size_service": 14.444444444444445,
+    "num_monitors": 0,
+    "monitors": [],
+    "discos": [
+        "eureka"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "url": "git://github.com/sergeikh/cloud-enabled-microservice.git",
+    "num_dockers": 9,
+    "files": [
+        {
+            "discos": [],
+            "path": "/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "discos": [
+                "eureka"
+            ],
+            "path": "/discovery-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "path": "/config-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "discos": [
+                "eureka"
+            ],
+            "path": "/tasks-client/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "discos": [
+                "eureka"
+            ],
+            "path": "/routing-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "dbs": [],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [
+                "eureka"
+            ],
+            "path": "/tasks-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "discos": [
+                "eureka"
+            ],
+            "path": "/oauth-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": []
+        }
+    ],
+    "shared_dbs": false,
+    "size": 130,
+    "languages": [
+        "java",
+        "shell"
+    ],
+    "gates": [
+        "zuul"
+    ],
+    "num_langs": 2,
+    "structure": {
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "shared_dbs": false,
+            "names": []
+        },
+        "num_services": 0,
+        "path": "/tasks-service/docker/tasks-service-staging/docker-compose.yml",
+        "services": []
+    },
+    "dockers": [
+        {
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "",
+            "langs": [],
+            "from": "openjdk",
+            "monitors": [],
+            "discos": [],
+            "path": "/discovery-service/docker/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "keywords": []
+        },
+        {
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "",
+            "langs": [],
+            "from": "openjdk",
+            "monitors": [],
+            "discos": [],
+            "path": "/config-service/docker/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "keywords": []
+        },
+        {
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "./wait-for-it.sh --timeout=10 routing-service:5555 -- java -jar @project.build.finalName@.jar",
+            "langs": [
+                "java"
+            ],
+            "from": "openjdk",
+            "monitors": [],
+            "discos": [],
+            "path": "/tasks-client/docker/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "service",
+                "for",
+                "finalname",
+                "routing"
+            ],
+            "gates": [],
+            "keywords": [
+                "add",
+                "bash",
+                "cache",
+                "apk"
+            ]
+        },
+        {
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "",
+            "langs": [],
+            "from": "openjdk",
+            "monitors": [],
+            "discos": [],
+            "path": "/routing-service/docker/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "keywords": []
+        },
+        {
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "./wait-for-it.sh --timeout=10 config-service:8888 -- java -jar @project.build.finalName@.jar",
+            "langs": [
+                "java"
+            ],
+            "from": "openjdk",
+            "monitors": [],
+            "discos": [],
+            "path": "/tasks-service/docker/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "service",
+                "for",
+                "finalname",
+                "project"
+            ],
+            "gates": [],
+            "keywords": [
+                "add",
+                "bash",
+                "cache",
+                "apk"
+            ]
+        },
+        {
+            "from_full": "haproxy:1.7",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "",
+            "langs": [],
+            "from": "haproxy",
+            "monitors": [],
+            "discos": [],
+            "path": "/tasks-service/docker/haproxy/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "keywords": []
+        },
+        {
+            "from_full": "java:8",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "",
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "monitors": [],
+            "discos": [],
+            "path": "/tasks-service/docker/tasks-service-staging/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "keywords": []
+        },
+        {
+            "from_full": "mysql:5.7",
+            "servers": [],
+            "buses": [],
+            "dbs": [
+                "mysql"
+            ],
+            "cmd": "",
+            "langs": [],
+            "from": "mysql",
+            "monitors": [],
+            "discos": [],
+            "path": "/tasks-service/docker/mysql/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "keywords": []
+        },
+        {
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "",
+            "langs": [],
+            "from": "openjdk",
+            "monitors": [],
+            "discos": [],
+            "path": "/oauth-service/docker/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "keywords": []
+        }
+    ],
+    "num_files": 17,
+    "num_gates": 1,
+    "num_dbs": 1,
+    "langs": [
+        "java",
+        "shell"
+    ],
+    "images": [
+        "openjdk",
+        "java",
+        "haproxy",
+        "mysql"
+    ],
+    "num_buses": 0,
+    "num_servers": 1
+}

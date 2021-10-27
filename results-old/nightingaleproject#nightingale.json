@@ -1,0 +1,141 @@
+{
+    "gates": [
+        "nginx"
+    ],
+    "num_buses": 0,
+    "url": "git://github.com/nightingaleproject/nightingale.git",
+    "images": [
+        "ruby"
+    ],
+    "avg_size_service": 10702.0,
+    "num_langs": 2,
+    "num_monitors": 0,
+    "num_dockers": 1,
+    "num_discos": 0,
+    "num_servers": 1,
+    "buses": [],
+    "discos": [],
+    "dockers": [
+        {
+            "path": "/Dockerfile",
+            "cmd_keywords": [
+                "rails",
+                "bundle",
+                "exec"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "from": "ruby",
+            "langs": [
+                "ruby"
+            ],
+            "servers": [
+                "rails"
+            ],
+            "cmd": "bundle exec rails s -p 3000 -b 0.0.0.0",
+            "from_full": "ruby:2.6.6",
+            "monitors": [],
+            "keywords": [
+                "bundle",
+                "install",
+                "rake",
+                "postgresql",
+                "assets"
+            ],
+            "buses": []
+        }
+    ],
+    "size": 10702,
+    "name": "nightingaleproject/nightingale",
+    "num_services": 4,
+    "dbs": [
+        "postgresql"
+    ],
+    "shared_dbs": false,
+    "langs": [
+        "ruby",
+        "javascript"
+    ],
+    "languages": [
+        "ruby",
+        "javascript"
+    ],
+    "servers": [
+        "rails"
+    ],
+    "num_files": 2,
+    "monitors": [],
+    "num_dbs": 1,
+    "num_gates": 1,
+    "files": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 4,
+        "detected_dbs": {
+            "services": [],
+            "num": 0,
+            "names": [],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "db",
+                    "vrdr-microservice"
+                ],
+                "servers": [],
+                "image_full": "mitre/nightingale:latest",
+                "name": "app",
+                "gates": [],
+                "image": "mitre/nightingale",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "postgres:12",
+                "name": "db",
+                "gates": [],
+                "image": "postgres",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "app"
+                ],
+                "servers": [],
+                "image_full": "Dockerfile-nginx",
+                "name": "web",
+                "gates": [
+                    "nginx"
+                ],
+                "image": "Dockerfile-nginx",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "mitre/vrdr-microservice:latest",
+                "name": "vrdr-microservice",
+                "gates": [],
+                "image": "mitre/vrdr-microservice",
+                "dbs": [],
+                "buses": []
+            }
+        ]
+    }
+}

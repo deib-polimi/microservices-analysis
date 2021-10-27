@@ -1,0 +1,446 @@
+{
+    "gates": [
+        "zuul"
+    ],
+    "images": [
+        "rabbitmq",
+        "openjdk"
+    ],
+    "num_dbs": 1,
+    "structure": {
+        "num_services": 8,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "openzipkin/zipkin",
+                "gates": [],
+                "image": "openzipkin/zipkin",
+                "depends_on": [],
+                "dbs": [],
+                "name": "zipkin",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "rajeevshukla/netflix-cloud-zuul-server",
+                "gates": [
+                    "zuul"
+                ],
+                "image": "rajeevshukla/netflix-cloud-zuul-server",
+                "depends_on": [
+                    "netflix-eureka-naming-server",
+                    "zipkin"
+                ],
+                "dbs": [],
+                "name": "netflix-cloud-zuul-server",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mysql:5.6",
+                "gates": [],
+                "image": "mysql",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "name": "mysql",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "rajeevshukla/netflix-eureka-naming-server",
+                "gates": [],
+                "image": "rajeevshukla/netflix-eureka-naming-server",
+                "depends_on": [],
+                "dbs": [],
+                "name": "netflix-eureka-naming-server",
+                "buses": [],
+                "servers": [],
+                "discos": [
+                    "eureka"
+                ],
+                "monitors": []
+            },
+            {
+                "image_full": "rajeevshukla/user-registration-service",
+                "gates": [],
+                "image": "rajeevshukla/user-registration-service",
+                "depends_on": [
+                    "mysql",
+                    "rabbitmq",
+                    "spring-cloud-config-server",
+                    "netflix-eureka-naming-server",
+                    "zipkin"
+                ],
+                "dbs": [],
+                "name": "spring-boot-user-registration",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "rabbitmq:management",
+                "gates": [],
+                "image": "rabbitmq",
+                "depends_on": [],
+                "dbs": [],
+                "name": "rabbitmq",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "rajeevshukla/spring-cloud-config-server",
+                "gates": [],
+                "image": "rajeevshukla/spring-cloud-config-server",
+                "depends_on": [],
+                "dbs": [],
+                "name": "spring-cloud-config-server",
+                "buses": [],
+                "servers": [
+                    "spring"
+                ],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "rajeevshukla/email-service",
+                "gates": [],
+                "image": "rajeevshukla/email-service",
+                "depends_on": [
+                    "rabbitmq",
+                    "spring-cloud-config-server",
+                    "netflix-eureka-naming-server",
+                    "zipkin"
+                ],
+                "dbs": [],
+                "name": "spring-boot-email",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 1,
+            "services": [
+                "mysql"
+            ],
+            "shared_dbs": false,
+            "names": [
+                "mysql"
+            ]
+        }
+    },
+    "num_files": 15,
+    "num_gates": 1,
+    "discos": [
+        "eureka",
+        "consul"
+    ],
+    "num_dockers": 7,
+    "shared_dbs": false,
+    "languages": [
+        "java",
+        "shell"
+    ],
+    "name": "rajeevshukla/spring-microservices-with-docker",
+    "num_langs": 3,
+    "avg_size_service": 64.71428571428571,
+    "monitors": [],
+    "num_servers": 1,
+    "num_services": 8,
+    "dbs": [
+        "mysql"
+    ],
+    "langs": [
+        "bash",
+        "java",
+        "shell"
+    ],
+    "dockers": [
+        {
+            "gates": [],
+            "path": "/auth-service/Dockerfile",
+            "langs": [
+                "bash"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "openjdk",
+            "discos": [],
+            "from_full": "openjdk:8-jre-alpine",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": [
+                "source",
+                "cache",
+                "chmod",
+                "add",
+                "usr"
+            ]
+        },
+        {
+            "gates": [],
+            "path": "/spring-cloud-config-server/Dockerfile",
+            "langs": [
+                "bash"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "openjdk",
+            "discos": [],
+            "from_full": "openjdk:8-jre-alpine",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": [
+                "source",
+                "cache",
+                "chmod",
+                "add",
+                "usr"
+            ]
+        },
+        {
+            "gates": [],
+            "path": "/rabbitmq_clustering/Dockerfile",
+            "langs": [],
+            "dbs": [],
+            "buses": [
+                "rabbitmq"
+            ],
+            "servers": [],
+            "from": "rabbitmq",
+            "discos": [
+                "consul"
+            ],
+            "from_full": "rabbitmq:management",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": [
+                "rabbitmq",
+                "offline",
+                "discovery",
+                "plugins",
+                "peer"
+            ]
+        },
+        {
+            "gates": [],
+            "path": "/user-registration-service/Dockerfile",
+            "langs": [
+                "bash"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "openjdk",
+            "discos": [],
+            "from_full": "openjdk:8-jre-alpine",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": [
+                "cache",
+                "bash",
+                "add",
+                "apk"
+            ]
+        },
+        {
+            "gates": [],
+            "path": "/netflix-cloud-zuul-server/Dockerfile",
+            "langs": [
+                "bash"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "openjdk",
+            "discos": [],
+            "from_full": "openjdk:8-jre-alpine",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": [
+                "source",
+                "cache",
+                "chmod",
+                "add",
+                "usr"
+            ]
+        },
+        {
+            "gates": [],
+            "path": "/netflix-eureka-naming-server/Dockerfile",
+            "langs": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "openjdk",
+            "discos": [],
+            "from_full": "openjdk:8-jre-alpine",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": []
+        },
+        {
+            "gates": [],
+            "path": "/email-service/Dockerfile",
+            "langs": [
+                "bash"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "openjdk",
+            "discos": [],
+            "from_full": "openjdk:8-jre-alpine",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": [
+                "source",
+                "cache",
+                "chmod",
+                "add",
+                "usr"
+            ]
+        }
+    ],
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "size": 453,
+    "files": [
+        {
+            "gates": [
+                "zuul"
+            ],
+            "path": "/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "path": "/auth-service/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [
+                "amqp"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "path": "/spring-cloud-config-server/pom.xml",
+            "discos": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "path": "/user-registration-service/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [
+                "zuul"
+            ],
+            "path": "/netflix-cloud-zuul-server/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [
+                "amqp"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "path": "/netflix-eureka-naming-server/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "path": "/email-service/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [
+                "amqp",
+                "rabbitmq"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        }
+    ],
+    "num_buses": 2,
+    "num_monitors": 0,
+    "url": "git://github.com/rajeevshukla/spring-microservices-with-docker.git",
+    "num_discos": 2
+}

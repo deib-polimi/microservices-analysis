@@ -1,0 +1,394 @@
+{
+    "num_monitors": 0,
+    "name": "mcfitz2/cheeseball",
+    "langs": [
+        "dockerfile",
+        "shell",
+        "javascript",
+        "python",
+        "ruby"
+    ],
+    "discos": [],
+    "files": [
+        {
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [
+                "mqtt"
+            ],
+            "discos": [],
+            "path": "/feeder/requirements.txt",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "express"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/api-service/package.json",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/broker/package.json",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "express"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [
+                "mqtt"
+            ],
+            "discos": [],
+            "path": "/notification-service/package.json",
+            "dbs": [
+                "mongodb"
+            ]
+        },
+        {
+            "servers": [
+                "express",
+                "node"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [
+                "mqtt"
+            ],
+            "discos": [],
+            "path": "/feeder-service/package.json",
+            "dbs": [
+                "mongodb"
+            ]
+        }
+    ],
+    "dockers": [
+        {
+            "from": "node",
+            "cmd_keywords": [
+                "index",
+                "node"
+            ],
+            "langs": [
+                "python"
+            ],
+            "discos": [],
+            "cmd": "node index.js",
+            "dbs": [],
+            "from_full": "node:alpine",
+            "keywords": [
+                "npm",
+                "build",
+                "git",
+                "mkdir",
+                "install"
+            ],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/api-service/Dockerfile"
+        },
+        {
+            "from": "node",
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "langs": [
+                "python"
+            ],
+            "discos": [],
+            "cmd": "npm start",
+            "dbs": [],
+            "from_full": "node:alpine",
+            "keywords": [
+                "npm",
+                "build",
+                "git",
+                "mkdir",
+                "install"
+            ],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/broker/Dockerfile"
+        },
+        {
+            "from": "ruby",
+            "cmd_keywords": [
+                "index",
+                "ruby"
+            ],
+            "langs": [
+                "ruby"
+            ],
+            "discos": [],
+            "cmd": "ruby index.rb",
+            "dbs": [],
+            "from_full": "ruby:alpine",
+            "keywords": [
+                "build",
+                "apk",
+                "home",
+                "git",
+                "mkdir"
+            ],
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/user-service/Dockerfile"
+        },
+        {
+            "from": "haproxy",
+            "cmd_keywords": [
+                "haproxy",
+                "etc",
+                "cfg"
+            ],
+            "langs": [
+                "python"
+            ],
+            "discos": [],
+            "cmd": "haproxy -- /etc/haproxy/*.cfg",
+            "dbs": [],
+            "from_full": "haproxy:1.7-alpine",
+            "keywords": [
+                "apk",
+                "cache",
+                "dev",
+                "add",
+                "deps"
+            ],
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/proxy/Dockerfile"
+        },
+        {
+            "from": "node",
+            "cmd_keywords": [
+                "index",
+                "node"
+            ],
+            "langs": [
+                "python"
+            ],
+            "discos": [],
+            "cmd": "node index.js",
+            "dbs": [],
+            "from_full": "node:alpine",
+            "keywords": [
+                "npm",
+                "build",
+                "git",
+                "mkdir",
+                "install"
+            ],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/notification-service/Dockerfile"
+        },
+        {
+            "from": "python",
+            "cmd_keywords": [
+                "index",
+                "python"
+            ],
+            "langs": [
+                "python"
+            ],
+            "discos": [],
+            "cmd": "python -u ./index.py",
+            "dbs": [],
+            "from_full": "python:3-alpine",
+            "keywords": [
+                "pip",
+                "install",
+                "cache",
+                "add",
+                "sdk"
+            ],
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/feeder/Dockerfile"
+        },
+        {
+            "from": "node",
+            "cmd_keywords": [
+                "index",
+                "node"
+            ],
+            "langs": [
+                "python"
+            ],
+            "discos": [],
+            "cmd": "node index.js",
+            "dbs": [],
+            "from_full": "node:alpine",
+            "keywords": [
+                "npm",
+                "build",
+                "git",
+                "mkdir",
+                "install"
+            ],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/feeder-service/Dockerfile"
+        }
+    ],
+    "size": 76,
+    "dbs": [
+        "redis"
+    ],
+    "num_gates": 0,
+    "monitors": [],
+    "url": "git://github.com/mcfitz2/cheeseball.git",
+    "structure": {
+        "services": [
+            {
+                "depends_on": [
+                    "redis"
+                ],
+                "servers": [],
+                "name": "broker",
+                "gates": [],
+                "image_full": "eclipse-mosquitto",
+                "discos": [],
+                "image": "eclipse-mosquitto",
+                "dbs": [],
+                "buses": [
+                    "mosquitto"
+                ],
+                "monitors": []
+            },
+            {
+                "depends_on": [
+                    "broker"
+                ],
+                "servers": [],
+                "name": "feeder-service",
+                "gates": [],
+                "image_full": "feeder-service",
+                "discos": [],
+                "image": "feeder-service",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [],
+                "servers": [],
+                "name": "redis",
+                "gates": [],
+                "image_full": "redis",
+                "discos": [],
+                "image": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [],
+                "servers": [],
+                "name": "api-service",
+                "gates": [],
+                "image_full": "api-service",
+                "discos": [],
+                "image": "api-service",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [],
+                "servers": [],
+                "name": "user-service",
+                "gates": [],
+                "image_full": "user-service",
+                "discos": [],
+                "image": "user-service",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "redis"
+            ],
+            "shared_dbs": false,
+            "num": 1,
+            "names": [
+                "redis"
+            ]
+        },
+        "path": "/docker-compose.yml",
+        "num_services": 5
+    },
+    "buses": [
+        "mosquitto",
+        "mqtt"
+    ],
+    "num_servers": 2,
+    "avg_size_service": 10.857142857142858,
+    "num_langs": 5,
+    "images": [
+        "python",
+        "node",
+        "ruby",
+        "haproxy"
+    ],
+    "num_dockers": 7,
+    "servers": [
+        "express",
+        "node"
+    ],
+    "languages": [
+        "javascript",
+        "python",
+        "dockerfile",
+        "ruby",
+        "shell"
+    ],
+    "gates": [],
+    "num_services": 5,
+    "shared_dbs": false,
+    "num_files": 13,
+    "num_discos": 0,
+    "num_buses": 2,
+    "num_dbs": 1
+}

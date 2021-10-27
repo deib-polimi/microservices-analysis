@@ -1,0 +1,232 @@
+{
+    "num_gates": 1,
+    "images": [
+        "php",
+        "consul",
+        "nginx"
+    ],
+    "discos": [
+        "consul",
+        "containerpilot"
+    ],
+    "num_buses": 0,
+    "name": "MohamedFawzy/hotels",
+    "gates": [
+        "nginx"
+    ],
+    "structure": {
+        "num_services": 5,
+        "detected_dbs": {
+            "services": [
+                "mongodb"
+            ],
+            "names": [
+                "mongo"
+            ],
+            "shared_dbs": true,
+            "num": 1
+        },
+        "path": "/docker/docker-compose.yml",
+        "services": [
+            {
+                "image": "mongo",
+                "image_full": "mongo:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "mongodb",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "mongo"
+                ]
+            },
+            {
+                "image": "./microservices/hotels/nginx/",
+                "image_full": "./microservices/hotels/nginx/",
+                "discos": [],
+                "gates": [
+                    "nginx"
+                ],
+                "depends_on": [
+                    "autodiscovery",
+                    "mongodb"
+                ],
+                "servers": [],
+                "name": "microservice_hotels_nginx",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "./microservices/hotels/php-fpm/",
+                "image_full": "./microservices/hotels/php-fpm/",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "autodiscovery",
+                    "mongodb"
+                ],
+                "servers": [],
+                "name": "microservice_hotels_fpm",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "nginx",
+                "image_full": "nginx:stable",
+                "discos": [],
+                "gates": [
+                    "nginx"
+                ],
+                "depends_on": [],
+                "servers": [],
+                "name": "source_base",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "./autodiscovery/",
+                "image_full": "./autodiscovery/",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "autodiscovery",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            }
+        ]
+    },
+    "url": "git://github.com/MohamedFawzy/hotels.git",
+    "langs": [
+        "php",
+        "html"
+    ],
+    "num_dockers": 3,
+    "num_langs": 2,
+    "dbs": [
+        "mysql",
+        "mongo"
+    ],
+    "shared_dbs": true,
+    "size": 3419,
+    "dockers": [
+        {
+            "discos": [
+                "consul"
+            ],
+            "monitors": [],
+            "from_full": "consul:v0.7.0",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "consul",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/docker/autodiscovery/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [
+                "containerpilot"
+            ],
+            "monitors": [],
+            "from_full": "nginx:stable",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "nginx",
+            "cmd": "/usr/local/bin/containerpilot nginx -g daemon off;",
+            "gates": [
+                "nginx"
+            ],
+            "keywords": [
+                "template",
+                "containerpilot",
+                "consul",
+                "tmp",
+                "tar"
+            ],
+            "dbs": [],
+            "path": "/docker/microservices/hotels/nginx/Dockerfile",
+            "cmd_keywords": [
+                "bin",
+                "nginx",
+                "usr",
+                "daemon",
+                "off"
+            ]
+        },
+        {
+            "discos": [
+                "containerpilot"
+            ],
+            "monitors": [],
+            "from_full": "php:7-fpm",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "php"
+            ],
+            "from": "php",
+            "cmd": "/usr/local/bin/containerpilot php-fpm --nodaemonize",
+            "gates": [],
+            "keywords": [
+                "containerpilot",
+                "consul",
+                "tmp",
+                "template",
+                "usr"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/docker/microservices/hotels/php-fpm/Dockerfile",
+            "cmd_keywords": [
+                "bin",
+                "usr",
+                "nodaemonize",
+                "local",
+                "php"
+            ]
+        }
+    ],
+    "num_servers": 2,
+    "monitors": [],
+    "num_services": 5,
+    "servers": [
+        "laravel",
+        "node"
+    ],
+    "num_monitors": 0,
+    "avg_size_service": 1139.6666666666667,
+    "num_files": 5,
+    "buses": [],
+    "files": [
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "laravel",
+                "node"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/source/package.json"
+        }
+    ],
+    "languages": [
+        "php",
+        "html"
+    ],
+    "num_dbs": 2,
+    "num_discos": 2
+}

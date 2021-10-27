@@ -1,0 +1,251 @@
+{
+    "avg_size_service": 150.0,
+    "discos": [],
+    "images": [
+        "node"
+    ],
+    "num_dockers": 3,
+    "num_servers": 2,
+    "langs": [
+        "javascript"
+    ],
+    "languages": [
+        "javascript"
+    ],
+    "num_services": 6,
+    "num_gates": 1,
+    "num_langs": 1,
+    "monitors": [],
+    "gates": [
+        "gateway"
+    ],
+    "servers": [
+        "express",
+        "node"
+    ],
+    "num_monitors": 0,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [
+                    "listing-service-db"
+                ],
+                "image": "phpmyadmin/phpmyadmin",
+                "image_full": "phpmyadmin/phpmyadmin:latest",
+                "gates": [],
+                "name": "mysqlgui",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "users-service-db"
+                ],
+                "image": ".",
+                "image_full": ".",
+                "gates": [],
+                "name": "users-service",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "mysql",
+                "image_full": "mysql:5.7.20",
+                "gates": [],
+                "name": "users-service-db",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "listing-service",
+                    "users-service"
+                ],
+                "image": ".",
+                "image_full": ".",
+                "gates": [],
+                "name": "api-gateway",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "mysql",
+                "image_full": "mysql:5.7.20",
+                "gates": [],
+                "name": "listing-service-db",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "listing-service-db"
+                ],
+                "image": ".",
+                "image_full": ".",
+                "gates": [],
+                "name": "listing-service",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "names": [
+                "mysql"
+            ],
+            "num": 2,
+            "services": [
+                "users-service-db",
+                "listing-service-db"
+            ],
+            "shared_dbs": true
+        }
+    },
+    "size": 450,
+    "url": "git://github.com/locemarn/docker_microservices.git",
+    "num_buses": 0,
+    "shared_dbs": true,
+    "files": [
+        {
+            "path": "/api-gateway/package.json",
+            "discos": [],
+            "monitors": [],
+            "gates": [
+                "gateway"
+            ],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/listing-service/package.json",
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "express"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/users-service/package.json",
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "express"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": []
+        }
+    ],
+    "num_discos": 0,
+    "dockers": [
+        {
+            "path": "/api-gateway/Dockerfile",
+            "from_full": "node:13",
+            "from": "node",
+            "cmd": "yarn watch",
+            "keywords": [
+                "yarn"
+            ],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "watch",
+                "yarn"
+            ],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/listing-service/Dockerfile",
+            "from_full": "node:13",
+            "from": "node",
+            "cmd": "yarn watch",
+            "keywords": [
+                "yarn"
+            ],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "watch",
+                "yarn"
+            ],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/users-service/Dockerfile",
+            "from_full": "node:13",
+            "from": "node",
+            "cmd": "yarn watch",
+            "keywords": [
+                "yarn"
+            ],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "watch",
+                "yarn"
+            ],
+            "dbs": [],
+            "buses": []
+        }
+    ],
+    "name": "locemarn/docker_microservices",
+    "buses": [],
+    "num_files": 7,
+    "dbs": [
+        "mysql"
+    ],
+    "num_dbs": 1
+}

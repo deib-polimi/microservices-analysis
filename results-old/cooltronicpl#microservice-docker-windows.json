@@ -1,0 +1,175 @@
+{
+    "size": 14,
+    "avg_size_service": 7.0,
+    "name": "cooltronicpl/microservice-docker-windows",
+    "languages": [
+        "python",
+        "tsql",
+        "dockerfile"
+    ],
+    "servers": [
+        "flask"
+    ],
+    "num_dbs": 1,
+    "images": [
+        "nginx",
+        "python"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 4,
+        "services": [
+            {
+                "depends_on": [],
+                "image_full": "redis:alpine",
+                "monitors": [],
+                "name": "redis",
+                "image": "redis",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "redis"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "flaskapp"
+                ],
+                "image_full": "nginx/",
+                "monitors": [],
+                "name": "nginx",
+                "image": "nginx/",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [
+                    "nginx"
+                ],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "redis",
+                    "postgres"
+                ],
+                "image_full": "./web",
+                "monitors": [],
+                "name": "flaskapp",
+                "image": "./web",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "postgres:alpine",
+                "monitors": [],
+                "name": "postgres",
+                "image": "postgres",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "redis"
+            ],
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": false,
+            "num": 1
+        }
+    },
+    "num_dockers": 2,
+    "num_buses": 0,
+    "num_services": 4,
+    "dockers": [
+        {
+            "path": "/nginx/Dockerfile",
+            "from": "nginx",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "nginx:alpine",
+            "keywords": [],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [
+                "nginx"
+            ],
+            "discos": []
+        },
+        {
+            "path": "/web/Dockerfile",
+            "from": "python",
+            "langs": [
+                "python"
+            ],
+            "cmd": "",
+            "servers": [
+                "flask"
+            ],
+            "from_full": "python:3.6.2-slim",
+            "keywords": [
+                "flask",
+                "all",
+                "home",
+                "flaskgroup",
+                "web"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "num_langs": 3,
+    "langs": [
+        "dockerfile",
+        "python",
+        "tsql"
+    ],
+    "discos": [],
+    "num_gates": 1,
+    "num_monitors": 0,
+    "num_files": 4,
+    "files": [
+        {
+            "path": "/web/requirements.txt",
+            "monitors": [],
+            "dbs": [
+                "redis"
+            ],
+            "buses": [],
+            "servers": [
+                "flask"
+            ],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_servers": 1,
+    "url": "git://github.com/cooltronicpl/microservice-docker-windows.git",
+    "dbs": [
+        "redis"
+    ],
+    "num_discos": 0,
+    "gates": [
+        "nginx"
+    ],
+    "buses": []
+}

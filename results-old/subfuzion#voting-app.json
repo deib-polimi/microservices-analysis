@@ -1,0 +1,433 @@
+{
+    "dbs": [
+        "mongo",
+        "redis"
+    ],
+    "num_langs": 1,
+    "buses": [],
+    "monitors": [],
+    "num_services": 6,
+    "num_dbs": 2,
+    "num_servers": 2,
+    "discos": [],
+    "dockers": [
+        {
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "mhart/alpine-node:base-9",
+            "gates": [],
+            "dbs": [],
+            "from": "mhart/alpine-node",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/src/voter/Dockerfile",
+            "keywords": [
+                "yarn",
+                "usr",
+                "app",
+                "src",
+                "mkdir"
+            ]
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "mhart/alpine-node:base-9",
+            "gates": [],
+            "dbs": [],
+            "from": "mhart/alpine-node",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/src/votes/Dockerfile",
+            "keywords": [
+                "yarn",
+                "usr",
+                "app",
+                "src",
+                "mkdir"
+            ]
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "mhart/alpine-node:base-9",
+            "gates": [],
+            "dbs": [],
+            "from": "mhart/alpine-node",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/src/reports/Dockerfile",
+            "keywords": [
+                "yarn",
+                "usr",
+                "app",
+                "src",
+                "mkdir"
+            ]
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "mhart/alpine-node:base-9",
+            "gates": [],
+            "dbs": [],
+            "from": "mhart/alpine-node",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/src/worker/Dockerfile",
+            "keywords": [
+                "yarn",
+                "usr",
+                "app",
+                "src",
+                "mkdir"
+            ]
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "node:9",
+            "gates": [],
+            "dbs": [],
+            "from": "node",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/src/auditor/Dockerfile",
+            "keywords": [
+                "npm",
+                "force",
+                "src",
+                "app",
+                "cache"
+            ]
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "npm",
+                "test"
+            ],
+            "from_full": "node:9",
+            "gates": [],
+            "dbs": [],
+            "from": "node",
+            "cmd": "npm test",
+            "discos": [],
+            "langs": [],
+            "path": "/src/database/Dockerfile",
+            "keywords": [
+                "yarn",
+                "usr",
+                "app",
+                "src",
+                "mkdir"
+            ]
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "npm",
+                "test"
+            ],
+            "from_full": "node:9",
+            "gates": [],
+            "dbs": [],
+            "from": "node",
+            "cmd": "npm test",
+            "discos": [],
+            "langs": [],
+            "path": "/src/queue/Dockerfile",
+            "keywords": [
+                "yarn",
+                "usr",
+                "app",
+                "src",
+                "mkdir"
+            ]
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "mhart/alpine-node:base-9",
+            "gates": [],
+            "dbs": [],
+            "from": "mhart/alpine-node",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/src/vote/Dockerfile",
+            "keywords": [
+                "yarn",
+                "usr",
+                "app",
+                "src",
+                "mkdir"
+            ]
+        }
+    ],
+    "num_files": 17,
+    "num_dockers": 8,
+    "images": [
+        "mhart/alpine-node",
+        "node"
+    ],
+    "size": 1835,
+    "servers": [
+        "express",
+        "node"
+    ],
+    "structure": {
+        "detected_dbs": {
+            "names": [
+                "mongo",
+                "redis"
+            ],
+            "shared_dbs": true,
+            "services": [
+                "queue",
+                "database"
+            ],
+            "num": 2
+        },
+        "num_services": 6,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "redis:3.2",
+                "name": "queue",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "buses": [],
+                "image": "redis",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "src/reports",
+                "name": "reports",
+                "depends_on": [
+                    "database"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "src/reports",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "src/worker",
+                "name": "worker",
+                "depends_on": [
+                    "database",
+                    "queue"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "src/worker",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "src/votes",
+                "name": "votes",
+                "depends_on": [
+                    "queue"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "src/votes",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "src/vote",
+                "name": "vote",
+                "depends_on": [
+                    "votes",
+                    "reports"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "src/vote",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "mongo:3.6",
+                "name": "database",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "image": "mongo",
+                "gates": [],
+                "monitors": []
+            }
+        ]
+    },
+    "num_discos": 0,
+    "files": [
+        {
+            "servers": [
+                "express",
+                "node"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/src/voter/package.json"
+        },
+        {
+            "servers": [
+                "express",
+                "node"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/src/votes/package.json"
+        },
+        {
+            "servers": [
+                "express",
+                "node"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/src/reports/package.json"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/src/worker/package.json"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/src/auditor/package.json"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/src/database/package.json"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "dbs": [
+                "redis"
+            ],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/src/queue/package.json"
+        },
+        {
+            "servers": [
+                "express",
+                "node"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/src/vote/package.json"
+        }
+    ],
+    "num_monitors": 0,
+    "num_buses": 0,
+    "num_gates": 0,
+    "gates": [],
+    "name": "subfuzion/voting-app",
+    "avg_size_service": 229.375,
+    "url": "git://github.com/subfuzion/voting-app.git",
+    "shared_dbs": true,
+    "langs": [
+        "javascript"
+    ],
+    "languages": [
+        "javascript"
+    ]
+}

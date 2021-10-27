@@ -1,0 +1,199 @@
+{
+    "size": 257,
+    "avg_size_service": 257.0,
+    "name": "manojown/micro-services-with-node",
+    "languages": [
+        "javascript"
+    ],
+    "servers": [
+        "node",
+        "express"
+    ],
+    "num_dbs": 1,
+    "images": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 7,
+        "services": [
+            {
+                "depends_on": [],
+                "image_full": "wurstmeister/zookeeper:latest",
+                "monitors": [],
+                "name": "zookeeper",
+                "image": "wurstmeister/zookeeper",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "gates": [],
+                "discos": [
+                    "zookeeper"
+                ]
+            },
+            {
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "image_full": "wurstmeister/kafka:2.11-1.1.1",
+                "monitors": [],
+                "name": "kafka",
+                "image": "wurstmeister/kafka",
+                "servers": [],
+                "buses": [
+                    "kafka"
+                ],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "adminer",
+                "monitors": [],
+                "name": "adminer",
+                "image": "adminer",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "messageConsumer"
+                ],
+                "image_full": "node:10.19.0-alpine",
+                "monitors": [],
+                "name": "fileUploader",
+                "image": "node",
+                "servers": [
+                    "node"
+                ],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "postgres",
+                "monitors": [],
+                "name": "db",
+                "image": "postgres",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "messageConsumer"
+                ],
+                "image_full": "node:10.19.0-alpine",
+                "monitors": [],
+                "name": "queryservice",
+                "image": "node",
+                "servers": [
+                    "node"
+                ],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "zookeeper",
+                    "kafka",
+                    "db"
+                ],
+                "image_full": "node:10.19.0-alpine",
+                "monitors": [],
+                "name": "messageConsumer",
+                "image": "node",
+                "servers": [
+                    "node"
+                ],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "zookeeper"
+            ],
+            "names": [
+                "zookeeper"
+            ],
+            "shared_dbs": true,
+            "num": 1
+        }
+    },
+    "num_dockers": 0,
+    "num_buses": 1,
+    "num_services": 7,
+    "dockers": [],
+    "num_langs": 1,
+    "langs": [
+        "javascript"
+    ],
+    "discos": [
+        "zookeeper"
+    ],
+    "num_gates": 0,
+    "num_monitors": 0,
+    "num_files": 4,
+    "files": [
+        {
+            "path": "/dataQueryApi/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/messageConsumer/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/fileUploader/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "shared_dbs": true,
+    "monitors": [],
+    "num_servers": 2,
+    "url": "git://github.com/manojown/micro-services-with-node.git",
+    "dbs": [
+        "zookeeper"
+    ],
+    "num_discos": 1,
+    "gates": [],
+    "buses": [
+        "kafka"
+    ]
+}

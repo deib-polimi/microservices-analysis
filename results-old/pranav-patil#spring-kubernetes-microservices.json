@@ -1,0 +1,347 @@
+{
+    "dbs": [
+        "cassandra"
+    ],
+    "images": [
+        "java"
+    ],
+    "buses": [],
+    "num_services": 9,
+    "num_dbs": 1,
+    "avg_size_service": 424.25,
+    "num_langs": 1,
+    "name": "pranav-patil/spring-kubernetes-microservices",
+    "url": "git://github.com/pranav-patil/spring-kubernetes-microservices.git",
+    "monitors": [],
+    "files": [
+        {
+            "path": "/build.gradle",
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": []
+        },
+        {
+            "path": "/settings.gradle",
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": []
+        },
+        {
+            "path": "/data-service/build.gradle",
+            "dbs": [
+                "cassandra"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": []
+        },
+        {
+            "path": "/storage-service/build.gradle",
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": []
+        },
+        {
+            "path": "/discovery-service/build.gradle",
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": []
+        },
+        {
+            "path": "/document-service/build.gradle",
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": []
+        }
+    ],
+    "num_files": 11,
+    "languages": [
+        "java"
+    ],
+    "num_discos": 1,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "dbs": [],
+                "image": "./document-service",
+                "name": "document-service",
+                "discos": [],
+                "monitors": [],
+                "buses": [],
+                "servers": [],
+                "depends_on": [
+                    "discovery-service",
+                    "storage-service",
+                    "data-service"
+                ],
+                "image_full": "./document-service",
+                "gates": []
+            },
+            {
+                "dbs": [],
+                "image": "./storage-service",
+                "name": "storage-service",
+                "discos": [],
+                "monitors": [],
+                "buses": [],
+                "servers": [],
+                "depends_on": [
+                    "discovery-service"
+                ],
+                "image_full": "./storage-service",
+                "gates": []
+            },
+            {
+                "dbs": [],
+                "image": "portainer/portainer",
+                "name": "portainer",
+                "discos": [],
+                "monitors": [],
+                "buses": [],
+                "servers": [],
+                "depends_on": [],
+                "image_full": "portainer/portainer",
+                "gates": []
+            },
+            {
+                "dbs": [],
+                "image": "./data-service",
+                "name": "data-service",
+                "discos": [],
+                "monitors": [],
+                "buses": [],
+                "servers": [],
+                "depends_on": [
+                    "cassandra-service",
+                    "discovery-service"
+                ],
+                "image_full": "./data-service",
+                "gates": []
+            },
+            {
+                "dbs": [
+                    "cassandra"
+                ],
+                "image": "cassandra",
+                "name": "cassandra1",
+                "discos": [],
+                "monitors": [],
+                "buses": [],
+                "servers": [],
+                "depends_on": [
+                    "cassandra-service"
+                ],
+                "image_full": "cassandra:3.11.4",
+                "gates": []
+            },
+            {
+                "dbs": [
+                    "cassandra"
+                ],
+                "image": "cassandra",
+                "name": "cassandra-service",
+                "discos": [],
+                "monitors": [],
+                "buses": [],
+                "servers": [],
+                "depends_on": [],
+                "image_full": "cassandra:3.11.4",
+                "gates": []
+            },
+            {
+                "dbs": [],
+                "image": "./discovery-service",
+                "name": "discovery-service",
+                "discos": [],
+                "monitors": [],
+                "buses": [],
+                "servers": [],
+                "depends_on": [],
+                "image_full": "./discovery-service",
+                "gates": []
+            },
+            {
+                "dbs": [],
+                "image": "minio/minio",
+                "name": "minio-service",
+                "discos": [],
+                "monitors": [],
+                "buses": [],
+                "servers": [],
+                "depends_on": [],
+                "image_full": "minio/minio",
+                "gates": []
+            },
+            {
+                "dbs": [
+                    "cassandra"
+                ],
+                "image": "cassandra",
+                "name": "cassandra2",
+                "discos": [],
+                "monitors": [],
+                "buses": [],
+                "servers": [],
+                "depends_on": [
+                    "cassandra-service"
+                ],
+                "image_full": "cassandra:3.11.4",
+                "gates": []
+            }
+        ],
+        "num_services": 9,
+        "detected_dbs": {
+            "names": [
+                "cassandra"
+            ],
+            "num": 3,
+            "shared_dbs": true,
+            "services": [
+                "cassandra1",
+                "cassandra-service",
+                "cassandra2"
+            ]
+        }
+    },
+    "num_servers": 1,
+    "num_dockers": 4,
+    "num_monitors": 0,
+    "size": 1697,
+    "dockers": [
+        {
+            "dbs": [],
+            "keywords": [
+                "app",
+                "jar",
+                "touch"
+            ],
+            "cmd": "",
+            "from_full": "java:8-jre",
+            "buses": [],
+            "from": "java",
+            "monitors": [],
+            "path": "/data-service/Dockerfile",
+            "discos": [],
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "cmd_keywords": [],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "keywords": [
+                "app",
+                "jar",
+                "touch"
+            ],
+            "cmd": "",
+            "from_full": "java:8-jre",
+            "buses": [],
+            "from": "java",
+            "monitors": [],
+            "path": "/storage-service/Dockerfile",
+            "discos": [],
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "cmd_keywords": [],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "keywords": [
+                "app",
+                "jar",
+                "touch"
+            ],
+            "cmd": "",
+            "from_full": "java:8-jre",
+            "buses": [],
+            "from": "java",
+            "monitors": [],
+            "path": "/discovery-service/Dockerfile",
+            "discos": [],
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "cmd_keywords": [],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "keywords": [
+                "app",
+                "jar",
+                "touch"
+            ],
+            "cmd": "",
+            "from_full": "java:8-jre",
+            "buses": [],
+            "from": "java",
+            "monitors": [],
+            "path": "/document-service/Dockerfile",
+            "discos": [],
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "cmd_keywords": [],
+            "gates": []
+        }
+    ],
+    "langs": [
+        "java"
+    ],
+    "num_buses": 0,
+    "gates": [],
+    "servers": [
+        "spring"
+    ],
+    "num_gates": 0,
+    "shared_dbs": true,
+    "discos": [
+        "eureka"
+    ]
+}

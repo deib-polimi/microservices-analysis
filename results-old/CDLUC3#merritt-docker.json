@@ -1,0 +1,576 @@
+{
+    "size": 143,
+    "avg_size_service": 10.214285714285714,
+    "name": "CDLUC3/merritt-docker",
+    "languages": [
+        "dockerfile"
+    ],
+    "servers": [
+        "tomcat",
+        "httpd",
+        "rails"
+    ],
+    "num_dbs": 2,
+    "images": [
+        "mysql",
+        "ruby",
+        "tomcat",
+        "zookeeper",
+        "httpd",
+        "solr",
+        "maven",
+        "ubuntu"
+    ],
+    "structure": {
+        "path": "/mrt-services/docker-compose.yml",
+        "num_services": 11,
+        "services": [
+            {
+                "depends_on": [],
+                "image_full": "cdluc3/mrt-zookeeper",
+                "monitors": [],
+                "name": "zoo",
+                "image": "cdluc3/mrt-zookeeper",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "gates": [],
+                "discos": [
+                    "zookeeper"
+                ]
+            },
+            {
+                "depends_on": [],
+                "image_full": "cdluc3/mrt-init",
+                "monitors": [],
+                "name": "merritt-init",
+                "image": "cdluc3/mrt-init",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "cdluc3/mrt-database",
+                "monitors": [],
+                "name": "db-container",
+                "image": "cdluc3/mrt-database",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "db-container"
+                ],
+                "image_full": "cdluc3/mrt-dashboard",
+                "monitors": [],
+                "name": "ui",
+                "image": "cdluc3/mrt-dashboard",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "zoo"
+                ],
+                "image_full": "cdluc3/mrt-store",
+                "monitors": [],
+                "name": "store",
+                "image": "cdluc3/mrt-store",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "namshi/smtp",
+                "monitors": [],
+                "name": "smtp",
+                "image": "namshi/smtp",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "cdluc3/mrt-apache",
+                "monitors": [],
+                "name": "apache",
+                "image": "cdluc3/mrt-apache",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "zoo"
+                ],
+                "image_full": "cdluc3/mrt-inventory",
+                "monitors": [],
+                "name": "inventory",
+                "image": "cdluc3/mrt-inventory",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "zoo",
+                    "store",
+                    "inventory"
+                ],
+                "image_full": "cdluc3/mrt-ingest",
+                "monitors": [],
+                "name": "ingest",
+                "image": "cdluc3/mrt-ingest",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "minio/minio",
+                "monitors": [],
+                "name": "minio",
+                "image": "minio/minio",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "minio/mc",
+                "monitors": [],
+                "name": "minio-mc",
+                "image": "minio/mc",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "zoo"
+            ],
+            "names": [
+                "zookeeper"
+            ],
+            "shared_dbs": true,
+            "num": 1
+        }
+    },
+    "num_dockers": 14,
+    "num_buses": 0,
+    "num_services": 11,
+    "dockers": [
+        {
+            "path": "/mrt-services/apache/Dockerfile",
+            "from": "httpd",
+            "langs": [],
+            "cmd": "",
+            "servers": [
+                "httpd"
+            ],
+            "from_full": "httpd",
+            "keywords": [
+                "conf",
+                "usr",
+                "apache",
+                "local",
+                "httpd"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/mrt-services/zoo/Dockerfile",
+            "from": "zookeeper",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "zookeeper:3.4",
+            "keywords": [
+                "zkserver",
+                "etc",
+                "tools",
+                "share",
+                "snf"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [
+                "zookeeper"
+            ],
+            "gates": [],
+            "discos": [
+                "zookeeper"
+            ]
+        },
+        {
+            "path": "/mrt-services/dryad-solr/Dockerfile",
+            "from": "solr",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "solr:8.1",
+            "keywords": [],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/mrt-services/inventory/Dockerfile",
+            "from": "tomcat",
+            "langs": [],
+            "cmd": "",
+            "servers": [
+                "tomcat"
+            ],
+            "from_full": "tomcat:8-jre8",
+            "keywords": [
+                "usr",
+                "inventory",
+                "local",
+                "tomcat",
+                "mkdir"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/mrt-services/store/Dockerfile",
+            "from": "tomcat",
+            "langs": [],
+            "cmd": "",
+            "servers": [
+                "tomcat"
+            ],
+            "from_full": "tomcat:8-jre8",
+            "keywords": [
+                "store",
+                "usr",
+                "local",
+                "webapps",
+                "tomcat"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/mrt-services/merritt-init/Dockerfile",
+            "from": "ubuntu",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "ubuntu",
+            "keywords": [
+                "get",
+                "apt",
+                "install",
+                "etc",
+                "echo"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/mrt-services/sword/Dockerfile",
+            "from": "tomcat",
+            "langs": [],
+            "cmd": "",
+            "servers": [
+                "tomcat"
+            ],
+            "from_full": "tomcat:8-jre8",
+            "keywords": [
+                "sword",
+                "mvn",
+                "tst",
+                "replic",
+                "etc"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/mrt-services/dryad/Dockerfile",
+            "from": "ruby",
+            "langs": [
+                "ruby"
+            ],
+            "cmd": "bundle exec passenger start",
+            "servers": [
+                "rails"
+            ],
+            "from_full": "ruby:2.6.6",
+            "keywords": [
+                "install",
+                "bundle",
+                "stash",
+                "apt",
+                "get"
+            ],
+            "cmd_keywords": [
+                "exec",
+                "bundle",
+                "start",
+                "passenger"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/mrt-services/mysql/Dockerfile",
+            "from": "mysql",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "mysql:5.7",
+            "keywords": [
+                "etc",
+                "share",
+                "echo",
+                "zoneinfo",
+                "timezone"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/mrt-services/ingest/Dockerfile",
+            "from": "tomcat",
+            "langs": [],
+            "cmd": "",
+            "servers": [
+                "tomcat"
+            ],
+            "from_full": "tomcat:8-jre8",
+            "keywords": [
+                "queue",
+                "tdr",
+                "usr",
+                "etc",
+                "mvn"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/mrt-services/ui/Dockerfile",
+            "from": "ruby",
+            "langs": [
+                "ruby"
+            ],
+            "cmd": "bundle exec puma -C config/application.rb -p 8089",
+            "servers": [
+                "rails"
+            ],
+            "from_full": "ruby:2.4.4",
+            "keywords": [
+                "install",
+                "apt",
+                "get",
+                "etc",
+                "dev"
+            ],
+            "cmd_keywords": [
+                "exec",
+                "puma",
+                "application",
+                "bundle",
+                "config"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/mrt-services/oai/Dockerfile",
+            "from": "tomcat",
+            "langs": [],
+            "cmd": "",
+            "servers": [
+                "tomcat"
+            ],
+            "from_full": "tomcat:8-jre8",
+            "keywords": [
+                "oai",
+                "replic",
+                "etc",
+                "mrthomes",
+                "mvn"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/mrt-dependencies/Dockerfile",
+            "from": "maven",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "maven:3-jdk-8",
+            "keywords": [
+                "mvn",
+                "install",
+                "xoai",
+                "snapshot",
+                "clean"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/mrt-dependencies/mrt-conf-mock/Dockerfile",
+            "from": "maven",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "maven:3-jdk-8",
+            "keywords": [
+                "mvn",
+                "clean",
+                "install"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "num_langs": 2,
+    "langs": [
+        "dockerfile",
+        "ruby"
+    ],
+    "discos": [
+        "zookeeper"
+    ],
+    "num_gates": 0,
+    "num_monitors": 0,
+    "num_files": 19,
+    "files": [
+        {
+            "path": "/mrt-dependencies/mrt-conf-mock/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": [],
+            "servers": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/mrt-dependencies/mrt-conf-mock/mysql-conf/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/mrt-dependencies/mrt-conf-mock/store-conf/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/mrt-dependencies/mrt-conf-mock/s3-conf/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "shared_dbs": true,
+    "monitors": [],
+    "num_servers": 3,
+    "url": "git://github.com/CDLUC3/merritt-docker.git",
+    "dbs": [
+        "mysql",
+        "zookeeper"
+    ],
+    "num_discos": 1,
+    "gates": [],
+    "buses": []
+}

@@ -1,0 +1,652 @@
+{
+    "num_services": 13,
+    "dbs": [
+        "cassandra",
+        "mongo",
+        "hazelcast"
+    ],
+    "name": "bartromg/MicroservicesLab",
+    "files": [
+        {
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [
+                "hazelcast"
+            ],
+            "path": "/pom.xml",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "dbs": [
+                "hazelcast"
+            ],
+            "path": "/api-gateway/pom.xml",
+            "buses": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/config/pom.xml",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "hazelcast",
+                "mongodb"
+            ],
+            "path": "/user-service/pom.xml",
+            "buses": [
+                "amqp"
+            ],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "cassandra",
+                "hazelcast"
+            ],
+            "path": "/statistic-service/pom.xml",
+            "buses": [
+                "amqp"
+            ],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/registry/pom.xml",
+            "buses": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "hazelcast"
+            ],
+            "path": "/hazelcast-cache/pom.xml",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": []
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "path": "/domain/pom.xml",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "mongodb",
+                "hazelcast",
+                "mongo"
+            ],
+            "path": "/product-service/pom.xml",
+            "buses": [
+                "amqp"
+            ],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "hazelcast"
+            ],
+            "path": "/hazelcast-cache-client/pom.xml",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ]
+        }
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "num_gates": 1,
+    "num_buses": 2,
+    "langs": [
+        "java",
+        "javascript"
+    ],
+    "gates": [
+        "zuul"
+    ],
+    "num_monitors": 0,
+    "monitors": [],
+    "images": [
+        "java",
+        "mongo"
+    ],
+    "structure": {
+        "num_services": 13,
+        "detected_dbs": {
+            "num": 5,
+            "services": [
+                "mongo-secondary1",
+                "mongo-primary",
+                "hazelcast-cache",
+                "mongo-secondary2",
+                "statistic-cassandra"
+            ],
+            "names": [
+                "cassandra",
+                "hazelcast",
+                "mongo"
+            ],
+            "shared_dbs": true
+        },
+        "services": [
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "config",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "config",
+                "image": "config"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "config",
+                    "registry",
+                    "hazelcast-cache",
+                    "api-gateway",
+                    "mongo-primary"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "user-service",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "user-service",
+                "image": "user-service"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "config"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "registry",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "registry",
+                "image": "registry"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "image_full": "mongo:3.4",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "mongo-secondary1",
+                "image": "mongo"
+            },
+            {
+                "buses": [
+                    "rabbitmq"
+                ],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "bitnami/rabbitmq:latest",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "rabbitmq",
+                "image": "bitnami/rabbitmq"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "image_full": "mongo:3.4",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "mongo-primary",
+                "image": "mongo"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "replica-set-configurer",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "replica-set-configurer",
+                "image": "replica-set-configurer"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "config",
+                    "registry"
+                ],
+                "gates": [],
+                "dbs": [
+                    "hazelcast"
+                ],
+                "image_full": "hazelcast/hazelcast",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "hazelcast-cache",
+                "image": "hazelcast/hazelcast"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "image_full": "mongo:3.4",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "mongo-secondary2",
+                "image": "mongo"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [
+                    "cassandra"
+                ],
+                "image_full": "cassandra:latest",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "statistic-cassandra",
+                "image": "cassandra"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "config",
+                    "registry",
+                    "hazelcast-cache"
+                ],
+                "gates": [
+                    "gateway"
+                ],
+                "dbs": [],
+                "image_full": "api-gateway",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "api-gateway",
+                "image": "api-gateway"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "config",
+                    "registry",
+                    "hazelcast-cache",
+                    "api-gateway"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "product-service",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "product-service",
+                "image": "product-service"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "config",
+                    "registry",
+                    "hazelcast-cache",
+                    "api-gateway",
+                    "rabbitmq",
+                    "statistic-cassandra"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "statistic-service",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "statistic-service",
+                "image": "statistic-service"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "shared_dbs": true,
+    "languages": [
+        "javascript"
+    ],
+    "avg_size_service": 570.7,
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "dockers": [
+        {
+            "from_full": "java:8-jre",
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "path": "/api-gateway/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "app",
+                "xmx",
+                "snapshot"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [
+                "gateway"
+            ],
+            "servers": [],
+            "from": "java",
+            "keywords": [],
+            "cmd": "java -Xmx200m -jar /app/api-gateway-0.0.1-SNAPSHOT.jar"
+        },
+        {
+            "from_full": "java:8-jre",
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "path": "/config/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "config",
+                "app",
+                "xmx"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "java",
+            "keywords": [],
+            "cmd": "java -Xmx200m -jar /app/config-0.0.1-SNAPSHOT.jar"
+        },
+        {
+            "from_full": "java:8-jre",
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "path": "/user-service/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "service",
+                "user",
+                "app"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "java",
+            "keywords": [],
+            "cmd": "java -Xmx200m -jar /app/user-service-0.0.1-SNAPSHOT.jar"
+        },
+        {
+            "from_full": "java:8-jre",
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "path": "/statistic-service/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "service",
+                "app",
+                "statistic"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "java",
+            "keywords": [],
+            "cmd": "java -Xmx200m -jar /app/statistic-service-0.0.1-SNAPSHOT.jar"
+        },
+        {
+            "from_full": "mongo:3.2",
+            "langs": [],
+            "dbs": [
+                "mongo"
+            ],
+            "path": "/replica-set-configurer/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "init",
+                "tmp"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "mongo",
+            "keywords": [],
+            "cmd": "/tmp/init.sh"
+        },
+        {
+            "from_full": "java:8-jre",
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "path": "/registry/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "registry",
+                "app",
+                "xmx"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "java",
+            "keywords": [],
+            "cmd": "java -Xmx200m -jar /app/registry-0.0.1-SNAPSHOT.jar"
+        },
+        {
+            "from_full": "java:8-jre",
+            "langs": [
+                "java"
+            ],
+            "dbs": [
+                "hazelcast"
+            ],
+            "path": "/hazelcast-cache/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "with",
+                "app",
+                "xmx"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "java",
+            "keywords": [],
+            "cmd": "java -Xmx200m -jar /app/hazelcast-cache-0.0.1-SNAPSHOT-jar-with-dependencies.jar"
+        },
+        {
+            "from_full": "java:8-jre",
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "path": "/domain/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "app",
+                "xmx",
+                "snapshot"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "java",
+            "keywords": [],
+            "cmd": "java -Xmx200m -jar /app/domain-0.0.1-SNAPSHOT.jar"
+        },
+        {
+            "from_full": "java:8-jre",
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "path": "/product-service/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "service",
+                "app",
+                "xmx"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "java",
+            "keywords": [],
+            "cmd": "java -Xmx200m -jar /app/product-service-0.0.1-SNAPSHOT.jar"
+        },
+        {
+            "from_full": "java:8-jre",
+            "langs": [
+                "java"
+            ],
+            "dbs": [
+                "hazelcast"
+            ],
+            "path": "/hazelcast-cache-client/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "app",
+                "xmx",
+                "snapshot"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "java",
+            "keywords": [],
+            "cmd": "java -Xmx200m -jar /app/hazelcast-cache-client-0.0.1-SNAPSHOT.jar"
+        }
+    ],
+    "servers": [
+        "spring"
+    ],
+    "num_dockers": 10,
+    "url": "git://github.com/bartromg/MicroservicesLab.git",
+    "num_dbs": 3,
+    "num_servers": 1,
+    "num_discos": 1,
+    "num_langs": 2,
+    "num_files": 21,
+    "size": 5707
+}

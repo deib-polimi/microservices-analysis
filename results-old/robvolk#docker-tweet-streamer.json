@@ -1,0 +1,158 @@
+{
+    "size": 9,
+    "num_monitors": 0,
+    "num_discos": 0,
+    "shared_dbs": false,
+    "langs": [
+        "javascript",
+        "ruby"
+    ],
+    "buses": [],
+    "num_langs": 2,
+    "num_dbs": 1,
+    "discos": [],
+    "avg_size_service": 4.5,
+    "images": [
+        "node",
+        "ruby"
+    ],
+    "gates": [],
+    "dockers": [
+        {
+            "monitors": [],
+            "from": "node",
+            "langs": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/streamer/Dockerfile",
+            "keywords": [
+                "app",
+                "install",
+                "npm",
+                "mkdir"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "node:4.3.1",
+            "discos": []
+        },
+        {
+            "monitors": [],
+            "from": "ruby",
+            "langs": [
+                "ruby"
+            ],
+            "servers": [],
+            "buses": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/web/Dockerfile",
+            "keywords": [
+                "get",
+                "install",
+                "apt",
+                "app",
+                "bundle"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "ruby:2.3.0-slim",
+            "discos": []
+        }
+    ],
+    "structure": {
+        "detected_dbs": {
+            "num": 1,
+            "shared_dbs": false,
+            "services": [
+                "mongo"
+            ],
+            "names": [
+                "mongo"
+            ]
+        },
+        "services": [
+            {
+                "image": "mongo",
+                "depends_on": [],
+                "discos": [],
+                "monitors": [],
+                "image_full": "mongo:3.2.3",
+                "gates": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "servers": [],
+                "buses": [],
+                "name": "mongo"
+            },
+            {
+                "image": "./web",
+                "depends_on": [
+                    "mongo"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "./web",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "web"
+            },
+            {
+                "image": "./streamer",
+                "depends_on": [
+                    "web"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "./streamer",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "streamer"
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "num_services": 3
+    },
+    "num_dockers": 2,
+    "num_files": 4,
+    "num_services": 3,
+    "num_gates": 0,
+    "name": "robvolk/docker-tweet-streamer",
+    "url": "git://github.com/robvolk/docker-tweet-streamer.git",
+    "monitors": [],
+    "servers": [
+        "node",
+        "express"
+    ],
+    "dbs": [
+        "mongo"
+    ],
+    "num_servers": 2,
+    "num_buses": 0,
+    "files": [
+        {
+            "path": "/streamer/package.json",
+            "monitors": [],
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "express"
+            ],
+            "buses": [],
+            "discos": []
+        }
+    ],
+    "languages": [
+        "ruby",
+        "javascript"
+    ]
+}

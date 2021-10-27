@@ -1,0 +1,202 @@
+{
+    "discos": [],
+    "avg_size_service": 6.333333333333333,
+    "buses": [],
+    "num_gates": 1,
+    "name": "ccarney16/pterodactyl-containers",
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "daemon",
+                "dbs": [],
+                "depends_on": [
+                    "panel"
+                ],
+                "discos": [],
+                "image_full": "ccarney16/pterodactyl-daemon:latest",
+                "image": "ccarney16/pterodactyl-daemon",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "mysql",
+                "dbs": [
+                    "mariadb"
+                ],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "mariadb:10.2",
+                "image": "mariadb",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "cache",
+                "dbs": [
+                    "redis"
+                ],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "redis:alpine",
+                "image": "redis",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "panel",
+                "dbs": [],
+                "depends_on": [
+                    "cache",
+                    "mysql"
+                ],
+                "discos": [],
+                "image_full": "ccarney16/pterodactyl-panel:latest",
+                "image": "ccarney16/pterodactyl-panel",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [
+                "redis",
+                "mariadb"
+            ],
+            "num": 2,
+            "shared_dbs": false,
+            "services": [
+                "mysql",
+                "cache"
+            ]
+        },
+        "num_services": 4
+    },
+    "dbs": [
+        "redis",
+        "memcached"
+    ],
+    "dockers": [
+        {
+            "langs": [
+                "php"
+            ],
+            "cmd_keywords": [
+                "start"
+            ],
+            "from_full": "alpine:edge",
+            "buses": [],
+            "monitors": [],
+            "from": "alpine",
+            "keywords": [
+                "php",
+                "tar",
+                "panel",
+                "nginx",
+                "storage"
+            ],
+            "gates": [
+                "nginx"
+            ],
+            "path": "/manifest/panel/Dockerfile",
+            "dbs": [
+                "memcached"
+            ],
+            "discos": [],
+            "cmd": "p:start",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "port"
+            ],
+            "from_full": "alpine:latest",
+            "buses": [],
+            "monitors": [],
+            "from": "alpine",
+            "keywords": [
+                "pterodactyl",
+                "sftp",
+                "server",
+                "daemon",
+                "srv"
+            ],
+            "gates": [],
+            "path": "/manifest/sftp/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "-port 2022",
+            "servers": []
+        },
+        {
+            "langs": [
+                "gcc"
+            ],
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "from_full": "node:8-alpine",
+            "buses": [],
+            "monitors": [],
+            "from": "node",
+            "keywords": [
+                "tar",
+                "daemon",
+                "pterodactyl",
+                "gnupg",
+                "apk"
+            ],
+            "gates": [],
+            "path": "/manifest/daemon/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "npm start",
+            "servers": [
+                "node"
+            ]
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "size": 19,
+    "num_monitors": 0,
+    "images": [
+        "node",
+        "alpine"
+    ],
+    "num_buses": 0,
+    "num_services": 4,
+    "servers": [
+        "node"
+    ],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_discos": 0,
+    "languages": [
+        "shell",
+        "dockerfile"
+    ],
+    "url": "git://github.com/ccarney16/pterodactyl-containers.git",
+    "langs": [
+        "dockerfile",
+        "gcc",
+        "php",
+        "shell"
+    ],
+    "num_dbs": 2,
+    "num_servers": 1,
+    "num_langs": 4,
+    "files": [],
+    "num_dockers": 3,
+    "num_files": 4
+}

@@ -1,0 +1,185 @@
+{
+    "languages": [
+        "php"
+    ],
+    "num_servers": 0,
+    "shared_dbs": true,
+    "name": "cocoytech/CI3-ultimate",
+    "servers": [],
+    "num_monitors": 0,
+    "num_langs": 1,
+    "images": [
+        "phpdockerio/php74-fpm"
+    ],
+    "langs": [
+        "php"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "dbs": [
+                "memcached"
+            ],
+            "buses": [],
+            "langs": [
+                "php"
+            ],
+            "cmd": "",
+            "keywords": [
+                "php",
+                "apt",
+                "get",
+                "var",
+                "tmp"
+            ],
+            "path": "/phpdocker/php-fpm/Dockerfile",
+            "gates": [],
+            "from": "phpdockerio/php74-fpm",
+            "from_full": "phpdockerio/php74-fpm:latest",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_buses": 0,
+    "discos": [],
+    "monitors": [],
+    "num_files": 2,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "phpdocker/php-fpm",
+                "depends_on": [
+                    "redis"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "php-fpm",
+                "image": "phpdocker/php-fpm",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mysql:8.0",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "mysql",
+                "image": "mysql",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mariadb:10.5",
+                "depends_on": [],
+                "dbs": [
+                    "mariadb"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "mariadb",
+                "image": "mariadb",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "phpmyadmin/phpmyadmin:latest",
+                "depends_on": [
+                    "mariadb"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "phpmyadmin",
+                "image": "phpmyadmin/phpmyadmin",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "composer:1.9",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "composer",
+                "image": "composer",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "nginx:alpine",
+                "depends_on": [
+                    "redis",
+                    "php-fpm"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "name": "webserver",
+                "image": "nginx",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "redis:alpine",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "redis",
+                "image": "redis",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 7,
+        "detected_dbs": {
+            "services": [
+                "mysql",
+                "mariadb",
+                "redis"
+            ],
+            "names": [
+                "mysql",
+                "mariadb",
+                "redis"
+            ],
+            "num": 3,
+            "shared_dbs": true
+        }
+    },
+    "dbs": [
+        "memcached",
+        "mysql",
+        "redis"
+    ],
+    "num_dbs": 3,
+    "avg_size_service": 150.0,
+    "num_services": 7,
+    "buses": [],
+    "files": [],
+    "url": "git://github.com/cocoytech/CI3-ultimate.git",
+    "num_dockers": 1,
+    "size": 150,
+    "num_discos": 0,
+    "num_gates": 1
+}

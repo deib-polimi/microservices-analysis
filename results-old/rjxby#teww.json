@@ -1,0 +1,197 @@
+{
+    "servers": [
+        "node"
+    ],
+    "num_monitors": 0,
+    "num_gates": 0,
+    "num_dbs": 1,
+    "num_services": 4,
+    "num_langs": 3,
+    "shared_dbs": true,
+    "num_servers": 1,
+    "avg_size_service": 377.6666666666667,
+    "files": [
+        {
+            "path": "/teww-client/package.json",
+            "dbs": [],
+            "buses": [],
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "size": 1133,
+    "num_buses": 0,
+    "buses": [],
+    "num_discos": 0,
+    "languages": [
+        "javascript",
+        "go"
+    ],
+    "discos": [],
+    "num_dockers": 3,
+    "dbs": [
+        "redis"
+    ],
+    "num_files": 5,
+    "gates": [],
+    "images": [
+        "golang"
+    ],
+    "url": "git://github.com/rjxby/teww.git",
+    "monitors": [],
+    "name": "rjxby/teww",
+    "dockers": [
+        {
+            "cmd": "",
+            "servers": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "from": "golang",
+            "from_full": "golang:1.8.1-alpine",
+            "monitors": [],
+            "path": "/teww-client/Dockerfile",
+            "langs": [
+                "golang"
+            ],
+            "buses": [],
+            "keywords": [
+                "teww",
+                "gopath",
+                "rjxby",
+                "client",
+                "com"
+            ],
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "from": "golang",
+            "from_full": "golang:1.8.1-alpine",
+            "monitors": [],
+            "path": "/teww-auth/Dockerfile",
+            "langs": [
+                "golang"
+            ],
+            "buses": [],
+            "keywords": [
+                "teww",
+                "gopath",
+                "rjxby",
+                "auth",
+                "com"
+            ],
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "from": "golang",
+            "from_full": "golang:1.8.1-alpine",
+            "monitors": [],
+            "path": "/teww-backend/Dockerfile",
+            "langs": [
+                "golang"
+            ],
+            "buses": [],
+            "keywords": [
+                "teww",
+                "gopath",
+                "rjxby",
+                "com",
+                "src"
+            ],
+            "discos": [],
+            "dbs": []
+        }
+    ],
+    "langs": [
+        "javascript",
+        "go",
+        "golang"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "names": [
+                "redis"
+            ],
+            "services": [
+                "db"
+            ],
+            "shared_dbs": true,
+            "num": 1
+        },
+        "services": [
+            {
+                "dbs": [],
+                "image_full": "./teww-auth",
+                "name": "auth",
+                "monitors": [],
+                "depends_on": [
+                    "db"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "discos": [],
+                "image": "./teww-auth"
+            },
+            {
+                "dbs": [],
+                "image_full": "./teww-client",
+                "name": "client",
+                "monitors": [],
+                "depends_on": [
+                    "auth",
+                    "backend",
+                    "db"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "discos": [],
+                "image": "./teww-client"
+            },
+            {
+                "dbs": [
+                    "redis"
+                ],
+                "image_full": "redis:latest",
+                "name": "db",
+                "monitors": [],
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "discos": [],
+                "image": "redis"
+            },
+            {
+                "dbs": [],
+                "image_full": "./teww-backend",
+                "name": "backend",
+                "monitors": [],
+                "depends_on": [
+                    "db"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "discos": [],
+                "image": "./teww-backend"
+            }
+        ],
+        "num_services": 4
+    }
+}

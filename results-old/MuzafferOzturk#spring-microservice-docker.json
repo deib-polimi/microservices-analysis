@@ -1,0 +1,327 @@
+{
+    "monitors": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [],
+            "names": [],
+            "num": 0
+        },
+        "services": [
+            {
+                "image": "test/first-service",
+                "buses": [],
+                "monitors": [],
+                "image_full": "test/first-service",
+                "gates": [],
+                "name": "first-service",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "config-server",
+                    "eureka-name-server",
+                    "zuul-gateway-server",
+                    "rabbitmq",
+                    "zipkin-server"
+                ]
+            },
+            {
+                "image": "openzipkin/zipkin",
+                "buses": [],
+                "monitors": [],
+                "image_full": "openzipkin/zipkin",
+                "gates": [],
+                "name": "zipkin-server",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "rabbitmq"
+                ]
+            },
+            {
+                "image": "test/config-server",
+                "buses": [],
+                "monitors": [],
+                "image_full": "test/config-server",
+                "gates": [],
+                "name": "config-server",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "eureka-name-server",
+                    "rabbitmq",
+                    "zipkin-server"
+                ]
+            },
+            {
+                "image": "test/name-server",
+                "buses": [],
+                "monitors": [],
+                "image_full": "test/name-server",
+                "gates": [],
+                "name": "eureka-name-server",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "test/gateway-server",
+                "buses": [],
+                "monitors": [],
+                "image_full": "test/gateway-server",
+                "gates": [
+                    "gateway"
+                ],
+                "name": "zuul-gateway-server",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "eureka-name-server",
+                    "rabbitmq",
+                    "zipkin-server"
+                ]
+            },
+            {
+                "image": "test/second-service",
+                "buses": [],
+                "monitors": [],
+                "image_full": "test/second-service",
+                "gates": [],
+                "name": "second-service",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "eureka-name-server",
+                    "zuul-gateway-server",
+                    "rabbitmq",
+                    "zipkin-server",
+                    "first-service"
+                ]
+            },
+            {
+                "image": "rabbitmq",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "monitors": [],
+                "image_full": "rabbitmq:3-management",
+                "gates": [],
+                "name": "rabbitmq",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            }
+        ],
+        "num_services": 7
+    },
+    "num_langs": 2,
+    "name": "MuzafferOzturk/spring-microservice-docker",
+    "num_dockers": 5,
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "dbs": [],
+    "size": 33,
+    "num_discos": 1,
+    "shared_dbs": false,
+    "discos": [
+        "eureka"
+    ],
+    "images": [
+        "openjdk"
+    ],
+    "num_servers": 1,
+    "files": [
+        {
+            "gates": [
+                "gateway"
+            ],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/pom.xml",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [
+                "amqp"
+            ],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/config-server/pom.xml",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/gateway-server/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/second-service/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/name-server/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [
+                "amqp"
+            ],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/first-service/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": []
+        }
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "openjdk",
+            "path": "/config-server/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "cmd": "",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "openjdk",
+            "path": "/gateway-server/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "cmd": "",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "openjdk",
+            "path": "/second-service/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "cmd": "",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "openjdk",
+            "path": "/name-server/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "cmd": "",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "openjdk",
+            "path": "/first-service/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "cmd": "",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        }
+    ],
+    "url": "git://github.com/MuzafferOzturk/spring-microservice-docker.git",
+    "gates": [
+        "zuul"
+    ],
+    "num_files": 12,
+    "num_services": 7,
+    "num_gates": 1,
+    "num_dbs": 0,
+    "avg_size_service": 6.6,
+    "langs": [
+        "dockerfile",
+        "java"
+    ],
+    "num_buses": 2,
+    "languages": [
+        "java",
+        "dockerfile"
+    ],
+    "num_monitors": 0,
+    "servers": [
+        "spring"
+    ]
+}

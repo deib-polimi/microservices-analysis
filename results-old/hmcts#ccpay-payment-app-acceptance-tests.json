@@ -1,0 +1,175 @@
+{
+    "gates": [],
+    "num_buses": 0,
+    "url": "git://github.com/hmcts/ccpay-payment-app-acceptance-tests.git",
+    "images": [
+        "openjdk"
+    ],
+    "avg_size_service": 39.0,
+    "num_langs": 1,
+    "num_monitors": 0,
+    "num_dockers": 1,
+    "num_discos": 0,
+    "num_servers": 1,
+    "buses": [],
+    "discos": [],
+    "dockers": [
+        {
+            "path": "/docker/gov-pay-stub/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "openjdk:8-jre",
+            "monitors": [],
+            "keywords": [
+                "jar",
+                "maven",
+                "wiremock",
+                "standalone",
+                "app"
+            ],
+            "buses": []
+        }
+    ],
+    "size": 39,
+    "name": "hmcts/ccpay-payment-app-acceptance-tests",
+    "num_services": 7,
+    "dbs": [],
+    "shared_dbs": false,
+    "langs": [
+        "java"
+    ],
+    "languages": [
+        "java"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "num_files": 3,
+    "monitors": [],
+    "num_dbs": 0,
+    "num_gates": 0,
+    "files": [
+        {
+            "path": "/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "dbs": [],
+            "buses": []
+        }
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 7,
+        "detected_dbs": {
+            "services": [],
+            "num": 0,
+            "names": [],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/common-components/payments-database",
+                "name": "payments-database",
+                "gates": [],
+                "image": "docker.artifactory.reform.hmcts.net/common-components/payments-database",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "idam-database"
+                ],
+                "servers": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/auth/idam-api",
+                "name": "idam-api",
+                "gates": [],
+                "image": "docker.artifactory.reform.hmcts.net/auth/idam-api",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "payments-api"
+                ],
+                "servers": [],
+                "image_full": "alpine",
+                "name": "wait-for-startup",
+                "gates": [],
+                "image": "alpine",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "payments-database",
+                    "service-auth-provider-api",
+                    "idam-api",
+                    "wiremock-api"
+                ],
+                "servers": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/common-components/payments-api",
+                "name": "payments-api",
+                "gates": [],
+                "image": "docker.artifactory.reform.hmcts.net/common-components/payments-api",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "['http_proxy', 'https_proxy', 'no_proxy']",
+                "name": "wiremock-api",
+                "gates": [],
+                "image": "['http_proxy', 'https_proxy', 'no_proxy']",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/auth/service-auth-provider-api",
+                "name": "service-auth-provider-api",
+                "gates": [],
+                "image": "docker.artifactory.reform.hmcts.net/auth/service-auth-provider-api",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/auth/idam-database",
+                "name": "idam-database",
+                "gates": [],
+                "image": "docker.artifactory.reform.hmcts.net/auth/idam-database",
+                "dbs": [],
+                "buses": []
+            }
+        ]
+    }
+}

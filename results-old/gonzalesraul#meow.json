@@ -1,0 +1,229 @@
+{
+    "num_servers": 0,
+    "num_gates": 1,
+    "num_dockers": 3,
+    "num_buses": 1,
+    "dockers": [
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "scratch",
+            "discos": [],
+            "from": "scratch",
+            "langs": [
+                "scratch"
+            ],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "get",
+                "quiet",
+                "cgo",
+                "appuser",
+                "installsuffix"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "postgres:11.0",
+            "discos": [],
+            "from": "postgres",
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [
+                "postgres"
+            ],
+            "cmd": "postgres",
+            "path": "/docker/postgres/Dockerfile",
+            "dbs": [],
+            "keywords": []
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "nginx:1.15.0-alpine",
+            "discos": [],
+            "from": "nginx",
+            "langs": [],
+            "gates": [
+                "nginx"
+            ],
+            "cmd_keywords": [
+                "off",
+                "daemon",
+                "nginx"
+            ],
+            "cmd": "nginx -g daemon off;",
+            "path": "/docker/nginx/Dockerfile",
+            "dbs": [],
+            "keywords": []
+        }
+    ],
+    "shared_dbs": false,
+    "languages": [
+        "go"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "avg_size_service": 9.333333333333334,
+    "discos": [],
+    "num_dbs": 0,
+    "monitors": [],
+    "servers": [],
+    "num_langs": 2,
+    "buses": [
+        "nats"
+    ],
+    "structure": {
+        "path": "/docker/docker-compose.yml",
+        "services": [
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:6.4.2",
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "buses": [],
+                "name": "elasticsearch",
+                "discos": [],
+                "depends_on": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "meow:latest",
+                "image": "meow",
+                "buses": [],
+                "name": "meow",
+                "discos": [],
+                "depends_on": [
+                    "postgres",
+                    "nats"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "meow:latest",
+                "image": "meow",
+                "buses": [],
+                "name": "pusher",
+                "discos": [],
+                "depends_on": [
+                    "nats"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [
+                    "nginx"
+                ],
+                "image_full": "./nginx",
+                "image": "./nginx",
+                "buses": [],
+                "name": "nginx",
+                "discos": [],
+                "depends_on": [
+                    "meow",
+                    "query",
+                    "pusher"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "nats-streaming:0.11.2-linux",
+                "image": "nats-streaming",
+                "buses": [
+                    "nats"
+                ],
+                "name": "nats",
+                "discos": [],
+                "depends_on": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "docker.elastic.co/kibana/kibana:6.4.2",
+                "image": "docker.elastic.co/kibana/kibana",
+                "buses": [],
+                "name": "kibana",
+                "discos": [],
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "meow:latest",
+                "image": "meow",
+                "buses": [],
+                "name": "query",
+                "discos": [],
+                "depends_on": [
+                    "postgres",
+                    "nats"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "./postgres",
+                "image": "./postgres",
+                "buses": [],
+                "name": "postgres",
+                "discos": [],
+                "depends_on": [],
+                "dbs": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "names": [],
+            "shared_dbs": false
+        },
+        "num_services": 8
+    },
+    "images": [
+        "nginx",
+        "scratch",
+        "postgres"
+    ],
+    "num_files": 4,
+    "num_services": 8,
+    "langs": [
+        "go",
+        "scratch"
+    ],
+    "files": [],
+    "url": "git://github.com/gonzalesraul/meow.git",
+    "size": 28,
+    "name": "gonzalesraul/meow",
+    "num_discos": 0,
+    "num_monitors": 0,
+    "dbs": []
+}

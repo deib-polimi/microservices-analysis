@@ -1,0 +1,270 @@
+{
+    "monitors": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "shared_dbs": true,
+            "services": [
+                "redis"
+            ],
+            "names": [
+                "redis"
+            ],
+            "num": 1
+        },
+        "services": [
+            {
+                "image": "./main-processor",
+                "buses": [],
+                "monitors": [],
+                "image_full": "./main-processor",
+                "gates": [],
+                "name": "mainprocessor",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "redis"
+                ]
+            },
+            {
+                "image": "./memory-device",
+                "buses": [],
+                "monitors": [],
+                "image_full": "./memory-device",
+                "gates": [],
+                "name": "memorydevice",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "redis"
+                ]
+            },
+            {
+                "image": "redis",
+                "buses": [],
+                "monitors": [],
+                "image_full": "redis",
+                "gates": [],
+                "name": "redis",
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "redis"
+                ],
+                "depends_on": []
+            },
+            {
+                "image": "./terminal",
+                "buses": [],
+                "monitors": [],
+                "image_full": "./terminal",
+                "gates": [],
+                "name": "terminal",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "memorycontroller",
+                    "mainprocessor"
+                ]
+            },
+            {
+                "image": "./memory-controller",
+                "buses": [],
+                "monitors": [],
+                "image_full": "./memory-controller",
+                "gates": [],
+                "name": "memorycontroller",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "redis"
+                ]
+            }
+        ],
+        "num_services": 5
+    },
+    "num_langs": 1,
+    "name": "sundhaug92/emuhipster",
+    "num_dockers": 4,
+    "buses": [],
+    "dbs": [
+        "redis"
+    ],
+    "size": 18,
+    "num_discos": 0,
+    "shared_dbs": true,
+    "discos": [],
+    "images": [
+        "python"
+    ],
+    "num_servers": 1,
+    "files": [
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/memory-controller/requirements.txt",
+            "discos": [],
+            "dbs": [
+                "redis"
+            ]
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/memory-device/requirements.txt",
+            "discos": [],
+            "dbs": [
+                "redis"
+            ]
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [],
+            "path": "/terminal/requirements.txt",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/main-processor/requirements.txt",
+            "discos": [],
+            "dbs": [
+                "redis"
+            ]
+        }
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "flask",
+                "host",
+                "app",
+                "main",
+                "run"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "python",
+            "path": "/memory-controller/Dockerfile",
+            "from_full": "python:3-onbuild",
+            "cmd": "FLASK_APP=main.py flask run --host=0.0.0.0",
+            "keywords": [],
+            "discos": [],
+            "servers": [
+                "flask"
+            ],
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "flask",
+                "host",
+                "app",
+                "main",
+                "run"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "python",
+            "path": "/memory-device/Dockerfile",
+            "from_full": "python:3-onbuild",
+            "cmd": "FLASK_APP=main.py flask run --host=0.0.0.0",
+            "keywords": [],
+            "discos": [],
+            "servers": [
+                "flask"
+            ],
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "python",
+                "main"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "python",
+            "path": "/terminal/Dockerfile",
+            "from_full": "python:3-onbuild",
+            "cmd": "python main.py",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "flask",
+                "host",
+                "app",
+                "main",
+                "run"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "python",
+            "path": "/main-processor/Dockerfile",
+            "from_full": "python:3-onbuild",
+            "cmd": "FLASK_APP=main.py flask run --host=0.0.0.0",
+            "keywords": [],
+            "discos": [],
+            "servers": [
+                "flask"
+            ],
+            "langs": [
+                "python"
+            ]
+        }
+    ],
+    "url": "git://github.com/sundhaug92/emuhipster.git",
+    "gates": [],
+    "num_files": 9,
+    "num_services": 5,
+    "num_gates": 0,
+    "num_dbs": 1,
+    "avg_size_service": 4.5,
+    "langs": [
+        "python"
+    ],
+    "num_buses": 0,
+    "languages": [
+        "python"
+    ],
+    "num_monitors": 0,
+    "servers": [
+        "flask"
+    ]
+}

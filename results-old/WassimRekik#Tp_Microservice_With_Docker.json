@@ -1,0 +1,330 @@
+{
+    "buses": [],
+    "num_langs": 4,
+    "dbs": [],
+    "languages": [
+        "shell",
+        "css",
+        "html"
+    ],
+    "files": [
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "monitors": [],
+            "path": "/discovery-service/pom.xml",
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "monitors": [],
+            "path": "/discovery-service/bin/pom.xml",
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "monitors": [],
+            "path": "/proxy-service/pom.xml",
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "zuul"
+            ]
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "monitors": [],
+            "path": "/config-service/pom.xml",
+            "dbs": [],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "monitors": [],
+            "path": "/product-service/pom.xml",
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": []
+        }
+    ],
+    "size": 111361,
+    "name": "WassimRekik/Tp_Microservice_With_Docker",
+    "num_servers": 1,
+    "structure": {
+        "num_services": 6,
+        "services": [
+            {
+                "image": "discovery-service",
+                "servers": [],
+                "name": "discovery-service",
+                "monitors": [],
+                "dbs": [],
+                "image_full": "discovery-service",
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "config-service"
+                ],
+                "gates": []
+            },
+            {
+                "image": "product-service",
+                "servers": [],
+                "name": "product-service-8082",
+                "monitors": [],
+                "dbs": [],
+                "image_full": "product-service",
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "proxy-service"
+                ],
+                "gates": []
+            },
+            {
+                "image": "proxy-service",
+                "servers": [],
+                "name": "proxy-service",
+                "monitors": [],
+                "dbs": [],
+                "image_full": "proxy-service",
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "discovery-service"
+                ],
+                "gates": []
+            },
+            {
+                "image": "product-service",
+                "servers": [],
+                "name": "product-service-8080",
+                "monitors": [],
+                "dbs": [],
+                "image_full": "product-service",
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "proxy-service"
+                ],
+                "gates": []
+            },
+            {
+                "image": "product-service",
+                "servers": [],
+                "name": "product-service-8081",
+                "monitors": [],
+                "dbs": [],
+                "image_full": "product-service",
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "proxy-service"
+                ],
+                "gates": []
+            },
+            {
+                "image": "config-service",
+                "servers": [],
+                "name": "config-service",
+                "monitors": [],
+                "dbs": [],
+                "image_full": "config-service",
+                "buses": [],
+                "discos": [],
+                "depends_on": [],
+                "gates": []
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "names": [],
+            "num": 0,
+            "services": [],
+            "shared_dbs": false
+        }
+    },
+    "shared_dbs": false,
+    "num_services": 6,
+    "num_dbs": 0,
+    "discos": [
+        "eureka"
+    ],
+    "gates": [
+        "zuul"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "images": [
+        "openjdk"
+    ],
+    "num_gates": 1,
+    "num_buses": 0,
+    "dockers": [
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "dbs": [],
+            "keywords": [
+                "mvn",
+                "offline",
+                "add",
+                "apk",
+                "dependency"
+            ],
+            "from_full": "openjdk:8-jre-alpine",
+            "monitors": [],
+            "langs": [
+                "java"
+            ],
+            "from": "openjdk",
+            "discos": [],
+            "gates": [],
+            "cmd": "java -jar /usr/app/discovery-service-0.0.1-SNAPSHOT.jar --spring.profiles.active=docker",
+            "cmd_keywords": [
+                "jar",
+                "profiles",
+                "snapshot",
+                "docker",
+                "active"
+            ],
+            "path": "/discovery-service/Dockerfile"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "dbs": [],
+            "keywords": [
+                "mvn",
+                "offline",
+                "add",
+                "apk",
+                "dependency"
+            ],
+            "from_full": "openjdk:8-jre-alpine",
+            "monitors": [],
+            "langs": [
+                "java"
+            ],
+            "from": "openjdk",
+            "discos": [],
+            "gates": [],
+            "cmd": "java -jar /usr/app/proxy-service-0.0.1-SNAPSHOT.jar --spring.profiles.active=docker",
+            "cmd_keywords": [
+                "jar",
+                "profiles",
+                "snapshot",
+                "docker",
+                "active"
+            ],
+            "path": "/proxy-service/Dockerfile"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "dbs": [],
+            "keywords": [
+                "mvn",
+                "offline",
+                "dependency",
+                "package",
+                "dskiptests"
+            ],
+            "from_full": "openjdk:8-jre-alpine",
+            "monitors": [],
+            "langs": [
+                "java"
+            ],
+            "from": "openjdk",
+            "discos": [],
+            "gates": [],
+            "cmd": "java -jar /usr/app/config-service-0.0.1-SNAPSHOT.jar --spring.profiles.active=docker",
+            "cmd_keywords": [
+                "jar",
+                "config",
+                "snapshot",
+                "active",
+                "profiles"
+            ],
+            "path": "/config-service/Dockerfile"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "dbs": [],
+            "keywords": [
+                "mvn",
+                "offline",
+                "add",
+                "apk",
+                "dependency"
+            ],
+            "from_full": "openjdk:8-jre-alpine",
+            "monitors": [],
+            "langs": [
+                "java"
+            ],
+            "from": "openjdk",
+            "discos": [],
+            "gates": [],
+            "cmd": "java -jar /usr/app/TP4-Microservices-0.0.1-SNAPSHOT.jar --spring.profiles.active=docker",
+            "cmd_keywords": [
+                "jar",
+                "profiles",
+                "snapshot",
+                "docker",
+                "active"
+            ],
+            "path": "/product-service/Dockerfile"
+        }
+    ],
+    "num_discos": 1,
+    "num_dockers": 4,
+    "monitors": [],
+    "url": "git://github.com/WassimRekik/Tp_Microservice_With_Docker.git",
+    "langs": [
+        "shell",
+        "java",
+        "css",
+        "html"
+    ],
+    "num_files": 10,
+    "num_monitors": 0,
+    "avg_size_service": 27840.25
+}

@@ -1,0 +1,400 @@
+{
+    "num_services": 10,
+    "monitors": [
+        "grafana",
+        "prometheus"
+    ],
+    "dockers": [
+        {
+            "path": "/docker/Dockerfile",
+            "from": "adoptopenjdk",
+            "monitors": [],
+            "buses": [],
+            "from_full": "adoptopenjdk:11-jre-hotspot",
+            "langs": [
+                "java"
+            ],
+            "gates": [],
+            "discos": [],
+            "cmd": "",
+            "dbs": [],
+            "keywords": [
+                "dockerize",
+                "tar",
+                "jar",
+                "version",
+                "linux"
+            ],
+            "cmd_keywords": [],
+            "servers": []
+        },
+        {
+            "path": "/docker/grafana/Dockerfile",
+            "from": "grafana/grafana",
+            "monitors": [
+                "grafana"
+            ],
+            "buses": [],
+            "from_full": "grafana/grafana:5.2.4",
+            "langs": [],
+            "gates": [],
+            "discos": [],
+            "cmd": "",
+            "dbs": [],
+            "keywords": [],
+            "cmd_keywords": [],
+            "servers": []
+        },
+        {
+            "path": "/docker/prometheus/Dockerfile",
+            "from": "prom/prometheus",
+            "monitors": [
+                "prometheus"
+            ],
+            "buses": [],
+            "from_full": "prom/prometheus:v2.4.2",
+            "langs": [],
+            "gates": [],
+            "discos": [],
+            "cmd": "",
+            "dbs": [],
+            "keywords": [],
+            "cmd_keywords": [],
+            "servers": []
+        }
+    ],
+    "num_buses": 0,
+    "langs": [
+        "java",
+        "html"
+    ],
+    "gates": [
+        "gateway"
+    ],
+    "num_monitors": 2,
+    "discos": [
+        "eureka"
+    ],
+    "avg_size_service": 555.6666666666666,
+    "files": [
+        {
+            "path": "/pom.xml",
+            "discos": [],
+            "monitors": [],
+            "dbs": [],
+            "gates": [
+                "gateway"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "path": "/spring-petclinic-config-server/pom.xml",
+            "discos": [],
+            "monitors": [],
+            "dbs": [],
+            "gates": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "path": "/spring-petclinic-customers-service/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [
+                "prometheus"
+            ],
+            "dbs": [
+                "hsqldb",
+                "mysql"
+            ],
+            "gates": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "path": "/spring-petclinic-visits-service/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [
+                "prometheus"
+            ],
+            "dbs": [
+                "hsqldb",
+                "mysql"
+            ],
+            "gates": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "path": "/spring-petclinic-admin-server/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "gates": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "path": "/spring-petclinic-discovery-server/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "gates": [],
+            "buses": [],
+            "servers": [
+                "spring",
+                "glassfish"
+            ]
+        },
+        {
+            "path": "/spring-petclinic-api-gateway/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [
+                "prometheus"
+            ],
+            "dbs": [],
+            "gates": [
+                "gateway"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "path": "/spring-petclinic-vets-service/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [
+                "prometheus"
+            ],
+            "dbs": [
+                "hsqldb",
+                "mysql"
+            ],
+            "gates": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ]
+        }
+    ],
+    "num_langs": 2,
+    "name": "spring-petclinic/spring-petclinic-microservices",
+    "shared_dbs": false,
+    "images": [
+        "adoptopenjdk",
+        "prom/prometheus",
+        "grafana/grafana"
+    ],
+    "num_files": 12,
+    "size": 1667,
+    "num_dockers": 3,
+    "url": "git://github.com/spring-petclinic/spring-petclinic-microservices.git",
+    "buses": [],
+    "num_discos": 1,
+    "num_dbs": 1,
+    "dbs": [
+        "mysql"
+    ],
+    "num_gates": 1,
+    "languages": [
+        "java",
+        "html"
+    ],
+    "num_servers": 2,
+    "servers": [
+        "spring",
+        "glassfish"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "num": 0,
+            "shared_dbs": false,
+            "names": [],
+            "services": []
+        },
+        "num_services": 10,
+        "services": [
+            {
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image_full": "springcommunity/spring-petclinic-config-server",
+                "monitors": [],
+                "dbs": [],
+                "name": "config-server",
+                "image": "springcommunity/spring-petclinic-config-server",
+                "gates": [],
+                "servers": [
+                    "spring"
+                ]
+            },
+            {
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "config-server",
+                    "discovery-server"
+                ],
+                "image_full": "springcommunity/spring-petclinic-admin-server",
+                "monitors": [],
+                "dbs": [],
+                "name": "admin-server",
+                "image": "springcommunity/spring-petclinic-admin-server",
+                "gates": [],
+                "servers": [
+                    "spring"
+                ]
+            },
+            {
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "config-server",
+                    "discovery-server"
+                ],
+                "image_full": "springcommunity/spring-petclinic-customers-service",
+                "monitors": [],
+                "dbs": [],
+                "name": "customers-service",
+                "image": "springcommunity/spring-petclinic-customers-service",
+                "gates": [],
+                "servers": [
+                    "spring"
+                ]
+            },
+            {
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "config-server",
+                    "discovery-server"
+                ],
+                "image_full": "springcommunity/spring-petclinic-vets-service",
+                "monitors": [],
+                "dbs": [],
+                "name": "vets-service",
+                "image": "springcommunity/spring-petclinic-vets-service",
+                "gates": [],
+                "servers": [
+                    "spring"
+                ]
+            },
+            {
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image_full": "./docker/prometheus",
+                "monitors": [
+                    "prometheus"
+                ],
+                "dbs": [],
+                "name": "prometheus-server",
+                "image": "./docker/prometheus",
+                "gates": [],
+                "servers": []
+            },
+            {
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "config-server"
+                ],
+                "image_full": "springcommunity/spring-petclinic-discovery-server",
+                "monitors": [],
+                "dbs": [],
+                "name": "discovery-server",
+                "image": "springcommunity/spring-petclinic-discovery-server",
+                "gates": [],
+                "servers": [
+                    "spring"
+                ]
+            },
+            {
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image_full": "openzipkin/zipkin",
+                "monitors": [],
+                "dbs": [],
+                "name": "tracing-server",
+                "image": "openzipkin/zipkin",
+                "gates": [],
+                "servers": []
+            },
+            {
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image_full": "./docker/grafana",
+                "monitors": [
+                    "grafana"
+                ],
+                "dbs": [],
+                "name": "grafana-server",
+                "image": "./docker/grafana",
+                "gates": [],
+                "servers": []
+            },
+            {
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "config-server",
+                    "discovery-server"
+                ],
+                "image_full": "springcommunity/spring-petclinic-visits-service",
+                "monitors": [],
+                "dbs": [],
+                "name": "visits-service",
+                "image": "springcommunity/spring-petclinic-visits-service",
+                "gates": [],
+                "servers": [
+                    "spring"
+                ]
+            },
+            {
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "config-server",
+                    "discovery-server"
+                ],
+                "image_full": "springcommunity/spring-petclinic-api-gateway",
+                "monitors": [],
+                "dbs": [],
+                "name": "api-gateway",
+                "image": "springcommunity/spring-petclinic-api-gateway",
+                "gates": [
+                    "gateway"
+                ],
+                "servers": [
+                    "spring"
+                ]
+            }
+        ]
+    }
+}

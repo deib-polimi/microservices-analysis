@@ -1,0 +1,293 @@
+{
+    "files": [
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [],
+            "path": "/item-service/build.gradle",
+            "dbs": [
+                "postgresql"
+            ],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/item-service/settings.gradle",
+            "dbs": [],
+            "servers": []
+        },
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [],
+            "path": "/order-service/build.gradle",
+            "dbs": [
+                "postgresql"
+            ],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/order-service/settings.gradle",
+            "dbs": [],
+            "servers": []
+        },
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "gates": [
+                "zuul"
+            ],
+            "path": "/gateway/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [
+                "gateway"
+            ],
+            "path": "/gateway/settings.gradle",
+            "dbs": [],
+            "servers": []
+        },
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [],
+            "path": "/payment-service/build.gradle",
+            "dbs": [
+                "postgresql"
+            ],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/payment-service/settings.gradle",
+            "dbs": [],
+            "servers": []
+        },
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "gates": [],
+            "path": "/eureka/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "gates": [],
+            "path": "/eureka/settings.gradle",
+            "dbs": [],
+            "servers": []
+        }
+    ],
+    "num_services": 7,
+    "discos": [
+        "eureka"
+    ],
+    "dbs": [
+        "postgresql"
+    ],
+    "avg_size_service": 44572.0,
+    "name": "BakasaRus/Microservices.Shop",
+    "num_buses": 2,
+    "num_langs": 1,
+    "monitors": [],
+    "num_files": 11,
+    "langs": [
+        "java"
+    ],
+    "num_gates": 1,
+    "dockers": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "names": [],
+            "services": [],
+            "num": 0,
+            "shared_dbs": false
+        },
+        "num_services": 7,
+        "services": [
+            {
+                "monitors": [],
+                "image": "bitnami/rabbitmq",
+                "discos": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "name": "rabbitmq",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "bitnami/rabbitmq:3.8"
+            },
+            {
+                "monitors": [],
+                "image": "items-microservice",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "items-microservices",
+                "depends_on": [
+                    "postgres",
+                    "rabbitmq",
+                    "eureka"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "items-microservice:1"
+            },
+            {
+                "monitors": [],
+                "image": "gateway-microservice",
+                "discos": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "name": "gateway-microservices",
+                "depends_on": [
+                    "postgres",
+                    "rabbitmq",
+                    "eureka",
+                    "items-microservices",
+                    "payments-microservices",
+                    "orders-microservices"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "gateway-microservice:1"
+            },
+            {
+                "monitors": [],
+                "image": "postgres",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "postgres",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "postgres:latest"
+            },
+            {
+                "monitors": [],
+                "image": "orders-microservice",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "orders-microservices",
+                "depends_on": [
+                    "postgres",
+                    "rabbitmq",
+                    "eureka"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "orders-microservice:1"
+            },
+            {
+                "monitors": [],
+                "image": "eureka-trpo",
+                "discos": [
+                    "eureka"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "eureka",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "eureka-trpo:1"
+            },
+            {
+                "monitors": [],
+                "image": "payments-microservice",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "payments-microservices",
+                "depends_on": [
+                    "postgres",
+                    "rabbitmq",
+                    "eureka"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "payments-microservice:1"
+            }
+        ]
+    },
+    "size": 44572,
+    "num_discos": 1,
+    "languages": [
+        "java"
+    ],
+    "url": "git://github.com/BakasaRus/Microservices.Shop.git",
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "gates": [
+        "zuul"
+    ],
+    "shared_dbs": false,
+    "servers": [
+        "spring"
+    ],
+    "images": [],
+    "num_servers": 1,
+    "num_dockers": 0,
+    "num_monitors": 0,
+    "num_dbs": 1
+}

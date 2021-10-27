@@ -1,0 +1,313 @@
+{
+    "num_files": 9,
+    "num_services": 9,
+    "num_discos": 2,
+    "gates": [
+        "zuul"
+    ],
+    "languages": [
+        "html",
+        "java"
+    ],
+    "num_dbs": 1,
+    "dbs": [
+        "mysql"
+    ],
+    "num_monitors": 0,
+    "structure": {
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 3,
+            "services": [
+                "mysql-performers-microservice",
+                "mysql-user-microservice",
+                "mysql-microservice"
+            ],
+            "names": [
+                "mysql"
+            ]
+        },
+        "num_services": 9,
+        "services": [
+            {
+                "image_full": "microservice:latest",
+                "image": "microservice",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "mysql-microservice",
+                    "eurekaserver",
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "microservice"
+            },
+            {
+                "image_full": "singer_microservice:latest",
+                "image": "singer_microservice",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "mysql-performers_microservice",
+                    "eurekaserver"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "singer_microservice"
+            },
+            {
+                "image_full": "mysql:5.6",
+                "image": "mysql",
+                "dbs": [
+                    "mysql"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "mysql-performers-microservice"
+            },
+            {
+                "image_full": "eurekaserver:latest",
+                "image": "eurekaserver",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "eurekaserver"
+            },
+            {
+                "image_full": "rabbitmq:3-management",
+                "image": "rabbitmq",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "name": "rabbitmq"
+            },
+            {
+                "image_full": "mysql:5.6",
+                "image": "mysql",
+                "dbs": [
+                    "mysql"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "mysql-user-microservice"
+            },
+            {
+                "image_full": "user-microservice:latest",
+                "image": "user-microservice",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "mysql-user-microservice",
+                    "eurekaserver",
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "user-microservice"
+            },
+            {
+                "image_full": "gateway:latest",
+                "image": "gateway",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "eurekaserver"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "name": "gateway"
+            },
+            {
+                "image_full": "mysql:5.6",
+                "image": "mysql",
+                "dbs": [
+                    "mysql"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "mysql-microservice"
+            }
+        ],
+        "path": "/nwt/docker-compose.yml"
+    },
+    "discos": [
+        "grpc",
+        "eureka"
+    ],
+    "url": "git://github.com/nvrtic1/nwt2020.git",
+    "num_buses": 2,
+    "files": [
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/nwt/eureka-server/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/nwt/song_microservice/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/nwt/performers_microservice/pom.xml"
+        },
+        {
+            "servers": [
+                "spring",
+                "glassfish"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "discos": [
+                "grpc",
+                "eureka"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/nwt/system-events/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/nwt/common/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "gates": [
+                "zuul"
+            ],
+            "monitors": [],
+            "path": "/nwt/ZuulService/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/nwt/User-microservice/pom.xml"
+        },
+        {
+            "servers": [],
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/nwt/frontend/package.json"
+        }
+    ],
+    "name": "nvrtic1/nwt2020",
+    "servers": [
+        "spring",
+        "glassfish"
+    ],
+    "num_dockers": 0,
+    "buses": [
+        "rabbitmq",
+        "amqp"
+    ],
+    "num_gates": 1,
+    "num_langs": 2,
+    "shared_dbs": false,
+    "monitors": [],
+    "dockers": [],
+    "langs": [
+        "java",
+        "html"
+    ],
+    "num_servers": 2,
+    "size": 4211,
+    "images": [],
+    "avg_size_service": 4211.0
+}

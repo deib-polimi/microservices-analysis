@@ -1,0 +1,414 @@
+{
+    "num_files": 17,
+    "servers": [
+        "node",
+        "spring",
+        "flask",
+        "express"
+    ],
+    "langs": [
+        "typescript",
+        "c#",
+        "python",
+        "java"
+    ],
+    "num_monitors": 0,
+    "discos": [],
+    "num_servers": 4,
+    "images": [
+        "microsoft/dotnet",
+        "python",
+        "openjdk",
+        "nginx",
+        "node"
+    ],
+    "dbs": [
+        "redis",
+        "postgresql"
+    ],
+    "dockers": [
+        {
+            "from_full": "python:2.7",
+            "keywords": [
+                "txt",
+                "requirements",
+                "install",
+                "pip"
+            ],
+            "path": "/docker_flask/Dockerfile",
+            "servers": [],
+            "langs": [
+                "python"
+            ],
+            "cmd_keywords": [
+                "app"
+            ],
+            "cmd": "app.py",
+            "discos": [],
+            "from": "python",
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "from_full": "nginx:1.17.1-alpine",
+            "keywords": [
+                "npm",
+                "install",
+                "build",
+                "run"
+            ],
+            "path": "/kanban_board/kanban-ui/Dockerfile",
+            "servers": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "discos": [],
+            "from": "nginx",
+            "gates": [
+                "nginx"
+            ],
+            "buses": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "from_full": "openjdk:8-alpine",
+            "keywords": [
+                "workspace",
+                "mvn",
+                "pom",
+                "mkdir",
+                "xml"
+            ],
+            "path": "/kanban_board/kanban-app/Dockerfile",
+            "servers": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "discos": [],
+            "from": "openjdk",
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "from_full": "microsoft/dotnet:2.0.0-sdk",
+            "keywords": [
+                "src",
+                "worker",
+                "dotnet",
+                "release",
+                "restore"
+            ],
+            "path": "/voting_app/worker/Dockerfile",
+            "servers": [],
+            "langs": [],
+            "cmd_keywords": [
+                "worker",
+                "dll",
+                "src",
+                "dotnet"
+            ],
+            "cmd": "dotnet src/Worker/Worker.dll",
+            "discos": [],
+            "from": "microsoft/dotnet",
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "from_full": "microsoft/dotnet:2.1-runtime-nanoserver-sac2016",
+            "keywords": [
+                "dotnet",
+                "release",
+                "worker",
+                "restore",
+                "publish"
+            ],
+            "path": "/voting_app/worker/dotnet/Dockerfile",
+            "servers": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "discos": [],
+            "from": "microsoft/dotnet",
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "from_full": "node:10-slim",
+            "keywords": [
+                "npm",
+                "node",
+                "modules",
+                "force",
+                "nodemon"
+            ],
+            "path": "/voting_app/result/Dockerfile",
+            "servers": [
+                "node"
+            ],
+            "langs": [],
+            "cmd_keywords": [
+                "node",
+                "server"
+            ],
+            "cmd": "node server.js",
+            "discos": [],
+            "from": "node",
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "from_full": "microsoft/dotnet:2.1-aspnetcore-runtime-nanoserver-sac2016",
+            "keywords": [
+                "dotnet",
+                "release",
+                "result",
+                "restore",
+                "publish"
+            ],
+            "path": "/voting_app/result/dotnet/Dockerfile",
+            "servers": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "discos": [],
+            "from": "microsoft/dotnet",
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "from_full": "node:8.9-slim",
+            "keywords": [
+                "apt",
+                "install",
+                "get",
+                "phantomjs",
+                "libfontconfig"
+            ],
+            "path": "/voting_app/result/tests/Dockerfile",
+            "servers": [
+                "node"
+            ],
+            "langs": [],
+            "cmd_keywords": [
+                "tests",
+                "app"
+            ],
+            "cmd": "/app/tests.sh",
+            "discos": [],
+            "from": "node",
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "from_full": "python:2.7-alpine",
+            "keywords": [
+                "txt",
+                "requirements",
+                "install",
+                "pip"
+            ],
+            "path": "/voting_app/vote/Dockerfile",
+            "servers": [],
+            "langs": [
+                "python"
+            ],
+            "cmd_keywords": [
+                "app",
+                "log",
+                "file",
+                "access",
+                "alive"
+            ],
+            "cmd": "gunicorn app:app -b 0.0.0.0:80 --log-file - --access-logfile - --workers 4 --keep-alive 0",
+            "discos": [],
+            "from": "python",
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "from_full": "microsoft/dotnet:2.1-aspnetcore-runtime-nanoserver-sac2016",
+            "keywords": [
+                "dotnet",
+                "vote",
+                "release",
+                "restore",
+                "publish"
+            ],
+            "path": "/voting_app/vote/dotnet/Dockerfile",
+            "servers": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "discos": [],
+            "from": "microsoft/dotnet",
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "num_buses": 0,
+    "buses": [],
+    "num_gates": 1,
+    "languages": [
+        "java",
+        "c#",
+        "typescript"
+    ],
+    "num_langs": 4,
+    "num_services": 3,
+    "url": "git://github.com/bruno-novo-it/docker_learning.git",
+    "num_dbs": 2,
+    "num_dockers": 10,
+    "avg_size_service": 700.4,
+    "name": "bruno-novo-it/docker_learning",
+    "files": [
+        {
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/docker_flask/requirements.txt",
+            "servers": [
+                "flask"
+            ],
+            "discos": []
+        },
+        {
+            "dbs": [
+                "redis"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/voting_app/vote/requirements.txt",
+            "servers": [
+                "flask"
+            ],
+            "discos": []
+        },
+        {
+            "dbs": [
+                "postgresql"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/kanban_board/kanban-app/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "discos": []
+        },
+        {
+            "dbs": [
+                "redis",
+                "postgresql"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/voting_app/worker/pom.xml",
+            "servers": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/kanban_board/kanban-ui/package.json",
+            "servers": [
+                "node"
+            ],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/voting_app/result/package.json",
+            "servers": [
+                "express"
+            ],
+            "discos": []
+        }
+    ],
+    "size": 7004,
+    "monitors": [],
+    "gates": [
+        "nginx"
+    ],
+    "shared_dbs": false,
+    "structure": {
+        "path": "/kanban_board/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "./kanban-ui",
+                "monitors": [],
+                "gates": [],
+                "image": "./kanban-ui",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "kanban-ui",
+                "discos": [],
+                "depends_on": [
+                    "kanban-app"
+                ]
+            },
+            {
+                "image_full": "./kanban-app",
+                "monitors": [],
+                "gates": [],
+                "image": "./kanban-app",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "kanban-app",
+                "discos": [],
+                "depends_on": [
+                    "kanban-postgres"
+                ]
+            },
+            {
+                "image_full": "postgres:9.6-alpine",
+                "monitors": [],
+                "gates": [],
+                "image": "postgres",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "kanban-postgres",
+                "discos": [],
+                "depends_on": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [],
+            "services": [],
+            "num": 0,
+            "shared_dbs": false
+        },
+        "num_services": 3
+    },
+    "num_discos": 0
+}

@@ -1,0 +1,355 @@
+{
+    "num_gates": 1,
+    "images": [
+        "openjdk"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "num_buses": 2,
+    "name": "ImJesusDev/spring-cloud-k8s",
+    "gates": [
+        "zuul"
+    ],
+    "structure": {
+        "num_services": 9,
+        "detected_dbs": {
+            "services": [
+                "cassandra-server"
+            ],
+            "names": [
+                "cassandra"
+            ],
+            "shared_dbs": false,
+            "num": 1
+        },
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image": "jdiaz740/users-service",
+                "image_full": "jdiaz740/users-service",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "config-server",
+                    "eureka-server",
+                    "postgres-server"
+                ],
+                "servers": [],
+                "name": "users-service",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "jdiaz740/auth-server",
+                "image_full": "jdiaz740/auth-server",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "config-server",
+                    "eureka-server",
+                    "users-service"
+                ],
+                "servers": [],
+                "name": "auth-server",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "postgres",
+                "image_full": "postgres:12-alpine",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "postgres-server",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "jdiaz740/zuul-server",
+                "image_full": "jdiaz740/zuul-server",
+                "discos": [],
+                "gates": [
+                    "zuul"
+                ],
+                "depends_on": [
+                    "config-server",
+                    "eureka-server",
+                    "users-service",
+                    "auth-server"
+                ],
+                "servers": [],
+                "name": "zuul-server",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "jdiaz740/eureka-server",
+                "image_full": "jdiaz740/eureka-server",
+                "discos": [
+                    "eureka"
+                ],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "eureka-server",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "rabbitmq",
+                "image_full": "rabbitmq:3.8-management-alpine",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "rabbitmq-server",
+                "monitors": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "dbs": []
+            },
+            {
+                "image": "jdiaz740/zipkin-server",
+                "image_full": "jdiaz740/zipkin-server",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "rabbitmq-server",
+                    "cassandra-server"
+                ],
+                "servers": [],
+                "name": "zipkin-server",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "cassandra",
+                "image_full": "cassandra:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "cassandra-server",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "cassandra"
+                ]
+            },
+            {
+                "image": "jdiaz740/config-server",
+                "image_full": "jdiaz740/config-server",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "config-server",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            }
+        ]
+    },
+    "url": "git://github.com/ImJesusDev/spring-cloud-k8s.git",
+    "langs": [
+        "java"
+    ],
+    "num_dockers": 5,
+    "num_langs": 1,
+    "dbs": [
+        "postgresql",
+        "cassandra"
+    ],
+    "shared_dbs": false,
+    "size": 560,
+    "dockers": [
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:12-alpine",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/auth-server/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:12-alpine",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/eureka-server/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:12-alpine",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/zuul-server/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:12-alpine",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/config-server/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:12-alpine",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/users-service/Dockerfile",
+            "cmd_keywords": []
+        }
+    ],
+    "num_servers": 1,
+    "monitors": [],
+    "num_services": 9,
+    "servers": [
+        "spring"
+    ],
+    "num_monitors": 0,
+    "avg_size_service": 112.0,
+    "num_files": 12,
+    "buses": [
+        "rabbitmq",
+        "amqp"
+    ],
+    "files": [
+        {
+            "buses": [
+                "amqp"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/auth-server/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/eureka-server/pom.xml"
+        },
+        {
+            "buses": [
+                "amqp"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "zuul"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/zuul-server/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/config-server/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/users-commons/pom.xml"
+        },
+        {
+            "buses": [
+                "amqp"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "path": "/users-service/pom.xml"
+        }
+    ],
+    "languages": [
+        "java"
+    ],
+    "num_dbs": 2,
+    "num_discos": 1
+}

@@ -1,0 +1,485 @@
+{
+    "size": 1148,
+    "num_dockers": 7,
+    "discos": [
+        "eureka"
+    ],
+    "num_files": 16,
+    "avg_size_service": 164.0,
+    "buses": [],
+    "num_gates": 1,
+    "langs": [
+        "java",
+        "html",
+        "typescript"
+    ],
+    "num_discos": 1,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "cd src ; mvn spring-boot:run -Dspring-boot.run.jvmArguments=\"-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5850\"",
+            "discos": [],
+            "servers": [
+                "spring"
+            ],
+            "cmd_keywords": [
+                "boot",
+                "run",
+                "mvn",
+                "dspring",
+                "src"
+            ],
+            "from": "maven",
+            "path": "/storage-service/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "maven:3.5-jdk-8-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "cd src ; mvn spring-boot:run",
+            "discos": [],
+            "servers": [
+                "spring"
+            ],
+            "cmd_keywords": [
+                "mvn",
+                "spring",
+                "boot",
+                "src",
+                "run"
+            ],
+            "from": "maven",
+            "path": "/api-gateway/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "maven:3.5-jdk-8-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "cd src ; mvn spring-boot:run",
+            "discos": [],
+            "servers": [
+                "spring"
+            ],
+            "cmd_keywords": [
+                "mvn",
+                "spring",
+                "boot",
+                "src",
+                "run"
+            ],
+            "from": "maven",
+            "path": "/discovery-service/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "maven:3.5-jdk-8-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "cd src ; mvn spring-boot:run -Dspring-boot.run.jvmArguments=\"-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=7800\"",
+            "discos": [],
+            "servers": [
+                "spring"
+            ],
+            "cmd_keywords": [
+                "boot",
+                "run",
+                "mvn",
+                "dspring",
+                "src"
+            ],
+            "from": "maven",
+            "path": "/offers-service/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "maven:3.5-jdk-8-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "cd src ; mvn spring-boot:run -Dspring-boot.run.jvmArguments=\"-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000\"",
+            "discos": [],
+            "servers": [
+                "spring"
+            ],
+            "cmd_keywords": [
+                "boot",
+                "run",
+                "mvn",
+                "dspring",
+                "src"
+            ],
+            "from": "maven",
+            "path": "/account-service/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "maven:3.5-jdk-8-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "cd src ; mvn spring-boot:run -Dspring-boot.run.jvmArguments=\"-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=4800\"",
+            "discos": [],
+            "servers": [
+                "spring"
+            ],
+            "cmd_keywords": [
+                "boot",
+                "run",
+                "mvn",
+                "dspring",
+                "src"
+            ],
+            "from": "maven",
+            "path": "/chat-service/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "maven:3.5-jdk-8-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "cd src ; mvn spring-boot:run -Dspring-boot.run.jvmArguments=\"-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=9890\"",
+            "discos": [],
+            "servers": [
+                "spring"
+            ],
+            "cmd_keywords": [
+                "boot",
+                "run",
+                "mvn",
+                "dspring",
+                "src"
+            ],
+            "from": "maven",
+            "path": "/email-service/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "maven:3.5-jdk-8-alpine"
+        }
+    ],
+    "num_dbs": 2,
+    "monitors": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mysql",
+                "image_full": "mysql:8.0.17",
+                "discos": [],
+                "name": "chat-db",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./storage-service",
+                "image_full": "./storage-service",
+                "discos": [],
+                "name": "storage-service",
+                "depends_on": [
+                    "discovery-service"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./chat-service",
+                "image_full": "./chat-service",
+                "discos": [],
+                "name": "chat-service",
+                "depends_on": [
+                    "chat-db",
+                    "discovery-service"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mysql",
+                "image_full": "mysql:8.0.17",
+                "discos": [],
+                "name": "offers-db",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mysql",
+                "image_full": "mysql:8.0.17",
+                "discos": [],
+                "name": "mysql-db",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./discovery-service",
+                "image_full": "./discovery-service",
+                "discos": [],
+                "name": "discovery-service",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./email-service",
+                "image_full": "./email-service",
+                "discos": [],
+                "name": "email-service",
+                "depends_on": [
+                    "discovery-service"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./api-gateway",
+                "image_full": "./api-gateway",
+                "discos": [],
+                "name": "api-gateway",
+                "depends_on": [
+                    "discovery-service"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": [
+                    "gateway"
+                ]
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./account-service",
+                "image_full": "./account-service",
+                "discos": [],
+                "name": "account-service",
+                "depends_on": [
+                    "mysql-db",
+                    "discovery-service"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./offers-service",
+                "image_full": "./offers-service",
+                "discos": [],
+                "name": "offers-service",
+                "depends_on": [
+                    "offers-db",
+                    "discovery-service"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 3,
+            "names": [
+                "mysql"
+            ],
+            "services": [
+                "chat-db",
+                "offers-db",
+                "mysql-db"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 10,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 0,
+    "servers": [
+        "spring",
+        "node"
+    ],
+    "url": "git://github.com/chepiv/games-exchanger.git",
+    "num_services": 10,
+    "gates": [
+        "zuul"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/storage-service/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/api-gateway/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/discovery-service/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/offers-service/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/account-service/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/chat-service/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/email-service/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [
+                "solid"
+            ],
+            "servers": [
+                "node"
+            ],
+            "path": "/ui-service/package.json"
+        }
+    ],
+    "name": "chepiv/games-exchanger",
+    "languages": [
+        "java",
+        "typescript",
+        "html"
+    ],
+    "images": [
+        "maven"
+    ],
+    "dbs": [
+        "mysql",
+        "solid"
+    ],
+    "num_servers": 2,
+    "num_langs": 3
+}

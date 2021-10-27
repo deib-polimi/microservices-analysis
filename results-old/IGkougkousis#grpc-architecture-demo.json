@@ -1,0 +1,206 @@
+{
+    "monitors": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [],
+            "names": [],
+            "num": 0
+        },
+        "services": [
+            {
+                "image": "./web-api/Dockerfile",
+                "buses": [],
+                "monitors": [],
+                "image_full": "./web-api/Dockerfile",
+                "gates": [],
+                "name": "web-api",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "grpc-server"
+                ]
+            },
+            {
+                "image": "./grpc-server/Dockerfile",
+                "buses": [],
+                "monitors": [],
+                "image_full": "./grpc-server/Dockerfile",
+                "gates": [],
+                "name": "grpc-server",
+                "discos": [
+                    "grpc"
+                ],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "./frontend",
+                "buses": [],
+                "monitors": [],
+                "image_full": "./frontend",
+                "gates": [],
+                "name": "dashboard",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "web-api"
+                ]
+            }
+        ],
+        "num_services": 3
+    },
+    "num_langs": 2,
+    "name": "IGkougkousis/grpc-architecture-demo",
+    "num_dockers": 3,
+    "buses": [],
+    "dbs": [],
+    "size": 775,
+    "num_discos": 1,
+    "shared_dbs": false,
+    "discos": [
+        "grpc"
+    ],
+    "images": [
+        "python",
+        "nginx"
+    ],
+    "num_servers": 2,
+    "files": [
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [],
+            "path": "/grpc-server/requirements.txt",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/web-api/requirements.txt",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "node"
+            ],
+            "path": "/frontend/package.json",
+            "discos": [],
+            "dbs": []
+        }
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "python",
+                "server"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "python",
+            "path": "/grpc-server/Dockerfile",
+            "from_full": "python:3.8-buster",
+            "cmd": "python -u ./server.py",
+            "keywords": [
+                "txt",
+                "pip",
+                "install",
+                "requirements"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "flask",
+                "run"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "python",
+            "path": "/web-api/Dockerfile",
+            "from_full": "python:3.8-buster",
+            "cmd": "flask run",
+            "keywords": [
+                "txt",
+                "pip",
+                "install",
+                "requirements"
+            ],
+            "discos": [],
+            "servers": [
+                "flask"
+            ],
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [
+                "nginx"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "from": "nginx",
+            "path": "/frontend/Dockerfile",
+            "from_full": "nginx:1.19-alpine",
+            "cmd": "",
+            "keywords": [
+                "npm",
+                "loglevel",
+                "build",
+                "error",
+                "prod"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        }
+    ],
+    "url": "git://github.com/IGkougkousis/grpc-architecture-demo.git",
+    "gates": [
+        "nginx"
+    ],
+    "num_files": 7,
+    "num_services": 3,
+    "num_gates": 1,
+    "num_dbs": 0,
+    "avg_size_service": 258.3333333333333,
+    "langs": [
+        "python",
+        "typescript"
+    ],
+    "num_buses": 0,
+    "languages": [
+        "python",
+        "typescript"
+    ],
+    "num_monitors": 0,
+    "servers": [
+        "flask",
+        "node"
+    ]
+}

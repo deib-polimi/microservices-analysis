@@ -1,0 +1,804 @@
+{
+    "num_files": 28,
+    "num_services": 14,
+    "num_discos": 1,
+    "gates": [
+        "zuul"
+    ],
+    "languages": [
+        "java"
+    ],
+    "num_dbs": 3,
+    "dbs": [
+        "mysql",
+        "redis",
+        "mongo"
+    ],
+    "num_monitors": 1,
+    "structure": {
+        "detected_dbs": {
+            "shared_dbs": true,
+            "num": 4,
+            "services": [
+                "mongodb",
+                "dbinstance",
+                "authdb",
+                "redis"
+            ],
+            "names": [
+                "mongo",
+                "redis",
+                "mariadb"
+            ]
+        },
+        "num_services": 14,
+        "services": [
+            {
+                "image_full": "apibol/discovery-microservice",
+                "image": "apibol/discovery-microservice",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "discovery"
+            },
+            {
+                "image_full": "mongo",
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "mongodb"
+            },
+            {
+                "image_full": "mariadb",
+                "image": "mariadb",
+                "dbs": [
+                    "mariadb"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "dbinstance"
+            },
+            {
+                "image_full": "apibol/auth-microservice",
+                "image": "apibol/auth-microservice",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "discovery",
+                    "rabbit",
+                    "redis",
+                    "events",
+                    "predictors",
+                    "predictions",
+                    "authdb"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "auth"
+            },
+            {
+                "image_full": "rabbitmq:3.6.0-management",
+                "image": "rabbitmq",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "name": "rabbit"
+            },
+            {
+                "image_full": "apibol/predictor-microservice",
+                "image": "apibol/predictor-microservice",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "mongodb",
+                    "rabbit",
+                    "events",
+                    "config",
+                    "discovery"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "predictors"
+            },
+            {
+                "image_full": "apibol/config-microservice",
+                "image": "apibol/config-microservice",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "discovery"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "config"
+            },
+            {
+                "image_full": "apibol/user-microservice",
+                "image": "apibol/user-microservice",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "dbinstance",
+                    "config",
+                    "discovery"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "users"
+            },
+            {
+                "image_full": "mariadb",
+                "image": "mariadb",
+                "dbs": [
+                    "mariadb"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "authdb"
+            },
+            {
+                "image_full": "apibol/event-microservice",
+                "image": "apibol/event-microservice",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "rabbit",
+                    "mongodb",
+                    "config",
+                    "discovery"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "events"
+            },
+            {
+                "image_full": "redis",
+                "image": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "redis"
+            },
+            {
+                "image_full": "apibol/ranking-microservice",
+                "image": "apibol/ranking-microservice",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "discovery",
+                    "rabbit",
+                    "redis",
+                    "events",
+                    "predictors",
+                    "predictions"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "rankings"
+            },
+            {
+                "image_full": "apibol/api-gateway-microservice",
+                "image": "apibol/api-gateway-microservice",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "config",
+                    "discovery"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "name": "gateway"
+            },
+            {
+                "image_full": "apibol/prediction-microservice",
+                "image": "apibol/prediction-microservice",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "mongodb",
+                    "events",
+                    "rabbit",
+                    "config",
+                    "discovery"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "predictions"
+            }
+        ],
+        "path": "/devops/docker/container/docker-compose.yml"
+    },
+    "discos": [
+        "eureka"
+    ],
+    "url": "git://github.com/apibol/apibol.git",
+    "num_buses": 2,
+    "files": [
+        {
+            "servers": [
+                "spring",
+                "tomcat"
+            ],
+            "dbs": [
+                "mongo",
+                "mongodb",
+                "mysql",
+                "hsqldb",
+                "redis"
+            ],
+            "discos": [],
+            "buses": [],
+            "gates": [
+                "gateway"
+            ],
+            "monitors": [],
+            "path": "/pom.xml"
+        },
+        {
+            "servers": [],
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/specification/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "monitors": [],
+            "path": "/api-gateway-microservice/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "mongodb"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [
+                "zuul"
+            ],
+            "monitors": [],
+            "path": "/prediction-microservice/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "discos": [],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [],
+            "monitors": [
+                "turbine"
+            ],
+            "path": "/hystrix-dashboard/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "mongo",
+                "mongodb"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [
+                "zuul"
+            ],
+            "monitors": [],
+            "path": "/predictor-microservice/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "mongo",
+                "mongodb"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [
+                "zuul"
+            ],
+            "monitors": [],
+            "path": "/event-microservice/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/config-file-microservice/pom.xml"
+        },
+        {
+            "servers": [],
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/common/pom.xml"
+        },
+        {
+            "servers": [
+                "spring",
+                "tomcat"
+            ],
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/config-microservice/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/discovery-microservice/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "gates": [
+                "zuul"
+            ],
+            "monitors": [],
+            "path": "/auth-microservice/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "gates": [
+                "zuul"
+            ],
+            "monitors": [],
+            "path": "/frontend/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "redis"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [
+                "zuul"
+            ],
+            "monitors": [],
+            "path": "/ranking-microservice/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "mysql",
+                "hsqldb"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "gates": [
+                "zuul"
+            ],
+            "monitors": [],
+            "path": "/user-microservice/pom.xml"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/frontend/src/main/resources/static/apibol/package.json"
+        }
+    ],
+    "name": "apibol/apibol",
+    "servers": [
+        "spring",
+        "tomcat",
+        "node"
+    ],
+    "num_dockers": 11,
+    "buses": [
+        "rabbitmq",
+        "amqp"
+    ],
+    "num_gates": 1,
+    "num_langs": 1,
+    "shared_dbs": true,
+    "monitors": [
+        "turbine"
+    ],
+    "dockers": [
+        {
+            "servers": [],
+            "from": "java",
+            "buses": [],
+            "gates": [
+                "gateway"
+            ],
+            "monitors": [],
+            "path": "/api-gateway-microservice/src/main/docker/Dockerfile",
+            "keywords": [
+                "api",
+                "gateway",
+                "touch",
+                "bash",
+                "jar"
+            ],
+            "dbs": [],
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "java:8"
+        },
+        {
+            "servers": [],
+            "from": "java",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/prediction-microservice/src/main/docker/Dockerfile",
+            "keywords": [
+                "microservice",
+                "jar",
+                "touch",
+                "bash",
+                "prediction"
+            ],
+            "dbs": [],
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "java:8"
+        },
+        {
+            "servers": [],
+            "from": "java",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/hystrix-dashboard/src/main/docker/Dockerfile",
+            "keywords": [
+                "dashboard",
+                "hystrix",
+                "touch",
+                "bash",
+                "jar"
+            ],
+            "dbs": [],
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "java:8"
+        },
+        {
+            "servers": [],
+            "from": "java",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/predictor-microservice/src/main/docker/Dockerfile",
+            "keywords": [
+                "microservice",
+                "predictor",
+                "touch",
+                "bash",
+                "jar"
+            ],
+            "dbs": [],
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "java:8"
+        },
+        {
+            "servers": [],
+            "from": "java",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/event-microservice/src/main/docker/Dockerfile",
+            "keywords": [
+                "event",
+                "microservice",
+                "touch",
+                "bash",
+                "jar"
+            ],
+            "dbs": [],
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "java:8"
+        },
+        {
+            "servers": [],
+            "from": "java",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/config-file-microservice/src/main/docker/Dockerfile",
+            "keywords": [
+                "microservice",
+                "bash",
+                "touch",
+                "file",
+                "config"
+            ],
+            "dbs": [],
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "java:8"
+        },
+        {
+            "servers": [],
+            "from": "java",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/config-microservice/src/main/docker/Dockerfile",
+            "keywords": [
+                "config",
+                "jar",
+                "touch",
+                "bash",
+                "microservice"
+            ],
+            "dbs": [],
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "java:8"
+        },
+        {
+            "servers": [],
+            "from": "java",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/discovery-microservice/src/main/docker/Dockerfile",
+            "keywords": [
+                "discovery",
+                "microservice",
+                "touch",
+                "bash",
+                "jar"
+            ],
+            "dbs": [],
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "java:8"
+        },
+        {
+            "servers": [],
+            "from": "java",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/auth-microservice/src/main/docker/Dockerfile",
+            "keywords": [
+                "microservice",
+                "jar",
+                "touch",
+                "bash",
+                "auth"
+            ],
+            "dbs": [],
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "java:8"
+        },
+        {
+            "servers": [],
+            "from": "java",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/ranking-microservice/src/main/docker/Dockerfile",
+            "keywords": [
+                "microservice",
+                "jar",
+                "touch",
+                "bash",
+                "ranking"
+            ],
+            "dbs": [],
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "java:8"
+        },
+        {
+            "servers": [],
+            "from": "java",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/user-microservice/src/main/docker/Dockerfile",
+            "keywords": [
+                "microservice",
+                "jar",
+                "touch",
+                "bash",
+                "user"
+            ],
+            "dbs": [],
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "java:8"
+        }
+    ],
+    "langs": [
+        "java"
+    ],
+    "num_servers": 3,
+    "size": 437,
+    "images": [
+        "java"
+    ],
+    "avg_size_service": 39.72727272727273
+}

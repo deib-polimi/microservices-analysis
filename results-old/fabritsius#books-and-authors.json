@@ -1,0 +1,310 @@
+{
+    "size": 425,
+    "avg_size_service": 106.25,
+    "name": "fabritsius/books-and-authors",
+    "languages": [
+        "javascript",
+        "html"
+    ],
+    "servers": [
+        "node",
+        "express"
+    ],
+    "num_dbs": 1,
+    "images": [
+        "node"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 7,
+        "services": [
+            {
+                "depends_on": [],
+                "image_full": "redis",
+                "monitors": [],
+                "name": "redis",
+                "image": "redis",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "redis"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "rabbitmq",
+                    "db"
+                ],
+                "image_full": "./dbhandler",
+                "monitors": [],
+                "name": "dbhandler",
+                "image": "./dbhandler",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "api"
+                ],
+                "image_full": "./client",
+                "monitors": [],
+                "name": "client",
+                "image": "./client",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "rabbitmq",
+                "monitors": [],
+                "name": "rabbitmq",
+                "image": "rabbitmq",
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "dbhandler",
+                    "cachehandler"
+                ],
+                "image_full": "./api",
+                "monitors": [],
+                "name": "api",
+                "image": "./api",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "postgres",
+                "monitors": [],
+                "name": "db",
+                "image": "postgres",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "db",
+                    "redis"
+                ],
+                "image_full": "./cachehandler",
+                "monitors": [],
+                "name": "cachehandler",
+                "image": "./cachehandler",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "redis"
+            ],
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": false,
+            "num": 1
+        }
+    },
+    "num_dockers": 4,
+    "num_buses": 1,
+    "num_services": 7,
+    "dockers": [
+        {
+            "path": "/client/Dockerfile",
+            "from": "node",
+            "langs": [],
+            "cmd": "node app",
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:10.16.0-alpine",
+            "keywords": [
+                "install",
+                "only",
+                "npm",
+                "production"
+            ],
+            "cmd_keywords": [
+                "node",
+                "app"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/api/Dockerfile",
+            "from": "node",
+            "langs": [],
+            "cmd": "node app",
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:10.16.0-alpine",
+            "keywords": [
+                "install",
+                "only",
+                "npm",
+                "production"
+            ],
+            "cmd_keywords": [
+                "node",
+                "app"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/dbhandler/Dockerfile",
+            "from": "node",
+            "langs": [],
+            "cmd": "node app",
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:10.16.0-alpine",
+            "keywords": [
+                "install",
+                "only",
+                "npm",
+                "production"
+            ],
+            "cmd_keywords": [
+                "node",
+                "app"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/cachehandler/Dockerfile",
+            "from": "node",
+            "langs": [],
+            "cmd": "node app",
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:10.16.0-alpine",
+            "keywords": [
+                "install",
+                "only",
+                "npm",
+                "production"
+            ],
+            "cmd_keywords": [
+                "node",
+                "app"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "num_langs": 2,
+    "langs": [
+        "javascript",
+        "html"
+    ],
+    "discos": [],
+    "num_gates": 0,
+    "num_monitors": 0,
+    "num_files": 9,
+    "files": [
+        {
+            "path": "/client/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/api/package.json",
+            "monitors": [],
+            "dbs": [
+                "redis"
+            ],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/dbhandler/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/cachehandler/package.json",
+            "monitors": [],
+            "dbs": [
+                "redis"
+            ],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_servers": 2,
+    "url": "git://github.com/fabritsius/books-and-authors.git",
+    "dbs": [
+        "redis"
+    ],
+    "num_discos": 0,
+    "gates": [],
+    "buses": [
+        "rabbitmq"
+    ]
+}

@@ -1,0 +1,145 @@
+{
+    "monitors": [],
+    "structure": {
+        "path": "/scripts/docker/docker-compose.yml",
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [],
+            "names": [],
+            "num": 0
+        },
+        "services": [
+            {
+                "image": "registry.cn-hangzhou.aliyuncs.com/yoyosoft/mssql",
+                "buses": [],
+                "monitors": [],
+                "image_full": "registry.cn-hangzhou.aliyuncs.com/yoyosoft/mssql:2019-latest",
+                "gates": [],
+                "name": "mssql",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "registry.cn-hangzhou.aliyuncs.com/yoyosoft/blazorwebdemo",
+                "buses": [],
+                "monitors": [],
+                "image_full": "registry.cn-hangzhou.aliyuncs.com/yoyosoft/blazorwebdemo",
+                "gates": [],
+                "name": "blazor",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "mssql"
+                ]
+            },
+            {
+                "image": "dockercloud/haproxy",
+                "buses": [],
+                "monitors": [],
+                "image_full": "dockercloud/haproxy:latest",
+                "gates": [],
+                "name": "loadbalancer",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "blazor"
+                ]
+            },
+            {
+                "image": "registry.cn-hangzhou.aliyuncs.com/yoyosoft/blazorapidemo",
+                "buses": [],
+                "monitors": [],
+                "image_full": "registry.cn-hangzhou.aliyuncs.com/yoyosoft/blazorapidemo",
+                "gates": [],
+                "name": "webapi",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "mssql"
+                ]
+            }
+        ],
+        "num_services": 4
+    },
+    "num_langs": 2,
+    "name": "yoyomooc/BlazorDemo",
+    "num_dockers": 2,
+    "buses": [],
+    "dbs": [],
+    "size": 5331,
+    "num_discos": 0,
+    "shared_dbs": false,
+    "discos": [],
+    "images": [
+        "mcr.microsoft.com/dotnet/core/aspnet"
+    ],
+    "num_servers": 0,
+    "files": [],
+    "dockers": [
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "mcr.microsoft.com/dotnet/core/aspnet",
+            "path": "/YoyoMooc.StuManagement.Web/Dockerfile",
+            "from_full": "mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim",
+            "cmd": "",
+            "keywords": [
+                "tlsv",
+                "openssl",
+                "etc",
+                "sed",
+                "wait"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "mcr.microsoft.com/dotnet/core/aspnet",
+            "path": "/YoyoMooc.StuManagement.Api/Dockerfile",
+            "from_full": "mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim",
+            "cmd": "",
+            "keywords": [
+                "tlsv",
+                "openssl",
+                "etc",
+                "sed",
+                "wait"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        }
+    ],
+    "url": "git://github.com/yoyomooc/BlazorDemo.git",
+    "gates": [],
+    "num_files": 3,
+    "num_services": 4,
+    "num_gates": 0,
+    "num_dbs": 0,
+    "avg_size_service": 2665.5,
+    "langs": [
+        "c#",
+        "html"
+    ],
+    "num_buses": 0,
+    "languages": [
+        "c#",
+        "html"
+    ],
+    "num_monitors": 0,
+    "servers": []
+}

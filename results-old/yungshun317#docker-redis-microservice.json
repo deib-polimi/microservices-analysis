@@ -1,0 +1,213 @@
+{
+    "size": 4,
+    "num_discos": 0,
+    "num_services": 4,
+    "num_monitors": 0,
+    "num_langs": 2,
+    "dockers": [
+        {
+            "dbs": [],
+            "cmd": "npm start",
+            "gates": [],
+            "from_full": "node:6-alpine",
+            "langs": [],
+            "keywords": [
+                "npm",
+                "install",
+                "mkdir",
+                "src",
+                "usr"
+            ],
+            "path": "/server/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "from": "node",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "cmd": "/app/count.sh",
+            "gates": [],
+            "from_full": "alpine:3.5",
+            "langs": [],
+            "keywords": [
+                "cache",
+                "mkdir",
+                "add",
+                "curl",
+                "apk"
+            ],
+            "path": "/counter/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "count",
+                "app"
+            ],
+            "from": "alpine",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "cmd": "/app/poll.sh",
+            "gates": [],
+            "from_full": "alpine:3.5",
+            "langs": [],
+            "keywords": [
+                "cache",
+                "mkdir",
+                "add",
+                "curl",
+                "apk"
+            ],
+            "path": "/poller/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "poll",
+                "app"
+            ],
+            "from": "alpine",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        }
+    ],
+    "files": [
+        {
+            "dbs": [
+                "redis"
+            ],
+            "gates": [],
+            "discos": [],
+            "monitors": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/server/package.json",
+            "buses": []
+        }
+    ],
+    "langs": [
+        "javascript",
+        "dockerfile"
+    ],
+    "url": "git://github.com/yungshun317/docker-redis-microservice.git",
+    "buses": [],
+    "shared_dbs": true,
+    "structure": {
+        "services": [
+            {
+                "dbs": [
+                    "redis"
+                ],
+                "image_full": "yungshun317/redis-microservice:server",
+                "image": "yungshun317/redis-microservice",
+                "gates": [],
+                "name": "server",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [
+                    "redis"
+                ],
+                "buses": []
+            },
+            {
+                "dbs": [
+                    "redis"
+                ],
+                "image_full": "yungshun317/redis-microservice:counter",
+                "image": "yungshun317/redis-microservice",
+                "gates": [],
+                "name": "counter",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [
+                    "server"
+                ],
+                "buses": []
+            },
+            {
+                "dbs": [
+                    "redis"
+                ],
+                "image_full": "redis",
+                "image": "redis",
+                "gates": [],
+                "name": "redis",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [],
+                "buses": []
+            },
+            {
+                "dbs": [
+                    "redis"
+                ],
+                "image_full": "yungshun317/redis-microservice:poller",
+                "image": "yungshun317/redis-microservice",
+                "gates": [],
+                "name": "poller",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [
+                    "server"
+                ],
+                "buses": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [
+                "redis"
+            ],
+            "services": [
+                "server",
+                "counter",
+                "redis",
+                "poller"
+            ],
+            "shared_dbs": true,
+            "num": 4
+        },
+        "num_services": 4,
+        "path": "/docker-compose.yml"
+    },
+    "name": "yungshun317/docker-redis-microservice",
+    "num_buses": 0,
+    "servers": [
+        "express",
+        "node"
+    ],
+    "num_files": 5,
+    "num_dbs": 1,
+    "num_gates": 0,
+    "gates": [],
+    "monitors": [],
+    "avg_size_service": 1.3333333333333333,
+    "languages": [
+        "javascript",
+        "dockerfile"
+    ],
+    "num_dockers": 3,
+    "dbs": [
+        "redis"
+    ],
+    "num_servers": 2,
+    "discos": [],
+    "images": [
+        "node",
+        "alpine"
+    ]
+}

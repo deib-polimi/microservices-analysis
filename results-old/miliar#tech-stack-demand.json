@@ -1,0 +1,475 @@
+{
+    "size": 12666,
+    "num_dockers": 7,
+    "discos": [
+        "zookeeper"
+    ],
+    "num_files": 15,
+    "avg_size_service": 1809.4285714285713,
+    "buses": [
+        "kafka"
+    ],
+    "num_gates": 0,
+    "langs": [
+        "python"
+    ],
+    "num_discos": 1,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "python -u app.py",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "app",
+                "python"
+            ],
+            "from": "python",
+            "path": "/visualizer/Dockerfile",
+            "keywords": [
+                "install",
+                "requirements",
+                "txt",
+                "pip"
+            ],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "python:3.7"
+        },
+        {
+            "monitors": [],
+            "cmd": "python -u main.py",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "main",
+                "python"
+            ],
+            "from": "python",
+            "path": "/keywords_update/Dockerfile",
+            "keywords": [
+                "install",
+                "requirements",
+                "txt",
+                "pip"
+            ],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "python:3.7"
+        },
+        {
+            "monitors": [],
+            "cmd": "python -u app.py",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "app",
+                "python"
+            ],
+            "from": "python",
+            "path": "/keywords_api/Dockerfile",
+            "keywords": [
+                "install",
+                "requirements",
+                "txt",
+                "pip"
+            ],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "python:3.7"
+        },
+        {
+            "monitors": [],
+            "cmd": "python -u main.py",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "main",
+                "python"
+            ],
+            "from": "python",
+            "path": "/neo4j_data_loader/Dockerfile",
+            "keywords": [
+                "install",
+                "requirements",
+                "txt",
+                "pip"
+            ],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "python:3.7"
+        },
+        {
+            "monitors": [],
+            "cmd": "python -u main.py",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "main",
+                "python"
+            ],
+            "from": "python",
+            "path": "/job_keywords_parser/Dockerfile",
+            "keywords": [
+                "install",
+                "requirements",
+                "txt",
+                "pip"
+            ],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "python:3.7"
+        },
+        {
+            "monitors": [],
+            "cmd": "python -u main.py",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "main",
+                "python"
+            ],
+            "from": "python",
+            "path": "/job_description_scraper/Dockerfile",
+            "keywords": [
+                "install",
+                "requirements",
+                "txt",
+                "pip"
+            ],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "python:3.7"
+        },
+        {
+            "monitors": [],
+            "cmd": "python -u main.py",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "main",
+                "python"
+            ],
+            "from": "python",
+            "path": "/job_url_scraper/Dockerfile",
+            "keywords": [
+                "install",
+                "requirements",
+                "txt",
+                "pip"
+            ],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "python:3.7"
+        }
+    ],
+    "num_dbs": 2,
+    "monitors": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "neo4j",
+                "image_full": "neo4j:latest",
+                "discos": [],
+                "name": "neo4j",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [
+                    "kafka"
+                ],
+                "image": "wurstmeister/kafka",
+                "image_full": "wurstmeister/kafka",
+                "discos": [],
+                "name": "kafka",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./job_keywords_parser",
+                "image_full": "./job_keywords_parser",
+                "discos": [],
+                "name": "job_keywords_parser",
+                "depends_on": [
+                    "kafka",
+                    "keywords_api"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "bitnami/redis",
+                "image_full": "bitnami/redis:5.0",
+                "discos": [],
+                "name": "redis",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./job_url_scraper",
+                "image_full": "./job_url_scraper",
+                "discos": [],
+                "name": "job_url_scraper",
+                "depends_on": [
+                    "kafka"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./neo4j_data_loader",
+                "image_full": "./neo4j_data_loader",
+                "discos": [],
+                "name": "neo4j_data_loader",
+                "depends_on": [
+                    "neo4j",
+                    "kafka"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./keywords_api",
+                "image_full": "./keywords_api",
+                "discos": [],
+                "name": "keywords_api",
+                "depends_on": [
+                    "redis"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./visualizer",
+                "image_full": "./visualizer",
+                "discos": [],
+                "name": "visualizer",
+                "depends_on": [
+                    "neo4j",
+                    "kafka"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./job_description_scraper",
+                "image_full": "./job_description_scraper",
+                "discos": [],
+                "name": "job_description_scraper",
+                "depends_on": [
+                    "kafka"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "wurstmeister/zookeeper",
+                "image_full": "wurstmeister/zookeeper",
+                "discos": [
+                    "zookeeper"
+                ],
+                "name": "zookeeper",
+                "depends_on": [],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "obsidiandynamics/kafdrop",
+                "image_full": "obsidiandynamics/kafdrop",
+                "discos": [],
+                "name": "kafka_ui",
+                "depends_on": [
+                    "kafka",
+                    "zookeeper"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 2,
+            "names": [
+                "redis",
+                "zookeeper"
+            ],
+            "services": [
+                "redis",
+                "zookeeper"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 11,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 1,
+    "servers": [
+        "flask"
+    ],
+    "url": "git://github.com/miliar/tech-stack-demand.git",
+    "num_services": 11,
+    "gates": [],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/visualizer/requirements.txt"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/keywords_update/requirements.txt"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [
+                "redis"
+            ],
+            "servers": [
+                "flask"
+            ],
+            "path": "/keywords_api/requirements.txt"
+        },
+        {
+            "monitors": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/neo4j_data_loader/requirements.txt"
+        },
+        {
+            "monitors": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/job_keywords_parser/requirements.txt"
+        },
+        {
+            "monitors": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/job_description_scraper/requirements.txt"
+        },
+        {
+            "monitors": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/job_url_scraper/requirements.txt"
+        }
+    ],
+    "name": "miliar/tech-stack-demand",
+    "languages": [
+        "python"
+    ],
+    "images": [
+        "python"
+    ],
+    "dbs": [
+        "redis",
+        "zookeeper"
+    ],
+    "num_servers": 1,
+    "num_langs": 1
+}

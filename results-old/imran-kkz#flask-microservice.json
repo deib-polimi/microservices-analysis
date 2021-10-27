@@ -1,0 +1,175 @@
+{
+    "avg_size_service": 4.0,
+    "num_langs": 3,
+    "servers": [
+        "flask"
+    ],
+    "files": [
+        {
+            "path": "/web/requirements.txt",
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "dbs": [
+                "redis"
+            ],
+            "buses": [],
+            "servers": [
+                "flask"
+            ]
+        }
+    ],
+    "num_dockers": 2,
+    "num_files": 4,
+    "name": "imran-kkz/flask-microservice",
+    "url": "git://github.com/imran-kkz/flask-microservice.git",
+    "languages": [
+        "python",
+        "tsql",
+        "dockerfile"
+    ],
+    "num_discos": 0,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 4,
+        "detected_dbs": {
+            "names": [
+                "redis"
+            ],
+            "num": 1,
+            "shared_dbs": false,
+            "services": [
+                "redis"
+            ]
+        },
+        "services": [
+            {
+                "image": "./web",
+                "name": "flaskapp",
+                "depends_on": [
+                    "redis",
+                    "postgres"
+                ],
+                "monitors": [],
+                "servers": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "./web"
+            },
+            {
+                "image": "postgres",
+                "name": "postgres",
+                "depends_on": [],
+                "monitors": [],
+                "servers": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "postgres:alpine"
+            },
+            {
+                "image": "nginx/",
+                "name": "nginx",
+                "depends_on": [
+                    "flaskapp"
+                ],
+                "monitors": [],
+                "servers": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "image_full": "nginx/"
+            },
+            {
+                "image": "redis",
+                "name": "redis",
+                "depends_on": [],
+                "monitors": [],
+                "servers": [],
+                "discos": [],
+                "dbs": [
+                    "redis"
+                ],
+                "buses": [],
+                "gates": [],
+                "image_full": "redis:alpine"
+            }
+        ]
+    },
+    "langs": [
+        "python",
+        "tsql",
+        "dockerfile"
+    ],
+    "dbs": [
+        "redis"
+    ],
+    "num_gates": 1,
+    "size": 8,
+    "num_dbs": 1,
+    "buses": [],
+    "num_servers": 1,
+    "shared_dbs": false,
+    "gates": [
+        "nginx"
+    ],
+    "dockers": [
+        {
+            "path": "/nginx/Dockerfile",
+            "from": "nginx",
+            "discos": [],
+            "buses": [],
+            "gates": [
+                "nginx"
+            ],
+            "servers": [],
+            "from_full": "nginx:alpine",
+            "langs": [],
+            "monitors": [],
+            "keywords": [],
+            "cmd": "",
+            "dbs": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/web/Dockerfile",
+            "from": "python",
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "from_full": "python:3.6.2-slim",
+            "langs": [
+                "python"
+            ],
+            "monitors": [],
+            "keywords": [
+                "flask",
+                "all",
+                "flaskgroup",
+                "home",
+                "cache"
+            ],
+            "cmd": "",
+            "dbs": [],
+            "cmd_keywords": []
+        }
+    ],
+    "num_services": 4,
+    "discos": [],
+    "num_monitors": 0,
+    "images": [
+        "python",
+        "nginx"
+    ],
+    "num_buses": 0,
+    "monitors": []
+}

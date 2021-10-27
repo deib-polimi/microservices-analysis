@@ -1,0 +1,229 @@
+{
+    "size": 235,
+    "num_files": 8,
+    "dockers": [
+        {
+            "from_full": "openjdk:8-jre-alpine",
+            "gates": [],
+            "discos": [],
+            "cmd": "",
+            "monitors": [],
+            "keywords": [
+                "repository",
+                "config",
+                "opt",
+                "server",
+                "mkdir"
+            ],
+            "from": "openjdk",
+            "langs": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "buses": [],
+            "path": "/configServer/Dockerfile",
+            "dbs": []
+        },
+        {
+            "from_full": "openjdk:8-jre-alpine",
+            "gates": [],
+            "discos": [],
+            "cmd": "/opt/wait-for-it.sh http://10.5.2.188:8761 -- java -jar /opt/app.jar",
+            "monitors": [],
+            "keywords": [
+                "apk",
+                "add",
+                "opt",
+                "chmod",
+                "for"
+            ],
+            "from": "openjdk",
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [
+                "opt",
+                "jar",
+                "app",
+                "for",
+                "http"
+            ],
+            "servers": [],
+            "buses": [],
+            "path": "/microservice_client/Dockerfile",
+            "dbs": []
+        },
+        {
+            "from_full": "openjdk:8-jre-alpine",
+            "gates": [],
+            "discos": [
+                "eureka"
+            ],
+            "cmd": "/opt/wait-for-it.sh http://10.5.2.188:7080/eureka-server/default -- java -jar /opt/app.jar",
+            "monitors": [],
+            "keywords": [
+                "apk",
+                "add",
+                "opt",
+                "chmod",
+                "for"
+            ],
+            "from": "openjdk",
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [
+                "jar",
+                "opt",
+                "server",
+                "app",
+                "eureka"
+            ],
+            "servers": [],
+            "buses": [],
+            "path": "/eureka_server/Dockerfile",
+            "dbs": []
+        }
+    ],
+    "avg_size_service": 78.33333333333333,
+    "num_services": 3,
+    "servers": [
+        "spring"
+    ],
+    "num_discos": 1,
+    "num_langs": 3,
+    "discos": [
+        "eureka"
+    ],
+    "buses": [],
+    "url": "git://github.com/juanbjs/spring-microservice.git",
+    "structure": {
+        "num_services": 3,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "servers": [],
+                "image": "./microservice_client",
+                "depends_on": [
+                    "eureka-server"
+                ],
+                "name": "microserice-cliente",
+                "dbs": [],
+                "gates": [],
+                "buses": [],
+                "discos": [],
+                "image_full": "./microservice_client",
+                "monitors": []
+            },
+            {
+                "servers": [],
+                "image": "./eureka_server",
+                "depends_on": [
+                    "config-server"
+                ],
+                "name": "eureka-server",
+                "dbs": [],
+                "gates": [],
+                "buses": [],
+                "discos": [
+                    "eureka"
+                ],
+                "image_full": "./eureka_server",
+                "monitors": []
+            },
+            {
+                "servers": [],
+                "image": "./configServer",
+                "depends_on": [],
+                "name": "config-server",
+                "dbs": [],
+                "gates": [],
+                "buses": [],
+                "discos": [],
+                "image_full": "./configServer",
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "shared_dbs": false,
+            "services": []
+        }
+    },
+    "shared_dbs": false,
+    "gates": [],
+    "num_gates": 0,
+    "name": "juanbjs/spring-microservice",
+    "num_buses": 0,
+    "num_servers": 1,
+    "num_dbs": 0,
+    "monitors": [],
+    "langs": [
+        "dockerfile",
+        "java",
+        "shell"
+    ],
+    "dbs": [],
+    "files": [
+        {
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [],
+            "path": "/configServer/pom.xml",
+            "monitors": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [],
+            "path": "/microservice_client/pom.xml",
+            "monitors": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [],
+            "path": "/eureka_server/pom.xml",
+            "monitors": []
+        },
+        {
+            "servers": [],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [],
+            "path": "/package.json",
+            "monitors": []
+        }
+    ],
+    "images": [
+        "openjdk"
+    ],
+    "num_dockers": 3,
+    "languages": [
+        "java",
+        "dockerfile",
+        "shell"
+    ],
+    "num_monitors": 0
+}

@@ -1,0 +1,281 @@
+{
+    "num_dbs": 3,
+    "dbs": [
+        "riak",
+        "mongo",
+        "mysql"
+    ],
+    "images": [
+        "basho/riak-kv",
+        "frolvlad/alpine-oraclejre8",
+        "mongo",
+        "mysql"
+    ],
+    "langs": [
+        "dockerfile",
+        "bash",
+        "java",
+        "shell"
+    ],
+    "size": 52,
+    "num_discos": 0,
+    "dockers": [
+        {
+            "dbs": [],
+            "from": "frolvlad/alpine-oraclejre8",
+            "keywords": [
+                "bash",
+                "app",
+                "touch",
+                "apk",
+                "jar"
+            ],
+            "from_full": "frolvlad/alpine-oraclejre8:slim",
+            "langs": [
+                "bash"
+            ],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "./start.sh",
+            "path": "/mongodb-sample/src/main/docker/Dockerfile",
+            "cmd_keywords": [
+                "start"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [
+                "mongo"
+            ],
+            "from": "mongo",
+            "keywords": [],
+            "from_full": "mongo:3.3",
+            "langs": [],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "--smallfiles --rest",
+            "path": "/mongodb-sample/src/main/db/Dockerfile",
+            "cmd_keywords": [
+                "smallfiles",
+                "rest"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "from": "frolvlad/alpine-oraclejre8",
+            "keywords": [
+                "bash",
+                "app",
+                "touch",
+                "apk",
+                "jar"
+            ],
+            "from_full": "frolvlad/alpine-oraclejre8:slim",
+            "langs": [
+                "bash"
+            ],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "./start.sh",
+            "path": "/riak-sample/src/main/docker/Dockerfile",
+            "cmd_keywords": [
+                "start"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [
+                "riak"
+            ],
+            "from": "basho/riak-kv",
+            "keywords": [],
+            "from_full": "basho/riak-kv",
+            "langs": [],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "",
+            "path": "/riak-sample/src/main/db/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "from": "frolvlad/alpine-oraclejre8",
+            "keywords": [
+                "bash",
+                "app",
+                "touch",
+                "apk",
+                "jar"
+            ],
+            "from_full": "frolvlad/alpine-oraclejre8:slim",
+            "langs": [
+                "bash"
+            ],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "./start.sh",
+            "path": "/mysql-sample/src/main/docker/Dockerfile",
+            "cmd_keywords": [
+                "start"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [
+                "mysql"
+            ],
+            "from": "mysql",
+            "keywords": [],
+            "from_full": "mysql:5.7.15",
+            "langs": [],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "",
+            "path": "/mysql-sample/src/main/db/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "servers": [
+        "spring"
+    ],
+    "monitors": [],
+    "num_dockers": 6,
+    "structure": {
+        "path": "/mongodb-sample/docker-compose.yml",
+        "num_services": 2,
+        "detected_dbs": {
+            "services": [
+                "mongodb",
+                "web"
+            ],
+            "names": [
+                "mongodb"
+            ],
+            "num": 2,
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "image": "altfatterz/mongodb",
+                "dbs": [
+                    "mongodb"
+                ],
+                "depends_on": [],
+                "image_full": "altfatterz/mongodb",
+                "buses": [],
+                "name": "mongodb",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "altfatterz/mongodb-sample",
+                "dbs": [
+                    "mongodb"
+                ],
+                "depends_on": [
+                    "mongodb"
+                ],
+                "image_full": "altfatterz/mongodb-sample",
+                "buses": [],
+                "name": "web",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            }
+        ]
+    },
+    "num_buses": 0,
+    "gates": [],
+    "discos": [],
+    "num_gates": 0,
+    "num_services": 2,
+    "name": "altfatterz/dockerized-microservices",
+    "shared_dbs": false,
+    "avg_size_service": 8.666666666666666,
+    "num_langs": 4,
+    "num_servers": 1,
+    "languages": [
+        "java",
+        "shell",
+        "dockerfile"
+    ],
+    "buses": [],
+    "files": [
+        {
+            "dbs": [
+                "mongodb",
+                "riak",
+                "mysql"
+            ],
+            "buses": [],
+            "path": "/pom.xml",
+            "monitors": [],
+            "gates": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "dbs": [
+                "mongodb",
+                "mysql"
+            ],
+            "buses": [],
+            "path": "/mongodb-sample/pom.xml",
+            "monitors": [],
+            "gates": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "dbs": [
+                "riak"
+            ],
+            "buses": [],
+            "path": "/riak-sample/pom.xml",
+            "monitors": [],
+            "gates": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "dbs": [
+                "mysql"
+            ],
+            "buses": [],
+            "path": "/mysql-sample/pom.xml",
+            "monitors": [],
+            "gates": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ]
+        }
+    ],
+    "url": "git://github.com/altfatterz/dockerized-microservices.git",
+    "num_files": 11,
+    "num_monitors": 0
+}

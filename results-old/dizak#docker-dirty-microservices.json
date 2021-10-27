@@ -1,0 +1,213 @@
+{
+    "size": 4,
+    "num_dockers": 3,
+    "discos": [],
+    "num_files": 5,
+    "avg_size_service": 1.3333333333333333,
+    "buses": [],
+    "num_gates": 1,
+    "langs": [
+        "python",
+        "dockerfile"
+    ],
+    "num_discos": 0,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "gunicorn --access-logfile - --bind 0.0.0.0:5000 app:app",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "app",
+                "bind",
+                "gunicorn",
+                "logfile",
+                "access"
+            ],
+            "from": "python",
+            "path": "/flask-pydocs/Dockerfile",
+            "keywords": [
+                "install",
+                "pip",
+                "requirements",
+                "txt",
+                "gunicorn"
+            ],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "python:3.6"
+        },
+        {
+            "monitors": [],
+            "cmd": "gunicorn --access-logfile - --bind 0.0.0.0:5001 ask:app",
+            "discos": [],
+            "servers": [
+                "flask"
+            ],
+            "cmd_keywords": [
+                "app",
+                "ask",
+                "access",
+                "bind",
+                "logfile"
+            ],
+            "from": "python",
+            "path": "/flask-ask/Dockerfile",
+            "keywords": [
+                "install",
+                "pip",
+                "requests",
+                "gunicorn",
+                "flask"
+            ],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "python:3.6"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "nginx",
+            "path": "/docker-nginx/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "from_full": "nginx:latest"
+        }
+    ],
+    "num_dbs": 1,
+    "monitors": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "redis",
+                "image_full": "redis",
+                "discos": [],
+                "name": "redis",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./flask-ask/",
+                "image_full": "./flask-ask/",
+                "discos": [],
+                "name": "ask",
+                "depends_on": [
+                    "pydocs"
+                ],
+                "dbs": [],
+                "servers": [
+                    "flask"
+                ],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./flask-pydocs/",
+                "image_full": "./flask-pydocs/",
+                "discos": [],
+                "name": "pydocs",
+                "depends_on": [
+                    "redis"
+                ],
+                "dbs": [],
+                "servers": [
+                    "flask"
+                ],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./docker-nginx/",
+                "image_full": "./docker-nginx/",
+                "discos": [],
+                "name": "nginx",
+                "depends_on": [
+                    "ask"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": [
+                    "nginx"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "redis"
+            ],
+            "services": [
+                "redis"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 4,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 0,
+    "servers": [
+        "flask"
+    ],
+    "url": "git://github.com/dizak/docker-dirty-microservices.git",
+    "num_services": 4,
+    "gates": [
+        "nginx"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [
+                "redis"
+            ],
+            "servers": [
+                "flask"
+            ],
+            "path": "/flask-pydocs/requirements.txt"
+        }
+    ],
+    "name": "dizak/docker-dirty-microservices",
+    "languages": [
+        "python",
+        "dockerfile"
+    ],
+    "images": [
+        "python",
+        "nginx"
+    ],
+    "dbs": [
+        "redis"
+    ],
+    "num_servers": 1,
+    "num_langs": 2
+}

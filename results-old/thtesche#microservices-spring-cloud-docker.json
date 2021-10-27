@@ -1,0 +1,274 @@
+{
+    "num_dbs": 1,
+    "dbs": [
+        "db"
+    ],
+    "images": [
+        "java"
+    ],
+    "langs": [
+        "java"
+    ],
+    "size": 315,
+    "num_discos": 1,
+    "dockers": [
+        {
+            "dbs": [],
+            "from": "java",
+            "keywords": [
+                "app",
+                "bash",
+                "touch",
+                "jar"
+            ],
+            "from_full": "java:8",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "",
+            "path": "/auth-server/src/main/docker/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "from": "java",
+            "keywords": [
+                "app",
+                "bash",
+                "touch",
+                "jar"
+            ],
+            "from_full": "java:8",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "",
+            "path": "/zuul-proxy/src/main/docker/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "from": "java",
+            "keywords": [
+                "app",
+                "bash",
+                "touch",
+                "jar"
+            ],
+            "from_full": "java:8",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "",
+            "path": "/eureka-server/src/main/docker/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "from": "java",
+            "keywords": [
+                "app",
+                "bash",
+                "touch",
+                "jar"
+            ],
+            "from_full": "java:8",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "",
+            "path": "/user-service/src/main/docker/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "servers": [
+        "spring"
+    ],
+    "monitors": [],
+    "num_dockers": 4,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 4,
+        "detected_dbs": {
+            "services": [],
+            "names": [],
+            "num": 0,
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "image": "thtesche/eureka-server",
+                "dbs": [],
+                "depends_on": [],
+                "image_full": "thtesche/eureka-server",
+                "buses": [],
+                "name": "eureka-server",
+                "monitors": [],
+                "gates": [],
+                "discos": [
+                    "eureka"
+                ],
+                "servers": []
+            },
+            {
+                "image": "thtesche/auth-server",
+                "dbs": [],
+                "depends_on": [
+                    "eureka-server"
+                ],
+                "image_full": "thtesche/auth-server",
+                "buses": [],
+                "name": "auth-server",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "thtesche/zuul-proxy",
+                "dbs": [],
+                "depends_on": [
+                    "eureka-server"
+                ],
+                "image_full": "thtesche/zuul-proxy",
+                "buses": [],
+                "name": "zuul-proxy",
+                "monitors": [],
+                "gates": [
+                    "zuul"
+                ],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "thtesche/user-service",
+                "dbs": [],
+                "depends_on": [
+                    "eureka-server",
+                    "zuul-proxy"
+                ],
+                "image_full": "thtesche/user-service",
+                "buses": [],
+                "name": "user-service",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            }
+        ]
+    },
+    "num_buses": 0,
+    "gates": [
+        "zuul"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "num_gates": 1,
+    "num_services": 4,
+    "name": "thtesche/microservices-spring-cloud-docker",
+    "shared_dbs": false,
+    "avg_size_service": 78.75,
+    "num_langs": 1,
+    "num_servers": 1,
+    "languages": [
+        "java"
+    ],
+    "buses": [],
+    "files": [
+        {
+            "dbs": [],
+            "buses": [],
+            "path": "/pom.xml",
+            "monitors": [],
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "servers": []
+        },
+        {
+            "dbs": [],
+            "buses": [],
+            "path": "/auth-server/pom.xml",
+            "monitors": [],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "dbs": [],
+            "buses": [],
+            "path": "/zuul-proxy/pom.xml",
+            "monitors": [],
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "dbs": [],
+            "buses": [],
+            "path": "/eureka-server/pom.xml",
+            "monitors": [],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "dbs": [
+                "hsqldb"
+            ],
+            "buses": [],
+            "path": "/user-service/pom.xml",
+            "monitors": [],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ]
+        }
+    ],
+    "url": "git://github.com/thtesche/microservices-spring-cloud-docker.git",
+    "num_files": 10,
+    "num_monitors": 0
+}

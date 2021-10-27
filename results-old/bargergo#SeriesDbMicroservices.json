@@ -1,0 +1,282 @@
+{
+    "num_files": 7,
+    "monitors": [],
+    "dbs": [
+        "mysql",
+        "mongo"
+    ],
+    "servers": [
+        "node"
+    ],
+    "num_discos": 1,
+    "num_gates": 1,
+    "num_services": 7,
+    "discos": [
+        "traefik"
+    ],
+    "languages": [
+        "typescript",
+        "kotlin",
+        "c#"
+    ],
+    "num_dockers": 3,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image": "rabbitmq",
+                "depends_on": [],
+                "image_full": "rabbitmq:3.8.3-management",
+                "monitors": [],
+                "discos": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "name": "message-queue",
+                "servers": [],
+                "gates": []
+            },
+            {
+                "image": "Dockerfile",
+                "depends_on": [],
+                "image_full": "Dockerfile",
+                "monitors": [],
+                "discos": [],
+                "buses": [],
+                "dbs": [],
+                "name": "webclient",
+                "servers": [],
+                "gates": []
+            },
+            {
+                "image": "SeriesAndEpisodes/Dockerfile",
+                "depends_on": [
+                    "mongodb-seriesdb",
+                    "message-queue"
+                ],
+                "image_full": "SeriesAndEpisodes/Dockerfile",
+                "monitors": [],
+                "discos": [],
+                "buses": [],
+                "dbs": [],
+                "name": "series-and-episodes",
+                "servers": [],
+                "gates": []
+            },
+            {
+                "image": "mysql",
+                "depends_on": [],
+                "image_full": "mysql:8.0.19",
+                "monitors": [],
+                "discos": [],
+                "buses": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "name": "mysql-ratingdb",
+                "servers": [],
+                "gates": []
+            },
+            {
+                "image": "Dockerfile",
+                "depends_on": [
+                    "mysql-ratingdb",
+                    "message-queue"
+                ],
+                "image_full": "Dockerfile",
+                "monitors": [],
+                "discos": [],
+                "buses": [],
+                "dbs": [],
+                "name": "ratings",
+                "servers": [],
+                "gates": []
+            },
+            {
+                "image": "traefik",
+                "depends_on": [],
+                "image_full": "traefik:v2.2",
+                "monitors": [],
+                "discos": [
+                    "traefik"
+                ],
+                "buses": [],
+                "dbs": [],
+                "name": "apigateway",
+                "servers": [],
+                "gates": []
+            },
+            {
+                "image": "mongo",
+                "depends_on": [],
+                "image_full": "mongo:4.2.3",
+                "monitors": [],
+                "discos": [],
+                "buses": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "name": "mongodb-seriesdb",
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [
+                "mysql",
+                "mongo"
+            ],
+            "services": [
+                "mysql-ratingdb",
+                "mongodb-seriesdb"
+            ],
+            "num": 2,
+            "shared_dbs": false
+        },
+        "num_services": 7
+    },
+    "num_dbs": 2,
+    "num_servers": 1,
+    "avg_size_service": 334.3333333333333,
+    "dockers": [
+        {
+            "cmd_keywords": [
+                "daemon",
+                "nginx",
+                "off"
+            ],
+            "cmd": "nginx -g daemon off;",
+            "monitors": [],
+            "dbs": [],
+            "path": "/webclient/Dockerfile",
+            "servers": [],
+            "gates": [
+                "nginx"
+            ],
+            "from": "nginx",
+            "langs": [],
+            "discos": [],
+            "buses": [],
+            "keywords": [
+                "npm",
+                "conf",
+                "etc",
+                "build",
+                "default"
+            ],
+            "from_full": "nginx:1.18.0-alpine"
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "monitors": [],
+            "dbs": [],
+            "path": "/SeriesAndEpisodes/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "from": "base",
+            "langs": [],
+            "discos": [],
+            "buses": [],
+            "keywords": [
+                "seriesandepisodes",
+                "dotnet",
+                "csproj",
+                "app",
+                "build"
+            ],
+            "from_full": "base"
+        },
+        {
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "maxgcpausemillis",
+                "usecgroupmemorylimitforheap",
+                "server"
+            ],
+            "cmd": "java -server -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:InitialRAMFraction=2 -XX:MinRAMFraction=2 -XX:MaxRAMFraction=2 -XX:+UseG1GC -XX:MaxGCPauseMillis=100 -XX:+UseStringDeduplication -jar ratings-microservice-all.jar",
+            "monitors": [],
+            "dbs": [],
+            "path": "/RatingsMicroservice/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "from": "openjdk",
+            "langs": [
+                "java"
+            ],
+            "discos": [],
+            "buses": [],
+            "keywords": [
+                "app",
+                "application",
+                "user",
+                "build",
+                "daemon"
+            ],
+            "from_full": "openjdk:8-jre-alpine"
+        }
+    ],
+    "images": [
+        "base",
+        "openjdk",
+        "nginx"
+    ],
+    "num_monitors": 0,
+    "num_buses": 2,
+    "name": "bargergo/SeriesDbMicroservices",
+    "gates": [
+        "nginx"
+    ],
+    "size": 1003,
+    "num_langs": 4,
+    "files": [
+        {
+            "dbs": [
+                "mysql"
+            ],
+            "buses": [
+                "rabbitmq",
+                "amqp"
+            ],
+            "discos": [],
+            "path": "/RatingsMicroservice/build.gradle",
+            "monitors": [],
+            "servers": [],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "buses": [],
+            "discos": [],
+            "path": "/RatingsMicroservice/settings.gradle",
+            "monitors": [],
+            "servers": [],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "buses": [],
+            "discos": [],
+            "path": "/webclient/package.json",
+            "monitors": [],
+            "servers": [
+                "node"
+            ],
+            "gates": []
+        }
+    ],
+    "url": "git://github.com/bargergo/SeriesDbMicroservices.git",
+    "langs": [
+        "kotlin",
+        "java",
+        "c#",
+        "typescript"
+    ],
+    "shared_dbs": false,
+    "buses": [
+        "rabbitmq",
+        "amqp"
+    ]
+}

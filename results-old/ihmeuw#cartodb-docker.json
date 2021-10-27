@@ -1,0 +1,304 @@
+{
+    "avg_size_service": 7.5,
+    "discos": [],
+    "images": [
+        "postgres",
+        "buildpack-deps",
+        "nginx",
+        "ubuntu",
+        "redis"
+    ],
+    "num_dockers": 6,
+    "num_servers": 1,
+    "langs": [
+        "shell",
+        "dockerfile",
+        "python",
+        "bash",
+        "javascript"
+    ],
+    "languages": [
+        "javascript",
+        "dockerfile",
+        "shell"
+    ],
+    "num_services": 6,
+    "num_gates": 1,
+    "num_langs": 5,
+    "monitors": [],
+    "gates": [
+        "nginx"
+    ],
+    "servers": [
+        "node"
+    ],
+    "num_monitors": 0,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [],
+                "image": "postgis",
+                "image_full": "postgis",
+                "gates": [],
+                "name": "cartodb-postgis",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "cartodb-postgis",
+                    "cartodb-redis",
+                    "cartodb-mapsapi",
+                    "cartodb-sqlapi"
+                ],
+                "image": "editor",
+                "image_full": "editor",
+                "gates": [],
+                "name": "cartodb-editor",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "redis",
+                "image_full": "redis",
+                "gates": [],
+                "name": "cartodb-redis",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [
+                    "redis"
+                ],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "cartodb-postgis",
+                    "cartodb-redis"
+                ],
+                "image": "sqlapi",
+                "image_full": "sqlapi",
+                "gates": [],
+                "name": "cartodb-sqlapi",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "cartodb-mapsapi",
+                    "cartodb-sqlapi",
+                    "cartodb-editor"
+                ],
+                "image": "router",
+                "image_full": "router",
+                "gates": [],
+                "name": "cartodb-router",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "cartodb-postgis",
+                    "cartodb-redis"
+                ],
+                "image": "mapsapi",
+                "image_full": "mapsapi",
+                "gates": [],
+                "name": "cartodb-mapsapi",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "names": [
+                "redis"
+            ],
+            "num": 1,
+            "services": [
+                "cartodb-redis"
+            ],
+            "shared_dbs": true
+        }
+    },
+    "size": 45,
+    "url": "git://github.com/ihmeuw/cartodb-docker.git",
+    "num_buses": 0,
+    "shared_dbs": true,
+    "files": [],
+    "num_discos": 0,
+    "dockers": [
+        {
+            "path": "/mapsapi/Dockerfile",
+            "from_full": "buildpack-deps:stretch",
+            "from": "buildpack-deps",
+            "cmd": "development.js.example",
+            "keywords": [
+                "cartodb",
+                "windshaft",
+                "apt",
+                "https",
+                "dev"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [
+                "bash"
+            ],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "development",
+                "example"
+            ],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/router/Dockerfile",
+            "from_full": "nginx:1.13",
+            "from": "nginx",
+            "cmd": "",
+            "keywords": [],
+            "servers": [],
+            "gates": [
+                "nginx"
+            ],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/editor/Dockerfile",
+            "from_full": "ubuntu:12.04",
+            "from": "ubuntu",
+            "cmd": "--app_config app_config.yml.sample --database database.yml.sample",
+            "keywords": [
+                "install",
+                "dev",
+                "cartodb",
+                "apt",
+                "get"
+            ],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "langs": [
+                "python"
+            ],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "app",
+                "config",
+                "database",
+                "sample",
+                "yml"
+            ],
+            "dbs": [
+                "postgresql"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/redis/Dockerfile",
+            "from_full": "redis:3.2",
+            "from": "redis",
+            "cmd": "",
+            "keywords": [],
+            "servers": [],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [
+                "redis"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/postgis/Dockerfile",
+            "from_full": "postgres:9.5",
+            "from": "postgres",
+            "cmd": "",
+            "keywords": [
+                "postgresql",
+                "dev",
+                "git",
+                "cartodb",
+                "apt"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [
+                "python"
+            ],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/sqlapi/Dockerfile",
+            "from_full": "buildpack-deps:stretch",
+            "from": "buildpack-deps",
+            "cmd": "development.js.example",
+            "keywords": [
+                "cartodb",
+                "api",
+                "sql",
+                "curl",
+                "apt"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [
+                "bash"
+            ],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "development",
+                "example"
+            ],
+            "dbs": [
+                "sql"
+            ],
+            "buses": []
+        }
+    ],
+    "name": "ihmeuw/cartodb-docker",
+    "buses": [],
+    "num_files": 7,
+    "dbs": [
+        "postgresql",
+        "sql",
+        "redis"
+    ],
+    "num_dbs": 3
+}

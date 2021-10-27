@@ -1,0 +1,305 @@
+{
+    "num_files": 8,
+    "num_services": 7,
+    "num_discos": 2,
+    "gates": [],
+    "languages": [
+        "java",
+        "python"
+    ],
+    "num_dbs": 2,
+    "dbs": [
+        "postgresql",
+        "zookeeper"
+    ],
+    "num_monitors": 0,
+    "structure": {
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 1,
+            "services": [
+                "zookeeper"
+            ],
+            "names": [
+                "zookeeper"
+            ]
+        },
+        "num_services": 7,
+        "services": [
+            {
+                "image_full": "debezium/connect:0.10",
+                "image": "debezium/connect",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "zookeeper:zookeeper",
+                    "kafka:kafka",
+                    "postgres:postgres"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "connect"
+            },
+            {
+                "image_full": "epiresdasilva/python-trigger",
+                "image": "epiresdasilva/python-trigger",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "kafka:kafka"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "python-trigger"
+            },
+            {
+                "image_full": "epiresdasilva/postgres-cdc-banking",
+                "image": "epiresdasilva/postgres-cdc-banking",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "postgres"
+            },
+            {
+                "image_full": "epiresdasilva/banking-legacy",
+                "image": "epiresdasilva/banking-legacy",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "postgres:postgres"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "legacy"
+            },
+            {
+                "image_full": "debezium/kafka:0.10",
+                "image": "debezium/kafka",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "zookeeper:zookeeper"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "name": "kafka"
+            },
+            {
+                "image_full": "epiresdasilva/microservice",
+                "image": "epiresdasilva/microservice",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "postgres:postgres",
+                    "kafka:kafka"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "microservice"
+            },
+            {
+                "image_full": "debezium/zookeeper:0.10",
+                "image": "debezium/zookeeper",
+                "dbs": [
+                    "zookeeper"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [
+                    "zookeeper"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "zookeeper"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "discos": [
+        "avro",
+        "zookeeper"
+    ],
+    "url": "git://github.com/epiresdasilva/cdc-legacy-ms-serverless.git",
+    "num_buses": 1,
+    "files": [
+        {
+            "servers": [],
+            "dbs": [],
+            "discos": [],
+            "buses": [
+                "kafka"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/python-trigger/requirements.txt"
+        },
+        {
+            "servers": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/legacy/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [
+                "avro"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/microservice/pom.xml"
+        }
+    ],
+    "name": "epiresdasilva/cdc-legacy-ms-serverless",
+    "servers": [
+        "spring",
+        "jboss"
+    ],
+    "num_dockers": 4,
+    "buses": [
+        "kafka"
+    ],
+    "num_gates": 0,
+    "num_langs": 2,
+    "shared_dbs": false,
+    "monitors": [],
+    "dockers": [
+        {
+            "servers": [],
+            "from": "python",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/python-trigger/Dockerfile",
+            "keywords": [
+                "install",
+                "pip",
+                "requirements",
+                "txt",
+                "resources"
+            ],
+            "dbs": [],
+            "langs": [
+                "python"
+            ],
+            "cmd_keywords": [
+                "movement",
+                "python",
+                "consumer",
+                "resources"
+            ],
+            "discos": [],
+            "cmd": "python /resources/movement_consumer.py",
+            "from_full": "python:3.6"
+        },
+        {
+            "servers": [
+                "jboss"
+            ],
+            "from": "jboss/wildfly",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/legacy/Dockerfile",
+            "keywords": [
+                "wildfly",
+                "customization",
+                "execute",
+                "standalone",
+                "jboss"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "bin",
+                "bmanagement",
+                "wildfly",
+                "standalone",
+                "jboss"
+            ],
+            "discos": [],
+            "cmd": "/opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0",
+            "from_full": "jboss/wildfly"
+        },
+        {
+            "servers": [],
+            "from": "openjdk",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/microservice/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [
+                "jar",
+                "microservice",
+                "java",
+                "resources",
+                "snapshot"
+            ],
+            "discos": [],
+            "cmd": "java -jar /resources/microservice-0.0.1-SNAPSHOT.jar",
+            "from_full": "openjdk:11"
+        },
+        {
+            "servers": [],
+            "from": "debezium/postgres",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/database/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "debezium/postgres:11"
+        }
+    ],
+    "langs": [
+        "python",
+        "java"
+    ],
+    "num_servers": 2,
+    "size": 474,
+    "images": [
+        "debezium/postgres",
+        "python",
+        "openjdk",
+        "jboss/wildfly"
+    ],
+    "avg_size_service": 118.5
+}

@@ -1,0 +1,249 @@
+{
+    "avg_size_service": 650.6666666666666,
+    "buses": [],
+    "num_dbs": 1,
+    "files": [
+        {
+            "path": "/api/package.json",
+            "servers": [
+                "express",
+                "mongoose",
+                "node"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "path": "/frontend/package.json",
+            "servers": [
+                "node"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "path": "/auth/package.json",
+            "servers": [
+                "express",
+                "mongoose",
+                "node"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": []
+        }
+    ],
+    "num_dockers": 3,
+    "num_langs": 2,
+    "num_servers": 3,
+    "num_buses": 0,
+    "num_discos": 0,
+    "gates": [
+        "nginx"
+    ],
+    "images": [
+        "node"
+    ],
+    "size": 1952,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 6,
+        "services": [
+            {
+                "buses": [],
+                "name": "api_db",
+                "dbs": [
+                    "mongo"
+                ],
+                "monitors": [],
+                "servers": [],
+                "image": "mongo",
+                "image_full": "mongo:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "name": "auth",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "./auth",
+                "image_full": "./auth",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "auth_db"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "auth_db",
+                "dbs": [
+                    "mongo"
+                ],
+                "monitors": [],
+                "servers": [],
+                "image": "mongo",
+                "image_full": "mongo:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "name": "nginx",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "nginx",
+                "image_full": "nginx:stable-alpine",
+                "discos": [],
+                "gates": [
+                    "nginx"
+                ],
+                "depends_on": [
+                    "frontend",
+                    "api",
+                    "auth"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "frontend",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "./frontend",
+                "image_full": "./frontend",
+                "discos": [],
+                "gates": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "name": "api",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "./api",
+                "image_full": "./api",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "api_db"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 2,
+            "names": [
+                "mongo"
+            ],
+            "services": [
+                "api_db",
+                "auth_db"
+            ]
+        }
+    },
+    "num_files": 7,
+    "servers": [
+        "express",
+        "mongoose",
+        "node"
+    ],
+    "url": "git://github.com/kine1991/shop-car-microservices.git",
+    "dbs": [
+        "mongo"
+    ],
+    "monitors": [],
+    "dockers": [
+        {
+            "from_full": "node:13.12.0-alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/api/Dockerfile",
+            "from": "node",
+            "cmd": "",
+            "cmd_keywords": [],
+            "servers": [
+                "node"
+            ],
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "node:13.12.0-alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/frontend/Dockerfile",
+            "from": "node",
+            "cmd": "",
+            "cmd_keywords": [],
+            "servers": [
+                "node"
+            ],
+            "keywords": [
+                "npm",
+                "install",
+                "run",
+                "http",
+                "build"
+            ],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "node:13.12.0-alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/auth/Dockerfile",
+            "from": "node",
+            "cmd": "",
+            "cmd_keywords": [],
+            "servers": [
+                "node"
+            ],
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "discos": [],
+            "langs": []
+        }
+    ],
+    "languages": [
+        "vue",
+        "typescript"
+    ],
+    "num_services": 6,
+    "num_gates": 1,
+    "name": "kine1991/shop-car-microservices",
+    "shared_dbs": false,
+    "langs": [
+        "typescript",
+        "vue"
+    ],
+    "discos": [],
+    "num_monitors": 0
+}

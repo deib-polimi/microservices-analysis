@@ -1,0 +1,337 @@
+{
+    "name": "luckalexsalata/microservice-architecture",
+    "num_dbs": 2,
+    "num_services": 9,
+    "num_files": 9,
+    "servers": [
+        "flask"
+    ],
+    "url": "git://github.com/luckalexsalata/microservice-architecture.git",
+    "discos": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "db-1",
+                "image_full": "mongo",
+                "image": "mongo",
+                "servers": [],
+                "depends_on": [
+                    "db-2",
+                    "db-3"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "redis",
+                "image_full": "redis",
+                "image": "redis",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [
+                    "redis"
+                ],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "orders",
+                "image_full": "orders/.",
+                "image": "orders/.",
+                "servers": [],
+                "depends_on": [
+                    "redis",
+                    "db-1",
+                    "db-2",
+                    "db-3"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "db-2",
+                "image_full": "mongo",
+                "image": "mongo",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "address",
+                "image_full": "address/.",
+                "image": "address/.",
+                "servers": [],
+                "depends_on": [
+                    "redis"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "db-3",
+                "image_full": "mongo",
+                "image": "mongo",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "last_storage_update",
+                "image_full": "update/.",
+                "image": "update/.",
+                "servers": [],
+                "depends_on": [
+                    "redis"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "pgdb",
+                "image_full": "postgres",
+                "image": "postgres",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "storage",
+                "image_full": "storage/.",
+                "image": "storage/.",
+                "servers": [],
+                "depends_on": [
+                    "pgdb",
+                    "redis"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": true,
+            "services": [
+                "db-1",
+                "redis",
+                "db-2",
+                "db-3"
+            ],
+            "num": 4,
+            "names": [
+                "redis",
+                "mongo"
+            ]
+        },
+        "num_services": 9
+    },
+    "num_buses": 0,
+    "size": 910,
+    "dockers": [
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [
+                "python"
+            ],
+            "path": "/Update/Dockerfile",
+            "discos": [],
+            "from": "python",
+            "buses": [],
+            "from_full": "python:3.7",
+            "cmd_keywords": [],
+            "keywords": [
+                "chmod",
+                "txt",
+                "pip",
+                "requirements",
+                "install"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [
+                "python"
+            ],
+            "path": "/address/Dockerfile",
+            "discos": [],
+            "from": "python",
+            "buses": [],
+            "from_full": "python:3.7",
+            "cmd_keywords": [],
+            "keywords": [
+                "install",
+                "txt",
+                "pip",
+                "requirements"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [
+                "python"
+            ],
+            "path": "/storage/Dockerfile",
+            "discos": [],
+            "from": "python",
+            "buses": [],
+            "from_full": "python:3.7",
+            "cmd_keywords": [],
+            "keywords": [
+                "install",
+                "txt",
+                "pip",
+                "requirements"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [
+                "python"
+            ],
+            "path": "/orders/Dockerfile",
+            "discos": [],
+            "from": "python",
+            "buses": [],
+            "from_full": "python:3.7",
+            "cmd_keywords": [],
+            "keywords": [
+                "install",
+                "txt",
+                "pip",
+                "requirements"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "languages": [
+        "python",
+        "html",
+        "css"
+    ],
+    "dbs": [
+        "redis",
+        "mongo"
+    ],
+    "monitors": [],
+    "shared_dbs": true,
+    "avg_size_service": 227.5,
+    "num_monitors": 0,
+    "files": [
+        {
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/Update/requirements.txt",
+            "discos": [],
+            "dbs": [
+                "redis"
+            ],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/address/requirements.txt",
+            "discos": [],
+            "dbs": [
+                "redis"
+            ],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/storage/requirements.txt",
+            "discos": [],
+            "dbs": [
+                "redis"
+            ],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/orders/requirements.txt",
+            "discos": [],
+            "dbs": [
+                "redis"
+            ],
+            "gates": [],
+            "buses": []
+        }
+    ],
+    "langs": [
+        "html",
+        "css",
+        "python"
+    ],
+    "num_servers": 1,
+    "buses": [],
+    "num_langs": 3,
+    "num_gates": 0,
+    "num_discos": 0,
+    "images": [
+        "python"
+    ],
+    "num_dockers": 4,
+    "gates": []
+}

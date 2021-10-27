@@ -1,0 +1,324 @@
+{
+    "avg_size_service": 18.0,
+    "discos": [],
+    "images": [
+        "ruby",
+        "prom/prometheus",
+        "prom/alertmanager",
+        "python",
+        "ubuntu"
+    ],
+    "num_dockers": 6,
+    "num_servers": 2,
+    "langs": [
+        "ruby",
+        "python",
+        "html"
+    ],
+    "languages": [
+        "ruby",
+        "html",
+        "python"
+    ],
+    "num_services": 9,
+    "num_gates": 0,
+    "num_langs": 3,
+    "monitors": [
+        "grafana",
+        "prometheus"
+    ],
+    "gates": [],
+    "servers": [
+        "flask",
+        "node"
+    ],
+    "num_monitors": 2,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [],
+                "image": "${USERNAME}/prometheus",
+                "image_full": "${USERNAME}/prometheus",
+                "gates": [],
+                "name": "prometheus",
+                "buses": [],
+                "servers": [],
+                "monitors": [
+                    "prometheus"
+                ],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "prom/node-exporter",
+                "image_full": "prom/node-exporter:v0.15.0",
+                "gates": [],
+                "name": "node-exporter",
+                "buses": [],
+                "servers": [
+                    "node"
+                ],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "prometheus"
+                ],
+                "image": "grafana/grafana",
+                "image_full": "grafana/grafana",
+                "gates": [],
+                "name": "grafana",
+                "buses": [],
+                "servers": [],
+                "monitors": [
+                    "grafana"
+                ],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "${USER_NAME}/alertmanager",
+                "image_full": "${USER_NAME}/alertmanager",
+                "gates": [],
+                "name": "alertmanager",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "${DBIMAGE}",
+                "image_full": "${DBIMAGE}",
+                "gates": [],
+                "name": "mongo_db",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "${USERNAME}/comment",
+                "image_full": "${USERNAME}/comment:${BUILD}",
+                "gates": [],
+                "name": "comment",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "${USERNAME}/post",
+                "image_full": "${USERNAME}/post:${BUILD}",
+                "gates": [],
+                "name": "post",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "google/cadvisor",
+                "image_full": "google/cadvisor:latest",
+                "gates": [],
+                "name": "cadvisor",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "${USERNAME}/ui",
+                "image_full": "${USERNAME}/ui:${BUILD}",
+                "gates": [],
+                "name": "ui",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            }
+        ],
+        "num_services": 9,
+        "detected_dbs": {
+            "names": [],
+            "num": 0,
+            "services": [],
+            "shared_dbs": false
+        }
+    },
+    "size": 108,
+    "url": "git://github.com/Temox/microservices.git",
+    "num_buses": 0,
+    "shared_dbs": false,
+    "files": [
+        {
+            "path": "/post-py/requirements.txt",
+            "discos": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "dbs": [],
+            "buses": []
+        }
+    ],
+    "num_discos": 0,
+    "dockers": [
+        {
+            "path": "/post-py/Dockerfile",
+            "from_full": "python:3.6.0-alpine",
+            "from": "python",
+            "cmd": "",
+            "keywords": [
+                "install",
+                "txt",
+                "pip",
+                "requirements"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [
+                "python"
+            ],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/alertmanager/Dockerfile",
+            "from_full": "prom/alertmanager",
+            "from": "prom/alertmanager",
+            "cmd": "",
+            "keywords": [],
+            "servers": [],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/ui/Dockerfile",
+            "from_full": "ruby:2.3.3",
+            "from": "ruby",
+            "cmd": "puma",
+            "keywords": [
+                "apt",
+                "install",
+                "get",
+                "update",
+                "build"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [
+                "ruby"
+            ],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "puma"
+            ],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/comment/Dockerfile",
+            "from_full": "ruby:2.2",
+            "from": "ruby",
+            "cmd": "puma",
+            "keywords": [
+                "apt",
+                "install",
+                "get",
+                "update",
+                "build"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [
+                "ruby"
+            ],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "puma"
+            ],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/prometheus/Dockerfile",
+            "from_full": "prom/prometheus",
+            "from": "prom/prometheus",
+            "cmd": "",
+            "keywords": [],
+            "servers": [],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/monolith/Dockerfile",
+            "from_full": "ubuntu:16.04",
+            "from": "ubuntu",
+            "cmd": "/start.sh",
+            "keywords": [
+                "git",
+                "install",
+                "reddit",
+                "get",
+                "apt"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [
+                "ruby"
+            ],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "start"
+            ],
+            "dbs": [
+                "mongodb"
+            ],
+            "buses": []
+        }
+    ],
+    "name": "Temox/microservices",
+    "buses": [],
+    "num_files": 8,
+    "dbs": [
+        "db"
+    ],
+    "num_dbs": 1
+}

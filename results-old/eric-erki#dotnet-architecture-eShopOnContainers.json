@@ -1,0 +1,861 @@
+{
+    "buses": [
+        "rabbitmq"
+    ],
+    "avg_size_service": 36622.555555555555,
+    "num_dbs": 2,
+    "num_services": 25,
+    "langs": [
+        "javascript",
+        "c#"
+    ],
+    "num_langs": 2,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [],
+                "image_full": "redis:alpine",
+                "name": "basket.data",
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "image": "redis",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [],
+                "image_full": "mongo",
+                "name": "nosql.data",
+                "dbs": [
+                    "mongo"
+                ],
+                "servers": [],
+                "image": "mongo",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "nosql.data",
+                    "sql.data",
+                    "identity.api",
+                    "rabbitmq",
+                    "ordering.api",
+                    "marketing.api",
+                    "catalog.api",
+                    "basket.api"
+                ],
+                "image_full": "${REGISTRY:-eshop}/ocelotapigw:${TAG:-latest}",
+                "name": "mobilemarketingapigw",
+                "dbs": [],
+                "servers": [],
+                "image": "${REGISTRY",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "image_full": "${REGISTRY:-eshop}/payment.api:${TAG:-latest}",
+                "name": "payment.api",
+                "dbs": [],
+                "servers": [],
+                "image": "${REGISTRY",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "nosql.data",
+                    "sql.data",
+                    "identity.api",
+                    "rabbitmq",
+                    "ordering.api",
+                    "marketing.api",
+                    "catalog.api",
+                    "basket.api"
+                ],
+                "image_full": "${REGISTRY:-eshop}/ocelotapigw:${TAG:-latest}",
+                "name": "webshoppingapigw",
+                "dbs": [],
+                "servers": [],
+                "image": "${REGISTRY",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "webshoppingagg",
+                    "webshoppingapigw",
+                    "webmarketingapigw"
+                ],
+                "image_full": "${REGISTRY:-eshop}/webmvc:${TAG:-latest}",
+                "name": "webmvc",
+                "dbs": [],
+                "servers": [],
+                "image": "${REGISTRY",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "nosql.data",
+                    "sql.data",
+                    "identity.api",
+                    "rabbitmq",
+                    "ordering.api",
+                    "marketing.api",
+                    "catalog.api",
+                    "basket.api"
+                ],
+                "image_full": "${REGISTRY:-eshop}/webshoppingagg:${TAG:-latest}",
+                "name": "webshoppingagg",
+                "dbs": [],
+                "servers": [],
+                "image": "${REGISTRY",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "sql.data",
+                    "rabbitmq"
+                ],
+                "image_full": "${REGISTRY:-eshop}/ordering.backgroundtasks:${TAG:-latest}",
+                "name": "ordering.backgroundtasks",
+                "dbs": [],
+                "servers": [],
+                "image": "${REGISTRY",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "webhooks.api"
+                ],
+                "image_full": "${REGISTRY:-eshop}/webhooks.client:${TAG:-latest}",
+                "name": "webhooks.client",
+                "dbs": [],
+                "servers": [],
+                "image": "${REGISTRY",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "sql.data",
+                    "nosql.data",
+                    "identity.api",
+                    "rabbitmq"
+                ],
+                "image_full": "${REGISTRY:-eshop}/marketing.api:${TAG:-latest}",
+                "name": "marketing.api",
+                "dbs": [],
+                "servers": [],
+                "image": "${REGISTRY",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "nosql.data",
+                    "sql.data",
+                    "identity.api",
+                    "rabbitmq",
+                    "ordering.api",
+                    "marketing.api",
+                    "catalog.api",
+                    "basket.api"
+                ],
+                "image_full": "${REGISTRY:-eshop}/mobileshoppingagg:${TAG:-latest}",
+                "name": "mobileshoppingagg",
+                "dbs": [],
+                "servers": [],
+                "image": "${REGISTRY",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "depends_on": [],
+                "image_full": "rabbitmq:3-management-alpine",
+                "name": "rabbitmq",
+                "dbs": [],
+                "servers": [],
+                "image": "rabbitmq",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "nosql.data",
+                    "sql.data",
+                    "identity.api",
+                    "rabbitmq",
+                    "ordering.api",
+                    "marketing.api",
+                    "catalog.api",
+                    "basket.api"
+                ],
+                "image_full": "${REGISTRY:-eshop}/ordering.signalrhub:${TAG:-latest}",
+                "name": "ordering.signalrhub",
+                "dbs": [],
+                "servers": [],
+                "image": "${REGISTRY",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [],
+                "image_full": "microsoft/mssql-server-linux:2017-latest",
+                "name": "sql.data",
+                "dbs": [],
+                "servers": [],
+                "image": "microsoft/mssql-server-linux",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "sql.data"
+                ],
+                "image_full": "${REGISTRY:-eshop}/webhooks.api:${TAG:-latest}",
+                "name": "webhooks.api",
+                "dbs": [],
+                "servers": [],
+                "image": "${REGISTRY",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "sql.data",
+                    "rabbitmq"
+                ],
+                "image_full": "${REGISTRY:-eshop}/ordering.api:${TAG:-latest}",
+                "name": "ordering.api",
+                "dbs": [],
+                "servers": [],
+                "image": "${REGISTRY",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [],
+                "image_full": "datalust/seq:latest",
+                "name": "seq",
+                "dbs": [],
+                "servers": [],
+                "image": "datalust/seq",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "nosql.data",
+                    "sql.data",
+                    "identity.api",
+                    "rabbitmq",
+                    "ordering.api",
+                    "marketing.api",
+                    "catalog.api",
+                    "basket.api"
+                ],
+                "image_full": "${REGISTRY:-eshop}/ocelotapigw:${TAG:-latest}",
+                "name": "mobileshoppingapigw",
+                "dbs": [],
+                "servers": [],
+                "image": "${REGISTRY",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [],
+                "image_full": "${REGISTRY:-eshop}/webspa:${TAG:-latest}",
+                "name": "webspa",
+                "dbs": [],
+                "servers": [],
+                "image": "${REGISTRY",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "nosql.data",
+                    "sql.data",
+                    "identity.api",
+                    "rabbitmq",
+                    "ordering.api",
+                    "marketing.api",
+                    "catalog.api",
+                    "basket.api"
+                ],
+                "image_full": "${REGISTRY:-eshop}/ocelotapigw:${TAG:-latest}",
+                "name": "webmarketingapigw",
+                "dbs": [],
+                "servers": [],
+                "image": "${REGISTRY",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [],
+                "image_full": "${REGISTRY:-eshop}/webstatus:${TAG:-latest}",
+                "name": "webstatus",
+                "dbs": [],
+                "servers": [],
+                "image": "${REGISTRY",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "sql.data",
+                    "rabbitmq"
+                ],
+                "image_full": "${REGISTRY:-eshop}/catalog.api:${TAG:-latest}",
+                "name": "catalog.api",
+                "dbs": [],
+                "servers": [],
+                "image": "${REGISTRY",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "basket.data",
+                    "identity.api",
+                    "rabbitmq"
+                ],
+                "image_full": "${REGISTRY:-eshop}/basket.api:${TAG:-latest}",
+                "name": "basket.api",
+                "dbs": [],
+                "servers": [],
+                "image": "${REGISTRY",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "nosql.data",
+                    "rabbitmq"
+                ],
+                "image_full": "${REGISTRY:-eshop}/locations.api:${TAG:-latest}",
+                "name": "locations.api",
+                "dbs": [],
+                "servers": [],
+                "image": "${REGISTRY",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "sql.data"
+                ],
+                "image_full": "${REGISTRY:-eshop}/identity.api:${TAG:-latest}",
+                "name": "identity.api",
+                "dbs": [],
+                "servers": [],
+                "image": "${REGISTRY",
+                "gates": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": true,
+            "names": [
+                "mongo",
+                "redis"
+            ],
+            "num": 2,
+            "services": [
+                "basket.data",
+                "nosql.data"
+            ]
+        },
+        "num_services": 25
+    },
+    "shared_dbs": true,
+    "num_buses": 1,
+    "dockers": [
+        {
+            "buses": [],
+            "from_full": "base",
+            "cmd": "",
+            "from": "base",
+            "path": "/src/Services/Webhooks/Webhooks.API/Dockerfile",
+            "langs": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "webhooks",
+                "api",
+                "dotnet",
+                "csproj",
+                "release"
+            ],
+            "dbs": [],
+            "gates": [],
+            "servers": []
+        },
+        {
+            "buses": [],
+            "from_full": "base",
+            "cmd": "",
+            "from": "base",
+            "path": "/src/Services/Payment/Payment.API/Dockerfile",
+            "langs": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "dotnet",
+                "restore",
+                "release",
+                "app",
+                "publish"
+            ],
+            "dbs": [],
+            "gates": [],
+            "servers": []
+        },
+        {
+            "buses": [],
+            "from_full": "base",
+            "cmd": "",
+            "from": "base",
+            "path": "/src/Services/Marketing/Marketing.API/Dockerfile",
+            "langs": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "dotnet",
+                "restore",
+                "release",
+                "app",
+                "publish"
+            ],
+            "dbs": [],
+            "gates": [],
+            "servers": []
+        },
+        {
+            "buses": [],
+            "from_full": "base",
+            "cmd": "",
+            "from": "base",
+            "path": "/src/Services/Ordering/Ordering.BackgroundTasks/Dockerfile",
+            "langs": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "dotnet",
+                "restore",
+                "release",
+                "app",
+                "publish"
+            ],
+            "dbs": [],
+            "gates": [],
+            "servers": []
+        },
+        {
+            "buses": [],
+            "from_full": "base",
+            "cmd": "",
+            "from": "base",
+            "path": "/src/Services/Ordering/Ordering.API/Dockerfile",
+            "langs": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "dotnet",
+                "restore",
+                "release",
+                "app",
+                "publish"
+            ],
+            "dbs": [],
+            "gates": [],
+            "servers": []
+        },
+        {
+            "buses": [],
+            "from_full": "base",
+            "cmd": "",
+            "from": "base",
+            "path": "/src/Services/Ordering/Ordering.SignalrHub/Dockerfile",
+            "langs": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "dotnet",
+                "restore",
+                "release",
+                "csproj",
+                "app"
+            ],
+            "dbs": [],
+            "gates": [],
+            "servers": []
+        },
+        {
+            "buses": [],
+            "from_full": "base",
+            "cmd": "",
+            "from": "base",
+            "path": "/src/Services/Location/Locations.API/Dockerfile",
+            "langs": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "dotnet",
+                "restore",
+                "release",
+                "app",
+                "publish"
+            ],
+            "dbs": [],
+            "gates": [],
+            "servers": []
+        },
+        {
+            "buses": [],
+            "from_full": "base",
+            "cmd": "",
+            "from": "base",
+            "path": "/src/Services/Basket/Basket.API/Dockerfile",
+            "langs": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "dotnet",
+                "restore",
+                "release",
+                "app",
+                "publish"
+            ],
+            "dbs": [],
+            "gates": [],
+            "servers": []
+        },
+        {
+            "buses": [],
+            "from_full": "base",
+            "cmd": "",
+            "from": "base",
+            "path": "/src/Services/Identity/Identity.API/Dockerfile",
+            "langs": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "dotnet",
+                "restore",
+                "release",
+                "app",
+                "publish"
+            ],
+            "dbs": [],
+            "gates": [],
+            "servers": []
+        },
+        {
+            "buses": [],
+            "from_full": "base",
+            "cmd": "",
+            "from": "base",
+            "path": "/src/Services/Catalog/Catalog.API/Dockerfile",
+            "langs": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "dotnet",
+                "restore",
+                "release",
+                "app",
+                "publish"
+            ],
+            "dbs": [],
+            "gates": [],
+            "servers": []
+        },
+        {
+            "buses": [],
+            "from_full": "base",
+            "cmd": "",
+            "from": "base",
+            "path": "/src/ApiGateways/Mobile.Bff.Shopping/aggregator/Dockerfile",
+            "langs": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "dotnet",
+                "restore",
+                "release",
+                "app",
+                "publish"
+            ],
+            "dbs": [],
+            "gates": [],
+            "servers": []
+        },
+        {
+            "buses": [],
+            "from_full": "base",
+            "cmd": "",
+            "from": "base",
+            "path": "/src/ApiGateways/ApiGw-Base/Dockerfile",
+            "langs": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "dotnet",
+                "release",
+                "app",
+                "restore",
+                "publish"
+            ],
+            "dbs": [],
+            "gates": [],
+            "servers": []
+        },
+        {
+            "buses": [],
+            "from_full": "base",
+            "cmd": "",
+            "from": "base",
+            "path": "/src/ApiGateways/Web.Bff.Shopping/aggregator/Dockerfile",
+            "langs": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "dotnet",
+                "restore",
+                "release",
+                "app",
+                "publish"
+            ],
+            "dbs": [],
+            "gates": [],
+            "servers": []
+        },
+        {
+            "buses": [],
+            "from_full": "base",
+            "cmd": "",
+            "from": "base",
+            "path": "/src/Web/WebhookClient/Dockerfile",
+            "langs": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "webhookclient",
+                "dotnet",
+                "csproj",
+                "release",
+                "app"
+            ],
+            "dbs": [],
+            "gates": [],
+            "servers": []
+        },
+        {
+            "buses": [],
+            "from_full": "base",
+            "cmd": "",
+            "from": "base",
+            "path": "/src/Web/WebMVC/Dockerfile",
+            "langs": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "dotnet",
+                "restore",
+                "release",
+                "publish",
+                "nowarn"
+            ],
+            "dbs": [],
+            "gates": [],
+            "servers": []
+        },
+        {
+            "buses": [],
+            "from_full": "base",
+            "cmd": "",
+            "from": "base",
+            "path": "/src/Web/WebStatus/Dockerfile",
+            "langs": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "dotnet",
+                "restore",
+                "release",
+                "app",
+                "publish"
+            ],
+            "dbs": [],
+            "gates": [],
+            "servers": []
+        },
+        {
+            "buses": [],
+            "from_full": "base",
+            "keywords": [
+                "npm",
+                "dotnet",
+                "release",
+                "run",
+                "prod"
+            ],
+            "from": "base",
+            "path": "/src/Web/WebSPA/Dockerfile",
+            "langs": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "dbs": [],
+            "gates": [],
+            "servers": []
+        },
+        {
+            "buses": [],
+            "from_full": "microsoft/aspnetcore:1.1",
+            "cmd": "",
+            "from": "microsoft/aspnetcore",
+            "path": "/src/Web/WebMonolithic/eShopWeb/Dockerfile",
+            "langs": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [],
+            "dbs": [],
+            "gates": [],
+            "servers": []
+        }
+    ],
+    "dbs": [
+        "mongo",
+        "redis"
+    ],
+    "languages": [
+        "c#",
+        "javascript"
+    ],
+    "gates": [],
+    "servers": [
+        "node",
+        "asp"
+    ],
+    "num_gates": 0,
+    "name": "eric-erki/dotnet-architecture-eShopOnContainers",
+    "num_monitors": 0,
+    "monitors": [],
+    "discos": [],
+    "files": [
+        {
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "servers": [
+                "asp"
+            ],
+            "path": "/src/Web/WebMVC/package.json",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "path": "/src/Web/WebSPA/package.json",
+            "gates": [],
+            "monitors": []
+        }
+    ],
+    "size": 659206,
+    "num_dockers": 18,
+    "num_files": 21,
+    "url": "git://github.com/eric-erki/dotnet-architecture-eShopOnContainers.git",
+    "num_servers": 2,
+    "images": [
+        "base",
+        "microsoft/aspnetcore"
+    ],
+    "num_discos": 0
+}

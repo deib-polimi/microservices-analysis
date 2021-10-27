@@ -1,0 +1,281 @@
+{
+    "dbs": [
+        "mysql"
+    ],
+    "name": "HM-demo/DockerSwarm-microservices",
+    "num_langs": 2,
+    "languages": [
+        "javascript",
+        "html"
+    ],
+    "shared_dbs": false,
+    "servers": [
+        "express",
+        "node",
+        "caddy"
+    ],
+    "langs": [
+        "html",
+        "javascript"
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "dbs": [
+                "mysql"
+            ],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "discos": [],
+            "cmd": "npm start",
+            "path": "/Dockerfile",
+            "from_full": "node:9.8.0-alpine",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "keywords": [
+                "apk",
+                "install",
+                "npm",
+                "update",
+                "upgrade"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [
+                "grafana"
+            ],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/monitoring/grafana/Dockerfile",
+            "from_full": "grafana/grafana:5.0.1",
+            "gates": [],
+            "from": "grafana/grafana",
+            "langs": [],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "exporter",
+                "node",
+                "bin"
+            ],
+            "discos": [],
+            "cmd": "/bin/node_exporter",
+            "path": "/monitoring/node-exporter/Dockerfile",
+            "from_full": "prom/node-exporter:v0.15.2",
+            "gates": [],
+            "from": "prom/node-exporter",
+            "langs": [],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "alertmanager",
+                "config",
+                "file",
+                "etc",
+                "storage"
+            ],
+            "discos": [],
+            "cmd": "--config.file=/etc/alertmanager/alertmanager.yml --storage.path=/alertmanager",
+            "path": "/monitoring/alertmanager/Dockerfile",
+            "from_full": "prom/alertmanager:v0.14.0",
+            "gates": [],
+            "from": "prom/alertmanager",
+            "langs": [],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "cmd_keywords": [
+                "prometheus",
+                "etc",
+                "console",
+                "libraries",
+                "web"
+            ],
+            "discos": [],
+            "cmd": "--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus --web.console.libraries=/etc/prometheus/console_libraries --web.console.templates=/etc/prometheus/consoles",
+            "path": "/monitoring/prometheus/Dockerfile",
+            "from_full": "prom/prometheus:v2.2.0-rc.0",
+            "gates": [],
+            "from": "prom/prometheus",
+            "langs": [],
+            "keywords": []
+        }
+    ],
+    "gates": [],
+    "size": 2782,
+    "num_dockers": 5,
+    "num_discos": 0,
+    "num_buses": 0,
+    "buses": [],
+    "images": [
+        "prom/alertmanager",
+        "node",
+        "prom/prometheus",
+        "grafana/grafana",
+        "prom/node-exporter"
+    ],
+    "num_servers": 3,
+    "num_services": 7,
+    "monitors": [
+        "grafana",
+        "prometheus"
+    ],
+    "structure": {
+        "services": [
+            {
+                "buses": [],
+                "image": "google/cadvisor",
+                "dbs": [],
+                "gates": [],
+                "image_full": "google/cadvisor",
+                "monitors": [],
+                "name": "cadvisor",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "stefanprodan/caddy",
+                "dbs": [],
+                "gates": [],
+                "image_full": "stefanprodan/caddy",
+                "monitors": [],
+                "name": "dockerd-exporter",
+                "discos": [],
+                "servers": [
+                    "caddy"
+                ],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "cloudflare/unsee",
+                "dbs": [],
+                "gates": [],
+                "image_full": "cloudflare/unsee:v0.8.0",
+                "monitors": [],
+                "name": "unsee",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "stefanprodan/swarmprom-grafana",
+                "dbs": [],
+                "gates": [],
+                "image_full": "stefanprodan/swarmprom-grafana:5.0.1",
+                "monitors": [
+                    "grafana"
+                ],
+                "name": "grafana",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "stefanprodan/swarmprom-prometheus",
+                "dbs": [],
+                "gates": [],
+                "image_full": "stefanprodan/swarmprom-prometheus:v2.2.0-rc.0",
+                "monitors": [
+                    "prometheus"
+                ],
+                "name": "prometheus",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "stefanprodan/caddy",
+                "dbs": [],
+                "gates": [],
+                "image_full": "stefanprodan/caddy",
+                "monitors": [],
+                "name": "caddy",
+                "discos": [],
+                "servers": [
+                    "caddy"
+                ],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "stefanprodan/swarmprom-node-exporter",
+                "dbs": [],
+                "gates": [],
+                "image_full": "stefanprodan/swarmprom-node-exporter:v0.15.2",
+                "monitors": [],
+                "name": "node-exporter",
+                "discos": [],
+                "servers": [
+                    "node"
+                ],
+                "depends_on": []
+            }
+        ],
+        "num_services": 7,
+        "detected_dbs": {
+            "num": 0,
+            "shared_dbs": false,
+            "names": [],
+            "services": []
+        },
+        "path": "/monitoring/docker-compose.yml"
+    },
+    "discos": [],
+    "num_files": 7,
+    "num_dbs": 1,
+    "num_monitors": 2,
+    "num_gates": 0,
+    "url": "git://github.com/HM-demo/DockerSwarm-microservices.git",
+    "avg_size_service": 556.4,
+    "files": [
+        {
+            "buses": [],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/package.json"
+        }
+    ]
+}

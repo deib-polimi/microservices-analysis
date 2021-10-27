@@ -1,0 +1,211 @@
+{
+    "size": 717,
+    "num_servers": 2,
+    "dbs": [],
+    "files": [
+        {
+            "path": "/build.gradle",
+            "gates": [],
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/settings.gradle",
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "structure": {
+        "num_services": 8,
+        "services": [
+            {
+                "name": "em-api-gateway-web",
+                "image": "docker.artifactory.reform.hmcts.net/evidence/document-management-store-api-gateway-web",
+                "depends_on": [
+                    "document-management-store",
+                    "idam-api",
+                    "service-auth-provider-api"
+                ],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "servers": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/evidence/document-management-store-api-gateway-web:latest",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "evidence-management-client-api",
+                "image": "Dockerfile",
+                "depends_on": [
+                    "em-api-gateway-web",
+                    "idam-api",
+                    "service-auth-provider-api",
+                    "document-management-store"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "Dockerfile",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "smtp-server",
+                "image": "mailhog/mailhog",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "mailhog/mailhog",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "document-management-store-database",
+                "image": "docker.artifactory.reform.hmcts.net/evidence/document-management-store-database",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/evidence/document-management-store-database:latest",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "idam-database",
+                "image": "docker.artifactory.reform.hmcts.net/auth/idam-database",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/auth/idam-database:latest",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "idam-api",
+                "image": "docker.artifactory.reform.hmcts.net/auth/idam-api",
+                "depends_on": [
+                    "idam-database",
+                    "smtp-server"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/auth/idam-api:latest",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "service-auth-provider-api",
+                "image": "docker.artifactory.reform.hmcts.net/auth/service-auth-provider-api",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/auth/service-auth-provider-api:47e18b53aad48ae8124744041988565e07dfed50",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "document-management-store",
+                "image": "docker.artifactory.reform.hmcts.net/evidence/document-management-store",
+                "depends_on": [
+                    "document-management-store-database",
+                    "idam-api",
+                    "service-auth-provider-api"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/evidence/document-management-store:latest",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "shared_dbs": false,
+            "services": []
+        }
+    },
+    "buses": [],
+    "images": [
+        "hmctspublic.azurecr.io/base/java"
+    ],
+    "num_discos": 0,
+    "url": "git://github.com/hmcts/div-evidence-management-client-api.git",
+    "num_services": 8,
+    "langs": [
+        "java"
+    ],
+    "discos": [],
+    "num_gates": 1,
+    "shared_dbs": false,
+    "num_files": 4,
+    "num_monitors": 0,
+    "gates": [
+        "gateway"
+    ],
+    "servers": [
+        "tomcat",
+        "spring"
+    ],
+    "num_langs": 1,
+    "languages": [
+        "java"
+    ],
+    "monitors": [],
+    "name": "hmcts/div-evidence-management-client-api",
+    "num_buses": 0,
+    "avg_size_service": 717.0,
+    "dockers": [
+        {
+            "path": "/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "div-evidence-management-client-api.jar",
+            "keywords": [],
+            "from": "hmctspublic.azurecr.io/base/java",
+            "buses": [],
+            "from_full": "hmctspublic.azurecr.io/base/java:openjdk-8-distroless-1.2",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "div",
+                "management",
+                "evidence",
+                "api",
+                "client"
+            ]
+        }
+    ],
+    "num_dbs": 0,
+    "num_dockers": 1
+}

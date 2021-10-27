@@ -1,0 +1,227 @@
+{
+    "name": "jacknely/virus_db",
+    "buses": [],
+    "images": [
+        "python",
+        "nginx"
+    ],
+    "num_langs": 2,
+    "num_discos": 0,
+    "num_buses": 0,
+    "dockers": [
+        {
+            "discos": [],
+            "langs": [
+                "python"
+            ],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "python",
+            "cmd_keywords": [
+                "port",
+                "flask",
+                "host",
+                "run"
+            ],
+            "from_full": "python:3.7-slim",
+            "keywords": [
+                "txt",
+                "install",
+                "requirements",
+                "pip"
+            ],
+            "path": "/backend/Dockerfile",
+            "servers": [
+                "flask"
+            ],
+            "gates": [],
+            "cmd": "flask run --host=0.0.0.0 --port=5001"
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "nginx",
+            "cmd_keywords": [],
+            "from_full": "nginx",
+            "keywords": [
+                "conf",
+                "etc",
+                "default",
+                "nginx"
+            ],
+            "path": "/nginx/Dockerfile",
+            "servers": [],
+            "gates": [
+                "nginx"
+            ],
+            "cmd": ""
+        },
+        {
+            "discos": [],
+            "langs": [
+                "python"
+            ],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "python",
+            "cmd_keywords": [
+                "app",
+                "ini",
+                "uwsgi"
+            ],
+            "from_full": "python:3.7-stretch",
+            "keywords": [
+                "txt",
+                "install",
+                "requirements",
+                "pip"
+            ],
+            "path": "/frontend/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": "uwsgi app.ini"
+        }
+    ],
+    "monitors": [],
+    "dbs": [
+        "mongo"
+    ],
+    "structure": {
+        "detected_dbs": {
+            "num": 1,
+            "services": [
+                "db"
+            ],
+            "names": [
+                "mongo"
+            ],
+            "shared_dbs": false
+        },
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "monitors": [],
+                "name": "db",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image": "mongo",
+                "image_full": "mongo:3.4",
+                "gates": [],
+                "dbs": [
+                    "mongo"
+                ]
+            },
+            {
+                "monitors": [],
+                "name": "nginx",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image": "./nginx",
+                "image_full": "./nginx",
+                "gates": [
+                    "nginx"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "backend",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "db"
+                ],
+                "image": "backend",
+                "image_full": "backend",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "frontend",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "backend"
+                ],
+                "image": "frontend",
+                "image_full": "frontend",
+                "gates": [],
+                "dbs": []
+            }
+        ],
+        "num_services": 4
+    },
+    "gates": [
+        "nginx"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/requirements.txt",
+            "servers": [
+                "flask"
+            ],
+            "gates": [],
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/backend/requirements.txt",
+            "servers": [
+                "flask"
+            ],
+            "gates": [],
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/frontend/requirements.txt",
+            "servers": [
+                "flask"
+            ],
+            "gates": [],
+            "dbs": []
+        }
+    ],
+    "avg_size_service": 8.333333333333334,
+    "langs": [
+        "python",
+        "html"
+    ],
+    "num_dbs": 1,
+    "num_services": 4,
+    "num_monitors": 0,
+    "size": 25,
+    "languages": [
+        "python",
+        "html"
+    ],
+    "num_files": 7,
+    "num_gates": 1,
+    "num_dockers": 3,
+    "shared_dbs": false,
+    "servers": [
+        "flask"
+    ],
+    "num_servers": 1,
+    "url": "git://github.com/jacknely/virus_db.git",
+    "discos": []
+}

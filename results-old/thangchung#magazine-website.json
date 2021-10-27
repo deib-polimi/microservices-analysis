@@ -1,0 +1,210 @@
+{
+    "num_langs": 2,
+    "dbs": [],
+    "num_servers": 1,
+    "languages": [
+        "c#",
+        "html"
+    ],
+    "num_discos": 2,
+    "avg_size_service": 5455.0,
+    "dockers": [],
+    "num_gates": 1,
+    "buses": [
+        "rabbitmq"
+    ],
+    "langs": [
+        "c#",
+        "html"
+    ],
+    "num_buses": 1,
+    "discos": [
+        "registrator",
+        "consul"
+    ],
+    "num_dbs": 0,
+    "num_files": 3,
+    "url": "git://github.com/thangchung/magazine-website.git",
+    "shared_dbs": false,
+    "monitors": [],
+    "num_services": 10,
+    "files": [
+        {
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "path": "/src/UI/backoffice/package.json",
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/src/Services/Cik.Services.Auth.AuthService/wwwroot/lib/jquery-validation/package.json"
+        }
+    ],
+    "servers": [
+        "node"
+    ],
+    "num_monitors": 0,
+    "gates": [
+        "gateway"
+    ],
+    "size": 5455,
+    "num_dockers": 0,
+    "images": [],
+    "structure": {
+        "path": "/deploy/docker-compose.yml",
+        "services": [
+            {
+                "image": "gliderlabs/registrator",
+                "depends_on": [
+                    "consul1"
+                ],
+                "dbs": [],
+                "name": "registrator",
+                "image_full": "gliderlabs/registrator",
+                "discos": [
+                    "registrator"
+                ],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "postgres",
+                "depends_on": [],
+                "dbs": [],
+                "name": "magazine_db",
+                "image_full": "postgres:9.6",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "thangchung/magazine_service",
+                "depends_on": [
+                    "magazine_db"
+                ],
+                "dbs": [],
+                "name": "magazine_service",
+                "image_full": "thangchung/magazine_service",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "thangchung/gateway_service",
+                "depends_on": [],
+                "dbs": [],
+                "name": "gateway_service",
+                "image_full": "thangchung/gateway_service",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [
+                    "gateway"
+                ],
+                "monitors": []
+            },
+            {
+                "image": "thangchung/auth_service",
+                "depends_on": [],
+                "dbs": [],
+                "name": "auth_service",
+                "image_full": "thangchung/auth_service",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "thangchung/sample_service",
+                "depends_on": [],
+                "dbs": [],
+                "name": "sample_service",
+                "image_full": "thangchung/sample_service",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "progrium/consul",
+                "depends_on": [
+                    "consul1"
+                ],
+                "dbs": [],
+                "name": "consul2",
+                "image_full": "progrium/consul:latest",
+                "discos": [
+                    "consul"
+                ],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "progrium/consul",
+                "depends_on": [],
+                "dbs": [],
+                "name": "consul1",
+                "image_full": "progrium/consul:latest",
+                "discos": [
+                    "consul"
+                ],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "progrium/consul",
+                "depends_on": [
+                    "consul1"
+                ],
+                "dbs": [],
+                "name": "consul3",
+                "image_full": "progrium/consul:latest",
+                "discos": [
+                    "consul"
+                ],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "rabbitmq",
+                "depends_on": [],
+                "dbs": [],
+                "name": "rabbitmq",
+                "image_full": "rabbitmq:3.6.5-management",
+                "discos": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [],
+            "shared_dbs": false,
+            "num": 0,
+            "services": []
+        },
+        "num_services": 10
+    },
+    "name": "thangchung/magazine-website"
+}

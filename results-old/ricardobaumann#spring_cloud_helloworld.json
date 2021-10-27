@@ -1,0 +1,508 @@
+{
+    "size": 102,
+    "shared_dbs": false,
+    "num_servers": 2,
+    "name": "ricardobaumann/spring_cloud_helloworld",
+    "files": [
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/pom.xml",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/noneureka/pom.xml",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "hsqldb"
+            ],
+            "buses": [],
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "path": "/sidecar/pom.xml",
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "gates": [
+                "zuul"
+            ],
+            "dbs": [
+                "hsqldb"
+            ],
+            "buses": [],
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "path": "/reverse_proxy/pom.xml",
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "hsqldb"
+            ],
+            "buses": [],
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "path": "/registry/pom.xml",
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "hsqldb"
+            ],
+            "buses": [],
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "path": "/comment/pom.xml",
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "hsqldb"
+            ],
+            "buses": [],
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "path": "/relatedcontent/pom.xml",
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/config-microservice/pom.xml",
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "hsqldb"
+            ],
+            "buses": [],
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "path": "/content/pom.xml",
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "hsqldb"
+            ],
+            "buses": [],
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "path": "/insecure/pom.xml",
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "hsqldb"
+            ],
+            "buses": [],
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "path": "/auth/pom.xml",
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        }
+    ],
+    "num_files": 20,
+    "num_langs": 1,
+    "dbs": [
+        "db"
+    ],
+    "servers": [
+        "tomcat",
+        "spring"
+    ],
+    "num_discos": 1,
+    "url": "git://github.com/ricardobaumann/spring_cloud_helloworld.git",
+    "gates": [
+        "zuul"
+    ],
+    "structure": {
+        "services": [
+            {
+                "image": "eureka/proxy",
+                "dbs": [],
+                "image_full": "eureka/proxy:1",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "proxy_service",
+                "gates": [],
+                "discos": [
+                    "eureka"
+                ],
+                "depends_on": [
+                    "registry_service"
+                ]
+            },
+            {
+                "image": "eureka/registry",
+                "dbs": [],
+                "image_full": "eureka/registry:2",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "registry_service",
+                "gates": [],
+                "discos": [
+                    "eureka"
+                ],
+                "depends_on": []
+            },
+            {
+                "image": "insecure",
+                "dbs": [],
+                "image_full": "insecure",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "insecure_service",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "registry_service"
+                ]
+            },
+            {
+                "image": "config-microservice",
+                "dbs": [],
+                "image_full": "config-microservice",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "config_service",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "registry_service:registry"
+                ]
+            }
+        ],
+        "num_services": 4,
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        },
+        "path": "/docker-compose.yml"
+    },
+    "num_gates": 1,
+    "num_dockers": 8,
+    "num_dbs": 1,
+    "num_services": 4,
+    "langs": [
+        "java"
+    ],
+    "buses": [],
+    "num_buses": 0,
+    "num_monitors": 0,
+    "languages": [
+        "java"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [
+                "dskiptests",
+                "dspring",
+                "test",
+                "profiles",
+                "mvn"
+            ],
+            "cmd": "pm2 start test.js && mvn spring-boot:run -DskipTests=true -Dspring.profiles.active=docker",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "jamesdbloom/docker-java8-maven",
+            "monitors": [],
+            "from_full": "jamesdbloom/docker-java8-maven",
+            "servers": [
+                "spring"
+            ],
+            "path": "/sidecar/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "install",
+                "get",
+                "apt",
+                "update",
+                "nodejs"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "run",
+                "active",
+                "boot",
+                "dskiptests",
+                "dspring"
+            ],
+            "cmd": "mvn spring-boot:run -DskipTests=true -Dspring.profiles.active=docker",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "jamesdbloom/docker-java8-maven",
+            "monitors": [],
+            "from_full": "jamesdbloom/docker-java8-maven",
+            "servers": [
+                "spring"
+            ],
+            "path": "/reverse_proxy/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "package",
+                "mvn",
+                "clean"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "run",
+                "boot",
+                "dskiptests",
+                "true",
+                "mvn"
+            ],
+            "cmd": "mvn spring-boot:run -DskipTests=true",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "jamesdbloom/docker-java8-maven",
+            "monitors": [],
+            "from_full": "jamesdbloom/docker-java8-maven",
+            "servers": [
+                "spring"
+            ],
+            "path": "/registry/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "package",
+                "mvn",
+                "clean"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "run",
+                "active",
+                "boot",
+                "dskiptests",
+                "dspring"
+            ],
+            "cmd": "mvn spring-boot:run -DskipTests=true -Dspring.profiles.active=docker",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "jamesdbloom/docker-java8-maven",
+            "monitors": [],
+            "from_full": "jamesdbloom/docker-java8-maven",
+            "servers": [
+                "spring"
+            ],
+            "path": "/config-microservice/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "package",
+                "mvn",
+                "clean"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "monitors": [],
+            "from_full": "java:8",
+            "servers": [],
+            "path": "/config-microservice/src/main/docker/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "jar",
+                "app",
+                "bash",
+                "touch"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "run",
+                "active",
+                "boot",
+                "dskiptests",
+                "dspring"
+            ],
+            "cmd": "mvn spring-boot:run -DskipTests=true -Dspring.profiles.active=docker",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "jamesdbloom/docker-java8-maven",
+            "monitors": [],
+            "from_full": "jamesdbloom/docker-java8-maven",
+            "servers": [
+                "spring"
+            ],
+            "path": "/content/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "package",
+                "mvn",
+                "clean"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "run",
+                "active",
+                "boot",
+                "dskiptests",
+                "dspring"
+            ],
+            "cmd": "mvn spring-boot:run -DskipTests=true -Dspring.profiles.active=docker",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "jamesdbloom/docker-java8-maven",
+            "monitors": [],
+            "from_full": "jamesdbloom/docker-java8-maven",
+            "servers": [
+                "spring"
+            ],
+            "path": "/insecure/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "package",
+                "mvn",
+                "clean"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "run",
+                "active",
+                "boot",
+                "dskiptests",
+                "dspring"
+            ],
+            "cmd": "mvn spring-boot:run -DskipTests=true -Dspring.profiles.active=docker",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "jamesdbloom/docker-java8-maven",
+            "monitors": [],
+            "from_full": "jamesdbloom/docker-java8-maven",
+            "servers": [
+                "spring"
+            ],
+            "path": "/auth/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "package",
+                "mvn",
+                "clean"
+            ],
+            "discos": []
+        }
+    ],
+    "monitors": [],
+    "avg_size_service": 12.75,
+    "discos": [
+        "eureka"
+    ],
+    "images": [
+        "jamesdbloom/docker-java8-maven",
+        "java"
+    ]
+}

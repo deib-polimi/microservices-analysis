@@ -1,0 +1,532 @@
+{
+    "dbs": [
+        "redis"
+    ],
+    "name": "aliemrahpekesen/microservices-playground",
+    "num_langs": 2,
+    "languages": [
+        "java",
+        "c#"
+    ],
+    "shared_dbs": false,
+    "servers": [
+        "spring"
+    ],
+    "langs": [
+        "c#",
+        "java"
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/tracingserver/Dockerfile",
+            "from_full": "openjdk:8u121",
+            "gates": [],
+            "from": "openjdk",
+            "langs": [],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/authservice/Dockerfile",
+            "from_full": "base",
+            "gates": [],
+            "from": "base",
+            "langs": [],
+            "keywords": [
+                "authservice",
+                "acikseminer",
+                "kocsistem",
+                "csproj",
+                "dotnet"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/administration/Dockerfile",
+            "from_full": "openjdk:8u121",
+            "gates": [],
+            "from": "openjdk",
+            "langs": [],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/orderservice/Dockerfile",
+            "from_full": "openjdk:8u121",
+            "gates": [],
+            "from": "openjdk",
+            "langs": [],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/gatewayservice/Dockerfile",
+            "from_full": "openjdk:8u121",
+            "gates": [],
+            "from": "openjdk",
+            "langs": [],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/configserver/Dockerfile",
+            "from_full": "openjdk:8u121",
+            "gates": [],
+            "from": "openjdk",
+            "langs": [],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/paymentservice/Dockerfile",
+            "from_full": "openjdk:8u121",
+            "gates": [],
+            "from": "openjdk",
+            "langs": [],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/deliveryservice/Dockerfile",
+            "from_full": "openjdk:8u121",
+            "gates": [],
+            "from": "openjdk",
+            "langs": [],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/discoveryservice/Dockerfile",
+            "from_full": "openjdk:8u121",
+            "gates": [],
+            "from": "openjdk",
+            "langs": [],
+            "keywords": []
+        }
+    ],
+    "gates": [
+        "zuul"
+    ],
+    "size": 48359,
+    "num_dockers": 9,
+    "num_discos": 1,
+    "num_buses": 1,
+    "buses": [
+        "kafka"
+    ],
+    "images": [
+        "openjdk",
+        "base"
+    ],
+    "num_servers": 1,
+    "num_services": 16,
+    "monitors": [],
+    "structure": {
+        "services": [
+            {
+                "buses": [],
+                "image": "paymentservice",
+                "dbs": [],
+                "gates": [],
+                "image_full": "paymentservice:1.0",
+                "monitors": [],
+                "name": "paymentservice",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "logstash:logstash",
+                    "kafka:kafka"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "gatewayservice",
+                "dbs": [],
+                "gates": [],
+                "image_full": "gatewayservice:1.0",
+                "monitors": [],
+                "name": "gatewayservice",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "logstash:logstash"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "obsidiandynamics/kafdrop",
+                "dbs": [],
+                "gates": [],
+                "image_full": "obsidiandynamics/kafdrop",
+                "monitors": [],
+                "name": "kafdrop",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "kafka"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "administration",
+                "dbs": [],
+                "gates": [],
+                "image_full": "administration:1.0",
+                "monitors": [],
+                "name": "administration",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [
+                    "kafka"
+                ],
+                "image": "obsidiandynamics/kafka",
+                "dbs": [],
+                "gates": [],
+                "image_full": "obsidiandynamics/kafka",
+                "monitors": [],
+                "name": "kafka",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "docker.elastic.co/kibana/kibana-oss",
+                "dbs": [],
+                "gates": [],
+                "image_full": "docker.elastic.co/kibana/kibana-oss:7.3.0",
+                "monitors": [],
+                "name": "kibana",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "elasticsearch"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "dbs": [],
+                "gates": [],
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:7.3.0",
+                "monitors": [],
+                "name": "elasticsearch",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "authservice",
+                "dbs": [],
+                "gates": [],
+                "image_full": "authservice:1.0",
+                "monitors": [],
+                "name": "authservice",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "discoveryservice",
+                "dbs": [],
+                "gates": [],
+                "image_full": "discoveryservice:1.0",
+                "monitors": [],
+                "name": "discoveryservice",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "gates": [],
+                "image_full": "redis:latest",
+                "monitors": [],
+                "name": "redis",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "tracingserver",
+                "dbs": [],
+                "gates": [],
+                "image_full": "tracingserver:1.0",
+                "monitors": [],
+                "name": "tracingserver",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "configserver",
+                "dbs": [],
+                "gates": [],
+                "image_full": "configserver:1.0",
+                "monitors": [],
+                "name": "configserver",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "orderservice",
+                "dbs": [],
+                "gates": [],
+                "image_full": "orderservice:1.0",
+                "monitors": [],
+                "name": "orderservice",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "logstash:logstash",
+                    "kafka:kafka"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "deliveryservice",
+                "dbs": [],
+                "gates": [],
+                "image_full": "deliveryservice:1.0",
+                "monitors": [],
+                "name": "deliveryservice",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "logstash:logstash",
+                    "kafka:kafka"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "rediscommander/redis-commander",
+                "dbs": [
+                    "redis"
+                ],
+                "gates": [],
+                "image_full": "rediscommander/redis-commander:latest",
+                "monitors": [],
+                "name": "redis-commander",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "redis"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "docker.elastic.co/logstash/logstash-oss",
+                "dbs": [],
+                "gates": [],
+                "image_full": "docker.elastic.co/logstash/logstash-oss:7.3.0",
+                "monitors": [],
+                "name": "logstash",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "elasticsearch"
+                ]
+            }
+        ],
+        "num_services": 16,
+        "detected_dbs": {
+            "num": 2,
+            "shared_dbs": false,
+            "names": [
+                "redis"
+            ],
+            "services": [
+                "redis",
+                "redis-commander"
+            ]
+        },
+        "path": "/docker-compose.yml"
+    },
+    "discos": [
+        "eureka"
+    ],
+    "num_files": 18,
+    "num_dbs": 1,
+    "num_monitors": 0,
+    "num_gates": 1,
+    "url": "git://github.com/aliemrahpekesen/microservices-playground.git",
+    "avg_size_service": 5373.222222222223,
+    "files": [
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/administration/pom.xml"
+        },
+        {
+            "buses": [
+                "kafka"
+            ],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/orderservice/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [
+                "zuul"
+            ],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/gatewayservice/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/configserver/pom.xml"
+        },
+        {
+            "buses": [
+                "kafka"
+            ],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/paymentservice/pom.xml"
+        },
+        {
+            "buses": [
+                "kafka"
+            ],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/deliveryservice/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/discoveryservice/pom.xml"
+        }
+    ]
+}

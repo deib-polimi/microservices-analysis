@@ -1,0 +1,222 @@
+{
+    "size": 187,
+    "num_dockers": 4,
+    "discos": [
+        "consul",
+        "eureka"
+    ],
+    "num_files": 8,
+    "avg_size_service": 46.75,
+    "buses": [],
+    "num_gates": 1,
+    "langs": [
+        "java"
+    ],
+    "num_discos": 2,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/ccy-conversion-service/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:11-ea-11-jdk"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "mysql",
+            "path": "/ccy-conversion-service/db/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "from_full": "mysql:8.0.18"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/ccy-exchange-service/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:11-ea-11-jdk"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/ccy-naming-service/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:11-ea-11-jdk"
+        }
+    ],
+    "num_dbs": 1,
+    "monitors": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "consul",
+                "image_full": "consul:latest",
+                "discos": [
+                    "consul"
+                ],
+                "name": "namingserver",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "ccy-conversion-service",
+                "image_full": "ccy-conversion-service",
+                "discos": [],
+                "name": "currency-conversion-service",
+                "depends_on": [
+                    "currency-conversion-db",
+                    "namingserver"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "ccy-conversion-service",
+                "image_full": "ccy-conversion-service",
+                "discos": [],
+                "name": "currency-conversion-db",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "ccy-exchange-service",
+                "image_full": "ccy-exchange-service",
+                "discos": [],
+                "name": "currency-exchange-service",
+                "depends_on": [
+                    "currency-conversion-service",
+                    "namingserver"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        },
+        "num_services": 4,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 0,
+    "servers": [
+        "spring"
+    ],
+    "url": "git://github.com/madhusudan-m-k/docker-naming-microservice.git",
+    "num_services": 4,
+    "gates": [
+        "loadbalancer"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "consul",
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/ccy-conversion-service/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "consul",
+                "eureka"
+            ],
+            "gates": [
+                "loadbalancer"
+            ],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/ccy-exchange-service/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "consul",
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/ccy-naming-service/pom.xml"
+        }
+    ],
+    "name": "madhusudan-m-k/docker-naming-microservice",
+    "languages": [
+        "java"
+    ],
+    "images": [
+        "openjdk",
+        "mysql"
+    ],
+    "dbs": [
+        "mysql"
+    ],
+    "num_servers": 1,
+    "num_langs": 1
+}

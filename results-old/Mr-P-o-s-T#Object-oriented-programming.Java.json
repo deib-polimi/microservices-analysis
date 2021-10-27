@@ -1,0 +1,318 @@
+{
+    "servers": [
+        "jboss",
+        "tomcat",
+        "httpd",
+        "spring"
+    ],
+    "name": "Mr-P-o-s-T/Object-oriented-programming.Java",
+    "num_gates": 0,
+    "avg_size_service": 13554.0,
+    "structure": {
+        "services": [
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "wurstmeister/zookeeper:3.4.6",
+                "servers": [],
+                "depends_on": [],
+                "name": "zookeeper",
+                "dbs": [
+                    "zookeeper"
+                ],
+                "image": "wurstmeister/zookeeper",
+                "monitors": [],
+                "discos": [
+                    "zookeeper"
+                ]
+            },
+            {
+                "gates": [],
+                "buses": [
+                    "kafka"
+                ],
+                "image_full": "wurstmeister/kafka:2.12-2.1.0",
+                "servers": [],
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "name": "kafka",
+                "dbs": [],
+                "image": "wurstmeister/kafka",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [
+                    "kafka"
+                ],
+                "image_full": "../microservice-kafka/microservice-kafka-auth",
+                "servers": [],
+                "depends_on": [
+                    "kafka"
+                ],
+                "name": "auth",
+                "dbs": [],
+                "image": "../microservice-kafka/microservice-kafka-auth",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "apache",
+                "servers": [],
+                "depends_on": [
+                    "auth",
+                    "business"
+                ],
+                "name": "apache",
+                "dbs": [],
+                "image": "apache",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [
+                    "kafka"
+                ],
+                "image_full": "../microservice-kafka/microservice-kafka-business",
+                "servers": [],
+                "depends_on": [
+                    "kafka"
+                ],
+                "name": "business",
+                "dbs": [],
+                "image": "../microservice-kafka/microservice-kafka-business",
+                "monitors": [],
+                "discos": []
+            }
+        ],
+        "num_services": 5,
+        "path": "/Lab3/microservice-kafka/docker/docker-compose.yml",
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "zookeeper"
+            ],
+            "services": [
+                "zookeeper"
+            ],
+            "shared_dbs": false
+        }
+    },
+    "num_dbs": 2,
+    "buses": [
+        "kafka"
+    ],
+    "langs": [
+        "javascript",
+        "java"
+    ],
+    "shared_dbs": false,
+    "files": [
+        {
+            "gates": [],
+            "buses": [],
+            "path": "/lab-I/build.gradle",
+            "servers": [
+                "tomcat"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "path": "/lab-I/settings.gradle",
+            "servers": [],
+            "dbs": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "path": "/lab-II/build.gradle",
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "path": "/lab-II/settings.gradle",
+            "servers": [],
+            "dbs": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [
+                "kafka"
+            ],
+            "path": "/Lab3/microservice-kafka/microservice-kafka/pom.xml",
+            "servers": [
+                "httpd",
+                "spring"
+            ],
+            "dbs": [
+                "zookeeper"
+            ],
+            "monitors": [],
+            "discos": [
+                "zookeeper"
+            ]
+        },
+        {
+            "gates": [],
+            "buses": [
+                "kafka"
+            ],
+            "path": "/Lab3/microservice-kafka/microservice-kafka/microservice-kafka-business/pom.xml",
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "dbs": [
+                "mysql",
+                "hsqldb"
+            ],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [
+                "kafka"
+            ],
+            "path": "/Lab3/microservice-kafka/microservice-kafka/microservice-kafka-auth/pom.xml",
+            "servers": [
+                "jboss",
+                "tomcat",
+                "spring"
+            ],
+            "dbs": [
+                "hsqldb"
+            ],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "size": 40662,
+    "num_dockers": 3,
+    "url": "git://github.com/Mr-P-o-s-T/Object-oriented-programming.Java.git",
+    "gates": [],
+    "num_servers": 4,
+    "images": [
+        "ubuntu",
+        "openjdk"
+    ],
+    "num_services": 5,
+    "languages": [
+        "javascript",
+        "java"
+    ],
+    "num_files": 11,
+    "discos": [
+        "zookeeper"
+    ],
+    "dockers": [
+        {
+            "gates": [],
+            "from_full": "ubuntu:16.04",
+            "cmd_keywords": [
+                "ctl",
+                "apache",
+                "foreground"
+            ],
+            "path": "/Lab3/microservice-kafka/docker/apache/Dockerfile",
+            "servers": [],
+            "cmd": "apache2ctl -D FOREGROUND",
+            "from": "ubuntu",
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "monitors": [],
+            "keywords": [
+                "proxy",
+                "apache",
+                "apt",
+                "get",
+                "var"
+            ]
+        },
+        {
+            "gates": [],
+            "from_full": "openjdk:11.0.2-jre-slim",
+            "cmd_keywords": [
+                "jar",
+                "bin",
+                "xms",
+                "usr",
+                "xmx"
+            ],
+            "path": "/Lab3/microservice-kafka/microservice-kafka/microservice-kafka-business/Dockerfile",
+            "servers": [],
+            "cmd": "/usr/bin/java -Xmx400m -Xms400m  -XX:TieredStopAtLevel=1 -noverify -jar microservice-kafka-business-0.0.1-SNAPSHOT.jar",
+            "from": "openjdk",
+            "buses": [
+                "kafka"
+            ],
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "discos": [],
+            "monitors": [],
+            "keywords": []
+        },
+        {
+            "gates": [],
+            "from_full": "openjdk:11.0.2-jre-slim",
+            "cmd_keywords": [
+                "jar",
+                "bin",
+                "xms",
+                "usr",
+                "auth"
+            ],
+            "path": "/Lab3/microservice-kafka/microservice-kafka/microservice-kafka-auth/Dockerfile",
+            "servers": [],
+            "cmd": "/usr/bin/java -Xmx400m -Xms400m  -XX:TieredStopAtLevel=1 -noverify -jar microservice-kafka-auth-0.0.1-SNAPSHOT.jar",
+            "from": "openjdk",
+            "buses": [
+                "kafka"
+            ],
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "discos": [],
+            "monitors": [],
+            "keywords": []
+        }
+    ],
+    "num_langs": 2,
+    "num_monitors": 0,
+    "num_buses": 1,
+    "dbs": [
+        "zookeeper",
+        "mysql"
+    ],
+    "monitors": [],
+    "num_discos": 1
+}

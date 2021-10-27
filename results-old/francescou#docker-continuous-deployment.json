@@ -1,0 +1,226 @@
+{
+    "dbs": [
+        "redis",
+        "mongo"
+    ],
+    "num_dbs": 2,
+    "shared_dbs": false,
+    "name": "francescou/docker-continuous-deployment",
+    "num_buses": 0,
+    "num_monitors": 0,
+    "monitors": [],
+    "langs": [
+        "python",
+        "javascript",
+        "html"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "size": 157,
+    "languages": [
+        "html",
+        "javascript",
+        "python"
+    ],
+    "num_langs": 3,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "dockersamples/visualizer",
+                "name": "visualizer",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "dockersamples/visualizer"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "image": "mongo",
+                "name": "mongo",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "mongo:3.3.6"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "francescou/rest-ip",
+                "name": "restip",
+                "depends_on": [
+                    "mongo"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "francescou/rest-ip:1.0"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "redis"
+                ],
+                "image": "redis",
+                "name": "redis",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "redis:3.2.0-alpine"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "francescou/rest-count",
+                "name": "restcount",
+                "depends_on": [
+                    "redis"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "francescou/rest-count:1.0"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "nginx",
+                "name": "nginx",
+                "depends_on": [
+                    "restcount",
+                    "restip"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "image_full": "nginx:alpine"
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "mongo",
+                "redis"
+            ],
+            "names": [
+                "redis",
+                "mongo"
+            ],
+            "shared_dbs": false,
+            "num": 2
+        },
+        "num_services": 6
+    },
+    "servers": [
+        "flask",
+        "node",
+        "express"
+    ],
+    "num_servers": 3,
+    "num_files": 5,
+    "images": [
+        "python",
+        "node"
+    ],
+    "buses": [],
+    "avg_size_service": 78.5,
+    "num_services": 6,
+    "files": [
+        {
+            "path": "/rest-count/requirements.txt",
+            "servers": [
+                "flask"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "dbs": [
+                "redis"
+            ],
+            "discos": []
+        },
+        {
+            "path": "/rest-ip/package.json",
+            "servers": [
+                "node",
+                "express"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "discos": []
+        }
+    ],
+    "num_dockers": 2,
+    "dockers": [
+        {
+            "cmd": "node app.js",
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:7-slim",
+            "path": "/rest-ip/Dockerfile",
+            "from": "node",
+            "monitors": [],
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [
+                "app",
+                "node"
+            ],
+            "discos": [],
+            "keywords": [
+                "npm",
+                "install"
+            ]
+        },
+        {
+            "cmd": "",
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "python:2.7.11-alpine",
+            "path": "/rest-count/Dockerfile",
+            "from": "python",
+            "monitors": [],
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "install",
+                "pip",
+                "env",
+                "virtualenv",
+                "requirements"
+            ]
+        }
+    ],
+    "num_discos": 0,
+    "discos": [],
+    "num_gates": 1,
+    "url": "git://github.com/francescou/docker-continuous-deployment.git"
+}

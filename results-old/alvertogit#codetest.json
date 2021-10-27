@@ -1,0 +1,171 @@
+{
+    "languages": [
+        "python",
+        "jupyternotebook"
+    ],
+    "num_servers": 1,
+    "shared_dbs": false,
+    "name": "alvertogit/codetest",
+    "servers": [
+        "django"
+    ],
+    "num_monitors": 0,
+    "num_langs": 2,
+    "images": [
+        "postgres",
+        "python"
+    ],
+    "langs": [
+        "jupyternotebook",
+        "python"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [
+                "application",
+                "bind",
+                "mysite",
+                "gunicorn",
+                "wsgi"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "cmd": "gunicorn --bind :8000 mysite.wsgi:application",
+            "keywords": [
+                "pip",
+                "apt",
+                "install",
+                "get",
+                "python"
+            ],
+            "path": "/exercise2/mysite/Dockerfile",
+            "gates": [],
+            "from": "python",
+            "from_full": "python:3.7.8-slim-buster",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "path": "/exercise2/postgresql/Dockerfile",
+            "gates": [],
+            "from": "postgres",
+            "from_full": "postgres:12.3-alpine",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_buses": 0,
+    "discos": [],
+    "monitors": [],
+    "num_files": 5,
+    "structure": {
+        "path": "/exercise2/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "nginx:1.19.2-alpine",
+                "depends_on": [
+                    "web"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "name": "nginx",
+                "image": "nginx",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mysite",
+                "depends_on": [
+                    "postgres_db"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "web",
+                "image": "mysite",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "postgresql",
+                "depends_on": [],
+                "dbs": [
+                    "postgresql"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "postgres_db",
+                "image": "postgresql",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 3,
+        "detected_dbs": {
+            "services": [
+                "postgres_db"
+            ],
+            "names": [
+                "postgresql"
+            ],
+            "num": 1,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [
+        "postgresql"
+    ],
+    "num_dbs": 1,
+    "avg_size_service": 287.5,
+    "num_services": 3,
+    "buses": [],
+    "files": [
+        {
+            "dbs": [],
+            "path": "/requirements.txt",
+            "gates": [],
+            "servers": [
+                "django"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/exercise2/mysite/requirements.txt",
+            "gates": [],
+            "servers": [
+                "django"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "url": "git://github.com/alvertogit/codetest.git",
+    "num_dockers": 2,
+    "size": 575,
+    "num_discos": 0,
+    "num_gates": 1
+}

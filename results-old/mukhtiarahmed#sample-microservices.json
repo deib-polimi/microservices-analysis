@@ -1,0 +1,403 @@
+{
+    "size": 2411,
+    "avg_size_service": 401.8333333333333,
+    "name": "mukhtiarahmed/sample-microservices",
+    "languages": [
+        "java",
+        "tsql"
+    ],
+    "servers": [
+        "tomcat",
+        "spring"
+    ],
+    "num_dbs": 3,
+    "images": [
+        "openjdk"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 8,
+        "services": [
+            {
+                "depends_on": [],
+                "image_full": "eureka-server:latest",
+                "monitors": [],
+                "name": "eureka-server",
+                "image": "eureka-server",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": [
+                    "eureka"
+                ]
+            },
+            {
+                "depends_on": [
+                    "eureka-server"
+                ],
+                "image_full": "auth-service:latest",
+                "monitors": [],
+                "name": "auth-service",
+                "image": "auth-service",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "eureka-server"
+                ],
+                "image_full": "gateway-server:latest",
+                "monitors": [],
+                "name": "gateway-server",
+                "image": "gateway-server",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [
+                    "gateway"
+                ],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "postgres:9.6",
+                "monitors": [],
+                "name": "person_db",
+                "image": "postgres",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "cassandra:latest",
+                "monitors": [],
+                "name": "cassandra",
+                "image": "cassandra",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "cassandra"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "eureka-server"
+                ],
+                "image_full": "user-service:latest",
+                "monitors": [],
+                "name": "user-service",
+                "image": "user-service",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "person_db"
+                ],
+                "image_full": "person-service:latest",
+                "monitors": [],
+                "name": "person-service",
+                "image": "person-service",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "eureka-server"
+                ],
+                "image_full": "client-app:latest",
+                "monitors": [],
+                "name": "client-app",
+                "image": "client-app",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "cassandra"
+            ],
+            "names": [
+                "cassandra"
+            ],
+            "shared_dbs": false,
+            "num": 1
+        }
+    },
+    "num_dockers": 6,
+    "num_buses": 0,
+    "num_services": 8,
+    "dockers": [
+        {
+            "path": "/auth-service/Dockerfile",
+            "from": "openjdk",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "keywords": [
+                "touch",
+                "app",
+                "jar"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/cloud-gateway/Dockerfile",
+            "from": "openjdk",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "keywords": [
+                "touch",
+                "app",
+                "jar"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/cloud-registry/Dockerfile",
+            "from": "openjdk",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "keywords": [
+                "touch",
+                "app",
+                "jar"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/person-service/Dockerfile",
+            "from": "openjdk",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "keywords": [
+                "touch",
+                "app",
+                "jar"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/user-service/Dockerfile",
+            "from": "openjdk",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "keywords": [
+                "touch",
+                "app",
+                "jar"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/client/Dockerfile",
+            "from": "openjdk",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "keywords": [
+                "touch",
+                "war",
+                "app"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "num_langs": 2,
+    "langs": [
+        "java",
+        "tsql"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "num_gates": 1,
+    "num_monitors": 0,
+    "num_files": 15,
+    "files": [
+        {
+            "path": "/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [
+                "gateway"
+            ],
+            "discos": []
+        },
+        {
+            "path": "/auth-service/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "redis",
+                "cassandra"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/cloud-gateway/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/cloud-registry/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/person-service/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "hsqldb",
+                "postgresql"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/user-service/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/common/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/client/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ]
+        }
+    ],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_servers": 2,
+    "url": "git://github.com/mukhtiarahmed/sample-microservices.git",
+    "dbs": [
+        "redis",
+        "postgresql",
+        "cassandra"
+    ],
+    "num_discos": 1,
+    "gates": [
+        "zuul"
+    ],
+    "buses": []
+}

@@ -1,0 +1,272 @@
+{
+    "size": 6906,
+    "num_dockers": 3,
+    "discos": [],
+    "num_files": 10,
+    "avg_size_service": 2302.0,
+    "buses": [],
+    "num_gates": 1,
+    "langs": [
+        "hcl",
+        "javascript"
+    ],
+    "num_discos": 0,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "yarn watch",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "cmd_keywords": [
+                "watch",
+                "yarn"
+            ],
+            "from": "node",
+            "path": "/api-gateway/Dockerfile",
+            "keywords": [
+                "yarn"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "node:12"
+        },
+        {
+            "monitors": [],
+            "cmd": "yarn watch",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "cmd_keywords": [
+                "watch",
+                "yarn"
+            ],
+            "from": "node",
+            "path": "/listings-service/Dockerfile",
+            "keywords": [
+                "yarn"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "node:12"
+        },
+        {
+            "monitors": [],
+            "cmd": "yarn watch",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "cmd_keywords": [
+                "watch",
+                "yarn"
+            ],
+            "from": "node",
+            "path": "/users-service/Dockerfile",
+            "keywords": [
+                "yarn"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "node:12"
+        }
+    ],
+    "num_dbs": 1,
+    "monitors": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mysql",
+                "image_full": "mysql:5.7.20",
+                "discos": [],
+                "name": "listings-service-db",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./listings-service",
+                "image_full": "./listings-service",
+                "discos": [],
+                "name": "listings-service",
+                "depends_on": [
+                    "listings-service-db"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./api-gateway",
+                "image_full": "./api-gateway",
+                "discos": [],
+                "name": "api-gateway",
+                "depends_on": [
+                    "listings-service",
+                    "users-service"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": [
+                    "gateway"
+                ]
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mysql",
+                "image_full": "mysql:5.7.20",
+                "discos": [],
+                "name": "users-service-db",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./users-service",
+                "image_full": "./users-service",
+                "discos": [],
+                "name": "users-service",
+                "depends_on": [
+                    "users-service-db"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 2,
+            "names": [
+                "mysql"
+            ],
+            "services": [
+                "listings-service-db",
+                "users-service-db"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 5,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 0,
+    "servers": [
+        "node",
+        "express"
+    ],
+    "url": "git://github.com/ThatGuyKev/react-microservices-aws.git",
+    "num_services": 5,
+    "gates": [
+        "gateway"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/package.json"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/api-gateway/package.json"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/listings-service/package.json"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/classified-app/package.json"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/users-service/package.json"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "path": "/node-deploy/package.json"
+        }
+    ],
+    "name": "ThatGuyKev/react-microservices-aws",
+    "languages": [
+        "javascript",
+        "hcl"
+    ],
+    "images": [
+        "node"
+    ],
+    "dbs": [
+        "mysql"
+    ],
+    "num_servers": 2,
+    "num_langs": 2
+}

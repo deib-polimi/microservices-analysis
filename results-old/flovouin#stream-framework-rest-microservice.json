@@ -1,0 +1,158 @@
+{
+    "size": 15,
+    "num_monitors": 0,
+    "num_discos": 0,
+    "shared_dbs": true,
+    "langs": [
+        "python"
+    ],
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_langs": 1,
+    "num_dbs": 2,
+    "discos": [],
+    "avg_size_service": 15.0,
+    "images": [
+        "python"
+    ],
+    "gates": [],
+    "dockers": [
+        {
+            "monitors": [],
+            "from": "python",
+            "langs": [
+                "python"
+            ],
+            "servers": [],
+            "buses": [],
+            "cmd_keywords": [
+                "manage",
+                "runserver",
+                "python"
+            ],
+            "cmd": "python manage.py runserver 0.0.0.0:8000",
+            "path": "/Dockerfile",
+            "keywords": [
+                "txt",
+                "requirements",
+                "bash",
+                "pip",
+                "streamservice"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "python:3.6.0",
+            "discos": []
+        }
+    ],
+    "structure": {
+        "detected_dbs": {
+            "num": 1,
+            "shared_dbs": true,
+            "services": [
+                "cassandra"
+            ],
+            "names": [
+                "cassandra"
+            ]
+        },
+        "services": [
+            {
+                "image": "cassandra",
+                "depends_on": [],
+                "discos": [],
+                "monitors": [],
+                "image_full": "cassandra:3.9",
+                "gates": [],
+                "dbs": [
+                    "cassandra"
+                ],
+                "servers": [],
+                "buses": [],
+                "name": "cassandra"
+            },
+            {
+                "image": ".",
+                "depends_on": [
+                    "cassandra",
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": ".",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "activity"
+            },
+            {
+                "image": "rabbitmq",
+                "depends_on": [],
+                "discos": [],
+                "monitors": [],
+                "image_full": "rabbitmq:3.6.6",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "name": "rabbitmq"
+            },
+            {
+                "image": ".",
+                "depends_on": [
+                    "cassandra",
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": ".",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "worker"
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "num_services": 4
+    },
+    "num_dockers": 1,
+    "num_files": 3,
+    "num_services": 4,
+    "num_gates": 0,
+    "name": "flovouin/stream-framework-rest-microservice",
+    "url": "git://github.com/flovouin/stream-framework-rest-microservice.git",
+    "monitors": [],
+    "servers": [
+        "django"
+    ],
+    "dbs": [
+        "cassandra",
+        "redis"
+    ],
+    "num_servers": 1,
+    "num_buses": 1,
+    "files": [
+        {
+            "path": "/requirements.txt",
+            "monitors": [],
+            "dbs": [
+                "cassandra",
+                "redis"
+            ],
+            "gates": [],
+            "servers": [
+                "django"
+            ],
+            "buses": [],
+            "discos": []
+        }
+    ],
+    "languages": [
+        "python"
+    ]
+}

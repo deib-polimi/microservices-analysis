@@ -1,0 +1,248 @@
+{
+    "num_servers": 1,
+    "num_gates": 0,
+    "num_dockers": 2,
+    "num_buses": 2,
+    "dockers": [
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "gradle:4.2.1-jdk8-alpine",
+            "discos": [],
+            "from": "gradle",
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [
+                "jar",
+                "snapshot",
+                "app",
+                "demo"
+            ],
+            "cmd": "-jar /app/demo-0.0.1-SNAPSHOT.jar",
+            "path": "/Dockerfile",
+            "dbs": [],
+            "keywords": []
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "gradle:4.2.1-jdk8-alpine",
+            "discos": [],
+            "from": "gradle",
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [
+                "jar",
+                "snapshot",
+                "app",
+                "persister"
+            ],
+            "cmd": "-jar /app/persister-0.0.1-SNAPSHOT.jar",
+            "path": "/persister/Dockerfile",
+            "dbs": [],
+            "keywords": []
+        }
+    ],
+    "shared_dbs": true,
+    "languages": [
+        "java"
+    ],
+    "gates": [],
+    "avg_size_service": 78.0,
+    "discos": [
+        "zookeeper"
+    ],
+    "num_dbs": 3,
+    "monitors": [],
+    "servers": [
+        "spring"
+    ],
+    "num_langs": 1,
+    "buses": [
+        "kafka",
+        "stomp"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "mongo:latest",
+                "image": "mongo",
+                "buses": [],
+                "name": "mongodb",
+                "discos": [],
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ]
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": ".",
+                "image": ".",
+                "buses": [],
+                "name": "app",
+                "discos": [],
+                "depends_on": [
+                    "mongodb",
+                    "redis",
+                    "kafka"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "wurstmeister/zookeeper",
+                "image": "wurstmeister/zookeeper",
+                "buses": [],
+                "name": "zookeeper",
+                "discos": [
+                    "zookeeper"
+                ],
+                "depends_on": [],
+                "dbs": [
+                    "zookeeper"
+                ]
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "wurstmeister/kafka",
+                "image": "wurstmeister/kafka",
+                "buses": [
+                    "kafka"
+                ],
+                "name": "kafka",
+                "discos": [],
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "./persister",
+                "image": "./persister",
+                "buses": [],
+                "name": "persister",
+                "discos": [],
+                "depends_on": [
+                    "mongodb",
+                    "kafka"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "redis",
+                "image": "redis",
+                "buses": [],
+                "name": "redis",
+                "discos": [],
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "num": 3,
+            "services": [
+                "mongodb",
+                "zookeeper",
+                "redis"
+            ],
+            "names": [
+                "zookeeper",
+                "mongo",
+                "redis"
+            ],
+            "shared_dbs": true
+        },
+        "num_services": 6
+    },
+    "images": [
+        "gradle"
+    ],
+    "num_files": 7,
+    "num_services": 6,
+    "langs": [
+        "java"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "buses": [
+                "kafka",
+                "stomp"
+            ],
+            "discos": [],
+            "path": "/build.gradle",
+            "dbs": [
+                "mongodb",
+                "redis"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/settings.gradle",
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "path": "/persister/build.gradle",
+            "dbs": [
+                "mongodb"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/persister/settings.gradle",
+            "dbs": []
+        }
+    ],
+    "url": "git://github.com/evilself/microstart.git",
+    "size": 156,
+    "name": "evilself/microstart",
+    "num_discos": 1,
+    "num_monitors": 0,
+    "dbs": [
+        "zookeeper",
+        "mongo",
+        "redis"
+    ]
+}

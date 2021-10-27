@@ -1,0 +1,187 @@
+{
+    "num_dbs": 1,
+    "dbs": [
+        "mysql"
+    ],
+    "images": [
+        "php"
+    ],
+    "langs": [
+        "php"
+    ],
+    "size": 648,
+    "num_discos": 0,
+    "dockers": [
+        {
+            "dbs": [
+                "mysql"
+            ],
+            "from": "php",
+            "keywords": [
+                "symfony",
+                "install",
+                "pecl",
+                "rabbitmq",
+                "php"
+            ],
+            "from_full": "php:7.4.2-fpm-alpine",
+            "langs": [
+                "php"
+            ],
+            "servers": [],
+            "monitors": [],
+            "buses": [
+                "rabbitmq"
+            ],
+            "cmd": "",
+            "path": "/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "servers": [],
+    "monitors": [
+        "prometheus"
+    ],
+    "num_dockers": 1,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 7,
+        "detected_dbs": {
+            "services": [
+                "mooc_mysql"
+            ],
+            "names": [
+                "mysql"
+            ],
+            "num": 1,
+            "shared_dbs": true
+        },
+        "services": [
+            {
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "dbs": [],
+                "depends_on": [],
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:6.8.10",
+                "buses": [],
+                "name": "backoffice_elasticsearch",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "mysql",
+                "dbs": [
+                    "mysql"
+                ],
+                "depends_on": [],
+                "image_full": "mysql:8.0",
+                "buses": [],
+                "name": "mooc_mysql",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "rabbitmq",
+                "dbs": [],
+                "depends_on": [],
+                "image_full": "rabbitmq:3.7-management",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "name": "shared_rabbitmq",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "Dockerfile",
+                "dbs": [],
+                "depends_on": [
+                    "shared_rabbitmq",
+                    "shared_prometheus",
+                    "backoffice_elasticsearch"
+                ],
+                "image_full": "Dockerfile",
+                "buses": [],
+                "name": "backoffice_backend_php",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "Dockerfile",
+                "dbs": [],
+                "depends_on": [
+                    "shared_rabbitmq",
+                    "shared_prometheus",
+                    "backoffice_elasticsearch",
+                    "mooc_mysql"
+                ],
+                "image_full": "Dockerfile",
+                "buses": [],
+                "name": "backoffice_frontend_php",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "Dockerfile",
+                "dbs": [],
+                "depends_on": [
+                    "shared_rabbitmq",
+                    "shared_prometheus",
+                    "mooc_mysql"
+                ],
+                "image_full": "Dockerfile",
+                "buses": [],
+                "name": "mooc_backend_php",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "prom/prometheus",
+                "dbs": [],
+                "depends_on": [],
+                "image_full": "prom/prometheus:v2.1.0",
+                "buses": [],
+                "name": "shared_prometheus",
+                "monitors": [
+                    "prometheus"
+                ],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            }
+        ]
+    },
+    "num_buses": 1,
+    "gates": [],
+    "discos": [],
+    "num_gates": 0,
+    "num_services": 7,
+    "name": "CodelyTV/php-ddd-example",
+    "shared_dbs": true,
+    "avg_size_service": 648.0,
+    "num_langs": 1,
+    "num_servers": 0,
+    "languages": [
+        "php"
+    ],
+    "buses": [
+        "rabbitmq"
+    ],
+    "files": [],
+    "url": "git://github.com/CodelyTV/php-ddd-example.git",
+    "num_files": 2,
+    "num_monitors": 1
+}

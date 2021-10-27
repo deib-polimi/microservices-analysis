@@ -1,0 +1,158 @@
+{
+    "discos": [],
+    "avg_size_service": 4.5,
+    "buses": [],
+    "num_gates": 0,
+    "name": "Azure-Samples/container-service-dotnet-continuous-integration-multi-container",
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "mycache",
+                "dbs": [
+                    "redis"
+                ],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "redis:alpine",
+                "image": "redis",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "service-b",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "./service-b",
+                "image": "./service-b",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "service-a",
+                "dbs": [],
+                "depends_on": [
+                    "service-b",
+                    "mycache"
+                ],
+                "discos": [],
+                "image_full": "./service-a",
+                "image": "./service-a",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [
+                "redis"
+            ],
+            "num": 1,
+            "shared_dbs": false,
+            "services": [
+                "mycache"
+            ]
+        },
+        "num_services": 3
+    },
+    "dbs": [
+        "redis"
+    ],
+    "dockers": [
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "service",
+                "dotnet",
+                "dll"
+            ],
+            "from_full": "microsoft/dotnet:1.0.1-runtime",
+            "buses": [],
+            "monitors": [],
+            "from": "microsoft/dotnet",
+            "keywords": [],
+            "gates": [],
+            "path": "/service-b/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "dotnet service-b.dll",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "node",
+                "server"
+            ],
+            "from_full": "node:argon",
+            "buses": [],
+            "monitors": [],
+            "from": "node",
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "gates": [],
+            "path": "/service-a/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "node server.js",
+            "servers": [
+                "node"
+            ]
+        }
+    ],
+    "gates": [],
+    "size": 9,
+    "num_monitors": 0,
+    "images": [
+        "node",
+        "microsoft/dotnet"
+    ],
+    "num_buses": 0,
+    "num_services": 3,
+    "servers": [
+        "node",
+        "express"
+    ],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_discos": 0,
+    "languages": [
+        "c#",
+        "javascript",
+        "html"
+    ],
+    "url": "git://github.com/Azure-Samples/container-service-dotnet-continuous-integration-multi-container.git",
+    "langs": [
+        "html",
+        "c#",
+        "javascript"
+    ],
+    "num_dbs": 1,
+    "num_servers": 2,
+    "num_langs": 3,
+    "files": [
+        {
+            "path": "/service-a/package.json",
+            "dbs": [
+                "redis"
+            ],
+            "discos": [],
+            "servers": [
+                "express"
+            ],
+            "buses": [],
+            "monitors": [],
+            "gates": []
+        }
+    ],
+    "num_dockers": 2,
+    "num_files": 4
+}

@@ -1,0 +1,507 @@
+{
+    "monitors": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [
+                "zookeeper"
+            ],
+            "names": [
+                "zookeeper"
+            ],
+            "num": 1
+        },
+        "services": [
+            {
+                "image": "kibana/",
+                "buses": [],
+                "monitors": [],
+                "image_full": "kibana/",
+                "gates": [],
+                "name": "kibana",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "elasticsearch"
+                ]
+            },
+            {
+                "image": "confluentinc/cp-server",
+                "buses": [],
+                "monitors": [],
+                "image_full": "confluentinc/cp-server:5.5.1",
+                "gates": [],
+                "name": "broker",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "zookeeper"
+                ]
+            },
+            {
+                "image": "elasticsearch/",
+                "buses": [],
+                "monitors": [],
+                "image_full": "elasticsearch/",
+                "gates": [],
+                "name": "elasticsearch",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "logstash/",
+                "buses": [],
+                "monitors": [],
+                "image_full": "logstash/",
+                "gates": [],
+                "name": "logstash",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "elasticsearch"
+                ]
+            },
+            {
+                "image": "sample-api-gateway",
+                "buses": [],
+                "monitors": [],
+                "image_full": "sample-api-gateway",
+                "gates": [
+                    "gateway"
+                ],
+                "name": "sample-api-gateway",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "eureka-service-registry",
+                "buses": [],
+                "monitors": [],
+                "image_full": "eureka-service-registry",
+                "gates": [],
+                "name": "eureka-service-registry",
+                "discos": [
+                    "eureka"
+                ],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "config-server"
+                ]
+            },
+            {
+                "image": "config-server",
+                "buses": [],
+                "monitors": [],
+                "image_full": "config-server",
+                "gates": [],
+                "name": "config-server",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "employees-api",
+                "buses": [],
+                "monitors": [],
+                "image_full": "employees-api",
+                "gates": [],
+                "name": "employees-api",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "eureka-service-registry",
+                    "config-server",
+                    "logstash"
+                ]
+            },
+            {
+                "image": "confluentinc/cp-zookeeper",
+                "buses": [],
+                "monitors": [],
+                "image_full": "confluentinc/cp-zookeeper:5.5.1",
+                "gates": [],
+                "name": "zookeeper",
+                "discos": [
+                    "zookeeper"
+                ],
+                "servers": [],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "depends_on": []
+            },
+            {
+                "image": "workspace-api",
+                "buses": [],
+                "monitors": [],
+                "image_full": "workspace-api",
+                "gates": [],
+                "name": "workspaces-api",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "eureka-service-registry",
+                    "config-server",
+                    "logstash"
+                ]
+            }
+        ],
+        "num_services": 10
+    },
+    "num_langs": 4,
+    "name": "aleksandr-korotkov/microservices",
+    "num_dockers": 12,
+    "buses": [
+        "kafka"
+    ],
+    "dbs": [
+        "zookeeper",
+        "enterprise"
+    ],
+    "size": 187547,
+    "num_discos": 2,
+    "shared_dbs": false,
+    "discos": [
+        "zookeeper",
+        "eureka"
+    ],
+    "images": [
+        "docker.elastic.co/apm/apm-server",
+        "docker.elastic.co/elasticsearch/elasticsearch",
+        "gliderlabs/logspout",
+        "docker.elastic.co/logstash/logstash",
+        "alpine",
+        "docker.elastic.co/enterprise-search/enterprise-search",
+        "openjdk",
+        "docker.elastic.co/kibana/kibana"
+    ],
+    "num_servers": 1,
+    "files": [
+        {
+            "gates": [
+                "zuul"
+            ],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/api-gateway/build.gradle",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [
+                "kafka"
+            ],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/workspaces-api/build.gradle",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/eureka-server/build.gradle",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/config-server/build.gradle",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [
+                "kafka"
+            ],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/employees-api/build.gradle",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": []
+        }
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "jar",
+                "sleep",
+                "app",
+                "java"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "openjdk",
+            "path": "/api-gateway/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "cmd": "sleep 70 && java -jar app.jar",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ]
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "jar",
+                "sleep",
+                "app",
+                "java"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "openjdk",
+            "path": "/workspaces-api/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "cmd": "sleep 60 && java -jar app.jar",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ]
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "jar",
+                "sleep",
+                "app",
+                "java"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "openjdk",
+            "path": "/eureka-server/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "cmd": "sleep 30 && java -jar app.jar",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ]
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "openjdk",
+            "path": "/config-server/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "cmd": "",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "docker.elastic.co/apm/apm-server",
+            "path": "/extensions/apm-server/Dockerfile",
+            "from_full": "docker.elastic.co/apm/apm-server:${ELK_VERSION}",
+            "cmd": "",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "alpine",
+            "path": "/extensions/curator/Dockerfile",
+            "from_full": "alpine:3.8",
+            "cmd": "",
+            "keywords": [
+                "curator",
+                "pip",
+                "version",
+                "install",
+                "add"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "gliderlabs/logspout",
+            "path": "/extensions/logspout/Dockerfile",
+            "from_full": "gliderlabs/logspout:master",
+            "cmd": "",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [
+                "enterprise"
+            ],
+            "from": "docker.elastic.co/enterprise-search/enterprise-search",
+            "path": "/extensions/enterprise-search/Dockerfile",
+            "from_full": "docker.elastic.co/enterprise-search/enterprise-search:${ELK_VERSION}",
+            "cmd": "",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "docker.elastic.co/logstash/logstash",
+            "path": "/logstash/Dockerfile",
+            "from_full": "docker.elastic.co/logstash/logstash:${ELK_VERSION}",
+            "cmd": "",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "docker.elastic.co/kibana/kibana",
+            "path": "/kibana/Dockerfile",
+            "from_full": "docker.elastic.co/kibana/kibana:${ELK_VERSION}",
+            "cmd": "",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "jar",
+                "sleep",
+                "app",
+                "java"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "openjdk",
+            "path": "/employees-api/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "cmd": "sleep 60 && java -jar app.jar",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ]
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "docker.elastic.co/elasticsearch/elasticsearch",
+            "path": "/elasticsearch/Dockerfile",
+            "from_full": "docker.elastic.co/elasticsearch/elasticsearch:${ELK_VERSION}",
+            "cmd": "",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        }
+    ],
+    "url": "git://github.com/aleksandr-korotkov/microservices.git",
+    "gates": [
+        "zuul"
+    ],
+    "num_files": 18,
+    "num_services": 10,
+    "num_gates": 1,
+    "num_dbs": 2,
+    "avg_size_service": 15628.916666666666,
+    "langs": [
+        "groovy",
+        "python",
+        "dockerfile",
+        "java"
+    ],
+    "num_buses": 1,
+    "languages": [
+        "java",
+        "groovy",
+        "dockerfile"
+    ],
+    "num_monitors": 0,
+    "servers": [
+        "spring"
+    ]
+}

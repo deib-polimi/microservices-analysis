@@ -1,0 +1,354 @@
+{
+    "gates": [
+        "nginx"
+    ],
+    "num_buses": 0,
+    "url": "git://github.com/melkishengue/node-typescipt-MEVN.git",
+    "images": [
+        "node",
+        "elasticsearch",
+        "mongo",
+        "nginx"
+    ],
+    "avg_size_service": 13611.42857142857,
+    "num_langs": 1,
+    "num_monitors": 0,
+    "num_dockers": 7,
+    "num_discos": 1,
+    "num_servers": 3,
+    "buses": [],
+    "discos": [
+        "traefik"
+    ],
+    "dockers": [
+        {
+            "path": "/backend/docker/db-seed/Dockerfile",
+            "cmd_keywords": [
+                "port",
+                "json",
+                "host",
+                "drop",
+                "seed"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [
+                "mongo"
+            ],
+            "from": "mongo",
+            "langs": [],
+            "servers": [],
+            "cmd": "/wait && mongoimport --drop --host ${DB_HOST} --port ${DB_PORT} --db ${DB_NAME} --collection movies --type json --file /seed/movies.json --jsonArray     && mongoimport --drop --host ${DB_HOST} --port ${DB_PORT} --db ${DB_NAME} --collection moviescratchs --type json --file /seed/moviesScratch.json --jsonArray     && mongoimport --drop --host ${DB_HOST} --port ${DB_PORT} --db ${DB_NAME} --collection reviews --type json --file /seed/reviews.json --jsonArray",
+            "from_full": "mongo",
+            "monitors": [],
+            "keywords": [
+                "mkdir",
+                "chmod",
+                "seed",
+                "wait"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/backend/docker/elastic-search/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "elasticsearch",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "elasticsearch:5.6.14-alpine",
+            "monitors": [],
+            "keywords": [
+                "wait",
+                "chmod"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/backend/docker/nginx/Dockerfile",
+            "cmd_keywords": [
+                "off",
+                "daemon",
+                "nginx"
+            ],
+            "discos": [],
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "from": "nginx",
+            "langs": [],
+            "servers": [],
+            "cmd": "nginx -g daemon off;",
+            "from_full": "nginx",
+            "monitors": [],
+            "keywords": [],
+            "buses": []
+        },
+        {
+            "path": "/backend/docker/mongodb/Dockerfile",
+            "cmd_keywords": [
+                "wait",
+                "mongod",
+                "smallfiles"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [
+                "mongo"
+            ],
+            "from": "mongo",
+            "langs": [],
+            "servers": [],
+            "cmd": "/wait && mongod --smallfiles",
+            "from_full": "mongo",
+            "monitors": [],
+            "keywords": [],
+            "buses": []
+        },
+        {
+            "path": "/backend/server/Dockerfile",
+            "cmd_keywords": [
+                "wait",
+                "npm",
+                "run",
+                "dev"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "node",
+            "langs": [],
+            "servers": [
+                "node"
+            ],
+            "cmd": "/wait && npm run dev",
+            "from_full": "node:latest",
+            "monitors": [],
+            "keywords": [
+                "usr",
+                "app",
+                "install",
+                "wait",
+                "mkdir"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/backend/search-service/Dockerfile",
+            "cmd_keywords": [
+                "wait",
+                "npm",
+                "run",
+                "dev"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "node",
+            "langs": [],
+            "servers": [
+                "node"
+            ],
+            "cmd": "/wait && npm run dev",
+            "from_full": "node:latest",
+            "monitors": [],
+            "keywords": [
+                "usr",
+                "app",
+                "install",
+                "wait",
+                "mkdir"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/frontend/Dockerfile",
+            "cmd_keywords": [
+                "wds",
+                "npm",
+                "run"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "node",
+            "langs": [],
+            "servers": [
+                "node"
+            ],
+            "cmd": "npm run wds",
+            "from_full": "node:latest",
+            "monitors": [],
+            "keywords": [
+                "mkdir",
+                "app",
+                "npm",
+                "install"
+            ],
+            "buses": []
+        }
+    ],
+    "size": 95280,
+    "name": "melkishengue/node-typescipt-MEVN",
+    "num_services": 6,
+    "dbs": [
+        "mongo"
+    ],
+    "shared_dbs": false,
+    "langs": [
+        "typescript"
+    ],
+    "languages": [
+        "typescript"
+    ],
+    "servers": [
+        "express",
+        "mongoose",
+        "node"
+    ],
+    "num_files": 11,
+    "monitors": [],
+    "num_dbs": 1,
+    "num_gates": 1,
+    "files": [
+        {
+            "path": "/backend/server/package.json",
+            "servers": [
+                "mongoose",
+                "express",
+                "node"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/backend/search-service/package.json",
+            "servers": [
+                "mongoose",
+                "express",
+                "node"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/frontend/package.json",
+            "servers": [
+                "node"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "dbs": [],
+            "buses": []
+        }
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 6,
+        "detected_dbs": {
+            "services": [
+                "mongo"
+            ],
+            "num": 1,
+            "names": [
+                "mongo"
+            ],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "${DB_HOST}"
+                ],
+                "servers": [],
+                "image_full": "Dockerfile",
+                "name": "mongo-seed",
+                "gates": [],
+                "image": "Dockerfile",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "./frontend",
+                "name": "frontend",
+                "gates": [],
+                "image": "./frontend",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "mongo",
+                "name": "mongo",
+                "gates": [],
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "${DB_HOST}"
+                ],
+                "servers": [],
+                "image_full": "./backend/server",
+                "name": "node-app-0",
+                "gates": [],
+                "image": "./backend/server",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [
+                    "traefik"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "traefik",
+                "name": "reverse-proxy",
+                "gates": [],
+                "image": "traefik",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "${DB_HOST}"
+                ],
+                "servers": [],
+                "image_full": "./backend/search-service",
+                "name": "search-microservice",
+                "gates": [],
+                "image": "./backend/search-service",
+                "dbs": [],
+                "buses": []
+            }
+        ]
+    }
+}

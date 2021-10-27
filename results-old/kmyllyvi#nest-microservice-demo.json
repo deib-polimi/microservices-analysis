@@ -1,0 +1,210 @@
+{
+    "name": "kmyllyvi/nest-microservice-demo",
+    "num_dbs": 1,
+    "num_services": 4,
+    "num_files": 6,
+    "servers": [
+        "express",
+        "node",
+        "mongoose"
+    ],
+    "url": "git://github.com/kmyllyvi/nest-microservice-demo.git",
+    "discos": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "payments",
+                "image_full": "./payments-app",
+                "image": "./payments-app",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "orders",
+                "image_full": "./orders-app",
+                "image": "./orders-app",
+                "servers": [],
+                "depends_on": [
+                    "mongodb"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "mongodb",
+                "image_full": "mongo",
+                "image": "mongo",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "mongodb_seed",
+                "image_full": "./mongo-seed",
+                "image": "./mongo-seed",
+                "servers": [],
+                "depends_on": [
+                    "mongodb"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": true,
+            "services": [
+                "mongodb",
+                "mongodb_seed"
+            ],
+            "num": 2,
+            "names": [
+                "mongo"
+            ]
+        },
+        "num_services": 4
+    },
+    "num_buses": 0,
+    "size": 601,
+    "dockers": [
+        {
+            "cmd": "sh /init.sh",
+            "servers": [],
+            "langs": [],
+            "path": "/mongo-seed/Dockerfile",
+            "discos": [],
+            "from": "mongo",
+            "buses": [],
+            "from_full": "mongo",
+            "cmd_keywords": [
+                "init"
+            ],
+            "keywords": [],
+            "gates": [],
+            "dbs": [
+                "mongo"
+            ],
+            "monitors": []
+        },
+        {
+            "cmd": "npm run start:dev",
+            "servers": [
+                "node"
+            ],
+            "langs": [],
+            "path": "/payments-app/Dockerfile",
+            "discos": [],
+            "from": "node",
+            "buses": [],
+            "from_full": "node:latest",
+            "cmd_keywords": [
+                "start",
+                "dev",
+                "npm",
+                "run"
+            ],
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "npm run start:dev",
+            "servers": [
+                "node"
+            ],
+            "langs": [],
+            "path": "/orders-app/Dockerfile",
+            "discos": [],
+            "from": "node",
+            "buses": [],
+            "from_full": "node:latest",
+            "cmd_keywords": [
+                "start",
+                "dev",
+                "npm",
+                "run"
+            ],
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "languages": [
+        "typescript"
+    ],
+    "dbs": [
+        "mongo"
+    ],
+    "monitors": [],
+    "shared_dbs": true,
+    "avg_size_service": 200.33333333333334,
+    "num_monitors": 0,
+    "files": [
+        {
+            "monitors": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/payments-app/package.json",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "express",
+                "node",
+                "mongoose"
+            ],
+            "path": "/orders-app/package.json",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        }
+    ],
+    "langs": [
+        "typescript"
+    ],
+    "num_servers": 3,
+    "buses": [],
+    "num_langs": 1,
+    "num_gates": 0,
+    "num_discos": 0,
+    "images": [
+        "node",
+        "mongo"
+    ],
+    "num_dockers": 3,
+    "gates": []
+}

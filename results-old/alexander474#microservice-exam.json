@@ -1,0 +1,508 @@
+{
+    "size": 1654,
+    "num_dockers": 6,
+    "discos": [
+        "eureka"
+    ],
+    "num_files": 19,
+    "avg_size_service": 275.6666666666667,
+    "buses": [],
+    "num_gates": 1,
+    "langs": [
+        "java",
+        "kotlin",
+        "javascript"
+    ],
+    "num_discos": 1,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "java -jar post.jar",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "post"
+            ],
+            "from": "openjdk",
+            "path": "/post/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "java -jar authentication.jar",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "authentication"
+            ],
+            "from": "openjdk",
+            "path": "/authentication/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "java -jar gateway.jar",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "gateway"
+            ],
+            "from": "openjdk",
+            "path": "/gateway/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [],
+            "from_full": "openjdk:8-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "java -jar user.jar",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "jar",
+                "user",
+                "java"
+            ],
+            "from": "openjdk",
+            "path": "/user/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "nginx",
+            "path": "/frontend/Dockerfile",
+            "keywords": [
+                "npm",
+                "install",
+                "run",
+                "build"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "from_full": "nginx"
+        },
+        {
+            "monitors": [],
+            "cmd": "java -jar eureka.jar",
+            "discos": [
+                "eureka"
+            ],
+            "servers": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "eureka"
+            ],
+            "from": "openjdk",
+            "path": "/eureka/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-alpine"
+        }
+    ],
+    "num_dbs": 2,
+    "monitors": [],
+    "shared_dbs": true,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "postgres",
+                "image_full": "postgres:10",
+                "discos": [],
+                "name": "post-db",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./eureka",
+                "image_full": "./eureka",
+                "discos": [
+                    "eureka"
+                ],
+                "name": "eureka",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./frontend",
+                "image_full": "./frontend",
+                "discos": [],
+                "name": "frontend",
+                "depends_on": [
+                    "gateway"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./post",
+                "image_full": "./post",
+                "discos": [],
+                "name": "post2",
+                "depends_on": [
+                    "gateway",
+                    "post-db",
+                    "redis"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./post",
+                "image_full": "./post",
+                "discos": [],
+                "name": "post1",
+                "depends_on": [
+                    "gateway",
+                    "post-db",
+                    "redis"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "postgres",
+                "image_full": "postgres:10",
+                "discos": [],
+                "name": "authentication-db",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "redis",
+                "image_full": "redis:latest",
+                "discos": [],
+                "name": "redis",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "postgres",
+                "image_full": "postgres:10",
+                "discos": [],
+                "name": "user-db",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./user",
+                "image_full": "./user",
+                "discos": [],
+                "name": "user",
+                "depends_on": [
+                    "redis",
+                    "gateway",
+                    "user-db"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./authentication",
+                "image_full": "./authentication",
+                "discos": [],
+                "name": "authentication",
+                "depends_on": [
+                    "redis",
+                    "gateway",
+                    "authentication-db"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./gateway",
+                "image_full": "./gateway",
+                "discos": [],
+                "name": "gateway",
+                "depends_on": [
+                    "eureka",
+                    "redis"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": [
+                    "gateway"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "redis"
+            ],
+            "services": [
+                "redis"
+            ],
+            "shared_dbs": true
+        },
+        "num_services": 11,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 0,
+    "servers": [
+        "spring"
+    ],
+    "url": "git://github.com/alexander474/microservice-exam.git",
+    "num_services": 11,
+    "gates": [
+        "nginx"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [
+                "postgresql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [
+                "redis",
+                "postgresql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/post/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [
+                "redis",
+                "postgresql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/authentication/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/gateway/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/report/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [
+                "redis",
+                "postgresql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/user/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/utils/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/dto/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/frontend/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/eureka/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [],
+            "servers": [],
+            "path": "/e2e-test/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/frontend/package.json"
+        }
+    ],
+    "name": "alexander474/microservice-exam",
+    "languages": [
+        "kotlin",
+        "javascript"
+    ],
+    "images": [
+        "openjdk",
+        "nginx"
+    ],
+    "dbs": [
+        "redis",
+        "postgresql"
+    ],
+    "num_servers": 1,
+    "num_langs": 3
+}

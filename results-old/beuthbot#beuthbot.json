@@ -1,0 +1,194 @@
+{
+    "size": 214,
+    "num_servers": 0,
+    "dbs": [
+        "mongo"
+    ],
+    "files": [],
+    "structure": {
+        "num_services": 10,
+        "services": [
+            {
+                "name": "mensa",
+                "image": "mensa_microservice",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "mensa_microservice",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "mongo",
+                "image": "mongo",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "mongo:4.0.4",
+                "discos": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "monitors": []
+            },
+            {
+                "name": "database",
+                "image": "database",
+                "depends_on": [
+                    "mongo"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "database",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "database_microservice",
+                "image": "database_microservice",
+                "depends_on": [
+                    "database"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "database_microservice",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "registry",
+                "image": "registry",
+                "depends_on": [
+                    "mensa",
+                    "weather",
+                    "database_microservice"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "registry",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "weather",
+                "image": "weather_microservice",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "weather_microservice",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "gateway",
+                "image": "gateway",
+                "depends_on": [
+                    "deconcentrator",
+                    "registry",
+                    "database"
+                ],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "servers": [],
+                "image_full": "gateway",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "duckling",
+                "image": "rasa/duckling",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "rasa/duckling:0.1.6.2",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "deconcentrator",
+                "image": "deconcentrator-js",
+                "depends_on": [
+                    "rasa"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "deconcentrator-js",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "rasa",
+                "image": "rasa/rasa",
+                "depends_on": [
+                    "duckling"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "rasa/rasa:1.6.0-spacy-de",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "mongo"
+            ],
+            "shared_dbs": false,
+            "services": [
+                "mongo"
+            ]
+        }
+    },
+    "buses": [],
+    "images": [],
+    "num_discos": 0,
+    "url": "git://github.com/beuthbot/beuthbot.git",
+    "num_services": 10,
+    "langs": [
+        "makefile",
+        "shell"
+    ],
+    "discos": [],
+    "num_gates": 1,
+    "shared_dbs": false,
+    "num_files": 1,
+    "num_monitors": 0,
+    "gates": [
+        "gateway"
+    ],
+    "servers": [],
+    "num_langs": 2,
+    "languages": [
+        "makefile",
+        "shell"
+    ],
+    "monitors": [],
+    "name": "beuthbot/beuthbot",
+    "num_buses": 0,
+    "avg_size_service": 214.0,
+    "dockers": [],
+    "num_dbs": 1,
+    "num_dockers": 0
+}

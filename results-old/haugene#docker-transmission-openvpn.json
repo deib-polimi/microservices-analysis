@@ -1,0 +1,168 @@
+{
+    "discos": [],
+    "avg_size_service": 10965.333333333334,
+    "buses": [],
+    "num_gates": 1,
+    "name": "haugene/docker-transmission-openvpn",
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "transmission",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "haugene/transmission-openvpn",
+                "image": "haugene/transmission-openvpn",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "rss",
+                "dbs": [],
+                "depends_on": [
+                    "transmission"
+                ],
+                "discos": [],
+                "image_full": "haugene/transmission-rss",
+                "image": "haugene/transmission-rss",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "proxy",
+                "dbs": [],
+                "depends_on": [
+                    "transmission"
+                ],
+                "discos": [],
+                "image_full": "haugene/transmission-openvpn-proxy",
+                "image": "haugene/transmission-openvpn-proxy",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [],
+            "num": 0,
+            "shared_dbs": false,
+            "services": []
+        },
+        "num_services": 3
+    },
+    "dbs": [],
+    "dockers": [
+        {
+            "langs": [
+                "bash"
+            ],
+            "cmd_keywords": [
+                "dumb",
+                "init",
+                "etc",
+                "start",
+                "openvpn"
+            ],
+            "from_full": "ubuntu:19.10",
+            "buses": [],
+            "monitors": [],
+            "from": "ubuntu",
+            "keywords": [
+                "transmission",
+                "web",
+                "apt",
+                "opt",
+                "usr"
+            ],
+            "gates": [],
+            "path": "/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "dumb-init /etc/openvpn/start.sh",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [],
+            "from_full": "nginx",
+            "buses": [],
+            "monitors": [],
+            "from": "nginx",
+            "keywords": [],
+            "gates": [
+                "nginx"
+            ],
+            "path": "/proxy/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        },
+        {
+            "langs": [
+                "gcc"
+            ],
+            "cmd_keywords": [
+                "transmission",
+                "etc",
+                "rss",
+                "start"
+            ],
+            "from_full": "ubuntu:16.04",
+            "buses": [],
+            "monitors": [],
+            "from": "ubuntu",
+            "keywords": [
+                "get",
+                "apt",
+                "dockerize",
+                "install",
+                "tar"
+            ],
+            "gates": [],
+            "path": "/plugins/rss/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "/etc/transmission-rss/start.sh",
+            "servers": []
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "size": 32896,
+    "num_monitors": 0,
+    "images": [
+        "nginx",
+        "ubuntu"
+    ],
+    "num_buses": 0,
+    "num_services": 3,
+    "servers": [],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_discos": 0,
+    "languages": [
+        "shell",
+        "dockerfile"
+    ],
+    "url": "git://github.com/haugene/docker-transmission-openvpn.git",
+    "langs": [
+        "dockerfile",
+        "gcc",
+        "bash",
+        "shell"
+    ],
+    "num_dbs": 0,
+    "num_servers": 0,
+    "num_langs": 4,
+    "files": [],
+    "num_dockers": 3,
+    "num_files": 4
+}

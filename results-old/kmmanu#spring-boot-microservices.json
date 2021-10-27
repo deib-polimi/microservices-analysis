@@ -1,0 +1,284 @@
+{
+    "size": 120,
+    "num_dockers": 4,
+    "discos": [
+        "eureka"
+    ],
+    "num_files": 10,
+    "avg_size_service": 30.0,
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "num_gates": 1,
+    "langs": [
+        "java",
+        "dockerfile"
+    ],
+    "num_discos": 1,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/api-gateway/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/greeting-client/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/greeting-service/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/service-registry/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine"
+        }
+    ],
+    "num_dbs": 0,
+    "monitors": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "kmmanu/naming-server",
+                "image_full": "kmmanu/naming-server:0.0.2-SNAPSHOT",
+                "discos": [],
+                "name": "naming-server",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "image": "rabbitmq",
+                "image_full": "rabbitmq:3.8.1-management-alpine",
+                "discos": [],
+                "name": "rabbitmq",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "kmmanu/greeting-service",
+                "image_full": "kmmanu/greeting-service:0.0.3-SNAPSHOT",
+                "discos": [],
+                "name": "greeting-service",
+                "depends_on": [
+                    "naming-server",
+                    "rabbitmq",
+                    "zipkin-server"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "kmmanu/greeting-client",
+                "image_full": "kmmanu/greeting-client:0.0.4-SNAPSHOT",
+                "discos": [],
+                "name": "greeting-client",
+                "depends_on": [
+                    "greeting-service",
+                    "naming-server",
+                    "rabbitmq",
+                    "zipkin-server"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "kmmanu/api-gateway",
+                "image_full": "kmmanu/api-gateway:0.0.2-SNAPSHOT",
+                "discos": [],
+                "name": "api-gateway-server",
+                "depends_on": [
+                    "naming-server",
+                    "rabbitmq",
+                    "zipkin-server"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": [
+                    "gateway"
+                ]
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "openzipkin/zipkin",
+                "image_full": "openzipkin/zipkin",
+                "discos": [],
+                "name": "zipkin-server",
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        },
+        "num_services": 6,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 2,
+    "servers": [
+        "spring"
+    ],
+    "url": "git://github.com/kmmanu/spring-boot-microservices.git",
+    "num_services": 6,
+    "gates": [
+        "zuul"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [
+                "amqp"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/api-gateway/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [
+                "amqp"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/greeting-client/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [
+                "amqp"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/greeting-service/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/service-registry/pom.xml"
+        }
+    ],
+    "name": "kmmanu/spring-boot-microservices",
+    "languages": [
+        "java",
+        "dockerfile"
+    ],
+    "images": [
+        "openjdk"
+    ],
+    "dbs": [],
+    "num_servers": 1,
+    "num_langs": 2
+}

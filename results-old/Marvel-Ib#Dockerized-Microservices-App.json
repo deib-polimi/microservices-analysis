@@ -1,0 +1,217 @@
+{
+    "dbs": [
+        "mysql"
+    ],
+    "name": "Marvel-Ib/Dockerized-Microservices-App",
+    "num_langs": 1,
+    "languages": [
+        "javascript"
+    ],
+    "shared_dbs": false,
+    "servers": [
+        "express",
+        "node"
+    ],
+    "langs": [
+        "javascript"
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "watch",
+                "yarn"
+            ],
+            "discos": [],
+            "cmd": "yarn watch",
+            "path": "/api-gateway/Dockerfile",
+            "from_full": "node",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "keywords": [
+                "yarn"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "watch",
+                "yarn"
+            ],
+            "discos": [],
+            "cmd": "yarn watch",
+            "path": "/verify-service/Dockerfile",
+            "from_full": "node",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "keywords": [
+                "yarn"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "watch",
+                "yarn"
+            ],
+            "discos": [],
+            "cmd": "yarn watch",
+            "path": "/users-service/Dockerfile",
+            "from_full": "node",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "keywords": [
+                "yarn"
+            ]
+        }
+    ],
+    "gates": [
+        "gateway"
+    ],
+    "size": 3259,
+    "num_dockers": 3,
+    "num_discos": 0,
+    "num_buses": 0,
+    "buses": [],
+    "images": [
+        "node"
+    ],
+    "num_servers": 2,
+    "num_services": 4,
+    "monitors": [],
+    "structure": {
+        "services": [
+            {
+                "buses": [],
+                "image": "mysql",
+                "dbs": [
+                    "mysql"
+                ],
+                "gates": [],
+                "image_full": "mysql",
+                "monitors": [],
+                "name": "users-service-db",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "./api-gateway",
+                "dbs": [],
+                "gates": [
+                    "gateway"
+                ],
+                "image_full": "./api-gateway",
+                "monitors": [],
+                "name": "api-gateway",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "users-service",
+                    "verify-service"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "./users-service",
+                "dbs": [],
+                "gates": [],
+                "image_full": "./users-service",
+                "monitors": [],
+                "name": "users-service",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "users-service-db"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "./verify-service",
+                "dbs": [],
+                "gates": [],
+                "image_full": "./verify-service",
+                "monitors": [],
+                "name": "verify-service",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            }
+        ],
+        "num_services": 4,
+        "detected_dbs": {
+            "num": 1,
+            "shared_dbs": false,
+            "names": [
+                "mysql"
+            ],
+            "services": [
+                "users-service-db"
+            ]
+        },
+        "path": "/docker-compose.yml"
+    },
+    "discos": [],
+    "num_files": 7,
+    "num_dbs": 1,
+    "num_monitors": 0,
+    "num_gates": 1,
+    "url": "git://github.com/Marvel-Ib/Dockerized-Microservices-App.git",
+    "avg_size_service": 1086.3333333333333,
+    "files": [
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/api-gateway/package.json"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/verify-service/package.json"
+        },
+        {
+            "buses": [],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/users-service/package.json"
+        }
+    ]
+}

@@ -1,0 +1,277 @@
+{
+    "size": 46991,
+    "shared_dbs": true,
+    "num_servers": 1,
+    "name": "ALiuGuanyan/distributed-tasks-scheduling",
+    "files": [
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "path": "/client/app/android/build.gradle",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "path": "/client/app/android/settings.gradle",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "path": "/client/app/android/app/build.gradle",
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "num_files": 6,
+    "num_langs": 3,
+    "dbs": [
+        "mongo"
+    ],
+    "servers": [
+        "node"
+    ],
+    "num_discos": 2,
+    "url": "git://github.com/ALiuGuanyan/distributed-tasks-scheduling.git",
+    "gates": [],
+    "structure": {
+        "services": [
+            {
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "image_full": "mongo",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "mongo",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": ".",
+                "dbs": [],
+                "image_full": ".",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "worker-microservice",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo"
+                ]
+            },
+            {
+                "image": "bitnami/etcd",
+                "dbs": [],
+                "image_full": "bitnami/etcd",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "etcd",
+                "gates": [],
+                "discos": [
+                    "etcd"
+                ],
+                "depends_on": []
+            },
+            {
+                "image": "gcr.io/google-containers/cadvisor",
+                "dbs": [],
+                "image_full": "gcr.io/google-containers/cadvisor",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "cadvisor",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "prom/node-exporter",
+                "dbs": [],
+                "image_full": "prom/node-exporter",
+                "buses": [],
+                "servers": [
+                    "node"
+                ],
+                "monitors": [],
+                "name": "node-exporter",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": ".",
+                "dbs": [],
+                "image_full": ".",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "worker-microservice-1",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo"
+                ]
+            },
+            {
+                "image": ".",
+                "dbs": [],
+                "image_full": ".",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "master-microservice",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo"
+                ]
+            },
+            {
+                "image": "prom/prometheus",
+                "dbs": [],
+                "image_full": "prom/prometheus",
+                "buses": [],
+                "servers": [],
+                "monitors": [
+                    "prometheus"
+                ],
+                "name": "prometheus",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "cadvisor",
+                    "grafana"
+                ]
+            },
+            {
+                "image": "grafana/grafana",
+                "dbs": [],
+                "image_full": "grafana/grafana",
+                "buses": [],
+                "servers": [],
+                "monitors": [
+                    "grafana"
+                ],
+                "name": "grafana",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "wongnai/grpcui",
+                "dbs": [],
+                "image_full": "wongnai/grpcui",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "grpcui",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "master-microservice"
+                ]
+            }
+        ],
+        "num_services": 10,
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "mongo"
+            ],
+            "services": [
+                "mongo"
+            ],
+            "shared_dbs": true
+        },
+        "path": "/microservices/docker-compose.yml"
+    },
+    "num_gates": 0,
+    "num_dockers": 2,
+    "num_dbs": 1,
+    "num_services": 10,
+    "langs": [
+        "dart",
+        "go",
+        "golang"
+    ],
+    "buses": [],
+    "num_buses": 0,
+    "num_monitors": 2,
+    "languages": [
+        "go",
+        "dart"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [
+                "main",
+                "app"
+            ],
+            "cmd": "/app/main",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "golang"
+            ],
+            "from": "liuguanyan/grpc-golang",
+            "monitors": [],
+            "from_full": "liuguanyan/grpc-golang",
+            "servers": [],
+            "path": "/microservices/tasks-manager-master-service/Dockerfile",
+            "dbs": [],
+            "keywords": [],
+            "discos": [
+                "grpc"
+            ]
+        },
+        {
+            "cmd_keywords": [
+                "main",
+                "app"
+            ],
+            "cmd": "/app/main",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "golang"
+            ],
+            "from": "liuguanyan/grpc-golang",
+            "monitors": [],
+            "from_full": "liuguanyan/grpc-golang",
+            "servers": [],
+            "path": "/microservices/tasks-manager-worker-service/Dockerfile",
+            "dbs": [],
+            "keywords": [],
+            "discos": [
+                "grpc"
+            ]
+        }
+    ],
+    "monitors": [
+        "grafana",
+        "prometheus"
+    ],
+    "avg_size_service": 23495.5,
+    "discos": [
+        "etcd",
+        "grpc"
+    ],
+    "images": [
+        "liuguanyan/grpc-golang"
+    ]
+}

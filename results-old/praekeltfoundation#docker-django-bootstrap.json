@@ -1,0 +1,180 @@
+{
+    "discos": [],
+    "avg_size_service": 240.75,
+    "buses": [],
+    "num_gates": 1,
+    "name": "praekeltfoundation/docker-django-bootstrap",
+    "structure": {
+        "path": [],
+        "services": [],
+        "detected_dbs": {
+            "names": [],
+            "num": 0,
+            "shared_dbs": false,
+            "services": []
+        },
+        "num_services": 0
+    },
+    "dbs": [],
+    "dockers": [
+        {
+            "langs": [
+                "python"
+            ],
+            "cmd_keywords": [],
+            "from_full": "praekeltfoundation/python-base:${PYTHON_VERSION}",
+            "buses": [],
+            "monitors": [],
+            "from": "praekeltfoundation/python-base",
+            "keywords": [
+                "nginx",
+                "key",
+                "apt",
+                "etc",
+                "signing"
+            ],
+            "gates": [
+                "nginx"
+            ],
+            "path": "/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": [
+                "django"
+            ]
+        },
+        {
+            "langs": [
+                "python"
+            ],
+            "cmd_keywords": [
+                "entrypoint",
+                "django"
+            ],
+            "from_full": "praekeltfoundation/python-base:alpine",
+            "buses": [],
+            "monitors": [],
+            "from": "praekeltfoundation/python-base",
+            "keywords": [
+                "gunicorn",
+                "celery",
+                "var",
+                "run",
+                "adduser"
+            ],
+            "gates": [
+                "nginx"
+            ],
+            "path": "/alpine/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "django-entrypoint.sh",
+            "servers": [
+                "django"
+            ]
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [],
+            "from_full": "praekeltfoundation/django-bootstrap:alpine-onbuild",
+            "buses": [],
+            "monitors": [],
+            "from": "praekeltfoundation/django-bootstrap",
+            "keywords": [
+                "noinput",
+                "admin",
+                "django",
+                "collectstatic"
+            ],
+            "gates": [],
+            "path": "/alpine/example/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": [
+                "django"
+            ]
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "wsgi",
+                "mysite",
+                "application"
+            ],
+            "from_full": "praekeltfoundation/django-bootstrap:$VARIANT",
+            "buses": [],
+            "monitors": [],
+            "from": "praekeltfoundation/django-bootstrap",
+            "keywords": [
+                "admin",
+                "install",
+                "django",
+                "pip",
+                "noinput"
+            ],
+            "gates": [],
+            "path": "/tests/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "mysite.wsgi:application",
+            "servers": [
+                "django"
+            ]
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "size": 963,
+    "num_monitors": 1,
+    "images": [
+        "praekeltfoundation/django-bootstrap",
+        "praekeltfoundation/python-base"
+    ],
+    "num_buses": 0,
+    "num_services": 0,
+    "servers": [
+        "django"
+    ],
+    "shared_dbs": false,
+    "monitors": [
+        "prometheus"
+    ],
+    "num_discos": 0,
+    "languages": [
+        "python"
+    ],
+    "url": "git://github.com/praekeltfoundation/docker-django-bootstrap.git",
+    "langs": [
+        "python"
+    ],
+    "num_dbs": 0,
+    "num_servers": 1,
+    "num_langs": 1,
+    "files": [
+        {
+            "path": "/gunicorn/requirements.txt",
+            "dbs": [],
+            "discos": [],
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "gates": []
+        },
+        {
+            "path": "/tests/requirements.txt",
+            "dbs": [],
+            "discos": [],
+            "servers": [],
+            "buses": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "gates": []
+        }
+    ],
+    "num_dockers": 4,
+    "num_files": 7
+}

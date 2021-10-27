@@ -1,0 +1,662 @@
+{
+    "dbs": [
+        "zookeeper",
+        "postgresql",
+        "mongo"
+    ],
+    "num_dbs": 3,
+    "shared_dbs": false,
+    "name": "pranav-patil/spring-microservices",
+    "num_buses": 1,
+    "num_monitors": 2,
+    "monitors": [
+        "turbine",
+        "elk"
+    ],
+    "langs": [
+        "java"
+    ],
+    "gates": [
+        "gateway"
+    ],
+    "size": 3672,
+    "languages": [
+        "java"
+    ],
+    "num_langs": 1,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "discos": [
+                    "zookeeper"
+                ],
+                "servers": [],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "image": "zookeeper",
+                "name": "zookeeper",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "zookeeper:3.4.12"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "./authorization-service",
+                "name": "authorization-service",
+                "depends_on": [
+                    "postgres-service",
+                    "config-service",
+                    "discovery-service",
+                    "elastic-stack"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "./authorization-service"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "openzipkin/zipkin",
+                "name": "zipkin-service",
+                "depends_on": [
+                    "kafka-broker"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "openzipkin/zipkin:2.10.1"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "./gateway-service",
+                "name": "gateway-service",
+                "depends_on": [
+                    "config-service",
+                    "discovery-service",
+                    "analytics-service",
+                    "elastic-stack"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "image_full": "./gateway-service"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "postgres",
+                "name": "postgres-service",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "postgres:11"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "./finance-service",
+                "name": "finance-service",
+                "depends_on": [
+                    "config-service",
+                    "discovery-service",
+                    "authorization-service",
+                    "elastic-stack"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "./finance-service"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "./elastic-stack",
+                "name": "elastic-stack",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "./elastic-stack"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "wurstmeister/kafka",
+                "name": "kafka-broker",
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "monitors": [],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "image_full": "wurstmeister/kafka:2.11-2.0.1"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "./config-service",
+                "name": "config-service",
+                "depends_on": [
+                    "elastic-stack"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "./config-service"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "./analytics-service",
+                "name": "analytics-service",
+                "depends_on": [
+                    "config-service",
+                    "discovery-service",
+                    "authorization-service",
+                    "elastic-stack"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "./analytics-service"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "portainer/portainer",
+                "name": "portainer",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "portainer/portainer"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "./discovery-service",
+                "name": "discovery-service",
+                "depends_on": [
+                    "config-service",
+                    "elastic-stack"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "./discovery-service"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "./data-service",
+                "name": "data-service",
+                "depends_on": [
+                    "postgres-service",
+                    "mongodb-service",
+                    "config-service",
+                    "discovery-service",
+                    "elastic-stack"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "./data-service"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "./monitor-service",
+                "name": "monitor-service",
+                "depends_on": [
+                    "config-service",
+                    "discovery-service",
+                    "elastic-stack"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "./monitor-service"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "image": "mongo",
+                "name": "mongodb-service",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "mongo:4.0"
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "zookeeper",
+                "mongodb-service"
+            ],
+            "names": [
+                "zookeeper",
+                "mongo"
+            ],
+            "shared_dbs": false,
+            "num": 2
+        },
+        "num_services": 15
+    },
+    "servers": [
+        "spring"
+    ],
+    "num_servers": 1,
+    "num_files": 23,
+    "images": [
+        "sebp/elk",
+        "java"
+    ],
+    "buses": [
+        "kafka"
+    ],
+    "avg_size_service": 408.0,
+    "num_services": 15,
+    "files": [
+        {
+            "path": "/build.gradle",
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "discos": []
+        },
+        {
+            "path": "/settings.gradle",
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [
+                "gateway"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "dbs": [],
+            "discos": []
+        },
+        {
+            "path": "/data-service/build.gradle",
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "dbs": [
+                "postgresql",
+                "mongo",
+                "mongodb"
+            ],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/zipkin-service/build.gradle",
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [
+                "kafka"
+            ],
+            "dbs": [],
+            "discos": []
+        },
+        {
+            "path": "/analytics-service/build.gradle",
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [
+                "kafka"
+            ],
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/gateway-service/build.gradle",
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [
+                "gateway"
+            ],
+            "buses": [],
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/finance-service/build.gradle",
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [
+                "kafka"
+            ],
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/discovery-service/build.gradle",
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/config-service/build.gradle",
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "discos": []
+        },
+        {
+            "path": "/kafka-broker/build.gradle",
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [
+                "kafka"
+            ],
+            "dbs": [
+                "zookeeper"
+            ],
+            "discos": [
+                "zookeeper"
+            ]
+        },
+        {
+            "path": "/monitor-service/build.gradle",
+            "servers": [
+                "spring"
+            ],
+            "monitors": [
+                "turbine"
+            ],
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/elastic-stack/build.gradle",
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "discos": []
+        },
+        {
+            "path": "/authorization-service/build.gradle",
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [
+                "eureka"
+            ]
+        }
+    ],
+    "num_dockers": 9,
+    "dockers": [
+        {
+            "cmd": "",
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "java:8-jre",
+            "path": "/data-service/Dockerfile",
+            "from": "java",
+            "monitors": [],
+            "langs": [
+                "java"
+            ],
+            "gates": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "touch",
+                "jar",
+                "app"
+            ]
+        },
+        {
+            "cmd": "",
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "java:8-jre",
+            "path": "/analytics-service/Dockerfile",
+            "from": "java",
+            "monitors": [],
+            "langs": [
+                "java"
+            ],
+            "gates": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "touch",
+                "jar",
+                "app"
+            ]
+        },
+        {
+            "cmd": "",
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "java:8-jre",
+            "path": "/gateway-service/Dockerfile",
+            "from": "java",
+            "monitors": [],
+            "langs": [
+                "java"
+            ],
+            "gates": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "touch",
+                "jar",
+                "app"
+            ]
+        },
+        {
+            "cmd": "",
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "java:8-jre",
+            "path": "/finance-service/Dockerfile",
+            "from": "java",
+            "monitors": [],
+            "langs": [
+                "java"
+            ],
+            "gates": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "touch",
+                "jar",
+                "app"
+            ]
+        },
+        {
+            "cmd": "",
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "java:8-jre",
+            "path": "/discovery-service/Dockerfile",
+            "from": "java",
+            "monitors": [],
+            "langs": [
+                "java"
+            ],
+            "gates": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "touch",
+                "jar",
+                "app"
+            ]
+        },
+        {
+            "cmd": "",
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "java:8-jre",
+            "path": "/config-service/Dockerfile",
+            "from": "java",
+            "monitors": [],
+            "langs": [
+                "java"
+            ],
+            "gates": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "touch",
+                "jar",
+                "app"
+            ]
+        },
+        {
+            "cmd": "",
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "java:8-jre",
+            "path": "/monitor-service/Dockerfile",
+            "from": "java",
+            "monitors": [],
+            "langs": [
+                "java"
+            ],
+            "gates": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "touch",
+                "jar",
+                "app"
+            ]
+        },
+        {
+            "cmd": "",
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "sebp/elk:631",
+            "path": "/elastic-stack/Dockerfile",
+            "from": "sebp/elk",
+            "monitors": [
+                "elk"
+            ],
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": []
+        },
+        {
+            "cmd": "",
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "java:8-jre",
+            "path": "/authorization-service/Dockerfile",
+            "from": "java",
+            "monitors": [],
+            "langs": [
+                "java"
+            ],
+            "gates": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "touch",
+                "jar",
+                "app"
+            ]
+        }
+    ],
+    "num_discos": 2,
+    "discos": [
+        "eureka",
+        "zookeeper"
+    ],
+    "num_gates": 1,
+    "url": "git://github.com/pranav-patil/spring-microservices.git"
+}

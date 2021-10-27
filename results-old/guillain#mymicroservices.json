@@ -1,0 +1,472 @@
+{
+    "monitors": [],
+    "structure": {
+        "path": "/services/data/..:/docker-compose.yml",
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [
+                "redis"
+            ],
+            "names": [
+                "redis"
+            ],
+            "num": 1
+        },
+        "services": [
+            {
+                "image": "redis",
+                "buses": [],
+                "monitors": [],
+                "image_full": "redis:alpine",
+                "gates": [],
+                "name": "redis",
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "redis"
+                ],
+                "depends_on": []
+            },
+            {
+                "image": ".",
+                "buses": [],
+                "monitors": [],
+                "image_full": ".",
+                "gates": [],
+                "name": "web",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            }
+        ],
+        "num_services": 2
+    },
+    "num_langs": 3,
+    "name": "guillain/mymicroservices",
+    "num_dockers": 10,
+    "buses": [
+        "amqp",
+        "mosquitto",
+        "mqtt",
+        "rabbitmq"
+    ],
+    "dbs": [
+        "foundation",
+        "redis",
+        "mongo"
+    ],
+    "size": 3515,
+    "num_discos": 0,
+    "shared_dbs": false,
+    "discos": [],
+    "images": [
+        "python",
+        "nginx",
+        "mhart/alpine-node"
+    ],
+    "num_servers": 2,
+    "files": [
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/services/tropo/requirements.txt",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/services/spark/requirements.txt",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/services/data/requirements.txt",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/services/data/..:/requirements.txt",
+            "discos": [],
+            "dbs": [
+                "redis"
+            ]
+        },
+        {
+            "gates": [],
+            "buses": [
+                "mqtt"
+            ],
+            "monitors": [],
+            "servers": [],
+            "path": "/services/mqttsub/requirements.txt",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [
+                "mqtt"
+            ],
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/services/api/requirements.txt",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/services/web/requirements.txt",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [
+                "amqp",
+                "mosquitto",
+                "mqtt",
+                "rabbitmq"
+            ],
+            "monitors": [],
+            "servers": [
+                "node"
+            ],
+            "path": "/services/mqttpub/package.json",
+            "discos": [],
+            "dbs": [
+                "foundation",
+                "mongodb",
+                "mongo"
+            ]
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [],
+            "path": "/services/ui/package.json",
+            "discos": [],
+            "dbs": []
+        }
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "tropo",
+                "python",
+                "app"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "python",
+            "path": "/services/tropo/Dockerfile",
+            "from_full": "python:2-alpine",
+            "cmd": "python -u ./tropo/app.py",
+            "keywords": [
+                "install",
+                "cache",
+                "apk",
+                "pip",
+                "txt"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "mhart/alpine-node",
+            "path": "/services/mqttpub/Dockerfile",
+            "from_full": "mhart/alpine-node:4",
+            "cmd": "",
+            "keywords": [
+                "apk",
+                "dev",
+                "git",
+                "make",
+                "gcc"
+            ],
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "langs": [
+                "gcc"
+            ]
+        },
+        {
+            "buses": [
+                "mqtt"
+            ],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "mhart/alpine-node",
+            "path": "/services/mqttpub/examples/kafka/Dockerfile",
+            "from_full": "mhart/alpine-node:4",
+            "cmd": "",
+            "keywords": [
+                "mqtt",
+                "dev",
+                "browserify",
+                "mkdir",
+                "apk"
+            ],
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "langs": [
+                "gcc"
+            ]
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "spark",
+                "python",
+                "app"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "python",
+            "path": "/services/spark/Dockerfile",
+            "from_full": "python:2-alpine",
+            "cmd": "python ./spark/app.py",
+            "keywords": [
+                "install",
+                "cache",
+                "apk",
+                "pip",
+                "txt"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "python",
+                "app",
+                "data"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "python",
+            "path": "/services/data/Dockerfile",
+            "from_full": "python:2-alpine",
+            "cmd": "python -u ./data/app.py",
+            "keywords": [
+                "install",
+                "cache",
+                "apk",
+                "pip",
+                "txt"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "python",
+                "app"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "python",
+            "path": "/services/data/..:/Dockerfile",
+            "from_full": "python:3.4-alpine",
+            "cmd": "python app.py",
+            "keywords": [
+                "txt",
+                "pip",
+                "install",
+                "requirements"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "root",
+                "env",
+                "setup"
+            ],
+            "gates": [
+                "nginx"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "from": "nginx",
+            "path": "/services/ui/Dockerfile",
+            "from_full": "nginx",
+            "cmd": "/root/env_setup.sh",
+            "keywords": [
+                "chmod",
+                "root",
+                "env",
+                "setup"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "mqttsub",
+                "python",
+                "app"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "python",
+            "path": "/services/mqttsub/Dockerfile",
+            "from_full": "python:2-alpine",
+            "cmd": "python -u ./mqttsub/app.py",
+            "keywords": [
+                "install",
+                "cache",
+                "apk",
+                "pip",
+                "txt"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "python",
+                "api",
+                "app"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "python",
+            "path": "/services/api/Dockerfile",
+            "from_full": "python:2-alpine",
+            "cmd": "python -u ./api/app.py",
+            "keywords": [
+                "install",
+                "cache",
+                "apk",
+                "pip",
+                "txt"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "python",
+                "web",
+                "app"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "python",
+            "path": "/services/web/Dockerfile",
+            "from_full": "python:2-alpine",
+            "cmd": "python -u ./web/app.py",
+            "keywords": [
+                "install",
+                "cache",
+                "apk",
+                "pip",
+                "txt"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": [
+                "python"
+            ]
+        }
+    ],
+    "url": "git://github.com/guillain/mymicroservices.git",
+    "gates": [
+        "nginx"
+    ],
+    "num_files": 20,
+    "num_services": 2,
+    "num_gates": 1,
+    "num_dbs": 3,
+    "avg_size_service": 351.5,
+    "langs": [
+        "python",
+        "javascript",
+        "gcc"
+    ],
+    "num_buses": 4,
+    "languages": [
+        "javascript",
+        "python"
+    ],
+    "num_monitors": 0,
+    "servers": [
+        "flask",
+        "node"
+    ]
+}

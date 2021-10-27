@@ -1,0 +1,239 @@
+{
+    "size": 317,
+    "shared_dbs": false,
+    "num_servers": 1,
+    "name": "Suraj-Chadha/pro",
+    "files": [],
+    "num_files": 5,
+    "num_langs": 1,
+    "dbs": [
+        "zookeeper"
+    ],
+    "servers": [
+        "flask"
+    ],
+    "num_discos": 1,
+    "url": "git://github.com/Suraj-Chadha/pro.git",
+    "gates": [],
+    "structure": {
+        "services": [
+            {
+                "image": "zookeeper",
+                "dbs": [
+                    "zookeeper"
+                ],
+                "image_full": "zookeeper",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "zoo1",
+                "gates": [],
+                "discos": [
+                    "zookeeper"
+                ],
+                "depends_on": []
+            },
+            {
+                "image": "persistentdb",
+                "dbs": [],
+                "image_full": "persistentdb",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "persistentdb",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "orchestrator_service"
+                ]
+            },
+            {
+                "image": "rabbitmq",
+                "dbs": [],
+                "image_full": "rabbitmq:latest",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "servers": [],
+                "monitors": [],
+                "name": "rabbitmq",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "orchestrator_microservice",
+                "dbs": [],
+                "image_full": "orchestrator_microservice",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "orchestrator_service",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "rabbitmq"
+                ]
+            },
+            {
+                "image": "master-slave",
+                "dbs": [],
+                "image_full": "master-slave",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "master",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "orchestrator_service"
+                ]
+            }
+        ],
+        "num_services": 5,
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "zookeeper"
+            ],
+            "services": [
+                "zoo1"
+            ],
+            "shared_dbs": false
+        },
+        "path": "/project/docker-compose.yml"
+    },
+    "num_gates": 0,
+    "num_dockers": 4,
+    "num_dbs": 1,
+    "num_services": 5,
+    "langs": [
+        "python"
+    ],
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_buses": 1,
+    "num_monitors": 0,
+    "languages": [
+        "python"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [
+                "python"
+            ],
+            "cmd": "python3 ms.py",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "from": "ubuntu",
+            "monitors": [],
+            "from_full": "ubuntu:18.04",
+            "servers": [
+                "flask"
+            ],
+            "path": "/project/slave/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "install",
+                "apt",
+                "python",
+                "pip",
+                "flask"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "persistentdb",
+                "python"
+            ],
+            "cmd": "python3 persistentDb.py",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "from": "ubuntu",
+            "monitors": [],
+            "from_full": "ubuntu:18.04",
+            "servers": [],
+            "path": "/project/persistentdb/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "install",
+                "apt",
+                "pip",
+                "python",
+                "requests"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "orchestrator",
+                "python"
+            ],
+            "cmd": "python3 orchestrator.py",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "from": "ubuntu",
+            "monitors": [],
+            "from_full": "ubuntu:18.04",
+            "servers": [
+                "flask"
+            ],
+            "path": "/project/orchestrator_microservice/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "install",
+                "apt",
+                "flask",
+                "sqlalchemy",
+                "python"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "python"
+            ],
+            "cmd": "python3 ms0.py",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "from": "ubuntu",
+            "monitors": [],
+            "from_full": "ubuntu:18.04",
+            "servers": [],
+            "path": "/project/master-slave/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "install",
+                "apt",
+                "pip",
+                "python",
+                "requests"
+            ],
+            "discos": []
+        }
+    ],
+    "monitors": [],
+    "avg_size_service": 79.25,
+    "discos": [
+        "zookeeper"
+    ],
+    "images": [
+        "ubuntu"
+    ]
+}

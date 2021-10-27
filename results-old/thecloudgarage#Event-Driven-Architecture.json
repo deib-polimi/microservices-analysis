@@ -1,0 +1,437 @@
+{
+    "num_files": 10,
+    "num_services": 12,
+    "num_discos": 1,
+    "gates": [],
+    "languages": [
+        "java",
+        "html"
+    ],
+    "num_dbs": 2,
+    "dbs": [
+        "postgresql",
+        "zookeeper"
+    ],
+    "num_monitors": 0,
+    "structure": {
+        "detected_dbs": {
+            "shared_dbs": true,
+            "num": 1,
+            "services": [
+                "zookeeper"
+            ],
+            "names": [
+                "zookeeper"
+            ]
+        },
+        "num_services": 12,
+        "services": [
+            {
+                "image_full": "confluentinc/cp-kafka-connect:3.3.0",
+                "image": "confluentinc/cp-kafka-connect",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "zookeeper",
+                    "kafka"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "name": "connect"
+            },
+            {
+                "image_full": "../microservice-kafka/microservice-kafka-shipping",
+                "image": "../microservice-kafka/microservice-kafka-shipping",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "kafka",
+                    "postgresql"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "name": "shipping"
+            },
+            {
+                "image_full": "landoop/kafka-connect-ui:latest",
+                "image": "landoop/kafka-connect-ui",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "zookeeper",
+                    "kafka",
+                    "connect"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "name": "kafka-connect-ui"
+            },
+            {
+                "image_full": "postgres",
+                "image": "postgres",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "postgresql"
+            },
+            {
+                "image_full": "../microservice-kafka/microservice-kafka-order",
+                "image": "../microservice-kafka/microservice-kafka-order",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "kafka",
+                    "postgresql"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "name": "order"
+            },
+            {
+                "image_full": "landoop/kafka-topics-ui:latest",
+                "image": "landoop/kafka-topics-ui",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "zookeeper",
+                    "kafka",
+                    "kafka-rest-proxy"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "name": "kafka-topics-ui"
+            },
+            {
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:7.6.1",
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "zookeeper",
+                    "kafka"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "elasticsearch"
+            },
+            {
+                "image_full": "confluentinc/cp-kafka-rest:4.1.1",
+                "image": "confluentinc/cp-kafka-rest",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "zookeeper",
+                    "kafka"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "name": "kafka-rest-proxy"
+            },
+            {
+                "image_full": "confluentinc/cp-kafka:latest",
+                "image": "confluentinc/cp-kafka",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "name": "kafka"
+            },
+            {
+                "image_full": "apache",
+                "image": "apache",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "order",
+                    "shipping",
+                    "invoicing"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "apache"
+            },
+            {
+                "image_full": "confluentinc/cp-zookeeper:latest",
+                "image": "confluentinc/cp-zookeeper",
+                "dbs": [
+                    "zookeeper"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [
+                    "zookeeper"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "zookeeper"
+            },
+            {
+                "image_full": "../microservice-kafka/microservice-kafka-invoicing",
+                "image": "../microservice-kafka/microservice-kafka-invoicing",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "kafka",
+                    "postgresql"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "name": "invoicing"
+            }
+        ],
+        "path": "/docker/docker-compose.yml"
+    },
+    "discos": [
+        "zookeeper"
+    ],
+    "url": "git://github.com/thecloudgarage/Event-Driven-Architecture.git",
+    "num_buses": 1,
+    "files": [
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "discos": [],
+            "buses": [
+                "kafka"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/microservice-kafka/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "postgresql",
+                "hsqldb"
+            ],
+            "discos": [],
+            "buses": [
+                "kafka"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/microservice-kafka/microservice-kafka-shipping/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "postgresql",
+                "hsqldb"
+            ],
+            "discos": [],
+            "buses": [
+                "kafka"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/microservice-kafka/microservice-kafka-invoicing/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "postgresql",
+                "hsqldb"
+            ],
+            "discos": [],
+            "buses": [
+                "kafka"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/microservice-kafka/microservice-kafka-order/pom.xml"
+        }
+    ],
+    "name": "thecloudgarage/Event-Driven-Architecture",
+    "servers": [
+        "spring"
+    ],
+    "num_dockers": 5,
+    "buses": [
+        "kafka"
+    ],
+    "num_gates": 0,
+    "num_langs": 2,
+    "shared_dbs": true,
+    "monitors": [],
+    "dockers": [
+        {
+            "servers": [],
+            "from": "ubuntu",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/docker/apache/Dockerfile",
+            "keywords": [
+                "proxy",
+                "get",
+                "apache",
+                "apt",
+                "var"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "foreground",
+                "apache",
+                "ctl"
+            ],
+            "discos": [],
+            "cmd": "apache2ctl -D FOREGROUND",
+            "from_full": "ubuntu:16.04"
+        },
+        {
+            "servers": [],
+            "from": "postgres",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/docker/postgres/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "postgres:9.6.3"
+        },
+        {
+            "servers": [],
+            "from": "openjdk",
+            "buses": [
+                "kafka"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/microservice-kafka/microservice-kafka-shipping/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [
+                "jar",
+                "bin",
+                "microservice",
+                "shipping",
+                "xms"
+            ],
+            "discos": [],
+            "cmd": "/usr/bin/java -Xmx400m -Xms400m  -XX:TieredStopAtLevel=1 -noverify -jar microservice-kafka-shipping-0.0.1-SNAPSHOT.jar",
+            "from_full": "openjdk:11.0.2-jre-slim"
+        },
+        {
+            "servers": [],
+            "from": "openjdk",
+            "buses": [
+                "kafka"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/microservice-kafka/microservice-kafka-invoicing/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [
+                "jar",
+                "bin",
+                "microservice",
+                "xms",
+                "java"
+            ],
+            "discos": [],
+            "cmd": "/usr/bin/java -Xmx400m -Xms400m  -XX:TieredStopAtLevel=1 -noverify -jar microservice-kafka-invoicing-0.0.1-SNAPSHOT.jar",
+            "from_full": "openjdk:11.0.2-jre-slim"
+        },
+        {
+            "servers": [],
+            "from": "openjdk",
+            "buses": [
+                "kafka"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/microservice-kafka/microservice-kafka-order/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [
+                "jar",
+                "bin",
+                "microservice",
+                "xms",
+                "java"
+            ],
+            "discos": [],
+            "cmd": "/usr/bin/java -Xmx400m -Xms400m  -XX:TieredStopAtLevel=1 -noverify -jar microservice-kafka-order-0.0.1-SNAPSHOT.jar",
+            "from_full": "openjdk:11.0.2-jre-slim"
+        }
+    ],
+    "langs": [
+        "java",
+        "html"
+    ],
+    "num_servers": 1,
+    "size": 214,
+    "images": [
+        "ubuntu",
+        "postgres",
+        "openjdk"
+    ],
+    "avg_size_service": 42.8
+}

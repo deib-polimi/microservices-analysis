@@ -1,0 +1,235 @@
+{
+    "num_dbs": 2,
+    "dbs": [
+        "mongo",
+        "postgresql"
+    ],
+    "images": [
+        "java",
+        "postgres"
+    ],
+    "langs": [
+        "java",
+        "dockerfile"
+    ],
+    "size": 17,
+    "num_discos": 0,
+    "dockers": [
+        {
+            "dbs": [],
+            "from": "postgres",
+            "keywords": [],
+            "from_full": "postgres:9.6",
+            "langs": [],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "",
+            "path": "/docker-images/postgresql/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "from": "java",
+            "keywords": [
+                "app",
+                "bash",
+                "touch",
+                "jar"
+            ],
+            "from_full": "java:8",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "",
+            "path": "/peacekeeper-service/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "servers": [
+        "jboss",
+        "spring"
+    ],
+    "monitors": [],
+    "num_dockers": 2,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 5,
+        "detected_dbs": {
+            "services": [
+                "mongodb",
+                "keycloak-relational-database"
+            ],
+            "names": [
+                "mongo",
+                "postgresql"
+            ],
+            "num": 2,
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "depends_on": [],
+                "image_full": "mongo",
+                "buses": [],
+                "name": "mongodb",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "jjeurissen/peacepact-peacekeeper-service",
+                "dbs": [],
+                "depends_on": [
+                    "mongodb",
+                    "keycloak"
+                ],
+                "image_full": "jjeurissen/peacepact-peacekeeper-service:latest",
+                "buses": [],
+                "name": "peacekeeper-service",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "keycloak-postgresql-database",
+                "dbs": [
+                    "postgresql"
+                ],
+                "depends_on": [],
+                "image_full": "keycloak-postgresql-database",
+                "buses": [],
+                "name": "keycloak-relational-database",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "jboss/keycloak",
+                "dbs": [],
+                "depends_on": [
+                    "keycloak-relational-database"
+                ],
+                "image_full": "jboss/keycloak",
+                "buses": [],
+                "name": "keycloak",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": [
+                    "jboss"
+                ]
+            },
+            {
+                "image": "dockercloud/haproxy",
+                "dbs": [],
+                "depends_on": [
+                    "peacekeeper-service"
+                ],
+                "image_full": "dockercloud/haproxy",
+                "buses": [],
+                "name": "ha_peacekeeper",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            }
+        ]
+    },
+    "num_buses": 0,
+    "gates": [],
+    "discos": [],
+    "num_gates": 0,
+    "num_services": 5,
+    "name": "j-jeurissen/peacepact",
+    "shared_dbs": false,
+    "avg_size_service": 8.5,
+    "num_langs": 2,
+    "num_servers": 2,
+    "languages": [
+        "java",
+        "dockerfile"
+    ],
+    "buses": [],
+    "files": [
+        {
+            "dbs": [],
+            "buses": [],
+            "path": "/build.gradle",
+            "monitors": [],
+            "gates": [],
+            "discos": [],
+            "servers": []
+        },
+        {
+            "dbs": [],
+            "buses": [],
+            "path": "/settings.gradle",
+            "monitors": [],
+            "gates": [],
+            "discos": [],
+            "servers": []
+        },
+        {
+            "dbs": [
+                "mongodb"
+            ],
+            "buses": [],
+            "path": "/peacekeeper-service/build.gradle",
+            "monitors": [],
+            "gates": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "dbs": [],
+            "buses": [],
+            "path": "/peacekeeper-service/settings.gradle",
+            "monitors": [],
+            "gates": [],
+            "discos": [],
+            "servers": []
+        },
+        {
+            "dbs": [
+                "mongodb"
+            ],
+            "buses": [],
+            "path": "/pom.xml",
+            "monitors": [],
+            "gates": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "dbs": [],
+            "buses": [],
+            "path": "/peacekeeper-service/pom.xml",
+            "monitors": [],
+            "gates": [],
+            "discos": [],
+            "servers": []
+        }
+    ],
+    "url": "git://github.com/j-jeurissen/peacepact.git",
+    "num_files": 9,
+    "num_monitors": 0
+}

@@ -1,0 +1,536 @@
+{
+    "discos": [],
+    "avg_size_service": 15.0,
+    "buses": [],
+    "num_gates": 1,
+    "name": "meanbee/docker-magento2",
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "varnish",
+                "dbs": [],
+                "depends_on": [
+                    "web"
+                ],
+                "discos": [],
+                "image_full": "meanbee/magento2-varnish:latest",
+                "image": "meanbee/magento2-varnish",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "web",
+                "dbs": [],
+                "depends_on": [
+                    "fpm",
+                    "db"
+                ],
+                "discos": [],
+                "image_full": "meanbee/magento2-nginx:1.9",
+                "image": "meanbee/magento2-nginx",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": [
+                    "nginx"
+                ]
+            },
+            {
+                "name": "cli",
+                "dbs": [],
+                "depends_on": [
+                    "db"
+                ],
+                "discos": [],
+                "image_full": "meanbee/magento2-php:7.0-cli",
+                "image": "meanbee/magento2-php",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "fpm",
+                "dbs": [],
+                "depends_on": [
+                    "db"
+                ],
+                "discos": [],
+                "image_full": "meanbee/magento2-php:7.0-fpm",
+                "image": "meanbee/magento2-php",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "dbdata",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "tianon/true",
+                "image": "tianon/true",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "cron",
+                "dbs": [],
+                "depends_on": [
+                    "db"
+                ],
+                "discos": [],
+                "image_full": "meanbee/magento2-php:7.0-cli",
+                "image": "meanbee/magento2-php",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "db",
+                "dbs": [
+                    "mariadb"
+                ],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "mariadb:10",
+                "image": "mariadb",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "appdata",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "tianon/true",
+                "image": "tianon/true",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [
+                "mariadb"
+            ],
+            "num": 1,
+            "shared_dbs": true,
+            "services": [
+                "db"
+            ]
+        },
+        "num_services": 8
+    },
+    "dbs": [
+        "mysql"
+    ],
+    "dockers": [
+        {
+            "langs": [
+                "php"
+            ],
+            "cmd_keywords": [
+                "bash"
+            ],
+            "from_full": "php:7.0-cli",
+            "buses": [],
+            "monitors": [],
+            "from": "php",
+            "keywords": [
+                "phar",
+                "usr",
+                "bin",
+                "local",
+                "chmod"
+            ],
+            "gates": [],
+            "path": "/7.0-cli/Dockerfile",
+            "dbs": [
+                "mysql"
+            ],
+            "discos": [],
+            "cmd": "bash",
+            "servers": []
+        },
+        {
+            "langs": [
+                "php"
+            ],
+            "cmd_keywords": [
+                "bash"
+            ],
+            "from_full": "php:7.1-cli",
+            "buses": [],
+            "monitors": [],
+            "from": "php",
+            "keywords": [
+                "phar",
+                "usr",
+                "bin",
+                "local",
+                "chmod"
+            ],
+            "gates": [],
+            "path": "/7.1-cli/Dockerfile",
+            "dbs": [
+                "mysql"
+            ],
+            "discos": [],
+            "cmd": "bash",
+            "servers": []
+        },
+        {
+            "langs": [
+                "php"
+            ],
+            "cmd_keywords": [
+                "bash"
+            ],
+            "from_full": "php:7.3-cli",
+            "buses": [],
+            "monitors": [],
+            "from": "php",
+            "keywords": [
+                "phar",
+                "usr",
+                "bin",
+                "local",
+                "chmod"
+            ],
+            "gates": [],
+            "path": "/7.3-cli/Dockerfile",
+            "dbs": [
+                "mysql"
+            ],
+            "discos": [],
+            "cmd": "bash",
+            "servers": []
+        },
+        {
+            "langs": [
+                "php"
+            ],
+            "cmd_keywords": [
+                "fpm",
+                "php"
+            ],
+            "from_full": "php:7.0-fpm",
+            "buses": [],
+            "monitors": [],
+            "from": "php",
+            "keywords": [
+                "dev",
+                "install",
+                "docker",
+                "php",
+                "usr"
+            ],
+            "gates": [],
+            "path": "/7.0-fpm/Dockerfile",
+            "dbs": [
+                "mysql"
+            ],
+            "discos": [],
+            "cmd": "php-fpm -F",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "daemon",
+                "nginx",
+                "off"
+            ],
+            "from_full": "nginx:1.9",
+            "buses": [],
+            "monitors": [],
+            "from": "nginx",
+            "keywords": [
+                "usr",
+                "chmod",
+                "environment",
+                "local",
+                "docker"
+            ],
+            "gates": [
+                "nginx"
+            ],
+            "path": "/nginx/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "nginx -g daemon off;",
+            "servers": []
+        },
+        {
+            "langs": [
+                "php"
+            ],
+            "cmd_keywords": [
+                "fpm",
+                "php"
+            ],
+            "from_full": "php:7.4-fpm",
+            "buses": [],
+            "monitors": [],
+            "from": "php",
+            "keywords": [
+                "dev",
+                "install",
+                "docker",
+                "php",
+                "with"
+            ],
+            "gates": [],
+            "path": "/7.4-fpm/Dockerfile",
+            "dbs": [
+                "mysql"
+            ],
+            "discos": [],
+            "cmd": "php-fpm -F",
+            "servers": []
+        },
+        {
+            "langs": [
+                "php"
+            ],
+            "cmd_keywords": [
+                "fpm",
+                "php"
+            ],
+            "from_full": "php:7.3-fpm",
+            "buses": [],
+            "monitors": [],
+            "from": "php",
+            "keywords": [
+                "dev",
+                "install",
+                "docker",
+                "php",
+                "usr"
+            ],
+            "gates": [],
+            "path": "/7.3-fpm/Dockerfile",
+            "dbs": [
+                "mysql"
+            ],
+            "discos": [],
+            "cmd": "php-fpm -F",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "run"
+            ],
+            "from_full": "cweagans/bg-sync:latest",
+            "buses": [],
+            "monitors": [],
+            "from": "cweagans/bg-sync",
+            "keywords": [
+                "chown",
+                "var",
+                "www",
+                "magento"
+            ],
+            "gates": [],
+            "path": "/data/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "run.sh",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [],
+            "from_full": "million12/varnish",
+            "buses": [],
+            "monitors": [],
+            "from": "million12/varnish",
+            "keywords": [],
+            "gates": [],
+            "path": "/varnish/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        },
+        {
+            "langs": [
+                "php"
+            ],
+            "cmd_keywords": [
+                "fpm",
+                "php"
+            ],
+            "from_full": "php:7.2-fpm",
+            "buses": [],
+            "monitors": [],
+            "from": "php",
+            "keywords": [
+                "dev",
+                "install",
+                "docker",
+                "php",
+                "usr"
+            ],
+            "gates": [],
+            "path": "/7.2-fpm/Dockerfile",
+            "dbs": [
+                "mysql"
+            ],
+            "discos": [],
+            "cmd": "php-fpm -F",
+            "servers": []
+        },
+        {
+            "langs": [
+                "php"
+            ],
+            "cmd_keywords": [
+                "bash"
+            ],
+            "from_full": "php:7.2-cli",
+            "buses": [],
+            "monitors": [],
+            "from": "php",
+            "keywords": [
+                "phar",
+                "usr",
+                "bin",
+                "local",
+                "chmod"
+            ],
+            "gates": [],
+            "path": "/7.2-cli/Dockerfile",
+            "dbs": [
+                "mysql"
+            ],
+            "discos": [],
+            "cmd": "bash",
+            "servers": []
+        },
+        {
+            "langs": [
+                "php"
+            ],
+            "cmd_keywords": [
+                "bash"
+            ],
+            "from_full": "php:7.4-cli",
+            "buses": [],
+            "monitors": [],
+            "from": "php",
+            "keywords": [
+                "phar",
+                "bin",
+                "usr",
+                "local",
+                "chmod"
+            ],
+            "gates": [],
+            "path": "/7.4-cli/Dockerfile",
+            "dbs": [
+                "mysql"
+            ],
+            "discos": [],
+            "cmd": "bash",
+            "servers": []
+        },
+        {
+            "langs": [
+                "php"
+            ],
+            "cmd_keywords": [
+                "fpm",
+                "php"
+            ],
+            "from_full": "php:7.1-fpm",
+            "buses": [],
+            "monitors": [],
+            "from": "php",
+            "keywords": [
+                "dev",
+                "install",
+                "docker",
+                "php",
+                "usr"
+            ],
+            "gates": [],
+            "path": "/7.1-fpm/Dockerfile",
+            "dbs": [
+                "mysql"
+            ],
+            "discos": [],
+            "cmd": "php-fpm -F",
+            "servers": []
+        },
+        {
+            "langs": [
+                "php"
+            ],
+            "cmd_keywords": [],
+            "from_full": "<?php",
+            "buses": [],
+            "monitors": [],
+            "from": "<?php",
+            "keywords": [
+                "php",
+                "with",
+                "docker",
+                "install",
+                "ext"
+            ],
+            "gates": [],
+            "path": "/src/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "size": 210,
+    "num_monitors": 0,
+    "images": [
+        "nginx",
+        "million12/varnish",
+        "<?php",
+        "php",
+        "cweagans/bg-sync"
+    ],
+    "num_buses": 0,
+    "num_services": 8,
+    "servers": [],
+    "shared_dbs": true,
+    "monitors": [],
+    "num_discos": 0,
+    "languages": [
+        "php",
+        "shell",
+        "dockerfile"
+    ],
+    "url": "git://github.com/meanbee/docker-magento2.git",
+    "langs": [
+        "dockerfile",
+        "php",
+        "shell"
+    ],
+    "num_dbs": 1,
+    "num_servers": 0,
+    "num_langs": 3,
+    "files": [],
+    "num_dockers": 14,
+    "num_files": 15
+}

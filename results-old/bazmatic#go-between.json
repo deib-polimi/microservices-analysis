@@ -1,0 +1,161 @@
+{
+    "num_services": 4,
+    "dbs": [],
+    "name": "bazmatic/go-between",
+    "files": [],
+    "discos": [],
+    "num_gates": 0,
+    "num_buses": 1,
+    "langs": [
+        "go",
+        "dockerfile",
+        "golang"
+    ],
+    "gates": [],
+    "num_monitors": 0,
+    "monitors": [],
+    "images": [
+        "golang"
+    ],
+    "structure": {
+        "num_services": 4,
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "names": [],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "postgres:10.3",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "postgresql",
+                "image": "postgres"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "nats",
+                    "postgresql"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": ".",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "microservice",
+                "image": "."
+            },
+            {
+                "buses": [
+                    "nats"
+                ],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "nats:latest",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "nats",
+                "image": "nats"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "nats"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": ".",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "apigateway",
+                "image": "."
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "shared_dbs": false,
+    "languages": [
+        "go",
+        "dockerfile"
+    ],
+    "avg_size_service": 9.0,
+    "buses": [
+        "nats"
+    ],
+    "dockers": [
+        {
+            "from_full": "golang:latest",
+            "langs": [
+                "golang"
+            ],
+            "dbs": [],
+            "path": "/api-gateway/Dockerfile",
+            "buses": [
+                "nats"
+            ],
+            "cmd_keywords": [
+                "start"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "golang",
+            "keywords": [
+                "bash",
+                "com",
+                "get",
+                "github",
+                "bin"
+            ],
+            "cmd": "./start.sh"
+        },
+        {
+            "from_full": "golang:latest",
+            "langs": [
+                "golang"
+            ],
+            "dbs": [],
+            "path": "/microservice/Dockerfile",
+            "buses": [
+                "nats"
+            ],
+            "cmd_keywords": [
+                "start"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "golang",
+            "keywords": [
+                "bash",
+                "get",
+                "github",
+                "bin",
+                "com"
+            ],
+            "cmd": "./start.sh"
+        }
+    ],
+    "servers": [],
+    "num_dockers": 2,
+    "url": "git://github.com/bazmatic/go-between.git",
+    "num_dbs": 0,
+    "num_servers": 0,
+    "num_discos": 0,
+    "num_langs": 3,
+    "num_files": 3,
+    "size": 18
+}

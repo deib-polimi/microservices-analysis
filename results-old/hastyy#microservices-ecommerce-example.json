@@ -1,0 +1,318 @@
+{
+    "gates": [
+        "zuul"
+    ],
+    "num_buses": 0,
+    "url": "git://github.com/hastyy/microservices-ecommerce-example.git",
+    "images": [
+        "openjdk"
+    ],
+    "avg_size_service": 88.4,
+    "num_langs": 1,
+    "num_monitors": 0,
+    "num_dockers": 5,
+    "num_discos": 1,
+    "num_servers": 2,
+    "buses": [],
+    "discos": [
+        "eureka"
+    ],
+    "dockers": [
+        {
+            "path": "/users-microservice/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "openjdk:11",
+            "monitors": [],
+            "keywords": [
+                "dockerize",
+                "tar",
+                "version",
+                "linux",
+                "amd"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/api-gateway/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "openjdk:11",
+            "monitors": [],
+            "keywords": [
+                "dockerize",
+                "tar",
+                "version",
+                "linux",
+                "amd"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/discovery-server/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "openjdk:11",
+            "monitors": [],
+            "keywords": [],
+            "buses": []
+        },
+        {
+            "path": "/products-microservice/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "openjdk:11",
+            "monitors": [],
+            "keywords": [
+                "dockerize",
+                "tar",
+                "version",
+                "linux",
+                "amd"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/orders-microservice/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "openjdk:11",
+            "monitors": [],
+            "keywords": [
+                "dockerize",
+                "tar",
+                "version",
+                "linux",
+                "amd"
+            ],
+            "buses": []
+        }
+    ],
+    "size": 442,
+    "name": "hastyy/microservices-ecommerce-example",
+    "num_services": 6,
+    "dbs": [
+        "postgresql"
+    ],
+    "shared_dbs": false,
+    "langs": [
+        "java"
+    ],
+    "languages": [
+        "java"
+    ],
+    "servers": [
+        "spring",
+        "glassfish"
+    ],
+    "num_files": 11,
+    "monitors": [],
+    "num_dbs": 1,
+    "num_gates": 1,
+    "files": [
+        {
+            "path": "/users-microservice/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/api-gateway/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/discovery-server/pom.xml",
+            "servers": [
+                "spring",
+                "glassfish"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/products-microservice/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/orders-microservice/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [],
+            "dbs": [],
+            "buses": []
+        }
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 6,
+        "detected_dbs": {
+            "services": [],
+            "num": 0,
+            "names": [],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "discovery-server",
+                    "api-gateway"
+                ],
+                "servers": [],
+                "image_full": "users-microservice",
+                "name": "users-microservice",
+                "gates": [],
+                "image": "users-microservice",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "discovery-server",
+                    "api-gateway",
+                    "products-microservice01",
+                    "products-microservice02",
+                    "users-microservice"
+                ],
+                "servers": [],
+                "image_full": "orders-microservice",
+                "name": "orders-microservice",
+                "gates": [],
+                "image": "orders-microservice",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "discovery-server",
+                    "api-gateway"
+                ],
+                "servers": [],
+                "image_full": "products-microservice",
+                "name": "products-microservice01",
+                "gates": [],
+                "image": "products-microservice",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "discovery-server",
+                    "api-gateway"
+                ],
+                "servers": [],
+                "image_full": "products-microservice",
+                "name": "products-microservice02",
+                "gates": [],
+                "image": "products-microservice",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "discovery-server"
+                ],
+                "servers": [],
+                "image_full": "api-gateway",
+                "name": "api-gateway",
+                "gates": [
+                    "gateway"
+                ],
+                "image": "api-gateway",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "discovery-server",
+                "name": "discovery-server",
+                "gates": [],
+                "image": "discovery-server",
+                "dbs": [],
+                "buses": []
+            }
+        ]
+    }
+}

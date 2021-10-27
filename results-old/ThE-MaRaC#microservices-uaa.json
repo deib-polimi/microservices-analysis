@@ -1,0 +1,357 @@
+{
+    "num_discos": 1,
+    "buses": [],
+    "gates": [
+        "zuul"
+    ],
+    "num_servers": 2,
+    "num_gates": 1,
+    "num_dbs": 1,
+    "monitors": [],
+    "num_langs": 2,
+    "num_files": 13,
+    "structure": {
+        "services": [
+            {
+                "name": "redis-commander",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "rediscommander/redis-commander",
+                "image_full": "rediscommander/redis-commander:latest",
+                "monitors": [],
+                "depends_on": [
+                    "redis"
+                ]
+            },
+            {
+                "name": "uaa",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "mariobros/uaa",
+                "image_full": "mariobros/uaa:0.0.3-SNAPSHOT",
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "admin-server",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "mariobros/admin-server",
+                "image_full": "mariobros/admin-server:0.0.3-SNAPSHOT",
+                "monitors": [],
+                "depends_on": [
+                    "config-server"
+                ]
+            },
+            {
+                "name": "user-management-service",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "mariobros/user-management-service",
+                "image_full": "mariobros/user-management-service:0.0.3-SNAPSHOT",
+                "monitors": [],
+                "depends_on": [
+                    "config-server"
+                ]
+            },
+            {
+                "name": "config-server",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "mariobros/config-server",
+                "image_full": "mariobros/config-server:0.0.3-SNAPSHOT",
+                "monitors": [],
+                "depends_on": [
+                    "eureka-discovery-service"
+                ]
+            },
+            {
+                "name": "redis",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [
+                    "redis"
+                ],
+                "image": "redis",
+                "image_full": "redis:5-alpine",
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "zuul-gateway-service",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "mariobros/zuul-gateway-service",
+                "image_full": "mariobros/zuul-gateway-service:0.0.3-SNAPSHOT",
+                "monitors": [],
+                "depends_on": [
+                    "config-server"
+                ]
+            },
+            {
+                "name": "eureka-discovery-service",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "mariobros/eureka-discovery-service",
+                "image_full": "mariobros/eureka-discovery-service:0.0.3-SNAPSHOT",
+                "monitors": [],
+                "depends_on": []
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "names": [
+                "redis"
+            ],
+            "num": 1,
+            "services": [
+                "redis"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 8
+    },
+    "servers": [
+        "tomcat",
+        "spring"
+    ],
+    "shared_dbs": false,
+    "langs": [
+        "java",
+        "dockerfile"
+    ],
+    "dockers": [
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/user-management-service/Dockerfile",
+            "from": "openjdk",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [],
+            "dbs": [],
+            "gates": [],
+            "from_full": "openjdk:8-jre",
+            "langs": []
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/config-server/Dockerfile",
+            "from": "openjdk",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [],
+            "dbs": [],
+            "gates": [],
+            "from_full": "openjdk:8-jre",
+            "langs": []
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/zuul-gateway-service/Dockerfile",
+            "from": "openjdk",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [],
+            "dbs": [],
+            "gates": [],
+            "from_full": "openjdk:8-jre",
+            "langs": []
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/admin-server/Dockerfile",
+            "from": "openjdk",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [],
+            "dbs": [],
+            "gates": [],
+            "from_full": "openjdk:8-jre",
+            "langs": []
+        },
+        {
+            "discos": [],
+            "cmd": "catalina.sh run",
+            "buses": [],
+            "path": "/uaa/Dockerfile",
+            "from": "tomcat",
+            "cmd_keywords": [
+                "run",
+                "catalina"
+            ],
+            "servers": [
+                "tomcat"
+            ],
+            "monitors": [],
+            "keywords": [
+                "uaa",
+                "identity",
+                "apt",
+                "cloudfoundry",
+                "get"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "tomcat:9.0.30-jdk8-adoptopenjdk-hotspot",
+            "langs": []
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/eureka-discovery-service/Dockerfile",
+            "from": "openjdk",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [],
+            "dbs": [],
+            "gates": [],
+            "from_full": "openjdk:8-jre",
+            "langs": []
+        }
+    ],
+    "name": "ThE-MaRaC/microservices-uaa",
+    "discos": [
+        "eureka"
+    ],
+    "avg_size_service": 91.83333333333333,
+    "num_monitors": 0,
+    "images": [
+        "tomcat",
+        "openjdk"
+    ],
+    "url": "git://github.com/ThE-MaRaC/microservices-uaa.git",
+    "files": [
+        {
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "path": "/pom.xml",
+            "dbs": [],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "path": "/user-management-service/pom.xml",
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "path": "/config-server/pom.xml",
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "path": "/zuul-gateway-service/pom.xml",
+            "dbs": [
+                "redis"
+            ],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "path": "/admin-server/pom.xml",
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "path": "/eureka-discovery-service/pom.xml",
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        }
+    ],
+    "size": 551,
+    "languages": [
+        "java",
+        "dockerfile"
+    ],
+    "dbs": [
+        "redis"
+    ],
+    "num_buses": 0,
+    "num_services": 8,
+    "num_dockers": 6
+}

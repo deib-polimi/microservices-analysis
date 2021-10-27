@@ -1,0 +1,231 @@
+{
+    "num_gates": 1,
+    "images": [
+        "1science/java",
+        "nginx"
+    ],
+    "discos": [],
+    "num_buses": 0,
+    "name": "probotsocial/probot",
+    "gates": [
+        "nginx"
+    ],
+    "structure": {
+        "num_services": 7,
+        "detected_dbs": {
+            "services": [],
+            "names": [],
+            "shared_dbs": false,
+            "num": 0
+        },
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image": "wernight/ngrok",
+                "image_full": "wernight/ngrok:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "app:app",
+                    "microservice:microservice",
+                    "postgrest:postgrest"
+                ],
+                "servers": [],
+                "name": "ngrok",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "postgres",
+                "image_full": "postgres:11",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "postgres",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "probotsocial/microservice",
+                "image_full": "probotsocial/microservice:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "postgrest:postgrest"
+                ],
+                "servers": [],
+                "name": "microservice",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "apache/zeppelin",
+                "image_full": "apache/zeppelin:0.9.0",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "livy:livy",
+                    "postgres:postgres"
+                ],
+                "servers": [],
+                "name": "zeppelin",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "probotsocial/livy",
+                "image_full": "probotsocial/livy:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "postgres:postgres"
+                ],
+                "servers": [],
+                "name": "livy",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "probotsocial/app",
+                "image_full": "probotsocial/app:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "app",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "postgrest/postgrest",
+                "image_full": "postgrest/postgrest:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "postgres:postgres"
+                ],
+                "servers": [],
+                "name": "postgrest",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            }
+        ]
+    },
+    "url": "git://github.com/probotsocial/probot.git",
+    "langs": [
+        "scala",
+        "javascript",
+        "java"
+    ],
+    "num_dockers": 2,
+    "num_langs": 3,
+    "dbs": [
+        "postgresql",
+        "foundation",
+        "sql"
+    ],
+    "shared_dbs": false,
+    "size": 135,
+    "dockers": [
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "nginx:stable-alpine",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "nginx",
+            "cmd": "nginx -g daemon off;",
+            "gates": [
+                "nginx"
+            ],
+            "keywords": [
+                "yarn",
+                "build"
+            ],
+            "dbs": [],
+            "path": "/Dockerfile",
+            "cmd_keywords": [
+                "nginx",
+                "off",
+                "daemon"
+            ]
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "1science/java",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "1science/java",
+            "cmd": "java -Dconfig.url=file:///application.conf -Dlogback.configurationFile=file:///logback.xml -cp /probot-jar-with-dependencies.jar probot.ProbotMicroservice microservice.cfg",
+            "gates": [],
+            "keywords": [
+                "chmod",
+                "start"
+            ],
+            "dbs": [],
+            "path": "/src/main/docker/Dockerfile",
+            "cmd_keywords": [
+                "probot",
+                "file",
+                "jar",
+                "cfg",
+                "configurationfile"
+            ]
+        }
+    ],
+    "num_servers": 1,
+    "monitors": [],
+    "num_services": 7,
+    "servers": [
+        "jetty"
+    ],
+    "num_monitors": 0,
+    "avg_size_service": 67.5,
+    "num_files": 5,
+    "buses": [],
+    "files": [
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "jetty"
+            ],
+            "monitors": [],
+            "dbs": [
+                "postgresql",
+                "foundation",
+                "sql"
+            ],
+            "path": "/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/package.json"
+        }
+    ],
+    "languages": [
+        "scala",
+        "javascript"
+    ],
+    "num_dbs": 3,
+    "num_discos": 0
+}

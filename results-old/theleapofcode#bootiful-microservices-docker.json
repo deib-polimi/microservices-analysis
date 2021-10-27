@@ -1,0 +1,609 @@
+{
+    "size": 276,
+    "num_monitors": 0,
+    "num_discos": 2,
+    "shared_dbs": false,
+    "langs": [
+        "java",
+        "shell"
+    ],
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "num_langs": 2,
+    "num_dbs": 0,
+    "discos": [
+        "eureka",
+        "hysterix"
+    ],
+    "avg_size_service": 30.666666666666668,
+    "images": [
+        "openjdk"
+    ],
+    "gates": [
+        "zuul"
+    ],
+    "dockers": [
+        {
+            "monitors": [],
+            "from": "openjdk",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "buses": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "service",
+                "book"
+            ],
+            "cmd": "java -jar /book-service.jar",
+            "path": "/bootiful-flight-book-service/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "gates": [],
+            "from_full": "openjdk:8",
+            "discos": []
+        },
+        {
+            "monitors": [],
+            "from": "openjdk",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "buses": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "eureka",
+                "server"
+            ],
+            "cmd": "java -jar /eureka-server.jar",
+            "path": "/bootiful-eureka-server/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "gates": [],
+            "from_full": "openjdk:8",
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "monitors": [],
+            "from": "openjdk",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "buses": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "gateway",
+                "api"
+            ],
+            "cmd": "java -jar /api-gateway.jar",
+            "path": "/bootiful-api-gateway/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "gates": [
+                "gateway"
+            ],
+            "from_full": "openjdk:8",
+            "discos": []
+        },
+        {
+            "monitors": [],
+            "from": "openjdk",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "buses": [],
+            "cmd_keywords": [
+                "jar",
+                "website",
+                "java",
+                "management"
+            ],
+            "cmd": "java -jar /management-website.jar",
+            "path": "/bootiful-flight-management-website/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "gates": [],
+            "from_full": "openjdk:8",
+            "discos": []
+        },
+        {
+            "monitors": [],
+            "from": "openjdk",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "buses": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "search",
+                "service"
+            ],
+            "cmd": "java -jar /search-service.jar",
+            "path": "/bootiful-flight-search-service/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "gates": [],
+            "from_full": "openjdk:8",
+            "discos": []
+        },
+        {
+            "monitors": [],
+            "from": "openjdk",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "buses": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "server",
+                "config"
+            ],
+            "cmd": "java -jar /config-server.jar",
+            "path": "/bootiful-config-server/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "gates": [],
+            "from_full": "openjdk:8",
+            "discos": []
+        },
+        {
+            "monitors": [],
+            "from": "openjdk",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "buses": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "server",
+                "hystrix"
+            ],
+            "cmd": "java -jar /hystrix-server.jar",
+            "path": "/bootiful-hystrix-server/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "gates": [],
+            "from_full": "openjdk:8",
+            "discos": []
+        },
+        {
+            "monitors": [],
+            "from": "openjdk",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "buses": [],
+            "cmd_keywords": [
+                "jar",
+                "fares",
+                "java",
+                "service"
+            ],
+            "cmd": "java -jar /fares-service.jar",
+            "path": "/bootiful-flight-fares-service/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "gates": [],
+            "from_full": "openjdk:8",
+            "discos": []
+        },
+        {
+            "monitors": [],
+            "from": "openjdk",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "buses": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "checkin",
+                "service"
+            ],
+            "cmd": "java -jar /checkin-service.jar",
+            "path": "/bootiful-flight-checkin-service/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "gates": [],
+            "from_full": "openjdk:8",
+            "discos": []
+        }
+    ],
+    "structure": {
+        "detected_dbs": {
+            "num": 0,
+            "shared_dbs": false,
+            "services": [],
+            "names": []
+        },
+        "services": [
+            {
+                "image": "checkinservice",
+                "depends_on": [
+                    "logstash",
+                    "rabbitmq",
+                    "configserver",
+                    "eurekaserver"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "checkinservice",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "checkinservice"
+            },
+            {
+                "image": "bookservice",
+                "depends_on": [
+                    "logstash",
+                    "rabbitmq",
+                    "configserver",
+                    "eurekaserver",
+                    "faresservice"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "bookservice",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "bookservice"
+            },
+            {
+                "image": "elasticsearch",
+                "depends_on": [],
+                "discos": [],
+                "monitors": [],
+                "image_full": "elasticsearch:latest",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "elasticsearch"
+            },
+            {
+                "image": "hystrixserver",
+                "depends_on": [
+                    "logstash"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "hystrixserver",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "hystrixserver"
+            },
+            {
+                "image": "kibana",
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "kibana:latest",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "kibana"
+            },
+            {
+                "image": "eurekaserver",
+                "depends_on": [
+                    "logstash",
+                    "rabbitmq",
+                    "configserver"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "eurekaserver",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "eurekaserver"
+            },
+            {
+                "image": "rabbitmq",
+                "depends_on": [],
+                "discos": [],
+                "monitors": [],
+                "image_full": "rabbitmq:management",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "name": "rabbitmq"
+            },
+            {
+                "image": "managementwebsite",
+                "depends_on": [
+                    "logstash",
+                    "rabbitmq",
+                    "configserver",
+                    "eurekaserver",
+                    "bookservice",
+                    "checkinservice",
+                    "searchservice"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "managementwebsite",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "managementwebsite"
+            },
+            {
+                "image": "searchservice",
+                "depends_on": [
+                    "logstash",
+                    "rabbitmq",
+                    "configserver",
+                    "eurekaserver"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "searchservice",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "searchservice"
+            },
+            {
+                "image": "apigateway",
+                "depends_on": [
+                    "logstash",
+                    "rabbitmq",
+                    "configserver",
+                    "eurekaserver"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "apigateway",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "apigateway"
+            },
+            {
+                "image": "faresservice",
+                "depends_on": [
+                    "logstash",
+                    "rabbitmq",
+                    "configserver",
+                    "eurekaserver"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "faresservice",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "faresservice"
+            },
+            {
+                "image": "logstash",
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "logstash:latest",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "logstash"
+            },
+            {
+                "image": "configserver",
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "configserver",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "configserver"
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "num_services": 13
+    },
+    "num_dockers": 9,
+    "num_files": 20,
+    "num_services": 13,
+    "num_gates": 1,
+    "name": "theleapofcode/bootiful-microservices-docker",
+    "url": "git://github.com/theleapofcode/bootiful-microservices-docker.git",
+    "monitors": [],
+    "servers": [
+        "spring"
+    ],
+    "dbs": [],
+    "num_servers": 1,
+    "num_buses": 2,
+    "files": [
+        {
+            "path": "/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "gates": [
+                "gateway"
+            ],
+            "servers": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/bootiful-flight-book-service/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/bootiful-eureka-server/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/bootiful-api-gateway/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/bootiful-flight-management-website/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/bootiful-flight-search-service/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/bootiful-config-server/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": []
+        },
+        {
+            "path": "/bootiful-hystrix-server/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "hysterix"
+            ]
+        },
+        {
+            "path": "/bootiful-flight-fares-service/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/bootiful-flight-checkin-service/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "discos": [
+                "eureka"
+            ]
+        }
+    ],
+    "languages": [
+        "java",
+        "shell"
+    ]
+}

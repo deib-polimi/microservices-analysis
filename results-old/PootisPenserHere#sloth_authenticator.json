@@ -1,0 +1,171 @@
+{
+    "size": 248,
+    "avg_size_service": 124.0,
+    "name": "PootisPenserHere/sloth_authenticator",
+    "languages": [
+        "javascript"
+    ],
+    "servers": [
+        "node",
+        "express"
+    ],
+    "num_dbs": 1,
+    "images": [
+        "node",
+        "postgres"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 4,
+        "services": [
+            {
+                "depends_on": [],
+                "image_full": "redis:5.0-alpine",
+                "monitors": [],
+                "name": "redis",
+                "image": "redis",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "redis"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "postgres"
+                ],
+                "image_full": "fenglc/pgadmin4:python2.7-alpine",
+                "monitors": [],
+                "name": "pgadmin",
+                "image": "fenglc/pgadmin4",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "postgres",
+                    "redis"
+                ],
+                "image_full": ".",
+                "monitors": [],
+                "name": "api",
+                "image": ".",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "database",
+                "monitors": [],
+                "name": "postgres",
+                "image": "database",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "redis"
+            ],
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": false,
+            "num": 1
+        }
+    },
+    "num_dockers": 2,
+    "num_buses": 0,
+    "num_services": 4,
+    "dockers": [
+        {
+            "path": "/Dockerfile",
+            "from": "node",
+            "langs": [],
+            "cmd": "node index.js",
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:10.16-alpine",
+            "keywords": [
+                "yarn",
+                "cache",
+                "tzdata",
+                "install",
+                "apk"
+            ],
+            "cmd_keywords": [
+                "node",
+                "index"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/database/Dockerfile",
+            "from": "postgres",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "postgres:12-alpine",
+            "keywords": [
+                "tzdata",
+                "add",
+                "cache",
+                "apk"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "num_langs": 1,
+    "langs": [
+        "javascript"
+    ],
+    "discos": [],
+    "num_gates": 0,
+    "num_monitors": 0,
+    "num_files": 4,
+    "files": [
+        {
+            "path": "/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_servers": 2,
+    "url": "git://github.com/PootisPenserHere/sloth_authenticator.git",
+    "dbs": [
+        "redis"
+    ],
+    "num_discos": 0,
+    "gates": [],
+    "buses": []
+}

@@ -1,0 +1,361 @@
+{
+    "files": [
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [
+                "kafka"
+            ],
+            "gates": [],
+            "path": "/kafka-es-microservice/package.json",
+            "dbs": [],
+            "servers": [
+                "node"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/back/package.json",
+            "dbs": [
+                "mysql",
+                "redis"
+            ],
+            "servers": [
+                "express",
+                "node"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/front/package.json",
+            "dbs": [],
+            "servers": []
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/ws-microservice/package.json",
+            "dbs": [],
+            "servers": [
+                "node"
+            ]
+        }
+    ],
+    "num_services": 11,
+    "discos": [
+        "zookeeper"
+    ],
+    "dbs": [
+        "mysql",
+        "redis",
+        "zookeeper"
+    ],
+    "avg_size_service": 361.75,
+    "name": "miraries/b-social",
+    "num_buses": 1,
+    "num_langs": 2,
+    "monitors": [],
+    "num_files": 9,
+    "langs": [
+        "vue",
+        "javascript"
+    ],
+    "num_gates": 1,
+    "dockers": [
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "path": "/kafka-es-microservice/Dockerfile",
+            "cmd_keywords": [
+                "start",
+                "npm",
+                "run"
+            ],
+            "from_full": "node:14.5.0-stretch",
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "langs": [],
+            "cmd": "npm run start",
+            "from": "node",
+            "keywords": [
+                "npm"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "path": "/back/Dockerfile",
+            "cmd_keywords": [
+                "start",
+                "prod",
+                "npm",
+                "run"
+            ],
+            "from_full": "node:14.5.0-stretch",
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "langs": [],
+            "cmd": "npm run start:prod",
+            "from": "node",
+            "keywords": [
+                "npm"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "gates": [
+                "nginx"
+            ],
+            "path": "/front/Dockerfile",
+            "cmd_keywords": [
+                "off",
+                "nginx",
+                "daemon"
+            ],
+            "from_full": "nginx:stable-alpine",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "nginx -g daemon off;",
+            "from": "nginx",
+            "keywords": [
+                "npm",
+                "mkdir",
+                "app",
+                "build",
+                "run"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "path": "/ws-microservice/Dockerfile",
+            "cmd_keywords": [
+                "start",
+                "npm",
+                "run"
+            ],
+            "from_full": "node:14.5.0-stretch",
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "langs": [],
+            "cmd": "npm run start",
+            "from": "node",
+            "keywords": [
+                "npm"
+            ]
+        }
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "names": [
+                "mysql",
+                "redis",
+                "zookeeper"
+            ],
+            "services": [
+                "redis",
+                "zookeeper",
+                "db"
+            ],
+            "num": 3,
+            "shared_dbs": false
+        },
+        "num_services": 11,
+        "services": [
+            {
+                "monitors": [],
+                "image": "redis",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "redis",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "image_full": "redis:6.0.6-alpine"
+            },
+            {
+                "monitors": [],
+                "image": "wurstmeister/zookeeper",
+                "discos": [
+                    "zookeeper"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "zookeeper",
+                "depends_on": [],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "servers": [],
+                "image_full": "wurstmeister/zookeeper"
+            },
+            {
+                "monitors": [],
+                "image": "adminer",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "adminer",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "adminer"
+            },
+            {
+                "monitors": [],
+                "image": "docker.elastic.co/kibana/kibana",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "kibana",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "docker.elastic.co/kibana/kibana:7.8.0"
+            },
+            {
+                "monitors": [],
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "elasticsearch",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:7.8.0"
+            },
+            {
+                "monitors": [],
+                "image": "./kafka-es-microservice",
+                "discos": [],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "name": "es-microservice",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "./kafka-es-microservice"
+            },
+            {
+                "monitors": [],
+                "image": "./back",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "backend",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "./back"
+            },
+            {
+                "monitors": [],
+                "image": "mysql",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "db",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "servers": [],
+                "image_full": "mysql:8.0.21"
+            },
+            {
+                "monitors": [],
+                "image": "./front",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "frontend",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "./front"
+            },
+            {
+                "monitors": [],
+                "image": "./ws-microservice",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "ws-microservice",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "./ws-microservice"
+            },
+            {
+                "monitors": [],
+                "image": "wurstmeister/kafka",
+                "discos": [],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "name": "kafka",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "wurstmeister/kafka"
+            }
+        ]
+    },
+    "size": 1447,
+    "num_discos": 1,
+    "languages": [
+        "javascript",
+        "vue"
+    ],
+    "url": "git://github.com/miraries/b-social.git",
+    "buses": [
+        "kafka"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "shared_dbs": false,
+    "servers": [
+        "express",
+        "node"
+    ],
+    "images": [
+        "nginx",
+        "node"
+    ],
+    "num_servers": 2,
+    "num_dockers": 4,
+    "num_monitors": 0,
+    "num_dbs": 3
+}

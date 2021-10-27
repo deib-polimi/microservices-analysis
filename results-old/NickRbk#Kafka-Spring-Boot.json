@@ -1,0 +1,456 @@
+{
+    "num_files": 13,
+    "num_services": 10,
+    "num_discos": 1,
+    "gates": [
+        "nginx"
+    ],
+    "languages": [
+        "java",
+        "typescript"
+    ],
+    "num_dbs": 4,
+    "dbs": [
+        "sql",
+        "postgresql",
+        "redis",
+        "zookeeper"
+    ],
+    "num_monitors": 0,
+    "structure": {
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 2,
+            "services": [
+                "redis",
+                "zookeeper"
+            ],
+            "names": [
+                "redis",
+                "zookeeper"
+            ]
+        },
+        "num_services": 10,
+        "services": [
+            {
+                "image_full": "dpage/pgadmin4",
+                "image": "dpage/pgadmin4",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "pgadmin"
+            },
+            {
+                "image_full": "nickrybak/kafka-spark-listener",
+                "image": "nickrybak/kafka-spark-listener",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "postgres",
+                    "kafka"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "name": "listener"
+            },
+            {
+                "image_full": "nickrybak/kafka-spark-client",
+                "image": "nickrybak/kafka-spark-client",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "name": "client"
+            },
+            {
+                "image_full": "nickrybak/kafka-spark-producer",
+                "image": "nickrybak/kafka-spark-producer",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "postgres",
+                    "redis",
+                    "kafka"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "name": "producer"
+            },
+            {
+                "image_full": "nickrybak/kafka-spark-postgres",
+                "image": "nickrybak/kafka-spark-postgres",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "name": "postgres"
+            },
+            {
+                "image_full": "redis:alpine",
+                "image": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "redis"
+            },
+            {
+                "image_full": "nickrybak/kafka-spark-spark",
+                "image": "nickrybak/kafka-spark-spark",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "kafka"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "name": "spark"
+            },
+            {
+                "image_full": "nickrybak/kafka-spark-writer",
+                "image": "nickrybak/kafka-spark-writer",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "postgres",
+                    "kafka"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "name": "writer"
+            },
+            {
+                "image_full": "wurstmeister/kafka:2.11-2.0.0",
+                "image": "wurstmeister/kafka",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "name": "kafka"
+            },
+            {
+                "image_full": "zookeeper",
+                "image": "zookeeper",
+                "dbs": [
+                    "zookeeper"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [
+                    "zookeeper"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "zookeeper"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "discos": [
+        "zookeeper"
+    ],
+    "url": "git://github.com/NickRbk/Kafka-Spring-Boot.git",
+    "num_buses": 1,
+    "files": [
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "discos": [],
+            "buses": [
+                "kafka"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/microservice/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "discos": [],
+            "buses": [
+                "kafka"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/microservice/listener/pom.xml"
+        },
+        {
+            "servers": [],
+            "dbs": [
+                "sql"
+            ],
+            "discos": [],
+            "buses": [
+                "kafka"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/microservice/spark/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "postgresql",
+                "redis"
+            ],
+            "discos": [],
+            "buses": [
+                "kafka"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/microservice/producer/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [],
+            "buses": [
+                "kafka"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/microservice/writer/pom.xml"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/client/package.json"
+        }
+    ],
+    "name": "NickRbk/Kafka-Spring-Boot",
+    "servers": [
+        "spring",
+        "node"
+    ],
+    "num_dockers": 6,
+    "buses": [
+        "kafka"
+    ],
+    "num_gates": 1,
+    "num_langs": 2,
+    "shared_dbs": false,
+    "monitors": [],
+    "dockers": [
+        {
+            "servers": [],
+            "from": "postgres",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/postgres/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "postgres:latest"
+        },
+        {
+            "servers": [],
+            "from": "nginx",
+            "buses": [],
+            "gates": [
+                "nginx"
+            ],
+            "monitors": [],
+            "path": "/client/Dockerfile",
+            "keywords": [
+                "yarn",
+                "install",
+                "apk",
+                "add",
+                "build"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "nginx"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "from": "maven",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/microservice/listener/Dockerfile",
+            "keywords": [
+                "install",
+                "mvn",
+                "parent",
+                "clean"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "run",
+                "spring",
+                "boot",
+                "mvn"
+            ],
+            "discos": [],
+            "cmd": "mvn spring-boot:run",
+            "from_full": "maven:alpine"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "from": "maven",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/microservice/spark/Dockerfile",
+            "keywords": [
+                "install",
+                "mvn",
+                "parent",
+                "clean"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "xmx",
+                "spring",
+                "djvm",
+                "xms",
+                "options"
+            ],
+            "discos": [],
+            "cmd": "mvn spring-boot:run -Djvm.options=\"-Xms1G -Xmx1G\"",
+            "from_full": "maven:alpine"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "from": "maven",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/microservice/producer/Dockerfile",
+            "keywords": [
+                "install",
+                "mvn",
+                "parent",
+                "clean"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "spring",
+                "dspring",
+                "profiles",
+                "dev",
+                "active"
+            ],
+            "discos": [],
+            "cmd": "mvn spring-boot:run -Dspring.profiles.active=dev",
+            "from_full": "maven:alpine"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "from": "maven",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/microservice/writer/Dockerfile",
+            "keywords": [
+                "install",
+                "mvn",
+                "parent",
+                "clean"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "spring",
+                "dspring",
+                "profiles",
+                "dev",
+                "active"
+            ],
+            "discos": [],
+            "cmd": "mvn spring-boot:run -Dspring.profiles.active=dev",
+            "from_full": "maven:alpine"
+        }
+    ],
+    "langs": [
+        "typescript",
+        "java"
+    ],
+    "num_servers": 2,
+    "size": 563,
+    "images": [
+        "nginx",
+        "maven",
+        "postgres"
+    ],
+    "avg_size_service": 93.83333333333333
+}

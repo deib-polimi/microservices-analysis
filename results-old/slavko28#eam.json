@@ -1,0 +1,266 @@
+{
+    "size": 101,
+    "num_dockers": 3,
+    "discos": [
+        "zookeeper",
+        "eureka"
+    ],
+    "num_files": 7,
+    "avg_size_service": 33.666666666666664,
+    "buses": [
+        "kafka"
+    ],
+    "num_gates": 0,
+    "langs": [
+        "java"
+    ],
+    "num_discos": 2,
+    "num_monitors": 2,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "java",
+            "path": "/demo-sns-feign-client/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "java:8-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "java",
+            "path": "/demo-eureka-server/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "java:8-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "java",
+            "path": "/amazon_services_demo/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "java:8-jdk-alpine"
+        }
+    ],
+    "num_dbs": 1,
+    "monitors": [
+        "grafana",
+        "prometheus"
+    ],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "demo-sns-feign-client/",
+                "image_full": "demo-sns-feign-client/",
+                "discos": [],
+                "name": "client",
+                "depends_on": [
+                    "registry"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "demo-eureka-server/",
+                "image_full": "demo-eureka-server/",
+                "discos": [
+                    "eureka"
+                ],
+                "name": "registry",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "wurstmeister/zookeeper",
+                "image_full": "wurstmeister/zookeeper",
+                "discos": [
+                    "zookeeper"
+                ],
+                "name": "zookeeper",
+                "depends_on": [],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [
+                    "grafana"
+                ],
+                "buses": [],
+                "image": "grafana/grafana",
+                "image_full": "grafana/grafana:latest",
+                "discos": [],
+                "name": "grafana",
+                "depends_on": [
+                    "prometheus"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [
+                    "prometheus"
+                ],
+                "buses": [],
+                "image": "prom/prometheus",
+                "image_full": "prom/prometheus:v2.15.2",
+                "discos": [],
+                "name": "prometheus",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "amazon_services_demo/",
+                "image_full": "amazon_services_demo/",
+                "discos": [],
+                "name": "sns-service",
+                "depends_on": [
+                    "registry"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [
+                    "kafka"
+                ],
+                "image": "wurstmeister/kafka",
+                "image_full": "wurstmeister/kafka",
+                "discos": [],
+                "name": "kafka",
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "zookeeper"
+            ],
+            "services": [
+                "zookeeper"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 7,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 1,
+    "servers": [
+        "spring"
+    ],
+    "url": "git://github.com/slavko28/eam.git",
+    "num_services": 7,
+    "gates": [],
+    "files": [
+        {
+            "monitors": [
+                "prometheus"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/demo-sns-feign-client/pom.xml"
+        },
+        {
+            "monitors": [
+                "prometheus"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/demo-eureka-server/pom.xml"
+        },
+        {
+            "monitors": [
+                "prometheus"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/amazon_services_demo/pom.xml"
+        }
+    ],
+    "name": "slavko28/eam",
+    "languages": [
+        "java"
+    ],
+    "images": [
+        "java"
+    ],
+    "dbs": [
+        "zookeeper"
+    ],
+    "num_servers": 1,
+    "num_langs": 1
+}

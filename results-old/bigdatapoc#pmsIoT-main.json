@@ -1,0 +1,496 @@
+{
+    "num_files": 19,
+    "num_services": 7,
+    "num_discos": 3,
+    "gates": [],
+    "languages": [
+        "java",
+        "typescript"
+    ],
+    "num_dbs": 4,
+    "dbs": [
+        "redis",
+        "cassandra",
+        "mongo",
+        "zookeeper"
+    ],
+    "num_monitors": 0,
+    "structure": {
+        "detected_dbs": {
+            "shared_dbs": true,
+            "num": 1,
+            "services": [
+                "zookeeper"
+            ],
+            "names": [
+                "zookeeper"
+            ]
+        },
+        "num_services": 7,
+        "services": [
+            {
+                "image_full": "wurstmeister/zookeeper",
+                "image": "wurstmeister/zookeeper",
+                "dbs": [
+                    "zookeeper"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [
+                    "zookeeper"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "zookeeper"
+            },
+            {
+                "image_full": "pmsiot-operations",
+                "image": "pmsiot-operations",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "kafka",
+                    "zookeeper"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "operations"
+            },
+            {
+                "image_full": "pmsiot-processing-engine",
+                "image": "pmsiot-processing-engine",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "kafka",
+                    "zookeeper"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "processing-engine"
+            },
+            {
+                "image_full": "wurstmeister/kafka:0.10.2.0",
+                "image": "wurstmeister/kafka",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "name": "kafka"
+            },
+            {
+                "image_full": "pmsiot-mqtt-connector",
+                "image": "pmsiot-mqtt-connector",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "mqtt"
+                ],
+                "gates": [],
+                "name": "mqtt-connector"
+            },
+            {
+                "image_full": "pmsiot-dashboard",
+                "image": "pmsiot-dashboard",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "dashboard-spring-app"
+            },
+            {
+                "image_full": "pmsiot-messaging-rest-api",
+                "image": "pmsiot-messaging-rest-api",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "kafka",
+                    "zookeeper"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "messaging-rest-api"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "discos": [
+        "thrift",
+        "zookeeper",
+        "eureka"
+    ],
+    "url": "git://github.com/bigdatapoc/pmsIoT-main.git",
+    "num_buses": 2,
+    "files": [
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [
+                "mqtt"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/pom.xml"
+        },
+        {
+            "servers": [],
+            "dbs": [
+                "mongo",
+                "mongodb",
+                "redis"
+            ],
+            "discos": [],
+            "buses": [
+                "kafka"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/pmsiot-processing-engine/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/pmsiot-eureka-server/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "mongo",
+                "mongodb"
+            ],
+            "discos": [],
+            "buses": [
+                "kafka"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/pmsiot-messaging-rest-api/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "cassandra",
+                "zookeeper"
+            ],
+            "discos": [
+                "thrift",
+                "zookeeper",
+                "eureka"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/pmsiot-sink/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [
+                "mqtt"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/pmsiot-mqtt-connector/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "mongo",
+                "mongodb"
+            ],
+            "discos": [],
+            "buses": [
+                "kafka"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/pmsiot-operations/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "mongodb"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/pmsiot-dashboard/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "mongodb"
+            ],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/pmsiot-dashboard/bin/pom.xml"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "dbs": [],
+            "discos": [],
+            "buses": [
+                "mqtt"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/pmsiot-dashboard-ui/package.json"
+        }
+    ],
+    "name": "bigdatapoc/pmsIoT-main",
+    "servers": [
+        "spring",
+        "node"
+    ],
+    "num_dockers": 8,
+    "buses": [
+        "mqtt",
+        "kafka"
+    ],
+    "num_gates": 0,
+    "num_langs": 3,
+    "shared_dbs": true,
+    "monitors": [],
+    "dockers": [
+        {
+            "servers": [],
+            "from": "williamyeh/scala",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/pmsiot-processing-engine/Dockerfile",
+            "keywords": [
+                "apt",
+                "get",
+                "install",
+                "bash",
+                "touch"
+            ],
+            "dbs": [],
+            "langs": [
+                "scala"
+            ],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "williamyeh/scala"
+        },
+        {
+            "servers": [],
+            "from": "java",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/pmsiot-eureka-server/Dockerfile",
+            "keywords": [
+                "app",
+                "touch",
+                "bash",
+                "jar"
+            ],
+            "dbs": [],
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "java:8"
+        },
+        {
+            "servers": [],
+            "from": "java",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/pmsiot-messaging-rest-api/Dockerfile",
+            "keywords": [
+                "app",
+                "touch",
+                "bash",
+                "jar"
+            ],
+            "dbs": [],
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "java:8"
+        },
+        {
+            "servers": [],
+            "from": "java",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/pmsiot-sink/Dockerfile",
+            "keywords": [
+                "app",
+                "touch",
+                "bash",
+                "jar"
+            ],
+            "dbs": [],
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "java:8"
+        },
+        {
+            "servers": [],
+            "from": "java",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/pmsiot-mqtt-connector/Dockerfile",
+            "keywords": [
+                "app",
+                "touch",
+                "bash",
+                "jar"
+            ],
+            "dbs": [],
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "java:8"
+        },
+        {
+            "servers": [],
+            "from": "java",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/pmsiot-operations/Dockerfile",
+            "keywords": [
+                "app",
+                "touch",
+                "bash",
+                "jar"
+            ],
+            "dbs": [],
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "java:8"
+        },
+        {
+            "servers": [],
+            "from": "openjdk",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/pmsiot-dashboard/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "openjdk:8-jdk-alpine"
+        },
+        {
+            "servers": [],
+            "from": "java",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/pmsiot-dashboard/bin/Dockerfile",
+            "keywords": [
+                "app",
+                "touch",
+                "bash",
+                "jar"
+            ],
+            "dbs": [],
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "java:8"
+        }
+    ],
+    "langs": [
+        "scala",
+        "typescript",
+        "java"
+    ],
+    "num_servers": 2,
+    "size": 1418,
+    "images": [
+        "williamyeh/scala",
+        "java",
+        "openjdk"
+    ],
+    "avg_size_service": 177.25
+}

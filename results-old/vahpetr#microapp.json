@@ -1,0 +1,182 @@
+{
+    "langs": [
+        "java",
+        "shell"
+    ],
+    "languages": [
+        "java",
+        "shell"
+    ],
+    "url": "git://github.com/vahpetr/microapp.git",
+    "files": [
+        {
+            "monitors": [],
+            "path": "/pom.xml",
+            "servers": [],
+            "gates": [],
+            "discos": [],
+            "buses": [],
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "path": "/geolocation/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": [],
+            "buses": [
+                "kinesis"
+            ],
+            "dbs": [
+                "sqlite"
+            ]
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "discos": [],
+    "num_monitors": 2,
+    "num_dockers": 2,
+    "num_dbs": 1,
+    "avg_size_service": 719.5,
+    "num_gates": 1,
+    "num_servers": 1,
+    "name": "vahpetr/microapp",
+    "num_discos": 0,
+    "num_files": 5,
+    "num_buses": 1,
+    "servers": [
+        "spring"
+    ],
+    "dbs": [
+        "sqlite"
+    ],
+    "structure": {
+        "services": [
+            {
+                "monitors": [
+                    "grafana"
+                ],
+                "depends_on": [
+                    "influxdb"
+                ],
+                "image": "grafana/grafana",
+                "servers": [],
+                "gates": [],
+                "image_full": "grafana/grafana",
+                "buses": [],
+                "dbs": [],
+                "discos": [],
+                "name": "grafana"
+            },
+            {
+                "monitors": [],
+                "depends_on": [
+                    "influxdb"
+                ],
+                "image": "google/cadvisor",
+                "servers": [],
+                "gates": [],
+                "image_full": "google/cadvisor",
+                "buses": [],
+                "dbs": [],
+                "discos": [],
+                "name": "cadvisor"
+            },
+            {
+                "monitors": [
+                    "influxdb"
+                ],
+                "depends_on": [],
+                "image": "influxdb",
+                "servers": [],
+                "gates": [],
+                "image_full": "influxdb",
+                "buses": [],
+                "dbs": [],
+                "discos": [],
+                "name": "influxdb"
+            },
+            {
+                "monitors": [],
+                "depends_on": [],
+                "image": "geolocation",
+                "servers": [],
+                "gates": [],
+                "image_full": "geolocation",
+                "buses": [],
+                "dbs": [],
+                "discos": [],
+                "name": "geolocation"
+            }
+        ],
+        "num_services": 4,
+        "detected_dbs": {
+            "names": [],
+            "services": [],
+            "shared_dbs": false,
+            "num": 0
+        },
+        "path": "/docker-compose.yml"
+    },
+    "monitors": [
+        "grafana",
+        "influxdb"
+    ],
+    "size": 1439,
+    "dockers": [
+        {
+            "langs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "nginx:alpine",
+            "gates": [
+                "nginx"
+            ],
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "",
+            "keywords": [],
+            "path": "/reverseproxy/Dockerfile",
+            "from": "nginx",
+            "cmd_keywords": []
+        },
+        {
+            "langs": [
+                "java"
+            ],
+            "buses": [],
+            "servers": [],
+            "from_full": "frolvlad/alpine-oraclejdk8:slim",
+            "gates": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar geolocation.jar",
+            "keywords": [],
+            "path": "/geolocation/Dockerfile",
+            "from": "frolvlad/alpine-oraclejdk8",
+            "cmd_keywords": [
+                "java",
+                "jar",
+                "egd",
+                "dev",
+                "djava"
+            ]
+        }
+    ],
+    "images": [
+        "nginx",
+        "frolvlad/alpine-oraclejdk8"
+    ],
+    "buses": [
+        "kinesis"
+    ],
+    "num_services": 4,
+    "num_langs": 2,
+    "shared_dbs": false
+}

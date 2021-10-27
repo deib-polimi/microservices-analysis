@@ -1,0 +1,168 @@
+{
+    "name": "MattWroclaw/docker-compose-microservices-mysql",
+    "num_dbs": 1,
+    "num_services": 3,
+    "num_files": 5,
+    "servers": [
+        "spring"
+    ],
+    "url": "git://github.com/MattWroclaw/docker-compose-microservices-mysql.git",
+    "discos": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "client",
+                "image_full": "./docker-client",
+                "image": "./docker-client",
+                "servers": [],
+                "depends_on": [
+                    "api"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "databases",
+                "image_full": "mysql",
+                "image": "mysql",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "api",
+                "image_full": "./test-api-docker",
+                "image": "./test-api-docker",
+                "servers": [],
+                "depends_on": [
+                    "databases"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [
+                "databases"
+            ],
+            "num": 1,
+            "names": [
+                "mysql"
+            ]
+        },
+        "num_services": 3
+    },
+    "num_buses": 0,
+    "size": 156,
+    "dockers": [
+        {
+            "cmd": "java -jar docker-api-0.0.1-SNAPSHOT.jar",
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "path": "/docker-client/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "snapshot",
+                "api",
+                "docker"
+            ],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "java -jar test-api-docker-0.0.1-SNAPSHOT.jar",
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "path": "/test-api-docker/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "cmd_keywords": [
+                "jar",
+                "test",
+                "java",
+                "snapshot",
+                "api"
+            ],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "languages": [
+        "java"
+    ],
+    "dbs": [
+        "mysql"
+    ],
+    "monitors": [],
+    "shared_dbs": false,
+    "avg_size_service": 78.0,
+    "num_monitors": 0,
+    "files": [
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/docker-client/pom.xml",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/test-api-docker/pom.xml",
+            "discos": [],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "buses": []
+        }
+    ],
+    "langs": [
+        "java"
+    ],
+    "num_servers": 1,
+    "buses": [],
+    "num_langs": 1,
+    "num_gates": 0,
+    "num_discos": 0,
+    "images": [
+        "openjdk"
+    ],
+    "num_dockers": 2,
+    "gates": []
+}

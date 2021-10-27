@@ -1,0 +1,168 @@
+{
+    "languages": [
+        "c#",
+        "html"
+    ],
+    "num_servers": 1,
+    "shared_dbs": false,
+    "name": "kanthi-6solve/MicroServiceOnContainers",
+    "servers": [
+        "express"
+    ],
+    "num_monitors": 0,
+    "num_langs": 2,
+    "images": [
+        "base"
+    ],
+    "langs": [
+        "html",
+        "c#"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "resourceapi",
+                "csproj",
+                "dotnet",
+                "build",
+                "release"
+            ],
+            "path": "/ResourceAPI/Dockerfile",
+            "gates": [],
+            "from": "base",
+            "from_full": "base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "identityapi",
+                "csproj",
+                "dotnet",
+                "build",
+                "release"
+            ],
+            "path": "/IdentityAPI/Dockerfile",
+            "gates": [],
+            "from": "base",
+            "from_full": "base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "ocelotapigateway",
+                "csproj",
+                "dotnet",
+                "build",
+                "release"
+            ],
+            "path": "/OcelotApiGateway/Dockerfile",
+            "gates": [],
+            "from": "base",
+            "from_full": "base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [],
+    "num_buses": 0,
+    "discos": [],
+    "monitors": [],
+    "num_files": 4,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "microsoft/mssql-server-windows-express:latest",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "sqldata",
+                "image": "microsoft/mssql-server-windows-express",
+                "servers": [
+                    "express"
+                ],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "${DOCKER_REGISTRY-}identityapi",
+                "depends_on": [
+                    "sqldata"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "identityapi",
+                "image": "${DOCKER_REGISTRY-}identityapi",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "${DOCKER_REGISTRY-}resourceapi",
+                "depends_on": [
+                    "sqldata"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "resourceapi",
+                "image": "${DOCKER_REGISTRY-}resourceapi",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "${DOCKER_REGISTRY-}ocelotapigateway",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "ocelotapigateway",
+                "image": "${DOCKER_REGISTRY-}ocelotapigateway",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 4,
+        "detected_dbs": {
+            "services": [],
+            "names": [],
+            "num": 0,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [],
+    "num_dbs": 0,
+    "avg_size_service": 559.3333333333334,
+    "num_services": 4,
+    "buses": [],
+    "files": [],
+    "url": "git://github.com/kanthi-6solve/MicroServiceOnContainers.git",
+    "num_dockers": 3,
+    "size": 1678,
+    "num_discos": 0,
+    "num_gates": 0
+}

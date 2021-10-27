@@ -1,0 +1,384 @@
+{
+    "name": "abdelrhmanayman/Students-system-mongodb-expressjs-passportjwt--nodemailer-docker",
+    "num_dbs": 1,
+    "num_services": 10,
+    "num_files": 10,
+    "servers": [
+        "express",
+        "node",
+        "mongoose"
+    ],
+    "url": "git://github.com/abdelrhmanayman/Students-system-mongodb-expressjs-passportjwt--nodemailer-docker.git",
+    "discos": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "mongo",
+                "image_full": "mongo",
+                "image": "mongo",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "search2",
+                "image_full": "./search",
+                "image": "./search",
+                "servers": [],
+                "depends_on": [
+                    "mongo"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "auth1",
+                "image_full": "./auth",
+                "image": "./auth",
+                "servers": [],
+                "depends_on": [
+                    "mongo"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "loadbalancer2",
+                "image_full": "./load-balancers/search-balancer",
+                "image": "./load-balancers/search-balancer",
+                "servers": [],
+                "depends_on": [
+                    "search1",
+                    "search2"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "operations1",
+                "image_full": "./operations",
+                "image": "./operations",
+                "servers": [],
+                "depends_on": [
+                    "mongo"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "loadbalancer",
+                "image_full": "./load-balancers/auth-balancer",
+                "image": "./load-balancers/auth-balancer",
+                "servers": [],
+                "depends_on": [
+                    "auth1",
+                    "auth2"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "loadbalancer3",
+                "image_full": "./load-balancers/operation-balancer",
+                "image": "./load-balancers/operation-balancer",
+                "servers": [],
+                "depends_on": [
+                    "operations1",
+                    "operations2"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "search1",
+                "image_full": "./search",
+                "image": "./search",
+                "servers": [],
+                "depends_on": [
+                    "mongo"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "auth2",
+                "image_full": "./auth",
+                "image": "./auth",
+                "servers": [],
+                "depends_on": [
+                    "mongo"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "operations2",
+                "image_full": "./operations",
+                "image": "./operations",
+                "servers": [],
+                "depends_on": [
+                    "mongo"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": true,
+            "services": [
+                "mongo"
+            ],
+            "num": 1,
+            "names": [
+                "mongo"
+            ]
+        },
+        "num_services": 10
+    },
+    "num_buses": 0,
+    "size": 135,
+    "dockers": [
+        {
+            "cmd": "npm start",
+            "servers": [
+                "node"
+            ],
+            "langs": [],
+            "path": "/operations/Dockerfile",
+            "discos": [],
+            "from": "node",
+            "buses": [],
+            "from_full": "node:10",
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "keywords": [
+                "mkdir",
+                "npm",
+                "install",
+                "src",
+                "usr"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "nginx -g daemon off;",
+            "servers": [],
+            "langs": [],
+            "path": "/load-balancers/operation-balancer/Dockerfile",
+            "discos": [],
+            "from": "nginx",
+            "buses": [],
+            "from_full": "nginx",
+            "cmd_keywords": [
+                "off",
+                "nginx",
+                "daemon"
+            ],
+            "keywords": [],
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "nginx -g daemon off;",
+            "servers": [],
+            "langs": [],
+            "path": "/load-balancers/search-balancer/Dockerfile",
+            "discos": [],
+            "from": "nginx",
+            "buses": [],
+            "from_full": "nginx",
+            "cmd_keywords": [
+                "off",
+                "nginx",
+                "daemon"
+            ],
+            "keywords": [],
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "nginx -g daemon off;",
+            "servers": [],
+            "langs": [],
+            "path": "/load-balancers/auth-balancer/Dockerfile",
+            "discos": [],
+            "from": "nginx",
+            "buses": [],
+            "from_full": "nginx",
+            "cmd_keywords": [
+                "off",
+                "nginx",
+                "daemon"
+            ],
+            "keywords": [],
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "npm start",
+            "servers": [
+                "node"
+            ],
+            "langs": [],
+            "path": "/search/Dockerfile",
+            "discos": [],
+            "from": "node",
+            "buses": [],
+            "from_full": "node:10",
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "keywords": [
+                "mkdir",
+                "npm",
+                "install",
+                "src",
+                "usr"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "npm start",
+            "servers": [
+                "node"
+            ],
+            "langs": [],
+            "path": "/auth/Dockerfile",
+            "discos": [],
+            "from": "node",
+            "buses": [],
+            "from_full": "node:10",
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "keywords": [
+                "mkdir",
+                "npm",
+                "install",
+                "src",
+                "usr"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "languages": [
+        "javascript"
+    ],
+    "dbs": [
+        "mongo"
+    ],
+    "monitors": [],
+    "shared_dbs": true,
+    "avg_size_service": 22.5,
+    "num_monitors": 0,
+    "files": [
+        {
+            "monitors": [],
+            "servers": [
+                "express",
+                "node",
+                "mongoose"
+            ],
+            "path": "/operations/package.json",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "express",
+                "node",
+                "mongoose"
+            ],
+            "path": "/search/package.json",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "express",
+                "node",
+                "mongoose"
+            ],
+            "path": "/auth/package.json",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        }
+    ],
+    "langs": [
+        "javascript"
+    ],
+    "num_servers": 3,
+    "buses": [],
+    "num_langs": 1,
+    "num_gates": 1,
+    "num_discos": 0,
+    "images": [
+        "node",
+        "nginx"
+    ],
+    "num_dockers": 6,
+    "gates": [
+        "nginx"
+    ]
+}

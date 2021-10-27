@@ -1,0 +1,443 @@
+{
+    "size": 66,
+    "num_dockers": 7,
+    "discos": [
+        "eureka"
+    ],
+    "num_files": 17,
+    "avg_size_service": 9.428571428571429,
+    "buses": [
+        "kafka"
+    ],
+    "num_gates": 1,
+    "langs": [
+        "java",
+        "tsql"
+    ],
+    "num_discos": 1,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/quivers-service/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/boards-service/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/eureka-server/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/zuul-server/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/config-server/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/uaa-server/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/users-service/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine"
+        }
+    ],
+    "num_dbs": 0,
+    "monitors": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./zuul-server",
+                "image_full": "./zuul-server",
+                "discos": [],
+                "name": "zuul-server",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": [
+                    "zuul"
+                ]
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "openzipkin/zipkin-elasticsearch7",
+                "image_full": "openzipkin/zipkin-elasticsearch7",
+                "discos": [],
+                "name": "elasticsearch",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "openzipkin/zipkin",
+                "image_full": "openzipkin/zipkin",
+                "discos": [],
+                "name": "zipkin-server",
+                "depends_on": [
+                    "kafka-zookeeper",
+                    "elasticsearch"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "openzipkin/zipkin-ui",
+                "image_full": "openzipkin/zipkin-ui",
+                "discos": [],
+                "name": "zipkin-ui",
+                "depends_on": [
+                    "zipkin-server"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./eureka-server",
+                "image_full": "./eureka-server",
+                "discos": [
+                    "eureka"
+                ],
+                "name": "eureka-server",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "openzipkin/zipkin-dependencies",
+                "image_full": "openzipkin/zipkin-dependencies",
+                "discos": [],
+                "name": "dependencies",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./users-service",
+                "image_full": "./users-service",
+                "discos": [],
+                "name": "users-service",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./boards-service",
+                "image_full": "./boards-service",
+                "discos": [],
+                "name": "boards-service",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [
+                    "kafka"
+                ],
+                "image": "openzipkin/zipkin-kafka",
+                "image_full": "openzipkin/zipkin-kafka",
+                "discos": [],
+                "name": "kafka-zookeeper",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./uaa-server",
+                "image_full": "./uaa-server",
+                "discos": [],
+                "name": "uaa-server",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./quivers-service",
+                "image_full": "./quivers-service",
+                "discos": [],
+                "name": "quivers-service",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./config-server",
+                "image_full": "./config-server",
+                "discos": [],
+                "name": "config-server",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        },
+        "num_services": 12,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 1,
+    "servers": [
+        "spring"
+    ],
+    "url": "git://github.com/thiagotigaz/supercloud-surfer-microservices.git",
+    "num_services": 12,
+    "gates": [
+        "zuul"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/build.gradle"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "zuul"
+            ],
+            "dbs": [],
+            "servers": [],
+            "path": "/settings.gradle"
+        },
+        {
+            "monitors": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/quivers-service/build.gradle"
+        },
+        {
+            "monitors": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/boards-service/build.gradle"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/eureka-server/build.gradle"
+        },
+        {
+            "monitors": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "zuul"
+            ],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/zuul-server/build.gradle"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/config-server/build.gradle"
+        },
+        {
+            "monitors": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/uaa-server/build.gradle"
+        },
+        {
+            "monitors": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/users-service/build.gradle"
+        }
+    ],
+    "name": "thiagotigaz/supercloud-surfer-microservices",
+    "languages": [
+        "java",
+        "tsql"
+    ],
+    "images": [
+        "openjdk"
+    ],
+    "dbs": [],
+    "num_servers": 1,
+    "num_langs": 2
+}

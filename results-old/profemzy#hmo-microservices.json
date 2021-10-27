@@ -1,0 +1,176 @@
+{
+    "languages": [],
+    "num_servers": 0,
+    "shared_dbs": false,
+    "name": "profemzy/hmo-microservices",
+    "servers": [],
+    "num_monitors": 0,
+    "num_langs": 0,
+    "images": [],
+    "langs": [],
+    "dockers": [],
+    "gates": [],
+    "num_buses": 1,
+    "discos": [],
+    "monitors": [],
+    "num_files": 1,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "profemzy/discoveryservice:0.0.1-SNAPSHOT",
+                "depends_on": [
+                    "config-server"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "eureka-server",
+                "image": "profemzy/discoveryservice",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "profemzy/configserver:0.0.1-SNAPSHOT",
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "config-server",
+                "image": "profemzy/configserver",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "rabbitmq:3-management",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "name": "rabbitmq",
+                "image": "rabbitmq",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "openzipkin/zipkin",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "zipkin",
+                "image": "openzipkin/zipkin",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "profemzy/zuulapigateway:0.0.1-SNAPSHOT",
+                "depends_on": [
+                    "eureka-server"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "zuul-api-gateway",
+                "image": "profemzy/zuulapigateway",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mysql:5.7",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "mysql",
+                "image": "mysql",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "profemzy/photoappapialbums:0.0.1-SNAPSHOT",
+                "depends_on": [
+                    "eureka-server",
+                    "config-server"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "albums-ws",
+                "image": "profemzy/photoappapialbums",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "profemzy/users-ws:0.0.1-SNAPSHOT",
+                "depends_on": [
+                    "zipkin",
+                    "zuul-api-gateway",
+                    "mysql"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "users-ws",
+                "image": "profemzy/users-ws",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "profemzy/profile-ws:0.0.1-SNAPSHOT",
+                "depends_on": [
+                    "eureka-server",
+                    "config-server"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "profile-ws",
+                "image": "profemzy/profile-ws",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 9,
+        "detected_dbs": {
+            "services": [
+                "mysql"
+            ],
+            "names": [
+                "mysql"
+            ],
+            "num": 1,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [
+        "mysql"
+    ],
+    "num_dbs": 1,
+    "avg_size_service": 12.0,
+    "num_services": 9,
+    "buses": [
+        "rabbitmq"
+    ],
+    "files": [],
+    "url": "git://github.com/profemzy/hmo-microservices.git",
+    "num_dockers": 0,
+    "size": 12,
+    "num_discos": 0,
+    "num_gates": 0
+}

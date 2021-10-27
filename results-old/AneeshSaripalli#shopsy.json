@@ -1,0 +1,359 @@
+{
+    "num_gates": 1,
+    "images": [
+        "rust",
+        "nginx",
+        "node",
+        "wasm-base"
+    ],
+    "discos": [
+        "grpc"
+    ],
+    "num_buses": 1,
+    "name": "AneeshSaripalli/shopsy",
+    "gates": [
+        "nginx"
+    ],
+    "structure": {
+        "num_services": 6,
+        "detected_dbs": {
+            "services": [],
+            "names": [],
+            "shared_dbs": false,
+            "num": 0
+        },
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image": "['GITHUB_AUTH_TOKEN=${GITHUB_AUTH_TOKEN}']",
+                "image_full": "['GITHUB_AUTH_TOKEN=${GITHUB_AUTH_TOKEN}']",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "kafka"
+                ],
+                "servers": [],
+                "name": "node-gateway",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "Dockerfile",
+                "image_full": "Dockerfile",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "react-client",
+                    "node-gateway"
+                ],
+                "servers": [],
+                "name": "nginx-gateway",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "['GITHUB_AUTH_TOKEN=${GITHUB_AUTH_TOKEN}']",
+                "image_full": "['GITHUB_AUTH_TOKEN=${GITHUB_AUTH_TOKEN}']",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "protobufs",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "wasm-base",
+                "image_full": "wasm-base",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "wasm-base",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "spotify/kafka",
+                "image_full": "spotify/kafka",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "kafka",
+                "monitors": [],
+                "buses": [
+                    "kafka"
+                ],
+                "dbs": []
+            },
+            {
+                "image": "react-client",
+                "image_full": "react-client",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "wasm-base",
+                    "protobufs"
+                ],
+                "servers": [],
+                "name": "react-client",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            }
+        ]
+    },
+    "url": "git://github.com/AneeshSaripalli/shopsy.git",
+    "langs": [
+        "rust",
+        "typescript",
+        "javascript",
+        "gcc"
+    ],
+    "num_dockers": 7,
+    "num_langs": 4,
+    "dbs": [],
+    "shared_dbs": false,
+    "size": 886,
+    "dockers": [
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "wasm-base",
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "langs": [
+                "javascript"
+            ],
+            "from": "wasm-base",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "javascript",
+                "npm",
+                "development",
+                "update",
+                "node"
+            ],
+            "dbs": [],
+            "path": "/react-client/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "node:latest",
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "langs": [],
+            "from": "node",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "rustup",
+                "cargo",
+                "install",
+                "wasm",
+                "bin"
+            ],
+            "dbs": [],
+            "path": "/react-client/wasm/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "node",
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "langs": [
+                "gcc"
+            ],
+            "from": "node",
+            "cmd": "npm start",
+            "gates": [],
+            "keywords": [
+                "apt",
+                "get",
+                "update",
+                "install",
+                "development"
+            ],
+            "dbs": [],
+            "path": "/node-gateway/Dockerfile",
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ]
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "rust",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "rust"
+            ],
+            "from": "rust",
+            "cmd": "cargo watch -x run",
+            "gates": [],
+            "keywords": [
+                "cargo",
+                "toml",
+                "main",
+                "src",
+                "sed"
+            ],
+            "dbs": [],
+            "path": "/rust-kafka-consumer/Dockerfile",
+            "cmd_keywords": [
+                "cargo",
+                "watch",
+                "run"
+            ]
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "rust",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "rust"
+            ],
+            "from": "rust",
+            "cmd": "cargo watch -x run",
+            "gates": [],
+            "keywords": [
+                "cargo",
+                "toml",
+                "main",
+                "src",
+                "sed"
+            ],
+            "dbs": [],
+            "path": "/rust-kafka-producer/Dockerfile",
+            "cmd_keywords": [
+                "cargo",
+                "watch",
+                "run"
+            ]
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "nginx",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "nginx",
+            "cmd": "",
+            "gates": [
+                "nginx"
+            ],
+            "keywords": [],
+            "dbs": [],
+            "path": "/nginx-gateway/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "node",
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "langs": [],
+            "from": "node",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "npm",
+                "run",
+                "development",
+                "update",
+                "node"
+            ],
+            "dbs": [],
+            "path": "/protos/Dockerfile",
+            "cmd_keywords": []
+        }
+    ],
+    "num_servers": 2,
+    "monitors": [],
+    "num_services": 6,
+    "servers": [
+        "express",
+        "node"
+    ],
+    "num_monitors": 0,
+    "avg_size_service": 126.57142857142857,
+    "num_files": 11,
+    "buses": [
+        "kafka"
+    ],
+    "files": [
+        {
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "grpc"
+            ],
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/react-client/javascript/package.json"
+        },
+        {
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "grpc"
+            ],
+            "gates": [
+                "gateway"
+            ],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/node-gateway/package.json"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/protos/package.json"
+        }
+    ],
+    "languages": [
+        "javascript",
+        "typescript",
+        "rust"
+    ],
+    "num_dbs": 0,
+    "num_discos": 1
+}

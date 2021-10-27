@@ -1,0 +1,146 @@
+{
+    "size": 7,
+    "num_dockers": 2,
+    "discos": [],
+    "num_files": 3,
+    "avg_size_service": 3.5,
+    "buses": [],
+    "num_gates": 1,
+    "langs": [
+        "shell",
+        "dockerfile",
+        "bash"
+    ],
+    "num_discos": 0,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "/usr/sbin/nginx -g daemon off;",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "usr",
+                "daemon",
+                "nginx",
+                "sbin",
+                "off"
+            ],
+            "from": "alpine",
+            "path": "/build/nginx/Dockerfile",
+            "keywords": [
+                "apk",
+                "update",
+                "nginx",
+                "cache",
+                "add"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "from_full": "alpine:3.4"
+        },
+        {
+            "monitors": [],
+            "cmd": "bash /ghost-start",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "cmd_keywords": [
+                "ghost",
+                "start",
+                "bash"
+            ],
+            "from": "alpine",
+            "path": "/build/ghost-buster/Dockerfile",
+            "keywords": [
+                "ghost",
+                "npm",
+                "version",
+                "install",
+                "cli"
+            ],
+            "buses": [],
+            "langs": [
+                "bash"
+            ],
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [
+                "sqlite"
+            ],
+            "from_full": "alpine:3.6"
+        }
+    ],
+    "num_dbs": 1,
+    "monitors": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "umputun/ghost-buster-docker",
+                "image_full": "umputun/ghost-buster-docker",
+                "discos": [],
+                "name": "ghost-buster",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "build/nginx",
+                "image_full": "build/nginx",
+                "discos": [],
+                "name": "nginx",
+                "depends_on": [
+                    "ghost-buster"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": [
+                    "nginx"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        },
+        "num_services": 2,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 0,
+    "servers": [
+        "node"
+    ],
+    "url": "git://github.com/umputun/ghost-buster-docker.git",
+    "num_services": 2,
+    "gates": [
+        "nginx"
+    ],
+    "files": [],
+    "name": "umputun/ghost-buster-docker",
+    "languages": [
+        "shell",
+        "dockerfile"
+    ],
+    "images": [
+        "alpine"
+    ],
+    "dbs": [
+        "sqlite"
+    ],
+    "num_servers": 1,
+    "num_langs": 3
+}

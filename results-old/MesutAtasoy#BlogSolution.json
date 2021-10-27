@@ -1,0 +1,279 @@
+{
+    "num_monitors": 0,
+    "name": "MesutAtasoy/BlogSolution",
+    "langs": [
+        "c#"
+    ],
+    "discos": [],
+    "files": [],
+    "dockers": [
+        {
+            "from": "base",
+            "cmd_keywords": [],
+            "langs": [],
+            "discos": [],
+            "cmd": "",
+            "dbs": [],
+            "from_full": "base",
+            "keywords": [
+                "stats",
+                "api",
+                "csproj",
+                "dotnet",
+                "release"
+            ],
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/Stats/Stats.Api/Dockerfile"
+        },
+        {
+            "from": "base",
+            "cmd_keywords": [],
+            "langs": [],
+            "discos": [],
+            "cmd": "",
+            "dbs": [],
+            "from_full": "base",
+            "keywords": [
+                "gateway",
+                "api",
+                "csproj",
+                "dotnet",
+                "release"
+            ],
+            "servers": [],
+            "monitors": [],
+            "gates": [
+                "gateway"
+            ],
+            "buses": [],
+            "path": "/Gateway/Gateway.Api/Dockerfile"
+        },
+        {
+            "from": "base",
+            "cmd_keywords": [],
+            "langs": [],
+            "discos": [],
+            "cmd": "",
+            "dbs": [],
+            "from_full": "base",
+            "keywords": [
+                "blog",
+                "api",
+                "csproj",
+                "dotnet",
+                "release"
+            ],
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/Blog/Blog.Api/Dockerfile"
+        },
+        {
+            "from": "base",
+            "cmd_keywords": [],
+            "langs": [],
+            "discos": [],
+            "cmd": "",
+            "dbs": [],
+            "from_full": "base",
+            "keywords": [
+                "notification",
+                "api",
+                "csproj",
+                "dotnet",
+                "release"
+            ],
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/Notification/Notification.Api/Dockerfile"
+        },
+        {
+            "from": "base",
+            "cmd_keywords": [],
+            "langs": [],
+            "discos": [],
+            "cmd": "",
+            "dbs": [],
+            "from_full": "base",
+            "keywords": [
+                "identity",
+                "api",
+                "dotnet",
+                "csproj",
+                "release"
+            ],
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/Identity/Identity.Api/Dockerfile"
+        }
+    ],
+    "size": 383,
+    "dbs": [
+        "mongo"
+    ],
+    "num_gates": 1,
+    "monitors": [],
+    "url": "git://github.com/MesutAtasoy/BlogSolution.git",
+    "structure": {
+        "services": [
+            {
+                "depends_on": [],
+                "servers": [],
+                "name": "sql.data",
+                "gates": [],
+                "image_full": "microsoft/mssql-server-linux:2017-latest",
+                "discos": [],
+                "image": "microsoft/mssql-server-linux",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [
+                    "sql.data",
+                    "rabbitmq"
+                ],
+                "servers": [],
+                "name": "blog.api",
+                "gates": [],
+                "image_full": "${DOCKER_REGISTRY-}blogapi",
+                "discos": [],
+                "image": "${DOCKER_REGISTRY-}blogapi",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [
+                    "sql.data",
+                    "rabbitmq"
+                ],
+                "servers": [],
+                "name": "identity.api",
+                "gates": [],
+                "image_full": "${DOCKER_REGISTRY-}identityapi",
+                "discos": [],
+                "image": "${DOCKER_REGISTRY-}identityapi",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [
+                    "nosql.data",
+                    "rabbitmq"
+                ],
+                "servers": [],
+                "name": "stats.api",
+                "gates": [],
+                "image_full": "${DOCKER_REGISTRY-}statsapi",
+                "discos": [],
+                "image": "${DOCKER_REGISTRY-}statsapi",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [],
+                "servers": [],
+                "name": "nosql.data",
+                "gates": [],
+                "image_full": "mongo",
+                "discos": [],
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [
+                    "sql.data",
+                    "identity.api",
+                    "blog.api"
+                ],
+                "servers": [],
+                "name": "gateway.api",
+                "gates": [],
+                "image_full": "${DOCKER_REGISTRY-}gatewayapi",
+                "discos": [],
+                "image": "${DOCKER_REGISTRY-}gatewayapi",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [],
+                "servers": [],
+                "name": "rabbitmq",
+                "gates": [],
+                "image_full": "rabbitmq:3-management-alpine",
+                "discos": [],
+                "image": "rabbitmq",
+                "dbs": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "monitors": []
+            },
+            {
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "servers": [],
+                "name": "notification.api",
+                "gates": [],
+                "image_full": "${DOCKER_REGISTRY-}notificationapi",
+                "discos": [],
+                "image": "${DOCKER_REGISTRY-}notificationapi",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "nosql.data"
+            ],
+            "shared_dbs": false,
+            "num": 1,
+            "names": [
+                "mongo"
+            ]
+        },
+        "path": "/docker-compose.yml",
+        "num_services": 8
+    },
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_servers": 0,
+    "avg_size_service": 76.6,
+    "num_langs": 1,
+    "images": [
+        "base"
+    ],
+    "num_dockers": 5,
+    "servers": [],
+    "languages": [
+        "c#"
+    ],
+    "gates": [
+        "gateway"
+    ],
+    "num_services": 8,
+    "shared_dbs": false,
+    "num_files": 6,
+    "num_discos": 0,
+    "num_buses": 1,
+    "num_dbs": 1
+}

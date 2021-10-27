@@ -1,0 +1,189 @@
+{
+    "num_files": 4,
+    "num_services": 7,
+    "num_discos": 0,
+    "gates": [],
+    "languages": [
+        "html",
+        "java"
+    ],
+    "num_dbs": 0,
+    "dbs": [],
+    "num_monitors": 0,
+    "structure": {
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 0,
+            "services": [],
+            "names": []
+        },
+        "num_services": 7,
+        "services": [
+            {
+                "image_full": "docker.artifactory.reform.hmcts.net/auth/idam-database:latest",
+                "image": "docker.artifactory.reform.hmcts.net/auth/idam-database",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "idam-database"
+            },
+            {
+                "image_full": "docker.artifactory.reform.hmcts.net/evidence/document-management-store:latest",
+                "image": "docker.artifactory.reform.hmcts.net/evidence/document-management-store",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "document-management-store-database",
+                    "idam-api",
+                    "service-auth-provider-api"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "document-management-store"
+            },
+            {
+                "image_full": "hmcts.azurecr.io/hmcts/cmc-pdf-service",
+                "image": "hmcts.azurecr.io/hmcts/cmc-pdf-service",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "service-auth-provider-api"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "pdf-service-api"
+            },
+            {
+                "image_full": "mailhog/mailhog",
+                "image": "mailhog/mailhog",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "smtp-server"
+            },
+            {
+                "image_full": "docker.artifactory.reform.hmcts.net/auth/idam-api:latest",
+                "image": "docker.artifactory.reform.hmcts.net/auth/idam-api",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "idam-database",
+                    "smtp-server"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "idam-api"
+            },
+            {
+                "image_full": "docker.artifactory.reform.hmcts.net/evidence/document-management-store-database:latest",
+                "image": "docker.artifactory.reform.hmcts.net/evidence/document-management-store-database",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "document-management-store-database"
+            },
+            {
+                "image_full": "docker.artifactory.reform.hmcts.net/auth/service-auth-provider-api:latest",
+                "image": "docker.artifactory.reform.hmcts.net/auth/service-auth-provider-api",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "service-auth-provider-api"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "discos": [],
+    "url": "git://github.com/hmcts/div-document-generator-client.git",
+    "num_buses": 0,
+    "files": [
+        {
+            "servers": [
+                "spring",
+                "tomcat"
+            ],
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/build.gradle"
+        },
+        {
+            "servers": [],
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/settings.gradle"
+        }
+    ],
+    "name": "hmcts/div-document-generator-client",
+    "servers": [
+        "spring",
+        "tomcat"
+    ],
+    "num_dockers": 1,
+    "buses": [],
+    "num_gates": 0,
+    "num_langs": 2,
+    "shared_dbs": false,
+    "monitors": [],
+    "dockers": [
+        {
+            "servers": [],
+            "from": "hmctspublic.azurecr.io/base/java",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [
+                "generator",
+                "document",
+                "div",
+                "jar"
+            ],
+            "discos": [],
+            "cmd": "div-document-generator.jar",
+            "from_full": "hmctspublic.azurecr.io/base/java:openjdk-8-distroless-1.2"
+        }
+    ],
+    "langs": [
+        "java",
+        "html"
+    ],
+    "num_servers": 2,
+    "size": 7838,
+    "images": [
+        "hmctspublic.azurecr.io/base/java"
+    ],
+    "avg_size_service": 7838.0
+}

@@ -1,0 +1,220 @@
+{
+    "size": 285,
+    "avg_size_service": 95.0,
+    "name": "SayedBaladoh/Deploying-and-Running-Multiple-Spring-Boot-Microservices-with-MySql-using-Docker-Compose",
+    "languages": [
+        "java"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "num_dbs": 1,
+    "images": [
+        "openjdk"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 4,
+        "services": [
+            {
+                "depends_on": [
+                    "mysqldb"
+                ],
+                "image_full": "./user-service",
+                "monitors": [],
+                "name": "user",
+                "image": "./user-service",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "mysqldb",
+                    "user"
+                ],
+                "image_full": "./site-service",
+                "monitors": [],
+                "name": "site",
+                "image": "./site-service",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "mysql:8",
+                "monitors": [],
+                "name": "mysqldb",
+                "image": "mysql",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "mysqldb",
+                    "user",
+                    "site"
+                ],
+                "image_full": "./organization-service",
+                "monitors": [],
+                "name": "organization",
+                "image": "./organization-service",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "mysqldb"
+            ],
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": true,
+            "num": 1
+        }
+    },
+    "num_dockers": 3,
+    "num_buses": 0,
+    "num_services": 4,
+    "dockers": [
+        {
+            "path": "/organization-service/Dockerfile",
+            "from": "openjdk",
+            "langs": [
+                "java"
+            ],
+            "cmd": "java -jar organization-service.jar",
+            "servers": [],
+            "from_full": "openjdk:8",
+            "keywords": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "service",
+                "organization"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/user-service/Dockerfile",
+            "from": "openjdk",
+            "langs": [
+                "java"
+            ],
+            "cmd": "java -jar user-service.jar",
+            "servers": [],
+            "from_full": "openjdk:8",
+            "keywords": [],
+            "cmd_keywords": [
+                "jar",
+                "user",
+                "java",
+                "service"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/site-service/Dockerfile",
+            "from": "openjdk",
+            "langs": [
+                "java"
+            ],
+            "cmd": "java -jar site-service.jar",
+            "servers": [],
+            "from_full": "openjdk:8",
+            "keywords": [],
+            "cmd_keywords": [
+                "jar",
+                "site",
+                "java",
+                "service"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "num_langs": 1,
+    "langs": [
+        "java"
+    ],
+    "discos": [],
+    "num_gates": 0,
+    "num_monitors": 0,
+    "num_files": 7,
+    "files": [
+        {
+            "path": "/organization-service/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/user-service/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/site-service/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "shared_dbs": true,
+    "monitors": [],
+    "num_servers": 1,
+    "url": "git://github.com/SayedBaladoh/Deploying-and-Running-Multiple-Spring-Boot-Microservices-with-MySql-using-Docker-Compose.git",
+    "dbs": [
+        "mysql"
+    ],
+    "num_discos": 0,
+    "gates": [],
+    "buses": []
+}

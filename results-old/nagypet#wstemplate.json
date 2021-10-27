@@ -1,0 +1,566 @@
+{
+    "monitors": [
+        "prometheus",
+        "grafana"
+    ],
+    "structure": {
+        "path": "/docker-compose/dev/docker-compose.yml",
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [],
+            "names": [],
+            "num": 0
+        },
+        "services": [
+            {
+                "image": "grafana",
+                "buses": [],
+                "monitors": [
+                    "grafana"
+                ],
+                "image_full": "grafana",
+                "gates": [],
+                "name": "grafana",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "prometheus"
+                ]
+            },
+            {
+                "image": "dpage/pgadmin4",
+                "buses": [],
+                "monitors": [],
+                "image_full": "dpage/pgadmin4",
+                "gates": [],
+                "name": "pgadmin",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "postgres",
+                "buses": [],
+                "monitors": [],
+                "image_full": "postgres:10.13-alpine",
+                "gates": [],
+                "name": "postgres",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "template-eureka",
+                "buses": [],
+                "monitors": [],
+                "image_full": "template-eureka",
+                "gates": [],
+                "name": "discovery",
+                "discos": [
+                    "eureka"
+                ],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "template-scalable-service",
+                "buses": [],
+                "monitors": [],
+                "image_full": "template-scalable-service",
+                "gates": [],
+                "name": "scalable-service-2",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "discovery",
+                    "auth-service"
+                ]
+            },
+            {
+                "image": "gcr.io/google-containers/cadvisor",
+                "buses": [],
+                "monitors": [],
+                "image_full": "gcr.io/google-containers/cadvisor:v0.36.0",
+                "gates": [],
+                "name": "cadvisor",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "template-scalable-service",
+                "buses": [],
+                "monitors": [],
+                "image_full": "template-scalable-service",
+                "gates": [],
+                "name": "scalable-service-1",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "discovery",
+                    "auth-service"
+                ]
+            },
+            {
+                "image": "prom/node-exporter",
+                "buses": [],
+                "monitors": [],
+                "image_full": "prom/node-exporter:v0.18.1",
+                "gates": [],
+                "name": "nodeexporter",
+                "discos": [],
+                "servers": [
+                    "node"
+                ],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "prometheus",
+                "buses": [],
+                "monitors": [
+                    "prometheus"
+                ],
+                "image_full": "prometheus",
+                "gates": [],
+                "name": "prometheus",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "template-auth-service",
+                "buses": [],
+                "monitors": [],
+                "image_full": "template-auth-service",
+                "gates": [],
+                "name": "auth-service",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "discovery",
+                    "postgres"
+                ]
+            },
+            {
+                "image": "template-scalable-service",
+                "buses": [],
+                "monitors": [],
+                "image_full": "template-scalable-service",
+                "gates": [],
+                "name": "scalable-service-3",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "discovery",
+                    "auth-service"
+                ]
+            }
+        ],
+        "num_services": 11
+    },
+    "num_langs": 2,
+    "name": "nagypet/wstemplate",
+    "num_dockers": 5,
+    "buses": [],
+    "dbs": [
+        "postgresql"
+    ],
+    "size": 7020,
+    "num_discos": 1,
+    "shared_dbs": false,
+    "discos": [
+        "eureka"
+    ],
+    "images": [
+        "grafana/grafana",
+        "alpine",
+        "prom/prometheus"
+    ],
+    "num_servers": 4,
+    "files": [
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [],
+            "path": "/build.gradle",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [
+                "prometheus",
+                "grafana"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/settings.gradle",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [
+                "grafana"
+            ],
+            "servers": [
+                "express"
+            ],
+            "path": "/grafana/build.gradle",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [
+                "grafana"
+            ],
+            "servers": [
+                "express"
+            ],
+            "path": "/grafana/settings.gradle",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [
+                "zuul"
+            ],
+            "buses": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "servers": [
+                "express",
+                "glassfish",
+                "spring"
+            ],
+            "path": "/template-eureka/build.gradle",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "express",
+                "spring"
+            ],
+            "path": "/template-eureka/settings.gradle",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "servers": [
+                "express",
+                "glassfish",
+                "spring"
+            ],
+            "path": "/template-scalable-service/build.gradle",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "express",
+                "spring"
+            ],
+            "path": "/template-scalable-service/settings.gradle",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "servers": [
+                "express",
+                "glassfish",
+                "spring"
+            ],
+            "path": "/template-auth-service/build.gradle",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [
+                "postgresql"
+            ]
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "express",
+                "spring"
+            ],
+            "path": "/template-auth-service/settings.gradle",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/gradle/docker.gradle",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/gradle/common.gradle",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [],
+            "path": "/gradle/docker-image.gradle",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "servers": [
+                "express"
+            ],
+            "path": "/prometheus/build.gradle",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "servers": [
+                "express"
+            ],
+            "path": "/prometheus/settings.gradle",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "express",
+                "spring"
+            ],
+            "path": "/performance-tester/build.gradle",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "express",
+                "spring"
+            ],
+            "path": "/performance-tester/settings.gradle",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "node"
+            ],
+            "path": "/admin-gui/package.json",
+            "discos": [],
+            "dbs": []
+        }
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [
+                "grafana"
+            ],
+            "dbs": [],
+            "from": "grafana/grafana",
+            "path": "/grafana/docker/docker/Dockerfile",
+            "from_full": "grafana/grafana:6.7.3",
+            "cmd": "",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "eureka",
+                "template"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "alpine",
+            "path": "/template-eureka/docker/Dockerfile",
+            "from_full": "alpine:3.12",
+            "cmd": "sh ./template-eureka",
+            "keywords": [
+                "apk",
+                "add",
+                "http",
+                "community",
+                "alpinelinux"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "service",
+                "template",
+                "scalable"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "alpine",
+            "path": "/template-scalable-service/docker/Dockerfile",
+            "from_full": "alpine:3.12",
+            "cmd": "sh ./template-scalable-service",
+            "keywords": [
+                "apk",
+                "add",
+                "http",
+                "community",
+                "alpinelinux"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "auth",
+                "template",
+                "service"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "alpine",
+            "path": "/template-auth-service/docker/Dockerfile",
+            "from_full": "alpine:3.12",
+            "cmd": "sh ./template-auth-service",
+            "keywords": [
+                "apk",
+                "add",
+                "http",
+                "community",
+                "alpinelinux"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "dbs": [],
+            "from": "prom/prometheus",
+            "path": "/prometheus/docker/docker/Dockerfile",
+            "from_full": "prom/prometheus:v2.18.1",
+            "cmd": "",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        }
+    ],
+    "url": "git://github.com/nagypet/wstemplate.git",
+    "gates": [
+        "zuul"
+    ],
+    "num_files": 24,
+    "num_services": 11,
+    "num_gates": 1,
+    "num_dbs": 1,
+    "avg_size_service": 1404.0,
+    "langs": [
+        "typescript",
+        "java"
+    ],
+    "num_buses": 0,
+    "languages": [
+        "java",
+        "typescript"
+    ],
+    "num_monitors": 2,
+    "servers": [
+        "express",
+        "glassfish",
+        "node",
+        "spring"
+    ]
+}

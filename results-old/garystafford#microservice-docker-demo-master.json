@@ -1,0 +1,142 @@
+{
+    "langs": [
+        "shell"
+    ],
+    "languages": [
+        "shell"
+    ],
+    "url": "git://github.com/garystafford/microservice-docker-demo-master.git",
+    "files": [],
+    "gates": [],
+    "discos": [
+        "eureka"
+    ],
+    "num_monitors": 1,
+    "num_dockers": 0,
+    "num_dbs": 1,
+    "avg_size_service": 19.0,
+    "num_gates": 0,
+    "num_servers": 0,
+    "name": "garystafford/microservice-docker-demo-master",
+    "num_discos": 1,
+    "num_files": 1,
+    "num_buses": 0,
+    "servers": [],
+    "dbs": [
+        "mongo"
+    ],
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "depends_on": [],
+                "image": "garystafford/config-server",
+                "servers": [],
+                "gates": [],
+                "image_full": "garystafford/config-server:latest",
+                "buses": [],
+                "dbs": [],
+                "discos": [],
+                "name": "config"
+            },
+            {
+                "monitors": [],
+                "depends_on": [
+                    "config",
+                    "eureka",
+                    "mongodb"
+                ],
+                "image": "garystafford/user-service",
+                "servers": [],
+                "gates": [],
+                "image_full": "garystafford/user-service:latest",
+                "buses": [],
+                "dbs": [],
+                "discos": [],
+                "name": "user"
+            },
+            {
+                "monitors": [
+                    "elk"
+                ],
+                "depends_on": [],
+                "image": "sebp/elk",
+                "servers": [],
+                "gates": [],
+                "image_full": "sebp/elk:latest",
+                "buses": [],
+                "dbs": [],
+                "discos": [],
+                "name": "elk"
+            },
+            {
+                "monitors": [],
+                "depends_on": [
+                    "config",
+                    "eureka",
+                    "mongodb"
+                ],
+                "image": "garystafford/widget-service",
+                "servers": [],
+                "gates": [],
+                "image_full": "garystafford/widget-service:latest",
+                "buses": [],
+                "dbs": [],
+                "discos": [],
+                "name": "widget"
+            },
+            {
+                "monitors": [],
+                "depends_on": [],
+                "image": "mongo",
+                "servers": [],
+                "gates": [],
+                "image_full": "mongo:latest",
+                "buses": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "discos": [],
+                "name": "mongodb"
+            },
+            {
+                "monitors": [],
+                "depends_on": [
+                    "config"
+                ],
+                "image": "garystafford/eureka-server",
+                "servers": [],
+                "gates": [],
+                "image_full": "garystafford/eureka-server:latest",
+                "buses": [],
+                "dbs": [],
+                "discos": [
+                    "eureka"
+                ],
+                "name": "eureka"
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "names": [
+                "mongo"
+            ],
+            "services": [
+                "mongodb"
+            ],
+            "shared_dbs": true,
+            "num": 1
+        },
+        "path": "/docker-compose.yml"
+    },
+    "monitors": [
+        "elk"
+    ],
+    "size": 19,
+    "dockers": [],
+    "images": [],
+    "buses": [],
+    "num_services": 6,
+    "num_langs": 1,
+    "shared_dbs": true
+}

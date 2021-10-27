@@ -1,0 +1,577 @@
+{
+    "files": [
+        {
+            "buses": [],
+            "path": "/pom.xml",
+            "monitors": [
+                "monitoring",
+                "turbine"
+            ],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "discos": [],
+            "gates": [
+                "gateway"
+            ]
+        },
+        {
+            "buses": [
+                "kafka"
+            ],
+            "path": "/account/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "cassandra",
+                "redis"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": []
+        },
+        {
+            "buses": [
+                "kafka"
+            ],
+            "path": "/subscription/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "cassandra"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": []
+        },
+        {
+            "buses": [],
+            "path": "/config/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": []
+        },
+        {
+            "buses": [],
+            "path": "/monitoring/pom.xml",
+            "monitors": [
+                "monitoring"
+            ],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": []
+        },
+        {
+            "buses": [],
+            "path": "/gateway/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "gateway",
+                "zuul"
+            ]
+        },
+        {
+            "buses": [],
+            "path": "/registry/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": []
+        },
+        {
+            "buses": [],
+            "path": "/turbine/pom.xml",
+            "monitors": [
+                "turbine"
+            ],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": []
+        },
+        {
+            "buses": [],
+            "path": "/web/package.json",
+            "monitors": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "discos": [],
+            "gates": []
+        }
+    ],
+    "size": 1152,
+    "url": "git://github.com/cv65kr/cyrulik.git",
+    "num_monitors": 1,
+    "languages": [
+        "java",
+        "php",
+        "html"
+    ],
+    "langs": [
+        "php",
+        "html",
+        "java"
+    ],
+    "discos": [
+        "eureka",
+        "zookeeper"
+    ],
+    "gates": [
+        "zuul",
+        "nginx"
+    ],
+    "num_servers": 2,
+    "num_dockers": 8,
+    "shared_dbs": false,
+    "images": [
+        "php",
+        "openjdk"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 4,
+            "names": [
+                "cassandra",
+                "redis",
+                "zookeeper"
+            ],
+            "services": [
+                "cassandra-subscription",
+                "zookeeper",
+                "redis",
+                "cassandra-account"
+            ]
+        },
+        "services": [
+            {
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "buses": [
+                    "kafka"
+                ],
+                "image": "wurstmeister/kafka",
+                "monitors": [],
+                "image_full": "wurstmeister/kafka",
+                "dbs": [],
+                "name": "kafka",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "{'env': '${APP_ENV}'}",
+                "monitors": [],
+                "image_full": "{'env': '${APP_ENV}'}",
+                "dbs": [],
+                "name": "web",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "cyrulik/account",
+                "monitors": [],
+                "image_full": "cyrulik/account",
+                "dbs": [],
+                "name": "account-service",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "cyrulik/registry",
+                "monitors": [],
+                "image_full": "cyrulik/registry",
+                "dbs": [],
+                "name": "registry-service",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "spotify/cassandra",
+                "monitors": [],
+                "image_full": "spotify/cassandra",
+                "dbs": [
+                    "cassandra"
+                ],
+                "name": "cassandra-subscription",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "cyrulik/monitoring",
+                "monitors": [
+                    "monitoring"
+                ],
+                "image_full": "cyrulik/monitoring",
+                "dbs": [],
+                "name": "monitoring-service",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "cyrulik/gateway",
+                "monitors": [],
+                "image_full": "cyrulik/gateway",
+                "dbs": [],
+                "name": "gateway-service",
+                "servers": [],
+                "discos": [],
+                "gates": [
+                    "gateway"
+                ]
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "cyrulik/subscription",
+                "monitors": [],
+                "image_full": "cyrulik/subscription",
+                "dbs": [],
+                "name": "subscription-service",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "wurstmeister/zookeeper",
+                "monitors": [],
+                "image_full": "wurstmeister/zookeeper",
+                "dbs": [
+                    "zookeeper"
+                ],
+                "name": "zookeeper",
+                "servers": [],
+                "discos": [
+                    "zookeeper"
+                ],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "redis",
+                "monitors": [],
+                "image_full": "redis:4-alpine",
+                "dbs": [
+                    "redis"
+                ],
+                "name": "redis",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "openzipkin/zipkin",
+                "monitors": [],
+                "image_full": "openzipkin/zipkin:2.10.1",
+                "dbs": [],
+                "name": "zipkin-service",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "spotify/cassandra",
+                "monitors": [],
+                "image_full": "spotify/cassandra",
+                "dbs": [
+                    "cassandra"
+                ],
+                "name": "cassandra-account",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "cyrulik/config",
+                "monitors": [],
+                "image_full": "cyrulik/config",
+                "dbs": [],
+                "name": "config-service",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "cyrulik/turbine",
+                "monitors": [
+                    "turbine"
+                ],
+                "image_full": "cyrulik/turbine",
+                "dbs": [],
+                "name": "turbine-service",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            }
+        ],
+        "num_services": 14
+    },
+    "num_gates": 2,
+    "buses": [
+        "kafka"
+    ],
+    "num_dbs": 3,
+    "avg_size_service": 144.0,
+    "num_discos": 2,
+    "servers": [
+        "spring",
+        "node"
+    ],
+    "num_buses": 1,
+    "dockers": [
+        {
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "servers": [],
+            "from": "openjdk",
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/account/src/main/resources/docker/Dockerfile",
+            "monitors": [],
+            "from_full": "openjdk:10-jre-slim",
+            "keywords": [
+                "apt",
+                "get",
+                "curl",
+                "update",
+                "install"
+            ]
+        },
+        {
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "servers": [],
+            "from": "openjdk",
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/subscription/src/main/resources/docker/Dockerfile",
+            "monitors": [],
+            "from_full": "openjdk:10-jre-slim",
+            "keywords": [
+                "apt",
+                "get",
+                "curl",
+                "update",
+                "install"
+            ]
+        },
+        {
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "servers": [],
+            "from": "openjdk",
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/config/src/main/resources/docker/Dockerfile",
+            "monitors": [],
+            "from_full": "openjdk:10-jre-slim",
+            "keywords": [
+                "apt",
+                "get",
+                "curl",
+                "update",
+                "install"
+            ]
+        },
+        {
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "servers": [],
+            "from": "openjdk",
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/monitoring/src/main/resources/docker/Dockerfile",
+            "monitors": [],
+            "from_full": "openjdk:10-jre-slim",
+            "keywords": [
+                "apt",
+                "get",
+                "curl",
+                "update",
+                "install"
+            ]
+        },
+        {
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "servers": [],
+            "from": "openjdk",
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/gateway/src/main/resources/docker/Dockerfile",
+            "monitors": [],
+            "from_full": "openjdk:10-jre-slim",
+            "keywords": [
+                "apt",
+                "get",
+                "curl",
+                "update",
+                "install"
+            ]
+        },
+        {
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "servers": [],
+            "from": "openjdk",
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/registry/src/main/resources/docker/Dockerfile",
+            "monitors": [],
+            "from_full": "openjdk:10-jre-slim",
+            "keywords": [
+                "apt",
+                "get",
+                "curl",
+                "update",
+                "install"
+            ]
+        },
+        {
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "servers": [],
+            "from": "openjdk",
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/turbine/src/main/resources/docker/Dockerfile",
+            "monitors": [],
+            "from_full": "openjdk:10-jre-slim",
+            "keywords": [
+                "apt",
+                "get",
+                "curl",
+                "update",
+                "install"
+            ]
+        },
+        {
+            "buses": [],
+            "langs": [
+                "php"
+            ],
+            "dbs": [
+                "redis"
+            ],
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "from": "php",
+            "gates": [
+                "nginx"
+            ],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/web/Dockerfile",
+            "monitors": [],
+            "from_full": "php:7.3.0-fpm-alpine3.8",
+            "keywords": [
+                "apk",
+                "install",
+                "etc",
+                "yarn",
+                "cache"
+            ]
+        }
+    ],
+    "monitors": [
+        "turbine"
+    ],
+    "num_files": 18,
+    "dbs": [
+        "cassandra",
+        "redis",
+        "zookeeper"
+    ],
+    "name": "cv65kr/cyrulik",
+    "num_langs": 3,
+    "num_services": 14
+}

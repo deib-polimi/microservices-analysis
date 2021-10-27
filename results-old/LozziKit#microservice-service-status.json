@@ -1,0 +1,202 @@
+{
+    "num_dbs": 1,
+    "shared_dbs": false,
+    "structure": {
+        "num_services": 2,
+        "services": [
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "image_full": "amt/status-server",
+                "image": "amt/status-server",
+                "name": "server",
+                "monitors": [],
+                "depends_on": [
+                    "database"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "dbs": [
+                    "mysql"
+                ],
+                "servers": [],
+                "buses": [],
+                "image_full": "./images/mysql",
+                "image": "./images/mysql",
+                "name": "database",
+                "monitors": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "database"
+            ],
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": false,
+            "num": 1
+        },
+        "path": "/topology/docker-compose.yml"
+    },
+    "dbs": [
+        "mysql"
+    ],
+    "images": [
+        "mysql",
+        "java",
+        "openjdk"
+    ],
+    "num_services": 2,
+    "name": "LozziKit/microservice-service-status",
+    "num_langs": 2,
+    "gates": [],
+    "discos": [],
+    "dockers": [
+        {
+            "from_full": "java:openjdk-8-jre",
+            "keywords": [
+                "dockerize",
+                "tar",
+                "version",
+                "linux",
+                "amd"
+            ],
+            "buses": [],
+            "path": "/service-status-server/Dockerfile",
+            "monitors": [],
+            "from": "java",
+            "dbs": [],
+            "servers": [],
+            "cmd": "dockerize -wait tcp://database:3306 -timeout 1m && java -jar server.jar",
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [
+                "jar",
+                "server",
+                "database",
+                "dockerize",
+                "wait"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "from_full": "openjdk:8",
+            "keywords": [],
+            "buses": [],
+            "path": "/topology/images/server/Dockerfile",
+            "monitors": [],
+            "from": "openjdk",
+            "dbs": [],
+            "servers": [],
+            "cmd": "java -jar server.jar",
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [
+                "jar",
+                "server",
+                "java"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "from_full": "mysql:5.7",
+            "keywords": [],
+            "buses": [],
+            "path": "/topology/images/mysql/Dockerfile",
+            "monitors": [],
+            "from": "mysql",
+            "dbs": [
+                "mysql"
+            ],
+            "servers": [],
+            "cmd": "",
+            "langs": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "buses": [],
+    "langs": [
+        "gherkin",
+        "java"
+    ],
+    "files": [
+        {
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "path": "/pom.xml",
+            "monitors": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [
+                "mysql"
+            ],
+            "servers": [
+                "spring",
+                "tomcat"
+            ],
+            "buses": [],
+            "path": "/service-status-server/pom.xml",
+            "monitors": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "path": "/service-status-specs/pom.xml",
+            "monitors": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "path": "/service-status-tests/package.json",
+            "monitors": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "size": 175,
+    "languages": [
+        "java",
+        "gherkin"
+    ],
+    "num_files": 8,
+    "avg_size_service": 58.333333333333336,
+    "monitors": [],
+    "num_gates": 0,
+    "servers": [
+        "spring",
+        "node",
+        "tomcat"
+    ],
+    "num_monitors": 0,
+    "num_dockers": 3,
+    "num_buses": 0,
+    "url": "git://github.com/LozziKit/microservice-service-status.git",
+    "num_servers": 3,
+    "num_discos": 0
+}

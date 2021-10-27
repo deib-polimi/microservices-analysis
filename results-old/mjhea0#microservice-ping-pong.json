@@ -1,0 +1,249 @@
+{
+    "languages": [
+        "javascript",
+        "html",
+        "dockerfile"
+    ],
+    "num_servers": 2,
+    "shared_dbs": false,
+    "name": "mjhea0/microservice-ping-pong",
+    "servers": [
+        "node",
+        "express"
+    ],
+    "num_monitors": 0,
+    "num_langs": 3,
+    "images": [
+        "nginx",
+        "node"
+    ],
+    "langs": [
+        "javascript",
+        "dockerfile",
+        "html"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "conf",
+                "default",
+                "nginx",
+                "etc"
+            ],
+            "path": "/services/nginx/Dockerfile",
+            "gates": [
+                "nginx"
+            ],
+            "from": "nginx",
+            "from_full": "nginx:1.13.5",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "npm start",
+            "keywords": [
+                "npm",
+                "silent",
+                "install",
+                "app",
+                "src"
+            ],
+            "path": "/services/node/Dockerfile",
+            "gates": [],
+            "from": "node",
+            "from_full": "node:latest",
+            "servers": [
+                "node"
+            ],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "build",
+                "server",
+                "pushstate"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "pushstate-server build 3000",
+            "keywords": [
+                "npm",
+                "silent",
+                "install",
+                "run",
+                "app"
+            ],
+            "path": "/services/client/Dockerfile",
+            "gates": [],
+            "from": "node",
+            "from_full": "node:latest",
+            "servers": [
+                "node"
+            ],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_buses": 0,
+    "discos": [],
+    "monitors": [],
+    "num_files": 6,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "node-base",
+                "depends_on": [
+                    "node-paul",
+                    "node-george",
+                    "node-ringo"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "node-john",
+                "image": "node-base",
+                "servers": [
+                    "node"
+                ],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "['NODE_ENV=development', 'REACT_APP_BASE_URL=${REACT_APP_BASE_URL}']",
+                "depends_on": [
+                    "node-john",
+                    "node-paul",
+                    "node-george",
+                    "node-ringo"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "client",
+                "image": "['NODE_ENV=development', 'REACT_APP_BASE_URL=${REACT_APP_BASE_URL}']",
+                "servers": [
+                    "node"
+                ],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "./services/nginx",
+                "depends_on": [
+                    "client"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "name": "nginx",
+                "image": "./services/nginx",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "node-base",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "node-paul",
+                "image": "node-base",
+                "servers": [
+                    "node"
+                ],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "node-base",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "node-ringo",
+                "image": "node-base",
+                "servers": [
+                    "node"
+                ],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "node-base",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "node-george",
+                "image": "node-base",
+                "servers": [
+                    "node"
+                ],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "services": [],
+            "names": [],
+            "num": 0,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [],
+    "num_dbs": 0,
+    "avg_size_service": 178.33333333333334,
+    "num_services": 6,
+    "buses": [],
+    "files": [
+        {
+            "dbs": [],
+            "path": "/services/node/package.json",
+            "gates": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/services/client/package.json",
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "url": "git://github.com/mjhea0/microservice-ping-pong.git",
+    "num_dockers": 3,
+    "size": 535,
+    "num_discos": 0,
+    "num_gates": 1
+}

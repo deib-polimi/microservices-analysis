@@ -1,0 +1,255 @@
+{
+    "structure": {
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "mongo"
+            ],
+            "shared_dbs": true,
+            "services": [
+                "mongodb-server"
+            ]
+        },
+        "num_services": 9,
+        "path": "/setup/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [],
+                "name": "kafka-server",
+                "dbs": [],
+                "image": "spotify/kafka",
+                "monitors": [],
+                "servers": [],
+                "image_full": "spotify/kafka",
+                "buses": [
+                    "kafka"
+                ],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "mongodb-server",
+                    "kafka-server"
+                ],
+                "name": "customer-api",
+                "dbs": [],
+                "image": "microservices-api-customers",
+                "monitors": [],
+                "servers": [],
+                "image_full": "microservices-api-customers:1.0.0",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "kafka-server",
+                    "mongodb-server"
+                ],
+                "name": "microservices-service-notification",
+                "dbs": [],
+                "image": "microservices-service-notification",
+                "monitors": [],
+                "servers": [],
+                "image_full": "microservices-service-notification:1.0.0",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "customer-api",
+                    "postgresql-server",
+                    "identity-sts"
+                ],
+                "name": "webapp-customermgmt",
+                "dbs": [],
+                "image": "microservices-web-customermgmt",
+                "monitors": [],
+                "servers": [],
+                "image_full": "microservices-web-customermgmt:1.0.0",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "name": "elasticsearch-server",
+                "dbs": [],
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "monitors": [],
+                "servers": [],
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:6.3.2",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "name": "mongodb-server",
+                "dbs": [
+                    "mongo"
+                ],
+                "image": "mongo",
+                "monitors": [],
+                "servers": [],
+                "image_full": "mongo",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "kafka-server",
+                    "mongodb-server",
+                    "elasticsearch-server"
+                ],
+                "name": "microservices-service-replication",
+                "dbs": [],
+                "image": "microservices-service-replication",
+                "monitors": [],
+                "servers": [],
+                "image_full": "microservices-service-replication:1.0.0",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "postgresql-server"
+                ],
+                "name": "identity-sts",
+                "dbs": [],
+                "image": "microservices-service-sts",
+                "monitors": [],
+                "servers": [],
+                "image_full": "microservices-service-sts:1.0.0",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "name": "postgresql-server",
+                "dbs": [],
+                "image": "postgres",
+                "monitors": [],
+                "servers": [],
+                "image_full": "postgres:alpine",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            }
+        ]
+    },
+    "dbs": [
+        "mongo"
+    ],
+    "dockers": [
+        {
+            "dbs": [],
+            "path": "/src/app.web.customerMgmt/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": [],
+            "from_full": "microsoft/dotnet:2.1-aspnetcore-runtime",
+            "langs": [],
+            "monitors": [],
+            "servers": [],
+            "keywords": [],
+            "from": "microsoft/dotnet",
+            "cmd": ""
+        },
+        {
+            "dbs": [],
+            "path": "/src/app.services.email/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": [],
+            "from_full": "microsoft/dotnet:2.1-runtime",
+            "langs": [],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "mkdir",
+                "data",
+                "app",
+                "logs"
+            ],
+            "from": "microsoft/dotnet",
+            "cmd": ""
+        },
+        {
+            "dbs": [],
+            "path": "/src/app.api.customers/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": [],
+            "from_full": "microsoft/dotnet:2.1-aspnetcore-runtime",
+            "langs": [],
+            "monitors": [],
+            "servers": [],
+            "keywords": [],
+            "from": "microsoft/dotnet",
+            "cmd": ""
+        },
+        {
+            "dbs": [],
+            "path": "/src/app.services.replication/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": [],
+            "from_full": "microsoft/dotnet:2.1-runtime",
+            "langs": [],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "mkdir",
+                "data",
+                "app",
+                "logs"
+            ],
+            "from": "microsoft/dotnet",
+            "cmd": ""
+        }
+    ],
+    "files": [],
+    "languages": [
+        "c#",
+        "html"
+    ],
+    "num_dbs": 1,
+    "num_monitors": 0,
+    "images": [
+        "microsoft/dotnet"
+    ],
+    "name": "bbcCorp/microSERVICES",
+    "shared_dbs": true,
+    "num_servers": 0,
+    "num_langs": 2,
+    "buses": [
+        "kafka"
+    ],
+    "num_services": 9,
+    "num_dockers": 4,
+    "size": 3704,
+    "avg_size_service": 926.0,
+    "gates": [],
+    "discos": [],
+    "langs": [
+        "c#",
+        "html"
+    ],
+    "num_files": 5,
+    "url": "git://github.com/bbcCorp/microSERVICES.git",
+    "monitors": [],
+    "servers": [],
+    "num_buses": 1,
+    "num_discos": 0,
+    "num_gates": 0
+}

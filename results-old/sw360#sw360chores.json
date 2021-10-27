@@ -1,0 +1,302 @@
+{
+    "discos": [],
+    "avg_size_service": 33.5,
+    "buses": [],
+    "num_gates": 1,
+    "name": "sw360/sw360chores",
+    "structure": {
+        "path": "/deployment/docker-compose.yml",
+        "services": [
+            {
+                "name": "sw360nginx",
+                "dbs": [],
+                "depends_on": [
+                    "sw360"
+                ],
+                "discos": [],
+                "image_full": "sw360/sw360nginx",
+                "image": "sw360/sw360nginx",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": [
+                    "nginx"
+                ]
+            },
+            {
+                "name": "sw360couchdb-lucene",
+                "dbs": [
+                    "couchdb"
+                ],
+                "depends_on": [
+                    "sw360couchdb"
+                ],
+                "discos": [],
+                "image_full": "sw360/couchdb-lucene",
+                "image": "sw360/couchdb-lucene",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "sw360",
+                "dbs": [],
+                "depends_on": [
+                    "sw360postgres",
+                    "sw360couchdb"
+                ],
+                "discos": [],
+                "image_full": "sw360/sw360empty",
+                "image": "sw360/sw360empty",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "sw360postgres",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "postgres:9",
+                "image": "postgres",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "sw360couchdb",
+                "dbs": [
+                    "couchdb"
+                ],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "sw360/sw360couchdb",
+                "image": "sw360/sw360couchdb",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [
+                "couchdb"
+            ],
+            "num": 2,
+            "shared_dbs": true,
+            "services": [
+                "sw360couchdb-lucene",
+                "sw360couchdb"
+            ]
+        },
+        "num_services": 5
+    },
+    "dbs": [
+        "db"
+    ],
+    "dockers": [
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "couchdb"
+            ],
+            "from_full": "couchdb:1.7.1",
+            "buses": [],
+            "monitors": [],
+            "from": "couchdb",
+            "keywords": [
+                "mkdir",
+                "usr",
+                "etc",
+                "chmod",
+                "entrypoint"
+            ],
+            "gates": [],
+            "path": "/docker-images/sw360couchdb/Dockerfile",
+            "dbs": [
+                "couchdb"
+            ],
+            "discos": [],
+            "cmd": "couchdb",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "daemon",
+                "nginx",
+                "off"
+            ],
+            "from_full": "nginx",
+            "buses": [],
+            "monitors": [],
+            "from": "nginx",
+            "keywords": [
+                "usr",
+                "chmod",
+                "local",
+                "entrypoint",
+                "bin"
+            ],
+            "gates": [
+                "nginx"
+            ],
+            "path": "/docker-images/sw360nginx/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "nginx -g daemon off;",
+            "servers": []
+        },
+        {
+            "langs": [
+                "bash"
+            ],
+            "cmd_keywords": [
+                "catalina",
+                "opt",
+                "tail",
+                "out",
+                "tomcat"
+            ],
+            "from_full": "tomcat:9-jre8-alpine",
+            "buses": [],
+            "monitors": [],
+            "from": "tomcat",
+            "keywords": [
+                "busybox",
+                "extras",
+                "bash",
+                "openjdk",
+                "inotify"
+            ],
+            "gates": [],
+            "path": "/docker-images/sw360empty/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "tail -f /opt/sw360/$TOMCAT/logs/catalina.out",
+            "servers": [
+                "tomcat"
+            ]
+        },
+        {
+            "langs": [
+                "python"
+            ],
+            "cmd_keywords": [
+                "server"
+            ],
+            "from_full": "debian:jessie",
+            "buses": [],
+            "monitors": [],
+            "from": "debian",
+            "keywords": [
+                "python",
+                "dev",
+                "pip",
+                "install",
+                "ini"
+            ],
+            "gates": [],
+            "path": "/docker-images/cve-search-server/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "server",
+            "servers": []
+        },
+        {
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [
+                "run",
+                "lucene",
+                "bin",
+                "couchdb"
+            ],
+            "from_full": "java:openjdk-8-jre-alpine",
+            "buses": [],
+            "monitors": [],
+            "from": "java",
+            "keywords": [
+                "lucene",
+                "couchdb",
+                "unzip",
+                "apk",
+                "del"
+            ],
+            "gates": [],
+            "path": "/docker-images/couchdb-lucene/Dockerfile",
+            "dbs": [
+                "couchdb"
+            ],
+            "discos": [],
+            "cmd": "/couchdb-lucene/bin/run",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [],
+            "from_full": "sw360/sw360empty:latest",
+            "buses": [],
+            "monitors": [],
+            "from": "sw360/sw360empty",
+            "keywords": [
+                "war",
+                "folder",
+                "webapps",
+                "opt",
+                "tomcat"
+            ],
+            "gates": [],
+            "path": "/docker-images/sw360populated/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": [
+                "tomcat"
+            ]
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "size": 201,
+    "num_monitors": 0,
+    "images": [
+        "nginx",
+        "sw360/sw360empty",
+        "java",
+        "tomcat",
+        "debian",
+        "couchdb"
+    ],
+    "num_buses": 0,
+    "num_services": 5,
+    "servers": [
+        "tomcat"
+    ],
+    "shared_dbs": true,
+    "monitors": [],
+    "num_discos": 0,
+    "languages": [
+        "shell",
+        "perl"
+    ],
+    "url": "git://github.com/sw360/sw360chores.git",
+    "langs": [
+        "python",
+        "perl",
+        "bash",
+        "java",
+        "shell"
+    ],
+    "num_dbs": 1,
+    "num_servers": 1,
+    "num_langs": 5,
+    "files": [],
+    "num_dockers": 6,
+    "num_files": 7
+}

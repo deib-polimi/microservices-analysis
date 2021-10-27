@@ -1,0 +1,296 @@
+{
+    "num_monitors": 0,
+    "name": "MBA90/microservices",
+    "langs": [
+        "java",
+        "shell"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "files": [
+        {
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "path": "/pom.xml",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/config-service/pom.xml",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "path": "/licensing-service/pom.xml",
+            "dbs": [
+                "mysql"
+            ]
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "path": "/org-service/pom.xml",
+            "dbs": [
+                "mysql"
+            ]
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "path": "/eureka-service/pom.xml",
+            "dbs": []
+        }
+    ],
+    "dockers": [
+        {
+            "from": "openjdk",
+            "cmd_keywords": [
+                "run"
+            ],
+            "langs": [
+                "java"
+            ],
+            "discos": [],
+            "cmd": "./run.sh",
+            "dbs": [
+                "oracle"
+            ],
+            "from_full": "openjdk:8-jdk-alpine",
+            "keywords": [
+                "jce",
+                "apk",
+                "policy",
+                "zip",
+                "java"
+            ],
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/config-service/Dockerfile"
+        },
+        {
+            "from": "openjdk",
+            "cmd_keywords": [
+                "run"
+            ],
+            "langs": [],
+            "discos": [],
+            "cmd": "./run.sh",
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "keywords": [
+                "apk",
+                "local",
+                "chmod",
+                "usr",
+                "upgrade"
+            ],
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/licensing-service/Dockerfile"
+        },
+        {
+            "from": "openjdk",
+            "cmd_keywords": [
+                "run"
+            ],
+            "langs": [],
+            "discos": [],
+            "cmd": "./run.sh",
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "keywords": [
+                "apk",
+                "chmod",
+                "usr",
+                "upgrade",
+                "local"
+            ],
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/org-service/Dockerfile"
+        },
+        {
+            "from": "openjdk",
+            "cmd_keywords": [
+                "run"
+            ],
+            "langs": [],
+            "discos": [],
+            "cmd": "./run.sh",
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "keywords": [
+                "apk",
+                "run",
+                "chmod",
+                "usr",
+                "upgrade"
+            ],
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/eureka-service/Dockerfile"
+        }
+    ],
+    "size": 87,
+    "dbs": [
+        "mysql",
+        "oracle"
+    ],
+    "num_gates": 0,
+    "monitors": [],
+    "url": "git://github.com/MBA90/microservices.git",
+    "structure": {
+        "services": [
+            {
+                "depends_on": [
+                    "db",
+                    "configser",
+                    "eurekaservice"
+                ],
+                "servers": [],
+                "name": "orgservice",
+                "gates": [],
+                "image_full": "mba/org-service:latest",
+                "discos": [],
+                "image": "mba/org-service",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [],
+                "servers": [],
+                "name": "eurekaservice",
+                "gates": [],
+                "image_full": "mba/eureka-service:latest",
+                "discos": [
+                    "eureka"
+                ],
+                "image": "mba/eureka-service",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [
+                    "db",
+                    "configser",
+                    "eurekaservice"
+                ],
+                "servers": [],
+                "name": "licensingser",
+                "gates": [],
+                "image_full": "mba/licensing-service:latest",
+                "discos": [],
+                "image": "mba/licensing-service",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [],
+                "servers": [],
+                "name": "db",
+                "gates": [],
+                "image_full": "mysql:8.0.12",
+                "discos": [],
+                "image": "mysql",
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [],
+                "servers": [],
+                "name": "configser",
+                "gates": [],
+                "image_full": "mba/config-service:latest",
+                "discos": [],
+                "image": "mba/config-service",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "db"
+            ],
+            "shared_dbs": true,
+            "num": 1,
+            "names": [
+                "mysql"
+            ]
+        },
+        "path": "/docker-compose.yml",
+        "num_services": 5
+    },
+    "buses": [],
+    "num_servers": 1,
+    "avg_size_service": 21.75,
+    "num_langs": 2,
+    "images": [
+        "openjdk"
+    ],
+    "num_dockers": 4,
+    "servers": [
+        "spring"
+    ],
+    "languages": [
+        "java",
+        "shell"
+    ],
+    "gates": [],
+    "num_services": 5,
+    "shared_dbs": true,
+    "num_files": 10,
+    "num_discos": 1,
+    "num_buses": 0,
+    "num_dbs": 2
+}

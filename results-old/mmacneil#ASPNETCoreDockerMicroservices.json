@@ -1,0 +1,184 @@
+{
+    "name": "mmacneil/ASPNETCoreDockerMicroservices",
+    "buses": [
+        "rabbitmq"
+    ],
+    "images": [
+        "microsoft/mssql-server-linux"
+    ],
+    "num_langs": 4,
+    "num_discos": 0,
+    "num_buses": 1,
+    "dockers": [
+        {
+            "discos": [],
+            "langs": [
+                "bash"
+            ],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "microsoft/mssql-server-linux",
+            "cmd_keywords": [
+                "bin",
+                "bash",
+                "entrypoint"
+            ],
+            "from_full": "microsoft/mssql-server-linux:2017-latest",
+            "keywords": [
+                "sqlcmdstartup",
+                "chmod"
+            ],
+            "path": "/Database/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": "/bin/bash ./entrypoint.sh"
+        }
+    ],
+    "monitors": [],
+    "dbs": [
+        "redis"
+    ],
+    "structure": {
+        "detected_dbs": {
+            "num": 1,
+            "services": [
+                "user.data"
+            ],
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": false
+        },
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "monitors": [],
+                "name": "jobs.api",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "sql.data",
+                    "rabbitmq"
+                ],
+                "image": "jobs.api",
+                "image_full": "jobs.api",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "applicants.api",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "sql.data",
+                    "rabbitmq"
+                ],
+                "image": "applicants.api",
+                "image_full": "applicants.api",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "webmvc",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "applicants.api",
+                    "identity.api",
+                    "jobs.api"
+                ],
+                "image": "web",
+                "image_full": "web",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "rabbitmq",
+                "servers": [],
+                "discos": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "depends_on": [],
+                "image": "rabbitmq",
+                "image_full": "rabbitmq:3-management",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "user.data",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image": "redis",
+                "image_full": "redis",
+                "gates": [],
+                "dbs": [
+                    "redis"
+                ]
+            },
+            {
+                "monitors": [],
+                "name": "sql.data",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image": "mssql-linux",
+                "image_full": "mssql-linux",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "identity.api",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "user.data"
+                ],
+                "image": "identity.api",
+                "image_full": "identity.api",
+                "gates": [],
+                "dbs": []
+            }
+        ],
+        "num_services": 7
+    },
+    "gates": [],
+    "files": [],
+    "avg_size_service": 2431.0,
+    "langs": [
+        "c#",
+        "bash",
+        "tsql",
+        "html"
+    ],
+    "num_dbs": 1,
+    "num_services": 7,
+    "num_monitors": 0,
+    "size": 2431,
+    "languages": [
+        "c#",
+        "tsql",
+        "html"
+    ],
+    "num_files": 2,
+    "num_gates": 0,
+    "num_dockers": 1,
+    "shared_dbs": false,
+    "servers": [],
+    "num_servers": 0,
+    "url": "git://github.com/mmacneil/ASPNETCoreDockerMicroservices.git",
+    "discos": []
+}

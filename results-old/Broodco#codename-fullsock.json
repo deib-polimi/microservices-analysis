@@ -1,0 +1,282 @@
+{
+    "buses": [],
+    "avg_size_service": 462.75,
+    "num_dbs": 1,
+    "num_services": 7,
+    "langs": [
+        "javascript",
+        "vue",
+        "python"
+    ],
+    "num_langs": 3,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "backend"
+                ],
+                "image_full": ".",
+                "name": "nginx",
+                "dbs": [],
+                "servers": [],
+                "image": ".",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [],
+                "image_full": "redis:alpine",
+                "name": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "image": "redis",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "celery",
+                    "redis"
+                ],
+                "image_full": "mher/flower",
+                "name": "flower",
+                "dbs": [],
+                "servers": [],
+                "image": "mher/flower",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [],
+                "image_full": "portainer/portainer",
+                "name": "portainer",
+                "dbs": [],
+                "servers": [],
+                "image": "portainer/portainer",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "db"
+                ],
+                "image_full": "./backend",
+                "name": "backend",
+                "dbs": [],
+                "servers": [],
+                "image": "./backend",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [],
+                "image_full": "postgres",
+                "name": "db",
+                "dbs": [],
+                "servers": [],
+                "image": "postgres",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "db",
+                    "redis"
+                ],
+                "image_full": "./backend",
+                "name": "celery",
+                "dbs": [],
+                "servers": [],
+                "image": "./backend",
+                "gates": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": true,
+            "names": [
+                "redis"
+            ],
+            "num": 1,
+            "services": [
+                "redis"
+            ]
+        },
+        "num_services": 7
+    },
+    "shared_dbs": true,
+    "num_buses": 0,
+    "dockers": [
+        {
+            "buses": [],
+            "from_full": "python:3.6.7",
+            "cmd": "",
+            "from": "python",
+            "path": "/backend/Dockerfile",
+            "langs": [
+                "python"
+            ],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "txt",
+                "mkdir",
+                "requirements",
+                "code",
+                "pip"
+            ],
+            "dbs": [],
+            "gates": [],
+            "servers": []
+        },
+        {
+            "buses": [],
+            "from_full": "nginx:1.13.12-alpine",
+            "cmd": "nginx -g daemon off;",
+            "from": "nginx",
+            "path": "/nginx/prod/Dockerfile",
+            "langs": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "nginx",
+                "daemon",
+                "off"
+            ],
+            "discos": [],
+            "keywords": [
+                "install",
+                "npm",
+                "cli",
+                "vue",
+                "yarn"
+            ],
+            "dbs": [],
+            "gates": [
+                "nginx"
+            ],
+            "servers": []
+        },
+        {
+            "buses": [],
+            "from_full": "nginx:1.13.12-alpine",
+            "cmd": "nginx -g daemon off;",
+            "from": "nginx",
+            "path": "/nginx/dev/Dockerfile",
+            "langs": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "nginx",
+                "daemon",
+                "off"
+            ],
+            "discos": [],
+            "keywords": [],
+            "dbs": [],
+            "gates": [
+                "nginx"
+            ],
+            "servers": []
+        },
+        {
+            "buses": [],
+            "from_full": "node:10.15.3",
+            "cmd": "",
+            "from": "node",
+            "path": "/frontend/Dockerfile",
+            "langs": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "install",
+                "npm",
+                "cli",
+                "vue",
+                "init"
+            ],
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "node"
+            ]
+        }
+    ],
+    "dbs": [
+        "redis"
+    ],
+    "languages": [
+        "vue",
+        "python",
+        "javascript"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "servers": [
+        "django",
+        "node"
+    ],
+    "num_gates": 1,
+    "name": "Broodco/codename-fullsock",
+    "num_monitors": 0,
+    "monitors": [],
+    "discos": [],
+    "files": [
+        {
+            "buses": [],
+            "discos": [],
+            "dbs": [
+                "redis"
+            ],
+            "servers": [
+                "django"
+            ],
+            "path": "/backend/requirements.txt",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "path": "/node_modules/bezier-easing/package.json"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "path": "/frontend/package.json",
+            "gates": [],
+            "monitors": []
+        }
+    ],
+    "size": 1851,
+    "num_dockers": 4,
+    "num_files": 8,
+    "url": "git://github.com/Broodco/codename-fullsock.git",
+    "num_servers": 2,
+    "images": [
+        "nginx",
+        "node",
+        "python"
+    ],
+    "num_discos": 0
+}

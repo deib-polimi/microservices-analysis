@@ -1,0 +1,311 @@
+{
+    "num_gates": 0,
+    "images": [
+        "mysql",
+        "frolvlad/alpine-oraclejdk8",
+        "traefik"
+    ],
+    "discos": [
+        "zookeeper",
+        "traefik"
+    ],
+    "num_buses": 1,
+    "name": "rbelfils/microservice-demo-parent",
+    "gates": [],
+    "structure": {
+        "num_services": 6,
+        "detected_dbs": {
+            "services": [
+                "mysql",
+                "zookeeper"
+            ],
+            "names": [
+                "mysql",
+                "zookeeper"
+            ],
+            "shared_dbs": true,
+            "num": 2
+        },
+        "path": "/docker/docker-compose.yml",
+        "services": [
+            {
+                "image": "mysql",
+                "image_full": "mysql",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "mysql",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "mysql"
+                ]
+            },
+            {
+                "image": "../microservice-demo-create-rdv",
+                "image_full": "../microservice-demo-create-rdv",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "mysql"
+                ],
+                "servers": [],
+                "name": "rdv",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "traefik",
+                "image_full": "traefik",
+                "discos": [
+                    "traefik"
+                ],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "traefik",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "wurstmeister/kafka",
+                "image_full": "wurstmeister/kafka:1.1.0",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "servers": [],
+                "name": "kafka",
+                "monitors": [],
+                "buses": [
+                    "kafka"
+                ],
+                "dbs": []
+            },
+            {
+                "image": "../microservice-demo-create-customer",
+                "image_full": "../microservice-demo-create-customer",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "mysql"
+                ],
+                "servers": [],
+                "name": "customer",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "wurstmeister/zookeeper",
+                "image_full": "wurstmeister/zookeeper:3.4.6",
+                "discos": [
+                    "zookeeper"
+                ],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "zookeeper",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "zookeeper"
+                ]
+            }
+        ]
+    },
+    "url": "git://github.com/rbelfils/microservice-demo-parent.git",
+    "langs": [
+        "java"
+    ],
+    "num_dockers": 6,
+    "num_langs": 1,
+    "dbs": [
+        "mysql",
+        "zookeeper"
+    ],
+    "shared_dbs": true,
+    "size": 55,
+    "dockers": [
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "mysql:5.7",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "mysql",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/docker-swarm/mysql/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [
+                "traefik"
+            ],
+            "monitors": [],
+            "from_full": "traefik:latest",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "traefik",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/docker-swarm/traefik/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "mysql:5.7",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "mysql",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/docker/mysql/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [
+                "traefik"
+            ],
+            "monitors": [],
+            "from_full": "traefik:latest",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "traefik",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/docker/traefik/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "frolvlad/alpine-oraclejdk8:latest",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "frolvlad/alpine-oraclejdk8",
+            "cmd": "/usr/bin/java -Xmx400m -Xms400m -jar microservice-demo-create-rdv-0.0.1-SNAPSHOT.jar",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/microservice-demo-create-rdv/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "bin",
+                "xmx",
+                "xms",
+                "rdv"
+            ]
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "frolvlad/alpine-oraclejdk8:latest",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "frolvlad/alpine-oraclejdk8",
+            "cmd": "/usr/bin/java -Xmx400m -Xms400m -jar microservice-demo-create-customer-0.0.1-SNAPSHOT.jar",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/microservice-demo-create-customer/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "bin",
+                "xmx",
+                "xms",
+                "create"
+            ]
+        }
+    ],
+    "num_servers": 1,
+    "monitors": [],
+    "num_services": 6,
+    "servers": [
+        "spring"
+    ],
+    "num_monitors": 0,
+    "avg_size_service": 9.166666666666666,
+    "num_files": 10,
+    "buses": [
+        "kafka"
+    ],
+    "files": [
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/pom.xml"
+        },
+        {
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [
+                "mysql",
+                "hsqldb"
+            ],
+            "path": "/microservice-demo-create-rdv/pom.xml"
+        },
+        {
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [
+                "mysql",
+                "hsqldb"
+            ],
+            "path": "/microservice-demo-create-customer/pom.xml"
+        }
+    ],
+    "languages": [
+        "java"
+    ],
+    "num_dbs": 2,
+    "num_discos": 2
+}

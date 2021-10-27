@@ -1,0 +1,179 @@
+{
+    "gates": [],
+    "num_buses": 1,
+    "url": "git://github.com/esgi-microservices-al1/micro-ci-projects.git",
+    "images": [
+        "node"
+    ],
+    "avg_size_service": 102.0,
+    "num_langs": 1,
+    "num_monitors": 0,
+    "num_dockers": 1,
+    "num_discos": 1,
+    "num_servers": 3,
+    "buses": [
+        "rabbitmq"
+    ],
+    "discos": [
+        "consul"
+    ],
+    "dockers": [
+        {
+            "path": "/Dockerfile",
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "node",
+            "langs": [],
+            "servers": [
+                "node"
+            ],
+            "cmd": "npm start",
+            "from_full": "node:lts",
+            "monitors": [],
+            "keywords": [
+                "get",
+                "apt",
+                "install",
+                "upgrade",
+                "update"
+            ],
+            "buses": []
+        }
+    ],
+    "size": 102,
+    "name": "esgi-microservices-al1/micro-ci-projects",
+    "num_services": 5,
+    "dbs": [
+        "mongo"
+    ],
+    "shared_dbs": true,
+    "langs": [
+        "javascript"
+    ],
+    "languages": [
+        "javascript"
+    ],
+    "servers": [
+        "express",
+        "mongoose",
+        "node"
+    ],
+    "num_files": 3,
+    "monitors": [],
+    "num_dbs": 1,
+    "num_gates": 0,
+    "files": [
+        {
+            "path": "/package.json",
+            "servers": [
+                "mongoose",
+                "express"
+            ],
+            "discos": [
+                "consul"
+            ],
+            "monitors": [],
+            "gates": [],
+            "dbs": [],
+            "buses": []
+        }
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 5,
+        "detected_dbs": {
+            "services": [
+                "mongo-express",
+                "mongo"
+            ],
+            "num": 2,
+            "names": [
+                "mongo"
+            ],
+            "shared_dbs": true
+        },
+        "services": [
+            {
+                "discos": [
+                    "consul"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "consul",
+                "name": "consul",
+                "gates": [],
+                "image": "consul",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "rabbitmq:3-management-alpine",
+                "name": "rabbitmq",
+                "gates": [],
+                "image": "rabbitmq",
+                "dbs": [],
+                "buses": [
+                    "rabbitmq"
+                ]
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "mongo"
+                ],
+                "servers": [
+                    "express"
+                ],
+                "image_full": "mongo-express",
+                "name": "mongo-express",
+                "gates": [],
+                "image": "mongo-express",
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "mongo",
+                    "consul"
+                ],
+                "servers": [],
+                "image_full": ".",
+                "name": "server",
+                "gates": [],
+                "image": ".",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "mongo",
+                "name": "mongo",
+                "gates": [],
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": []
+            }
+        ]
+    }
+}

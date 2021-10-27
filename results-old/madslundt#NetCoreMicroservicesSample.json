@@ -1,0 +1,300 @@
+{
+    "files": [],
+    "num_services": 11,
+    "discos": [
+        "consul"
+    ],
+    "dbs": [
+        "mongo"
+    ],
+    "avg_size_service": 107.0,
+    "name": "madslundt/NetCoreMicroservicesSample",
+    "num_buses": 1,
+    "num_langs": 1,
+    "monitors": [],
+    "num_files": 5,
+    "langs": [
+        "c#"
+    ],
+    "num_gates": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "path": "/ApiGateway/Dockerfile",
+            "cmd_keywords": [],
+            "from_full": "base",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "from": "base",
+            "keywords": [
+                "csproj",
+                "dotnet",
+                "apigateway",
+                "publish",
+                "app"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "path": "/Src/ReviewsService/Dockerfile",
+            "cmd_keywords": [],
+            "from_full": "base",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "from": "base",
+            "keywords": [
+                "reviewsservice",
+                "csproj",
+                "dotnet",
+                "publish",
+                "app"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "path": "/Src/UsersService/Dockerfile",
+            "cmd_keywords": [],
+            "from_full": "base",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "from": "base",
+            "keywords": [
+                "usersservice",
+                "csproj",
+                "dotnet",
+                "publish",
+                "app"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "path": "/Src/MoviesService/Dockerfile",
+            "cmd_keywords": [],
+            "from_full": "base",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "from": "base",
+            "keywords": [
+                "moviesservice",
+                "dotnet",
+                "csproj",
+                "app",
+                "publish"
+            ]
+        }
+    ],
+    "structure": {
+        "path": "/Compose/docker-compose.yml",
+        "detected_dbs": {
+            "names": [
+                "mongo"
+            ],
+            "services": [
+                "mongo"
+            ],
+            "num": 1,
+            "shared_dbs": true
+        },
+        "num_services": 11,
+        "services": [
+            {
+                "monitors": [],
+                "image": "../ApiGateway",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "api",
+                "depends_on": [
+                    "consul"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "../ApiGateway"
+            },
+            {
+                "monitors": [],
+                "image": "mcr.microsoft.com/mssql/server",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "db",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "mcr.microsoft.com/mssql/server:2019-latest"
+            },
+            {
+                "monitors": [],
+                "image": "consul",
+                "discos": [
+                    "consul"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "consul",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "consul"
+            },
+            {
+                "monitors": [],
+                "image": "../",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "movies_service",
+                "depends_on": [
+                    "rabbitmq",
+                    "db",
+                    "mongo",
+                    "consul"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "../"
+            },
+            {
+                "monitors": [],
+                "image": "docker.elastic.co/apm/apm-server",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "apm",
+                "depends_on": [
+                    "kibana"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "docker.elastic.co/apm/apm-server:7.8.1"
+            },
+            {
+                "monitors": [],
+                "image": "rabbitmq",
+                "discos": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "name": "rabbitmq",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "rabbitmq:3-management"
+            },
+            {
+                "monitors": [],
+                "image": "mongo",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "mongo",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "servers": [],
+                "image_full": "mongo"
+            },
+            {
+                "monitors": [],
+                "image": "docker.elastic.co/kibana/kibana",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "kibana",
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "docker.elastic.co/kibana/kibana:7.8.1"
+            },
+            {
+                "monitors": [],
+                "image": "../",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "reviews_service",
+                "depends_on": [
+                    "rabbitmq",
+                    "db",
+                    "mongo",
+                    "consul"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "../"
+            },
+            {
+                "monitors": [],
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "elasticsearch",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:7.8.1"
+            },
+            {
+                "monitors": [],
+                "image": "../",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "users_service",
+                "depends_on": [
+                    "rabbitmq",
+                    "db",
+                    "mongo",
+                    "consul"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "../"
+            }
+        ]
+    },
+    "size": 428,
+    "num_discos": 1,
+    "languages": [
+        "c#"
+    ],
+    "url": "git://github.com/madslundt/NetCoreMicroservicesSample.git",
+    "buses": [
+        "rabbitmq"
+    ],
+    "gates": [],
+    "shared_dbs": true,
+    "servers": [],
+    "images": [
+        "base"
+    ],
+    "num_servers": 0,
+    "num_dockers": 4,
+    "num_monitors": 0,
+    "num_dbs": 1
+}

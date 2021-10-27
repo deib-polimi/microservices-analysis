@@ -1,0 +1,324 @@
+{
+    "files": [
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/pom.xml",
+            "dbs": [
+                "nexus"
+            ],
+            "servers": []
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/portal-FE-os/pom.xml",
+            "dbs": [],
+            "servers": [
+                "node"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/ecomp-portal-FE-os/pom.xml",
+            "dbs": [],
+            "servers": [
+                "node"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/portal-FE-common/pom.xml",
+            "dbs": [],
+            "servers": []
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/ecomp-portal-widget-ms/pom.xml",
+            "dbs": [],
+            "servers": []
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/ecomp-portal-widget-ms/common-widgets/pom.xml",
+            "dbs": [],
+            "servers": []
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/ecomp-portal-widget-ms/widget-ms/pom.xml",
+            "dbs": [
+                "nexus",
+                "mariadb"
+            ],
+            "servers": [
+                "tomcat",
+                "spring"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/ecomp-portal-FE-common/pom.xml",
+            "dbs": [],
+            "servers": []
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/portal-BE/pom.xml",
+            "dbs": [
+                "mariadb"
+            ],
+            "servers": [
+                "glassfish",
+                "jetty",
+                "spring"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [
+                "consul"
+            ],
+            "buses": [],
+            "gates": [],
+            "path": "/ecomp-portal-BE-common/pom.xml",
+            "dbs": [
+                "mysql",
+                "postgresql"
+            ],
+            "servers": [
+                "tomcat",
+                "glassfish",
+                "jetty",
+                "spring"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/ecomp-portal-BE-os/pom.xml",
+            "dbs": [
+                "mariadb"
+            ],
+            "servers": [
+                "tomcat",
+                "spring"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/portal-FE-os/package.json",
+            "dbs": [],
+            "servers": [
+                "node"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/ecomp-portal-FE-os/package.json",
+            "dbs": [],
+            "servers": [
+                "node",
+                "express"
+            ]
+        }
+    ],
+    "num_services": 7,
+    "discos": [
+        "consul"
+    ],
+    "dbs": [
+        "mysql",
+        "nexus",
+        "postgresql"
+    ],
+    "avg_size_service": 20015.0,
+    "name": "onap/portal",
+    "num_buses": 0,
+    "num_langs": 1,
+    "monitors": [],
+    "num_files": 15,
+    "langs": [
+        "java"
+    ],
+    "num_gates": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "path": "/portal-BE/Dockerfile",
+            "cmd_keywords": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "from": "openjdk",
+            "keywords": []
+        }
+    ],
+    "structure": {
+        "path": "/deliveries/docker-compose.yml",
+        "detected_dbs": {
+            "names": [],
+            "services": [],
+            "num": 0,
+            "shared_dbs": false
+        },
+        "num_services": 7,
+        "services": [
+            {
+                "monitors": [],
+                "image": "${DB_IMG_NAME}",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "portal-db",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "${DB_IMG_NAME}:${PORTAL_TAG}"
+            },
+            {
+                "monitors": [],
+                "image": "${EP_IMG_NAME}",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "portal-app",
+                "depends_on": [
+                    "portal-db",
+                    "portal-wms"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "${EP_IMG_NAME}:${PORTAL_TAG}"
+            },
+            {
+                "monitors": [],
+                "image": "${WMS_IMG_NAME}",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "portal-wms",
+                "depends_on": [
+                    "portal-db"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "${WMS_IMG_NAME}:${PORTAL_TAG}"
+            },
+            {
+                "monitors": [],
+                "image": "${CDR_IMG_NAME}",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "portal-cassandra",
+                "depends_on": [
+                    "portal-db"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "${CDR_IMG_NAME}:${PORTAL_TAG}"
+            },
+            {
+                "monitors": [],
+                "image": "${SDK_IMG_NAME}",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "portal-sdk",
+                "depends_on": [
+                    "portal-db"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "${SDK_IMG_NAME}:${PORTAL_TAG}"
+            },
+            {
+                "monitors": [],
+                "image": "${ZK_IMG_NAME}",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "portal-zk",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "${ZK_IMG_NAME}:${PORTAL_TAG}"
+            },
+            {
+                "monitors": [],
+                "image": "${CLI_IMG_NAME}",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "cli",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "${CLI_IMG_NAME}:${PORTAL_TAG}"
+            }
+        ]
+    },
+    "size": 20015,
+    "num_discos": 1,
+    "languages": [
+        "java"
+    ],
+    "url": "git://github.com/onap/portal.git",
+    "buses": [],
+    "gates": [],
+    "shared_dbs": false,
+    "servers": [
+        "glassfish",
+        "jetty",
+        "spring",
+        "node",
+        "tomcat",
+        "express"
+    ],
+    "images": [
+        "openjdk"
+    ],
+    "num_servers": 6,
+    "num_dockers": 1,
+    "num_monitors": 0,
+    "num_dbs": 3
+}

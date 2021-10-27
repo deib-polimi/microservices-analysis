@@ -1,0 +1,221 @@
+{
+    "num_langs": 1,
+    "dbs": [],
+    "num_servers": 1,
+    "languages": [
+        "java"
+    ],
+    "num_discos": 1,
+    "avg_size_service": 4616.333333333333,
+    "dockers": [
+        {
+            "gates": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "service jenkins start && tailf  /var/log/jenkins/jenkins.log",
+            "servers": [],
+            "keywords": [
+                "apt",
+                "get",
+                "jenkins",
+                "https",
+                "kubectl"
+            ],
+            "from": "openjdk",
+            "cmd_keywords": [
+                "jenkins",
+                "log",
+                "start",
+                "service",
+                "var"
+            ],
+            "from_full": "openjdk:8",
+            "path": "/jenkins/Dockerfile",
+            "buses": [],
+            "langs": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "java -Xmx2g -Xms2g -jar /home/app.jar",
+            "servers": [],
+            "keywords": [],
+            "from": "openjdk",
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "xms",
+                "java",
+                "xmx"
+            ],
+            "from_full": "openjdk:8",
+            "path": "/grpc-service/Dockerfile",
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "java -jar /home/app.jar",
+            "servers": [],
+            "keywords": [],
+            "from": "openjdk",
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "app",
+                "home"
+            ],
+            "from_full": "openjdk:8",
+            "path": "/rest-service/Dockerfile",
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "discos": []
+        }
+    ],
+    "num_gates": 0,
+    "buses": [],
+    "langs": [
+        "java"
+    ],
+    "num_buses": 0,
+    "discos": [
+        "grpc"
+    ],
+    "num_dbs": 0,
+    "num_files": 8,
+    "url": "git://github.com/husseincoder/dockerized-microservices.git",
+    "shared_dbs": false,
+    "monitors": [
+        "grafana",
+        "graphite"
+    ],
+    "num_services": 3,
+    "files": [
+        {
+            "dbs": [],
+            "monitors": [
+                "graphite"
+            ],
+            "buses": [],
+            "path": "/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": [
+                "grpc"
+            ]
+        },
+        {
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "path": "/grpc-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": [
+                "grpc"
+            ]
+        },
+        {
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "path": "/protobuf-commons/pom.xml",
+            "servers": [],
+            "gates": [],
+            "discos": [
+                "grpc"
+            ]
+        },
+        {
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "path": "/rest-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "servers": [
+        "spring"
+    ],
+    "num_monitors": 2,
+    "gates": [],
+    "size": 13849,
+    "num_dockers": 3,
+    "images": [
+        "openjdk"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image": "./grpc-service/",
+                "depends_on": [
+                    "graphite"
+                ],
+                "dbs": [],
+                "name": "grpc-service",
+                "image_full": "./grpc-service/",
+                "discos": [
+                    "grpc"
+                ],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "./rest-service/",
+                "depends_on": [
+                    "grpc-service"
+                ],
+                "dbs": [],
+                "name": "rest-service",
+                "image_full": "./rest-service/",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "jlachowski/grafana-graphite-statsd",
+                "depends_on": [],
+                "dbs": [],
+                "name": "graphite",
+                "image_full": "jlachowski/grafana-graphite-statsd",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": [
+                    "grafana"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "names": [],
+            "shared_dbs": false,
+            "num": 0,
+            "services": []
+        },
+        "num_services": 3
+    },
+    "name": "husseincoder/dockerized-microservices"
+}

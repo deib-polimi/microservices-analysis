@@ -1,0 +1,188 @@
+{
+    "languages": [
+        "php",
+        "typescript"
+    ],
+    "num_servers": 1,
+    "shared_dbs": false,
+    "name": "roj4s/yii_angular_web_app",
+    "servers": [
+        "node"
+    ],
+    "num_monitors": 0,
+    "num_langs": 2,
+    "images": [
+        "codemix/yii2-base",
+        "nginx",
+        "node"
+    ],
+    "langs": [
+        "typescript",
+        "php"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "www",
+                "progress",
+                "composer",
+                "data",
+                "runtime"
+            ],
+            "path": "/api/Dockerfile",
+            "gates": [],
+            "from": "codemix/yii2-base",
+            "from_full": "codemix/yii2-base:2.0.10-php7-apache",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "path": "/api/nginx/Dockerfile",
+            "gates": [
+                "nginx"
+            ],
+            "from": "nginx",
+            "from_full": "nginx:1.7.10",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "host",
+                "serve"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "ng serve --host 0.0.0.0",
+            "keywords": [
+                "yarn",
+                "install",
+                "npm",
+                "cli",
+                "add"
+            ],
+            "path": "/frontend/Dockerfile",
+            "gates": [],
+            "from": "node",
+            "from_full": "node",
+            "servers": [
+                "node"
+            ],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_buses": 0,
+    "discos": [],
+    "monitors": [],
+    "num_files": 6,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "./api/",
+                "depends_on": [
+                    "db"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "backend",
+                "image": "./api/",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mysql:5.6",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "db",
+                "image": "mysql",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "./frontend",
+                "depends_on": [
+                    "backend"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "frontend",
+                "image": "./frontend",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 3,
+        "detected_dbs": {
+            "services": [
+                "db"
+            ],
+            "names": [
+                "mysql"
+            ],
+            "num": 1,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [
+        "mysql"
+    ],
+    "num_dbs": 1,
+    "avg_size_service": 391.3333333333333,
+    "num_services": 3,
+    "buses": [],
+    "files": [
+        {
+            "dbs": [],
+            "path": "/node_modules/ngx-loading/package.json",
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/frontend/package.json",
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "url": "git://github.com/roj4s/yii_angular_web_app.git",
+    "num_dockers": 3,
+    "size": 1174,
+    "num_discos": 0,
+    "num_gates": 1
+}

@@ -1,0 +1,217 @@
+{
+    "size": 48,
+    "num_monitors": 0,
+    "num_discos": 0,
+    "shared_dbs": false,
+    "langs": [
+        "javascript",
+        "java"
+    ],
+    "buses": [],
+    "num_langs": 2,
+    "num_dbs": 1,
+    "discos": [],
+    "avg_size_service": 16.0,
+    "images": [
+        "node",
+        "openjdk",
+        "mongo"
+    ],
+    "gates": [],
+    "dockers": [
+        {
+            "monitors": [],
+            "from": "mongo",
+            "langs": [],
+            "servers": [],
+            "buses": [],
+            "cmd_keywords": [
+                "scripts",
+                "init"
+            ],
+            "cmd": "/scripts/init.sh",
+            "path": "/mongo_db/Dockerfile",
+            "keywords": [
+                "mongodb",
+                "data",
+                "mongo",
+                "scripts",
+                "mkdir"
+            ],
+            "dbs": [
+                "mongo"
+            ],
+            "gates": [],
+            "from_full": "mongo:3.2",
+            "discos": []
+        },
+        {
+            "monitors": [],
+            "from": "openjdk",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "buses": [],
+            "cmd_keywords": [
+                "jar",
+                "snapshot",
+                "libs",
+                "build",
+                "java"
+            ],
+            "cmd": "java -jar ./build/libs/Warehouse-0.0.1-SNAPSHOT.jar",
+            "path": "/api/Dockerfile",
+            "keywords": [
+                "apk",
+                "var",
+                "update",
+                "cache",
+                "add"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "openjdk:8-alpine",
+            "discos": []
+        },
+        {
+            "monitors": [],
+            "from": "node",
+            "langs": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "cmd": "npm start",
+            "path": "/web_client/Dockerfile",
+            "keywords": [
+                "npm",
+                "web",
+                "usr",
+                "install",
+                "client"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "node:6.9.1-alpine",
+            "discos": []
+        }
+    ],
+    "structure": {
+        "detected_dbs": {
+            "num": 1,
+            "shared_dbs": false,
+            "services": [
+                "db"
+            ],
+            "names": [
+                "mongo"
+            ]
+        },
+        "services": [
+            {
+                "image": "web_client_img",
+                "depends_on": [
+                    "api"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "web_client_img",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "web"
+            },
+            {
+                "image": "mongo_img",
+                "depends_on": [],
+                "discos": [],
+                "monitors": [],
+                "image_full": "mongo_img",
+                "gates": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "servers": [],
+                "buses": [],
+                "name": "db"
+            },
+            {
+                "image": "api_img",
+                "depends_on": [
+                    "db"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "api_img",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "api"
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "num_services": 3
+    },
+    "num_dockers": 3,
+    "num_files": 7,
+    "num_services": 3,
+    "num_gates": 0,
+    "name": "maksymenko/docker_microservices",
+    "url": "git://github.com/maksymenko/docker_microservices.git",
+    "monitors": [],
+    "servers": [
+        "jetty",
+        "node",
+        "spring"
+    ],
+    "dbs": [
+        "mongo"
+    ],
+    "num_servers": 3,
+    "num_buses": 0,
+    "files": [
+        {
+            "path": "/api/build.gradle",
+            "monitors": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "gates": [],
+            "servers": [
+                "jetty",
+                "spring"
+            ],
+            "buses": [],
+            "discos": []
+        },
+        {
+            "path": "/api/settings.gradle",
+            "monitors": [],
+            "dbs": [],
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "discos": []
+        },
+        {
+            "path": "/web_client/package.json",
+            "monitors": [],
+            "dbs": [],
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "discos": []
+        }
+    ],
+    "languages": [
+        "javascript",
+        "java"
+    ]
+}

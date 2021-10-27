@@ -1,0 +1,368 @@
+{
+    "gates": [
+        "zuul"
+    ],
+    "images": [
+        "openjdk"
+    ],
+    "num_dbs": 0,
+    "structure": {
+        "num_services": 9,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "tanerdiler/service-discovery",
+                "gates": [],
+                "image": "tanerdiler/service-discovery",
+                "depends_on": [],
+                "dbs": [],
+                "name": "discovery",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "tanerdiler/service-accounts-api",
+                "gates": [],
+                "image": "tanerdiler/service-accounts-api",
+                "depends_on": [
+                    "discovery"
+                ],
+                "dbs": [],
+                "name": "accounts",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "tanerdiler/service-products-api",
+                "gates": [],
+                "image": "tanerdiler/service-products-api",
+                "depends_on": [
+                    "discovery",
+                    "accounts"
+                ],
+                "dbs": [],
+                "name": "products",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "docker.elastic.co/logstash/logstash:7.8.0",
+                "gates": [],
+                "image": "docker.elastic.co/logstash/logstash",
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "dbs": [],
+                "name": "logstash",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:7.8.0",
+                "gates": [],
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "depends_on": [],
+                "dbs": [],
+                "name": "elasticsearch",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "docker.elastic.co/kibana/kibana:7.8.0",
+                "gates": [],
+                "image": "docker.elastic.co/kibana/kibana",
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "dbs": [],
+                "name": "kibana",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "tanerdiler/service-orders-api",
+                "gates": [],
+                "image": "tanerdiler/service-orders-api",
+                "depends_on": [
+                    "discovery",
+                    "products"
+                ],
+                "dbs": [],
+                "name": "orders",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "tanerdiler/service-main-api",
+                "gates": [],
+                "image": "tanerdiler/service-main-api",
+                "depends_on": [
+                    "discovery",
+                    "orders"
+                ],
+                "dbs": [],
+                "name": "main",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "tanerdiler/service-gateway",
+                "gates": [
+                    "gateway"
+                ],
+                "image": "tanerdiler/service-gateway",
+                "depends_on": [
+                    "discovery"
+                ],
+                "dbs": [],
+                "name": "gateway",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "shared_dbs": false,
+            "names": []
+        }
+    },
+    "num_files": 14,
+    "num_gates": 1,
+    "discos": [
+        "eureka"
+    ],
+    "num_dockers": 6,
+    "shared_dbs": false,
+    "languages": [
+        "java"
+    ],
+    "name": "tanerdiler/spring-boot-microservice-eureka-zuul-docker",
+    "num_langs": 1,
+    "avg_size_service": 80.33333333333333,
+    "monitors": [],
+    "num_servers": 1,
+    "num_services": 9,
+    "dbs": [],
+    "langs": [
+        "java"
+    ],
+    "dockers": [
+        {
+            "gates": [],
+            "path": "/containerized-accounts/Dockerfile",
+            "langs": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "openjdk",
+            "discos": [],
+            "from_full": "openjdk:11-jdk-slim",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": []
+        },
+        {
+            "gates": [],
+            "path": "/containerized-orders/Dockerfile",
+            "langs": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "openjdk",
+            "discos": [],
+            "from_full": "openjdk:11-jdk-slim",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": []
+        },
+        {
+            "gates": [],
+            "path": "/containerized-products/Dockerfile",
+            "langs": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "openjdk",
+            "discos": [],
+            "from_full": "openjdk:11-jdk-slim",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": []
+        },
+        {
+            "gates": [],
+            "path": "/containerized-discovery/Dockerfile",
+            "langs": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "openjdk",
+            "discos": [],
+            "from_full": "openjdk:11-jdk-slim",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": []
+        },
+        {
+            "gates": [],
+            "path": "/containerized-main/Dockerfile",
+            "langs": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "openjdk",
+            "discos": [],
+            "from_full": "openjdk:11-jdk-slim",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": []
+        },
+        {
+            "gates": [],
+            "path": "/containerized-gateway/Dockerfile",
+            "langs": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "openjdk",
+            "discos": [],
+            "from_full": "openjdk:11-jdk-slim",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": []
+        }
+    ],
+    "buses": [],
+    "servers": [
+        "spring"
+    ],
+    "size": 482,
+    "files": [
+        {
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "path": "/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "path": "/containerized-accounts/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "path": "/containerized-orders/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "path": "/containerized-products/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "path": "/containerized-discovery/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "path": "/containerized-main/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "path": "/containerized-gateway/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        }
+    ],
+    "num_buses": 0,
+    "num_monitors": 0,
+    "url": "git://github.com/tanerdiler/spring-boot-microservice-eureka-zuul-docker.git",
+    "num_discos": 1
+}

@@ -1,0 +1,309 @@
+{
+    "num_dbs": 1,
+    "shared_dbs": false,
+    "structure": {
+        "num_services": 6,
+        "services": [
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "image_full": "gdis.importer/importer",
+                "image": "gdis.importer/importer",
+                "name": "importer",
+                "monitors": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "image_full": "gdis.exporter/exporter",
+                "image": "gdis.exporter/exporter",
+                "name": "exporter",
+                "monitors": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "image_full": "gdis.db/database",
+                "image": "gdis.db/database",
+                "name": "db_microservice",
+                "monitors": [],
+                "depends_on": [
+                    "mysql_db"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "dbs": [
+                    "mysql"
+                ],
+                "servers": [],
+                "buses": [],
+                "image_full": "mysql:5.7",
+                "image": "mysql",
+                "name": "mysql_db",
+                "monitors": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "image_full": "backend/api",
+                "image": "backend/api",
+                "name": "api",
+                "monitors": [],
+                "depends_on": [
+                    "importer",
+                    "exporter"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "image_full": "frontend",
+                "image": "frontend",
+                "name": "frontend",
+                "monitors": [],
+                "depends_on": [
+                    "api"
+                ],
+                "gates": [],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "mysql_db"
+            ],
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": false,
+            "num": 1
+        },
+        "path": "/docker-compose.yml"
+    },
+    "dbs": [
+        "mysql"
+    ],
+    "images": [
+        "node",
+        "frolvlad/alpine-oraclejdk8",
+        "python"
+    ],
+    "num_services": 6,
+    "name": "BracketJohn/Data_Story_Driven_Testing",
+    "num_langs": 3,
+    "gates": [],
+    "discos": [],
+    "dockers": [
+        {
+            "from_full": "frolvlad/alpine-oraclejdk8:slim",
+            "keywords": [
+                "touch",
+                "app",
+                "jar"
+            ],
+            "buses": [],
+            "path": "/backend/importer/src/main/docker/Dockerfile",
+            "monitors": [],
+            "from": "frolvlad/alpine-oraclejdk8",
+            "dbs": [],
+            "servers": [],
+            "cmd": "",
+            "langs": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "from_full": "python:3.6-alpine",
+            "keywords": [
+                "cache",
+                "apk",
+                "dev",
+                "headers",
+                "linux"
+            ],
+            "buses": [],
+            "path": "/backend/api/Dockerfile",
+            "monitors": [],
+            "from": "python",
+            "dbs": [],
+            "servers": [],
+            "cmd": "",
+            "langs": [
+                "python"
+            ],
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "from_full": "frolvlad/alpine-oraclejdk8:slim",
+            "keywords": [
+                "touch",
+                "app",
+                "jar"
+            ],
+            "buses": [],
+            "path": "/backend/database/src/main/docker/Dockerfile",
+            "monitors": [],
+            "from": "frolvlad/alpine-oraclejdk8",
+            "dbs": [],
+            "servers": [],
+            "cmd": "",
+            "langs": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "from_full": "frolvlad/alpine-oraclejdk8:slim",
+            "keywords": [
+                "touch",
+                "app",
+                "jar"
+            ],
+            "buses": [],
+            "path": "/backend/exporter/src/main/docker/Dockerfile",
+            "monitors": [],
+            "from": "frolvlad/alpine-oraclejdk8",
+            "dbs": [],
+            "servers": [],
+            "cmd": "",
+            "langs": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "from_full": "node",
+            "keywords": [
+                "app",
+                "npm",
+                "usr",
+                "toast",
+                "src"
+            ],
+            "buses": [],
+            "path": "/frontend/Dockerfile",
+            "monitors": [],
+            "from": "node",
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "cmd": "node server.js",
+            "langs": [],
+            "cmd_keywords": [
+                "server",
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "buses": [],
+    "langs": [
+        "java",
+        "javascript",
+        "python"
+    ],
+    "files": [
+        {
+            "dbs": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "path": "/backend/api/requirements.txt",
+            "monitors": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "path": "/backend/importer/pom.xml",
+            "monitors": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [
+                "mysql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "path": "/backend/database/pom.xml",
+            "monitors": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "path": "/backend/exporter/pom.xml",
+            "monitors": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "buses": [],
+            "path": "/frontend/package.json",
+            "monitors": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "size": 2977,
+    "languages": [
+        "javascript",
+        "java"
+    ],
+    "num_files": 11,
+    "avg_size_service": 595.4,
+    "monitors": [],
+    "num_gates": 0,
+    "servers": [
+        "spring",
+        "node",
+        "express",
+        "flask"
+    ],
+    "num_monitors": 0,
+    "num_dockers": 5,
+    "num_buses": 0,
+    "url": "git://github.com/BracketJohn/Data_Story_Driven_Testing.git",
+    "num_servers": 4,
+    "num_discos": 0
+}

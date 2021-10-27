@@ -1,0 +1,372 @@
+{
+    "num_dbs": 2,
+    "dbs": [
+        "nexus",
+        "couchbase"
+    ],
+    "images": [
+        "node",
+        "alpine",
+        "java",
+        "python",
+        "couchbase"
+    ],
+    "langs": [
+        "shell",
+        "gherkin",
+        "ruby",
+        "python",
+        "javascript",
+        "java",
+        "dockerfile"
+    ],
+    "size": 5864,
+    "num_discos": 0,
+    "dockers": [
+        {
+            "dbs": [],
+            "from": "alpine",
+            "keywords": [
+                "upgrade",
+                "apk"
+            ],
+            "from_full": "alpine:latest",
+            "langs": [],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "echo Hello World",
+            "path": "/exercise_files/Dockerfile",
+            "cmd_keywords": [
+                "hello",
+                "echo",
+                "world"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "from": "java",
+            "keywords": [
+                "sonar",
+                "sonarqube",
+                "plugin",
+                "zip",
+                "jar"
+            ],
+            "from_full": "java:openjdk-8u45-jdk",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "",
+            "path": "/devops/ci-cd-ct-stack/sonar5/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "from": "node",
+            "keywords": [
+                "git",
+                "get",
+                "apt",
+                "https",
+                "wget"
+            ],
+            "from_full": "node:4.4-wheezy",
+            "langs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "buses": [],
+            "cmd": "npm start > server.log",
+            "path": "/developer/web_app/Dockerfile",
+            "cmd_keywords": [
+                "server",
+                "start",
+                "npm",
+                "log"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/developer/api_app/Dockerfile",
+            "from": "",
+            "cmd_keywords": [],
+            "cmd": ""
+        },
+        {
+            "dbs": [
+                "couchbase"
+            ],
+            "from": "couchbase",
+            "keywords": [
+                "administrator",
+                "cluster",
+                "bucket",
+                "ramsize",
+                "couchbase"
+            ],
+            "from_full": "couchbase:community-4.0.0",
+            "langs": [],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "",
+            "path": "/developer/api_app/couchbase/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "from": "node",
+            "keywords": [],
+            "from_full": "node:5.2",
+            "langs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "buses": [],
+            "cmd": "",
+            "path": "/tester/test_env_containers/nodejs/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "from": "java",
+            "keywords": [],
+            "from_full": "java:8",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "",
+            "path": "/tester/test_env_containers/java/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "from": "python",
+            "keywords": [],
+            "from_full": "python:2.7",
+            "langs": [
+                "python"
+            ],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "",
+            "path": "/tester/test_env_containers/python/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/tester/test_env_containers/golang/Dockerfile",
+            "from": "",
+            "cmd_keywords": [],
+            "cmd": ""
+        }
+    ],
+    "servers": [
+        "node",
+        "express"
+    ],
+    "monitors": [],
+    "num_dockers": 9,
+    "structure": {
+        "path": "/devops/ci-cd-ct-stack/docker-compose.yml",
+        "num_services": 8,
+        "detected_dbs": {
+            "services": [
+                "nexus3",
+                "nexus"
+            ],
+            "names": [
+                "nexus"
+            ],
+            "num": 2,
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "image": "jenkins2_tls.dockerfile",
+                "dbs": [],
+                "depends_on": [
+                    "nexus",
+                    "sonar",
+                    "selhub"
+                ],
+                "image_full": "jenkins2_tls.dockerfile",
+                "buses": [],
+                "name": "jenkins",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "postgres",
+                "dbs": [],
+                "depends_on": [],
+                "image_full": "postgres",
+                "buses": [],
+                "name": "sonardb",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "selenium/node-chrome",
+                "dbs": [],
+                "depends_on": [
+                    "selhub"
+                ],
+                "image_full": "selenium/node-chrome:2.53.0",
+                "buses": [],
+                "name": "nodech",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": [
+                    "node"
+                ]
+            },
+            {
+                "image": "./sonar5",
+                "dbs": [],
+                "depends_on": [
+                    "sonardb"
+                ],
+                "image_full": "./sonar5",
+                "buses": [],
+                "name": "sonar",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "nexus3.dockerfile",
+                "dbs": [
+                    "nexus"
+                ],
+                "depends_on": [],
+                "image_full": "nexus3.dockerfile",
+                "buses": [],
+                "name": "nexus3",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "nexus2.dockerfile",
+                "dbs": [
+                    "nexus"
+                ],
+                "depends_on": [],
+                "image_full": "nexus2.dockerfile",
+                "buses": [],
+                "name": "nexus",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "selenium/node-firefox",
+                "dbs": [],
+                "depends_on": [
+                    "selhub"
+                ],
+                "image_full": "selenium/node-firefox:2.53.0",
+                "buses": [],
+                "name": "nodeff",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": [
+                    "node"
+                ]
+            },
+            {
+                "image": "selenium/hub",
+                "dbs": [],
+                "depends_on": [],
+                "image_full": "selenium/hub:2.53.0",
+                "buses": [],
+                "name": "selhub",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            }
+        ]
+    },
+    "num_buses": 0,
+    "gates": [],
+    "discos": [],
+    "num_gates": 0,
+    "num_services": 8,
+    "name": "machzqcq/docker-for-all",
+    "shared_dbs": false,
+    "avg_size_service": 651.5555555555555,
+    "num_langs": 7,
+    "num_servers": 2,
+    "languages": [
+        "ruby",
+        "dockerfile",
+        "shell",
+        "gherkin",
+        "javascript"
+    ],
+    "buses": [],
+    "files": [
+        {
+            "dbs": [],
+            "buses": [],
+            "path": "/developer/web_app/package.json",
+            "monitors": [],
+            "gates": [],
+            "discos": [],
+            "servers": [
+                "node",
+                "express"
+            ]
+        },
+        {
+            "dbs": [
+                "couchbase"
+            ],
+            "buses": [],
+            "path": "/developer/api_app/package.json",
+            "monitors": [],
+            "gates": [],
+            "discos": [],
+            "servers": [
+                "node",
+                "express"
+            ]
+        }
+    ],
+    "url": "git://github.com/machzqcq/docker-for-all.git",
+    "num_files": 12,
+    "num_monitors": 0
+}

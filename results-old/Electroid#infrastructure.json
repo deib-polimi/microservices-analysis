@@ -1,0 +1,242 @@
+{
+    "servers": [
+        "rails"
+    ],
+    "num_monitors": 0,
+    "num_gates": 0,
+    "num_dbs": 0,
+    "num_services": 0,
+    "num_langs": 3,
+    "shared_dbs": false,
+    "num_servers": 1,
+    "avg_size_service": 25.142857142857142,
+    "files": [],
+    "size": 176,
+    "num_buses": 0,
+    "buses": [],
+    "num_discos": 0,
+    "languages": [
+        "ruby"
+    ],
+    "discos": [],
+    "num_dockers": 7,
+    "dbs": [],
+    "num_files": 8,
+    "gates": [],
+    "images": [
+        "docker",
+        "git",
+        "ruby",
+        "haproxy",
+        "openjdk"
+    ],
+    "url": "git://github.com/Electroid/infrastructure.git",
+    "monitors": [],
+    "name": "Electroid/infrastructure",
+    "dockers": [
+        {
+            "cmd": "cd ../data && git pull && cd ../repo/Config && git pull &&     cd ../../server && ruby run.rb \"load!\" &&                     exec java -jar server.jar -stage $STAGE",
+            "servers": [],
+            "cmd_keywords": [
+                "server",
+                "git",
+                "jar",
+                "pull",
+                "stage"
+            ],
+            "gates": [],
+            "from": "openjdk",
+            "from_full": "openjdk:10-jre-slim",
+            "monitors": [],
+            "path": "/models/minecraft/Dockerfile",
+            "langs": [
+                "ruby"
+            ],
+            "buses": [],
+            "keywords": [
+                "git",
+                "get",
+                "apt",
+                "install",
+                "ruby"
+            ],
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "cmd": "ruby server.rb",
+            "servers": [],
+            "cmd_keywords": [
+                "server",
+                "ruby"
+            ],
+            "gates": [],
+            "from": "ruby",
+            "from_full": "ruby:2.3-alpine3.7",
+            "monitors": [],
+            "path": "/models/default-backend/Dockerfile",
+            "langs": [
+                "ruby"
+            ],
+            "buses": [],
+            "keywords": [
+                "default",
+                "backend"
+            ],
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "cmd": "worker.rb",
+            "servers": [],
+            "cmd_keywords": [
+                "worker"
+            ],
+            "gates": [],
+            "from": "ruby",
+            "from_full": "ruby:2.3-alpine3.7",
+            "monitors": [],
+            "path": "/models/worker/Dockerfile",
+            "langs": [
+                "ruby"
+            ],
+            "buses": [],
+            "keywords": [
+                "apk",
+                "build",
+                "cache",
+                "dev",
+                "base"
+            ],
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "cmd": "exec rails $WEB_ROLE -b 0.0.0.0 -p $WEB_PORT",
+            "servers": [
+                "rails"
+            ],
+            "cmd_keywords": [
+                "web",
+                "rails",
+                "port",
+                "exec",
+                "role"
+            ],
+            "gates": [],
+            "from": "ruby",
+            "from_full": "ruby:2.3.8",
+            "monitors": [],
+            "path": "/models/web/Dockerfile",
+            "langs": [
+                "ruby"
+            ],
+            "buses": [],
+            "keywords": [
+                "git",
+                "install",
+                "gem",
+                "bundle",
+                "hard"
+            ],
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "cmd": "find /root -name \".s3cfg\" -type f -exec sh -c \"envsubst < {} > env && rm {} && mv env {}\" \\; && exec ./git.sh",
+            "servers": [],
+            "cmd_keywords": [
+                "env",
+                "exec",
+                "envsubst",
+                "find",
+                "git"
+            ],
+            "gates": [],
+            "from": "git",
+            "from_full": "git",
+            "monitors": [],
+            "path": "/models/util/spaces/Dockerfile",
+            "langs": [
+                "python"
+            ],
+            "buses": [],
+            "keywords": [
+                "cmd",
+                "git",
+                "python",
+                "apk",
+                "pip"
+            ],
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "cmd": "./git.sh",
+            "servers": [],
+            "cmd_keywords": [
+                "git"
+            ],
+            "gates": [],
+            "from": "docker",
+            "from_full": "docker",
+            "monitors": [],
+            "path": "/models/util/git/Dockerfile",
+            "langs": [
+                "bash"
+            ],
+            "buses": [],
+            "keywords": [
+                "git",
+                "apk",
+                "config",
+                "stratus",
+                "user"
+            ],
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "cmd": "find /usr/local/etc/haproxy -name \"haproxy.cfg\" -type f -exec sh -c \"envsubst < {} > env && rm {} && mv env {}\" \\; && haproxy -f /usr/local/etc/haproxy/haproxy.cfg",
+            "servers": [],
+            "cmd_keywords": [
+                "haproxy",
+                "local",
+                "env",
+                "etc",
+                "usr"
+            ],
+            "gates": [],
+            "from": "haproxy",
+            "from_full": "haproxy:1.5-alpine",
+            "monitors": [],
+            "path": "/models/util/proxy/Dockerfile",
+            "langs": [],
+            "buses": [],
+            "keywords": [
+                "add",
+                "apk",
+                "cache",
+                "gettext"
+            ],
+            "discos": [],
+            "dbs": []
+        }
+    ],
+    "langs": [
+        "python",
+        "ruby",
+        "bash"
+    ],
+    "structure": {
+        "path": [],
+        "detected_dbs": {
+            "names": [],
+            "services": [],
+            "shared_dbs": false,
+            "num": 0
+        },
+        "services": [],
+        "num_services": 0
+    }
+}

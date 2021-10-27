@@ -1,0 +1,171 @@
+{
+    "num_langs": 1,
+    "dbs": [],
+    "num_servers": 1,
+    "languages": [
+        "python"
+    ],
+    "num_discos": 0,
+    "avg_size_service": 7.0,
+    "dockers": [
+        {
+            "gates": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "python manage.py runserver -h 0.0.0.0",
+            "servers": [],
+            "keywords": [
+                "requirements",
+                "src",
+                "install",
+                "mkdir",
+                "pip"
+            ],
+            "from": "python",
+            "cmd_keywords": [
+                "runserver",
+                "manage",
+                "python"
+            ],
+            "from_full": "python:3.6.1",
+            "path": "/Dockerfile",
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "discos": []
+        },
+        {
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "",
+            "servers": [],
+            "keywords": [
+                "conf",
+                "nginx",
+                "default",
+                "etc"
+            ],
+            "from": "nginx",
+            "cmd_keywords": [],
+            "from_full": "nginx:1.13.0",
+            "path": "/nginx/Dockerfile",
+            "buses": [],
+            "langs": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "",
+            "servers": [],
+            "keywords": [],
+            "from": "postgres",
+            "cmd_keywords": [],
+            "from_full": "postgres",
+            "path": "/project/db/Dockerfile",
+            "buses": [],
+            "langs": [],
+            "discos": []
+        }
+    ],
+    "num_gates": 1,
+    "buses": [],
+    "langs": [
+        "python"
+    ],
+    "num_buses": 0,
+    "discos": [],
+    "num_dbs": 0,
+    "num_files": 5,
+    "url": "git://github.com/mycognosist/flask-microservices.git",
+    "shared_dbs": false,
+    "monitors": [],
+    "num_services": 3,
+    "files": [
+        {
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "path": "/requirements.txt",
+            "servers": [
+                "flask"
+            ],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "servers": [
+        "flask"
+    ],
+    "num_monitors": 0,
+    "gates": [
+        "nginx"
+    ],
+    "size": 21,
+    "num_dockers": 3,
+    "images": [
+        "nginx",
+        "postgres",
+        "python"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image": "./",
+                "depends_on": [
+                    "users-db"
+                ],
+                "dbs": [],
+                "name": "users-service",
+                "image_full": "./",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "./nginx/",
+                "depends_on": [
+                    "users-service"
+                ],
+                "dbs": [],
+                "name": "nginx",
+                "image_full": "./nginx/",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [
+                    "nginx"
+                ],
+                "monitors": []
+            },
+            {
+                "image": "./project/db",
+                "depends_on": [],
+                "dbs": [],
+                "name": "users-db",
+                "image_full": "./project/db",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [],
+            "shared_dbs": false,
+            "num": 0,
+            "services": []
+        },
+        "num_services": 3
+    },
+    "name": "mycognosist/flask-microservices"
+}

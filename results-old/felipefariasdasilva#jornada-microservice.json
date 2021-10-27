@@ -1,0 +1,206 @@
+{
+    "size": 240,
+    "num_servers": 1,
+    "dbs": [
+        "mysql",
+        "redis"
+    ],
+    "files": [
+        {
+            "path": "/consumer-service/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/rental-service/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/product-service/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "structure": {
+        "num_services": 4,
+        "services": [
+            {
+                "name": "consumerapp-redis",
+                "image": "redis",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "redis:alpine",
+                "discos": [],
+                "dbs": [
+                    "redis"
+                ],
+                "monitors": []
+            },
+            {
+                "name": "consumerapp",
+                "image": ".",
+                "depends_on": [
+                    "consumerapp-mysql",
+                    "consumerapp-redis"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": ".",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "consumerapp-nginx",
+                "image": "./.docker/nginx",
+                "depends_on": [
+                    "consumerapp"
+                ],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "servers": [],
+                "image_full": "./.docker/nginx",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "consumerapp-mysql",
+                "image": "mysql",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "mysql:5.7.22",
+                "discos": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "monitors": []
+            }
+        ],
+        "path": "/consumer-service/docker-compose.yml",
+        "detected_dbs": {
+            "num": 2,
+            "names": [
+                "mysql",
+                "redis"
+            ],
+            "shared_dbs": false,
+            "services": [
+                "consumerapp-redis",
+                "consumerapp-mysql"
+            ]
+        }
+    },
+    "buses": [
+        "kafka"
+    ],
+    "images": [
+        "openjdk"
+    ],
+    "num_discos": 0,
+    "url": "git://github.com/felipefariasdasilva/jornada-microservice.git",
+    "num_services": 4,
+    "langs": [
+        "java"
+    ],
+    "discos": [],
+    "num_gates": 1,
+    "shared_dbs": false,
+    "num_files": 7,
+    "num_monitors": 0,
+    "gates": [
+        "nginx"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "num_langs": 1,
+    "languages": [
+        "java"
+    ],
+    "monitors": [],
+    "name": "felipefariasdasilva/jornada-microservice",
+    "num_buses": 1,
+    "avg_size_service": 80.0,
+    "dockers": [
+        {
+            "path": "/consumer-service/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/rental-service/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/product-service/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        }
+    ],
+    "num_dbs": 2,
+    "num_dockers": 3
+}

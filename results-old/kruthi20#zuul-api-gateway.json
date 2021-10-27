@@ -1,0 +1,229 @@
+{
+    "num_gates": 1,
+    "images": [
+        "openjdk"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "num_buses": 0,
+    "name": "kruthi20/zuul-api-gateway",
+    "gates": [
+        "zuul"
+    ],
+    "structure": {
+        "num_services": 9,
+        "detected_dbs": {
+            "services": [
+                "mysql-standalone",
+                "mysql-inventory",
+                "mysql-promotion"
+            ],
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": false,
+            "num": 3
+        },
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image": "kmurthy3/inventory-service",
+                "image_full": "kmurthy3/inventory-service",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "eureka-server",
+                    "mysql-inventory"
+                ],
+                "servers": [],
+                "name": "inventory-service",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "kmurthy3/product-view-service",
+                "image_full": "kmurthy3/product-view-service",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "eureka-server",
+                    "product-service",
+                    "inventory-service",
+                    "promotion-service"
+                ],
+                "servers": [],
+                "name": "product-view-service",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "mysql",
+                "image_full": "mysql:5.6",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "mysql-standalone",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "mysql"
+                ]
+            },
+            {
+                "image": "mysql",
+                "image_full": "mysql:5.6",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "mysql-inventory",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "mysql"
+                ]
+            },
+            {
+                "image": "kmurthy3/eureka-server",
+                "image_full": "kmurthy3/eureka-server",
+                "discos": [
+                    "eureka"
+                ],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "eureka-server",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "kmurthy3/zuul-api-gateway",
+                "image_full": "kmurthy3/zuul-api-gateway",
+                "discos": [],
+                "gates": [
+                    "zuul"
+                ],
+                "depends_on": [
+                    "product-view-service"
+                ],
+                "servers": [],
+                "name": "zuul-api-gateway",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "kmurthy3/product-service",
+                "image_full": "kmurthy3/product-service",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "eureka-server",
+                    "mysql-standalone"
+                ],
+                "servers": [],
+                "name": "product-service",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "mysql",
+                "image_full": "mysql:5.6",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "mysql-promotion",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "mysql"
+                ]
+            },
+            {
+                "image": "kmurthy3/promotion-service",
+                "image_full": "kmurthy3/promotion-service",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "eureka-server",
+                    "mysql-promotion"
+                ],
+                "servers": [],
+                "name": "promotion-service",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            }
+        ]
+    },
+    "url": "git://github.com/kruthi20/zuul-api-gateway.git",
+    "langs": [
+        "dockerfile",
+        "java"
+    ],
+    "num_dockers": 1,
+    "num_langs": 2,
+    "dbs": [
+        "mysql"
+    ],
+    "shared_dbs": false,
+    "size": 41931,
+    "dockers": [
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/Dockerfile",
+            "cmd_keywords": []
+        }
+    ],
+    "num_servers": 1,
+    "monitors": [],
+    "num_services": 9,
+    "servers": [
+        "spring"
+    ],
+    "num_monitors": 0,
+    "avg_size_service": 41931.0,
+    "num_files": 3,
+    "buses": [],
+    "files": [
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/pom.xml"
+        }
+    ],
+    "languages": [
+        "java",
+        "dockerfile"
+    ],
+    "num_dbs": 1,
+    "num_discos": 1
+}

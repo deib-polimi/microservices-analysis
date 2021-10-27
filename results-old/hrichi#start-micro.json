@@ -1,0 +1,223 @@
+{
+    "size": 96078,
+    "avg_size_service": 32026.0,
+    "name": "hrichi/start-micro",
+    "languages": [
+        "javascript",
+        "typescript",
+        "c#"
+    ],
+    "servers": [
+        "node",
+        "express"
+    ],
+    "num_dbs": 0,
+    "images": [
+        "nginx",
+        "mcr.microsoft.com/dotnet/core/aspnet",
+        "envoyproxy/envoy"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 5,
+        "services": [
+            {
+                "depends_on": [],
+                "image_full": "start_micro/grpc_services",
+                "monitors": [],
+                "name": "grpc_services",
+                "image": "start_micro/grpc_services",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": [
+                    "grpc"
+                ]
+            },
+            {
+                "depends_on": [],
+                "image_full": "start_micro/angular_client",
+                "monitors": [],
+                "name": "angular_client",
+                "image": "start_micro/angular_client",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "start_micro/weather_prediction_service",
+                "monitors": [],
+                "name": "weather_prediction_service",
+                "image": "start_micro/weather_prediction_service",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "start_micro/weather_service",
+                "monitors": [],
+                "name": "weather_service",
+                "image": "start_micro/weather_service",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "grpc_services"
+                ],
+                "image_full": "start_micro/envoy",
+                "monitors": [],
+                "name": "envoy",
+                "image": "start_micro/envoy",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": [
+                    "envoy"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "services": [],
+            "names": [],
+            "shared_dbs": false,
+            "num": 0
+        }
+    },
+    "num_dockers": 3,
+    "num_buses": 0,
+    "num_services": 5,
+    "dockers": [
+        {
+            "path": "/src/Start-Micro-Grpc-Services/Dockerfile",
+            "from": "mcr.microsoft.com/dotnet/core/aspnet",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "mcr.microsoft.com/dotnet/core/aspnet:3.1",
+            "keywords": [
+                "dotnet",
+                "restore",
+                "publish",
+                "out",
+                "release"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/src/grpc-gateway/envoy/Dockerfile",
+            "from": "envoyproxy/envoy",
+            "langs": [],
+            "cmd": "/usr/local/bin/envoy -c /etc/envoy/envoy.yaml -l trace --log-path /tmp/envoy_info.log",
+            "servers": [],
+            "from_full": "envoyproxy/envoy:latest",
+            "keywords": [],
+            "cmd_keywords": [
+                "envoy",
+                "log",
+                "path",
+                "tmp",
+                "bin"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": [
+                "envoy"
+            ]
+        },
+        {
+            "path": "/src/Start-Micro-Web/Dockerfile",
+            "from": "nginx",
+            "langs": [],
+            "cmd": "nginx -g daemon off;",
+            "servers": [],
+            "from_full": "nginx:1.17.1-alpine",
+            "keywords": [
+                "npm",
+                "html",
+                "share",
+                "nginx",
+                "install"
+            ],
+            "cmd_keywords": [
+                "nginx",
+                "daemon",
+                "off"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [
+                "nginx"
+            ],
+            "discos": []
+        }
+    ],
+    "num_langs": 3,
+    "langs": [
+        "javascript",
+        "c#",
+        "typescript"
+    ],
+    "discos": [
+        "grpc",
+        "envoy"
+    ],
+    "num_gates": 1,
+    "num_monitors": 0,
+    "num_files": 6,
+    "files": [
+        {
+            "path": "/src/Start-Micro-Weather-Service/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/src/Start-Micro-Web/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": [
+                "grpc"
+            ]
+        }
+    ],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_servers": 2,
+    "url": "git://github.com/hrichi/start-micro.git",
+    "dbs": [],
+    "num_discos": 2,
+    "gates": [
+        "nginx"
+    ],
+    "buses": []
+}

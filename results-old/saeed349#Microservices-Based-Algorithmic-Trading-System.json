@@ -1,0 +1,302 @@
+{
+    "size": 18001,
+    "avg_size_service": 3600.2,
+    "name": "saeed349/Microservices-Based-Algorithmic-Trading-System",
+    "languages": [
+        "python",
+        "jupyternotebook"
+    ],
+    "servers": [],
+    "num_dbs": 1,
+    "images": [
+        "minio/minio",
+        "continuumio/miniconda",
+        "amancevice/superset",
+        "puckel/docker-airflow",
+        "jupyter/scipy-notebook"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 9,
+        "services": [
+            {
+                "depends_on": [],
+                "image_full": "redis",
+                "monitors": [],
+                "name": "redis",
+                "image": "redis",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "redis"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "postgres_secmaster"
+                ],
+                "image_full": "dpage/pgadmin4",
+                "monitors": [],
+                "name": "pgadmin",
+                "image": "dpage/pgadmin4",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "postgres",
+                "monitors": [],
+                "name": "postgres",
+                "image": "postgres",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "./dockerfile_minio",
+                "monitors": [],
+                "name": "minio-image",
+                "image": "./dockerfile_minio",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "postgres",
+                "monitors": [],
+                "name": "postgres_secmaster",
+                "image": "postgres",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "./dockerfile_jupyter_notebook",
+                "monitors": [],
+                "name": "jupyter-image",
+                "image": "./dockerfile_jupyter_notebook",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "postgres"
+                ],
+                "image_full": "airflow",
+                "monitors": [],
+                "name": "airflow",
+                "image": "airflow",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "./dockerfile_mlflowserver",
+                "monitors": [],
+                "name": "mlflow-image",
+                "image": "./dockerfile_mlflowserver",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "redis"
+                ],
+                "image_full": "./dockerfile_superset",
+                "monitors": [],
+                "name": "superset",
+                "image": "./dockerfile_superset",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "redis"
+            ],
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": false,
+            "num": 1
+        }
+    },
+    "num_dockers": 5,
+    "num_buses": 0,
+    "num_services": 9,
+    "dockers": [
+        {
+            "path": "/dockerfile_jupyter_notebook/Dockerfile",
+            "from": "jupyter/scipy-notebook",
+            "langs": [],
+            "cmd": "jupyter notebook --no-browser --NotebookApp.token='' --NotebookApp.password='' --allow-root",
+            "servers": [],
+            "from_full": "jupyter/scipy-notebook",
+            "keywords": [
+                "install",
+                "fix",
+                "permissions",
+                "apt",
+                "dir"
+            ],
+            "cmd_keywords": [
+                "notebookapp",
+                "token",
+                "root",
+                "password",
+                "browser"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/dockerfile_mlflowserver/Dockerfile",
+            "from": "continuumio/miniconda",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "continuumio/miniconda",
+            "keywords": [
+                "txt",
+                "install",
+                "requirements",
+                "pip",
+                "tmp"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/dockerfile_minio/Dockerfile",
+            "from": "minio/minio",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "minio/minio",
+            "keywords": [
+                "amd",
+                "wget",
+                "client",
+                "chmod",
+                "https"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/dockerfile_superset/Dockerfile",
+            "from": "amancevice/superset",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "amancevice/superset",
+            "keywords": [],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/dockerfile_airflow/Dockerfile",
+            "from": "puckel/docker-airflow",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "puckel/docker-airflow",
+            "keywords": [],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "num_langs": 2,
+    "langs": [
+        "jupyternotebook",
+        "python"
+    ],
+    "discos": [],
+    "num_gates": 0,
+    "num_monitors": 0,
+    "num_files": 9,
+    "files": [
+        {
+            "path": "/dockerfile_jupyter_notebook/requirements.txt",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/dockerfile_mlflowserver/requirements.txt",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/dockerfile_airflow/requirements.txt",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_servers": 0,
+    "url": "git://github.com/saeed349/Microservices-Based-Algorithmic-Trading-System.git",
+    "dbs": [
+        "redis"
+    ],
+    "num_discos": 0,
+    "gates": [],
+    "buses": []
+}

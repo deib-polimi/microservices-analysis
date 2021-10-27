@@ -1,0 +1,318 @@
+{
+    "size": 91,
+    "num_gates": 1,
+    "num_services": 6,
+    "url": "git://github.com/MikhailMakar/microserviceproject.git",
+    "avg_size_service": 18.2,
+    "monitors": [],
+    "files": [
+        {
+            "dbs": [],
+            "path": "/build.gradle",
+            "discos": [],
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "dbs": [],
+            "path": "/settings.gradle",
+            "discos": [],
+            "servers": [],
+            "monitors": [],
+            "gates": [
+                "gateway"
+            ],
+            "buses": []
+        },
+        {
+            "dbs": [],
+            "path": "/config/build.gradle",
+            "discos": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "dbs": [],
+            "path": "/gateway/build.gradle",
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [
+                "zuul"
+            ],
+            "buses": []
+        },
+        {
+            "dbs": [],
+            "path": "/discovery/build.gradle",
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "dbs": [],
+            "path": "/middlewarebookservice/build.gradle",
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "dbs": [],
+            "path": "/mainbookservice/build.gradle",
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": []
+        }
+    ],
+    "num_buses": 0,
+    "gates": [
+        "zuul"
+    ],
+    "images": [
+        "gradle"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "num_dbs": 0,
+    "num_langs": 2,
+    "dockers": [
+        {
+            "path": "/config/Dockerfile",
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "",
+            "gates": [],
+            "cmd_keywords": [],
+            "keywords": [
+                "gradle",
+                "clean",
+                "build"
+            ],
+            "discos": [],
+            "from_full": "gradle:jdk8-alpine",
+            "from": "gradle",
+            "langs": []
+        },
+        {
+            "path": "/gateway/Dockerfile",
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "",
+            "gates": [],
+            "cmd_keywords": [],
+            "keywords": [
+                "gradle",
+                "clean",
+                "build"
+            ],
+            "discos": [],
+            "from_full": "gradle:jdk8-alpine",
+            "from": "gradle",
+            "langs": []
+        },
+        {
+            "path": "/discovery/Dockerfile",
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "",
+            "gates": [],
+            "cmd_keywords": [],
+            "keywords": [
+                "gradle",
+                "clean",
+                "build"
+            ],
+            "discos": [],
+            "from_full": "gradle:jdk8-alpine",
+            "from": "gradle",
+            "langs": []
+        },
+        {
+            "path": "/middlewarebookservice/Dockerfile",
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "",
+            "gates": [],
+            "cmd_keywords": [],
+            "keywords": [
+                "gradle",
+                "clean",
+                "build"
+            ],
+            "discos": [],
+            "from_full": "gradle:jdk8-alpine",
+            "from": "gradle",
+            "langs": []
+        },
+        {
+            "path": "/mainbookservice/Dockerfile",
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "",
+            "gates": [],
+            "cmd_keywords": [],
+            "keywords": [
+                "gradle",
+                "clean",
+                "build"
+            ],
+            "discos": [],
+            "from_full": "gradle:jdk8-alpine",
+            "from": "gradle",
+            "langs": []
+        }
+    ],
+    "num_dockers": 5,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image": "context",
+                "gates": [],
+                "depends_on": [
+                    "discovery"
+                ],
+                "image_full": "dockerfile",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "name": "gateway",
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "gates": [],
+                "depends_on": [],
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:7.5.1",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "name": "elastic",
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "image": "context",
+                "gates": [],
+                "depends_on": [
+                    "config"
+                ],
+                "image_full": "dockerfile",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "name": "discovery",
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "image": "context",
+                "gates": [],
+                "depends_on": [
+                    "gateway"
+                ],
+                "image_full": "dockerfile",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "name": "middlewarebookservice",
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "image": "context",
+                "gates": [],
+                "depends_on": [
+                    "elastic"
+                ],
+                "image_full": "dockerfile",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "name": "config",
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "image": "context",
+                "gates": [],
+                "depends_on": [
+                    "gateway"
+                ],
+                "image_full": "dockerfile",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "name": "mainbookservice",
+                "monitors": [],
+                "buses": []
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        }
+    },
+    "name": "MikhailMakar/microserviceproject",
+    "num_monitors": 0,
+    "languages": [
+        "java",
+        "shell"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "num_discos": 1,
+    "num_servers": 1,
+    "buses": [],
+    "dbs": [],
+    "shared_dbs": false,
+    "langs": [
+        "java",
+        "shell"
+    ],
+    "num_files": 13
+}

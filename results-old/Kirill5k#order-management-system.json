@@ -1,0 +1,528 @@
+{
+    "size": 578,
+    "num_dockers": 3,
+    "discos": [
+        "zookeeper"
+    ],
+    "num_files": 18,
+    "avg_size_service": 192.66666666666666,
+    "buses": [
+        "kafka"
+    ],
+    "num_gates": 0,
+    "langs": [
+        "java"
+    ],
+    "num_discos": 1,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "mongoimport --host mongo-customer --db catalogue --collection customer --drop --file /customers.json --jsonArray",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "customer",
+                "json",
+                "file",
+                "mongo",
+                "collection"
+            ],
+            "from": "mongo",
+            "path": "/db/customer/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [
+                "mongo"
+            ],
+            "from_full": "mongo:latest"
+        },
+        {
+            "monitors": [],
+            "cmd": "mongoimport --host mongo-catalogue --db catalogue --collection productItem --drop --file /products.json --jsonArray",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "catalogue",
+                "json",
+                "file",
+                "mongo",
+                "host"
+            ],
+            "from": "mongo",
+            "path": "/db/catalogue/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [
+                "mongo"
+            ],
+            "from_full": "mongo:latest"
+        },
+        {
+            "monitors": [],
+            "cmd": "mongoimport --host mongo-warehouse --db warehouse --collection stockLine --drop --file /stock.json --jsonArray",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "warehouse",
+                "json",
+                "stockline",
+                "file",
+                "stock"
+            ],
+            "from": "mongo",
+            "path": "/db/warehouse/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [
+                "mongo"
+            ],
+            "from_full": "mongo:latest"
+        }
+    ],
+    "num_dbs": 2,
+    "monitors": [],
+    "shared_dbs": true,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./db/warehouse",
+                "image_full": "./db/warehouse",
+                "discos": [],
+                "name": "mongo-warehouse-seed",
+                "depends_on": [
+                    "mongo-warehouse"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./db/customer",
+                "image_full": "./db/customer",
+                "discos": [],
+                "name": "mongo-customer-seed",
+                "depends_on": [
+                    "mongo-customer"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "bitnami/mongodb",
+                "image_full": "bitnami/mongodb:latest",
+                "discos": [],
+                "name": "mongo-warehouse",
+                "depends_on": [],
+                "dbs": [
+                    "mongodb"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "bitnami/mongodb",
+                "image_full": "bitnami/mongodb:latest",
+                "discos": [],
+                "name": "mongo-orders",
+                "depends_on": [],
+                "dbs": [
+                    "mongodb"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "bitnami/mongodb",
+                "image_full": "bitnami/mongodb:latest",
+                "discos": [],
+                "name": "mongo-customer",
+                "depends_on": [],
+                "dbs": [
+                    "mongodb"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./catalogue-service",
+                "image_full": "./catalogue-service",
+                "discos": [],
+                "name": "catalogue-service",
+                "depends_on": [
+                    "mongo-catalogue"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./finance-service",
+                "image_full": "./finance-service",
+                "discos": [],
+                "name": "finance-finance",
+                "depends_on": [
+                    "kafka",
+                    "mongo-finance"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "bitnami/mongodb",
+                "image_full": "bitnami/mongodb:latest",
+                "discos": [],
+                "name": "mongo-catalogue",
+                "depends_on": [],
+                "dbs": [
+                    "mongodb"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "wurstmeister/zookeeper",
+                "image_full": "wurstmeister/zookeeper:3.4.6",
+                "discos": [
+                    "zookeeper"
+                ],
+                "name": "zookeeper",
+                "depends_on": [],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./customer-service",
+                "image_full": "./customer-service",
+                "discos": [],
+                "name": "customer-service",
+                "depends_on": [
+                    "mongo-customer"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [
+                    "kafka"
+                ],
+                "image": "wurstmeister/kafka",
+                "image_full": "wurstmeister/kafka:2.12-2.3.0",
+                "discos": [],
+                "name": "kafka",
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./notification-service",
+                "image_full": "./notification-service",
+                "discos": [],
+                "name": "notification-finance",
+                "depends_on": [
+                    "kafka"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./db/catalogue",
+                "image_full": "./db/catalogue",
+                "discos": [],
+                "name": "mongo-catalogue-seed",
+                "depends_on": [
+                    "mongo-catalogue"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./warehouse-service",
+                "image_full": "./warehouse-service",
+                "discos": [],
+                "name": "warehouse-service",
+                "depends_on": [
+                    "kafka",
+                    "mongo-warehouse"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "bitnami/mongodb",
+                "image_full": "bitnami/mongodb:latest",
+                "discos": [],
+                "name": "mongo-finance",
+                "depends_on": [],
+                "dbs": [
+                    "mongodb"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./order-service",
+                "image_full": "./order-service",
+                "discos": [],
+                "name": "order-service",
+                "depends_on": [
+                    "kafka",
+                    "mongo-orders"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 6,
+            "names": [
+                "mongodb",
+                "zookeeper"
+            ],
+            "services": [
+                "mongo-warehouse",
+                "mongo-orders",
+                "mongo-customer",
+                "mongo-catalogue",
+                "zookeeper",
+                "mongo-finance"
+            ],
+            "shared_dbs": true
+        },
+        "num_services": 16,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 1,
+    "servers": [
+        "spring"
+    ],
+    "url": "git://github.com/Kirill5k/order-management-system.git",
+    "num_services": 16,
+    "gates": [],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/build.gradle"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/settings.gradle"
+        },
+        {
+            "monitors": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [
+                "mongodb",
+                "mongo"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/order-service/build.gradle"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/order-service/settings.gradle"
+        },
+        {
+            "monitors": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [
+                "mongodb",
+                "mongo"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/finance-service/build.gradle"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/finance-service/settings.gradle"
+        },
+        {
+            "monitors": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [
+                "mongodb",
+                "mongo"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/warehouse-service/build.gradle"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/warehouse-service/settings.gradle"
+        },
+        {
+            "monitors": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/notification-service/build.gradle"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/notification-service/settings.gradle"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [
+                "mongodb",
+                "mongo"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/customer-service/build.gradle"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/customer-service/settings.gradle"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [
+                "mongodb",
+                "mongo"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/catalogue-service/build.gradle"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/catalogue-service/settings.gradle"
+        }
+    ],
+    "name": "Kirill5k/order-management-system",
+    "languages": [
+        "java"
+    ],
+    "images": [
+        "mongo"
+    ],
+    "dbs": [
+        "mongo",
+        "zookeeper"
+    ],
+    "num_servers": 1,
+    "num_langs": 1
+}

@@ -1,0 +1,272 @@
+{
+    "servers": [
+        "express",
+        "node"
+    ],
+    "languages": [
+        "javascript",
+        "vba"
+    ],
+    "url": "git://github.com/abdelrahmanahmed/simple-reservation-system.git",
+    "gates": [
+        "nginx"
+    ],
+    "langs": [
+        "javascript",
+        "vba"
+    ],
+    "discos": [],
+    "files": [
+        {
+            "servers": [
+                "express",
+                "node"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/authentication/package.json",
+            "buses": [],
+            "gates": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/authentication/migrations/package.json",
+            "buses": [],
+            "gates": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "servers": [
+                "express",
+                "node"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/reservation/package.json",
+            "buses": [],
+            "gates": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/reservation/migrations/package.json",
+            "buses": [],
+            "gates": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "dockers": [
+        {
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "gates": [],
+            "langs": [],
+            "buses": [],
+            "keywords": [
+                "npm",
+                "install",
+                "mkdir",
+                "authentication",
+                "nodemon"
+            ],
+            "discos": [],
+            "cmd": "nodemon src/server.js",
+            "cmd_keywords": [
+                "nodemon",
+                "src",
+                "server"
+            ],
+            "dbs": [],
+            "path": "/authentication/Dockerfile",
+            "monitors": [],
+            "from_full": "node:10.16.0"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "gates": [],
+            "langs": [],
+            "buses": [],
+            "keywords": [
+                "npm",
+                "install",
+                "mkdir",
+                "reservation",
+                "nodemon"
+            ],
+            "discos": [],
+            "cmd": "nodemon src/server.js",
+            "cmd_keywords": [
+                "nodemon",
+                "src",
+                "server"
+            ],
+            "dbs": [],
+            "path": "/reservation/Dockerfile",
+            "monitors": [],
+            "from_full": "node:10.16.0"
+        }
+    ],
+    "images": [
+        "node"
+    ],
+    "num_monitors": 0,
+    "avg_size_service": 164531.0,
+    "size": 329062,
+    "num_dockers": 2,
+    "num_servers": 2,
+    "num_services": 6,
+    "num_discos": 0,
+    "name": "abdelrahmanahmed/simple-reservation-system",
+    "shared_dbs": true,
+    "num_dbs": 1,
+    "num_buses": 1,
+    "num_langs": 2,
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_gates": 1,
+    "dbs": [
+        "mysql"
+    ],
+    "num_files": 7,
+    "monitors": [],
+    "structure": {
+        "services": [
+            {
+                "servers": [],
+                "name": "nginx",
+                "image": "nginx",
+                "buses": [],
+                "depends_on": [
+                    "db",
+                    "reservation",
+                    "authentication",
+                    "usersdb",
+                    "rabbitmq"
+                ],
+                "gates": [
+                    "nginx"
+                ],
+                "discos": [],
+                "image_full": "nginx",
+                "monitors": [],
+                "dbs": []
+            },
+            {
+                "servers": [],
+                "name": "authentication",
+                "image": {
+                    "context": "./authentication/"
+                },
+                "buses": [],
+                "depends_on": [
+                    "usersdb"
+                ],
+                "gates": [],
+                "discos": [],
+                "image_full": {
+                    "context": "./authentication/"
+                },
+                "monitors": [],
+                "dbs": []
+            },
+            {
+                "servers": [],
+                "name": "db",
+                "image": "mariadb",
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "image_full": "mariadb",
+                "monitors": [],
+                "dbs": [
+                    "mariadb"
+                ]
+            },
+            {
+                "servers": [],
+                "name": "rabbitmq",
+                "image": "rabbitmq",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "image_full": "rabbitmq:3.6.0-management",
+                "monitors": [],
+                "dbs": []
+            },
+            {
+                "servers": [],
+                "name": "reservation",
+                "image": {
+                    "context": "./reservation/"
+                },
+                "buses": [],
+                "depends_on": [
+                    "db",
+                    "rabbitmq",
+                    "authentication"
+                ],
+                "gates": [],
+                "discos": [],
+                "image_full": {
+                    "context": "./reservation/"
+                },
+                "monitors": [],
+                "dbs": []
+            },
+            {
+                "servers": [],
+                "name": "usersdb",
+                "image": "mariadb",
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "image_full": "mariadb",
+                "monitors": [],
+                "dbs": [
+                    "mariadb"
+                ]
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "num_services": 6,
+        "detected_dbs": {
+            "services": [
+                "db",
+                "usersdb"
+            ],
+            "num": 2,
+            "shared_dbs": true,
+            "names": [
+                "mariadb"
+            ]
+        }
+    }
+}

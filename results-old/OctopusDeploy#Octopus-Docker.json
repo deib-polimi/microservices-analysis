@@ -1,0 +1,179 @@
+{
+    "discos": [],
+    "avg_size_service": 535.3333333333334,
+    "buses": [],
+    "num_gates": 0,
+    "name": "OctopusDeploy/Octopus-Docker",
+    "structure": {
+        "path": "/Tentacle/docker-compose.yml",
+        "services": [
+            {
+                "name": "db",
+                "dbs": [
+                    "sql"
+                ],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "${SQL_IMAGE}",
+                "image": "${SQL_IMAGE}",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "octopus",
+                "dbs": [],
+                "depends_on": [
+                    "db"
+                ],
+                "discos": [],
+                "image_full": "octopusdeploy/octopusdeploy:${OCTOPUS_VERSION}",
+                "image": "octopusdeploy/octopusdeploy",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "listeningtentacle",
+                "dbs": [],
+                "depends_on": [
+                    "octopus"
+                ],
+                "discos": [],
+                "image_full": "octopusdeploy/tentacle${OCTOPUS_TENTACLE_REPO_SUFFIX}:${TENTACLE_VERSION}",
+                "image": "octopusdeploy/tentacle${OCTOPUS_TENTACLE_REPO_SUFFIX}",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "pollingtentacle",
+                "dbs": [],
+                "depends_on": [
+                    "octopus"
+                ],
+                "discos": [],
+                "image_full": "octopusdeploy/tentacle${OCTOPUS_TENTACLE_REPO_SUFFIX}:${TENTACLE_VERSION}",
+                "image": "octopusdeploy/tentacle${OCTOPUS_TENTACLE_REPO_SUFFIX}",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [
+                "sql"
+            ],
+            "num": 1,
+            "shared_dbs": false,
+            "services": [
+                "db"
+            ]
+        },
+        "num_services": 4
+    },
+    "dbs": [
+        "sql"
+    ],
+    "dockers": [
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "bat",
+                "combined",
+                "entrypoint",
+                "scripts"
+            ],
+            "from_full": "microsoft/mssql-server-windows-express:1709",
+            "buses": [],
+            "monitors": [],
+            "from": "microsoft/mssql-server-windows-express",
+            "keywords": [
+                "file",
+                "combined",
+                "build",
+                "powershell"
+            ],
+            "gates": [],
+            "path": "/Combined/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "/Scripts/Combined/entrypoint.bat",
+            "servers": [
+                "express"
+            ]
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [],
+            "from_full": "${BASE_IMAGE}:${SERVERCORE_VERSION}",
+            "buses": [],
+            "monitors": [],
+            "from": "${BASE_IMAGE}",
+            "keywords": [
+                "build",
+                "verbose",
+                "powershell",
+                "tentacle"
+            ],
+            "gates": [],
+            "path": "/Tentacle/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [],
+            "from_full": "${BASE_IMAGE}",
+            "buses": [],
+            "monitors": [],
+            "from": "${BASE_IMAGE}",
+            "keywords": [
+                "file",
+                "server",
+                "build",
+                "powershell"
+            ],
+            "gates": [],
+            "path": "/Server/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        }
+    ],
+    "gates": [],
+    "size": 1606,
+    "num_monitors": 0,
+    "images": [
+        "microsoft/mssql-server-windows-express",
+        "${BASE_IMAGE}"
+    ],
+    "num_buses": 0,
+    "num_services": 4,
+    "servers": [
+        "express"
+    ],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_discos": 0,
+    "languages": [
+        "powershell"
+    ],
+    "url": "git://github.com/OctopusDeploy/Octopus-Docker.git",
+    "langs": [
+        "powershell"
+    ],
+    "num_dbs": 1,
+    "num_servers": 1,
+    "num_langs": 1,
+    "files": [],
+    "num_dockers": 3,
+    "num_files": 4
+}

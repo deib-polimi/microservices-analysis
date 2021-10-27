@@ -1,0 +1,137 @@
+{
+    "size": 12,
+    "avg_size_service": 12.0,
+    "name": "andremargarin/potential-threat-validation-service",
+    "languages": [
+        "python"
+    ],
+    "servers": [],
+    "num_dbs": 1,
+    "images": [
+        "python"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 3,
+        "services": [
+            {
+                "depends_on": [],
+                "image_full": "mysql",
+                "monitors": [],
+                "name": "mysql-service",
+                "image": "mysql",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "rabbitmq:3-management",
+                "monitors": [],
+                "name": "rabbitmq-service",
+                "image": "rabbitmq",
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "rabbitmq-service"
+                ],
+                "image_full": "./Dockerfile",
+                "monitors": [],
+                "name": "validation-service",
+                "image": "./Dockerfile",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "mysql-service"
+            ],
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": false,
+            "num": 1
+        }
+    },
+    "num_dockers": 1,
+    "num_buses": 1,
+    "num_services": 3,
+    "dockers": [
+        {
+            "path": "/Dockerfile",
+            "from": "python",
+            "langs": [
+                "python"
+            ],
+            "cmd": "/wait && python \"src/bootstrap.py\"",
+            "servers": [],
+            "from_full": "python:3.7-alpine",
+            "keywords": [
+                "txt",
+                "install",
+                "requirements",
+                "chmod",
+                "pip"
+            ],
+            "cmd_keywords": [
+                "src",
+                "bootstrap",
+                "python",
+                "wait"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "num_langs": 1,
+    "langs": [
+        "python"
+    ],
+    "discos": [],
+    "num_gates": 0,
+    "num_monitors": 0,
+    "num_files": 3,
+    "files": [
+        {
+            "path": "/requirements.txt",
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": [],
+            "servers": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_servers": 0,
+    "url": "git://github.com/andremargarin/potential-threat-validation-service.git",
+    "dbs": [
+        "mysql"
+    ],
+    "num_discos": 0,
+    "gates": [],
+    "buses": [
+        "rabbitmq"
+    ]
+}

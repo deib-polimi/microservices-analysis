@@ -1,0 +1,216 @@
+{
+    "gates": [
+        "gateway"
+    ],
+    "num_buses": 2,
+    "url": "git://github.com/Technorely/Microservices-template.git",
+    "images": [
+        "node"
+    ],
+    "avg_size_service": 120.0,
+    "num_langs": 1,
+    "num_monitors": 0,
+    "num_dockers": 1,
+    "num_discos": 0,
+    "num_servers": 2,
+    "buses": [
+        "rabbitmq",
+        "amqp"
+    ],
+    "discos": [],
+    "dockers": [
+        {
+            "path": "/microservices/api-gateway/Dockerfile",
+            "cmd_keywords": [
+                "start",
+                "npm",
+                "run"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "node",
+            "langs": [],
+            "servers": [
+                "node"
+            ],
+            "cmd": "npm run start",
+            "from_full": "node:10.15.3",
+            "monitors": [],
+            "keywords": [
+                "init",
+                "dumb",
+                "usr",
+                "local",
+                "bin"
+            ],
+            "buses": []
+        }
+    ],
+    "size": 120,
+    "name": "Technorely/Microservices-template",
+    "num_services": 7,
+    "dbs": [
+        "redis"
+    ],
+    "shared_dbs": true,
+    "langs": [
+        "typescript"
+    ],
+    "languages": [
+        "typescript"
+    ],
+    "servers": [
+        "express",
+        "node"
+    ],
+    "num_files": 4,
+    "monitors": [],
+    "num_dbs": 1,
+    "num_gates": 1,
+    "files": [
+        {
+            "path": "/package.json",
+            "servers": [
+                "node"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/microservices/api-gateway/package.json",
+            "servers": [
+                "express",
+                "node"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [],
+            "buses": [
+                "amqp"
+            ]
+        }
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 7,
+        "detected_dbs": {
+            "services": [
+                "redis"
+            ],
+            "num": 1,
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": true
+        },
+        "services": [
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "postgres:9.6-alpine",
+                "name": "postgres",
+                "gates": [],
+                "image": "postgres",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "elasticsearch:6.7.2",
+                "name": "elasticsearch",
+                "gates": [],
+                "image": "elasticsearch",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "rabbitmq:3-management",
+                "name": "rabbit",
+                "gates": [],
+                "image": "rabbitmq",
+                "dbs": [],
+                "buses": [
+                    "rabbitmq"
+                ]
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "redis",
+                    "rabbit",
+                    "postgres",
+                    "elasticsearch"
+                ],
+                "servers": [],
+                "image_full": "auth-micro",
+                "name": "auth",
+                "gates": [],
+                "image": "auth-micro",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "redis:4.0-alpine",
+                "name": "redis",
+                "gates": [],
+                "image": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "rabbit",
+                    "redis"
+                ],
+                "servers": [],
+                "image_full": "api-gateway-micro",
+                "name": "api-gateway",
+                "gates": [
+                    "gateway"
+                ],
+                "image": "api-gateway-micro",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "dpage/pgadmin4",
+                "name": "pgadmin",
+                "gates": [],
+                "image": "dpage/pgadmin4",
+                "dbs": [],
+                "buses": []
+            }
+        ]
+    }
+}

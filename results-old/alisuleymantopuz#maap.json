@@ -1,0 +1,454 @@
+{
+    "name": "alisuleymantopuz/maap",
+    "num_dbs": 0,
+    "num_services": 13,
+    "num_files": 12,
+    "servers": [
+        "node",
+        "asp"
+    ],
+    "url": "git://github.com/alisuleymantopuz/maap.git",
+    "discos": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "workshopmanagementapi",
+                "image_full": "${DOCKER_REGISTRY-}workshopmanagementapi",
+                "image": "${DOCKER_REGISTRY-}workshopmanagementapi",
+                "servers": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "sqlserver"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "auditlogservice",
+                "image_full": "${DOCKER_REGISTRY-}auditlogservice",
+                "image": "${DOCKER_REGISTRY-}auditlogservice",
+                "servers": [],
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "sqlserver",
+                "image_full": "microsoft/mssql-server-linux:latest",
+                "image": "microsoft/mssql-server-linux",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "customermanagementapi",
+                "image_full": "${DOCKER_REGISTRY-}customermanagementapi",
+                "image": "${DOCKER_REGISTRY-}customermanagementapi",
+                "servers": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "sqlserver"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "workshopmanagementeventhandler",
+                "image_full": "${DOCKER_REGISTRY-}workshopmanagementeventhandler",
+                "image": "${DOCKER_REGISTRY-}workshopmanagementeventhandler",
+                "servers": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "sqlserver"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "timeservice",
+                "image_full": "${DOCKER_REGISTRY-}timeservice",
+                "image": "${DOCKER_REGISTRY-}timeservice",
+                "servers": [],
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "webapp",
+                "image_full": "${DOCKER_REGISTRY-}webapp",
+                "image": "${DOCKER_REGISTRY-}webapp",
+                "servers": [],
+                "depends_on": [
+                    "customermanagementapi",
+                    "vehiclemanagementapi",
+                    "workshopmanagementapi"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "rabbitmq",
+                "image_full": "rabbitmq:3-management",
+                "image": "rabbitmq",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "monitors": []
+            },
+            {
+                "name": "invoiceservice",
+                "image_full": "${DOCKER_REGISTRY-}invoiceservice",
+                "image": "${DOCKER_REGISTRY-}invoiceservice",
+                "servers": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "sqlserver",
+                    "mailserver"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "notificationservice",
+                "image_full": "${DOCKER_REGISTRY-}notificationservice",
+                "image": "${DOCKER_REGISTRY-}notificationservice",
+                "servers": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "sqlserver",
+                    "mailserver"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "vehiclemanagementapi",
+                "image_full": "${DOCKER_REGISTRY-}vehiclemanagementapi",
+                "image": "${DOCKER_REGISTRY-}vehiclemanagementapi",
+                "servers": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "sqlserver"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "logserver",
+                "image_full": "datalust/seq:latest",
+                "image": "datalust/seq",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "mailserver",
+                "image_full": "djfarrelly/maildev",
+                "image": "djfarrelly/maildev",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [],
+            "num": 0,
+            "names": []
+        },
+        "num_services": 13
+    },
+    "num_buses": 1,
+    "size": 7840,
+    "dockers": [
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/timeService/Dockerfile",
+            "discos": [],
+            "from": "base",
+            "buses": [],
+            "from_full": "base",
+            "cmd_keywords": [],
+            "keywords": [
+                "timeservice",
+                "dotnet",
+                "csproj",
+                "release",
+                "app"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/notificationService/Dockerfile",
+            "discos": [],
+            "from": "base",
+            "buses": [],
+            "from_full": "base",
+            "cmd_keywords": [],
+            "keywords": [
+                "notificationservice",
+                "csproj",
+                "dotnet",
+                "release",
+                "app"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/customerManagementAPI/Dockerfile",
+            "discos": [],
+            "from": "base",
+            "buses": [],
+            "from_full": "base",
+            "cmd_keywords": [],
+            "keywords": [
+                "customermanagementapi",
+                "csproj",
+                "dotnet",
+                "release",
+                "app"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/vehicleManagementAPI/Dockerfile",
+            "discos": [],
+            "from": "base",
+            "buses": [],
+            "from_full": "base",
+            "cmd_keywords": [],
+            "keywords": [
+                "vehiclemanagementapi",
+                "csproj",
+                "dotnet",
+                "release",
+                "app"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/workshopManagementAPI/Dockerfile",
+            "discos": [],
+            "from": "base",
+            "buses": [],
+            "from_full": "base",
+            "cmd_keywords": [],
+            "keywords": [
+                "workshopmanagementapi",
+                "csproj",
+                "dotnet",
+                "release",
+                "app"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/invoiceService/Dockerfile",
+            "discos": [],
+            "from": "base",
+            "buses": [],
+            "from_full": "base",
+            "cmd_keywords": [],
+            "keywords": [
+                "invoiceservice",
+                "csproj",
+                "dotnet",
+                "release",
+                "app"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/workshopManagementEventHandler/Dockerfile",
+            "discos": [],
+            "from": "base",
+            "buses": [],
+            "from_full": "base",
+            "cmd_keywords": [],
+            "keywords": [
+                "workshopmanagementeventhandler",
+                "csproj",
+                "dotnet",
+                "release",
+                "app"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/WebApp/Dockerfile",
+            "discos": [],
+            "from": "base",
+            "buses": [],
+            "from_full": "base",
+            "cmd_keywords": [],
+            "keywords": [
+                "webapp",
+                "csproj",
+                "dotnet",
+                "release",
+                "app"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/auditLogService/Dockerfile",
+            "discos": [],
+            "from": "base",
+            "buses": [],
+            "from_full": "base",
+            "cmd_keywords": [],
+            "keywords": [
+                "auditlogservice",
+                "csproj",
+                "dotnet",
+                "release",
+                "app"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "languages": [
+        "html",
+        "css",
+        "c#"
+    ],
+    "dbs": [],
+    "monitors": [],
+    "shared_dbs": false,
+    "avg_size_service": 871.1111111111111,
+    "num_monitors": 0,
+    "files": [
+        {
+            "monitors": [],
+            "servers": [
+                "asp"
+            ],
+            "path": "/WebApp/package.json",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "node"
+            ],
+            "path": "/WebApp/wwwroot/lib/bootstrap/package.json",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        }
+    ],
+    "langs": [
+        "html",
+        "c#",
+        "css"
+    ],
+    "num_servers": 2,
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_langs": 3,
+    "num_gates": 0,
+    "num_discos": 0,
+    "images": [
+        "base"
+    ],
+    "num_dockers": 9,
+    "gates": []
+}

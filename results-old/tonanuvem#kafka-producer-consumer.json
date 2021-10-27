@@ -1,0 +1,164 @@
+{
+    "num_services": 3,
+    "dbs": [
+        "zookeeper"
+    ],
+    "name": "tonanuvem/kafka-producer-consumer",
+    "files": [],
+    "discos": [
+        "zookeeper"
+    ],
+    "num_gates": 0,
+    "num_buses": 1,
+    "langs": [
+        "bash",
+        "dockerfile",
+        "shell"
+    ],
+    "gates": [],
+    "num_monitors": 0,
+    "monitors": [],
+    "images": [
+        "openjdk"
+    ],
+    "structure": {
+        "num_services": 3,
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "names": [],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "buses": [
+                    "kafka"
+                ],
+                "depends_on": [
+                    "kafka"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "tonanuvem/producer_kafka:latest",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "producer",
+                "image": "tonanuvem/producer_kafka"
+            },
+            {
+                "buses": [
+                    "kafka"
+                ],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "spotify/kafka",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "kafka",
+                "image": "spotify/kafka"
+            },
+            {
+                "buses": [
+                    "kafka"
+                ],
+                "depends_on": [
+                    "kafka",
+                    "producer"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "tonanuvem/consumer_kafka:latest",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "consumer",
+                "image": "tonanuvem/consumer_kafka"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "shared_dbs": false,
+    "languages": [
+        "dockerfile",
+        "shell"
+    ],
+    "avg_size_service": 9.5,
+    "buses": [
+        "kafka"
+    ],
+    "dockers": [
+        {
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [
+                "bash"
+            ],
+            "dbs": [],
+            "path": "/kafka-dockerfile/Dockerfile",
+            "buses": [
+                "kafka"
+            ],
+            "cmd_keywords": [
+                "kafka",
+                "start"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "openjdk",
+            "keywords": [
+                "version",
+                "kafka",
+                "tmp",
+                "glibc",
+                "apk"
+            ],
+            "cmd": "start-kafka.sh"
+        },
+        {
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [
+                "bash"
+            ],
+            "dbs": [
+                "zookeeper"
+            ],
+            "path": "/zookeper-dockerfile/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "zookeeper",
+                "bash",
+                "apache",
+                "foreground",
+                "zkserver"
+            ],
+            "discos": [
+                "zookeeper"
+            ],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "openjdk",
+            "keywords": [
+                "zookeeper",
+                "apache",
+                "version",
+                "home",
+                "conf"
+            ],
+            "cmd": "bash /opt/apache-zookeeper-${ZOOKEEPER_VERSION}/bin/zkServer.sh start-foreground"
+        }
+    ],
+    "servers": [],
+    "num_dockers": 2,
+    "url": "git://github.com/tonanuvem/kafka-producer-consumer.git",
+    "num_dbs": 1,
+    "num_servers": 0,
+    "num_discos": 1,
+    "num_langs": 3,
+    "num_files": 3,
+    "size": 19
+}

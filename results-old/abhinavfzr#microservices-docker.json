@@ -1,0 +1,304 @@
+{
+    "num_monitors": 0,
+    "name": "abhinavfzr/microservices-docker",
+    "langs": [
+        "java"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "files": [
+        {
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [
+                "zuul"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "path": "/pom.xml",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "path": "/eureka-server/pom.xml",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [
+                "zuul"
+            ],
+            "buses": [],
+            "discos": [],
+            "path": "/zuul-apigateway/pom.xml",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "path": "/user-service/pom.xml",
+            "dbs": [
+                "mongodb"
+            ]
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/config-service/pom.xml",
+            "dbs": []
+        }
+    ],
+    "dockers": [
+        {
+            "from": "openjdk",
+            "cmd_keywords": [],
+            "langs": [],
+            "discos": [
+                "eureka"
+            ],
+            "cmd": "",
+            "dbs": [],
+            "from_full": "openjdk:11",
+            "keywords": [
+                "src",
+                "touch",
+                "jar",
+                "eureka",
+                "mkdir"
+            ],
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/eureka-server/Dockerfile"
+        },
+        {
+            "from": "openjdk",
+            "cmd_keywords": [],
+            "langs": [],
+            "discos": [],
+            "cmd": "",
+            "dbs": [],
+            "from_full": "openjdk:11",
+            "keywords": [
+                "src",
+                "touch",
+                "zuul",
+                "jar",
+                "mkdir"
+            ],
+            "servers": [],
+            "monitors": [],
+            "gates": [
+                "zuul"
+            ],
+            "buses": [],
+            "path": "/zuul-apigateway/Dockerfile"
+        },
+        {
+            "from": "openjdk",
+            "cmd_keywords": [],
+            "langs": [],
+            "discos": [],
+            "cmd": "",
+            "dbs": [],
+            "from_full": "openjdk:11",
+            "keywords": [
+                "src",
+                "touch",
+                "jar",
+                "user",
+                "mkdir"
+            ],
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/user-service/Dockerfile"
+        },
+        {
+            "from": "openjdk",
+            "cmd_keywords": [],
+            "langs": [],
+            "discos": [],
+            "cmd": "",
+            "dbs": [],
+            "from_full": "openjdk:11",
+            "keywords": [
+                "src",
+                "touch",
+                "jar",
+                "config",
+                "mkdir"
+            ],
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/config-service/Dockerfile"
+        }
+    ],
+    "size": 464,
+    "dbs": [
+        "mongo"
+    ],
+    "num_gates": 1,
+    "monitors": [],
+    "url": "git://github.com/abhinavfzr/microservices-docker.git",
+    "structure": {
+        "services": [
+            {
+                "depends_on": [],
+                "servers": [],
+                "name": "config-service",
+                "gates": [],
+                "image_full": "demo-config-service",
+                "discos": [],
+                "image": "demo-config-service",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [
+                    "config-service",
+                    "eureka-server"
+                ],
+                "servers": [],
+                "name": "user-service",
+                "gates": [],
+                "image_full": "user-service/",
+                "discos": [],
+                "image": "user-service/",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [
+                    "config-service",
+                    "eureka-server"
+                ],
+                "servers": [],
+                "name": "restaurant-service",
+                "gates": [],
+                "image_full": "restaurant-service/",
+                "discos": [],
+                "image": "restaurant-service/",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [],
+                "servers": [],
+                "name": "mongo",
+                "gates": [],
+                "image_full": "mongo:3.4-jessie",
+                "discos": [],
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [],
+                "servers": [],
+                "name": "eureka-server",
+                "gates": [],
+                "image_full": "eureka-server/",
+                "discos": [
+                    "eureka"
+                ],
+                "image": "eureka-server/",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [
+                    "config-service",
+                    "eureka-server",
+                    "restaurant-service",
+                    "user-service"
+                ],
+                "servers": [],
+                "name": "zuul-apigateway",
+                "gates": [
+                    "zuul"
+                ],
+                "image_full": "zuul-apigateway/",
+                "discos": [],
+                "image": "zuul-apigateway/",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "mongo"
+            ],
+            "shared_dbs": false,
+            "num": 1,
+            "names": [
+                "mongo"
+            ]
+        },
+        "path": "/docker-compose.yml",
+        "num_services": 6
+    },
+    "buses": [],
+    "num_servers": 1,
+    "avg_size_service": 116.0,
+    "num_langs": 1,
+    "images": [
+        "openjdk"
+    ],
+    "num_dockers": 4,
+    "servers": [
+        "spring"
+    ],
+    "languages": [
+        "java"
+    ],
+    "gates": [
+        "zuul"
+    ],
+    "num_services": 6,
+    "shared_dbs": false,
+    "num_files": 10,
+    "num_discos": 1,
+    "num_buses": 0,
+    "num_dbs": 1
+}

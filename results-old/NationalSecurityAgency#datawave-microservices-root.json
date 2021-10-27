@@ -1,0 +1,156 @@
+{
+    "num_gates": 0,
+    "images": [],
+    "discos": [
+        "consul"
+    ],
+    "num_buses": 1,
+    "name": "NationalSecurityAgency/datawave-microservices-root",
+    "gates": [],
+    "structure": {
+        "num_services": 6,
+        "detected_dbs": {
+            "services": [
+                "cache"
+            ],
+            "names": [
+                "hazelcast"
+            ],
+            "shared_dbs": false,
+            "num": 1
+        },
+        "path": "/docker-quickstart/docker-compose.yml",
+        "services": [
+            {
+                "image": "datawave/config-service",
+                "image_full": "datawave/config-service",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "messaging"
+                ],
+                "servers": [],
+                "name": "configuration",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "consul",
+                "image_full": "consul:1.2.2",
+                "discos": [
+                    "consul"
+                ],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "discovery",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "datawave/audit-service",
+                "image_full": "datawave/audit-service",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "authorization"
+                ],
+                "servers": [],
+                "name": "audit",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "datawave/authorization-service",
+                "image_full": "datawave/authorization-service",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "cache"
+                ],
+                "servers": [],
+                "name": "authorization",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "rabbitmq",
+                "image_full": "rabbitmq:3.7.7-alpine",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "discovery"
+                ],
+                "servers": [],
+                "name": "messaging",
+                "monitors": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "dbs": []
+            },
+            {
+                "image": "datawave/hazelcast-service",
+                "image_full": "datawave/hazelcast-service",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "configuration"
+                ],
+                "servers": [],
+                "name": "cache",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "hazelcast"
+                ]
+            }
+        ]
+    },
+    "url": "git://github.com/NationalSecurityAgency/datawave-microservices-root.git",
+    "langs": [],
+    "num_dockers": 0,
+    "num_langs": 0,
+    "dbs": [
+        "accumulo",
+        "hazelcast"
+    ],
+    "shared_dbs": false,
+    "size": 69,
+    "dockers": [],
+    "num_servers": 1,
+    "monitors": [],
+    "num_services": 6,
+    "servers": [
+        "spring"
+    ],
+    "num_monitors": 0,
+    "avg_size_service": 69.0,
+    "num_files": 2,
+    "buses": [
+        "rabbitmq"
+    ],
+    "files": [
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [
+                "accumulo",
+                "hazelcast"
+            ],
+            "path": "/pom.xml"
+        }
+    ],
+    "languages": [],
+    "num_dbs": 2,
+    "num_discos": 1
+}

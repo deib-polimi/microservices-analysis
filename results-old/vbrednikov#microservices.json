@@ -1,0 +1,279 @@
+{
+    "languages": [
+        "ruby",
+        "html",
+        "smarty",
+        "hcl"
+    ],
+    "num_servers": 1,
+    "shared_dbs": false,
+    "name": "vbrednikov/microservices",
+    "servers": [
+        "flask"
+    ],
+    "num_monitors": 1,
+    "num_langs": 5,
+    "images": [
+        "prom/alertmanager",
+        "alpine",
+        "ubuntu",
+        "python",
+        "prom/prometheus",
+        "frodenas/stackdriver-exporter"
+    ],
+    "langs": [
+        "smarty",
+        "ruby",
+        "hcl",
+        "html",
+        "python"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "cmd": "",
+            "keywords": [
+                "requirements",
+                "pip",
+                "txt",
+                "install"
+            ],
+            "path": "/post-py/Dockerfile",
+            "gates": [],
+            "from": "python",
+            "from_full": "python:3.6.0-alpine",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "path": "/alertmanager/Dockerfile",
+            "gates": [],
+            "from": "prom/alertmanager",
+            "from_full": "prom/alertmanager",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "puma"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "ruby"
+            ],
+            "cmd": "puma",
+            "keywords": [
+                "ruby",
+                "apk",
+                "cache",
+                "deps",
+                "add"
+            ],
+            "path": "/ui/Dockerfile",
+            "gates": [],
+            "from": "alpine",
+            "from_full": "alpine:latest",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "puma"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "ruby"
+            ],
+            "cmd": "puma",
+            "keywords": [
+                "ruby",
+                "apk",
+                "cache",
+                "deps",
+                "add"
+            ],
+            "path": "/comment/Dockerfile",
+            "gates": [],
+            "from": "alpine",
+            "from_full": "alpine:latest",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "path": "/stackdriver_exporter/Dockerfile",
+            "gates": [],
+            "from": "frodenas/stackdriver-exporter",
+            "from_full": "frodenas/stackdriver-exporter",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "path": "/prometheus/Dockerfile",
+            "gates": [],
+            "from": "prom/prometheus",
+            "from_full": "prom/prometheus",
+            "servers": [],
+            "discos": [],
+            "monitors": [
+                "prometheus"
+            ]
+        },
+        {
+            "cmd_keywords": [
+                "start"
+            ],
+            "dbs": [
+                "mongodb"
+            ],
+            "buses": [],
+            "langs": [
+                "ruby"
+            ],
+            "cmd": "/start.sh",
+            "keywords": [
+                "git",
+                "install",
+                "get",
+                "reddit",
+                "apt"
+            ],
+            "path": "/monolith/Dockerfile",
+            "gates": [],
+            "from": "ubuntu",
+            "from_full": "ubuntu:16.04",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [],
+    "num_buses": 0,
+    "discos": [],
+    "monitors": [
+        "prometheus"
+    ],
+    "num_files": 9,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "${MONGO_IMAGE}:${MONGO_VERSION:-latest}",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "mongo",
+                "image": "${MONGO_IMAGE}",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "${DOCKERHUB_USERNAME}/comment:${COMMENT_VERSION:-latest}",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "comment",
+                "image": "${DOCKERHUB_USERNAME}/comment",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "${DOCKERHUB_USERNAME}/ui:${UI_VERSION:-latest}",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "ui",
+                "image": "${DOCKERHUB_USERNAME}/ui",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "${DOCKERHUB_USERNAME}/post:${POST_VERSION:-latest}",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "post",
+                "image": "${DOCKERHUB_USERNAME}/post",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 4,
+        "detected_dbs": {
+            "services": [
+                "mongo"
+            ],
+            "names": [
+                "mongo"
+            ],
+            "num": 1,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [
+        "mongo"
+    ],
+    "num_dbs": 1,
+    "avg_size_service": 45.857142857142854,
+    "num_services": 4,
+    "buses": [],
+    "files": [
+        {
+            "dbs": [],
+            "path": "/post-py/requirements.txt",
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": [
+                "prometheus"
+            ]
+        }
+    ],
+    "url": "git://github.com/vbrednikov/microservices.git",
+    "num_dockers": 7,
+    "size": 321,
+    "num_discos": 0,
+    "num_gates": 0
+}

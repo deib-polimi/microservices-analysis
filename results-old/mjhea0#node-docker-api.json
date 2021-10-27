@@ -1,0 +1,310 @@
+{
+    "num_discos": 0,
+    "buses": [],
+    "name": "mjhea0/node-docker-api",
+    "dbs": [],
+    "num_services": 6,
+    "avg_size_service": 8.333333333333334,
+    "num_monitors": 0,
+    "monitors": [],
+    "discos": [],
+    "servers": [
+        "express",
+        "node"
+    ],
+    "url": "git://github.com/mjhea0/node-docker-api.git",
+    "num_dockers": 6,
+    "files": [
+        {
+            "discos": [],
+            "path": "/services/users/package.json",
+            "servers": [
+                "express",
+                "node"
+            ],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "path": "/services/locations/package.json",
+            "servers": [
+                "express",
+                "node"
+            ],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "path": "/tests/package.json",
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "path": "/web/package.json",
+            "servers": [
+                "express"
+            ],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": []
+        }
+    ],
+    "shared_dbs": false,
+    "size": 50,
+    "languages": [
+        "javascript",
+        "html"
+    ],
+    "gates": [],
+    "num_langs": 2,
+    "structure": {
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "shared_dbs": false,
+            "names": []
+        },
+        "num_services": 6,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "users-db",
+                "image_full": "./services/users/src/db",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "./services/users/src/db"
+            },
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "locations-db",
+                "image_full": "./services/locations/src/db",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "./services/locations/src/db"
+            },
+            {
+                "depends_on": [
+                    "users-db"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "users-service",
+                "image_full": "./services/users/",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "./services/users/"
+            },
+            {
+                "depends_on": [
+                    "locations-db",
+                    "users-service"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "locations-service",
+                "image_full": "./services/locations/",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "./services/locations/"
+            },
+            {
+                "depends_on": [
+                    "users-service",
+                    "locations-service"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "web",
+                "image_full": "./web/",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "./web/"
+            },
+            {
+                "depends_on": [
+                    "users-service",
+                    "locations-service"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "tests",
+                "image_full": "./tests/",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "./tests/"
+            }
+        ]
+    },
+    "dockers": [
+        {
+            "from_full": "node:latest",
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "dbs": [],
+            "cmd": "npm start",
+            "langs": [],
+            "from": "node",
+            "monitors": [],
+            "discos": [],
+            "path": "/services/users/Dockerfile",
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "gates": [],
+            "keywords": [
+                "npm",
+                "install",
+                "mkdir",
+                "src"
+            ]
+        },
+        {
+            "from_full": "postgres",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "",
+            "langs": [],
+            "from": "postgres",
+            "monitors": [],
+            "discos": [],
+            "path": "/services/users/src/db/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "keywords": []
+        },
+        {
+            "from_full": "node:latest",
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "dbs": [],
+            "cmd": "npm start",
+            "langs": [],
+            "from": "node",
+            "monitors": [],
+            "discos": [],
+            "path": "/services/locations/Dockerfile",
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "gates": [],
+            "keywords": [
+                "npm",
+                "install",
+                "mkdir",
+                "src"
+            ]
+        },
+        {
+            "from_full": "postgres",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "",
+            "langs": [],
+            "from": "postgres",
+            "monitors": [],
+            "discos": [],
+            "path": "/services/locations/src/db/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "keywords": []
+        },
+        {
+            "from_full": "node:latest",
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "dbs": [],
+            "cmd": "",
+            "langs": [],
+            "from": "node",
+            "monitors": [],
+            "discos": [],
+            "path": "/tests/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "keywords": [
+                "npm",
+                "install",
+                "mkdir",
+                "src"
+            ]
+        },
+        {
+            "from_full": "node:latest",
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "dbs": [],
+            "cmd": "npm start",
+            "langs": [],
+            "from": "node",
+            "monitors": [],
+            "discos": [],
+            "path": "/web/Dockerfile",
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "gates": [],
+            "keywords": [
+                "npm",
+                "install",
+                "mkdir",
+                "src"
+            ]
+        }
+    ],
+    "num_files": 11,
+    "num_gates": 0,
+    "num_dbs": 0,
+    "langs": [
+        "javascript",
+        "html"
+    ],
+    "images": [
+        "postgres",
+        "node"
+    ],
+    "num_buses": 0,
+    "num_servers": 2
+}

@@ -1,0 +1,263 @@
+{
+    "size": 133,
+    "num_servers": 2,
+    "dbs": [
+        "mysql"
+    ],
+    "files": [
+        {
+            "path": "/ticket_microservice/package.json",
+            "gates": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "buses": [],
+            "discos": [],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": []
+        },
+        {
+            "path": "/user_microservice/package.json",
+            "gates": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "buses": [],
+            "discos": [],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": []
+        },
+        {
+            "path": "/payment_microservice/package.json",
+            "gates": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "buses": [],
+            "discos": [],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": []
+        }
+    ],
+    "structure": {
+        "num_services": 6,
+        "services": [
+            {
+                "name": "user",
+                "image": "user",
+                "depends_on": [
+                    "mysql",
+                    "rabbitmq"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "user:1.13",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "ticket",
+                "image": "ticket",
+                "depends_on": [
+                    "mysql",
+                    "rabbitmq"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "ticket:1.15",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "rabbitmq",
+                "image": "rabbitmq",
+                "depends_on": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "servers": [],
+                "image_full": "rabbitmq:3.8.3-alpine",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "mysql",
+                "image": "mysql",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "mysql:5.7",
+                "discos": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "monitors": []
+            },
+            {
+                "name": "payment",
+                "image": "payment",
+                "depends_on": [
+                    "mysql",
+                    "rabbitmq"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "payment:1.1",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "nginx",
+                "image": "nginx",
+                "depends_on": [
+                    "ticket",
+                    "payment",
+                    "user"
+                ],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "servers": [],
+                "image_full": "nginx",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": true,
+            "services": [
+                "mysql"
+            ]
+        }
+    },
+    "buses": [
+        "rabbitmq"
+    ],
+    "images": [
+        "node"
+    ],
+    "num_discos": 0,
+    "url": "git://github.com/tbornon/service_engineering.git",
+    "num_services": 6,
+    "langs": [
+        "javascript"
+    ],
+    "discos": [],
+    "num_gates": 1,
+    "shared_dbs": true,
+    "num_files": 7,
+    "num_monitors": 0,
+    "gates": [
+        "nginx"
+    ],
+    "servers": [
+        "node",
+        "express"
+    ],
+    "num_langs": 1,
+    "languages": [
+        "javascript"
+    ],
+    "monitors": [],
+    "name": "tbornon/service_engineering",
+    "num_buses": 1,
+    "avg_size_service": 44.333333333333336,
+    "dockers": [
+        {
+            "path": "/ticket_microservice/Dockerfile",
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "langs": [],
+            "cmd": "npm start",
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "from": "node",
+            "buses": [],
+            "from_full": "node:current-alpine",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ]
+        },
+        {
+            "path": "/user_microservice/Dockerfile",
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "langs": [],
+            "cmd": "npm start",
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "from": "node",
+            "buses": [],
+            "from_full": "node:current-alpine",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ]
+        },
+        {
+            "path": "/payment_microservice/Dockerfile",
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "langs": [],
+            "cmd": "npm start",
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "from": "node",
+            "buses": [],
+            "from_full": "node:current-alpine",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ]
+        }
+    ],
+    "num_dbs": 1,
+    "num_dockers": 3
+}

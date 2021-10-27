@@ -1,0 +1,195 @@
+{
+    "dbs": [
+        "zookeeper"
+    ],
+    "discos": [
+        "zookeeper"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "num_dockers": 2,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "dbs": [],
+                "discos": [],
+                "name": "front-end",
+                "depends_on": [
+                    "zookeeper:zookeeper"
+                ],
+                "image": "distributed-search-front/",
+                "servers": [],
+                "gates": [],
+                "buses": [],
+                "monitors": [],
+                "image_full": "distributed-search-front/"
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "name": "microservice",
+                "depends_on": [
+                    "zookeeper:zookeeper"
+                ],
+                "image": "tf-idf-distributed/",
+                "servers": [],
+                "gates": [],
+                "buses": [],
+                "monitors": [],
+                "image_full": "tf-idf-distributed/"
+            },
+            {
+                "dbs": [
+                    "zookeeper"
+                ],
+                "discos": [
+                    "zookeeper"
+                ],
+                "name": "zookeeper",
+                "depends_on": [],
+                "image": "zookeeper",
+                "servers": [],
+                "gates": [],
+                "buses": [],
+                "monitors": [],
+                "image_full": "zookeeper"
+            }
+        ],
+        "num_services": 3,
+        "detected_dbs": {
+            "names": [
+                "zookeeper"
+            ],
+            "num": 1,
+            "shared_dbs": false,
+            "services": [
+                "zookeeper"
+            ]
+        }
+    },
+    "files": [
+        {
+            "dbs": [
+                "zookeeper"
+            ],
+            "discos": [
+                "zookeeper"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/tf-idf-distributed/build.gradle",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "servers": [],
+            "path": "/tf-idf-distributed/settings.gradle",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "zookeeper"
+            ],
+            "discos": [
+                "zookeeper"
+            ],
+            "buses": [],
+            "servers": [],
+            "path": "/distributed-search-front/pom.xml",
+            "gates": [],
+            "monitors": []
+        }
+    ],
+    "images": [
+        "openjdk"
+    ],
+    "num_servers": 1,
+    "monitors": [],
+    "shared_dbs": false,
+    "dockers": [
+        {
+            "dbs": [
+                "zookeeper"
+            ],
+            "discos": [
+                "zookeeper"
+            ],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "front",
+                "distributed",
+                "zookeeper"
+            ],
+            "buses": [],
+            "servers": [],
+            "from_full": "openjdk:14-jdk-alpine",
+            "langs": [
+                "java"
+            ],
+            "from": "openjdk",
+            "cmd": "java -jar distributed-search-front-0.0.1-SNAPSHOT-jar-with-dependencies.jar zookeeper:2181 8087",
+            "path": "/distributed-search-front/Dockerfile",
+            "monitors": [],
+            "keywords": [],
+            "gates": []
+        },
+        {
+            "dbs": [
+                "zookeeper"
+            ],
+            "discos": [
+                "zookeeper"
+            ],
+            "cmd_keywords": [
+                "jar",
+                "zookeeper",
+                "java",
+                "distributed",
+                "spring"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "from_full": "openjdk:14-jdk-alpine",
+            "langs": [
+                "java"
+            ],
+            "from": "openjdk",
+            "cmd": "java -jar tf-idf-distributed-0.0.1-SNAPSHOT.jar --spring.cloud.zookeeper.connectString=zookeeper:2181",
+            "path": "/tf-idf-distributed/Dockerfile",
+            "monitors": [],
+            "keywords": [],
+            "gates": []
+        }
+    ],
+    "num_discos": 1,
+    "size": 76156,
+    "name": "shanicohen1902/tf-idf-search",
+    "buses": [],
+    "languages": [
+        "java"
+    ],
+    "num_buses": 0,
+    "langs": [
+        "java"
+    ],
+    "num_services": 3,
+    "num_langs": 1,
+    "num_files": 6,
+    "avg_size_service": 38078.0,
+    "num_monitors": 0,
+    "url": "git://github.com/shanicohen1902/tf-idf-search.git",
+    "num_dbs": 1,
+    "gates": [],
+    "num_gates": 0
+}

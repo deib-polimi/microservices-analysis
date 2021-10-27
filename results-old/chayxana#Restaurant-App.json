@@ -1,0 +1,372 @@
+{
+    "langs": [
+        "c#"
+    ],
+    "languages": [
+        "c#"
+    ],
+    "url": "git://github.com/chayxana/Restaurant-App.git",
+    "files": [
+        {
+            "monitors": [],
+            "path": "/src/backend/gateway/legacy-restaurant-gateway/build.gradle",
+            "servers": [
+                "spring"
+            ],
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "discos": [],
+            "buses": [],
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "path": "/src/backend/gateway/legacy-restaurant-gateway/settings.gradle",
+            "servers": [],
+            "gates": [
+                "gateway"
+            ],
+            "discos": [],
+            "buses": [],
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "path": "/src/backend/services/order.api/build.gradle",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": [],
+            "buses": [],
+            "dbs": [
+                "postgresql"
+            ]
+        },
+        {
+            "monitors": [],
+            "path": "/src/backend/services/order.api/settings.gradle",
+            "servers": [],
+            "gates": [],
+            "discos": [],
+            "buses": [],
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "path": "/src/backend/web/web.admin/dashboard/package.json",
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": [],
+            "buses": [],
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "path": "/src/backend/web/web.client/web-app/package.json",
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": [],
+            "buses": [],
+            "dbs": []
+        }
+    ],
+    "gates": [
+        "nginx",
+        "zuul"
+    ],
+    "discos": [],
+    "num_monitors": 0,
+    "num_dockers": 6,
+    "num_dbs": 2,
+    "avg_size_service": 3465.3333333333335,
+    "num_gates": 2,
+    "num_servers": 2,
+    "name": "chayxana/Restaurant-App",
+    "num_discos": 0,
+    "num_files": 13,
+    "num_buses": 0,
+    "servers": [
+        "spring",
+        "node"
+    ],
+    "dbs": [
+        "postgresql",
+        "redis"
+    ],
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "depends_on": [
+                    "redis"
+                ],
+                "image": "restaurant/basket",
+                "servers": [],
+                "gates": [],
+                "image_full": "restaurant/basket",
+                "buses": [],
+                "dbs": [],
+                "discos": [],
+                "name": "basket-api"
+            },
+            {
+                "monitors": [],
+                "depends_on": [],
+                "image": "postgres",
+                "servers": [],
+                "gates": [],
+                "image_full": "postgres:alpine",
+                "buses": [],
+                "dbs": [],
+                "discos": [],
+                "name": "pgsql"
+            },
+            {
+                "monitors": [],
+                "depends_on": [
+                    "pgsql"
+                ],
+                "image": "restaurant/menu",
+                "servers": [],
+                "gates": [],
+                "image_full": "restaurant/menu",
+                "buses": [],
+                "dbs": [],
+                "discos": [],
+                "name": "menu-api"
+            },
+            {
+                "monitors": [],
+                "depends_on": [],
+                "image": "redis",
+                "servers": [],
+                "gates": [],
+                "image_full": "redis:alpine",
+                "buses": [],
+                "dbs": [
+                    "redis"
+                ],
+                "discos": [],
+                "name": "redis"
+            },
+            {
+                "monitors": [],
+                "depends_on": [
+                    "menu-api",
+                    "dashboard-app",
+                    "identity-api",
+                    "basket-api",
+                    "order-api"
+                ],
+                "image": "restaurant/gateway",
+                "servers": [],
+                "gates": [
+                    "gateway"
+                ],
+                "image_full": "restaurant/gateway",
+                "buses": [],
+                "dbs": [],
+                "discos": [],
+                "name": "gateway-api"
+            },
+            {
+                "monitors": [],
+                "depends_on": [],
+                "image": "restaurant/dashboard",
+                "servers": [],
+                "gates": [],
+                "image_full": "restaurant/dashboard",
+                "buses": [],
+                "dbs": [],
+                "discos": [],
+                "name": "dashboard-app"
+            },
+            {
+                "monitors": [],
+                "depends_on": [
+                    "pgsql"
+                ],
+                "image": "restaurant/identity",
+                "servers": [],
+                "gates": [],
+                "image_full": "restaurant/identity",
+                "buses": [],
+                "dbs": [],
+                "discos": [],
+                "name": "identity-api"
+            },
+            {
+                "monitors": [],
+                "depends_on": [
+                    "pgsql"
+                ],
+                "image": "restaurant/order",
+                "servers": [],
+                "gates": [],
+                "image_full": "restaurant/order",
+                "buses": [],
+                "dbs": [],
+                "discos": [],
+                "name": "order-api"
+            }
+        ],
+        "num_services": 8,
+        "detected_dbs": {
+            "names": [
+                "redis"
+            ],
+            "services": [
+                "redis"
+            ],
+            "shared_dbs": false,
+            "num": 1
+        },
+        "path": "/src/backend/docker-compose.yml"
+    },
+    "monitors": [],
+    "size": 20792,
+    "dockers": [
+        {
+            "langs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "nginx:alpine",
+            "gates": [
+                "nginx"
+            ],
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "",
+            "keywords": [],
+            "path": "/src/backend/gateway/Dockerfile",
+            "from": "nginx",
+            "cmd_keywords": []
+        },
+        {
+            "langs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "gates": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "",
+            "keywords": [],
+            "path": "/src/backend/gateway/legacy-restaurant-gateway/Dockerfile",
+            "from": "openjdk",
+            "cmd_keywords": []
+        },
+        {
+            "langs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "alpine:latest",
+            "gates": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "./basket.api",
+            "keywords": [
+                "cache",
+                "apk",
+                "controllers",
+                "test",
+                "enabled"
+            ],
+            "path": "/src/backend/services/basket.api/Dockerfile",
+            "from": "alpine",
+            "cmd_keywords": [
+                "basket",
+                "api"
+            ]
+        },
+        {
+            "langs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "mcr.microsoft.com/dotnet/core/aspnet:3.1-alpine",
+            "gates": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "dotnet Identity.API.dll",
+            "keywords": [
+                "api",
+                "dotnet",
+                "csproj",
+                "identity",
+                "app"
+            ],
+            "path": "/src/backend/services/identity.api/Dockerfile",
+            "from": "mcr.microsoft.com/dotnet/core/aspnet",
+            "cmd_keywords": [
+                "dotnet",
+                "dll",
+                "identity",
+                "api"
+            ]
+        },
+        {
+            "langs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "nginx:alpine",
+            "gates": [
+                "nginx"
+            ],
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "",
+            "keywords": [
+                "dashboard",
+                "yarn",
+                "build",
+                "deploy",
+                "url"
+            ],
+            "path": "/src/backend/web/web.admin/dashboard/Dockerfile",
+            "from": "nginx",
+            "cmd_keywords": []
+        },
+        {
+            "langs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "nginx:alpine",
+            "gates": [
+                "nginx"
+            ],
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "",
+            "keywords": [
+                "yarn",
+                "build"
+            ],
+            "path": "/src/backend/web/web.client/web-app/Dockerfile",
+            "from": "nginx",
+            "cmd_keywords": []
+        }
+    ],
+    "images": [
+        "nginx",
+        "alpine",
+        "openjdk",
+        "mcr.microsoft.com/dotnet/core/aspnet"
+    ],
+    "buses": [],
+    "num_services": 8,
+    "num_langs": 1,
+    "shared_dbs": false
+}

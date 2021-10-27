@@ -1,0 +1,181 @@
+{
+    "avg_size_service": 95.33333333333333,
+    "discos": [],
+    "images": [
+        "alpine"
+    ],
+    "num_dockers": 3,
+    "num_servers": 0,
+    "langs": [
+        "go"
+    ],
+    "languages": [
+        "go"
+    ],
+    "num_services": 4,
+    "num_gates": 0,
+    "num_langs": 1,
+    "monitors": [],
+    "gates": [],
+    "servers": [],
+    "num_monitors": 0,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [],
+                "image": "./shipping-cli-consignment",
+                "image_full": "./shipping-cli-consignment",
+                "gates": [],
+                "name": "cli",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "mongo",
+                "image_full": "mongo",
+                "gates": [],
+                "name": "datastore",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "./shipping-service-vessel",
+                "image_full": "./shipping-service-vessel",
+                "gates": [],
+                "name": "vessel",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "datastore",
+                    "vessel"
+                ],
+                "image": "./shipping-service-consignment",
+                "image_full": "./shipping-service-consignment",
+                "gates": [],
+                "name": "consignment",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            }
+        ],
+        "num_services": 4,
+        "detected_dbs": {
+            "names": [
+                "mongo"
+            ],
+            "num": 1,
+            "services": [
+                "datastore"
+            ],
+            "shared_dbs": false
+        }
+    },
+    "size": 286,
+    "url": "git://github.com/maxwellgithinji/shipping.git",
+    "num_buses": 0,
+    "shared_dbs": false,
+    "files": [],
+    "num_discos": 0,
+    "dockers": [
+        {
+            "path": "/shipping-service-vessel/Dockerfile",
+            "from_full": "alpine:latest",
+            "from": "alpine",
+            "cmd": "./shipping-service-vessel",
+            "keywords": [
+                "apk",
+                "cgo",
+                "cache",
+                "mkdir",
+                "add"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "shipping",
+                "service",
+                "vessel"
+            ],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/shipping-service-consignment/Dockerfile",
+            "from_full": "alpine:latest",
+            "from": "alpine",
+            "cmd": "./shipping-service-consignment",
+            "keywords": [
+                "apk",
+                "cgo",
+                "cache",
+                "mkdir",
+                "add"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "shipping",
+                "service",
+                "consignment"
+            ],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/shipping-cli-consignment/Dockerfile",
+            "from_full": "alpine:latest",
+            "from": "alpine",
+            "cmd": "./shipping-cli-consignment",
+            "keywords": [
+                "apk",
+                "cgo",
+                "cache",
+                "mkdir",
+                "add"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "shipping",
+                "cli",
+                "consignment"
+            ],
+            "dbs": [],
+            "buses": []
+        }
+    ],
+    "name": "maxwellgithinji/shipping",
+    "buses": [],
+    "num_files": 4,
+    "dbs": [
+        "mongo"
+    ],
+    "num_dbs": 1
+}

@@ -1,0 +1,247 @@
+{
+    "name": "raulfbgomez/microservices",
+    "num_dbs": 1,
+    "num_services": 5,
+    "num_files": 8,
+    "servers": [
+        "express",
+        "node"
+    ],
+    "url": "git://github.com/raulfbgomez/microservices.git",
+    "discos": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "users-service-db",
+                "image_full": "mysql:5.7.20",
+                "image": "mysql",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "listings-service",
+                "image_full": "./listings-service",
+                "image": "./listings-service",
+                "servers": [],
+                "depends_on": [
+                    "listings-service-db"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "api-gateway",
+                "image_full": "./api-gateway",
+                "image": "./api-gateway",
+                "servers": [],
+                "depends_on": [
+                    "listings-service",
+                    "users-service"
+                ],
+                "gates": [
+                    "gateway"
+                ],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "users-service",
+                "image_full": "./users-service",
+                "image": "./users-service",
+                "servers": [],
+                "depends_on": [
+                    "users-service-db"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "listings-service-db",
+                "image_full": "mysql:5.7.20",
+                "image": "mysql",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [
+                "users-service-db",
+                "listings-service-db"
+            ],
+            "num": 2,
+            "names": [
+                "mysql"
+            ]
+        },
+        "num_services": 5
+    },
+    "num_buses": 0,
+    "size": 745,
+    "dockers": [
+        {
+            "cmd": "yarn watch",
+            "servers": [
+                "node"
+            ],
+            "langs": [],
+            "path": "/api-gateway/Dockerfile",
+            "discos": [],
+            "from": "node",
+            "buses": [],
+            "from_full": "node:12",
+            "cmd_keywords": [
+                "yarn",
+                "watch"
+            ],
+            "keywords": [
+                "yarn"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "yarn watch",
+            "servers": [
+                "node"
+            ],
+            "langs": [],
+            "path": "/listings-service/Dockerfile",
+            "discos": [],
+            "from": "node",
+            "buses": [],
+            "from_full": "node:12",
+            "cmd_keywords": [
+                "yarn",
+                "watch"
+            ],
+            "keywords": [
+                "yarn"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "yarn watch",
+            "servers": [
+                "node"
+            ],
+            "langs": [],
+            "path": "/users-service/Dockerfile",
+            "discos": [],
+            "from": "node",
+            "buses": [],
+            "from_full": "node:12",
+            "cmd_keywords": [
+                "yarn",
+                "watch"
+            ],
+            "keywords": [
+                "yarn"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "languages": [
+        "javascript"
+    ],
+    "dbs": [
+        "mysql"
+    ],
+    "monitors": [],
+    "shared_dbs": false,
+    "avg_size_service": 248.33333333333334,
+    "num_monitors": 0,
+    "files": [
+        {
+            "monitors": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/api-gateway/package.json",
+            "discos": [],
+            "dbs": [],
+            "gates": [
+                "gateway"
+            ],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/listings-service/package.json",
+            "discos": [],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/users-service/package.json",
+            "discos": [],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "path": "/classifieds-app/package.json",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        }
+    ],
+    "langs": [
+        "javascript"
+    ],
+    "num_servers": 2,
+    "buses": [],
+    "num_langs": 1,
+    "num_gates": 1,
+    "num_discos": 0,
+    "images": [
+        "node"
+    ],
+    "num_dockers": 3,
+    "gates": [
+        "gateway"
+    ]
+}

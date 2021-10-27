@@ -1,0 +1,179 @@
+{
+    "dbs": [],
+    "name": "yesmarket/SecurityPlayground",
+    "num_langs": 2,
+    "languages": [
+        "shell",
+        "dockerfile"
+    ],
+    "shared_dbs": false,
+    "servers": [
+        "express",
+        "node"
+    ],
+    "langs": [
+        "dockerfile",
+        "shell"
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "node",
+                "index"
+            ],
+            "discos": [],
+            "cmd": "node index.js",
+            "path": "/service/Dockerfile",
+            "from_full": "node:13.13.0-alpine",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "keywords": [
+                "install",
+                "npm"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/nginx/Dockerfile",
+            "from_full": "nginx:1.17.10-alpine",
+            "gates": [
+                "nginx"
+            ],
+            "from": "nginx",
+            "langs": [],
+            "keywords": [
+                "nginx",
+                "etc",
+                "sites",
+                "available",
+                "enabled"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "dev",
+                "tail",
+                "null"
+            ],
+            "discos": [],
+            "cmd": "tail -f /dev/null",
+            "path": "/ca/Dockerfile",
+            "from_full": "ubuntu:18.04",
+            "gates": [],
+            "from": "ubuntu",
+            "langs": [],
+            "keywords": [
+                "root",
+                "intermediate",
+                "certs",
+                "pem",
+                "cert"
+            ]
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "size": 31,
+    "num_dockers": 3,
+    "num_discos": 0,
+    "num_buses": 0,
+    "buses": [],
+    "images": [
+        "ubuntu",
+        "node",
+        "nginx"
+    ],
+    "num_servers": 2,
+    "num_services": 3,
+    "monitors": [],
+    "structure": {
+        "services": [
+            {
+                "buses": [],
+                "image": "service/",
+                "dbs": [],
+                "gates": [],
+                "image_full": "service/",
+                "monitors": [],
+                "name": "service",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "{'PASS_PHRASE': '${PASS_PHRASE}', 'SUBJECT_ALTERNATIVE_NAME': '${SUBJECT_ALTERNATIVE_NAME}'}",
+                "dbs": [],
+                "gates": [],
+                "image_full": "{'PASS_PHRASE': '${PASS_PHRASE}', 'SUBJECT_ALTERNATIVE_NAME': '${SUBJECT_ALTERNATIVE_NAME}'}",
+                "monitors": [],
+                "name": "ca",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "{'SUBJECT_ALTERNATIVE_NAME': '${SUBJECT_ALTERNATIVE_NAME}'}",
+                "dbs": [],
+                "gates": [],
+                "image_full": "{'SUBJECT_ALTERNATIVE_NAME': '${SUBJECT_ALTERNATIVE_NAME}'}",
+                "monitors": [],
+                "name": "proxy",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "ca",
+                    "service"
+                ]
+            }
+        ],
+        "num_services": 3,
+        "detected_dbs": {
+            "num": 0,
+            "shared_dbs": false,
+            "names": [],
+            "services": []
+        },
+        "path": "/docker-compose.yml"
+    },
+    "discos": [],
+    "num_files": 5,
+    "num_dbs": 0,
+    "num_monitors": 0,
+    "num_gates": 1,
+    "url": "git://github.com/yesmarket/SecurityPlayground.git",
+    "avg_size_service": 10.333333333333334,
+    "files": [
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/service/src/package.json"
+        }
+    ]
+}

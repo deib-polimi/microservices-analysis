@@ -1,0 +1,224 @@
+{
+    "files": [
+        {
+            "buses": [
+                "nats"
+            ],
+            "path": "/package.json",
+            "monitors": [],
+            "dbs": [
+                "mongo"
+            ],
+            "servers": [
+                "node"
+            ],
+            "discos": [],
+            "gates": []
+        }
+    ],
+    "size": 373,
+    "url": "git://github.com/achabill/blog.git",
+    "num_monitors": 0,
+    "languages": [
+        "javascript"
+    ],
+    "langs": [
+        "javascript"
+    ],
+    "discos": [
+        "traefik"
+    ],
+    "gates": [],
+    "num_servers": 1,
+    "num_dockers": 1,
+    "shared_dbs": true,
+    "images": [
+        "node"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "shared_dbs": true,
+            "num": 3,
+            "names": [
+                "redis",
+                "mongo"
+            ],
+            "services": [
+                "posts_mongodb",
+                "users_mongodb",
+                "redis"
+            ]
+        },
+        "services": [
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "mongo",
+                "monitors": [],
+                "image_full": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "name": "posts_mongodb",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "nats",
+                    "redis"
+                ],
+                "buses": [],
+                "image": "molecular-microservices-blog-api",
+                "monitors": [],
+                "image_full": "molecular-microservices-blog-api",
+                "dbs": [],
+                "name": "api",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "traefik",
+                "monitors": [],
+                "image_full": "traefik",
+                "dbs": [],
+                "name": "traefik",
+                "servers": [],
+                "discos": [
+                    "traefik"
+                ],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "mongo",
+                "monitors": [],
+                "image_full": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "name": "users_mongodb",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "buses": [
+                    "nats"
+                ],
+                "image": "nats",
+                "monitors": [],
+                "image_full": "nats",
+                "dbs": [],
+                "name": "nats",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "nats",
+                    "redis",
+                    "posts_mongodb",
+                    "api"
+                ],
+                "buses": [],
+                "image": "molecular-microservices-blog-posts",
+                "monitors": [],
+                "image_full": "molecular-microservices-blog-posts",
+                "dbs": [],
+                "name": "posts",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "redis",
+                "monitors": [],
+                "image_full": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "name": "redis",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "nats",
+                    "redis",
+                    "users_mongodb",
+                    "api"
+                ],
+                "buses": [],
+                "image": "molecular-microservices-blog-users",
+                "monitors": [],
+                "image_full": "molecular-microservices-blog-users",
+                "dbs": [],
+                "name": "users",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            }
+        ],
+        "num_services": 8
+    },
+    "num_gates": 0,
+    "buses": [
+        "nats"
+    ],
+    "num_dbs": 2,
+    "avg_size_service": 373.0,
+    "num_discos": 1,
+    "servers": [
+        "node"
+    ],
+    "num_buses": 1,
+    "dockers": [
+        {
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "gates": [],
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "cmd": "npm start",
+            "path": "/Dockerfile",
+            "monitors": [],
+            "from_full": "node:8",
+            "keywords": [
+                "opt",
+                "app",
+                "tmp",
+                "npm",
+                "node"
+            ]
+        }
+    ],
+    "monitors": [],
+    "num_files": 3,
+    "dbs": [
+        "redis",
+        "mongo"
+    ],
+    "name": "achabill/blog",
+    "num_langs": 1,
+    "num_services": 8
+}

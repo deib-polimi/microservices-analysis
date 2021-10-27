@@ -1,0 +1,149 @@
+{
+    "gates": [
+        "nginx"
+    ],
+    "num_buses": 0,
+    "url": "git://github.com/andylowemedia/symfony-restful-api.git",
+    "images": [
+        "php"
+    ],
+    "avg_size_service": 126.0,
+    "num_langs": 1,
+    "num_monitors": 0,
+    "num_dockers": 2,
+    "num_discos": 0,
+    "num_servers": 0,
+    "buses": [],
+    "discos": [],
+    "dockers": [
+        {
+            "path": "/Dockerfile",
+            "cmd_keywords": [
+                "usr",
+                "bin",
+                "run",
+                "local"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "from": "php",
+            "langs": [
+                "php"
+            ],
+            "servers": [],
+            "cmd": "/usr/local/bin/run.sh",
+            "from_full": "php:7.4-fpm",
+            "monitors": [],
+            "keywords": [
+                "usr",
+                "install",
+                "etc",
+                "localtime",
+                "bin"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/simple-php/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "php",
+            "langs": [
+                "php"
+            ],
+            "servers": [],
+            "cmd": "",
+            "from_full": "php:7.2-fpm",
+            "monitors": [],
+            "keywords": [
+                "mkdir",
+                "app"
+            ],
+            "buses": []
+        }
+    ],
+    "size": 252,
+    "name": "andylowemedia/symfony-restful-api",
+    "num_services": 3,
+    "dbs": [
+        "mysql"
+    ],
+    "shared_dbs": false,
+    "langs": [
+        "php"
+    ],
+    "languages": [
+        "php"
+    ],
+    "servers": [],
+    "num_files": 3,
+    "monitors": [],
+    "num_dbs": 1,
+    "num_gates": 1,
+    "files": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 3,
+        "detected_dbs": {
+            "services": [
+                "db"
+            ],
+            "num": 1,
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "mysql:5.7",
+                "name": "db",
+                "gates": [],
+                "image": "mysql",
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "php:php-fpm"
+                ],
+                "servers": [],
+                "image_full": "nginx:1.17.8-alpine",
+                "name": "web",
+                "gates": [
+                    "nginx"
+                ],
+                "image": "nginx",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "db"
+                ],
+                "servers": [],
+                "image_full": "andylowe/test-symfony-app:latest",
+                "name": "php",
+                "gates": [],
+                "image": "andylowe/test-symfony-app",
+                "dbs": [],
+                "buses": []
+            }
+        ]
+    }
+}

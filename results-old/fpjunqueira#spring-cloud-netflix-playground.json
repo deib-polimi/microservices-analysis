@@ -1,0 +1,334 @@
+{
+    "languages": [
+        "java",
+        "dockerfile"
+    ],
+    "num_servers": 1,
+    "shared_dbs": false,
+    "name": "fpjunqueira/spring-cloud-netflix-playground",
+    "servers": [
+        "spring"
+    ],
+    "num_monitors": 0,
+    "num_langs": 2,
+    "images": [
+        "openjdk"
+    ],
+    "langs": [
+        "java",
+        "dockerfile"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "path": "/eureka-client/Dockerfile",
+            "gates": [],
+            "from": "openjdk",
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "path": "/eureka-server/Dockerfile",
+            "gates": [],
+            "from": "openjdk",
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "path": "/hystrix-client/Dockerfile",
+            "gates": [],
+            "from": "openjdk",
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "path": "/zuul-gateway-api/Dockerfile",
+            "gates": [],
+            "from": "openjdk",
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [
+        "zuul"
+    ],
+    "num_buses": 1,
+    "discos": [
+        "eureka"
+    ],
+    "monitors": [],
+    "num_files": 16,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "fjunqueira/spring-cloud-playground-zuul-gateway-api",
+                "depends_on": [
+                    "eureka-server",
+                    "eureka-client",
+                    "hystrix-client"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [
+                    "zuul"
+                ],
+                "name": "zull-gateway-api",
+                "image": "fjunqueira/spring-cloud-playground-zuul-gateway-api",
+                "servers": [
+                    "spring"
+                ],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "fjunqueira/spring-cloud-playground-eureka-server",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "eureka-server",
+                "image": "fjunqueira/spring-cloud-playground-eureka-server",
+                "servers": [
+                    "spring"
+                ],
+                "discos": [
+                    "eureka"
+                ],
+                "monitors": []
+            },
+            {
+                "image_full": "fjunqueira/spring-cloud-playground-eureka-client",
+                "depends_on": [
+                    "eureka-server"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "eureka-client",
+                "image": "fjunqueira/spring-cloud-playground-eureka-client",
+                "servers": [
+                    "spring"
+                ],
+                "discos": [
+                    "eureka"
+                ],
+                "monitors": []
+            },
+            {
+                "image_full": "fjunqueira/spring-cloud-playground-hystrix-client",
+                "depends_on": [
+                    "eureka-server",
+                    "eureka-client"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "hystrix-client",
+                "image": "fjunqueira/spring-cloud-playground-hystrix-client",
+                "servers": [
+                    "spring"
+                ],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 4,
+        "detected_dbs": {
+            "services": [],
+            "names": [],
+            "num": 0,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [],
+    "num_dbs": 0,
+    "avg_size_service": 179.25,
+    "num_services": 4,
+    "buses": [
+        "amqp"
+    ],
+    "files": [
+        {
+            "dbs": [],
+            "path": "/pom.xml",
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/eureka-client/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/config-client/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/ribbon-client/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/eureka-server/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/hystrix-client/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/spring-cloud-bus-client/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/config-server/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/spring-cloud-bus-server/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/feign-client/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/zuul-gateway-api/pom.xml",
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": []
+        }
+    ],
+    "url": "git://github.com/fpjunqueira/spring-cloud-netflix-playground.git",
+    "num_dockers": 4,
+    "size": 717,
+    "num_discos": 1,
+    "num_gates": 1
+}

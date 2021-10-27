@@ -1,0 +1,479 @@
+{
+    "servers": [
+        "node",
+        "spring"
+    ],
+    "name": "prackky/ECommerce",
+    "num_gates": 1,
+    "avg_size_service": 94.71428571428571,
+    "structure": {
+        "services": [
+            {
+                "gates": [
+                    "gateway"
+                ],
+                "buses": [],
+                "image_full": "./gateway-microservice",
+                "servers": [],
+                "depends_on": [
+                    "discovery-microservice",
+                    "configuration-microservice"
+                ],
+                "name": "gateway-microservice",
+                "dbs": [],
+                "image": "./gateway-microservice",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "./cart-microservice",
+                "servers": [],
+                "depends_on": [
+                    "discovery-microservice",
+                    "configuration-microservice",
+                    "gateway-microservice",
+                    "redis"
+                ],
+                "name": "cart-microservice",
+                "dbs": [],
+                "image": "./cart-microservice",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "./discovery-microservice",
+                "servers": [],
+                "depends_on": [],
+                "name": "discovery-microservice",
+                "dbs": [],
+                "image": "./discovery-microservice",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "./configuration-microservice",
+                "servers": [],
+                "depends_on": [
+                    "discovery-microservice"
+                ],
+                "name": "configuration-microservice",
+                "dbs": [],
+                "image": "./configuration-microservice",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "./mongodb",
+                "servers": [],
+                "depends_on": [],
+                "name": "mongodb",
+                "dbs": [
+                    "mongodb"
+                ],
+                "image": "./mongodb",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "./redis",
+                "servers": [],
+                "depends_on": [],
+                "name": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "image": "./redis",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "./product-catalog-microservice",
+                "servers": [],
+                "depends_on": [
+                    "discovery-microservice",
+                    "configuration-microservice",
+                    "gateway-microservice",
+                    "mongodb"
+                ],
+                "name": "product-catalog-microservice",
+                "dbs": [],
+                "image": "./product-catalog-microservice",
+                "monitors": [],
+                "discos": []
+            }
+        ],
+        "num_services": 7,
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "num": 2,
+            "names": [
+                "mongodb",
+                "redis"
+            ],
+            "services": [
+                "mongodb",
+                "redis"
+            ],
+            "shared_dbs": false
+        }
+    },
+    "num_dbs": 2,
+    "buses": [],
+    "langs": [
+        "javascript",
+        "java"
+    ],
+    "shared_dbs": false,
+    "files": [
+        {
+            "gates": [],
+            "buses": [],
+            "path": "/build.gradle",
+            "servers": [],
+            "dbs": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [
+                "gateway"
+            ],
+            "buses": [],
+            "path": "/settings.gradle",
+            "servers": [],
+            "dbs": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [
+                "zuul"
+            ],
+            "buses": [],
+            "path": "/product-catalog-microservice/build.gradle",
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "mongodb",
+                "mongo"
+            ],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "path": "/cart-microservice/build.gradle",
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "redis"
+            ],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "buses": [],
+            "path": "/gateway-microservice/build.gradle",
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "path": "/configuration-microservice/build.gradle",
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "path": "/discovery-microservice/build.gradle",
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "path": "/ecommerce-webapp/package.json",
+            "servers": [
+                "node",
+                "spring"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "size": 663,
+    "num_dockers": 7,
+    "url": "git://github.com/prackky/ECommerce.git",
+    "gates": [
+        "zuul"
+    ],
+    "num_servers": 2,
+    "images": [
+        "anapsix/alpine-java",
+        "mvertes/alpine-mongo",
+        "smebberson/alpine-redis"
+    ],
+    "num_services": 7,
+    "languages": [
+        "java",
+        "javascript"
+    ],
+    "num_files": 16,
+    "discos": [
+        "eureka"
+    ],
+    "dockers": [
+        {
+            "gates": [],
+            "from_full": "anapsix/alpine-java:8_jdk_unlimited",
+            "cmd_keywords": [
+                "sun",
+                "jmxremote",
+                "dcom",
+                "management",
+                "false"
+            ],
+            "path": "/product-catalog-microservice/Dockerfile",
+            "servers": [],
+            "cmd": "java -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=4444 -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Xmx1024m -jar /app/product-catalog-microservice-0.0.1-SNAPSHOT.jar",
+            "from": "anapsix/alpine-java",
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "discos": [],
+            "monitors": [],
+            "keywords": [
+                "apk",
+                "var",
+                "curl",
+                "update",
+                "add"
+            ]
+        },
+        {
+            "gates": [],
+            "from_full": "anapsix/alpine-java:8_jdk_unlimited",
+            "cmd_keywords": [
+                "jar",
+                "xmx",
+                "app",
+                "snapshot",
+                "microservice"
+            ],
+            "path": "/cart-microservice/Dockerfile",
+            "servers": [],
+            "cmd": "java -Xmx1024m -jar /app/cart-microservice-0.0.1-SNAPSHOT.jar",
+            "from": "anapsix/alpine-java",
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "discos": [],
+            "monitors": [],
+            "keywords": [
+                "apk",
+                "var",
+                "curl",
+                "update",
+                "add"
+            ]
+        },
+        {
+            "gates": [
+                "gateway"
+            ],
+            "from_full": "anapsix/alpine-java:8_jdk_unlimited",
+            "cmd_keywords": [
+                "jar",
+                "xmx",
+                "app",
+                "snapshot",
+                "microservice"
+            ],
+            "path": "/gateway-microservice/Dockerfile",
+            "servers": [],
+            "cmd": "java -Xmx1024m -jar /app/gateway-microservice-0.0.1-SNAPSHOT.jar",
+            "from": "anapsix/alpine-java",
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "discos": [],
+            "monitors": [],
+            "keywords": [
+                "apk",
+                "var",
+                "curl",
+                "update",
+                "add"
+            ]
+        },
+        {
+            "gates": [],
+            "from_full": "mvertes/alpine-mongo",
+            "cmd_keywords": [
+                "smallfiles",
+                "config",
+                "mongodb",
+                "mongod",
+                "conf"
+            ],
+            "path": "/mongodb/Dockerfile",
+            "servers": [],
+            "cmd": "mongod --config /etc/mongodb.conf --smallfiles",
+            "from": "mvertes/alpine-mongo",
+            "buses": [],
+            "langs": [],
+            "dbs": [
+                "mongo"
+            ],
+            "discos": [],
+            "monitors": [],
+            "keywords": [
+                "data",
+                "mongodb",
+                "files",
+                "create",
+                "dbpath"
+            ]
+        },
+        {
+            "gates": [],
+            "from_full": "smebberson/alpine-redis",
+            "cmd_keywords": [],
+            "path": "/redis/Dockerfile",
+            "servers": [],
+            "cmd": "",
+            "from": "smebberson/alpine-redis",
+            "buses": [],
+            "langs": [],
+            "dbs": [
+                "redis"
+            ],
+            "discos": [],
+            "monitors": [],
+            "keywords": [
+                "apk",
+                "var",
+                "curl",
+                "update",
+                "add"
+            ]
+        },
+        {
+            "gates": [],
+            "from_full": "anapsix/alpine-java:8_jdk_unlimited",
+            "cmd_keywords": [
+                "jar",
+                "configuration",
+                "app",
+                "snapshot",
+                "microservice"
+            ],
+            "path": "/configuration-microservice/Dockerfile",
+            "servers": [],
+            "cmd": "java -Xmx200m -jar /app/configuration-microservice-0.0.1-SNAPSHOT.jar",
+            "from": "anapsix/alpine-java",
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "discos": [],
+            "monitors": [],
+            "keywords": [
+                "apk",
+                "var",
+                "curl",
+                "update",
+                "add"
+            ]
+        },
+        {
+            "gates": [],
+            "from_full": "anapsix/alpine-java:8_jdk_unlimited",
+            "cmd_keywords": [
+                "jar",
+                "discovery",
+                "app",
+                "snapshot",
+                "microservice"
+            ],
+            "path": "/discovery-microservice/Dockerfile",
+            "servers": [],
+            "cmd": "java -Xmx200m -jar /app/discovery-microservice-0.0.1-SNAPSHOT.jar",
+            "from": "anapsix/alpine-java",
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "discos": [],
+            "monitors": [],
+            "keywords": [
+                "apk",
+                "var",
+                "curl",
+                "update",
+                "add"
+            ]
+        }
+    ],
+    "num_langs": 2,
+    "num_monitors": 0,
+    "num_buses": 0,
+    "dbs": [
+        "redis",
+        "mongo"
+    ],
+    "monitors": [],
+    "num_discos": 1
+}

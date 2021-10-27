@@ -1,0 +1,282 @@
+{
+    "avg_size_service": 312.0,
+    "discos": [],
+    "images": [
+        "base"
+    ],
+    "num_dockers": 5,
+    "num_servers": 0,
+    "langs": [
+        "c#"
+    ],
+    "languages": [
+        "c#"
+    ],
+    "num_services": 8,
+    "num_gates": 0,
+    "num_langs": 1,
+    "monitors": [],
+    "gates": [],
+    "servers": [],
+    "num_monitors": 0,
+    "structure": {
+        "path": "/vehicle-tracking-poc/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [
+                    "messages_middleware",
+                    "database_sql"
+                ],
+                "image": "eventsourcingmiddleware",
+                "image_full": "eventsourcingmiddleware",
+                "gates": [],
+                "name": "event_sourcing_middleware",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "distributed_cache",
+                    "messages_middleware",
+                    "event_sourcing_middleware",
+                    "database_sql"
+                ],
+                "image": "ping",
+                "image_full": "ping",
+                "gates": [],
+                "name": "ping",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "rabbitmq",
+                "image_full": "rabbitmq",
+                "gates": [],
+                "name": "messages_middleware",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "distributed_cache",
+                    "messages_middleware",
+                    "event_sourcing_middleware"
+                ],
+                "image": "tracking",
+                "image_full": "tracking",
+                "gates": [],
+                "name": "tracking",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "redis",
+                "image_full": "redis",
+                "gates": [],
+                "name": "distributed_cache",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [
+                    "redis"
+                ],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "distributed_cache",
+                    "messages_middleware",
+                    "event_sourcing_middleware",
+                    "database_sql"
+                ],
+                "image": "customer",
+                "image_full": "customer",
+                "gates": [],
+                "name": "customer",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "microsoft/mssql-server-linux",
+                "image_full": "microsoft/mssql-server-linux:latest",
+                "gates": [],
+                "name": "database_sql",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "distributed_cache",
+                    "messages_middleware",
+                    "event_sourcing_middleware",
+                    "database_sql"
+                ],
+                "image": "vehicle",
+                "image_full": "vehicle",
+                "gates": [],
+                "name": "vehicle",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            }
+        ],
+        "num_services": 8,
+        "detected_dbs": {
+            "names": [
+                "redis"
+            ],
+            "num": 1,
+            "services": [
+                "distributed_cache"
+            ],
+            "shared_dbs": true
+        }
+    },
+    "size": 1560,
+    "url": "git://github.com/mohamed-abdo/vehicle-tracking-microservices.git",
+    "num_buses": 1,
+    "shared_dbs": true,
+    "files": [],
+    "num_discos": 0,
+    "dockers": [
+        {
+            "path": "/vehicle-tracking-poc/Customer/Dockerfile",
+            "from_full": "base",
+            "from": "base",
+            "cmd": "",
+            "keywords": [
+                "dotnet",
+                "app",
+                "release",
+                "publish",
+                "build"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/vehicle-tracking-poc/Vehicle/Dockerfile",
+            "from_full": "base",
+            "from": "base",
+            "cmd": "",
+            "keywords": [
+                "dotnet",
+                "app",
+                "release",
+                "publish",
+                "build"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/vehicle-tracking-poc/Ping/Dockerfile",
+            "from_full": "base",
+            "from": "base",
+            "cmd": "",
+            "keywords": [
+                "dotnet",
+                "app",
+                "release",
+                "publish",
+                "build"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/vehicle-tracking-poc/EventSourcing/EventSourcingMiddleware/Dockerfile",
+            "from_full": "base",
+            "from": "base",
+            "cmd": "",
+            "keywords": [
+                "dotnet",
+                "app",
+                "release",
+                "publish",
+                "build"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/vehicle-tracking-poc/Tracking/Dockerfile",
+            "from_full": "base",
+            "from": "base",
+            "cmd": "",
+            "keywords": [
+                "dotnet",
+                "app",
+                "release",
+                "publish",
+                "build"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": []
+        }
+    ],
+    "name": "mohamed-abdo/vehicle-tracking-microservices",
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_files": 6,
+    "dbs": [
+        "redis"
+    ],
+    "num_dbs": 1
+}

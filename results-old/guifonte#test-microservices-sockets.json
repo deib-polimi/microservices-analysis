@@ -1,0 +1,245 @@
+{
+    "servers": [
+        "express",
+        "node",
+        "flask"
+    ],
+    "languages": [
+        "javascript",
+        "python",
+        "html"
+    ],
+    "url": "git://github.com/guifonte/test-microservices-sockets.git",
+    "gates": [],
+    "langs": [
+        "javascript",
+        "html",
+        "python"
+    ],
+    "discos": [],
+    "files": [
+        {
+            "servers": [
+                "flask"
+            ],
+            "dbs": [
+                "redis"
+            ],
+            "path": "/python-service/requirements.txt",
+            "buses": [],
+            "gates": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "servers": [],
+            "dbs": [
+                "redis"
+            ],
+            "path": "/celery-service/requirements.txt",
+            "buses": [],
+            "gates": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "servers": [
+                "express"
+            ],
+            "dbs": [
+                "redis"
+            ],
+            "path": "/node-service/package.json",
+            "buses": [],
+            "gates": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "dockers": [
+        {
+            "servers": [],
+            "from": "python",
+            "gates": [],
+            "langs": [
+                "python"
+            ],
+            "buses": [],
+            "keywords": [
+                "trusted",
+                "install",
+                "host",
+                "txt",
+                "requirements"
+            ],
+            "discos": [],
+            "cmd": "sh -c gunicorn --bind 0.0.0.0:5000 wsgi:app",
+            "cmd_keywords": [
+                "bind",
+                "wsgi",
+                "app",
+                "gunicorn"
+            ],
+            "dbs": [],
+            "path": "/python-service/Dockerfile",
+            "monitors": [],
+            "from_full": "python:latest"
+        },
+        {
+            "servers": [],
+            "from": "python",
+            "gates": [],
+            "langs": [
+                "python"
+            ],
+            "buses": [],
+            "keywords": [
+                "install",
+                "txt",
+                "pip",
+                "requirements"
+            ],
+            "discos": [],
+            "cmd": "",
+            "cmd_keywords": [],
+            "dbs": [],
+            "path": "/celery-service/Dockerfile",
+            "monitors": [],
+            "from_full": "python"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "gates": [],
+            "langs": [],
+            "buses": [],
+            "keywords": [
+                "npm",
+                "install"
+            ],
+            "discos": [],
+            "cmd": "npm start",
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "dbs": [],
+            "path": "/node-service/Dockerfile",
+            "monitors": [],
+            "from_full": "node:latest"
+        }
+    ],
+    "images": [
+        "node",
+        "python"
+    ],
+    "num_monitors": 0,
+    "avg_size_service": 37.333333333333336,
+    "size": 112,
+    "num_dockers": 3,
+    "num_servers": 3,
+    "num_services": 5,
+    "num_discos": 0,
+    "name": "guifonte/test-microservices-sockets",
+    "shared_dbs": true,
+    "num_dbs": 1,
+    "num_buses": 0,
+    "num_langs": 3,
+    "buses": [],
+    "num_gates": 0,
+    "dbs": [
+        "redis"
+    ],
+    "num_files": 7,
+    "monitors": [],
+    "structure": {
+        "services": [
+            {
+                "servers": [],
+                "name": "celery",
+                "image": "./celery-service",
+                "buses": [],
+                "depends_on": [
+                    "redis"
+                ],
+                "gates": [],
+                "discos": [],
+                "image_full": "./celery-service",
+                "monitors": [],
+                "dbs": []
+            },
+            {
+                "servers": [],
+                "name": "python",
+                "image": "./python-service",
+                "buses": [],
+                "depends_on": [
+                    "redis",
+                    "celery"
+                ],
+                "gates": [],
+                "discos": [],
+                "image_full": "./python-service",
+                "monitors": [],
+                "dbs": []
+            },
+            {
+                "servers": [],
+                "name": "monitor",
+                "image": "./celery-service",
+                "buses": [],
+                "depends_on": [
+                    "redis"
+                ],
+                "gates": [],
+                "discos": [],
+                "image_full": "./celery-service",
+                "monitors": [],
+                "dbs": []
+            },
+            {
+                "servers": [],
+                "name": "node",
+                "image": "./node-service",
+                "buses": [],
+                "depends_on": [
+                    "redis",
+                    "python"
+                ],
+                "gates": [],
+                "discos": [],
+                "image_full": "./node-service",
+                "monitors": [],
+                "dbs": []
+            },
+            {
+                "servers": [],
+                "name": "redis",
+                "image": "redis",
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "image_full": "redis",
+                "monitors": [],
+                "dbs": [
+                    "redis"
+                ]
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "num_services": 5,
+        "detected_dbs": {
+            "services": [
+                "redis"
+            ],
+            "num": 1,
+            "shared_dbs": true,
+            "names": [
+                "redis"
+            ]
+        }
+    }
+}

@@ -1,0 +1,162 @@
+{
+    "discos": [],
+    "avg_size_service": 1280.5,
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_gates": 0,
+    "name": "ned-kelly/docker-multicontainer-libretime",
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "libretime-postgres",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "postgres:9.3-alpine",
+                "image": "postgres",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "libretime-core",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "bushrangers/ubuntu-multicontainer-libretime:libretime-latest",
+                "image": "bushrangers/ubuntu-multicontainer-libretime",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "libretime-icecast",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "bushrangers/ubuntu-multicontainer-libretime:icecast-latest",
+                "image": "bushrangers/ubuntu-multicontainer-libretime",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "libretime-rabbitmq",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "rabbitmq:3.6-alpine",
+                "image": "rabbitmq",
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "monitors": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [],
+            "num": 0,
+            "shared_dbs": false,
+            "services": []
+        },
+        "num_services": 4
+    },
+    "dbs": [
+        "postgresql"
+    ],
+    "dockers": [
+        {
+            "langs": [
+                "bash"
+            ],
+            "cmd_keywords": [
+                "entrypoint"
+            ],
+            "from_full": "alpine:latest",
+            "buses": [],
+            "monitors": [],
+            "from": "alpine",
+            "keywords": [
+                "icecast",
+                "mkdir",
+                "chmod",
+                "var",
+                "media"
+            ],
+            "gates": [],
+            "path": "/libretime-icecast/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "/entrypoint.sh",
+            "servers": []
+        },
+        {
+            "langs": [
+                "python"
+            ],
+            "cmd_keywords": [
+                "libretime",
+                "opt",
+                "entrypoint"
+            ],
+            "from_full": "ubuntu:xenial",
+            "buses": [
+                "rabbitmq"
+            ],
+            "monitors": [],
+            "from": "ubuntu",
+            "keywords": [
+                "liquidsoap",
+                "apt",
+                "opam",
+                "get",
+                "opt"
+            ],
+            "gates": [],
+            "path": "/libretime-core/Dockerfile",
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [],
+            "cmd": "/opt/libretime/entrypoint.sh",
+            "servers": []
+        }
+    ],
+    "gates": [],
+    "size": 2561,
+    "num_monitors": 0,
+    "images": [
+        "alpine",
+        "ubuntu"
+    ],
+    "num_buses": 1,
+    "num_services": 4,
+    "servers": [],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_discos": 0,
+    "languages": [
+        "shell",
+        "dockerfile"
+    ],
+    "url": "git://github.com/ned-kelly/docker-multicontainer-libretime.git",
+    "langs": [
+        "python",
+        "dockerfile",
+        "bash",
+        "shell"
+    ],
+    "num_dbs": 1,
+    "num_servers": 0,
+    "num_langs": 4,
+    "files": [],
+    "num_dockers": 2,
+    "num_files": 3
+}

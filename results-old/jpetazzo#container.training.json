@@ -1,0 +1,331 @@
+{
+    "size": 21305,
+    "num_dockers": 8,
+    "discos": [],
+    "num_files": 12,
+    "avg_size_service": 2663.125,
+    "buses": [],
+    "num_gates": 0,
+    "langs": [
+        "python",
+        "shell",
+        "ruby",
+        "html"
+    ],
+    "num_discos": 0,
+    "num_monitors": 2,
+    "dockers": [
+        {
+            "monitors": [
+                "prometheus"
+            ],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "prom/prometheus",
+            "path": "/prom/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "prom/prometheus:v1.4.1"
+        },
+        {
+            "monitors": [
+                "fluentd"
+            ],
+            "cmd": "fluentd -c /fluentd.conf",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "fluentd",
+                "conf"
+            ],
+            "from": "ruby",
+            "path": "/efk/fluentd/Dockerfile",
+            "keywords": [
+                "install",
+                "gem",
+                "elasticsearch",
+                "plugin",
+                "fluentd"
+            ],
+            "buses": [],
+            "langs": [
+                "ruby"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "ruby"
+        },
+        {
+            "monitors": [],
+            "cmd": "node webui.js",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "cmd_keywords": [
+                "webui",
+                "node"
+            ],
+            "from": "node",
+            "path": "/dockercoins/webui/Dockerfile",
+            "keywords": [
+                "install",
+                "npm",
+                "redis",
+                "express"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [
+                "redis"
+            ],
+            "from_full": "node:4-slim"
+        },
+        {
+            "monitors": [],
+            "cmd": "python worker.py",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "python",
+                "worker"
+            ],
+            "from": "python",
+            "path": "/dockercoins/worker/Dockerfile",
+            "keywords": [
+                "install",
+                "pip",
+                "redis",
+                "requests"
+            ],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "dbs": [
+                "redis"
+            ],
+            "from_full": "python:alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "ruby hasher.rb",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "hasher",
+                "ruby"
+            ],
+            "from": "ruby",
+            "path": "/dockercoins/hasher/Dockerfile",
+            "keywords": [
+                "install",
+                "gem",
+                "apk",
+                "update",
+                "sinatra"
+            ],
+            "buses": [],
+            "langs": [
+                "ruby"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "ruby:alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "python rng.py",
+            "discos": [],
+            "servers": [
+                "flask"
+            ],
+            "cmd_keywords": [
+                "python",
+                "rng"
+            ],
+            "from": "python",
+            "path": "/dockercoins/rng/Dockerfile",
+            "keywords": [
+                "install",
+                "pip",
+                "flask"
+            ],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "python:alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "debian",
+            "path": "/prepare-vms/Dockerfile",
+            "keywords": [
+                "python",
+                "apt",
+                "install",
+                "wkhtmltopdf",
+                "get"
+            ],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "debian:jessie"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "alpine",
+            "path": "/slides/Dockerfile",
+            "keywords": [
+                "pip",
+                "apk",
+                "install",
+                "entr",
+                "git"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "alpine:3.11"
+        }
+    ],
+    "num_dbs": 1,
+    "monitors": [
+        "prometheus",
+        "fluentd"
+    ],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "elasticsearch",
+                "image_full": "elasticsearch",
+                "discos": [],
+                "name": "elasticsearch",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [
+                    "fluentd"
+                ],
+                "buses": [],
+                "image": "jpetazzo/fluentd",
+                "image_full": "jpetazzo/fluentd:v0.1",
+                "discos": [],
+                "name": "fluentd",
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "kibana",
+                "image_full": "kibana",
+                "discos": [],
+                "name": "kibana",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        },
+        "num_services": 3,
+        "path": "/efk/docker-compose.yml"
+    },
+    "num_buses": 0,
+    "servers": [
+        "node",
+        "express",
+        "flask"
+    ],
+    "url": "git://github.com/jpetazzo/container.training.git",
+    "num_services": 3,
+    "gates": [],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/slides/requirements.txt"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/slides/autopilot/requirements.txt"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/slides/autopilot/package.json"
+        }
+    ],
+    "name": "jpetazzo/container.training",
+    "languages": [
+        "shell",
+        "python",
+        "html"
+    ],
+    "images": [
+        "debian",
+        "node",
+        "ruby",
+        "prom/prometheus",
+        "python",
+        "alpine"
+    ],
+    "dbs": [
+        "redis"
+    ],
+    "num_servers": 3,
+    "num_langs": 4
+}

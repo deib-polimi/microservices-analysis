@@ -1,0 +1,201 @@
+{
+    "structure": {
+        "path": "/micro/docker-compose.yml",
+        "services": [
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "depends_on": [],
+                "image": "mongo",
+                "image_full": "mongo:latest",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "student",
+                "dbs": [],
+                "depends_on": [
+                    "mongo",
+                    "consul"
+                ],
+                "image": "../student",
+                "image_full": "../student",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "consul",
+                "dbs": [],
+                "depends_on": [],
+                "image": "consul",
+                "image_full": "consul:latest",
+                "discos": [
+                    "consul"
+                ]
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "order",
+                "dbs": [],
+                "depends_on": [
+                    "mongo",
+                    "consul"
+                ],
+                "image": "../order",
+                "image_full": "../order",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "nginx",
+                "dbs": [],
+                "depends_on": [
+                    "gateway"
+                ],
+                "image": ".",
+                "image_full": ".",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "monitors": [],
+                "name": "gateway",
+                "dbs": [],
+                "depends_on": [
+                    "mongo",
+                    "consul"
+                ],
+                "image": "../gateway",
+                "image_full": "../gateway",
+                "discos": []
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "names": [
+                "mongo"
+            ],
+            "num": 1,
+            "services": [
+                "mongo"
+            ],
+            "shared_dbs": true
+        }
+    },
+    "discos": [
+        "consul"
+    ],
+    "size": 799,
+    "num_gates": 1,
+    "num_langs": 1,
+    "servers": [
+        "spring"
+    ],
+    "gates": [
+        "zuul"
+    ],
+    "num_servers": 1,
+    "num_buses": 0,
+    "files": [
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "monitors": [],
+            "discos": [
+                "consul"
+            ],
+            "path": "/gateway/pom.xml",
+            "dbs": [
+                "mongodb"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "gates": [
+                "gateway"
+            ],
+            "monitors": [],
+            "discos": [],
+            "path": "/micro/pom.xml",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "consul"
+            ],
+            "path": "/order/pom.xml",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "consul"
+            ],
+            "path": "/student/pom.xml",
+            "dbs": []
+        }
+    ],
+    "num_dockers": 0,
+    "buses": [],
+    "languages": [
+        "java"
+    ],
+    "monitors": [],
+    "dbs": [
+        "mongo"
+    ],
+    "num_monitors": 0,
+    "num_files": 5,
+    "num_dbs": 1,
+    "num_services": 6,
+    "images": [],
+    "url": "git://github.com/kuldeepsingh99/microservice-consul.git",
+    "dockers": [],
+    "avg_size_service": 799.0,
+    "shared_dbs": true,
+    "num_discos": 1,
+    "langs": [
+        "java"
+    ],
+    "name": "kuldeepsingh99/microservice-consul"
+}

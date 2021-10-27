@@ -1,0 +1,242 @@
+{
+    "size": 3436,
+    "num_servers": 1,
+    "dbs": [
+        "mysql"
+    ],
+    "files": [
+        {
+            "path": "/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": []
+        }
+    ],
+    "structure": {
+        "num_services": 5,
+        "services": [
+            {
+                "name": "elasticsearch",
+                "image": "apm-java/elasticsearch",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "apm-java/elasticsearch:1.0.0",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "mysql",
+                "image": "mysql",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "mysql:8.0.13",
+                "discos": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "monitors": []
+            },
+            {
+                "name": "user-microservice",
+                "image": "apm-java/app",
+                "depends_on": [
+                    "apm",
+                    "mysql"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "apm-java/app:1.0.0",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "kibana",
+                "image": "kibana",
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "kibana:6.5.2",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "apm",
+                "image": "apm-java/apm-server",
+                "depends_on": [
+                    "elasticsearch",
+                    "kibana"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "apm-java/apm-server:1.0.0",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            }
+        ],
+        "path": "/docker/docker-compose.yml",
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": false,
+            "services": [
+                "mysql"
+            ]
+        }
+    },
+    "buses": [],
+    "images": [
+        "docker.elastic.co/apm/apm-server",
+        "openjdk",
+        "docker.elastic.co/elasticsearch/elasticsearch"
+    ],
+    "num_discos": 0,
+    "url": "git://github.com/sudheerpjava/elastic-apm-java.git",
+    "num_services": 5,
+    "langs": [
+        "dockerfile",
+        "java"
+    ],
+    "discos": [],
+    "num_gates": 0,
+    "shared_dbs": false,
+    "num_files": 6,
+    "num_monitors": 0,
+    "gates": [],
+    "servers": [
+        "spring"
+    ],
+    "num_langs": 2,
+    "languages": [
+        "java",
+        "dockerfile"
+    ],
+    "monitors": [],
+    "name": "sudheerpjava/elastic-apm-java",
+    "num_buses": 0,
+    "avg_size_service": 859.0,
+    "dockers": [
+        {
+            "path": "/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "java -javaagent:/opt/app/apm-agent.jar $JVM_OPTIONS -jar $JAR_NAME",
+            "keywords": [
+                "apm",
+                "elastic",
+                "agent",
+                "jar",
+                "mkdir"
+            ],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8-jdk",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "jar",
+                "name",
+                "options",
+                "jvm",
+                "opt"
+            ]
+        },
+        {
+            "path": "/docker/apm-server/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "apm",
+                "server",
+                "share",
+                "root",
+                "usr"
+            ],
+            "from": "docker.elastic.co/apm/apm-server",
+            "buses": [],
+            "from_full": "docker.elastic.co/apm/apm-server:6.5.4",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/docker/java/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "java -javaagent:/opt/app/apm-agent.jar $JVM_OPTIONS -jar $JAR_NAME",
+            "keywords": [
+                "apm",
+                "elastic",
+                "agent",
+                "jar",
+                "mkdir"
+            ],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8-jdk",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "jar",
+                "name",
+                "options",
+                "jvm",
+                "opt"
+            ]
+        },
+        {
+            "path": "/docker/elasticsearch/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [],
+            "cmd": "elasticsearch -Elogger.level=INFO",
+            "keywords": [],
+            "from": "docker.elastic.co/elasticsearch/elasticsearch",
+            "buses": [],
+            "from_full": "docker.elastic.co/elasticsearch/elasticsearch:6.5.2",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "elogger",
+                "elasticsearch",
+                "info",
+                "level"
+            ]
+        }
+    ],
+    "num_dbs": 1,
+    "num_dockers": 4
+}

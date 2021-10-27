@@ -1,0 +1,332 @@
+{
+    "discos": [],
+    "avg_size_service": 656.7142857142857,
+    "buses": [],
+    "num_gates": 0,
+    "name": "pkjaer/docker-cd-services",
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "preview",
+                "dbs": [],
+                "depends_on": [
+                    "broker-db",
+                    "discovery"
+                ],
+                "discos": [],
+                "image_full": "preview-service:${service_version}",
+                "image": "preview-service",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "discovery",
+                "dbs": [],
+                "depends_on": [
+                    "broker-db"
+                ],
+                "discos": [],
+                "image_full": "discovery-service:${service_version}",
+                "image": "discovery-service",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "deployer",
+                "dbs": [],
+                "depends_on": [
+                    "broker-db",
+                    "discovery"
+                ],
+                "discos": [],
+                "image_full": "deployer-service:${service_version}",
+                "image": "deployer-service",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "session",
+                "dbs": [],
+                "depends_on": [
+                    "broker-db",
+                    "discovery"
+                ],
+                "discos": [],
+                "image_full": "session-service:${service_version}",
+                "image": "session-service",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "broker-db",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "mcr.microsoft.com/mssql/server:latest",
+                "image": "mcr.microsoft.com/mssql/server",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "website",
+                "dbs": [],
+                "depends_on": [
+                    "session",
+                    "discovery"
+                ],
+                "discos": [],
+                "image_full": "website-java:${service_version}",
+                "image": "website-java",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [],
+            "num": 0,
+            "shared_dbs": false,
+            "services": []
+        },
+        "num_services": 6
+    },
+    "dbs": [],
+    "dockers": [
+        {
+            "langs": [
+                "bash"
+            ],
+            "cmd_keywords": [
+                "bin",
+                "sdl",
+                "bash",
+                "container",
+                "dependencies"
+            ],
+            "from_full": "openjdk:8-alpine",
+            "buses": [],
+            "monitors": [],
+            "from": "openjdk",
+            "keywords": [
+                "service",
+                "sdl",
+                "cache",
+                "add",
+                "apk"
+            ],
+            "gates": [],
+            "path": "/session/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "/bin/bash -C '/sdl-service/bin/container-start-with-dependencies.sh'",
+            "servers": []
+        },
+        {
+            "langs": [
+                "bash"
+            ],
+            "cmd_keywords": [
+                "bin",
+                "sdl",
+                "bash",
+                "container",
+                "dependencies"
+            ],
+            "from_full": "openjdk:8-alpine",
+            "buses": [],
+            "monitors": [],
+            "from": "openjdk",
+            "keywords": [
+                "service",
+                "sdl",
+                "cache",
+                "add",
+                "apk"
+            ],
+            "gates": [],
+            "path": "/discovery/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "/bin/bash -C '/sdl-service/bin/container-start-with-dependencies.sh'",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [],
+            "from_full": "mcr.microsoft.com/mssql/server:latest",
+            "buses": [],
+            "monitors": [],
+            "from": "mcr.microsoft.com/mssql/server",
+            "keywords": [],
+            "gates": [],
+            "path": "/broker-db/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        },
+        {
+            "langs": [
+                "bash"
+            ],
+            "cmd_keywords": [
+                "bin",
+                "sdl",
+                "bash",
+                "container",
+                "dependencies"
+            ],
+            "from_full": "openjdk:8-alpine",
+            "buses": [],
+            "monitors": [],
+            "from": "openjdk",
+            "keywords": [
+                "service",
+                "sdl",
+                "cache",
+                "add",
+                "apk"
+            ],
+            "gates": [],
+            "path": "/content/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "/bin/bash -C '/sdl-service/bin/container-start-with-dependencies.sh'",
+            "servers": []
+        },
+        {
+            "langs": [
+                "bash"
+            ],
+            "cmd_keywords": [
+                "bin",
+                "sdl",
+                "bash",
+                "container",
+                "dependencies"
+            ],
+            "from_full": "openjdk:8-alpine",
+            "buses": [],
+            "monitors": [],
+            "from": "openjdk",
+            "keywords": [
+                "service",
+                "sdl",
+                "cache",
+                "add",
+                "apk"
+            ],
+            "gates": [],
+            "path": "/deployer/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "/bin/bash -C '/sdl-service/bin/container-start-with-dependencies.sh'",
+            "servers": []
+        },
+        {
+            "langs": [
+                "bash"
+            ],
+            "cmd_keywords": [
+                "run",
+                "catalina",
+                "bash",
+                "bin"
+            ],
+            "from_full": "registry.hub.docker.com/library/tomcat:alpine",
+            "buses": [],
+            "monitors": [],
+            "from": "registry.hub.docker.com/library/tomcat",
+            "keywords": [
+                "webapps",
+                "cache",
+                "add",
+                "apk",
+                "bash"
+            ],
+            "gates": [],
+            "path": "/website-java/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "/bin/bash -C catalina.sh run",
+            "servers": [
+                "tomcat"
+            ]
+        },
+        {
+            "langs": [
+                "bash"
+            ],
+            "cmd_keywords": [
+                "bin",
+                "sdl",
+                "bash",
+                "container",
+                "dependencies"
+            ],
+            "from_full": "openjdk:8-alpine",
+            "buses": [],
+            "monitors": [],
+            "from": "openjdk",
+            "keywords": [
+                "service",
+                "sdl",
+                "cache",
+                "add",
+                "apk"
+            ],
+            "gates": [],
+            "path": "/preview/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "/bin/bash -C '/sdl-service/bin/container-start-with-dependencies.sh'",
+            "servers": []
+        }
+    ],
+    "gates": [],
+    "size": 4597,
+    "num_monitors": 0,
+    "images": [
+        "openjdk",
+        "registry.hub.docker.com/library/tomcat",
+        "mcr.microsoft.com/mssql/server"
+    ],
+    "num_buses": 0,
+    "num_services": 6,
+    "servers": [
+        "tomcat"
+    ],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_discos": 0,
+    "languages": [
+        "java",
+        "css",
+        "shell"
+    ],
+    "url": "git://github.com/pkjaer/docker-cd-services.git",
+    "langs": [
+        "css",
+        "bash",
+        "java",
+        "shell"
+    ],
+    "num_dbs": 0,
+    "num_servers": 1,
+    "num_langs": 4,
+    "files": [],
+    "num_dockers": 7,
+    "num_files": 8
+}

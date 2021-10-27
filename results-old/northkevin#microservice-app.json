@@ -1,0 +1,273 @@
+{
+    "size": 881,
+    "num_discos": 0,
+    "num_services": 5,
+    "num_monitors": 0,
+    "num_langs": 3,
+    "dockers": [
+        {
+            "dbs": [],
+            "cmd": "/start.sh",
+            "gates": [
+                "nginx"
+            ],
+            "from_full": "nginx:1.15.9-perl",
+            "langs": [],
+            "keywords": [
+                "swagger",
+                "tmp",
+                "conf",
+                "nginx",
+                "tar"
+            ],
+            "path": "/services/swagger/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "start"
+            ],
+            "from": "nginx",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "cmd": "",
+            "gates": [
+                "nginx"
+            ],
+            "from_full": "nginx:1.15.9-alpine",
+            "langs": [],
+            "keywords": [
+                "conf",
+                "default",
+                "etc",
+                "nginx"
+            ],
+            "path": "/services/nginx/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "from": "nginx",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "cmd": "sh entrypoint.sh",
+            "gates": [],
+            "from_full": "python:3.7.2-slim",
+            "langs": [
+                "python"
+            ],
+            "keywords": [
+                "apt",
+                "get",
+                "install",
+                "chmod",
+                "entrypoint"
+            ],
+            "path": "/services/users/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "entrypoint"
+            ],
+            "from": "python",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "cmd": "",
+            "gates": [],
+            "from_full": "postgres:11.2-alpine",
+            "langs": [],
+            "keywords": [],
+            "path": "/services/users/project/db/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "from": "postgres",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "cmd": "npm start",
+            "gates": [],
+            "from_full": "node:11.12.0-alpine",
+            "langs": [],
+            "keywords": [
+                "npm",
+                "react",
+                "install",
+                "scripts",
+                "silent"
+            ],
+            "path": "/services/client/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "from": "node",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": []
+        }
+    ],
+    "files": [
+        {
+            "dbs": [],
+            "gates": [],
+            "discos": [],
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/services/users/requirements.txt",
+            "buses": []
+        },
+        {
+            "dbs": [],
+            "gates": [],
+            "discos": [],
+            "monitors": [],
+            "servers": [],
+            "path": "/package.json",
+            "buses": []
+        },
+        {
+            "dbs": [],
+            "gates": [],
+            "discos": [],
+            "monitors": [],
+            "servers": [],
+            "path": "/services/client/package.json",
+            "buses": []
+        }
+    ],
+    "langs": [
+        "python",
+        "shell",
+        "javascript"
+    ],
+    "url": "git://github.com/northkevin/microservice-app.git",
+    "buses": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "dbs": [],
+                "image_full": "./services/client",
+                "image": "./services/client",
+                "gates": [],
+                "name": "client",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [
+                    "users"
+                ],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "./services/swagger",
+                "image": "./services/swagger",
+                "gates": [],
+                "name": "swagger",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [
+                    "users"
+                ],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "./services/users",
+                "image": "./services/users",
+                "gates": [],
+                "name": "users",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [
+                    "users-db"
+                ],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "./services/users/project/db",
+                "image": "./services/users/project/db",
+                "gates": [],
+                "name": "users-db",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "./services/nginx",
+                "image": "./services/nginx",
+                "gates": [
+                    "nginx"
+                ],
+                "name": "nginx",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [
+                    "users",
+                    "client"
+                ],
+                "buses": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [],
+            "services": [],
+            "shared_dbs": false,
+            "num": 0
+        },
+        "num_services": 5,
+        "path": "/docker-compose.yml"
+    },
+    "name": "northkevin/microservice-app",
+    "num_buses": 0,
+    "servers": [
+        "flask",
+        "node"
+    ],
+    "num_files": 9,
+    "num_dbs": 0,
+    "num_gates": 1,
+    "gates": [
+        "nginx"
+    ],
+    "monitors": [],
+    "avg_size_service": 176.2,
+    "languages": [
+        "python",
+        "javascript",
+        "shell"
+    ],
+    "num_dockers": 5,
+    "dbs": [],
+    "num_servers": 2,
+    "discos": [],
+    "images": [
+        "python",
+        "postgres",
+        "node",
+        "nginx"
+    ]
+}

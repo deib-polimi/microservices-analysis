@@ -1,0 +1,200 @@
+{
+    "gates": [
+        "nginx"
+    ],
+    "num_buses": 0,
+    "url": "git://github.com/subokita/consul-docker-test.git",
+    "images": [
+        "python",
+        "nginx"
+    ],
+    "avg_size_service": 5.5,
+    "num_langs": 4,
+    "num_monitors": 0,
+    "num_dockers": 2,
+    "num_discos": 2,
+    "num_servers": 1,
+    "buses": [],
+    "discos": [
+        "consul",
+        "registrator"
+    ],
+    "dockers": [
+        {
+            "path": "/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "python",
+            "langs": [
+                "python"
+            ],
+            "servers": [],
+            "cmd": "",
+            "from_full": "python:3.5.2-slim",
+            "monitors": [],
+            "keywords": [
+                "apt",
+                "get",
+                "install",
+                "build",
+                "essential"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/nginx/Dockerfile",
+            "cmd_keywords": [
+                "bash"
+            ],
+            "discos": [
+                "consul"
+            ],
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "from": "nginx",
+            "langs": [
+                "bash"
+            ],
+            "servers": [],
+            "cmd": "\"bash\"",
+            "from_full": "nginx:latest",
+            "monitors": [],
+            "keywords": [
+                "usr",
+                "mkdir",
+                "consul",
+                "unzip",
+                "bin"
+            ],
+            "buses": []
+        }
+    ],
+    "size": 11,
+    "name": "subokita/consul-docker-test",
+    "num_services": 5,
+    "dbs": [],
+    "shared_dbs": false,
+    "langs": [
+        "dockerfile",
+        "python",
+        "bash",
+        "shell"
+    ],
+    "languages": [
+        "python",
+        "dockerfile",
+        "shell"
+    ],
+    "servers": [
+        "flask"
+    ],
+    "num_files": 4,
+    "monitors": [],
+    "num_dbs": 0,
+    "num_gates": 1,
+    "files": [
+        {
+            "path": "/requirements.txt",
+            "servers": [
+                "flask"
+            ],
+            "discos": [
+                "consul"
+            ],
+            "monitors": [],
+            "gates": [],
+            "dbs": [],
+            "buses": []
+        }
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 5,
+        "detected_dbs": {
+            "services": [],
+            "num": 0,
+            "names": [],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "discos": [
+                    "consul"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "consul",
+                "name": "consul-bootstrap",
+                "gates": [],
+                "image": "consul",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "registrator"
+                ],
+                "servers": [],
+                "image_full": ".",
+                "name": "hello-server",
+                "gates": [],
+                "image": ".",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [
+                    "registrator"
+                ],
+                "monitors": [],
+                "depends_on": [
+                    "consul-bootstrap"
+                ],
+                "servers": [],
+                "image_full": "gliderlabs/registrator",
+                "name": "registrator",
+                "gates": [],
+                "image": "gliderlabs/registrator",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "call-server"
+                ],
+                "servers": [],
+                "image_full": "./nginx/",
+                "name": "nginx-service",
+                "gates": [
+                    "nginx"
+                ],
+                "image": "./nginx/",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "registrator"
+                ],
+                "servers": [],
+                "image_full": ".",
+                "name": "call-server",
+                "gates": [],
+                "image": ".",
+                "dbs": [],
+                "buses": []
+            }
+        ]
+    }
+}

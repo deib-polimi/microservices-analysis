@@ -1,0 +1,300 @@
+{
+    "num_servers": 2,
+    "num_gates": 0,
+    "num_dockers": 5,
+    "num_buses": 1,
+    "dockers": [
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "python:3.6-alpine",
+            "discos": [],
+            "from": "python",
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/services/log-service/Dockerfile",
+            "dbs": [
+                "postgresql"
+            ],
+            "keywords": [
+                "dev",
+                "postgresql",
+                "apk",
+                "libs",
+                "run"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "python:3.6-alpine",
+            "discos": [],
+            "from": "python",
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/services/weather-service/Dockerfile",
+            "dbs": [
+                "postgresql"
+            ],
+            "keywords": [
+                "dev",
+                "postgresql",
+                "apk",
+                "libs",
+                "run"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "python:3.6-alpine",
+            "discos": [],
+            "from": "python",
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/services/pypi-service/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "dev",
+                "apk",
+                "run",
+                "pip",
+                "pypiserver"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "from_full": "node:10.14.1-alpine",
+            "discos": [],
+            "from": "node",
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/services/web/petrichor/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "python",
+                "apk",
+                "npm",
+                "yarn",
+                "alias"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "postgres:11.1-alpine",
+            "discos": [],
+            "from": "postgres",
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/docker-postgres/Dockerfile",
+            "dbs": [],
+            "keywords": []
+        }
+    ],
+    "shared_dbs": false,
+    "languages": [
+        "python",
+        "javascript"
+    ],
+    "gates": [],
+    "avg_size_service": 217.4,
+    "discos": [],
+    "num_dbs": 1,
+    "monitors": [],
+    "servers": [
+        "node",
+        "express"
+    ],
+    "num_langs": 2,
+    "buses": [
+        "rabbitmq"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "petrichor-web",
+                "image": "petrichor-web",
+                "buses": [],
+                "name": "web",
+                "discos": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "postgres"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "petrichor-log-service",
+                "image": "petrichor-log-service",
+                "buses": [],
+                "name": "log-service",
+                "discos": [],
+                "depends_on": [
+                    "pypi-service",
+                    "postgres",
+                    "rabbitmq"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "rabbitmq:3.7-management",
+                "image": "rabbitmq",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "name": "rabbitmq",
+                "discos": [],
+                "depends_on": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "petrichor-pypi-service",
+                "image": "petrichor-pypi-service",
+                "buses": [],
+                "name": "pypi-service",
+                "discos": [],
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "petrichor-weather-service",
+                "image": "petrichor-weather-service",
+                "buses": [],
+                "name": "weather-service",
+                "discos": [],
+                "depends_on": [
+                    "pypi-service",
+                    "postgres",
+                    "rabbitmq"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "postgres",
+                "image": "postgres",
+                "buses": [],
+                "name": "postgres",
+                "discos": [],
+                "depends_on": [],
+                "dbs": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "names": [],
+            "shared_dbs": false
+        },
+        "num_services": 6
+    },
+    "images": [
+        "node",
+        "python",
+        "postgres"
+    ],
+    "num_files": 10,
+    "num_services": 6,
+    "langs": [
+        "python",
+        "javascript"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "servers": [],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/services/log-service/requirements.txt",
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/services/weather-service/requirements.txt",
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/services/web/petrichor/package.json",
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "express"
+            ],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/services/web/petrichor/client/package.json",
+            "dbs": []
+        }
+    ],
+    "url": "git://github.com/doberdog/microservices-example.git",
+    "size": 1087,
+    "name": "doberdog/microservices-example",
+    "num_discos": 0,
+    "num_monitors": 0,
+    "dbs": [
+        "postgresql"
+    ]
+}

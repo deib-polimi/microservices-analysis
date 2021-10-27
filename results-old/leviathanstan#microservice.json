@@ -1,0 +1,448 @@
+{
+    "size": 152,
+    "shared_dbs": false,
+    "num_servers": 2,
+    "name": "leviathanstan/microservice",
+    "files": [
+        {
+            "gates": [],
+            "dbs": [
+                "foundation"
+            ],
+            "buses": [],
+            "servers": [
+                "spring",
+                "express"
+            ],
+            "path": "/pom.xml",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/authentication/pom.xml"
+        },
+        {
+            "path": "/organization-v2/pom.xml"
+        },
+        {
+            "path": "/license/pom.xml"
+        },
+        {
+            "path": "/sproutes/pom.xml"
+        },
+        {
+            "path": "/organization/pom.xml"
+        },
+        {
+            "path": "/zuulsvr/pom.xml"
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/confsvr/pom.xml",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/eurekasvr/pom.xml",
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        }
+    ],
+    "num_files": 18,
+    "num_langs": 2,
+    "dbs": [
+        "foundation",
+        "zookeeper"
+    ],
+    "servers": [
+        "express",
+        "spring"
+    ],
+    "num_discos": 2,
+    "url": "git://github.com/leviathanstan/microservice.git",
+    "gates": [],
+    "structure": {
+        "services": [
+            {
+                "image": "rdc/microservice/eureka",
+                "dbs": [],
+                "image_full": "rdc/microservice/eureka:${BUILD_NAME}",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "eurekaserver",
+                "gates": [],
+                "discos": [
+                    "eureka"
+                ],
+                "depends_on": []
+            },
+            {
+                "image": "rdc/microservice/zuulsvr",
+                "dbs": [],
+                "image_full": "rdc/microservice/zuulsvr:${BUILD_NAME}",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "zuulserver",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "eurekaserver:eurekaserver",
+                    "configserver:configserver"
+                ]
+            },
+            {
+                "image": "rdc/microservice/authentication",
+                "dbs": [],
+                "image_full": "rdc/microservice/authentication:${BUILD_NAME}",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "authenticationservice",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "configserver:configserver",
+                    "eurekaserver:eurekaserver",
+                    "zuulserver:zuulserver"
+                ]
+            },
+            {
+                "image": "wurstmeister/kafka",
+                "dbs": [],
+                "image_full": "wurstmeister/kafka",
+                "buses": [
+                    "kafka"
+                ],
+                "servers": [],
+                "monitors": [],
+                "name": "kafkaserver",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "wurstmeister/zookeeper",
+                "dbs": [
+                    "zookeeper"
+                ],
+                "image_full": "wurstmeister/zookeeper",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "zookeeper",
+                "gates": [],
+                "discos": [
+                    "zookeeper"
+                ],
+                "depends_on": []
+            },
+            {
+                "image": "rdc/microservice/license",
+                "dbs": [],
+                "image_full": "rdc/microservice/license:${BUILD_NAME}",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "licensingservice",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "configserver:configserver",
+                    "eurekaserver:eurekaserver",
+                    "zuulserver:zuulserver",
+                    "kafkaserver:kafkaserver",
+                    "authenticationservice:authenticationservice"
+                ]
+            },
+            {
+                "image": "rdc/microservice/confsvr",
+                "dbs": [],
+                "image_full": "rdc/microservice/confsvr:${BUILD_NAME}",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "configserver",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "eurekaserver:eurekaserver"
+                ]
+            },
+            {
+                "image": "rdc/microservice/organizationv2",
+                "dbs": [],
+                "image_full": "rdc/microservice/organizationv2:${BUILD_NAME}",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "organizationv2service",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "configserver:configserver",
+                    "eurekaserver:eurekaserver",
+                    "zuulserver:zuulserver",
+                    "kafkaserver:kafkaserver",
+                    "authenticationservice:authenticationservice"
+                ]
+            },
+            {
+                "image": "rdc/microservice/organization",
+                "dbs": [],
+                "image_full": "rdc/microservice/organization:${BUILD_NAME}",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "organizationservice",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "configserver:configserver",
+                    "eurekaserver:eurekaserver",
+                    "zuulserver:zuulserver",
+                    "kafkaserver:kafkaserver",
+                    "authenticationservice:authenticationservice"
+                ]
+            }
+        ],
+        "num_services": 9,
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "zookeeper"
+            ],
+            "services": [
+                "zookeeper"
+            ],
+            "shared_dbs": false
+        },
+        "path": "/docker/docker-compose.yml"
+    },
+    "num_gates": 0,
+    "num_dockers": 8,
+    "num_dbs": 2,
+    "num_services": 9,
+    "langs": [
+        "java",
+        "shell"
+    ],
+    "buses": [
+        "kafka"
+    ],
+    "num_buses": 1,
+    "num_monitors": 0,
+    "languages": [
+        "java",
+        "shell"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [
+                "run"
+            ],
+            "cmd": "./run.sh",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "monitors": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "path": "/authentication/src/main/docker/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "apk",
+                "mkdir",
+                "openbsd",
+                "usr",
+                "authenticationservice"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "run"
+            ],
+            "cmd": "./run.sh",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "monitors": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "path": "/organization-v2/src/main/docker/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "apk",
+                "openbsd",
+                "org",
+                "ustc",
+                "usr"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "run"
+            ],
+            "cmd": "./run.sh",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "monitors": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "path": "/license/src/main/docker/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "apk",
+                "mkdir",
+                "openbsd",
+                "usr",
+                "licensingservice"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "run"
+            ],
+            "cmd": "./run.sh",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "monitors": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "path": "/sproutes/src/main/docker/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "apk",
+                "openbsd",
+                "services",
+                "org",
+                "ustc"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "run"
+            ],
+            "cmd": "./run.sh",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "monitors": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "path": "/organization/src/main/docker/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "apk",
+                "mkdir",
+                "openbsd",
+                "usr",
+                "organizationservice"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "run"
+            ],
+            "cmd": "./run.sh",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "monitors": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "path": "/zuulsvr/src/main/docker/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "apk",
+                "mkdir",
+                "openbsd",
+                "usr",
+                "zuulservice"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "run"
+            ],
+            "cmd": "./run.sh",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "monitors": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "path": "/confsvr/src/main/docker/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "apk",
+                "mkdir",
+                "openbsd",
+                "usr",
+                "org"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "run"
+            ],
+            "cmd": "./run.sh",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "monitors": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "path": "/eurekasvr/src/main/docker/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "apk",
+                "mkdir",
+                "openbsd",
+                "usr",
+                "org"
+            ],
+            "discos": []
+        }
+    ],
+    "monitors": [],
+    "avg_size_service": 19.0,
+    "discos": [
+        "zookeeper",
+        "eureka"
+    ],
+    "images": [
+        "openjdk"
+    ]
+}

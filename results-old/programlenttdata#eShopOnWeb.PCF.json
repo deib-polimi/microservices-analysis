@@ -1,0 +1,274 @@
+{
+    "size": 47075,
+    "shared_dbs": false,
+    "num_servers": 1,
+    "name": "programlenttdata/eShopOnWeb.PCF",
+    "files": [],
+    "num_files": 5,
+    "num_langs": 2,
+    "dbs": [
+        "redis"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "num_discos": 0,
+    "url": "git://github.com/programlenttdata/eShopOnWeb.PCF.git",
+    "gates": [],
+    "structure": {
+        "services": [
+            {
+                "image": "hyness/spring-cloud-config-server",
+                "dbs": [],
+                "image_full": "hyness/spring-cloud-config-server",
+                "buses": [],
+                "servers": [
+                    "spring"
+                ],
+                "monitors": [],
+                "name": "config",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "eshop/web",
+                "dbs": [],
+                "image_full": "eshop/web:${TAG:-latest}",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "web",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "sql.data",
+                    "eurekareg"
+                ]
+            },
+            {
+                "image": "steeltoeoss/eurekaserver",
+                "dbs": [],
+                "image_full": "steeltoeoss/eurekaserver",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "eurekareg",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "microsoft/mssql-server-linux",
+                "dbs": [],
+                "image_full": "microsoft/mssql-server-linux:2017-latest",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "sql.data",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "image_full": "redis",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "cache",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "eshop/basket.api",
+                "dbs": [],
+                "image_full": "eshop/basket.api:${TAG:-latest}",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "basket.api",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "sql.data",
+                    "eurekareg",
+                    "rabbitmq"
+                ]
+            },
+            {
+                "image": "eshop/catalog.api",
+                "dbs": [],
+                "image_full": "eshop/catalog.api:${TAG:-latest}",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "catalog.api",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "sql.data",
+                    "eurekareg",
+                    "rabbitmq",
+                    "cache",
+                    "config"
+                ]
+            },
+            {
+                "image": "eshop/identity.api",
+                "dbs": [],
+                "image_full": "eshop/identity.api:${TAG:-latest}",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "identity.api",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "sql.data",
+                    "eurekareg"
+                ]
+            },
+            {
+                "image": "rabbitmq",
+                "dbs": [],
+                "image_full": "rabbitmq:3-management-alpine",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "servers": [],
+                "monitors": [],
+                "name": "rabbitmq",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            }
+        ],
+        "num_services": 9,
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "redis"
+            ],
+            "services": [
+                "cache"
+            ],
+            "shared_dbs": false
+        },
+        "path": "/docker-compose.yml"
+    },
+    "num_gates": 0,
+    "num_dockers": 4,
+    "num_dbs": 1,
+    "num_services": 9,
+    "langs": [
+        "javascript",
+        "c#"
+    ],
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_buses": 1,
+    "num_monitors": 0,
+    "languages": [
+        "c#",
+        "javascript"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "microsoft/dotnet",
+            "monitors": [],
+            "from_full": "microsoft/dotnet:2.1-aspnetcore-runtime",
+            "servers": [],
+            "path": "/src/UI/Web/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "dotnet",
+                "out",
+                "release",
+                "publish",
+                "restore"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "base",
+            "monitors": [],
+            "from_full": "base",
+            "servers": [],
+            "path": "/src/Services/Basket/Basket.API/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "restore",
+                "dotnet",
+                "app",
+                "release",
+                "nowarn"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "base",
+            "monitors": [],
+            "from_full": "base",
+            "servers": [],
+            "path": "/src/Services/Identity/Identity.API/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "restore",
+                "dotnet",
+                "install",
+                "bower",
+                "app"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "base",
+            "monitors": [],
+            "from_full": "base",
+            "servers": [],
+            "path": "/src/Services/Catalog/Catalog.API/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "restore",
+                "dotnet",
+                "app",
+                "release",
+                "nowarn"
+            ],
+            "discos": []
+        }
+    ],
+    "monitors": [],
+    "avg_size_service": 11768.75,
+    "discos": [],
+    "images": [
+        "base",
+        "microsoft/dotnet"
+    ]
+}

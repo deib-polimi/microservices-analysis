@@ -1,0 +1,167 @@
+{
+    "languages": [
+        "php"
+    ],
+    "num_servers": 2,
+    "shared_dbs": false,
+    "name": "diogomachado/gateway-payment",
+    "servers": [
+        "laravel",
+        "node"
+    ],
+    "num_monitors": 0,
+    "num_langs": 1,
+    "images": [
+        "nginx",
+        "php"
+    ],
+    "langs": [
+        "php"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [
+                "daemon",
+                "off"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "-g daemon off;",
+            "keywords": [
+                "apt",
+                "get",
+                "certbot",
+                "update",
+                "properties"
+            ],
+            "path": "/nginx/Dockerfile",
+            "gates": [
+                "nginx"
+            ],
+            "from": "nginx",
+            "from_full": "nginx:stable",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": [],
+            "langs": [
+                "php"
+            ],
+            "cmd": "",
+            "keywords": [
+                "apt",
+                "get",
+                "install",
+                "pdo",
+                "php"
+            ],
+            "path": "/php/Dockerfile",
+            "gates": [],
+            "from": "php",
+            "from_full": "php:7.4.8-fpm",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_buses": 0,
+    "discos": [],
+    "monitors": [],
+    "num_files": 4,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "nginx:1.13",
+                "depends_on": [
+                    "php"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "name": "nginx",
+                "image": "nginx",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mysql:5.7.31",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "mysql",
+                "image": "mysql",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "./php",
+                "depends_on": [
+                    "mysql"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "php",
+                "image": "./php",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 3,
+        "detected_dbs": {
+            "services": [
+                "mysql"
+            ],
+            "names": [
+                "mysql"
+            ],
+            "num": 1,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [
+        "mysql"
+    ],
+    "num_dbs": 1,
+    "avg_size_service": 239.5,
+    "num_services": 3,
+    "buses": [],
+    "files": [
+        {
+            "dbs": [],
+            "path": "/app/payment-api/package.json",
+            "gates": [],
+            "servers": [
+                "laravel",
+                "node"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "url": "git://github.com/diogomachado/gateway-payment.git",
+    "num_dockers": 2,
+    "size": 479,
+    "num_discos": 0,
+    "num_gates": 1
+}

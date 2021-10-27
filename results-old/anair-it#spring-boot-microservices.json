@@ -1,0 +1,338 @@
+{
+    "size": 641,
+    "num_dockers": 7,
+    "discos": [],
+    "num_files": 16,
+    "avg_size_service": 91.57142857142857,
+    "buses": [
+        "kafka"
+    ],
+    "num_gates": 0,
+    "langs": [
+        "java",
+        "ruby",
+        "groovy"
+    ],
+    "num_discos": 0,
+    "num_monitors": 3,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "adoptopenjdk/openjdk11",
+            "path": "/anair-service-kafka/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "adoptopenjdk/openjdk11:alpine-jre"
+        },
+        {
+            "monitors": [
+                "fluentd"
+            ],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "fluent/fluentd",
+            "path": "/logging/fluentd/Dockerfile",
+            "keywords": [
+                "gem",
+                "sudo",
+                "fluent",
+                "apk",
+                "build"
+            ],
+            "buses": [],
+            "langs": [
+                "ruby"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "fluent/fluentd:v1.9-1"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "adoptopenjdk/openjdk11",
+            "path": "/anair-service-rest/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "adoptopenjdk/openjdk11:alpine-jre"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "adoptopenjdk/openjdk11",
+            "path": "/anair-fn/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "adoptopenjdk/openjdk11:alpine-jre"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "adoptopenjdk/openjdk11",
+            "path": "/anair-rest-archetype/src/main/resources/archetype-resources/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "adoptopenjdk/openjdk11:alpine-jre"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "adoptopenjdk/openjdk11",
+            "path": "/anair-service-admin/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "adoptopenjdk/openjdk11:alpine-jre"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "adoptopenjdk/openjdk11",
+            "path": "/anair-service-proto/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "adoptopenjdk/openjdk11:alpine-jre"
+        }
+    ],
+    "num_dbs": 0,
+    "monitors": [
+        "jaeger",
+        "prometheus",
+        "fluentd"
+    ],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "anair-service-admin",
+                "image_full": "anair-service-admin",
+                "discos": [],
+                "name": "service-admin",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "anair-service-proto",
+                "image_full": "anair-service-proto",
+                "discos": [],
+                "name": "service-proto",
+                "depends_on": [
+                    "fluentd"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "anair-service-rest",
+                "image_full": "anair-service-rest",
+                "discos": [],
+                "name": "service-rest",
+                "depends_on": [
+                    "kafka"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [
+                    "kafka"
+                ],
+                "image": "anair-service-kafka",
+                "image_full": "anair-service-kafka",
+                "discos": [],
+                "name": "service-kafka",
+                "depends_on": [
+                    "kafka"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        },
+        "num_services": 4,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 1,
+    "servers": [
+        "spring",
+        "tomcat"
+    ],
+    "url": "git://github.com/anair-it/spring-boot-microservices.git",
+    "num_services": 4,
+    "gates": [],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring",
+                "tomcat"
+            ],
+            "path": "/anair-service-kafka/pom.xml"
+        },
+        {
+            "monitors": [
+                "jaeger",
+                "prometheus"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring",
+                "tomcat"
+            ],
+            "path": "/anair-pom-parent/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring",
+                "tomcat"
+            ],
+            "path": "/anair-service-rest/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring",
+                "tomcat"
+            ],
+            "path": "/anair-fn/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/anair-rest-archetype/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring",
+                "tomcat"
+            ],
+            "path": "/anair-rest-archetype/src/main/resources/archetype-resources/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring",
+                "tomcat"
+            ],
+            "path": "/anair-service-admin/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring",
+                "tomcat"
+            ],
+            "path": "/anair-service-proto/pom.xml"
+        }
+    ],
+    "name": "anair-it/spring-boot-microservices",
+    "languages": [
+        "java",
+        "groovy"
+    ],
+    "images": [
+        "fluent/fluentd",
+        "adoptopenjdk/openjdk11"
+    ],
+    "dbs": [],
+    "num_servers": 2,
+    "num_langs": 3
+}

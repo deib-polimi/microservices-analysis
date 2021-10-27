@@ -1,0 +1,220 @@
+{
+    "num_gates": 1,
+    "images": [
+        "java"
+    ],
+    "discos": [],
+    "num_buses": 0,
+    "name": "florian-bellotti/cra",
+    "gates": [
+        "gateway"
+    ],
+    "structure": {
+        "num_services": 5,
+        "detected_dbs": {
+            "services": [
+                "mongo"
+            ],
+            "names": [
+                "mongo"
+            ],
+            "shared_dbs": false,
+            "num": 1
+        },
+        "path": "/docker/docker-compose.yml",
+        "services": [
+            {
+                "image": "mongo",
+                "image_full": "mongo:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "mongo",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "mongo"
+                ]
+            },
+            {
+                "image": "elasticsearch",
+                "image_full": "elasticsearch",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "elasticsearch",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "logstash",
+                "image_full": "logstash",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "servers": [],
+                "name": "logstash",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "httpd",
+                "image_full": "httpd:alpine",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [
+                    "httpd"
+                ],
+                "name": "config-server",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "cra/event-microservice",
+                "image_full": "cra/event-microservice",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "mongo",
+                    "logstash"
+                ],
+                "servers": [],
+                "name": "event-microservice",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            }
+        ]
+    },
+    "url": "git://github.com/florian-bellotti/cra.git",
+    "langs": [
+        "java"
+    ],
+    "num_dockers": 2,
+    "num_langs": 1,
+    "dbs": [
+        "mongo",
+        "hazelcast"
+    ],
+    "shared_dbs": false,
+    "size": 73,
+    "dockers": [
+        {
+            "discos": [],
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/docker/config-server/inventory-microservice/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "java:8-jre",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "cmd": "java -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory -jar event-microservice-fat.jar -cluster -conf docker.json",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/event-microservice/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "json",
+                "class",
+                "jlogdelegatefactory",
+                "factory"
+            ]
+        }
+    ],
+    "num_servers": 1,
+    "monitors": [],
+    "num_services": 5,
+    "servers": [
+        "httpd"
+    ],
+    "num_monitors": 0,
+    "avg_size_service": 36.5,
+    "num_files": 8,
+    "buses": [],
+    "files": [
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [
+                "gateway"
+            ],
+            "servers": [],
+            "monitors": [],
+            "dbs": [
+                "hazelcast"
+            ],
+            "path": "/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [
+                "gateway"
+            ],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/api-gateway/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [
+                "mongo"
+            ],
+            "path": "/user-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/cra-common/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [
+                "mongo"
+            ],
+            "path": "/event-microservice/pom.xml"
+        }
+    ],
+    "languages": [
+        "java"
+    ],
+    "num_dbs": 2,
+    "num_discos": 0
+}

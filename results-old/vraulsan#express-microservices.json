@@ -1,0 +1,238 @@
+{
+    "dbs": [
+        "mongo"
+    ],
+    "num_langs": 4,
+    "buses": [],
+    "monitors": [],
+    "num_services": 4,
+    "num_dbs": 1,
+    "num_servers": 3,
+    "discos": [],
+    "dockers": [
+        {
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "app",
+                "node"
+            ],
+            "from_full": "node:alpine",
+            "gates": [],
+            "dbs": [],
+            "from": "node",
+            "cmd": "node app.js",
+            "discos": [],
+            "langs": [],
+            "path": "/spark/Dockerfile",
+            "keywords": [
+                "install",
+                "dir",
+                "mkdir",
+                "npm"
+            ]
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "for",
+                "server",
+                "mongoservice",
+                "wait",
+                "node"
+            ],
+            "from_full": "node:alpine",
+            "gates": [],
+            "dbs": [],
+            "from": "node",
+            "cmd": "./wait-for-it.sh mongoservice:27017 -- node server.js",
+            "discos": [],
+            "langs": [
+                "bash"
+            ],
+            "path": "/gateway/Dockerfile",
+            "keywords": [
+                "apk",
+                "var",
+                "bash",
+                "dir",
+                "add"
+            ]
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "server",
+                "node"
+            ],
+            "from_full": "node:alpine",
+            "gates": [],
+            "dbs": [],
+            "from": "node",
+            "cmd": "node server.js",
+            "discos": [],
+            "langs": [],
+            "path": "/web/Dockerfile",
+            "keywords": [
+                "install",
+                "dir",
+                "mkdir",
+                "npm"
+            ]
+        }
+    ],
+    "num_files": 7,
+    "num_dockers": 3,
+    "images": [
+        "node"
+    ],
+    "size": 25,
+    "servers": [
+        "express",
+        "mongoose",
+        "node"
+    ],
+    "structure": {
+        "detected_dbs": {
+            "names": [
+                "mongo"
+            ],
+            "shared_dbs": false,
+            "services": [
+                "mongoservice"
+            ],
+            "num": 1
+        },
+        "num_services": 4,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "./gateway/",
+                "name": "gatewayservice",
+                "depends_on": [
+                    "mongoservice"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "./gateway/",
+                "gates": [
+                    "gateway"
+                ],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "./web/",
+                "name": "webservice",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "./web/",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "mongo:latest",
+                "name": "mongoservice",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "image": "mongo",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "./spark/",
+                "name": "sparkservice",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "./spark/",
+                "gates": [],
+                "monitors": []
+            }
+        ]
+    },
+    "num_discos": 0,
+    "files": [
+        {
+            "servers": [
+                "express",
+                "node"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/spark/package.json"
+        },
+        {
+            "servers": [
+                "express",
+                "mongoose",
+                "node"
+            ],
+            "gates": [],
+            "dbs": [
+                "mongo"
+            ],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/gateway/package.json"
+        },
+        {
+            "servers": [
+                "express"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/web/package.json"
+        }
+    ],
+    "num_monitors": 0,
+    "num_buses": 0,
+    "num_gates": 1,
+    "gates": [
+        "gateway"
+    ],
+    "name": "vraulsan/express-microservices",
+    "avg_size_service": 8.333333333333334,
+    "url": "git://github.com/vraulsan/express-microservices.git",
+    "shared_dbs": false,
+    "langs": [
+        "html",
+        "bash",
+        "shell",
+        "javascript"
+    ],
+    "languages": [
+        "javascript",
+        "shell",
+        "html"
+    ]
+}

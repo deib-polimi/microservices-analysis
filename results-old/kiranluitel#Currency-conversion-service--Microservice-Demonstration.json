@@ -1,0 +1,294 @@
+{
+    "num_files": 11,
+    "num_services": 6,
+    "num_discos": 1,
+    "gates": [
+        "zuul"
+    ],
+    "languages": [
+        "java"
+    ],
+    "num_dbs": 0,
+    "dbs": [],
+    "num_monitors": 0,
+    "structure": {
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 0,
+            "services": [],
+            "names": []
+        },
+        "num_services": 6,
+        "services": [
+            {
+                "image_full": "kiranluitel/microservice-project:netflix-eureka-naming-server",
+                "image": "kiranluitel/microservice-project",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "zipkin-server"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "netflix-eureka-naming-server"
+            },
+            {
+                "image_full": "kiranluitel/microservice-project:netflix-zuul-api-gateway-server",
+                "image": "kiranluitel/microservice-project",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "netflix-eureka-naming-server",
+                    "currency-exchange-service",
+                    "currency-conversion-service",
+                    "rabbitmq",
+                    "zipkin-server"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "netflix-zuul-api-gateway-server"
+            },
+            {
+                "image_full": "kiranluitel/microservice-project:currency-exchange-service",
+                "image": "kiranluitel/microservice-project",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "netflix-eureka-naming-server",
+                    "zipkin-server"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "currency-exchange-service"
+            },
+            {
+                "image_full": "openzipkin/zipkin",
+                "image": "openzipkin/zipkin",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "zipkin-server"
+            },
+            {
+                "image_full": "rabbitmq:3.8.2-management",
+                "image": "rabbitmq",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "name": "rabbitmq"
+            },
+            {
+                "image_full": "kiranluitel/microservice-project:currency-conversion-service",
+                "image": "kiranluitel/microservice-project",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "currency-exchange-service",
+                    "netflix-eureka-naming-server",
+                    "zipkin-server"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "currency-conversion-service"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "discos": [
+        "eureka"
+    ],
+    "url": "git://github.com/kiranluitel/Currency-conversion-service--Microservice-Demonstration.git",
+    "num_buses": 2,
+    "files": [
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/currency-conversion-service/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/spring-cloud-config-server/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [],
+            "monitors": [],
+            "path": "/currency-exchange-service/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/netflix-eureka-naming-server/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "monitors": [],
+            "path": "/netflix-zuul-api-gateway-server/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/limits-service/pom.xml"
+        }
+    ],
+    "name": "kiranluitel/Currency-conversion-service--Microservice-Demonstration",
+    "servers": [
+        "spring"
+    ],
+    "num_dockers": 4,
+    "buses": [
+        "rabbitmq",
+        "amqp"
+    ],
+    "num_gates": 1,
+    "num_langs": 1,
+    "shared_dbs": false,
+    "monitors": [],
+    "dockers": [
+        {
+            "servers": [],
+            "from": "openjdk",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/currency-conversion-service/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "openjdk:8-jdk-alpine"
+        },
+        {
+            "servers": [],
+            "from": "openjdk",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/currency-exchange-service/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "openjdk:8-jdk-alpine"
+        },
+        {
+            "servers": [],
+            "from": "openjdk",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/netflix-eureka-naming-server/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "openjdk:8-jdk-alpine"
+        },
+        {
+            "servers": [],
+            "from": "openjdk",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/netflix-zuul-api-gateway-server/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "openjdk:8-jdk-alpine"
+        }
+    ],
+    "langs": [
+        "java"
+    ],
+    "num_servers": 1,
+    "size": 474,
+    "images": [
+        "openjdk"
+    ],
+    "avg_size_service": 118.5
+}

@@ -1,0 +1,206 @@
+{
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "guestbook-app",
+                "dbs": [],
+                "depends_on": [
+                    "guestbook-api",
+                    "stream-api"
+                ],
+                "image": "xmlking/micro-apps-guestbook-app",
+                "image_full": "xmlking/micro-apps-guestbook-app:1.0.0-SNAPSHOT",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "mongodb",
+                "dbs": [
+                    "mongodb"
+                ],
+                "depends_on": [],
+                "image": "bitnami/mongodb",
+                "image_full": "bitnami/mongodb:latest",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "stream-api",
+                "dbs": [],
+                "depends_on": [],
+                "image": "xmlking/micro-apps-stream-api",
+                "image_full": "xmlking/micro-apps-stream-api:1.0.0-SNAPSHOT",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "monitors": [],
+                "name": "rest-proxy",
+                "dbs": [],
+                "depends_on": [
+                    "zookeeper",
+                    "broker",
+                    "schema-registry"
+                ],
+                "image": "confluentinc/cp-kafka-rest",
+                "image_full": "confluentinc/cp-kafka-rest:5.0.0",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "monitors": [],
+                "name": "broker",
+                "dbs": [],
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "image": "confluentinc/cp-kafka",
+                "image_full": "confluentinc/cp-kafka:5.0.0",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "schema-registry",
+                "dbs": [],
+                "depends_on": [
+                    "zookeeper",
+                    "broker"
+                ],
+                "image": "confluentinc/cp-schema-registry",
+                "image_full": "confluentinc/cp-schema-registry:5.0.0",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "guestbook-api",
+                "dbs": [],
+                "depends_on": [
+                    "mongodb"
+                ],
+                "image": "xmlking/micro-apps-guestbook-api",
+                "image_full": "xmlking/micro-apps-guestbook-api:1.0.0-SNAPSHOT",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "zookeeper",
+                "dbs": [
+                    "zookeeper"
+                ],
+                "depends_on": [],
+                "image": "confluentinc/cp-zookeeper",
+                "image_full": "confluentinc/cp-zookeeper:5.0.0",
+                "discos": [
+                    "zookeeper"
+                ]
+            }
+        ],
+        "num_services": 8,
+        "detected_dbs": {
+            "names": [
+                "mongodb",
+                "zookeeper"
+            ],
+            "num": 2,
+            "services": [
+                "mongodb",
+                "zookeeper"
+            ],
+            "shared_dbs": true
+        }
+    },
+    "discos": [
+        "zookeeper"
+    ],
+    "size": 244,
+    "num_gates": 0,
+    "num_langs": 2,
+    "servers": [
+        "jboss"
+    ],
+    "gates": [],
+    "num_servers": 1,
+    "num_buses": 1,
+    "files": [],
+    "num_dockers": 1,
+    "buses": [
+        "kafka"
+    ],
+    "languages": [
+        "kotlin",
+        "java"
+    ],
+    "monitors": [],
+    "dbs": [
+        "zookeeper"
+    ],
+    "num_monitors": 0,
+    "num_files": 2,
+    "num_dbs": 1,
+    "num_services": 8,
+    "images": [
+        "jboss/keycloak-openshift"
+    ],
+    "url": "git://github.com/xmlking/micro-apps-deprecated.git",
+    "dockers": [
+        {
+            "cmd": "start-keycloak.sh -b 0.0.0.0 -Dkeycloak.migration.action=import -Dkeycloak.migration.provider=dir -Dkeycloak.migration.strategy=OVERWRITE_EXISTING -Dkeycloak.migration.dir=/opt/jboss/keycloak/realm-config -Djboss.socket.binding.port-offset=1000",
+            "servers": [
+                "jboss"
+            ],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/.deploy/keycloak/Dockerfile",
+            "cmd_keywords": [
+                "migration",
+                "dkeycloak",
+                "dir",
+                "keycloak",
+                "binding"
+            ],
+            "keywords": [],
+            "from_full": "jboss/keycloak-openshift:4.3.0.Final",
+            "gates": [],
+            "from": "jboss/keycloak-openshift",
+            "langs": [],
+            "dbs": []
+        }
+    ],
+    "avg_size_service": 244.0,
+    "shared_dbs": true,
+    "num_discos": 1,
+    "langs": [
+        "kotlin",
+        "java"
+    ],
+    "name": "xmlking/micro-apps-deprecated"
+}

@@ -1,0 +1,232 @@
+{
+    "size": 6145,
+    "shared_dbs": false,
+    "num_servers": 1,
+    "name": "yonikashi/blocktest",
+    "files": [],
+    "num_files": 7,
+    "num_langs": 4,
+    "dbs": [],
+    "servers": [
+        "node"
+    ],
+    "num_discos": 0,
+    "url": "git://github.com/yonikashi/blocktest.git",
+    "gates": [
+        "nginx"
+    ],
+    "structure": {
+        "services": [
+            {
+                "image": "kinecosystem/ubuntu-ansible",
+                "dbs": [],
+                "image_full": "kinecosystem/ubuntu-ansible",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "ubuntu",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            }
+        ],
+        "num_services": 1,
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        },
+        "path": "/deploy/ansible/image/docker-compose.yml"
+    },
+    "num_gates": 1,
+    "num_dockers": 6,
+    "num_dbs": 0,
+    "num_services": 1,
+    "langs": [
+        "python",
+        "go",
+        "bash",
+        "hcl"
+    ],
+    "buses": [],
+    "num_buses": 0,
+    "num_monitors": 0,
+    "languages": [
+        "python",
+        "hcl",
+        "go"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "bash"
+            ],
+            "from": "solita/ubuntu-systemd-ssh",
+            "monitors": [],
+            "from_full": "solita/ubuntu-systemd-ssh:16.04",
+            "servers": [],
+            "path": "/deploy/ansible/image/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "apt",
+                "get",
+                "docker",
+                "install",
+                "ubuntu"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "run",
+                "main",
+                "app",
+                "pipenv",
+                "gunicorn"
+            ],
+            "cmd": "pipenv run gunicorn -b 0.0.0.0:8000 main:APP",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "from": "python",
+            "monitors": [],
+            "from_full": "python:alpine3.6",
+            "servers": [],
+            "path": "/apps/horizon-health-check/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "pipenv",
+                "build",
+                "deps",
+                "apk",
+                "install"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "tmp",
+                "telegraf",
+                "get",
+                "latency",
+                "name"
+            ],
+            "cmd": "envsubst '$NODE_NAME' < /etc/telegraf/telegraf.conf.tmpl > /etc/telegraf/telegraf.conf && envsubst  '$NODE_NAME $TARGET_URL' < /tmp/check_latency.sh.tmpl > /tmp/check_latency.sh && chmod +x /tmp/check_latency.sh && envsubst  '$NODE_NAME $TARGET_URL' < /tmp/get_load5.sh.tmpl > /tmp/get_load5.sh && chmod +x /tmp/get_load5.sh && exec telegraf",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "telegraf",
+            "monitors": [],
+            "from_full": "telegraf:1.8.3-alpine",
+            "servers": [
+                "node"
+            ],
+            "path": "/images/dockerfiles/horizon-telegraf/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "add",
+                "curl",
+                "cache",
+                "apk",
+                "gettext"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "telegraf",
+                "conf",
+                "etc",
+                "exec",
+                "envsubst"
+            ],
+            "cmd": "envsubst '$DATADOG_API_KEY' < /etc/telegraf/telegraf.conf.tmpl > /etc/telegraf/telegraf.conf && exec telegraf",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "telegraf",
+            "monitors": [],
+            "from_full": "telegraf:1.8.3-alpine",
+            "servers": [],
+            "path": "/images/dockerfiles/telegraf-datadog-forwarder/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "add",
+                "gettext",
+                "cache",
+                "apk"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "nginx",
+                "proxy",
+                "conf",
+                "etc",
+                "url"
+            ],
+            "cmd": "envsubst '$NODE_NAME $STATSD_SAMPLE_RATE_PERCENT $HOST $PROXY_LISTEN_PORT $PROXY_READ_TIMEOUT $PROXY_PASS_URL' < /etc/nginx/nginx.conf.tmpl > /etc/nginx/nginx.conf && exec nginx",
+            "gates": [
+                "nginx"
+            ],
+            "buses": [],
+            "langs": [],
+            "from": "nginx",
+            "monitors": [],
+            "from_full": "nginx:1.15.6-alpine",
+            "servers": [
+                "node"
+            ],
+            "path": "/images/dockerfiles/horizon-nginx-proxy/Dockerfile",
+            "dbs": [],
+            "keywords": [],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "get",
+                "tmp",
+                "telegraf",
+                "state",
+                "name"
+            ],
+            "cmd": "envsubst '$NODE_NAME' < /etc/telegraf/telegraf.conf.tmpl > /etc/telegraf/telegraf.conf && envsubst  '$NODE_NAME' < /tmp/get_core_state.sh.tmpl > /tmp/get_core_state.sh && chmod +x /tmp/get_core_state.sh && envsubst  '$NODE_NAME' < /tmp/get_load5.sh.tmpl > /tmp/get_load5.sh && chmod +x /tmp/get_load5.sh && exec telegraf",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "telegraf",
+            "monitors": [],
+            "from_full": "telegraf:1.8.3-alpine",
+            "servers": [
+                "node"
+            ],
+            "path": "/images/dockerfiles/stellar-core-telegraf/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "add",
+                "curl",
+                "cache",
+                "apk",
+                "gettext"
+            ],
+            "discos": []
+        }
+    ],
+    "monitors": [],
+    "avg_size_service": 1024.1666666666667,
+    "discos": [],
+    "images": [
+        "solita/ubuntu-systemd-ssh",
+        "nginx",
+        "python",
+        "telegraf"
+    ]
+}

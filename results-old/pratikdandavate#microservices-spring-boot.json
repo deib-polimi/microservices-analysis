@@ -1,0 +1,521 @@
+{
+    "size": 1651,
+    "avg_size_service": 275.1666666666667,
+    "name": "pratikdandavate/microservices-spring-boot",
+    "languages": [
+        "java"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "num_dbs": 2,
+    "images": [
+        "openjdk",
+        "sebp/elk"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 8,
+        "services": [
+            {
+                "depends_on": [
+                    "docker-mysql"
+                ],
+                "image_full": "./AuthServer",
+                "monitors": [],
+                "name": "auth-server",
+                "image": "./AuthServer",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "openzipkin/zipkin",
+                "monitors": [],
+                "name": "zipkin",
+                "image": "openzipkin/zipkin",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "rabbitmq:3-management",
+                "monitors": [],
+                "name": "rabbitmq",
+                "image": "rabbitmq",
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "discovery-service",
+                    "rabbitmq"
+                ],
+                "image_full": "./config-server",
+                "monitors": [],
+                "name": "config-server",
+                "image": "./config-server",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "mysql:latest",
+                "monitors": [],
+                "name": "docker-mysql",
+                "image": "mysql",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "docker-mysql",
+                    "discovery-service",
+                    "config-server"
+                ],
+                "image_full": "./slide-service",
+                "monitors": [],
+                "name": "slide-service",
+                "image": "./slide-service",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "./discovery-service",
+                "monitors": [],
+                "name": "discovery-service",
+                "image": "./discovery-service",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "docker-mysql",
+                    "discovery-service",
+                    "config-server"
+                ],
+                "image_full": "./organ-service",
+                "monitors": [],
+                "name": "organ-service",
+                "image": "./organ-service",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "docker-mysql"
+            ],
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": true,
+            "num": 1
+        }
+    },
+    "num_dockers": 6,
+    "num_buses": 3,
+    "num_services": 8,
+    "dockers": [
+        {
+            "path": "/slide-service/Dockerfile",
+            "from": "openjdk",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "keywords": [
+                "touch",
+                "app",
+                "jar"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/Docker_ELK/Dockerfile",
+            "from": "sebp/elk",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "sebp/elk",
+            "keywords": [
+                "conf",
+                "logback",
+                "etc",
+                "logstash"
+            ],
+            "cmd_keywords": [],
+            "monitors": [
+                "elk"
+            ],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/organ-service/Dockerfile",
+            "from": "openjdk",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "keywords": [
+                "touch",
+                "app",
+                "jar"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/config-server/Dockerfile",
+            "from": "openjdk",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "keywords": [
+                "touch",
+                "app",
+                "jar"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/discovery-service/Dockerfile",
+            "from": "openjdk",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "keywords": [
+                "touch",
+                "app",
+                "jar"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/AuthServer/Dockerfile",
+            "from": "openjdk",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "keywords": [
+                "touch",
+                "app",
+                "jar"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "num_langs": 1,
+    "langs": [
+        "java"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "num_gates": 1,
+    "num_monitors": 1,
+    "num_files": 23,
+    "files": [
+        {
+            "path": "/auth-service/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/slide-service/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/resource-server/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/microservice-parent/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/greeting-client/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/tenant-service/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "buses": [
+                "kafka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/gateway/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [
+                "gateway"
+            ],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/gateway-service/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/organ-service/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/config-server/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/airadhi-cache/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "redis"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/airadhi-demo-service/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [
+                "gateway"
+            ],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/discovery-service/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/greeting-service/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/authorization-server/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/AuthServer/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ]
+        }
+    ],
+    "shared_dbs": true,
+    "monitors": [
+        "elk"
+    ],
+    "num_servers": 1,
+    "url": "git://github.com/pratikdandavate/microservices-spring-boot.git",
+    "dbs": [
+        "mysql",
+        "redis"
+    ],
+    "num_discos": 1,
+    "gates": [
+        "zuul"
+    ],
+    "buses": [
+        "rabbitmq",
+        "kafka",
+        "amqp"
+    ]
+}

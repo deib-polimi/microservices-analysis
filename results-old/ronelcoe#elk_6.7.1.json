@@ -1,0 +1,353 @@
+{
+    "size": 120552,
+    "shared_dbs": false,
+    "num_servers": 0,
+    "name": "ronelcoe/elk_6.7.1",
+    "files": [],
+    "num_files": 8,
+    "num_langs": 2,
+    "dbs": [
+        "mysql"
+    ],
+    "servers": [],
+    "num_discos": 0,
+    "url": "git://github.com/ronelcoe/elk_6.7.1.git",
+    "gates": [],
+    "structure": {
+        "services": [
+            {
+                "image": "docker.elastic.co/kibana/kibana",
+                "dbs": [],
+                "image_full": "docker.elastic.co/kibana/kibana:6.7.1",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "kibana",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "elasticsearch"
+                ]
+            },
+            {
+                "image": "ronelcoe/metricbeat",
+                "dbs": [],
+                "image_full": "ronelcoe/metricbeat:6.7.1",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "metricbeat",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "ronelcoe/springboot-app1",
+                "dbs": [],
+                "image_full": "ronelcoe/springboot-app1:1.0.1",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "app1-microservice",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "apm",
+                    "app2-microservice"
+                ]
+            },
+            {
+                "image": "ronelcoe/elasticsearch",
+                "dbs": [],
+                "image_full": "ronelcoe/elasticsearch:6.7.1",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "elasticsearch",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "mysql",
+                "dbs": [
+                    "mysql"
+                ],
+                "image_full": "mysql:8.0.13",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "mysql",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "ronelcoe/filebeat",
+                "dbs": [],
+                "image_full": "ronelcoe/filebeat:6.7.1",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "filebeat",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "logstash"
+                ]
+            },
+            {
+                "image": "ronelcoe/logstash",
+                "dbs": [],
+                "image_full": "ronelcoe/logstash:6.7.1",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "logstash",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "elasticsearch"
+                ]
+            },
+            {
+                "image": "ronelcoe/zipkin-ui",
+                "dbs": [],
+                "image_full": "ronelcoe/zipkin-ui",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "zipkin",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "elasticsearch"
+                ]
+            },
+            {
+                "image": "ronelcoe/springboot-app2",
+                "dbs": [],
+                "image_full": "ronelcoe/springboot-app2:1.0.1",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "app2-microservice",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "apm",
+                    "mysql"
+                ]
+            },
+            {
+                "image": "ronelcoe/apm-server",
+                "dbs": [],
+                "image_full": "ronelcoe/apm-server:6.6.2",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "apm",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "elasticsearch"
+                ]
+            }
+        ],
+        "num_services": 10,
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "mysql"
+            ],
+            "services": [
+                "mysql"
+            ],
+            "shared_dbs": false
+        },
+        "path": "/docker-compose.yml"
+    },
+    "num_gates": 0,
+    "num_dockers": 7,
+    "num_dbs": 1,
+    "num_services": 10,
+    "langs": [
+        "java",
+        "dockerfile"
+    ],
+    "buses": [],
+    "num_buses": 0,
+    "num_monitors": 0,
+    "languages": [
+        "dockerfile"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "docker.elastic.co/apm/apm-server",
+            "monitors": [],
+            "from_full": "docker.elastic.co/apm/apm-server:6.6.2",
+            "servers": [],
+            "path": "/apm-server/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "server",
+                "apm",
+                "yml",
+                "share",
+                "usr"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "javaagent",
+                "opt",
+                "jvm"
+            ],
+            "cmd": "java -javaagent:/opt/app/apm-agent.jar $JVM_OPTIONS -jar $JAR_NAME",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "openjdk",
+            "monitors": [],
+            "from_full": "openjdk:8-jdk",
+            "servers": [],
+            "path": "/apm-app-template/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "mkdir",
+                "app",
+                "logs",
+                "opt"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "docker.elastic.co/logstash/logstash",
+            "monitors": [],
+            "from_full": "docker.elastic.co/logstash/logstash:6.7.1",
+            "servers": [],
+            "path": "/logstash/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "logstash",
+                "share",
+                "usr",
+                "chown",
+                "yml"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "docker.elastic.co/beats/filebeat",
+            "monitors": [],
+            "from_full": "docker.elastic.co/beats/filebeat:6.7.1",
+            "servers": [],
+            "path": "/filebeat/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "filebeat",
+                "app",
+                "logs",
+                "opt",
+                "yml"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "jar",
+                "elasticsearch",
+                "des",
+                "java",
+                "type"
+            ],
+            "cmd": "java -DSTORAGE_TYPE=elasticsearch -DES_HOSTS=http://elasticsearch:9200 -jar zipkin.jar",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "openzipkin/zipkin",
+            "monitors": [],
+            "from_full": "openzipkin/zipkin",
+            "servers": [],
+            "path": "/zipkin/Dockerfile",
+            "dbs": [],
+            "keywords": [],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "docker.elastic.co/beats/metricbeat",
+            "monitors": [],
+            "from_full": "docker.elastic.co/beats/metricbeat:6.7.1",
+            "servers": [],
+            "path": "/metricbeat/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "metricbeat",
+                "yml",
+                "share",
+                "usr",
+                "chown"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "elasticsearch",
+                "level",
+                "elogger",
+                "info"
+            ],
+            "cmd": "elasticsearch -Elogger.level=INFO",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "docker.elastic.co/elasticsearch/elasticsearch",
+            "monitors": [],
+            "from_full": "docker.elastic.co/elasticsearch/elasticsearch:6.7.1",
+            "servers": [],
+            "path": "/elasticsearch/Dockerfile",
+            "dbs": [],
+            "keywords": [],
+            "discos": []
+        }
+    ],
+    "monitors": [],
+    "avg_size_service": 17221.714285714286,
+    "discos": [],
+    "images": [
+        "docker.elastic.co/beats/metricbeat",
+        "docker.elastic.co/apm/apm-server",
+        "openzipkin/zipkin",
+        "openjdk",
+        "docker.elastic.co/elasticsearch/elasticsearch",
+        "docker.elastic.co/logstash/logstash",
+        "docker.elastic.co/beats/filebeat"
+    ]
+}

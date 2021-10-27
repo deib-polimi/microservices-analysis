@@ -1,0 +1,331 @@
+{
+    "servers": [
+        "node",
+        "express",
+        "mongoose"
+    ],
+    "name": "armsuro/chat",
+    "num_gates": 0,
+    "avg_size_service": 3072.4,
+    "structure": {
+        "services": [
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "./client",
+                "servers": [],
+                "depends_on": [],
+                "name": "client",
+                "dbs": [],
+                "image": "./client",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [
+                    "nats"
+                ],
+                "image_full": "./nats/amd64",
+                "servers": [],
+                "depends_on": [],
+                "name": "nats",
+                "dbs": [],
+                "image": "./nats/amd64",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "https://github.com/armsuro/chat-db.git",
+                "servers": [],
+                "depends_on": [],
+                "name": "db",
+                "dbs": [],
+                "image": "https://github.com/armsuro/chat-db.git",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "postgres:9.6.5-alpine",
+                "servers": [],
+                "depends_on": [],
+                "name": "postgres",
+                "dbs": [],
+                "image": "postgres",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "redis:4.0.5-alpine",
+                "servers": [],
+                "depends_on": [],
+                "name": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "image": "redis",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "./microservice-api",
+                "servers": [],
+                "depends_on": [
+                    "nats:nats"
+                ],
+                "name": "api",
+                "dbs": [],
+                "image": "./microservice-api",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "./microservice-chat",
+                "servers": [],
+                "depends_on": [
+                    "nats:nats"
+                ],
+                "name": "chat",
+                "dbs": [],
+                "image": "./microservice-chat",
+                "monitors": [],
+                "discos": []
+            }
+        ],
+        "num_services": 7,
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "redis"
+            ],
+            "services": [
+                "redis"
+            ],
+            "shared_dbs": false
+        }
+    },
+    "num_dbs": 1,
+    "buses": [
+        "nats"
+    ],
+    "langs": [
+        "javascript",
+        "scratch",
+        "html",
+        "gcc",
+        "css"
+    ],
+    "shared_dbs": false,
+    "files": [
+        {
+            "gates": [],
+            "buses": [
+                "nats"
+            ],
+            "path": "/microservice-chat/package.json",
+            "servers": [
+                "node"
+            ],
+            "dbs": [
+                "redis"
+            ],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [
+                "nats"
+            ],
+            "path": "/microservice-api/package.json",
+            "servers": [
+                "node",
+                "express",
+                "mongoose"
+            ],
+            "dbs": [
+                "redis"
+            ],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "path": "/client/package.json",
+            "servers": [
+                "node"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "size": 15362,
+    "num_dockers": 5,
+    "url": "git://github.com/armsuro/chat.git",
+    "gates": [],
+    "num_servers": 3,
+    "images": [
+        "node",
+        "scratch",
+        "microsoft/nanoserver",
+        "mhart/alpine-node"
+    ],
+    "num_services": 7,
+    "languages": [
+        "html",
+        "javascript",
+        "css"
+    ],
+    "num_files": 9,
+    "discos": [],
+    "dockers": [
+        {
+            "gates": [],
+            "from_full": "mhart/alpine-node:base-10.5.0",
+            "cmd_keywords": [
+                "node",
+                "nodemon",
+                "index",
+                "bin",
+                "modules"
+            ],
+            "path": "/microservice-chat/Dockerfile",
+            "servers": [
+                "node"
+            ],
+            "cmd": "./node_modules/.bin/nodemon index.js",
+            "from": "mhart/alpine-node",
+            "buses": [],
+            "langs": [
+                "gcc"
+            ],
+            "dbs": [],
+            "discos": [],
+            "monitors": [],
+            "keywords": [
+                "libstdc",
+                "update",
+                "install",
+                "python",
+                "add"
+            ]
+        },
+        {
+            "gates": [],
+            "from_full": "mhart/alpine-node:base-10.5.0",
+            "cmd_keywords": [
+                "node",
+                "nodemon",
+                "index",
+                "bin",
+                "modules"
+            ],
+            "path": "/microservice-api/Dockerfile",
+            "servers": [
+                "node"
+            ],
+            "cmd": "./node_modules/.bin/nodemon index.js",
+            "from": "mhart/alpine-node",
+            "buses": [],
+            "langs": [
+                "gcc"
+            ],
+            "dbs": [],
+            "discos": [],
+            "monitors": [],
+            "keywords": [
+                "libstdc",
+                "update",
+                "install",
+                "python",
+                "add"
+            ]
+        },
+        {
+            "gates": [],
+            "from_full": "node:9.11.1-alpine",
+            "cmd_keywords": [
+                "dist",
+                "http",
+                "server"
+            ],
+            "path": "/client/Dockerfile",
+            "servers": [
+                "node"
+            ],
+            "cmd": "http-server dist",
+            "from": "node",
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "monitors": [],
+            "keywords": [
+                "npm",
+                "install",
+                "run",
+                "http",
+                "server"
+            ]
+        },
+        {
+            "gates": [],
+            "from_full": "scratch",
+            "cmd_keywords": [
+                "conf",
+                "gnatsd"
+            ],
+            "path": "/nats/amd64/Dockerfile",
+            "servers": [],
+            "cmd": "-c gnatsd.conf",
+            "from": "scratch",
+            "buses": [],
+            "langs": [
+                "scratch"
+            ],
+            "dbs": [],
+            "discos": [],
+            "monitors": [],
+            "keywords": []
+        },
+        {
+            "gates": [],
+            "from_full": "microsoft/nanoserver",
+            "cmd_keywords": [
+                "conf",
+                "gnatsd"
+            ],
+            "path": "/nats/windows/Dockerfile",
+            "servers": [],
+            "cmd": "-c gnatsd.conf",
+            "from": "microsoft/nanoserver",
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "monitors": [],
+            "keywords": []
+        }
+    ],
+    "num_langs": 5,
+    "num_monitors": 0,
+    "num_buses": 1,
+    "dbs": [
+        "redis"
+    ],
+    "monitors": [],
+    "num_discos": 0
+}

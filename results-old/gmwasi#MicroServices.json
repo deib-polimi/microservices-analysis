@@ -1,0 +1,269 @@
+{
+    "name": "gmwasi/MicroServices",
+    "buses": [
+        "rabbitmq"
+    ],
+    "images": [
+        "base",
+        "microsoft/mssql-server-linux"
+    ],
+    "num_langs": 4,
+    "num_discos": 0,
+    "num_buses": 1,
+    "dockers": [
+        {
+            "discos": [],
+            "langs": [
+                "bash"
+            ],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "microsoft/mssql-server-linux",
+            "cmd_keywords": [
+                "bin",
+                "bash",
+                "entrypoint"
+            ],
+            "from_full": "microsoft/mssql-server-linux:2017-latest",
+            "keywords": [
+                "sqlcmdstartup",
+                "chmod"
+            ],
+            "path": "/src/Database/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": "/bin/bash ./entrypoint.sh"
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "base",
+            "cmd_keywords": [],
+            "from_full": "base",
+            "keywords": [
+                "jobs",
+                "api",
+                "csproj",
+                "dotnet",
+                "release"
+            ],
+            "path": "/src/Services/Jobs.Api/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": ""
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "base",
+            "cmd_keywords": [],
+            "from_full": "base",
+            "keywords": [
+                "identity",
+                "api",
+                "csproj",
+                "dotnet",
+                "release"
+            ],
+            "path": "/src/Services/Identity.Api/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": ""
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "base",
+            "cmd_keywords": [],
+            "from_full": "base",
+            "keywords": [
+                "applicants",
+                "api",
+                "csproj",
+                "dotnet",
+                "release"
+            ],
+            "path": "/src/Services/Applicants.Api/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": ""
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "base",
+            "cmd_keywords": [],
+            "from_full": "base",
+            "keywords": [
+                "web",
+                "dotnet",
+                "csproj",
+                "release",
+                "app"
+            ],
+            "path": "/src/Web/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": ""
+        }
+    ],
+    "monitors": [],
+    "dbs": [
+        "redis"
+    ],
+    "structure": {
+        "detected_dbs": {
+            "num": 1,
+            "services": [
+                "user.data"
+            ],
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": false
+        },
+        "path": "/src/docker-compose.yml",
+        "services": [
+            {
+                "monitors": [],
+                "name": "jobs.api",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "sql.data",
+                    "rabbitmq"
+                ],
+                "image": "${DOCKER_REGISTRY}jobsapi",
+                "image_full": "${DOCKER_REGISTRY}jobsapi",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "web",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "applicants.api",
+                    "identity.api",
+                    "jobs.api"
+                ],
+                "image": "${DOCKER_REGISTRY}web",
+                "image_full": "${DOCKER_REGISTRY}web",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "applicants.api",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "sql.data",
+                    "rabbitmq"
+                ],
+                "image": "${DOCKER_REGISTRY}applicantsapi",
+                "image_full": "${DOCKER_REGISTRY}applicantsapi",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "rabbitmq",
+                "servers": [],
+                "discos": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "depends_on": [],
+                "image": "rabbitmq",
+                "image_full": "rabbitmq:3-management",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "user.data",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image": "redis",
+                "image_full": "redis",
+                "gates": [],
+                "dbs": [
+                    "redis"
+                ]
+            },
+            {
+                "monitors": [],
+                "name": "identity.api",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "user.data"
+                ],
+                "image": "${DOCKER_REGISTRY}identityapi",
+                "image_full": "${DOCKER_REGISTRY}identityapi",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "sql.data",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image": "mssql-linux",
+                "image_full": "mssql-linux",
+                "gates": [],
+                "dbs": []
+            }
+        ],
+        "num_services": 7
+    },
+    "gates": [],
+    "files": [],
+    "avg_size_service": 838.2,
+    "langs": [
+        "c#",
+        "bash",
+        "tsql",
+        "html"
+    ],
+    "num_dbs": 1,
+    "num_services": 7,
+    "num_monitors": 0,
+    "size": 4191,
+    "languages": [
+        "c#",
+        "tsql",
+        "html"
+    ],
+    "num_files": 6,
+    "num_gates": 0,
+    "num_dockers": 5,
+    "shared_dbs": false,
+    "servers": [],
+    "num_servers": 0,
+    "url": "git://github.com/gmwasi/MicroServices.git",
+    "discos": []
+}

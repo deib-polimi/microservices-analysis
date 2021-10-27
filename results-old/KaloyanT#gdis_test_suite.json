@@ -1,0 +1,309 @@
+{
+    "size": 2936,
+    "shared_dbs": false,
+    "num_servers": 4,
+    "name": "KaloyanT/gdis_test_suite",
+    "files": [
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/backend/api/requirements.txt",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/backend/importer/pom.xml",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/backend/database/pom.xml",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/backend/exporter/pom.xml",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/frontend/package.json",
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "num_files": 11,
+    "num_langs": 3,
+    "dbs": [
+        "mysql"
+    ],
+    "servers": [
+        "express",
+        "flask",
+        "spring",
+        "node"
+    ],
+    "num_discos": 0,
+    "url": "git://github.com/KaloyanT/gdis_test_suite.git",
+    "gates": [],
+    "structure": {
+        "services": [
+            {
+                "image": "gdis.importer/importer",
+                "dbs": [],
+                "image_full": "gdis.importer/importer",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "importer",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "mysql",
+                "dbs": [
+                    "mysql"
+                ],
+                "image_full": "mysql:5.7",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "mysql_db",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "gdis.exporter/exporter",
+                "dbs": [],
+                "image_full": "gdis.exporter/exporter",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "exporter",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "frontend",
+                "dbs": [],
+                "image_full": "frontend",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "frontend",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "api"
+                ]
+            },
+            {
+                "image": "gdis.db/database",
+                "dbs": [],
+                "image_full": "gdis.db/database",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "db_microservice",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "mysql_db"
+                ]
+            },
+            {
+                "image": "backend/api",
+                "dbs": [],
+                "image_full": "backend/api",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "api",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "importer",
+                    "exporter"
+                ]
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "mysql"
+            ],
+            "services": [
+                "mysql_db"
+            ],
+            "shared_dbs": false
+        },
+        "path": "/docker-compose.yml"
+    },
+    "num_gates": 0,
+    "num_dockers": 5,
+    "num_dbs": 1,
+    "num_services": 6,
+    "langs": [
+        "java",
+        "python",
+        "javascript"
+    ],
+    "buses": [],
+    "num_buses": 0,
+    "num_monitors": 0,
+    "languages": [
+        "javascript",
+        "java"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "frolvlad/alpine-oraclejdk8",
+            "monitors": [],
+            "from_full": "frolvlad/alpine-oraclejdk8:slim",
+            "servers": [],
+            "path": "/backend/importer/src/main/docker/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "app",
+                "jar",
+                "touch"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "from": "python",
+            "monitors": [],
+            "from_full": "python:3.6-alpine",
+            "servers": [],
+            "path": "/backend/api/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "cache",
+                "pip",
+                "requirements",
+                "install",
+                "musl"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "frolvlad/alpine-oraclejdk8",
+            "monitors": [],
+            "from_full": "frolvlad/alpine-oraclejdk8:slim",
+            "servers": [],
+            "path": "/backend/database/src/main/docker/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "app",
+                "jar",
+                "touch"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "frolvlad/alpine-oraclejdk8",
+            "monitors": [],
+            "from_full": "frolvlad/alpine-oraclejdk8:slim",
+            "servers": [],
+            "path": "/backend/exporter/src/main/docker/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "app",
+                "jar",
+                "touch"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "server",
+                "node"
+            ],
+            "cmd": "node server.js",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "node",
+            "monitors": [],
+            "from_full": "node",
+            "servers": [
+                "node"
+            ],
+            "path": "/frontend/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "install",
+                "usr",
+                "src",
+                "app",
+                "npm"
+            ],
+            "discos": []
+        }
+    ],
+    "monitors": [],
+    "avg_size_service": 587.2,
+    "discos": [],
+    "images": [
+        "node",
+        "python",
+        "frolvlad/alpine-oraclejdk8"
+    ]
+}

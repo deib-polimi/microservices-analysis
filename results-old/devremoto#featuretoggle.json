@@ -1,0 +1,321 @@
+{
+    "dbs": [
+        "redis",
+        "mongo"
+    ],
+    "size": 19927,
+    "num_files": 10,
+    "files": [
+        {
+            "servers": [
+                "node"
+            ],
+            "dbs": [],
+            "path": "/admin/frontend/package.json",
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "path": "/microserviceNodeJs/package.json"
+        },
+        {
+            "servers": [
+                "asp"
+            ],
+            "dbs": [],
+            "path": "/IdentityServer4.Admin/src/Skoruba.IdentityServer4.Admin/package.json",
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "servers": [
+                "asp"
+            ],
+            "dbs": [],
+            "path": "/IdentityServer4.Admin/src/Skoruba.IdentityServer4.STS.Identity/package.json",
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "buses": []
+        }
+    ],
+    "monitors": [],
+    "servers": [
+        "node",
+        "asp"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_dockers": 5,
+    "url": "git://github.com/devremoto/featuretoggle.git",
+    "shared_dbs": true,
+    "num_gates": 1,
+    "discos": [],
+    "images": [
+        "nginx",
+        "golang",
+        "microsoft/dotnet",
+        "node"
+    ],
+    "structure": {
+        "services": [
+            {
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "ft-redis"
+                ],
+                "name": "ft-ext-go",
+                "image_full": "ft/ext/go",
+                "image": "ft/ext/go",
+                "discos": [],
+                "monitors": [],
+                "gates": [],
+                "buses": []
+            },
+            {
+                "servers": [],
+                "dbs": [],
+                "depends_on": [],
+                "name": "ft-sts",
+                "image_full": "ft/sts",
+                "image": "ft/sts",
+                "discos": [],
+                "monitors": [],
+                "gates": [],
+                "buses": []
+            },
+            {
+                "servers": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "depends_on": [
+                    "ft-mongodb",
+                    "ft-redis"
+                ],
+                "name": "ft-microservice",
+                "image_full": "ft/mongo/app",
+                "image": "ft/mongo/app",
+                "discos": [],
+                "monitors": [],
+                "gates": [],
+                "buses": []
+            },
+            {
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "ft-sts"
+                ],
+                "name": "ft-sts-admin",
+                "image_full": "ft/sts/admin",
+                "image": "ft/sts/admin",
+                "discos": [],
+                "monitors": [],
+                "gates": [],
+                "buses": []
+            },
+            {
+                "servers": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "depends_on": [],
+                "name": "ft-mongodb",
+                "image_full": "mongo",
+                "image": "mongo",
+                "discos": [],
+                "monitors": [],
+                "gates": [],
+                "buses": []
+            },
+            {
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "ft-sts"
+                ],
+                "name": "ft-front",
+                "image_full": "ft/front",
+                "image": "ft/front",
+                "discos": [],
+                "monitors": [],
+                "gates": [],
+                "buses": []
+            },
+            {
+                "servers": [],
+                "dbs": [
+                    "redis"
+                ],
+                "depends_on": [],
+                "name": "ft-redis",
+                "image_full": "redis",
+                "image": "redis",
+                "discos": [],
+                "monitors": [],
+                "gates": [],
+                "buses": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [
+                "redis",
+                "mongo"
+            ],
+            "services": [
+                "ft-microservice",
+                "ft-mongodb",
+                "ft-redis"
+            ],
+            "num": 3,
+            "shared_dbs": true
+        },
+        "num_services": 7,
+        "path": "/docker-compose.yml"
+    },
+    "langs": [
+        "c#",
+        "golang",
+        "css"
+    ],
+    "languages": [
+        "css",
+        "c#"
+    ],
+    "num_buses": 0,
+    "dockers": [
+        {
+            "keywords": [
+                "npm",
+                "apk",
+                "app",
+                "add",
+                "make"
+            ],
+            "dbs": [],
+            "langs": [],
+            "from_full": "nginx:alpine",
+            "from": "nginx",
+            "monitors": [],
+            "cmd_keywords": [
+                "nginx",
+                "off",
+                "daemon"
+            ],
+            "servers": [],
+            "gates": [
+                "nginx"
+            ],
+            "path": "/admin/frontend/Dockerfile",
+            "cmd": "nginx -g daemon off;",
+            "buses": [],
+            "discos": []
+        },
+        {
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "dbs": [],
+            "langs": [],
+            "from_full": "node:alpine",
+            "from": "node",
+            "monitors": [],
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "path": "/microserviceNodeJs/Dockerfile",
+            "cmd": "npm start",
+            "buses": [],
+            "discos": []
+        },
+        {
+            "keywords": [
+                "admin",
+                "skoruba",
+                "identityserver",
+                "dotnet",
+                "csproj"
+            ],
+            "dbs": [],
+            "langs": [],
+            "from_full": "microsoft/dotnet:aspnetcore-runtime",
+            "from": "microsoft/dotnet",
+            "monitors": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "gates": [],
+            "path": "/IdentityServer4.Admin/src/Skoruba.IdentityServer4.Admin/Dockerfile",
+            "cmd": "",
+            "buses": [],
+            "discos": []
+        },
+        {
+            "keywords": [
+                "identity",
+                "identityserver",
+                "skoruba",
+                "sts",
+                "dotnet"
+            ],
+            "dbs": [],
+            "langs": [],
+            "from_full": "microsoft/dotnet:aspnetcore-runtime",
+            "from": "microsoft/dotnet",
+            "monitors": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "gates": [],
+            "path": "/IdentityServer4.Admin/src/Skoruba.IdentityServer4.STS.Identity/Dockerfile",
+            "cmd": "",
+            "buses": [],
+            "discos": []
+        },
+        {
+            "keywords": [
+                "github",
+                "get",
+                "redis",
+                "com",
+                "mux"
+            ],
+            "dbs": [
+                "redis"
+            ],
+            "langs": [
+                "golang"
+            ],
+            "from_full": "golang",
+            "from": "golang",
+            "monitors": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "gates": [],
+            "path": "/microserviceGo/Dockerfile",
+            "cmd": "",
+            "buses": [],
+            "discos": []
+        }
+    ],
+    "buses": [],
+    "num_discos": 0,
+    "num_servers": 2,
+    "num_dbs": 2,
+    "name": "devremoto/featuretoggle",
+    "num_monitors": 0,
+    "avg_size_service": 3985.4,
+    "num_services": 7,
+    "num_langs": 3
+}

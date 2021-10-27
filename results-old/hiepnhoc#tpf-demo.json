@@ -1,0 +1,457 @@
+{
+    "size": 68102,
+    "num_servers": 1,
+    "dbs": [
+        "mongo",
+        "postgresql"
+    ],
+    "files": [
+        {
+            "path": "/tpfmicroservicecqrs/pom.xml",
+            "gates": [
+                "gateway"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/tpfmicroservicecqrs/tpf-microservice-config/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/tpfmicroservicecqrs/tpf-microservice-common/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/tpfmicroservicecqrs/tpf-microservice-myservice/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [
+                "mongodb",
+                "mongo",
+                "postgresql"
+            ],
+            "monitors": []
+        },
+        {
+            "path": "/tpfmicroservicecqrs/tpf-microservice-gateway/pom.xml",
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [
+                "postgresql"
+            ],
+            "monitors": []
+        },
+        {
+            "path": "/tpfmicroservicecqrs/tpf-microservice-discovery/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/tpfrabbitconsumer/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "amqp",
+                "rabbitmq",
+                "mqtt"
+            ],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "structure": {
+        "num_services": 8,
+        "services": [
+            {
+                "name": "postgres",
+                "image": "postgres",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "postgres",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "gateway-service",
+                "image": "tpf/tpf-microservice-gateway",
+                "depends_on": [
+                    "config-service",
+                    "discovery-service"
+                ],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "servers": [],
+                "image_full": "tpf/tpf-microservice-gateway",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "config-service",
+                "image": "tpf/tpf-microservice-config",
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "tpf/tpf-microservice-config",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "rabbitmq",
+                "image": "rabbitmq",
+                "depends_on": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "servers": [],
+                "image_full": "rabbitmq:3-management",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "discovery-service",
+                "image": "tpf/tpf-microservice-discovery",
+                "depends_on": [
+                    "config-service"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "tpf/tpf-microservice-discovery",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "command-service",
+                "image": "tpf/tpf-microservice-myservice",
+                "depends_on": [
+                    "rabbitmq",
+                    "discovery-service",
+                    "config-service"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "tpf/tpf-microservice-myservice",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "oauth2svr",
+                "image": "openjdk",
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "openjdk:8",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "haproxy",
+                "image": "haproxy",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "haproxy:latest",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            }
+        ],
+        "path": "/tpfmicroservicecqrs/docker-compose.yml",
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "shared_dbs": false,
+            "services": []
+        }
+    },
+    "buses": [
+        "amqp",
+        "rabbitmq",
+        "mqtt"
+    ],
+    "images": [
+        "haproxy",
+        "openjdk",
+        "rabbitmq"
+    ],
+    "num_discos": 1,
+    "url": "git://github.com/hiepnhoc/tpf-demo.git",
+    "num_services": 8,
+    "langs": [
+        "shell",
+        "java",
+        "bash"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "num_gates": 1,
+    "shared_dbs": false,
+    "num_files": 16,
+    "num_monitors": 0,
+    "gates": [
+        "zuul"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "num_langs": 3,
+    "languages": [
+        "java",
+        "shell"
+    ],
+    "monitors": [],
+    "name": "hiepnhoc/tpf-demo",
+    "num_buses": 3,
+    "avg_size_service": 8512.75,
+    "dockers": [
+        {
+            "path": "/tpfmicroservicecqrs/tpf-microservice-config/src/main/docker/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "touch",
+                "app",
+                "jar"
+            ],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8-jre-slim",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/tpfmicroservicecqrs/tpf-microservice-common/src/main/docker/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "touch",
+                "app",
+                "jar"
+            ],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8-jre-slim",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/tpfmicroservicecqrs/tpf-microservice-myservice/src/main/docker/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "bash"
+            ],
+            "cmd": "",
+            "keywords": [
+                "touch",
+                "wait",
+                "chmod",
+                "app",
+                "jar"
+            ],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8-jre-slim",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/tpfmicroservicecqrs/tpf-microservice-gateway/src/main/docker/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "bash"
+            ],
+            "cmd": "",
+            "keywords": [
+                "touch",
+                "wait",
+                "chmod",
+                "app",
+                "jar"
+            ],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8-jre-slim",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/tpfmicroservicecqrs/tpf-microservice-discovery/src/main/docker/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "bash"
+            ],
+            "cmd": "",
+            "keywords": [
+                "touch",
+                "wait",
+                "chmod",
+                "app",
+                "jar"
+            ],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8-jre-slim",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/fico-deploy-docker/haproxy/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "bash"
+            ],
+            "cmd": "",
+            "keywords": [
+                "docker",
+                "group",
+                "haproxy",
+                "useradd",
+                "user"
+            ],
+            "from": "haproxy",
+            "buses": [],
+            "from_full": "haproxy:latest",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/fico-deploy-docker/oauth2/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "bash"
+            ],
+            "cmd": "",
+            "keywords": [
+                "docker",
+                "group",
+                "oauth",
+                "useradd",
+                "user"
+            ],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/fico-deploy-docker/rabbitmq/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "bash"
+            ],
+            "cmd": "",
+            "keywords": [
+                "docker",
+                "group",
+                "rabbitmq",
+                "useradd",
+                "user"
+            ],
+            "from": "rabbitmq",
+            "buses": [
+                "rabbitmq"
+            ],
+            "from_full": "rabbitmq:3-management",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        }
+    ],
+    "num_dbs": 2,
+    "num_dockers": 8
+}

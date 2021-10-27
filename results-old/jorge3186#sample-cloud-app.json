@@ -1,0 +1,278 @@
+{
+    "gates": [
+        "nginx"
+    ],
+    "images": [
+        "node",
+        "nginx",
+        "centos"
+    ],
+    "num_dbs": 0,
+    "structure": {
+        "num_services": 6,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "consul:1.6",
+                "gates": [],
+                "image": "consul",
+                "depends_on": [],
+                "dbs": [],
+                "name": "discovery",
+                "buses": [],
+                "servers": [],
+                "discos": [
+                    "consul"
+                ],
+                "monitors": []
+            },
+            {
+                "image_full": ".",
+                "gates": [],
+                "image": ".",
+                "depends_on": [
+                    "discovery",
+                    "config"
+                ],
+                "dbs": [],
+                "name": "exchangerates",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": ".",
+                "gates": [],
+                "image": ".",
+                "depends_on": [],
+                "dbs": [],
+                "name": "config",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": ".",
+                "gates": [],
+                "image": ".",
+                "depends_on": [
+                    "discovery",
+                    "config"
+                ],
+                "dbs": [],
+                "name": "currencyconverter",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": ".",
+                "gates": [],
+                "image": ".",
+                "depends_on": [
+                    "discovery"
+                ],
+                "dbs": [],
+                "name": "gateway",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": ".",
+                "gates": [],
+                "image": ".",
+                "depends_on": [
+                    "discovery",
+                    "currencyconverter",
+                    "exchangerates"
+                ],
+                "dbs": [],
+                "name": "ui",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "shared_dbs": false,
+            "names": []
+        }
+    },
+    "num_files": 7,
+    "num_gates": 1,
+    "discos": [
+        "consul"
+    ],
+    "num_dockers": 5,
+    "shared_dbs": false,
+    "languages": [
+        "java",
+        "vue"
+    ],
+    "name": "jorge3186/sample-cloud-app",
+    "num_langs": 2,
+    "avg_size_service": 95.0,
+    "monitors": [],
+    "num_servers": 1,
+    "num_services": 6,
+    "dbs": [],
+    "langs": [
+        "java",
+        "vue"
+    ],
+    "dockers": [
+        {
+            "gates": [],
+            "path": "/config/docker/Dockerfile",
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "centos",
+            "discos": [],
+            "from_full": "centos:7",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": [
+                "configuser",
+                "yum",
+                "home",
+                "useradd",
+                "install"
+            ]
+        },
+        {
+            "gates": [],
+            "path": "/currency-converter/docker/Dockerfile",
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "centos",
+            "discos": [],
+            "from_full": "centos:7",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": [
+                "curruser",
+                "yum",
+                "install",
+                "home",
+                "entrypoint"
+            ]
+        },
+        {
+            "gates": [
+                "nginx"
+            ],
+            "path": "/gateway/Dockerfile",
+            "langs": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "nginx",
+            "discos": [
+                "consul"
+            ],
+            "from_full": "nginx:1.17.4",
+            "cmd": "/usr/local/app-config/entrypoint.sh",
+            "monitors": [],
+            "cmd_keywords": [
+                "local",
+                "usr",
+                "config",
+                "entrypoint",
+                "app"
+            ],
+            "keywords": [
+                "consul",
+                "template",
+                "usr",
+                "local",
+                "apt"
+            ]
+        },
+        {
+            "gates": [],
+            "path": "/ui/docker/Dockerfile",
+            "langs": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "discos": [],
+            "from_full": "node:10",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": [
+                "yarn",
+                "install",
+                "npm",
+                "chmod",
+                "build"
+            ]
+        },
+        {
+            "gates": [],
+            "path": "/exchange-rates/docker/Dockerfile",
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "centos",
+            "discos": [],
+            "from_full": "centos:7",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": [
+                "exrtuser",
+                "yum",
+                "install",
+                "home",
+                "entrypoint"
+            ]
+        }
+    ],
+    "buses": [],
+    "servers": [
+        "node"
+    ],
+    "size": 475,
+    "files": [
+        {
+            "gates": [],
+            "path": "/ui/package.json",
+            "discos": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": []
+        }
+    ],
+    "num_buses": 0,
+    "num_monitors": 0,
+    "url": "git://github.com/jorge3186/sample-cloud-app.git",
+    "num_discos": 1
+}

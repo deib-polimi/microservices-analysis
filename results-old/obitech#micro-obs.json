@@ -1,0 +1,233 @@
+{
+    "num_langs": 1,
+    "dbs": [
+        "redis"
+    ],
+    "num_servers": 0,
+    "languages": [
+        "go"
+    ],
+    "num_discos": 0,
+    "avg_size_service": 3121.0,
+    "dockers": [
+        {
+            "gates": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "",
+            "servers": [],
+            "keywords": [
+                "download",
+                "mod",
+                "make",
+                "build"
+            ],
+            "from": "alpine",
+            "cmd_keywords": [],
+            "from_full": "alpine:latest",
+            "path": "/Dockerfile",
+            "buses": [],
+            "langs": [],
+            "discos": []
+        }
+    ],
+    "num_gates": 0,
+    "buses": [],
+    "langs": [
+        "go"
+    ],
+    "num_buses": 0,
+    "discos": [],
+    "num_dbs": 1,
+    "num_files": 2,
+    "url": "git://github.com/obitech/micro-obs.git",
+    "shared_dbs": true,
+    "monitors": [
+        "prometheus",
+        "grafana"
+    ],
+    "num_services": 11,
+    "files": [],
+    "servers": [],
+    "num_monitors": 2,
+    "gates": [],
+    "size": 3121,
+    "num_dockers": 1,
+    "images": [
+        "alpine"
+    ],
+    "structure": {
+        "path": "/deploy/docker/docker-compose.yml",
+        "services": [
+            {
+                "image": "grafana/grafana",
+                "depends_on": [],
+                "dbs": [],
+                "name": "grafana",
+                "image_full": "grafana/grafana:5.4.2",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": [
+                    "grafana"
+                ]
+            },
+            {
+                "image": "oliver006/redis_exporter",
+                "depends_on": [
+                    "redis-item",
+                    "redis-order"
+                ],
+                "dbs": [
+                    "redis"
+                ],
+                "name": "redis-exporter",
+                "image_full": "oliver006/redis_exporter:v0.24.0",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "redis",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "name": "redis-item",
+                "image_full": "redis:5",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "jaegertracing/all-in-one",
+                "depends_on": [],
+                "dbs": [],
+                "name": "jaeger",
+                "image_full": "jaegertracing/all-in-one:1.8",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "obitech/micro-obs",
+                "depends_on": [
+                    "redis-order",
+                    "logstash"
+                ],
+                "dbs": [],
+                "name": "order",
+                "image_full": "obitech/micro-obs:master",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "elastic/kibana",
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "dbs": [],
+                "name": "kibana",
+                "image_full": "elastic/kibana:6.5.4",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "elastic/elasticsearch",
+                "depends_on": [],
+                "dbs": [],
+                "name": "elasticsearch",
+                "image_full": "elastic/elasticsearch:6.5.4",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "elastic/logstash",
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "dbs": [],
+                "name": "logstash",
+                "image_full": "elastic/logstash:6.5.4",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "prom/prometheus",
+                "depends_on": [],
+                "dbs": [],
+                "name": "prometheus",
+                "image_full": "prom/prometheus:v2.5.0",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": [
+                    "prometheus"
+                ]
+            },
+            {
+                "image": "redis",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "name": "redis-order",
+                "image_full": "redis:5",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "obitech/micro-obs",
+                "depends_on": [
+                    "redis-item",
+                    "logstash"
+                ],
+                "dbs": [],
+                "name": "item",
+                "image_full": "obitech/micro-obs:master",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": true,
+            "num": 3,
+            "services": [
+                "redis-exporter",
+                "redis-item",
+                "redis-order"
+            ]
+        },
+        "num_services": 11
+    },
+    "name": "obitech/micro-obs"
+}

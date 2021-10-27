@@ -1,0 +1,370 @@
+{
+    "dbs": [
+        "mongo"
+    ],
+    "name": "mycodebad/microservices-example",
+    "num_langs": 3,
+    "languages": [
+        "javascript",
+        "css",
+        "typescript"
+    ],
+    "shared_dbs": true,
+    "servers": [
+        "express",
+        "node",
+        "mongoose"
+    ],
+    "langs": [
+        "typescript",
+        "javascript",
+        "css"
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "gateway",
+                "node",
+                "dist",
+                "server"
+            ],
+            "discos": [],
+            "cmd": "node /gateway/dist/server.js",
+            "path": "/api-gateway/Dockerfile",
+            "from_full": "node:8",
+            "gates": [
+                "gateway"
+            ],
+            "from": "node",
+            "langs": [],
+            "keywords": [
+                "npm",
+                "gateway",
+                "for",
+                "install",
+                "chmod"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "node",
+                "dist",
+                "courses",
+                "server"
+            ],
+            "discos": [],
+            "cmd": "node /courses/dist/server.js",
+            "path": "/course-service/Dockerfile",
+            "from_full": "node:8",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "keywords": [
+                "npm",
+                "for",
+                "install",
+                "chmod",
+                "build"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/frontend/Dockerfile",
+            "from_full": "node:8",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "keywords": [
+                "for",
+                "install",
+                "chmod",
+                "npm",
+                "wait"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "node",
+                "app",
+                "dist",
+                "server"
+            ],
+            "discos": [],
+            "cmd": "node /app/dist/server.js",
+            "path": "/users-service/Dockerfile",
+            "from_full": "node:8",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "keywords": [
+                "npm",
+                "for",
+                "install",
+                "chmod",
+                "build"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "node",
+                "dist",
+                "email",
+                "server"
+            ],
+            "discos": [],
+            "cmd": "node /email/dist/server.js",
+            "path": "/email-service/Dockerfile",
+            "from_full": "node:8",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "keywords": [
+                "npm",
+                "for",
+                "install",
+                "chmod",
+                "email"
+            ]
+        }
+    ],
+    "gates": [
+        "gateway"
+    ],
+    "size": 7479,
+    "num_dockers": 5,
+    "num_discos": 0,
+    "num_buses": 1,
+    "buses": [
+        "rabbitmq"
+    ],
+    "images": [
+        "node"
+    ],
+    "num_servers": 3,
+    "num_services": 7,
+    "monitors": [],
+    "structure": {
+        "services": [
+            {
+                "buses": [],
+                "image": "./api-gateway",
+                "dbs": [],
+                "gates": [
+                    "gateway"
+                ],
+                "image_full": "./api-gateway",
+                "monitors": [],
+                "name": "gateway",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "rabbit"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "gates": [],
+                "image_full": "mongo",
+                "monitors": [],
+                "name": "mongo",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "./email-service",
+                "dbs": [],
+                "gates": [],
+                "image_full": "./email-service",
+                "monitors": [],
+                "name": "email",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "rabbit"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "./users-service",
+                "dbs": [],
+                "gates": [],
+                "image_full": "./users-service",
+                "monitors": [],
+                "name": "users",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "mongo"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "./course-service",
+                "dbs": [],
+                "gates": [],
+                "image_full": "./course-service",
+                "monitors": [],
+                "name": "courses",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "mongo"
+                ]
+            },
+            {
+                "buses": [
+                    "rabbitmq"
+                ],
+                "image": "rabbitmq",
+                "dbs": [],
+                "gates": [],
+                "image_full": "rabbitmq:latest",
+                "monitors": [],
+                "name": "rabbit",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "./frontend",
+                "dbs": [],
+                "gates": [],
+                "image_full": "./frontend",
+                "monitors": [],
+                "name": "frontend",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "rabbit"
+                ]
+            }
+        ],
+        "num_services": 7,
+        "detected_dbs": {
+            "num": 1,
+            "shared_dbs": true,
+            "names": [
+                "mongo"
+            ],
+            "services": [
+                "mongo"
+            ]
+        },
+        "path": "/docker-compose.yml"
+    },
+    "discos": [],
+    "num_files": 11,
+    "num_dbs": 1,
+    "num_monitors": 0,
+    "num_gates": 1,
+    "url": "git://github.com/mycodebad/microservices-example.git",
+    "avg_size_service": 1495.8,
+    "files": [
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/api-gateway/package.json"
+        },
+        {
+            "buses": [],
+            "dbs": [
+                "mongo",
+                "mongodb"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "express",
+                "node",
+                "mongoose"
+            ],
+            "path": "/course-service/package.json"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "path": "/frontend/package.json"
+        },
+        {
+            "buses": [],
+            "dbs": [
+                "mongo",
+                "mongodb"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "express",
+                "node",
+                "mongoose"
+            ],
+            "path": "/users-service/package.json"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/email-service/package.json"
+        }
+    ]
+}

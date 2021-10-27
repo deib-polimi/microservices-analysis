@@ -1,0 +1,164 @@
+{
+    "buses": [],
+    "num_servers": 0,
+    "languages": [
+        "dockerfile"
+    ],
+    "dbs": [
+        "redis",
+        "postgresql"
+    ],
+    "num_services": 4,
+    "avg_size_service": 24.5,
+    "servers": [],
+    "structure": {
+        "num_services": 4,
+        "detected_dbs": {
+            "services": [
+                "cache"
+            ],
+            "shared_dbs": false,
+            "num": 1,
+            "names": [
+                "redis"
+            ]
+        },
+        "services": [
+            {
+                "image": "postgres",
+                "buses": [],
+                "image_full": "postgres:alpine",
+                "dbs": [],
+                "depends_on": [],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "db",
+                "gates": []
+            },
+            {
+                "image": "redis",
+                "buses": [],
+                "image_full": "redis:alpine",
+                "dbs": [
+                    "redis"
+                ],
+                "depends_on": [],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "cache",
+                "gates": []
+            },
+            {
+                "image": "stolz/nginx",
+                "buses": [],
+                "image_full": "stolz/nginx",
+                "dbs": [],
+                "depends_on": [],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "web",
+                "gates": [
+                    "nginx"
+                ]
+            },
+            {
+                "image": "stolz/php",
+                "buses": [],
+                "image_full": "stolz/php",
+                "dbs": [],
+                "depends_on": [],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "php",
+                "gates": []
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "monitors": [],
+    "num_buses": 0,
+    "images": [
+        "nginx",
+        "php"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_gates": 1,
+    "num_langs": 2,
+    "langs": [
+        "dockerfile",
+        "php"
+    ],
+    "url": "git://github.com/Stolz/laravel-docker-stack.git",
+    "num_discos": 0,
+    "num_files": 3,
+    "files": [],
+    "shared_dbs": false,
+    "num_monitors": 0,
+    "name": "Stolz/laravel-docker-stack",
+    "num_dbs": 2,
+    "discos": [],
+    "dockers": [
+        {
+            "langs": [],
+            "dbs": [],
+            "path": "/nginx/Dockerfile",
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "www",
+                "mkdir",
+                "mounted",
+                "not",
+                "chown"
+            ],
+            "cmd": "",
+            "buses": [],
+            "from_full": "nginx:alpine",
+            "from": "nginx",
+            "discos": [],
+            "cmd_keywords": [],
+            "gates": [
+                "nginx"
+            ]
+        },
+        {
+            "langs": [
+                "php"
+            ],
+            "dbs": [
+                "postgresql"
+            ],
+            "path": "/php/Dockerfile",
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "www",
+                "redis",
+                "tar",
+                "php",
+                "phpredis"
+            ],
+            "cmd": "supervisord --nodaemon --configuration /etc/supervisord.conf",
+            "buses": [],
+            "from_full": "php:fpm-alpine",
+            "from": "php",
+            "discos": [],
+            "cmd_keywords": [
+                "supervisord",
+                "etc",
+                "nodaemon",
+                "configuration",
+                "conf"
+            ],
+            "gates": []
+        }
+    ],
+    "num_dockers": 2,
+    "size": 49
+}

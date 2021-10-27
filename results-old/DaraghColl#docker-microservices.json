@@ -1,0 +1,313 @@
+{
+    "size": 24908,
+    "num_discos": 0,
+    "num_services": 4,
+    "num_monitors": 0,
+    "num_langs": 6,
+    "dockers": [
+        {
+            "dbs": [],
+            "cmd": "node app.js",
+            "gates": [],
+            "from_full": "node:10",
+            "langs": [],
+            "keywords": [
+                "npm",
+                "install"
+            ],
+            "path": "/backend/api-gateway/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "node",
+                "app"
+            ],
+            "from": "node",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "cmd": "go build ./app",
+            "gates": [],
+            "from_full": "golang:latest",
+            "langs": [
+                "golang"
+            ],
+            "keywords": [
+                "get",
+                "gorilla",
+                "github",
+                "com",
+                "mux"
+            ],
+            "path": "/backend/go-api/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "build",
+                "app"
+            ],
+            "from": "golang",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "cmd": "",
+            "gates": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [],
+            "keywords": [],
+            "path": "/backend/java-api/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "cmd": "node app.js",
+            "gates": [],
+            "from_full": "node:10",
+            "langs": [],
+            "keywords": [
+                "npm",
+                "install"
+            ],
+            "path": "/backend/node-api/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "node",
+                "app"
+            ],
+            "from": "node",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "cmd": "python api.py",
+            "gates": [],
+            "from_full": "python:3-onbuild",
+            "langs": [
+                "python"
+            ],
+            "keywords": [],
+            "path": "/backend/python-api/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "python",
+                "api"
+            ],
+            "from": "python",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "cmd": "",
+            "gates": [],
+            "from_full": "tomcat:8.5.11",
+            "langs": [],
+            "keywords": [],
+            "path": "/angular-frontend/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "from": "tomcat",
+            "discos": [],
+            "servers": [
+                "tomcat"
+            ],
+            "monitors": []
+        }
+    ],
+    "files": [
+        {
+            "dbs": [],
+            "gates": [],
+            "discos": [],
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/backend/python-api/requirements.txt",
+            "buses": []
+        },
+        {
+            "dbs": [],
+            "gates": [],
+            "discos": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/backend/java-api/build.gradle",
+            "buses": []
+        },
+        {
+            "dbs": [],
+            "gates": [],
+            "discos": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/backend/java-api/pom.xml",
+            "buses": []
+        },
+        {
+            "dbs": [],
+            "gates": [
+                "gateway"
+            ],
+            "discos": [],
+            "monitors": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/backend/api-gateway/package.json",
+            "buses": []
+        },
+        {
+            "dbs": [],
+            "gates": [],
+            "discos": [],
+            "monitors": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/backend/node-api/package.json",
+            "buses": []
+        },
+        {
+            "dbs": [],
+            "gates": [],
+            "discos": [],
+            "monitors": [],
+            "servers": [
+                "node"
+            ],
+            "path": "/angular-frontend/package.json",
+            "buses": []
+        }
+    ],
+    "langs": [
+        "python",
+        "typescript",
+        "html",
+        "javascript",
+        "java",
+        "golang"
+    ],
+    "url": "git://github.com/DaraghColl/docker-microservices.git",
+    "buses": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "dbs": [],
+                "image_full": "./java-api",
+                "image": "./java-api",
+                "gates": [],
+                "name": "java-service",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "./python-api",
+                "image": "./python-api",
+                "gates": [],
+                "name": "python-service",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "./api-gateway",
+                "image": "./api-gateway",
+                "gates": [
+                    "gateway"
+                ],
+                "name": "gateway-service",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "./node-api",
+                "image": "./node-api",
+                "gates": [],
+                "name": "node-service",
+                "discos": [],
+                "monitors": [],
+                "servers": [
+                    "node"
+                ],
+                "depends_on": [],
+                "buses": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [],
+            "services": [],
+            "shared_dbs": false,
+            "num": 0
+        },
+        "num_services": 4,
+        "path": "/backend/docker-compose.yml"
+    },
+    "name": "DaraghColl/docker-microservices",
+    "num_buses": 0,
+    "servers": [
+        "express",
+        "flask",
+        "node",
+        "tomcat",
+        "spring"
+    ],
+    "num_files": 13,
+    "num_dbs": 0,
+    "num_gates": 1,
+    "gates": [
+        "gateway"
+    ],
+    "monitors": [],
+    "avg_size_service": 4151.333333333333,
+    "languages": [
+        "typescript",
+        "java",
+        "javascript",
+        "html"
+    ],
+    "num_dockers": 6,
+    "dbs": [],
+    "num_servers": 5,
+    "discos": [],
+    "images": [
+        "python",
+        "openjdk",
+        "golang",
+        "node",
+        "tomcat"
+    ]
+}

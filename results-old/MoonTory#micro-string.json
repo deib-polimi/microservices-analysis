@@ -1,0 +1,263 @@
+{
+    "num_discos": 0,
+    "buses": [],
+    "gates": [
+        "nginx"
+    ],
+    "num_servers": 3,
+    "num_gates": 1,
+    "num_dbs": 1,
+    "monitors": [],
+    "num_langs": 3,
+    "num_files": 9,
+    "structure": {
+        "services": [
+            {
+                "name": "core-node",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "gcr.io/micro-string/core-node",
+                "image_full": "gcr.io/micro-string/core-node:latest",
+                "monitors": [],
+                "depends_on": [
+                    "mongo"
+                ]
+            },
+            {
+                "name": "adminmongo",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "mrvautin/adminmongo",
+                "image_full": "mrvautin/adminmongo",
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "core-go",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "gcr.io/micro-string/core-go",
+                "image_full": "gcr.io/micro-string/core-go:latest",
+                "monitors": [],
+                "depends_on": [
+                    "mongo"
+                ]
+            },
+            {
+                "name": "proxy",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "dbs": [],
+                "image": "nginx",
+                "image_full": "nginx:alpine",
+                "monitors": [],
+                "depends_on": [
+                    "core-node"
+                ]
+            },
+            {
+                "name": "mongo",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "image": "mongo",
+                "image_full": "mongo",
+                "monitors": [],
+                "depends_on": []
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "names": [
+                "mongo"
+            ],
+            "num": 1,
+            "services": [
+                "mongo"
+            ],
+            "shared_dbs": true
+        },
+        "num_services": 5
+    },
+    "servers": [
+        "express",
+        "mongoose",
+        "node"
+    ],
+    "shared_dbs": true,
+    "langs": [
+        "typescript",
+        "golang",
+        "go"
+    ],
+    "dockers": [
+        {
+            "discos": [],
+            "cmd": "yarn start",
+            "buses": [],
+            "path": "/packages/core/Dockerfile",
+            "from": "node",
+            "cmd_keywords": [
+                "start",
+                "yarn"
+            ],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "keywords": [
+                "yarn",
+                "install",
+                "mkdir",
+                "build",
+                "core"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "node:10-alpine",
+            "langs": []
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/packages/nginx/Dockerfile",
+            "from": "nginx",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "conf",
+                "etc",
+                "nginx",
+                "default"
+            ],
+            "dbs": [],
+            "gates": [
+                "nginx"
+            ],
+            "from_full": "nginx:alpine",
+            "langs": []
+        },
+        {
+            "discos": [],
+            "cmd": "./main",
+            "buses": [],
+            "path": "/packages/core-go/Dockerfile",
+            "from": "golang",
+            "cmd_keywords": [
+                "main"
+            ],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "apk",
+                "get",
+                "gorilla",
+                "github",
+                "com"
+            ],
+            "dbs": [
+                "mongodb"
+            ],
+            "gates": [],
+            "from_full": "golang:1.12-alpine",
+            "langs": [
+                "golang"
+            ]
+        }
+    ],
+    "name": "MoonTory/micro-string",
+    "discos": [],
+    "avg_size_service": 25.0,
+    "num_monitors": 0,
+    "images": [
+        "golang",
+        "nginx",
+        "node"
+    ],
+    "url": "git://github.com/MoonTory/micro-string.git",
+    "files": [
+        {
+            "discos": [],
+            "buses": [],
+            "path": "/package.json",
+            "dbs": [],
+            "gates": [],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "buses": [],
+            "path": "/packages/core/package.json",
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "express",
+                "mongoose",
+                "node"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "buses": [],
+            "path": "/packages/common/package.json",
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "buses": [],
+            "path": "/packages/client/package.json",
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "buses": [],
+            "path": "/packages/core-go/package.json",
+            "dbs": [],
+            "gates": [],
+            "servers": [],
+            "monitors": []
+        }
+    ],
+    "size": 75,
+    "languages": [
+        "typescript",
+        "go"
+    ],
+    "dbs": [
+        "mongo"
+    ],
+    "num_buses": 0,
+    "num_services": 5,
+    "num_dockers": 3
+}

@@ -1,0 +1,234 @@
+{
+    "name": "kernel87i/microservices-Docker4",
+    "num_dbs": 1,
+    "num_services": 4,
+    "num_files": 6,
+    "servers": [
+        "express",
+        "flask"
+    ],
+    "url": "git://github.com/kernel87i/microservices-Docker4.git",
+    "discos": [],
+    "structure": {
+        "path": "/docker-monolit/src/docker-compose.yml",
+        "services": [
+            {
+                "name": "ui",
+                "image_full": "${USERNAME}/ui:${TAG}",
+                "image": "${USERNAME}/ui",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "post",
+                "image_full": "${USERNAME}/post:${TAG}",
+                "image": "${USERNAME}/post",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "post_db",
+                "image_full": "mongo:3.2",
+                "image": "mongo",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "comment",
+                "image_full": "${USERNAME}/comment:${TAG}",
+                "image": "${USERNAME}/comment",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [
+                "post_db"
+            ],
+            "num": 1,
+            "names": [
+                "mongo"
+            ]
+        },
+        "num_services": 4
+    },
+    "num_buses": 0,
+    "size": 39,
+    "dockers": [
+        {
+            "cmd": "/start.sh",
+            "servers": [
+                "express"
+            ],
+            "langs": [
+                "ruby"
+            ],
+            "path": "/docker-monolit/Dockerfile",
+            "discos": [],
+            "from": "ubuntu",
+            "buses": [],
+            "from_full": "ubuntu:16.04",
+            "cmd_keywords": [
+                "start"
+            ],
+            "keywords": [
+                "git",
+                "install",
+                "apt",
+                "get",
+                "ruby"
+            ],
+            "gates": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "monitors": []
+        },
+        {
+            "cmd": "python3 post_app.py",
+            "servers": [],
+            "langs": [
+                "python"
+            ],
+            "path": "/docker-monolit/src/post-py/Dockerfile",
+            "discos": [],
+            "from": "python",
+            "buses": [],
+            "from_full": "python:3.6.0-alpine",
+            "cmd_keywords": [
+                "post",
+                "app",
+                "python"
+            ],
+            "keywords": [
+                "pip",
+                "apk",
+                "openssl",
+                "build",
+                "dev"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "puma",
+            "servers": [],
+            "langs": [
+                "ruby"
+            ],
+            "path": "/docker-monolit/src/ui/Dockerfile",
+            "discos": [],
+            "from": "ubuntu",
+            "buses": [],
+            "from_full": "ubuntu:16.04",
+            "cmd_keywords": [
+                "puma"
+            ],
+            "keywords": [
+                "install",
+                "apt",
+                "get",
+                "ruby",
+                "bundle"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "puma",
+            "servers": [],
+            "langs": [
+                "ruby"
+            ],
+            "path": "/docker-monolit/src/comment/Dockerfile",
+            "discos": [],
+            "from": "ruby",
+            "buses": [],
+            "from_full": "ruby:2.2",
+            "cmd_keywords": [
+                "puma"
+            ],
+            "keywords": [
+                "apt",
+                "get",
+                "install",
+                "bundle",
+                "update"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "languages": [
+        "ruby",
+        "python",
+        "html"
+    ],
+    "dbs": [
+        "mongo"
+    ],
+    "monitors": [
+        "prometheus"
+    ],
+    "shared_dbs": false,
+    "avg_size_service": 9.75,
+    "num_monitors": 1,
+    "files": [
+        {
+            "monitors": [
+                "prometheus"
+            ],
+            "servers": [
+                "flask"
+            ],
+            "path": "/docker-monolit/src/post-py/requirements.txt",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        }
+    ],
+    "langs": [
+        "html",
+        "ruby",
+        "python"
+    ],
+    "num_servers": 2,
+    "buses": [],
+    "num_langs": 3,
+    "num_gates": 0,
+    "num_discos": 0,
+    "images": [
+        "ruby",
+        "ubuntu",
+        "python"
+    ],
+    "num_dockers": 4,
+    "gates": []
+}

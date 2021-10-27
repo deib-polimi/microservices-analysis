@@ -1,0 +1,195 @@
+{
+    "size": 70,
+    "num_servers": 1,
+    "dbs": [],
+    "files": [
+        {
+            "path": "/todo-service/requirements.txt",
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "structure": {
+        "num_services": 8,
+        "services": [
+            {
+                "name": "konga",
+                "image": "pantsel/konga",
+                "depends_on": [
+                    "db"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "pantsel/konga:next",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "keycloak",
+                "image": "quay.io/keycloak/keycloak",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "quay.io/keycloak/keycloak:9.0.3",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "kong",
+                "image": "${KONG_DOCKER_TAG",
+                "depends_on": [
+                    "db"
+                ],
+                "buses": [],
+                "gates": [
+                    "kong"
+                ],
+                "servers": [],
+                "image_full": "${KONG_DOCKER_TAG:-kong:latest}",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "todo-service",
+                "image": "hernaj34/microservice-todo",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "hernaj34/microservice-todo",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "kong-migrations",
+                "image": "${KONG_DOCKER_TAG",
+                "depends_on": [
+                    "db"
+                ],
+                "buses": [],
+                "gates": [
+                    "kong"
+                ],
+                "servers": [],
+                "image_full": "${KONG_DOCKER_TAG:-kong:latest}",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "konga-prepare",
+                "image": "pantsel/konga",
+                "depends_on": [
+                    "db"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "pantsel/konga:next",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "kong-migrations-up",
+                "image": "${KONG_DOCKER_TAG",
+                "depends_on": [
+                    "db"
+                ],
+                "buses": [],
+                "gates": [
+                    "kong"
+                ],
+                "servers": [],
+                "image_full": "${KONG_DOCKER_TAG:-kong:latest}",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "db",
+                "image": "postgres",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "postgres:9.5",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            }
+        ],
+        "path": "/kong-gateway/kong-compose/docker-compose.yml",
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "shared_dbs": false,
+            "services": []
+        }
+    },
+    "buses": [],
+    "images": [
+        "tiangolo/uwsgi-nginx-flask"
+    ],
+    "num_discos": 0,
+    "url": "git://github.com/hernaj34/microservices-play.git",
+    "num_services": 8,
+    "langs": [
+        "python"
+    ],
+    "discos": [],
+    "num_gates": 2,
+    "shared_dbs": false,
+    "num_files": 3,
+    "num_monitors": 0,
+    "gates": [
+        "kong",
+        "nginx"
+    ],
+    "servers": [
+        "flask"
+    ],
+    "num_langs": 1,
+    "languages": [
+        "python"
+    ],
+    "monitors": [],
+    "name": "hernaj34/microservices-play",
+    "num_buses": 0,
+    "avg_size_service": 70.0,
+    "dockers": [
+        {
+            "path": "/todo-service/Dockerfile",
+            "gates": [
+                "nginx"
+            ],
+            "servers": [
+                "flask"
+            ],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "from": "tiangolo/uwsgi-nginx-flask",
+            "buses": [],
+            "from_full": "tiangolo/uwsgi-nginx-flask:python3.6",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        }
+    ],
+    "num_dbs": 0,
+    "num_dockers": 1
+}

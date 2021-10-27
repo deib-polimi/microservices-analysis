@@ -1,0 +1,285 @@
+{
+    "dbs": [
+        "redis",
+        "mysql"
+    ],
+    "num_dbs": 2,
+    "shared_dbs": false,
+    "name": "mleyb/microservice-app",
+    "num_buses": 1,
+    "num_monitors": 0,
+    "monitors": [],
+    "langs": [
+        "c#"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "size": 39,
+    "languages": [
+        "c#"
+    ],
+    "num_langs": 1,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "./src/OrderProcessorService",
+                "name": "order-processor-service",
+                "depends_on": [
+                    "message-queue"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "./src/OrderProcessorService"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "./src/BillingService",
+                "name": "billing-service",
+                "depends_on": [
+                    "redis"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "./src/BillingService"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "nats",
+                "name": "message-queue",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [
+                    "nats"
+                ],
+                "gates": [],
+                "image_full": "nats"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "./src/OrderService",
+                "name": "order-service",
+                "depends_on": [
+                    "message-queue"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "./src/OrderService"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "redis"
+                ],
+                "image": "redis",
+                "name": "redis",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "redis"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "image": "mysql",
+                "name": "mysql",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "mysql"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "./src/InventoryService",
+                "name": "inventory-service",
+                "depends_on": [
+                    "mysql"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "./src/InventoryService"
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "redis",
+                "mysql"
+            ],
+            "names": [
+                "redis",
+                "mysql"
+            ],
+            "shared_dbs": false,
+            "num": 2
+        },
+        "num_services": 7
+    },
+    "servers": [],
+    "num_servers": 0,
+    "num_files": 7,
+    "images": [
+        "ubuntu",
+        "microsoft/dotnet",
+        "nginx",
+        "microsoft/aspnetcore"
+    ],
+    "buses": [
+        "nats"
+    ],
+    "avg_size_service": 6.5,
+    "num_services": 7,
+    "files": [],
+    "num_dockers": 6,
+    "dockers": [
+        {
+            "cmd": "",
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "microsoft/aspnetcore:2.0.0",
+            "path": "/src/InventoryService/Dockerfile",
+            "from": "microsoft/aspnetcore",
+            "monitors": [],
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "dotnet",
+                "restore",
+                "out",
+                "release",
+                "publish"
+            ]
+        },
+        {
+            "cmd": "",
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "microsoft/dotnet:2.0-runtime",
+            "path": "/src/OrderProcessorService/Dockerfile",
+            "from": "microsoft/dotnet",
+            "monitors": [],
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "dotnet",
+                "restore",
+                "out",
+                "release",
+                "publish"
+            ]
+        },
+        {
+            "cmd": "",
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "nginx",
+            "path": "/src/nginx/Dockerfile",
+            "from": "nginx",
+            "monitors": [],
+            "langs": [],
+            "gates": [
+                "nginx"
+            ],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": []
+        },
+        {
+            "cmd": "",
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "microsoft/aspnetcore:2.0.0",
+            "path": "/src/BillingService/Dockerfile",
+            "from": "microsoft/aspnetcore",
+            "monitors": [],
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "dotnet",
+                "restore",
+                "out",
+                "release",
+                "publish"
+            ]
+        },
+        {
+            "cmd": "",
+            "dbs": [
+                "redis"
+            ],
+            "buses": [],
+            "servers": [],
+            "from_full": "ubuntu",
+            "path": "/src/redis/Dockerfile",
+            "from": "ubuntu",
+            "monitors": [],
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "get",
+                "apt",
+                "install",
+                "update",
+                "redis"
+            ]
+        },
+        {
+            "cmd": "",
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "microsoft/aspnetcore:2.0.0",
+            "path": "/src/OrderService/Dockerfile",
+            "from": "microsoft/aspnetcore",
+            "monitors": [],
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "dotnet",
+                "restore",
+                "out",
+                "release",
+                "publish"
+            ]
+        }
+    ],
+    "num_discos": 0,
+    "discos": [],
+    "num_gates": 1,
+    "url": "git://github.com/mleyb/microservice-app.git"
+}

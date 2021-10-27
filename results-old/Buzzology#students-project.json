@@ -1,0 +1,180 @@
+{
+    "gates": [],
+    "num_buses": 1,
+    "url": "git://github.com/Buzzology/students-project.git",
+    "images": [
+        "base"
+    ],
+    "avg_size_service": 60.666666666666664,
+    "num_langs": 1,
+    "num_monitors": 0,
+    "num_dockers": 3,
+    "num_discos": 0,
+    "num_servers": 0,
+    "buses": [
+        "rabbitmq"
+    ],
+    "discos": [],
+    "dockers": [
+        {
+            "path": "/src/Services/Identity/Identity.Api/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "base",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "base",
+            "monitors": [],
+            "keywords": [
+                "identity",
+                "api",
+                "csproj",
+                "dotnet",
+                "publish"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/src/Services/Catalog/CatalogApi/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "base",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "base",
+            "monitors": [],
+            "keywords": [
+                "catalog",
+                "api",
+                "csproj",
+                "dotnet",
+                "build"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/src/ApiGateways/ApiGatewayBase/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "base",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "base",
+            "monitors": [],
+            "keywords": [
+                "csproj",
+                "dotnet",
+                "ocelotapigateway",
+                "publish",
+                "release"
+            ],
+            "buses": []
+        }
+    ],
+    "size": 182,
+    "name": "Buzzology/students-project",
+    "num_services": 5,
+    "dbs": [],
+    "shared_dbs": false,
+    "langs": [
+        "c#"
+    ],
+    "languages": [
+        "c#"
+    ],
+    "servers": [],
+    "num_files": 4,
+    "monitors": [],
+    "num_dbs": 0,
+    "num_gates": 0,
+    "files": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 5,
+        "detected_dbs": {
+            "services": [],
+            "num": 0,
+            "names": [],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "mcr.microsoft.com/mssql/server:2017-latest",
+                "name": "sqldata",
+                "gates": [],
+                "image": "mcr.microsoft.com/mssql/server",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "rabbitmq:3-management-alpine",
+                "name": "rabbitmq",
+                "gates": [],
+                "image": "rabbitmq",
+                "dbs": [],
+                "buses": [
+                    "rabbitmq"
+                ]
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "sqldata"
+                ],
+                "servers": [],
+                "image_full": "studentsproject/catalogapi:${TAG-latest}",
+                "name": "catalog.api",
+                "gates": [],
+                "image": "studentsproject/catalogapi",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "sqldata"
+                ],
+                "servers": [],
+                "image_full": "studentsproject/ocelotapigw:${PLATFORM:-linux}-${TAG:-latest}",
+                "name": "shoppingapigw",
+                "gates": [],
+                "image": "studentsproject/ocelotapigw",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "studentsproject/identityapi:${TAG-latest}",
+                "name": "identity.api",
+                "gates": [],
+                "image": "studentsproject/identityapi",
+                "dbs": [],
+                "buses": []
+            }
+        ]
+    }
+}

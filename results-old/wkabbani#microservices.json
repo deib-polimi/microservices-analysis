@@ -1,0 +1,392 @@
+{
+    "size": 924,
+    "num_dockers": 7,
+    "discos": [],
+    "num_files": 11,
+    "avg_size_service": 132.0,
+    "buses": [],
+    "num_gates": 1,
+    "langs": [
+        "python",
+        "c#",
+        "typescript"
+    ],
+    "num_discos": 0,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "run start:prod",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "cmd_keywords": [
+                "start",
+                "prod",
+                "run"
+            ],
+            "from": "node",
+            "path": "/wk-blogs/Dockerfile",
+            "keywords": [
+                "npm",
+                "install",
+                "mkdir",
+                "build",
+                "blogs"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "node:${NODE_VERSION}-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "/wk-auth",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "auth"
+            ],
+            "from": "alpine",
+            "path": "/wk-auth/Dockerfile",
+            "keywords": [
+                "apk",
+                "git",
+                "add",
+                "linux",
+                "goos"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "alpine:3.10"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "mcr.microsoft.com/dotnet/core/aspnet",
+            "path": "/wk-todos/Dockerfile",
+            "keywords": [
+                "dotnet",
+                "release",
+                "out",
+                "publish",
+                "restore"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "mcr.microsoft.com/dotnet/core/aspnet:2.2"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "alpine",
+            "path": "/wk-tts/Dockerfile",
+            "keywords": [
+                "apk",
+                "add",
+                "git",
+                "tts",
+                "goos"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "alpine:3.10"
+        },
+        {
+            "monitors": [],
+            "cmd": "python3 app/run_app.py",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "app",
+                "python",
+                "run"
+            ],
+            "from": "python",
+            "path": "/wk-sentiment/Dockerfile",
+            "keywords": [
+                "app",
+                "install",
+                "textblob",
+                "mkdir",
+                "corpora"
+            ],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "python:3.6.6-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "nginx -g daemon off;",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [
+                "daemon",
+                "nginx",
+                "off"
+            ],
+            "from": "nginx",
+            "path": "/wk-dashboard/Dockerfile",
+            "keywords": [
+                "npm",
+                "install",
+                "silent",
+                "scripts",
+                "react"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "from_full": "nginx:1.16.0-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "mcr.microsoft.com/dotnet/core/aspnet",
+            "path": "/wk-cognitive/Dockerfile",
+            "keywords": [
+                "dotnet",
+                "release",
+                "out",
+                "publish",
+                "restore"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "mcr.microsoft.com/dotnet/core/aspnet:2.2.6"
+        }
+    ],
+    "num_dbs": 1,
+    "monitors": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./wk-auth",
+                "image_full": "./wk-auth",
+                "discos": [],
+                "name": "wk-auth-svc",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./wk-blogs",
+                "image_full": "./wk-blogs",
+                "discos": [],
+                "name": "wk-blog-svc",
+                "depends_on": [
+                    "mongo-db"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./wk-dashboard",
+                "image_full": "./wk-dashboard",
+                "discos": [],
+                "name": "wk-dashboard-svc",
+                "depends_on": [
+                    "wk-blog-svc",
+                    "wk-auth-svc",
+                    "wk-sentiment-svc",
+                    "wk-cognitive-svc",
+                    "wk-todos-svc"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./wk-todos",
+                "image_full": "./wk-todos",
+                "discos": [],
+                "name": "wk-todos-svc",
+                "depends_on": [
+                    "postgres-db"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "postgres",
+                "image_full": "postgres",
+                "discos": [],
+                "name": "postgres-db",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mongo",
+                "image_full": "mongo",
+                "discos": [],
+                "name": "mongo-db",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./wk-cognitive",
+                "image_full": "./wk-cognitive",
+                "discos": [],
+                "name": "wk-cognitive-svc",
+                "depends_on": [
+                    "wk-tts-svc"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./wk-sentiment",
+                "image_full": "./wk-sentiment",
+                "discos": [],
+                "name": "wk-sentiment-svc",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./wk-tts",
+                "image_full": "./wk-tts",
+                "discos": [],
+                "name": "wk-tts-svc",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "mongo"
+            ],
+            "services": [
+                "mongo-db"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 9,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 0,
+    "servers": [
+        "mongoose",
+        "node",
+        "express",
+        "flask"
+    ],
+    "url": "git://github.com/wkabbani/microservices.git",
+    "num_services": 9,
+    "gates": [
+        "nginx"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/wk-sentiment/requirements.txt"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "mongoose",
+                "express",
+                "node"
+            ],
+            "path": "/wk-blogs/package.json"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "path": "/wk-dashboard/package.json"
+        }
+    ],
+    "name": "wkabbani/microservices",
+    "languages": [
+        "typescript",
+        "c#"
+    ],
+    "images": [
+        "alpine",
+        "mcr.microsoft.com/dotnet/core/aspnet",
+        "node",
+        "nginx",
+        "python"
+    ],
+    "dbs": [
+        "mongo"
+    ],
+    "num_servers": 4,
+    "num_langs": 3
+}

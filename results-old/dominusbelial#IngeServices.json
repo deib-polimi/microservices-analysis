@@ -1,0 +1,278 @@
+{
+    "avg_size_service": 408.4,
+    "buses": [],
+    "num_dbs": 2,
+    "files": [
+        {
+            "path": "/nuxtfront/package.json",
+            "servers": [
+                "express",
+                "node"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "path": "/strapiback/package.json",
+            "servers": [
+                "node"
+            ],
+            "dbs": [
+                "sqlite",
+                "mysql"
+            ],
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": []
+        }
+    ],
+    "num_dockers": 5,
+    "num_langs": 3,
+    "num_servers": 2,
+    "num_buses": 0,
+    "num_discos": 0,
+    "gates": [
+        "nginx"
+    ],
+    "images": [
+        "nginx",
+        "node",
+        "mysql"
+    ],
+    "size": 2042,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 5,
+        "services": [
+            {
+                "buses": [],
+                "name": "nginxfront",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "./nginxfront",
+                "image_full": "./nginxfront",
+                "discos": [],
+                "gates": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "name": "strapiback",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "./strapiback",
+                "image_full": "./strapiback",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "mysqldb"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "nuxtfront",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "./nuxtfront",
+                "image_full": "./nuxtfront",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "strapiback"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "mysqldb",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "./mysqldb",
+                "image_full": "./mysqldb",
+                "discos": [],
+                "gates": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "name": "jsreport",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "./jsreport",
+                "image_full": "./jsreport",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "strapiback"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 0,
+            "names": [],
+            "services": []
+        }
+    },
+    "num_files": 8,
+    "servers": [
+        "express",
+        "node"
+    ],
+    "url": "git://github.com/dominusbelial/IngeServices.git",
+    "dbs": [
+        "sqlite",
+        "mysql"
+    ],
+    "monitors": [],
+    "dockers": [
+        {
+            "from_full": "node:12-alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/jsreport/Dockerfile",
+            "from": "node",
+            "cmd": "bash /home/node/app/run.sh",
+            "cmd_keywords": [
+                "run",
+                "app",
+                "home",
+                "bash",
+                "node"
+            ],
+            "servers": [
+                "node"
+            ],
+            "keywords": [
+                "edge",
+                "node",
+                "apk",
+                "npm",
+                "cache"
+            ],
+            "discos": [],
+            "langs": [
+                "bash"
+            ]
+        },
+        {
+            "from_full": "node:12-alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/nuxtfront/Dockerfile",
+            "from": "node",
+            "cmd": "npm run dev",
+            "cmd_keywords": [
+                "run",
+                "npm",
+                "dev"
+            ],
+            "servers": [
+                "node"
+            ],
+            "keywords": [
+                "node",
+                "app",
+                "home",
+                "install",
+                "chown"
+            ],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "node:12-alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/strapiback/Dockerfile",
+            "from": "node",
+            "cmd": "npm run develop",
+            "cmd_keywords": [
+                "run",
+                "develop",
+                "npm"
+            ],
+            "servers": [
+                "node"
+            ],
+            "keywords": [
+                "node",
+                "app",
+                "home",
+                "install",
+                "chown"
+            ],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "nginx:stable-alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [
+                "nginx"
+            ],
+            "path": "/nginxfront/Dockerfile",
+            "from": "nginx",
+            "cmd": "/bin/sh -c exec nginx -g 'daemon off;';",
+            "cmd_keywords": [
+                "exec",
+                "nginx",
+                "off",
+                "bin",
+                "daemon"
+            ],
+            "servers": [],
+            "keywords": [],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "mysql",
+            "buses": [],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": [],
+            "gates": [],
+            "path": "/mysqldb/Dockerfile",
+            "from": "mysql",
+            "cmd": "",
+            "cmd_keywords": [],
+            "servers": [],
+            "keywords": [],
+            "discos": [],
+            "langs": []
+        }
+    ],
+    "languages": [
+        "vue",
+        "tsql"
+    ],
+    "num_services": 5,
+    "num_gates": 1,
+    "name": "dominusbelial/IngeServices",
+    "shared_dbs": false,
+    "langs": [
+        "tsql",
+        "vue",
+        "bash"
+    ],
+    "discos": [],
+    "num_monitors": 0
+}

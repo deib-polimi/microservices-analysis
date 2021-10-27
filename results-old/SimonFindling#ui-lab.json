@@ -1,0 +1,339 @@
+{
+    "num_services": 10,
+    "dbs": [
+        "mysql"
+    ],
+    "name": "SimonFindling/ui-lab",
+    "files": [
+        {
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [],
+            "path": "/pom.xml",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "dbs": [],
+            "path": "/api-gateway/pom.xml",
+            "buses": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/warehouse-underscore-service/pom.xml",
+            "buses": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "gates": [
+                "zuul"
+            ],
+            "dbs": [],
+            "path": "/template-project/pom.xml",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/vendor-service/pom.xml",
+            "buses": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/product-microservice/pom.xml",
+            "buses": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/discovery-service/pom.xml",
+            "buses": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/login-microservice/pom.xml",
+            "buses": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/config-service/pom.xml",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/account-service/pom.xml",
+            "buses": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ]
+        }
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "num_gates": 1,
+    "num_buses": 0,
+    "langs": [
+        "java"
+    ],
+    "gates": [
+        "zuul"
+    ],
+    "num_monitors": 0,
+    "monitors": [],
+    "images": [],
+    "structure": {
+        "num_services": 10,
+        "detected_dbs": {
+            "num": 3,
+            "services": [
+                "account-db-image",
+                "vendor-db-image",
+                "product-db-image"
+            ],
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "uilab/config-service",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "config-service",
+                "image": "uilab/config-service"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "vendor-db-image:db"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "uilab/warehouse-underscore-service",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "warehouse-underscore",
+                "image": "uilab/warehouse-underscore-service"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "account-db-image"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "uilab/account-service",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "account",
+                "image": "uilab/account-service"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "image_full": "mysql:5.7.9",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "account-db-image",
+                "image": "mysql"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "product-db-image"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "uilab/product-microservice",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "product",
+                "image": "uilab/product-microservice"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "vendor-db-image:db"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "uilab/vendor-service",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "vendor",
+                "image": "uilab/vendor-service"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "config-service"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "uilab/discovery-service",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "discovery",
+                "image": "uilab/discovery-service"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "config-service",
+                    "discovery"
+                ],
+                "gates": [
+                    "gateway"
+                ],
+                "dbs": [],
+                "image_full": "uilab/api-gateway",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "gateway",
+                "image": "uilab/api-gateway"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "image_full": "mysql:5.7",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "vendor-db-image",
+                "image": "mysql"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "image_full": "mysql:5.7",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "product-db-image",
+                "image": "mysql"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "shared_dbs": false,
+    "languages": [
+        "java"
+    ],
+    "avg_size_service": 403.0,
+    "buses": [],
+    "dockers": [],
+    "servers": [
+        "spring"
+    ],
+    "num_dockers": 0,
+    "url": "git://github.com/SimonFindling/ui-lab.git",
+    "num_dbs": 1,
+    "num_servers": 1,
+    "num_discos": 1,
+    "num_langs": 1,
+    "num_files": 11,
+    "size": 403
+}

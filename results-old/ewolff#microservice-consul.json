@@ -1,0 +1,361 @@
+{
+    "dbs": [
+        "db"
+    ],
+    "num_dbs": 1,
+    "shared_dbs": false,
+    "name": "ewolff/microservice-consul",
+    "num_buses": 0,
+    "num_monitors": 1,
+    "monitors": [
+        "prometheus"
+    ],
+    "langs": [
+        "java",
+        "html"
+    ],
+    "gates": [],
+    "size": 225,
+    "languages": [
+        "java",
+        "html"
+    ],
+    "num_langs": 2,
+    "structure": {
+        "path": "/docker/docker-compose.yml",
+        "services": [
+            {
+                "discos": [
+                    "consul"
+                ],
+                "servers": [],
+                "dbs": [],
+                "image": "../microservice-consul-demo/microservice-consul-demo-catalog",
+                "name": "catalog",
+                "depends_on": [
+                    "consul"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "../microservice-consul-demo/microservice-consul-demo-catalog"
+            },
+            {
+                "discos": [
+                    "consul"
+                ],
+                "servers": [],
+                "dbs": [],
+                "image": "consul",
+                "name": "consul",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "consul:1.2.0"
+            },
+            {
+                "discos": [
+                    "consul"
+                ],
+                "servers": [],
+                "dbs": [],
+                "image": "../microservice-consul-demo/microservice-consul-demo-order",
+                "name": "order",
+                "depends_on": [
+                    "consul"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "../microservice-consul-demo/microservice-consul-demo-order"
+            },
+            {
+                "discos": [
+                    "consul"
+                ],
+                "servers": [],
+                "dbs": [],
+                "image": "../microservice-consul-demo/microservice-consul-demo-customer",
+                "name": "customer",
+                "depends_on": [
+                    "consul"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "../microservice-consul-demo/microservice-consul-demo-customer"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "apache",
+                "name": "apache",
+                "depends_on": [
+                    "consul"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "apache"
+            }
+        ],
+        "detected_dbs": {
+            "services": [],
+            "names": [],
+            "shared_dbs": false,
+            "num": 0
+        },
+        "num_services": 5
+    },
+    "servers": [
+        "spring"
+    ],
+    "num_servers": 1,
+    "num_files": 12,
+    "images": [
+        "docker.elastic.co/beats/filebeat",
+        "openjdk",
+        "ubuntu",
+        "prom/prometheus",
+        "docker.elastic.co/elasticsearch/elasticsearch"
+    ],
+    "buses": [],
+    "avg_size_service": 32.142857142857146,
+    "num_services": 5,
+    "files": [
+        {
+            "path": "/microservice-consul-demo/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "discos": [
+                "consul"
+            ]
+        },
+        {
+            "path": "/microservice-consul-demo/microservice-consul-demo-order/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "monitors": [
+                "prometheus"
+            ],
+            "gates": [],
+            "buses": [],
+            "dbs": [
+                "hsqldb"
+            ],
+            "discos": [
+                "consul"
+            ]
+        },
+        {
+            "path": "/microservice-consul-demo/microservice-consul-demo-catalog/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "dbs": [
+                "hsqldb"
+            ],
+            "discos": [
+                "consul"
+            ]
+        },
+        {
+            "path": "/microservice-consul-demo/microservice-consul-demo-customer/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "dbs": [
+                "hsqldb"
+            ],
+            "discos": [
+                "consul"
+            ]
+        }
+    ],
+    "num_dockers": 7,
+    "dockers": [
+        {
+            "cmd": "/usr/bin/consul-template -log-level info -consul consul:8500 -template \"/etc/apache2/sites-enabled/000-default.ctmpl:/etc/apache2/sites-enabled/000-default.conf:apache2ctl -k graceful\"",
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "ubuntu:16.04",
+            "path": "/docker/apache/Dockerfile",
+            "from": "ubuntu",
+            "monitors": [],
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [
+                "apache",
+                "consul",
+                "default",
+                "sites",
+                "template"
+            ],
+            "discos": [
+                "consul"
+            ],
+            "keywords": [
+                "template",
+                "consul",
+                "proxy",
+                "get",
+                "apt"
+            ]
+        },
+        {
+            "cmd": "",
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "docker.elastic.co/beats/filebeat:6.3.1",
+            "path": "/docker/filebeat/Dockerfile",
+            "from": "docker.elastic.co/beats/filebeat",
+            "monitors": [],
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "filebeat",
+                "chown",
+                "yml",
+                "share",
+                "usr"
+            ]
+        },
+        {
+            "cmd": "",
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "prom/prometheus:v2.3.1",
+            "path": "/docker/prometheus/Dockerfile",
+            "from": "prom/prometheus",
+            "monitors": [
+                "prometheus"
+            ],
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": []
+        },
+        {
+            "cmd": "",
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "docker.elastic.co/elasticsearch/elasticsearch:6.3.1",
+            "path": "/docker/elasticsearch/Dockerfile",
+            "from": "docker.elastic.co/elasticsearch/elasticsearch",
+            "monitors": [],
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "elasticsearch",
+                "chown",
+                "bin",
+                "share",
+                "usr"
+            ]
+        },
+        {
+            "cmd": "/usr/bin/java -Dlogging.path=/log/ -Xmx400m -Xms400m -jar microservice-consul-demo-order-0.0.1-SNAPSHOT.jar",
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "openjdk:10.0.2-jre-slim",
+            "path": "/microservice-consul-demo/microservice-consul-demo-order/Dockerfile",
+            "from": "openjdk",
+            "monitors": [],
+            "langs": [
+                "java"
+            ],
+            "gates": [],
+            "cmd_keywords": [
+                "jar",
+                "microservice",
+                "dlogging",
+                "bin",
+                "xmx"
+            ],
+            "discos": [
+                "consul"
+            ],
+            "keywords": []
+        },
+        {
+            "cmd": "/usr/bin/java -Dlogging.path=/log/ -Xmx400m -Xms400m -jar microservice-consul-demo-catalog-0.0.1-SNAPSHOT.jar",
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "openjdk:10.0.2-jre-slim",
+            "path": "/microservice-consul-demo/microservice-consul-demo-catalog/Dockerfile",
+            "from": "openjdk",
+            "monitors": [],
+            "langs": [
+                "java"
+            ],
+            "gates": [],
+            "cmd_keywords": [
+                "jar",
+                "catalog",
+                "microservice",
+                "dlogging",
+                "bin"
+            ],
+            "discos": [
+                "consul"
+            ],
+            "keywords": []
+        },
+        {
+            "cmd": "/usr/bin/java -Dlogging.path=/log/ -Xmx400m -Xms400m -jar microservice-consul-demo-customer-0.0.1-SNAPSHOT.jar",
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "openjdk:10.0.2-jre-slim",
+            "path": "/microservice-consul-demo/microservice-consul-demo-customer/Dockerfile",
+            "from": "openjdk",
+            "monitors": [],
+            "langs": [
+                "java"
+            ],
+            "gates": [],
+            "cmd_keywords": [
+                "jar",
+                "microservice",
+                "dlogging",
+                "bin",
+                "xmx"
+            ],
+            "discos": [
+                "consul"
+            ],
+            "keywords": []
+        }
+    ],
+    "num_discos": 1,
+    "discos": [
+        "consul"
+    ],
+    "num_gates": 0,
+    "url": "git://github.com/ewolff/microservice-consul.git"
+}

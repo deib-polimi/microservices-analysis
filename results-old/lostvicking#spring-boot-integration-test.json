@@ -1,0 +1,230 @@
+{
+    "dbs": [
+        "mysql"
+    ],
+    "name": "lostvicking/spring-boot-integration-test",
+    "num_langs": 2,
+    "languages": [
+        "java",
+        "gherkin"
+    ],
+    "shared_dbs": false,
+    "servers": [
+        "spring"
+    ],
+    "langs": [
+        "java",
+        "gherkin"
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/asynch-request-creator-bdd/Dockerfile",
+            "from_full": "java:8u111-jdk-alpine",
+            "gates": [],
+            "from": "java",
+            "langs": [
+                "java"
+            ],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [
+                "mysql"
+            ],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/docker/mysql-image/Dockerfile",
+            "from_full": "mysql:5.5",
+            "gates": [],
+            "from": "mysql",
+            "langs": [],
+            "keywords": []
+        },
+        {
+            "buses": [
+                "rabbitmq"
+            ],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "rabbitmq",
+                "server",
+                "service",
+                "vhost",
+                "guest"
+            ],
+            "discos": [],
+            "cmd": "service rabbitmq-server start && /usr/local/bin/rabbitmqadmin declare queue --user=guest --vhost=/ name=spring-boot durable=true && service rabbitmq-server stop && rabbitmq-server",
+            "path": "/docker/rabbitmq-image/Dockerfile",
+            "from_full": "rabbitmq:management",
+            "gates": [],
+            "from": "rabbitmq",
+            "langs": [],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/asynch-request-reader-bdd/Dockerfile",
+            "from_full": "java:8u111-jdk-alpine",
+            "gates": [],
+            "from": "java",
+            "langs": [
+                "java"
+            ],
+            "keywords": []
+        }
+    ],
+    "gates": [],
+    "size": 20744,
+    "num_dockers": 4,
+    "num_discos": 0,
+    "num_buses": 2,
+    "buses": [
+        "rabbitmq",
+        "amqp"
+    ],
+    "images": [
+        "rabbitmq",
+        "mysql",
+        "java"
+    ],
+    "num_servers": 1,
+    "num_services": 4,
+    "monitors": [],
+    "structure": {
+        "services": [
+            {
+                "buses": [],
+                "image": "mysql-cucumber",
+                "dbs": [
+                    "mysql"
+                ],
+                "gates": [],
+                "image_full": "mysql-cucumber:0.0.1",
+                "monitors": [],
+                "name": "mysql-server",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "vic/asynch-request-creator",
+                "dbs": [],
+                "gates": [],
+                "image_full": "vic/asynch-request-creator:0.0.1",
+                "monitors": [],
+                "name": "asynch-request-creator",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "vic/asynch-request-reader",
+                "dbs": [],
+                "gates": [],
+                "image_full": "vic/asynch-request-reader:0.0.1",
+                "monitors": [],
+                "name": "asynch-request-reader",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [
+                    "rabbitmq"
+                ],
+                "image": "rabbitmq-spring-boot",
+                "dbs": [],
+                "gates": [],
+                "image_full": "rabbitmq-spring-boot:0.0.1",
+                "monitors": [],
+                "name": "rabbitmq-spring-boot",
+                "discos": [],
+                "servers": [
+                    "spring"
+                ],
+                "depends_on": []
+            }
+        ],
+        "num_services": 4,
+        "detected_dbs": {
+            "num": 1,
+            "shared_dbs": false,
+            "names": [
+                "mysql"
+            ],
+            "services": [
+                "mysql-server"
+            ]
+        },
+        "path": "/docker/docker-compose.yml"
+    },
+    "discos": [],
+    "num_files": 8,
+    "num_dbs": 1,
+    "num_monitors": 0,
+    "num_gates": 0,
+    "url": "git://github.com/lostvicking/spring-boot-integration-test.git",
+    "avg_size_service": 5186.0,
+    "files": [
+        {
+            "buses": [
+                "amqp"
+            ],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/asynch-request-creator-bdd/pom.xml"
+        },
+        {
+            "buses": [
+                "amqp"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/asynch-request-reader-bdd/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [],
+            "path": "/test-jar/pom.xml"
+        }
+    ]
+}

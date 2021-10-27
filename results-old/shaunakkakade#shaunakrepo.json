@@ -1,0 +1,197 @@
+{
+    "gates": [
+        "zuul",
+        "nginx"
+    ],
+    "num_buses": 0,
+    "url": "git://github.com/shaunakkakade/shaunakrepo.git",
+    "images": [],
+    "avg_size_service": 24.0,
+    "num_langs": 1,
+    "num_monitors": 0,
+    "num_dockers": 0,
+    "num_discos": 1,
+    "num_servers": 1,
+    "buses": [],
+    "discos": [
+        "eureka"
+    ],
+    "dockers": [],
+    "size": 24,
+    "name": "shaunakkakade/shaunakrepo",
+    "num_services": 9,
+    "dbs": [
+        "mysql"
+    ],
+    "shared_dbs": false,
+    "langs": [
+        "shell"
+    ],
+    "languages": [
+        "shell"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "num_files": 1,
+    "monitors": [],
+    "num_dbs": 1,
+    "num_gates": 2,
+    "files": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 9,
+        "detected_dbs": {
+            "services": [
+                "mysql-hello-service"
+            ],
+            "num": 1,
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "eureka-server:eureka-server"
+                ],
+                "servers": [
+                    "spring"
+                ],
+                "image_full": "dev/spring-zuul-proxy",
+                "name": "zuul-proxy",
+                "gates": [
+                    "zuul"
+                ],
+                "image": "dev/spring-zuul-proxy",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "eureka-server:eureka-server",
+                    "eureka-server-dr:eureka-server-dr",
+                    "zuul-proxy:zuul-proxy"
+                ],
+                "servers": [],
+                "image_full": "dev/noss-nginx",
+                "name": "nginx",
+                "gates": [
+                    "nginx"
+                ],
+                "image": "dev/noss-nginx",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "eureka-server:eureka-server"
+                ],
+                "servers": [],
+                "image_full": "dev/mq-hello-service",
+                "name": "mq-hello-service",
+                "gates": [],
+                "image": "dev/mq-hello-service",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "elasticsearch-server:elasticsearch-server"
+                ],
+                "servers": [],
+                "image_full": "dev/elasticsearch-service",
+                "name": "elasticsearch-service",
+                "gates": [],
+                "image": "dev/elasticsearch-service",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [
+                    "eureka"
+                ],
+                "monitors": [],
+                "depends_on": [
+                    "eureka-server:eureka-server"
+                ],
+                "servers": [
+                    "spring"
+                ],
+                "image_full": "dev/spring-eureka-server-dr",
+                "name": "eureka-server-dr",
+                "gates": [],
+                "image": "dev/spring-eureka-server-dr",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "eureka-server:eureka-server"
+                ],
+                "servers": [],
+                "image_full": "dev/db2-hello-service",
+                "name": "db2-hello-service",
+                "gates": [],
+                "image": "dev/db2-hello-service",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "eureka-server:eureka-server"
+                ],
+                "servers": [],
+                "image_full": "dev/mysql-hello-service",
+                "name": "mysql-hello-service",
+                "gates": [],
+                "image": "dev/mysql-hello-service",
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": []
+            },
+            {
+                "discos": [
+                    "eureka"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [
+                    "spring"
+                ],
+                "image_full": "dev/spring-eureka-server",
+                "name": "eureka-server",
+                "gates": [],
+                "image": "dev/spring-eureka-server",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "elasticsearch:1.7.3",
+                "name": "elasticsearch-server",
+                "gates": [],
+                "image": "elasticsearch",
+                "dbs": [],
+                "buses": []
+            }
+        ]
+    }
+}

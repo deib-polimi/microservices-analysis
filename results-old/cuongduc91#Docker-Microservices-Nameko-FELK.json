@@ -1,0 +1,307 @@
+{
+    "dbs": [
+        "redis"
+    ],
+    "num_langs": 1,
+    "buses": [
+        "rabbitmq"
+    ],
+    "monitors": [],
+    "num_services": 6,
+    "num_dbs": 1,
+    "num_servers": 0,
+    "discos": [],
+    "dockers": [
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "nameko-example-base",
+            "gates": [],
+            "dbs": [],
+            "from": "nameko-example-base",
+            "cmd": "",
+            "discos": [],
+            "langs": [
+                "python"
+            ],
+            "path": "/Dockerfile",
+            "keywords": [
+                "install",
+                "nameko",
+                "pip",
+                "apt",
+                "dev"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "var",
+                "nameko",
+                "run"
+            ],
+            "from_full": "nameko-example-base",
+            "gates": [],
+            "dbs": [],
+            "from": "nameko-example-base",
+            "cmd": "/var/nameko/run.sh;",
+            "discos": [],
+            "langs": [],
+            "path": "/products/Dockerfile",
+            "keywords": [
+                "nameko",
+                "pip",
+                "var",
+                "wheel",
+                "index"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "var",
+                "nameko",
+                "run"
+            ],
+            "from_full": "nameko-example-base",
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [],
+            "from": "nameko-example-base",
+            "cmd": "/var/nameko/run.sh;",
+            "discos": [],
+            "langs": [],
+            "path": "/gateway/Dockerfile",
+            "keywords": [
+                "nameko",
+                "pip",
+                "var",
+                "wheel",
+                "index"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "docker.elastic.co/elasticsearch/elasticsearch:7.7.1",
+            "gates": [],
+            "dbs": [],
+            "from": "docker.elastic.co/elasticsearch/elasticsearch",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/elasticsaerch/Dockerfile",
+            "keywords": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "docker.elastic.co/logstash/logstash:7.7.1",
+            "gates": [],
+            "dbs": [],
+            "from": "docker.elastic.co/logstash/logstash",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/logstash/Dockerfile",
+            "keywords": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "docker.elastic.co/beats/filebeat:7.7.1",
+            "gates": [],
+            "dbs": [],
+            "from": "docker.elastic.co/beats/filebeat",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/filebeat/Dockerfile",
+            "keywords": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "docker.elastic.co/kibana/kibana:7.7.1",
+            "gates": [],
+            "dbs": [],
+            "from": "docker.elastic.co/kibana/kibana",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/kibana/Dockerfile",
+            "keywords": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "var",
+                "nameko",
+                "run"
+            ],
+            "from_full": "nameko-example-base",
+            "gates": [],
+            "dbs": [],
+            "from": "nameko-example-base",
+            "cmd": "/var/nameko/run.sh;",
+            "discos": [],
+            "langs": [],
+            "path": "/orders/Dockerfile",
+            "keywords": [
+                "nameko",
+                "pip",
+                "var",
+                "wheel",
+                "index"
+            ]
+        }
+    ],
+    "num_files": 9,
+    "num_dockers": 8,
+    "images": [
+        "nameko-example-base",
+        "docker.elastic.co/elasticsearch/elasticsearch",
+        "docker.elastic.co/logstash/logstash",
+        "docker.elastic.co/beats/filebeat",
+        "docker.elastic.co/kibana/kibana"
+    ],
+    "size": 80,
+    "servers": [],
+    "structure": {
+        "detected_dbs": {
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": false,
+            "services": [
+                "redis"
+            ],
+            "num": 1
+        },
+        "num_services": 6,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "redis",
+                "name": "redis",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "buses": [],
+                "image": "redis",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "postgres",
+                "name": "postgres",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "postgres",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "rabbitmq:3.7-management",
+                "name": "rabbit",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "image": "rabbitmq",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "nameko/nameko-example-products:latest",
+                "name": "products",
+                "depends_on": [
+                    "rabbit",
+                    "redis"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "nameko/nameko-example-products",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "nameko/nameko-example-gateway:latest",
+                "name": "gateway",
+                "depends_on": [
+                    "rabbit"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "nameko/nameko-example-gateway",
+                "gates": [
+                    "gateway"
+                ],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "nameko/nameko-example-orders:latest",
+                "name": "orders",
+                "depends_on": [
+                    "rabbit",
+                    "postgres"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "nameko/nameko-example-orders",
+                "gates": [],
+                "monitors": []
+            }
+        ]
+    },
+    "num_discos": 0,
+    "files": [],
+    "num_monitors": 0,
+    "num_buses": 1,
+    "num_gates": 1,
+    "gates": [
+        "gateway"
+    ],
+    "name": "cuongduc91/Docker-Microservices-Nameko-FELK",
+    "avg_size_service": 10.0,
+    "url": "git://github.com/cuongduc91/Docker-Microservices-Nameko-FELK.git",
+    "shared_dbs": false,
+    "langs": [
+        "python"
+    ],
+    "languages": [
+        "python"
+    ]
+}

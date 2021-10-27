@@ -1,0 +1,281 @@
+{
+    "dbs": [
+        "redis"
+    ],
+    "name": "jsv1280/tweets-redis-rabbitmq",
+    "num_langs": 1,
+    "languages": [
+        "javascript"
+    ],
+    "shared_dbs": true,
+    "servers": [
+        "express",
+        "node"
+    ],
+    "langs": [
+        "javascript"
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "node",
+                "index"
+            ],
+            "discos": [],
+            "cmd": "node index.js",
+            "path": "/twitter-api/Dockerfile",
+            "from_full": "node:14.5",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "keywords": [
+                "install",
+                "npm"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "node",
+                "index"
+            ],
+            "discos": [],
+            "cmd": "node index.js",
+            "path": "/twitter-graphql/Dockerfile",
+            "from_full": "node:14.5",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "keywords": [
+                "install",
+                "npm"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "node",
+                "index"
+            ],
+            "discos": [],
+            "cmd": "node index.js",
+            "path": "/twitter-stream/Dockerfile",
+            "from_full": "node:14.5",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "keywords": [
+                "install",
+                "npm"
+            ]
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "node",
+                "index"
+            ],
+            "discos": [],
+            "cmd": "node index.js",
+            "path": "/twitter-client/Dockerfile",
+            "from_full": "node:14.5",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "keywords": [
+                "install",
+                "npm"
+            ]
+        }
+    ],
+    "gates": [],
+    "size": 257,
+    "num_dockers": 4,
+    "num_discos": 0,
+    "num_buses": 1,
+    "buses": [
+        "rabbitmq"
+    ],
+    "images": [
+        "node"
+    ],
+    "num_servers": 2,
+    "num_services": 6,
+    "monitors": [],
+    "structure": {
+        "services": [
+            {
+                "buses": [],
+                "image": "./twitter-api",
+                "dbs": [],
+                "gates": [],
+                "image_full": "./twitter-api",
+                "monitors": [],
+                "name": "twitter_api",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "redis_twitter",
+                    "rabbitmq_twitter"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "./twitter-client",
+                "dbs": [],
+                "gates": [],
+                "image_full": "./twitter-client",
+                "monitors": [],
+                "name": "twitter_client",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "./twitter-stream",
+                "dbs": [],
+                "gates": [],
+                "image_full": "./twitter-stream",
+                "monitors": [],
+                "name": "twitter_stream",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "redis_twitter",
+                    "rabbitmq_twitter"
+                ]
+            },
+            {
+                "buses": [
+                    "rabbitmq"
+                ],
+                "image": "rabbitmq",
+                "dbs": [],
+                "gates": [],
+                "image_full": "rabbitmq",
+                "monitors": [],
+                "name": "rabbitmq_twitter",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "./twitter-graphql",
+                "dbs": [],
+                "gates": [],
+                "image_full": "./twitter-graphql",
+                "monitors": [],
+                "name": "twitter_graphql",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "gates": [],
+                "image_full": "redis",
+                "monitors": [],
+                "name": "redis_twitter",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "num": 1,
+            "shared_dbs": true,
+            "names": [
+                "redis"
+            ],
+            "services": [
+                "redis_twitter"
+            ]
+        },
+        "path": "/docker-compose.yml"
+    },
+    "discos": [],
+    "num_files": 9,
+    "num_dbs": 1,
+    "num_monitors": 0,
+    "num_gates": 0,
+    "url": "git://github.com/jsv1280/tweets-redis-rabbitmq.git",
+    "avg_size_service": 64.25,
+    "files": [
+        {
+            "buses": [],
+            "dbs": [
+                "redis"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/twitter-api/package.json"
+        },
+        {
+            "buses": [],
+            "dbs": [
+                "redis"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/twitter-graphql/package.json"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [],
+            "path": "/twitter-stream/package.json"
+        },
+        {
+            "buses": [
+                "rabbitmq"
+            ],
+            "dbs": [
+                "redis"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [],
+            "path": "/twitter-client/package.json"
+        }
+    ]
+}

@@ -1,0 +1,206 @@
+{
+    "buses": [],
+    "num_servers": 2,
+    "languages": [
+        "shell",
+        "dockerfile"
+    ],
+    "dbs": [],
+    "num_services": 4,
+    "avg_size_service": 40.0,
+    "servers": [
+        "express",
+        "jboss"
+    ],
+    "structure": {
+        "num_services": 4,
+        "detected_dbs": {
+            "services": [],
+            "shared_dbs": false,
+            "num": 0,
+            "names": []
+        },
+        "services": [
+            {
+                "image": "./keycloak-master",
+                "buses": [],
+                "image_full": "./keycloak-master",
+                "dbs": [],
+                "depends_on": [
+                    "keycloak_db"
+                ],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "keycloak-master",
+                "gates": []
+            },
+            {
+                "image": "./nginx",
+                "buses": [],
+                "image_full": "./nginx",
+                "dbs": [],
+                "depends_on": [],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "proxy",
+                "gates": [
+                    "nginx"
+                ]
+            },
+            {
+                "image": "postgres",
+                "buses": [],
+                "image_full": "postgres:10",
+                "dbs": [],
+                "depends_on": [],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "keycloak_db",
+                "gates": []
+            },
+            {
+                "image": "./keycloak-slave01",
+                "buses": [],
+                "image_full": "./keycloak-slave01",
+                "dbs": [],
+                "depends_on": [
+                    "keycloak_db",
+                    "keycloak-master"
+                ],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "keycloak-slave01",
+                "gates": []
+            }
+        ],
+        "path": "/keycloak-cluster/docker-compose.yml"
+    },
+    "monitors": [],
+    "num_buses": 0,
+    "images": [
+        "nginx",
+        "cloudera/quickstart",
+        "jboss/keycloak-ha-postgres"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_gates": 1,
+    "num_langs": 2,
+    "langs": [
+        "shell",
+        "dockerfile"
+    ],
+    "url": "git://github.com/mselivanov/docker-containers.git",
+    "num_discos": 0,
+    "num_files": 5,
+    "files": [],
+    "shared_dbs": false,
+    "num_monitors": 0,
+    "name": "mselivanov/docker-containers",
+    "num_dbs": 0,
+    "discos": [],
+    "dockers": [
+        {
+            "langs": [],
+            "dbs": [],
+            "path": "/keycloak-cluster/keycloak-slave01/Dockerfile",
+            "servers": [
+                "jboss"
+            ],
+            "monitors": [],
+            "keywords": [
+                "sed",
+                "word",
+                "keycloak",
+                "dog",
+                "user"
+            ],
+            "cmd": "",
+            "buses": [],
+            "from_full": "jboss/keycloak-ha-postgres:4.1.0.Final",
+            "from": "jboss/keycloak-ha-postgres",
+            "discos": [],
+            "cmd_keywords": [],
+            "gates": []
+        },
+        {
+            "langs": [],
+            "dbs": [],
+            "path": "/keycloak-cluster/keycloak-master/Dockerfile",
+            "servers": [
+                "jboss"
+            ],
+            "monitors": [],
+            "keywords": [
+                "user",
+                "opt",
+                "keycloak",
+                "jboss",
+                "mkdir"
+            ],
+            "cmd": "",
+            "buses": [],
+            "from_full": "jboss/keycloak-ha-postgres:4.1.0.Final",
+            "from": "jboss/keycloak-ha-postgres",
+            "discos": [],
+            "cmd_keywords": [],
+            "gates": []
+        },
+        {
+            "langs": [],
+            "dbs": [],
+            "path": "/keycloak-cluster/nginx/Dockerfile",
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "conf",
+                "etc",
+                "default",
+                "nginx"
+            ],
+            "cmd": "",
+            "buses": [],
+            "from_full": "nginx:1.14-alpine",
+            "from": "nginx",
+            "discos": [],
+            "cmd_keywords": [],
+            "gates": [
+                "nginx"
+            ]
+        },
+        {
+            "langs": [],
+            "dbs": [],
+            "path": "/cloudera-quickstart/Dockerfile",
+            "servers": [
+                "express"
+            ],
+            "monitors": [],
+            "keywords": [
+                "rpm",
+                "sudo",
+                "var",
+                "lib",
+                "rebuilddb"
+            ],
+            "cmd": "/docker-entrypoint.sh --express",
+            "buses": [],
+            "from_full": "cloudera/quickstart:latest",
+            "from": "cloudera/quickstart",
+            "discos": [],
+            "cmd_keywords": [
+                "entrypoint",
+                "express",
+                "docker"
+            ],
+            "gates": []
+        }
+    ],
+    "num_dockers": 4,
+    "size": 160
+}

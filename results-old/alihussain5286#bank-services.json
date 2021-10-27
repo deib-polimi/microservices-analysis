@@ -1,0 +1,352 @@
+{
+    "size": 1772,
+    "num_dockers": 5,
+    "discos": [
+        "eureka"
+    ],
+    "num_files": 13,
+    "avg_size_service": 354.4,
+    "buses": [],
+    "num_gates": 1,
+    "langs": [
+        "java",
+        "html",
+        "css"
+    ],
+    "num_discos": 1,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/eureka-server/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/payment/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/authorization/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/bank-client/Dockerfile",
+            "keywords": [
+                "bank",
+                "touch",
+                "jar",
+                "client"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "openjdk",
+            "path": "/statement/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine"
+        }
+    ],
+    "num_dbs": 3,
+    "monitors": [],
+    "shared_dbs": true,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "redis",
+                "image_full": "redis",
+                "discos": [],
+                "name": "redis",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./statement",
+                "image_full": "./statement",
+                "discos": [],
+                "name": "statement",
+                "depends_on": [
+                    "docker-mysql"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./authorization",
+                "image_full": "./authorization",
+                "discos": [],
+                "name": "authorization",
+                "depends_on": [
+                    "redis",
+                    "eureka-server"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mysql",
+                "image_full": "mysql:latest",
+                "discos": [],
+                "name": "docker-mysql",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./payment",
+                "image_full": "./payment",
+                "discos": [],
+                "name": "payment",
+                "depends_on": [
+                    "docker-mysql"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./eureka-server",
+                "image_full": "./eureka-server",
+                "discos": [
+                    "eureka"
+                ],
+                "name": "eureka-server",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./bank-client",
+                "image_full": "./bank-client",
+                "discos": [],
+                "name": "bank-client",
+                "depends_on": [
+                    "docker-mysql",
+                    "redis",
+                    "eureka-server"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 2,
+            "names": [
+                "redis",
+                "mysql"
+            ],
+            "services": [
+                "redis",
+                "docker-mysql"
+            ],
+            "shared_dbs": true
+        },
+        "num_services": 7,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 0,
+    "servers": [
+        "spring"
+    ],
+    "url": "git://github.com/alihussain5286/bank-services.git",
+    "num_services": 7,
+    "gates": [
+        "zuul"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [
+                "redis",
+                "mysql",
+                "sql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "zuul"
+            ],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/eureka-server/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [
+                "redis",
+                "mysql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/payment/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [
+                "redis"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/authorization/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/utility/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/bank-client/pom.xml"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "dbs": [
+                "redis",
+                "mysql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/statement/pom.xml"
+        }
+    ],
+    "name": "alihussain5286/bank-services",
+    "languages": [
+        "java",
+        "html",
+        "css"
+    ],
+    "images": [
+        "openjdk"
+    ],
+    "dbs": [
+        "redis",
+        "mysql",
+        "sql"
+    ],
+    "num_servers": 1,
+    "num_langs": 3
+}

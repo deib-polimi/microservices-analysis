@@ -1,0 +1,245 @@
+{
+    "servers": [
+        "spring",
+        "jetty"
+    ],
+    "name": "NicolaNardino/BigData",
+    "num_gates": 0,
+    "avg_size_service": 123.0,
+    "structure": {
+        "services": [
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "cassandra:latest",
+                "servers": [],
+                "depends_on": [],
+                "name": "cassandra-db",
+                "dbs": [
+                    "cassandra"
+                ],
+                "image": "cassandra",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "nicolanardino/cassandra-microservice:2.0",
+                "servers": [],
+                "depends_on": [
+                    "cassandra-db"
+                ],
+                "name": "cassandra-microservice",
+                "dbs": [
+                    "cassandra"
+                ],
+                "image": "nicolanardino/cassandra-microservice",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "nicolanardino/tcp-data-streaming:2.0",
+                "servers": [],
+                "depends_on": [
+                    "cassandra-db"
+                ],
+                "name": "tcp-data-streaming",
+                "dbs": [],
+                "image": "nicolanardino/tcp-data-streaming",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "redis:latest",
+                "servers": [],
+                "depends_on": [],
+                "name": "redis-cache",
+                "dbs": [
+                    "redis"
+                ],
+                "image": "redis",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "nicolanardino/spark-streaming:2.0",
+                "servers": [],
+                "depends_on": [
+                    "tcp-data-streaming"
+                ],
+                "name": "spark-streaming",
+                "dbs": [],
+                "image": "nicolanardino/spark-streaming",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "nicolanardino/distributed-cache:2.0",
+                "servers": [],
+                "depends_on": [
+                    "redis-cache"
+                ],
+                "name": "distributed-cache",
+                "dbs": [],
+                "image": "nicolanardino/distributed-cache",
+                "monitors": [],
+                "discos": []
+            }
+        ],
+        "num_services": 6,
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "num": 3,
+            "names": [
+                "redis",
+                "cassandra"
+            ],
+            "services": [
+                "cassandra-db",
+                "cassandra-microservice",
+                "redis-cache"
+            ],
+            "shared_dbs": true
+        }
+    },
+    "num_dbs": 3,
+    "buses": [],
+    "langs": [
+        "kotlin"
+    ],
+    "shared_dbs": true,
+    "files": [
+        {
+            "gates": [],
+            "buses": [],
+            "path": "/pom.xml",
+            "servers": [
+                "jetty",
+                "spring"
+            ],
+            "dbs": [
+                "redis",
+                "sql",
+                "cassandra"
+            ],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "path": "/TCPDataStreaming/pom.xml",
+            "servers": [],
+            "dbs": [
+                "cassandra"
+            ],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "path": "/Utility/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "cassandra"
+            ],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "path": "/SparkCassandra/pom.xml",
+            "servers": [
+                "jetty"
+            ],
+            "dbs": [
+                "sql",
+                "cassandra"
+            ],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "path": "/SparkStreaming/pom.xml",
+            "servers": [
+                "jetty"
+            ],
+            "dbs": [
+                "sql"
+            ],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "path": "/CassandraMicroservice/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "cassandra"
+            ],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "path": "/DistributedCache/pom.xml",
+            "servers": [],
+            "dbs": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "path": "/DeltaLake/pom.xml",
+            "servers": [],
+            "dbs": [
+                "sql"
+            ],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "size": 123,
+    "num_dockers": 0,
+    "url": "git://github.com/NicolaNardino/BigData.git",
+    "gates": [],
+    "num_servers": 2,
+    "images": [],
+    "num_services": 6,
+    "languages": [
+        "kotlin"
+    ],
+    "num_files": 9,
+    "discos": [],
+    "dockers": [],
+    "num_langs": 1,
+    "num_monitors": 0,
+    "num_buses": 0,
+    "dbs": [
+        "cassandra",
+        "redis",
+        "sql"
+    ],
+    "monitors": [],
+    "num_discos": 0
+}

@@ -1,0 +1,492 @@
+{
+    "size": 128,
+    "avg_size_service": 9.846153846153847,
+    "name": "zeusgo/zeusdock",
+    "languages": [
+        "shell",
+        "dockerfile"
+    ],
+    "servers": [],
+    "num_dbs": 4,
+    "images": [
+        "mysql",
+        "redis",
+        "nginx",
+        "erikdubbelboer/phpredisadmin",
+        "bats-jenkins",
+        "progrium/consul",
+        "bats-jenkins-install-plugins",
+        "mongo",
+        "memcached",
+        "openjdk",
+        "grokzen/redis-cluster"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 10,
+        "services": [
+            {
+                "depends_on": [],
+                "image_full": "./mysql",
+                "monitors": [],
+                "name": "mysql",
+                "image": "./mysql",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "./redis",
+                "monitors": [],
+                "name": "redis",
+                "image": "./redis",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "redis"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "./nginx",
+                "monitors": [],
+                "name": "nginx",
+                "image": "./nginx",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [
+                    "nginx"
+                ],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "./consul",
+                "monitors": [],
+                "name": "consul-ui",
+                "image": "./consul",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": [
+                    "consul"
+                ]
+            },
+            {
+                "depends_on": [
+                    "consul-ui"
+                ],
+                "image_full": "./consul",
+                "monitors": [],
+                "name": "consul",
+                "image": "./consul",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": [
+                    "consul"
+                ]
+            },
+            {
+                "depends_on": [],
+                "image_full": "./redis-cluster",
+                "monitors": [],
+                "name": "redis-cluster",
+                "image": "./redis-cluster",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "redis"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "redis"
+                ],
+                "image_full": "./redis-webui",
+                "monitors": [],
+                "name": "redis-webui",
+                "image": "./redis-webui",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "redis"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "./mongo",
+                "monitors": [],
+                "name": "mongo",
+                "image": "./mongo",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "./memcached",
+                "monitors": [],
+                "name": "memcached",
+                "image": "./memcached",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "memcached"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "./jenkins",
+                "monitors": [],
+                "name": "jenkins",
+                "image": "./jenkins",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "mysql",
+                "redis",
+                "redis-cluster",
+                "redis-webui",
+                "mongo",
+                "memcached"
+            ],
+            "names": [
+                "mysql",
+                "memcached",
+                "mongo",
+                "redis"
+            ],
+            "shared_dbs": false,
+            "num": 6
+        }
+    },
+    "num_dockers": 13,
+    "num_buses": 0,
+    "num_services": 10,
+    "dockers": [
+        {
+            "path": "/jenkins/Dockerfile",
+            "from": "openjdk",
+            "langs": [
+                "bash"
+            ],
+            "cmd": "",
+            "servers": [],
+            "from_full": "openjdk:8-jdk",
+            "keywords": [
+                "jenkins",
+                "docker",
+                "apt",
+                "get",
+                "curl"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/jenkins/tests/upgrade-plugins/Dockerfile",
+            "from": "bats-jenkins",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "bats-jenkins",
+            "keywords": [
+                "ant",
+                "install",
+                "maven",
+                "plugin",
+                "local"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/jenkins/tests/plugins/Dockerfile",
+            "from": "bats-jenkins",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "bats-jenkins",
+            "keywords": [
+                "usr",
+                "plugins",
+                "share",
+                "ref",
+                "txt"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/jenkins/tests/install-plugins/Dockerfile",
+            "from": "bats-jenkins",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "bats-jenkins",
+            "keywords": [
+                "ant",
+                "install",
+                "maven",
+                "mesos",
+                "plugin"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/jenkins/tests/install-plugins/update/Dockerfile",
+            "from": "bats-jenkins-install-plugins",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "bats-jenkins-install-plugins",
+            "keywords": [
+                "ant",
+                "install",
+                "maven",
+                "plugin",
+                "local"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/redis-cluster/Dockerfile",
+            "from": "grokzen/redis-cluster",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "grokzen/redis-cluster:latest",
+            "keywords": [],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [
+                "redis"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/memcached/Dockerfile",
+            "from": "memcached",
+            "langs": [],
+            "cmd": "memcached",
+            "servers": [],
+            "from_full": "memcached:latest",
+            "keywords": [],
+            "cmd_keywords": [
+                "memcached"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [
+                "memcached"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/mongo/Dockerfile",
+            "from": "mongo",
+            "langs": [],
+            "cmd": "mongod",
+            "servers": [],
+            "from_full": "mongo:latest",
+            "keywords": [],
+            "cmd_keywords": [
+                "mongod"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [
+                "mongo"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/nginx/Dockerfile",
+            "from": "nginx",
+            "langs": [
+                "bash"
+            ],
+            "cmd": "/bin/bash /opt/startup.sh",
+            "servers": [],
+            "from_full": "nginx:alpine",
+            "keywords": [
+                "apk",
+                "upstream",
+                "conf",
+                "www",
+                "php"
+            ],
+            "cmd_keywords": [
+                "opt",
+                "startup",
+                "bin",
+                "bash"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [
+                "nginx"
+            ],
+            "discos": []
+        },
+        {
+            "path": "/mysql/Dockerfile",
+            "from": "mysql",
+            "langs": [],
+            "cmd": "mysqld",
+            "servers": [],
+            "from_full": "mysql:${MYSQL_VERSION}",
+            "keywords": [
+                "mysql",
+                "etc",
+                "share",
+                "echo",
+                "zoneinfo"
+            ],
+            "cmd_keywords": [
+                "mysqld"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/redis/Dockerfile",
+            "from": "redis",
+            "langs": [],
+            "cmd": "redis-server",
+            "servers": [],
+            "from_full": "redis:latest",
+            "keywords": [],
+            "cmd_keywords": [
+                "redis",
+                "server"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [
+                "redis"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/consul/Dockerfile",
+            "from": "progrium/consul",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "progrium/consul:latest",
+            "keywords": [],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": [
+                "consul"
+            ]
+        },
+        {
+            "path": "/redis-webui/Dockerfile",
+            "from": "erikdubbelboer/phpredisadmin",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "erikdubbelboer/phpredisadmin",
+            "keywords": [],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "num_langs": 3,
+    "langs": [
+        "shell",
+        "dockerfile",
+        "bash"
+    ],
+    "discos": [
+        "consul"
+    ],
+    "num_gates": 1,
+    "num_monitors": 0,
+    "num_files": 14,
+    "files": [],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_servers": 0,
+    "url": "git://github.com/zeusgo/zeusdock.git",
+    "dbs": [
+        "mysql",
+        "memcached",
+        "mongo",
+        "redis"
+    ],
+    "num_discos": 1,
+    "gates": [
+        "nginx"
+    ],
+    "buses": []
+}

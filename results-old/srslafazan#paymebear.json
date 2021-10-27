@@ -1,0 +1,231 @@
+{
+    "size": 1346,
+    "shared_dbs": false,
+    "num_servers": 2,
+    "name": "srslafazan/paymebear",
+    "files": [
+        {
+            "gates": [],
+            "dbs": [
+                "max"
+            ],
+            "buses": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/webclient/package.json",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [
+                "redis"
+            ],
+            "buses": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/gateway/package.json",
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "num_files": 5,
+    "num_langs": 2,
+    "dbs": [
+        "redis",
+        "max"
+    ],
+    "servers": [
+        "express",
+        "node"
+    ],
+    "num_discos": 0,
+    "url": "git://github.com/srslafazan/paymebear.git",
+    "gates": [
+        "gateway"
+    ],
+    "structure": {
+        "services": [
+            {
+                "image": "./webclient",
+                "dbs": [],
+                "image_full": "./webclient",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "test-webclient",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "image_full": "redis",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "redis",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "registry.trustedlife.app/full-stack-starter-gateway",
+                "dbs": [],
+                "image_full": "registry.trustedlife.app/full-stack-starter-gateway",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "gateway",
+                "gates": [
+                    "gateway"
+                ],
+                "discos": [],
+                "depends_on": [
+                    "postgres",
+                    "redis"
+                ]
+            },
+            {
+                "image": "postgres",
+                "dbs": [],
+                "image_full": "postgres",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "postgres",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "registry.trustedlife.app/full-stack-starter-webclient",
+                "dbs": [],
+                "image_full": "registry.trustedlife.app/full-stack-starter-webclient",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "webclient",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "gateway"
+                ]
+            },
+            {
+                "image": "./gateway",
+                "dbs": [],
+                "image_full": "./gateway",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "test-gateway",
+                "gates": [
+                    "gateway"
+                ],
+                "discos": [],
+                "depends_on": []
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "redis"
+            ],
+            "services": [
+                "redis"
+            ],
+            "shared_dbs": false
+        },
+        "path": "/docker-compose.yml"
+    },
+    "num_gates": 1,
+    "num_dockers": 2,
+    "num_dbs": 2,
+    "num_services": 6,
+    "langs": [
+        "python",
+        "javascript"
+    ],
+    "buses": [],
+    "num_buses": 0,
+    "num_monitors": 0,
+    "languages": [
+        "javascript"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [
+                "yarn",
+                "dev"
+            ],
+            "cmd": "yarn dev",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "from": "node",
+            "monitors": [],
+            "from_full": "node:10-alpine",
+            "servers": [
+                "node"
+            ],
+            "path": "/webclient/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "add",
+                "apk",
+                "cache",
+                "update",
+                "yarn"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "yarn",
+                "migrate",
+                "start"
+            ],
+            "cmd": "yarn migrate && yarn start",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "from": "node",
+            "monitors": [],
+            "from_full": "node:10-alpine",
+            "servers": [
+                "node"
+            ],
+            "path": "/gateway/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "add",
+                "apk",
+                "yarn",
+                "cache",
+                "update"
+            ],
+            "discos": []
+        }
+    ],
+    "monitors": [],
+    "avg_size_service": 673.0,
+    "discos": [],
+    "images": [
+        "node"
+    ]
+}

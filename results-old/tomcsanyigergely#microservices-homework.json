@@ -1,0 +1,419 @@
+{
+    "gates": [
+        "nginx"
+    ],
+    "images": [
+        "node",
+        "maven",
+        "python"
+    ],
+    "num_dbs": 3,
+    "structure": {
+        "num_services": 12,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "postgres:12.1",
+                "gates": [],
+                "image": "postgres",
+                "depends_on": [],
+                "dbs": [],
+                "name": "accountdb",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "weather/",
+                "gates": [],
+                "image": "weather/",
+                "depends_on": [
+                    "weatherdb",
+                    "forecast"
+                ],
+                "dbs": [],
+                "name": "weather",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mysql:8.0.18",
+                "gates": [],
+                "image": "mysql",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "name": "weatherdb",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "account/",
+                "gates": [],
+                "image": "account/",
+                "depends_on": [
+                    "accountdb"
+                ],
+                "dbs": [],
+                "name": "account",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mongo:4.2.2-bionic",
+                "gates": [],
+                "image": "mongo",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "name": "orderdb",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mysql:8.0.18",
+                "gates": [],
+                "image": "mysql",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "name": "inventorydb",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "postgres:12.1",
+                "gates": [],
+                "image": "postgres",
+                "depends_on": [],
+                "dbs": [],
+                "name": "authdb",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "order/",
+                "gates": [],
+                "image": "order/",
+                "depends_on": [
+                    "orderdb",
+                    "inventory",
+                    "account"
+                ],
+                "dbs": [],
+                "name": "order",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "forecast/",
+                "gates": [],
+                "image": "forecast/",
+                "depends_on": [],
+                "dbs": [],
+                "name": "forecast",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "inventory/",
+                "gates": [],
+                "image": "inventory/",
+                "depends_on": [
+                    "inventorydb"
+                ],
+                "dbs": [],
+                "name": "inventory",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "nginx:1.17.6",
+                "gates": [
+                    "nginx"
+                ],
+                "image": "nginx",
+                "depends_on": [
+                    "authserver",
+                    "order",
+                    "inventory",
+                    "account",
+                    "weather"
+                ],
+                "dbs": [],
+                "name": "gateway",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "authserver/",
+                "gates": [],
+                "image": "authserver/",
+                "depends_on": [
+                    "authdb"
+                ],
+                "dbs": [],
+                "name": "authserver",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 3,
+            "services": [
+                "weatherdb",
+                "orderdb",
+                "inventorydb"
+            ],
+            "shared_dbs": false,
+            "names": [
+                "mysql",
+                "mongo"
+            ]
+        }
+    },
+    "num_files": 9,
+    "num_gates": 1,
+    "discos": [],
+    "num_dockers": 6,
+    "shared_dbs": false,
+    "languages": [
+        "java",
+        "python",
+        "javascript"
+    ],
+    "name": "tomcsanyigergely/microservices-homework",
+    "num_langs": 3,
+    "avg_size_service": 7.833333333333333,
+    "monitors": [],
+    "num_servers": 3,
+    "num_services": 12,
+    "dbs": [
+        "mysql",
+        "mongo",
+        "postgresql"
+    ],
+    "langs": [
+        "javascript",
+        "java",
+        "python"
+    ],
+    "dockers": [
+        {
+            "gates": [],
+            "path": "/account/Dockerfile",
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "maven",
+            "discos": [],
+            "from_full": "maven:3.6.3-jdk-11-openj9",
+            "cmd": "java -jar target/app.jar",
+            "monitors": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "app",
+                "target"
+            ],
+            "keywords": [
+                "mvn",
+                "package"
+            ]
+        },
+        {
+            "gates": [],
+            "path": "/inventory/Dockerfile",
+            "langs": [
+                "python"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": [],
+            "servers": [
+                "flask"
+            ],
+            "from": "python",
+            "discos": [],
+            "from_full": "python:3.8.0-buster",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": [
+                "flask",
+                "install",
+                "pip",
+                "python",
+                "connector"
+            ]
+        },
+        {
+            "gates": [],
+            "path": "/forecast/Dockerfile",
+            "langs": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "discos": [],
+            "from_full": "node:13.3.0-stretch",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": [
+                "express",
+                "npm",
+                "install",
+                "save"
+            ]
+        },
+        {
+            "gates": [],
+            "path": "/weather/Dockerfile",
+            "langs": [
+                "python"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": [],
+            "servers": [
+                "flask"
+            ],
+            "from": "python",
+            "discos": [],
+            "from_full": "python:3.8.0-buster",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": [
+                "flask",
+                "requests",
+                "install",
+                "pip",
+                "python"
+            ]
+        },
+        {
+            "gates": [],
+            "path": "/authserver/Dockerfile",
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "maven",
+            "discos": [],
+            "from_full": "maven:3.6.3-jdk-11-openj9",
+            "cmd": "java -jar target/app.jar",
+            "monitors": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "app",
+                "target"
+            ],
+            "keywords": [
+                "mvn",
+                "package"
+            ]
+        },
+        {
+            "gates": [],
+            "path": "/order/Dockerfile",
+            "langs": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "discos": [],
+            "from_full": "node:13.3.0-stretch",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": [
+                "npm",
+                "install",
+                "save",
+                "express",
+                "rest"
+            ]
+        }
+    ],
+    "buses": [],
+    "servers": [
+        "spring",
+        "flask",
+        "node"
+    ],
+    "size": 47,
+    "files": [
+        {
+            "gates": [],
+            "path": "/account/pom.xml",
+            "discos": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "path": "/authserver/pom.xml",
+            "discos": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        }
+    ],
+    "num_buses": 0,
+    "num_monitors": 0,
+    "url": "git://github.com/tomcsanyigergely/microservices-homework.git",
+    "num_discos": 0
+}

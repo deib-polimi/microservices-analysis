@@ -1,0 +1,157 @@
+{
+    "size": 1,
+    "avg_size_service": 1.0,
+    "name": "Cherkasik/microservicesDockerization",
+    "languages": [],
+    "servers": [],
+    "num_dbs": 0,
+    "images": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 8,
+        "services": [
+            {
+                "depends_on": [],
+                "image_full": "orderdb",
+                "monitors": [],
+                "name": "orderdb",
+                "image": "orderdb",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "rabbitmq",
+                "monitors": [],
+                "name": "rabbitmq",
+                "image": "rabbitmq",
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "itemdb",
+                "monitors": [],
+                "name": "itemdb",
+                "image": "itemdb",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "orderdb",
+                    "rabbitmq"
+                ],
+                "image_full": "orderservice",
+                "monitors": [],
+                "name": "order-service",
+                "image": "orderservice",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "item-service",
+                    "payment-service",
+                    "order-service"
+                ],
+                "image_full": "gateway",
+                "monitors": [],
+                "name": "gateway",
+                "image": "gateway",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [
+                    "gateway"
+                ],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "paymentdb",
+                "monitors": [],
+                "name": "paymentdb",
+                "image": "paymentdb",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "itemdb",
+                    "rabbitmq"
+                ],
+                "image_full": "itemservice",
+                "monitors": [],
+                "name": "item-service",
+                "image": "itemservice",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "paymentdb",
+                    "rabbitmq"
+                ],
+                "image_full": "paymentservice",
+                "monitors": [],
+                "name": "payment-service",
+                "image": "paymentservice",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [],
+            "names": [],
+            "shared_dbs": false,
+            "num": 0
+        }
+    },
+    "num_dockers": 0,
+    "num_buses": 1,
+    "num_services": 8,
+    "dockers": [],
+    "num_langs": 0,
+    "langs": [],
+    "discos": [],
+    "num_gates": 1,
+    "num_monitors": 0,
+    "num_files": 1,
+    "files": [],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_servers": 0,
+    "url": "git://github.com/Cherkasik/microservicesDockerization.git",
+    "dbs": [],
+    "num_discos": 0,
+    "gates": [
+        "gateway"
+    ],
+    "buses": [
+        "rabbitmq"
+    ]
+}

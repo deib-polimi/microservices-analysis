@@ -1,0 +1,626 @@
+{
+    "dbs": [
+        "redis",
+        "nexus",
+        "mysql"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "num_dockers": 12,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "dbs": [],
+                "discos": [],
+                "name": "ecommerce-storefront",
+                "depends_on": [],
+                "image": "ecom/ecommerce-storefront",
+                "servers": [],
+                "gates": [],
+                "buses": [],
+                "monitors": [],
+                "image_full": "ecom/ecommerce-storefront"
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "name": "config-server",
+                "depends_on": [],
+                "image": "ecom/microservice-config",
+                "servers": [],
+                "gates": [],
+                "buses": [],
+                "monitors": [],
+                "image_full": "ecom/microservice-config"
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "name": "customer-service",
+                "depends_on": [
+                    "mysql-customer"
+                ],
+                "image": "ecom/microservice.customer.service",
+                "servers": [],
+                "gates": [],
+                "buses": [],
+                "monitors": [],
+                "image_full": "ecom/microservice.customer.service"
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "name": "gateway-zuul",
+                "depends_on": [],
+                "image": "ecom/microservice-gateway-zuul",
+                "servers": [],
+                "gates": [
+                    "gateway"
+                ],
+                "buses": [],
+                "monitors": [],
+                "image_full": "ecom/microservice-gateway-zuul"
+            },
+            {
+                "dbs": [
+                    "mysql"
+                ],
+                "discos": [],
+                "name": "mysql-customer",
+                "depends_on": [],
+                "image": "mysql",
+                "servers": [],
+                "gates": [],
+                "buses": [],
+                "monitors": [],
+                "image_full": "mysql:5.7"
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "name": "product-service",
+                "depends_on": [
+                    "config-server",
+                    "mysql-product"
+                ],
+                "image": "ecom/microservice.product.service",
+                "servers": [],
+                "gates": [],
+                "buses": [],
+                "monitors": [],
+                "image_full": "ecom/microservice.product.service"
+            },
+            {
+                "dbs": [
+                    "mysql"
+                ],
+                "discos": [],
+                "name": "mysql-order",
+                "depends_on": [],
+                "image": "mysql",
+                "servers": [],
+                "gates": [],
+                "buses": [],
+                "monitors": [],
+                "image_full": "mysql:5.7"
+            },
+            {
+                "dbs": [],
+                "discos": [
+                    "eureka"
+                ],
+                "name": "discovery-eureka",
+                "depends_on": [],
+                "image": "ecom/microservice-discovery-eureka",
+                "servers": [],
+                "gates": [],
+                "buses": [],
+                "monitors": [],
+                "image_full": "ecom/microservice-discovery-eureka"
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "name": "order-service",
+                "depends_on": [
+                    "mysql-order"
+                ],
+                "image": "ecom/microservice.order.service",
+                "servers": [],
+                "gates": [],
+                "buses": [],
+                "monitors": [],
+                "image_full": "ecom/microservice.order.service"
+            },
+            {
+                "dbs": [
+                    "mysql"
+                ],
+                "discos": [],
+                "name": "mysql-product",
+                "depends_on": [],
+                "image": "mysql",
+                "servers": [],
+                "gates": [],
+                "buses": [],
+                "monitors": [],
+                "image_full": "mysql:5.7"
+            }
+        ],
+        "num_services": 10,
+        "detected_dbs": {
+            "names": [
+                "mysql"
+            ],
+            "num": 3,
+            "shared_dbs": false,
+            "services": [
+                "mysql-customer",
+                "mysql-order",
+                "mysql-product"
+            ]
+        }
+    },
+    "files": [
+        {
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/ecommerce-storefront/pom.xml",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "redis",
+                "mysql"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/microservice.customer.service/pom.xml",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "redis"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/microservice.auth.service/pom.xml",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/microservice.hystrix.dashboard/pom.xml",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "mysql"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/microservice.cart.service/pom.xml",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "redis",
+                "mysql"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/microservice.order.service/pom.xml",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/microservice.hystrix.turbine/pom.xml",
+            "gates": [],
+            "monitors": [
+                "turbine"
+            ]
+        },
+        {
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/microservice.config/pom.xml",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/microservice.discovery.eureka/pom.xml",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/microservice.zipkin.service/pom.xml",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/microservice.gateway.zuul/pom.xml",
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "nexus"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/microservice.boot.admin/pom.xml",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "redis",
+                "mysql"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/microservice.product.service/pom.xml",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "servers": [],
+            "path": "/ecommerce-storefront/web/package.json",
+            "gates": [],
+            "monitors": []
+        }
+    ],
+    "images": [
+        "openjdk"
+    ],
+    "num_servers": 1,
+    "monitors": [
+        "turbine"
+    ],
+    "shared_dbs": false,
+    "dockers": [
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "path": "/ecommerce-storefront/Dockerfile",
+            "monitors": [],
+            "keywords": [],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [
+                "bash"
+            ],
+            "from": "openjdk",
+            "cmd": "",
+            "path": "/microservice.customer.service/Dockerfile",
+            "monitors": [],
+            "keywords": [
+                "bash",
+                "apk",
+                "app",
+                "jar",
+                "add"
+            ],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [
+                "bash"
+            ],
+            "from": "openjdk",
+            "cmd": "",
+            "path": "/microservice.auth.service/Dockerfile",
+            "monitors": [],
+            "keywords": [
+                "bash",
+                "apk",
+                "app",
+                "jar",
+                "add"
+            ],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "path": "/microservice.hystrix.dashboard/Dockerfile",
+            "monitors": [],
+            "keywords": [],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [
+                "bash"
+            ],
+            "from": "openjdk",
+            "cmd": "",
+            "path": "/microservice.cart.service/Dockerfile",
+            "monitors": [],
+            "keywords": [
+                "bash",
+                "apk",
+                "app",
+                "jar",
+                "add"
+            ],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [
+                "bash"
+            ],
+            "from": "openjdk",
+            "cmd": "",
+            "path": "/microservice.order.service/Dockerfile",
+            "monitors": [],
+            "keywords": [
+                "bash",
+                "apk",
+                "app",
+                "jar",
+                "add"
+            ],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "path": "/microservice.hystrix.turbine/Dockerfile",
+            "monitors": [],
+            "keywords": [],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "path": "/microservice.config/Dockerfile",
+            "monitors": [],
+            "keywords": [],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "path": "/microservice.discovery.eureka/Dockerfile",
+            "monitors": [],
+            "keywords": [],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "path": "/microservice.zipkin.service/Dockerfile",
+            "monitors": [],
+            "keywords": [],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "path": "/microservice.gateway.zuul/Dockerfile",
+            "monitors": [],
+            "keywords": [],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [
+                "bash"
+            ],
+            "from": "openjdk",
+            "cmd": "",
+            "path": "/microservice.product.service/Dockerfile",
+            "monitors": [],
+            "keywords": [
+                "bash",
+                "apk",
+                "app",
+                "jar",
+                "add"
+            ],
+            "gates": []
+        }
+    ],
+    "num_discos": 1,
+    "size": 3938,
+    "name": "dillonzhang/ecommercemicroservice",
+    "buses": [
+        "amqp"
+    ],
+    "languages": [
+        "css",
+        "java"
+    ],
+    "num_buses": 1,
+    "langs": [
+        "java",
+        "css",
+        "bash"
+    ],
+    "num_services": 10,
+    "num_langs": 3,
+    "num_files": 27,
+    "avg_size_service": 328.1666666666667,
+    "num_monitors": 1,
+    "url": "git://github.com/dillonzhang/ecommercemicroservice.git",
+    "num_dbs": 3,
+    "gates": [
+        "zuul"
+    ],
+    "num_gates": 1
+}

@@ -1,0 +1,131 @@
+{
+    "langs": [
+        "c#"
+    ],
+    "languages": [
+        "c#"
+    ],
+    "url": "git://github.com/mwpro/Fibon.git",
+    "files": [],
+    "gates": [],
+    "discos": [],
+    "num_monitors": 0,
+    "num_dockers": 2,
+    "num_dbs": 0,
+    "avg_size_service": 16.0,
+    "num_gates": 0,
+    "num_servers": 0,
+    "name": "mwpro/Fibon",
+    "num_discos": 0,
+    "num_files": 3,
+    "num_buses": 1,
+    "servers": [],
+    "dbs": [],
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "depends_on": [],
+                "image": "mwpro/fibon-api",
+                "servers": [],
+                "gates": [],
+                "image_full": "mwpro/fibon-api",
+                "buses": [],
+                "dbs": [],
+                "discos": [],
+                "name": "api"
+            },
+            {
+                "monitors": [],
+                "depends_on": [],
+                "image": "rabbitmq",
+                "servers": [],
+                "gates": [],
+                "image_full": "rabbitmq:latest",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "discos": [],
+                "name": "rabbitmq"
+            },
+            {
+                "monitors": [],
+                "depends_on": [],
+                "image": "mwpro/fibon-service",
+                "servers": [],
+                "gates": [],
+                "image_full": "mwpro/fibon-service",
+                "buses": [],
+                "dbs": [],
+                "discos": [],
+                "name": "service"
+            },
+            {
+                "monitors": [],
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "image": "dadarek/wait-for-dependencies",
+                "servers": [],
+                "gates": [],
+                "image_full": "dadarek/wait-for-dependencies",
+                "buses": [],
+                "dbs": [],
+                "discos": [],
+                "name": "start_dependencies"
+            }
+        ],
+        "num_services": 4,
+        "detected_dbs": {
+            "names": [],
+            "services": [],
+            "shared_dbs": false,
+            "num": 0
+        },
+        "path": "/scripts/docker-compose.yml"
+    },
+    "monitors": [],
+    "size": 32,
+    "dockers": [
+        {
+            "langs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "microsoft/dotnet:runtime",
+            "gates": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "",
+            "keywords": [],
+            "path": "/src/Fibon.Api/Dockerfile",
+            "from": "microsoft/dotnet",
+            "cmd_keywords": []
+        },
+        {
+            "langs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "microsoft/dotnet:runtime",
+            "gates": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "",
+            "keywords": [],
+            "path": "/src/Fibon.Service/Dockerfile",
+            "from": "microsoft/dotnet",
+            "cmd_keywords": []
+        }
+    ],
+    "images": [
+        "microsoft/dotnet"
+    ],
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_services": 4,
+    "num_langs": 1,
+    "shared_dbs": false
+}

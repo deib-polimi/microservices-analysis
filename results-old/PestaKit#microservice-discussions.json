@@ -1,0 +1,229 @@
+{
+    "size": 559,
+    "shared_dbs": false,
+    "num_servers": 2,
+    "name": "PestaKit/microservice-discussions",
+    "files": [
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "path": "/swagger/discussions-specs/pom.xml",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": [],
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "path": "/swagger/discussions-server/pom.xml",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "path": "/e2e-specs/pom.xml",
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "num_files": 6,
+    "num_langs": 1,
+    "dbs": [
+        "mysql",
+        "postgresql"
+    ],
+    "servers": [
+        "tomcat",
+        "spring"
+    ],
+    "num_discos": 0,
+    "url": "git://github.com/PestaKit/microservice-discussions.git",
+    "gates": [],
+    "structure": {
+        "services": [
+            {
+                "image": "../images/phpmyadmin",
+                "dbs": [],
+                "image_full": "../images/phpmyadmin",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "phpmyadmin",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "mysql:db"
+                ]
+            },
+            {
+                "image": "pestakit/users",
+                "dbs": [],
+                "image_full": "pestakit/users",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "microservice-users",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "users-init-data"
+                ]
+            },
+            {
+                "image": "jbergknoff/postgresql-client",
+                "dbs": [
+                    "postgresql"
+                ],
+                "image_full": "jbergknoff/postgresql-client:latest",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "users-init-data",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "users-roach-one"
+                ]
+            },
+            {
+                "image": "cockroachdb/cockroach",
+                "dbs": [
+                    "cockroachdb"
+                ],
+                "image_full": "cockroachdb/cockroach:v1.1.2",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "users-roach-two",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "cockroachdb/cockroach",
+                "dbs": [
+                    "cockroachdb"
+                ],
+                "image_full": "cockroachdb/cockroach:v1.1.2",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "users-roach-three",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "../images/mysql",
+                "dbs": [
+                    "mysql"
+                ],
+                "image_full": "../images/mysql",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "mysql",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "cockroachdb/cockroach",
+                "dbs": [
+                    "cockroachdb"
+                ],
+                "image_full": "cockroachdb/cockroach:v1.1.2",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "users-roach-one",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            }
+        ],
+        "num_services": 7,
+        "detected_dbs": {
+            "num": 5,
+            "names": [
+                "mysql",
+                "cockroachdb",
+                "postgresql"
+            ],
+            "services": [
+                "users-init-data",
+                "users-roach-two",
+                "users-roach-three",
+                "mysql",
+                "users-roach-one"
+            ],
+            "shared_dbs": false
+        },
+        "path": "/infras/topology-amt/docker-compose.yml"
+    },
+    "num_gates": 0,
+    "num_dockers": 2,
+    "num_dbs": 2,
+    "num_services": 7,
+    "langs": [
+        "java"
+    ],
+    "buses": [],
+    "num_buses": 0,
+    "num_monitors": 0,
+    "languages": [
+        "java"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "mysql",
+            "monitors": [],
+            "from_full": "mysql:5.7.15",
+            "servers": [],
+            "path": "/infras/images/mysql/Dockerfile",
+            "dbs": [
+                "mysql"
+            ],
+            "keywords": [],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "phpmyadmin/phpmyadmin",
+            "monitors": [],
+            "from_full": "phpmyadmin/phpmyadmin:latest",
+            "servers": [],
+            "path": "/infras/images/phpmyadmin/Dockerfile",
+            "dbs": [],
+            "keywords": [],
+            "discos": []
+        }
+    ],
+    "monitors": [],
+    "avg_size_service": 279.5,
+    "discos": [],
+    "images": [
+        "mysql",
+        "phpmyadmin/phpmyadmin"
+    ]
+}

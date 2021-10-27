@@ -1,0 +1,317 @@
+{
+    "num_files": 9,
+    "num_services": 8,
+    "num_discos": 0,
+    "gates": [
+        "gateway"
+    ],
+    "languages": [
+        "javascript"
+    ],
+    "num_dbs": 2,
+    "dbs": [
+        "sql",
+        "redis"
+    ],
+    "num_monitors": 0,
+    "structure": {
+        "detected_dbs": {
+            "shared_dbs": true,
+            "num": 1,
+            "services": [
+                "redis"
+            ],
+            "names": [
+                "redis"
+            ]
+        },
+        "num_services": 8,
+        "services": [
+            {
+                "image_full": "./campaigns",
+                "image": "./campaigns",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "db-campaigns",
+                    "redis"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "campaigns"
+            },
+            {
+                "image_full": "./evoke",
+                "image": "./evoke",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "db-evoke",
+                    "redis",
+                    "gateway"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "evoke"
+            },
+            {
+                "image_full": "./match",
+                "image": "./match",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "db-match",
+                    "redis",
+                    "gateway"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "match"
+            },
+            {
+                "image_full": "redis:4.0.10-alpine",
+                "image": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "redis"
+            },
+            {
+                "image_full": "postgres:11.1-alpine",
+                "image": "postgres",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "db-evoke"
+            },
+            {
+                "image_full": "postgres:11.1-alpine",
+                "image": "postgres",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "db-match"
+            },
+            {
+                "image_full": "./gateway",
+                "image": "./gateway",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "campaigns"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "name": "gateway"
+            },
+            {
+                "image_full": "postgres:11.1-alpine",
+                "image": "postgres",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "db-campaigns"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "discos": [],
+    "url": "git://github.com/nazar/stitch-poc.git",
+    "num_buses": 0,
+    "files": [
+        {
+            "servers": [
+                "node"
+            ],
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/gateway/package.json"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "dbs": [
+                "sql",
+                "redis"
+            ],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/evoke/package.json"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "dbs": [
+                "sql",
+                "redis"
+            ],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/campaigns/package.json"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "dbs": [
+                "sql",
+                "redis"
+            ],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/match/package.json"
+        }
+    ],
+    "name": "nazar/stitch-poc",
+    "servers": [
+        "node"
+    ],
+    "num_dockers": 4,
+    "buses": [],
+    "num_gates": 1,
+    "num_langs": 1,
+    "shared_dbs": true,
+    "monitors": [],
+    "dockers": [
+        {
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/gateway/Dockerfile",
+            "keywords": [
+                "install",
+                "yarn"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "yarn",
+                "start"
+            ],
+            "discos": [],
+            "cmd": "yarn start",
+            "from_full": "node:10.15-alpine"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/evoke/Dockerfile",
+            "keywords": [
+                "install",
+                "yarn"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "yarn",
+                "start"
+            ],
+            "discos": [],
+            "cmd": "yarn start",
+            "from_full": "node:10.15-alpine"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/campaigns/Dockerfile",
+            "keywords": [
+                "install",
+                "yarn"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "yarn",
+                "start"
+            ],
+            "discos": [],
+            "cmd": "yarn start",
+            "from_full": "node:10.15-alpine"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/match/Dockerfile",
+            "keywords": [
+                "install",
+                "yarn"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "yarn",
+                "start"
+            ],
+            "discos": [],
+            "cmd": "yarn start",
+            "from_full": "node:10.15-alpine"
+        }
+    ],
+    "langs": [
+        "javascript"
+    ],
+    "num_servers": 1,
+    "size": 656,
+    "images": [
+        "node"
+    ],
+    "avg_size_service": 164.0
+}

@@ -1,0 +1,166 @@
+{
+    "discos": [],
+    "avg_size_service": 5.333333333333333,
+    "buses": [],
+    "num_gates": 1,
+    "name": "RyanEwen/lan-cache-docker",
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "dnsmasq",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "lan-cache/dnsmasq",
+                "image": "lan-cache/dnsmasq",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "nginx",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "lan-cache/nginx",
+                "image": "lan-cache/nginx",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": [
+                    "nginx"
+                ]
+            },
+            {
+                "name": "sniproxy",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "lan-cache/sniproxy",
+                "image": "lan-cache/sniproxy",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [],
+            "num": 0,
+            "shared_dbs": false,
+            "services": []
+        },
+        "num_services": 3
+    },
+    "dbs": [
+        "memcached"
+    ],
+    "dockers": [
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "nginx",
+                "start"
+            ],
+            "from_full": "alpine:3.8",
+            "buses": [],
+            "monitors": [],
+            "from": "alpine",
+            "keywords": [
+                "nginx",
+                "http",
+                "module",
+                "without",
+                "var"
+            ],
+            "gates": [
+                "nginx"
+            ],
+            "path": "/docker-nginx/Dockerfile",
+            "dbs": [
+                "memcached"
+            ],
+            "discos": [],
+            "cmd": "start-nginx.sh",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "dnsmasq",
+                "start"
+            ],
+            "from_full": "alpine:latest",
+            "buses": [],
+            "monitors": [],
+            "from": "alpine",
+            "keywords": [
+                "add",
+                "apk",
+                "cache",
+                "set",
+                "dnsmasq"
+            ],
+            "gates": [],
+            "path": "/docker-dnsmasq/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "start-dnsmasq.sh",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "sniproxy"
+            ],
+            "from_full": "alpine:latest",
+            "buses": [],
+            "monitors": [],
+            "from": "alpine",
+            "keywords": [
+                "add",
+                "apk",
+                "cache",
+                "set",
+                "sniproxy"
+            ],
+            "gates": [],
+            "path": "/docker-sniproxy/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "sniproxy -f",
+            "servers": []
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "size": 16,
+    "num_monitors": 0,
+    "images": [
+        "alpine"
+    ],
+    "num_buses": 0,
+    "num_services": 3,
+    "servers": [],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_discos": 0,
+    "languages": [
+        "dockerfile",
+        "shell"
+    ],
+    "url": "git://github.com/RyanEwen/lan-cache-docker.git",
+    "langs": [
+        "dockerfile",
+        "shell"
+    ],
+    "num_dbs": 1,
+    "num_servers": 0,
+    "num_langs": 2,
+    "files": [],
+    "num_dockers": 3,
+    "num_files": 4
+}

@@ -1,0 +1,227 @@
+{
+    "languages": [
+        "java"
+    ],
+    "num_servers": 2,
+    "shared_dbs": false,
+    "name": "nathanmbrown/chat-service",
+    "servers": [
+        "spring",
+        "glassfish"
+    ],
+    "num_monitors": 0,
+    "num_langs": 1,
+    "images": [
+        "alpine",
+        "alpine-jdk"
+    ],
+    "langs": [
+        "java"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "add",
+                "cache",
+                "openjdk",
+                "apk"
+            ],
+            "path": "/Dockerfile",
+            "gates": [],
+            "from": "alpine",
+            "from_full": "alpine:edge",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "jar",
+                "opt",
+                "channels",
+                "service",
+                "chat"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "-jar /opt/lib/chat-channels-service.jar",
+            "keywords": [],
+            "path": "/chat-channels-service/Dockerfile",
+            "gates": [],
+            "from": "alpine-jdk",
+            "from_full": "alpine-jdk:base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "jar",
+                "chat",
+                "opt",
+                "lib",
+                "registry"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "-jar /opt/lib/chat-registry.jar",
+            "keywords": [],
+            "path": "/chat-registry/Dockerfile",
+            "gates": [],
+            "from": "alpine-jdk",
+            "from_full": "alpine-jdk:base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "jar",
+                "chat",
+                "opt",
+                "lib",
+                "service"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "-jar /opt/lib/chat-service.jar",
+            "keywords": [],
+            "path": "/chat-service/Dockerfile",
+            "gates": [],
+            "from": "alpine-jdk",
+            "from_full": "alpine-jdk:base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [],
+    "num_buses": 0,
+    "discos": [
+        "eureka"
+    ],
+    "monitors": [],
+    "num_files": 9,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "chat-service:latest",
+                "depends_on": [
+                    "chat-registry-server"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "chat-service",
+                "image": "chat-service",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "chat-channels-service:latest",
+                "depends_on": [
+                    "chat-registry-server"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "chat-channels-service",
+                "image": "chat-channels-service",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "chat-registry-server:latest",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "chat-registry-server",
+                "image": "chat-registry-server",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 3,
+        "detected_dbs": {
+            "services": [],
+            "names": [],
+            "num": 0,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [],
+    "num_dbs": 0,
+    "avg_size_service": 10.5,
+    "num_services": 3,
+    "buses": [],
+    "files": [
+        {
+            "dbs": [],
+            "path": "/chat-channels-service/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/chat-client/pom.xml",
+            "gates": [],
+            "servers": [
+                "glassfish"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/chat-registry/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/chat-service/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": []
+        }
+    ],
+    "url": "git://github.com/nathanmbrown/chat-service.git",
+    "num_dockers": 4,
+    "size": 42,
+    "num_discos": 1,
+    "num_gates": 0
+}

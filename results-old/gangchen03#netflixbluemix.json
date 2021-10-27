@@ -1,0 +1,525 @@
+{
+    "size": 569,
+    "num_servers": 3,
+    "dbs": [
+        "mysql",
+        "cassandra"
+    ],
+    "files": [
+        {
+            "path": "/db2microservice/build.gradle",
+            "gates": [],
+            "servers": [
+                "jetty",
+                "tomcat",
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": []
+        },
+        {
+            "path": "/elasticsearchservice/build.gradle",
+            "gates": [],
+            "servers": [
+                "jetty",
+                "tomcat",
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [
+                "cassandra"
+            ],
+            "monitors": []
+        },
+        {
+            "path": "/eurekaserverdr/build.gradle",
+            "gates": [],
+            "servers": [
+                "jetty",
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/microservice/build.gradle",
+            "gates": [],
+            "servers": [
+                "jetty",
+                "tomcat",
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": []
+        },
+        {
+            "path": "/mqmicroservice/build.gradle",
+            "gates": [],
+            "servers": [
+                "jetty",
+                "tomcat",
+                "spring"
+            ],
+            "buses": [
+                "amqp",
+                "rabbitmq"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/zuulproxy/build.gradle",
+            "gates": [
+                "zuul"
+            ],
+            "servers": [
+                "jetty",
+                "tomcat",
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/eurekaserver/build.gradle",
+            "gates": [],
+            "servers": [
+                "jetty",
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "structure": {
+        "num_services": 9,
+        "services": [
+            {
+                "name": "elasticsearch-service",
+                "image": "dev/elasticsearch-service",
+                "depends_on": [
+                    "elasticsearch-server:elasticsearch-server"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "dev/elasticsearch-service",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "mysql-hello-service",
+                "image": "dev/mysql-hello-service",
+                "depends_on": [
+                    "eureka-server:eureka-server"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "dev/mysql-hello-service",
+                "discos": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "monitors": []
+            },
+            {
+                "name": "elasticsearch-server",
+                "image": "elasticsearch",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "elasticsearch:1.7.3",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "eureka-server",
+                "image": "dev/spring-eureka-server",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [
+                    "spring"
+                ],
+                "image_full": "dev/spring-eureka-server",
+                "discos": [
+                    "eureka"
+                ],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "nginx",
+                "image": "dev/noss-nginx",
+                "depends_on": [
+                    "eureka-server:eureka-server",
+                    "eureka-server-dr:eureka-server-dr",
+                    "zuul-proxy:zuul-proxy"
+                ],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "servers": [],
+                "image_full": "dev/noss-nginx",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "db2-hello-service",
+                "image": "dev/db2-hello-service",
+                "depends_on": [
+                    "eureka-server:eureka-server"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "dev/db2-hello-service",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "eureka-server-dr",
+                "image": "dev/spring-eureka-server-dr",
+                "depends_on": [
+                    "eureka-server:eureka-server"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [
+                    "spring"
+                ],
+                "image_full": "dev/spring-eureka-server-dr",
+                "discos": [
+                    "eureka"
+                ],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "zuul-proxy",
+                "image": "dev/spring-zuul-proxy",
+                "depends_on": [
+                    "eureka-server:eureka-server"
+                ],
+                "buses": [],
+                "gates": [
+                    "zuul"
+                ],
+                "servers": [
+                    "spring"
+                ],
+                "image_full": "dev/spring-zuul-proxy",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "mq-hello-service",
+                "image": "dev/mq-hello-service",
+                "depends_on": [
+                    "eureka-server:eureka-server"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "dev/mq-hello-service",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": false,
+            "services": [
+                "mysql-hello-service"
+            ]
+        }
+    },
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "images": [
+        "java",
+        "nginx"
+    ],
+    "num_discos": 1,
+    "url": "git://github.com/gangchen03/netflixbluemix.git",
+    "num_services": 9,
+    "langs": [
+        "html",
+        "java"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "num_gates": 2,
+    "shared_dbs": false,
+    "num_files": 17,
+    "num_monitors": 0,
+    "gates": [
+        "zuul",
+        "nginx"
+    ],
+    "servers": [
+        "spring",
+        "tomcat",
+        "jetty"
+    ],
+    "num_langs": 2,
+    "languages": [
+        "java",
+        "html"
+    ],
+    "monitors": [],
+    "name": "gangchen03/netflixbluemix",
+    "num_buses": 2,
+    "avg_size_service": 63.22222222222222,
+    "dockers": [
+        {
+            "path": "/nginx/Dockerfile",
+            "gates": [
+                "nginx"
+            ],
+            "servers": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "conf",
+                "default",
+                "nginx",
+                "etc"
+            ],
+            "from": "nginx",
+            "buses": [],
+            "from_full": "nginx",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/db2microservice/docker/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "touch",
+                "app",
+                "jar",
+                "bash"
+            ],
+            "from": "java",
+            "buses": [],
+            "from_full": "java:8",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/elasticsearchservice/docker/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "touch",
+                "app",
+                "jar",
+                "bash"
+            ],
+            "from": "java",
+            "buses": [],
+            "from_full": "java:8",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/eurekaserverdr/docker/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "touch",
+                "app",
+                "jar",
+                "bash"
+            ],
+            "from": "java",
+            "buses": [],
+            "from_full": "java:8",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/microservice/docker/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "touch",
+                "app",
+                "jar",
+                "bash"
+            ],
+            "from": "java",
+            "buses": [],
+            "from_full": "java:8",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/elasticsearch/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "elasticsearch",
+            "keywords": [
+                "gosu",
+                "usr",
+                "local",
+                "bin",
+                "elasticsearch"
+            ],
+            "from": "java",
+            "buses": [],
+            "from_full": "java:8-jre",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "elasticsearch"
+            ]
+        },
+        {
+            "path": "/mqmicroservice/docker/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "touch",
+                "app",
+                "jar",
+                "bash"
+            ],
+            "from": "java",
+            "buses": [],
+            "from_full": "java:8",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/zuulproxy/docker/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "touch",
+                "app",
+                "jar",
+                "bash"
+            ],
+            "from": "java",
+            "buses": [],
+            "from_full": "java:8",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/eurekaserver/docker/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "touch",
+                "app",
+                "jar",
+                "bash"
+            ],
+            "from": "java",
+            "buses": [],
+            "from_full": "java:8",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        }
+    ],
+    "num_dbs": 2,
+    "num_dockers": 9
+}

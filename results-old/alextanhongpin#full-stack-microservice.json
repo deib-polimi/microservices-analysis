@@ -1,0 +1,411 @@
+{
+    "num_files": 19,
+    "num_services": 2,
+    "num_discos": 1,
+    "gates": [],
+    "languages": [
+        "javascript",
+        "go"
+    ],
+    "num_dbs": 0,
+    "dbs": [],
+    "num_monitors": 2,
+    "structure": {
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 0,
+            "services": [],
+            "names": []
+        },
+        "num_services": 2,
+        "services": [
+            {
+                "image_full": "alextanhongpin/echo",
+                "image": "alextanhongpin/echo",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "web"
+            },
+            {
+                "image_full": "haproxy:1.7",
+                "image": "haproxy",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "web"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "haproxy"
+            }
+        ],
+        "path": "/haproxy/docker-compose.yml"
+    },
+    "discos": [
+        "grpc"
+    ],
+    "url": "git://github.com/alextanhongpin/full-stack-microservice.git",
+    "num_buses": 0,
+    "files": [
+        {
+            "servers": [
+                "flask"
+            ],
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/python/requirements.txt"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/kubernetes/node/package.json"
+        },
+        {
+            "servers": [
+                "express",
+                "node"
+            ],
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/linkerd/consul/node/package.json"
+        },
+        {
+            "servers": [
+                "express",
+                "mongoose",
+                "node"
+            ],
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/node/node-microservice/server/package.json"
+        },
+        {
+            "servers": [
+                "express",
+                "mongoose",
+                "node"
+            ],
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/node/node-microservice/echo/package.json"
+        },
+        {
+            "servers": [
+                "express",
+                "mongoose",
+                "node"
+            ],
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/node/node-microservice/client/package.json"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [
+                "jaeger"
+            ],
+            "path": "/opentracing/node/package.json"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "dbs": [],
+            "discos": [
+                "grpc"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/grpc/node/package.json"
+        }
+    ],
+    "name": "alextanhongpin/full-stack-microservice",
+    "servers": [
+        "express",
+        "flask",
+        "mongoose",
+        "node"
+    ],
+    "num_dockers": 10,
+    "buses": [],
+    "num_gates": 0,
+    "num_langs": 4,
+    "shared_dbs": false,
+    "monitors": [
+        "prometheus",
+        "jaeger"
+    ],
+    "dockers": [
+        {
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/kubernetes/node/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "server",
+                "node"
+            ],
+            "discos": [],
+            "cmd": "node server.js",
+            "from_full": "node:6.9.2"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/linkerd/consul/node/Dockerfile",
+            "keywords": [
+                "install",
+                "app",
+                "npm"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "app",
+                "server",
+                "node"
+            ],
+            "discos": [],
+            "cmd": "node /app/server.js",
+            "from_full": "node:boron"
+        },
+        {
+            "servers": [],
+            "from": "scratch",
+            "buses": [],
+            "gates": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "path": "/monitoring/prometheus/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "langs": [
+                "scratch"
+            ],
+            "cmd_keywords": [
+                "prometheus"
+            ],
+            "discos": [],
+            "cmd": "/prometheus",
+            "from_full": "scratch"
+        },
+        {
+            "servers": [],
+            "from": "scratch",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/monitoring/elk/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "langs": [
+                "scratch"
+            ],
+            "cmd_keywords": [
+                "app"
+            ],
+            "discos": [],
+            "cmd": "./app",
+            "from_full": "scratch"
+        },
+        {
+            "servers": [],
+            "from": "alpine",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/faas/go/Dockerfile",
+            "keywords": [
+                "cache",
+                "apk",
+                "curl",
+                "fwatchdog",
+                "bin"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "fwatchdog"
+            ],
+            "discos": [],
+            "cmd": "fwatchdog",
+            "from_full": "alpine:latest"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/node/node-microservice/server/Dockerfile",
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "discos": [],
+            "cmd": "npm start",
+            "from_full": "node:boron"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/node/node-microservice/echo/Dockerfile",
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "discos": [],
+            "cmd": "npm start",
+            "from_full": "node:boron"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/node/node-microservice/client/Dockerfile",
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "discos": [],
+            "cmd": "npm start",
+            "from_full": "node:boron"
+        },
+        {
+            "servers": [],
+            "from": "scratch",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/go/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "langs": [
+                "scratch"
+            ],
+            "cmd_keywords": [
+                "app"
+            ],
+            "discos": [],
+            "cmd": "./app",
+            "from_full": "scratch"
+        },
+        {
+            "servers": [],
+            "from": "python",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/python/Dockerfile",
+            "keywords": [
+                "pip",
+                "install",
+                "requirements",
+                "upgrade",
+                "txt"
+            ],
+            "dbs": [],
+            "langs": [
+                "python"
+            ],
+            "cmd_keywords": [
+                "main"
+            ],
+            "discos": [],
+            "cmd": "main.py",
+            "from_full": "python:3"
+        }
+    ],
+    "langs": [
+        "scratch",
+        "go",
+        "javascript",
+        "python"
+    ],
+    "num_servers": 4,
+    "size": 71697,
+    "images": [
+        "scratch",
+        "alpine",
+        "python",
+        "node"
+    ],
+    "avg_size_service": 7169.7
+}

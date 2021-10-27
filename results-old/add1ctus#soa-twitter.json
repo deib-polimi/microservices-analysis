@@ -1,0 +1,407 @@
+{
+    "files": [
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/homepage/requirements.txt",
+            "dbs": [],
+            "servers": [
+                "flask"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/users/requirements.txt",
+            "dbs": [],
+            "servers": [
+                "flask"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/favorites/requirements.txt",
+            "dbs": [],
+            "servers": [
+                "flask"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/follows/requirements.txt",
+            "dbs": [],
+            "servers": [
+                "flask"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/tweets/requirements.txt",
+            "dbs": [],
+            "servers": [
+                "flask"
+            ]
+        }
+    ],
+    "num_services": 12,
+    "discos": [
+        "consul"
+    ],
+    "dbs": [],
+    "avg_size_service": 10.0,
+    "name": "add1ctus/soa-twitter",
+    "num_buses": 0,
+    "num_langs": 1,
+    "monitors": [],
+    "num_files": 12,
+    "langs": [
+        "python"
+    ],
+    "num_gates": 1,
+    "dockers": [
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "path": "/homepage/Dockerfile",
+            "cmd_keywords": [],
+            "from_full": "python:3.7-stretch",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "cmd": "",
+            "from": "python",
+            "keywords": [
+                "pip",
+                "install",
+                "txt",
+                "upgrade",
+                "requirements"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "path": "/users/Dockerfile",
+            "cmd_keywords": [],
+            "from_full": "python:3.7-stretch",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "cmd": "",
+            "from": "python",
+            "keywords": [
+                "pip",
+                "install",
+                "txt",
+                "upgrade",
+                "requirements"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "path": "/favorites/Dockerfile",
+            "cmd_keywords": [],
+            "from_full": "python:3.7-stretch",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "cmd": "",
+            "from": "python",
+            "keywords": [
+                "pip",
+                "install",
+                "txt",
+                "upgrade",
+                "requirements"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "path": "/follows/Dockerfile",
+            "cmd_keywords": [],
+            "from_full": "python:3.7-stretch",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "cmd": "",
+            "from": "python",
+            "keywords": [
+                "pip",
+                "install",
+                "txt",
+                "upgrade",
+                "requirements"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "path": "/tweets/Dockerfile",
+            "cmd_keywords": [],
+            "from_full": "python:3.7-stretch",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "cmd": "",
+            "from": "python",
+            "keywords": [
+                "pip",
+                "install",
+                "txt",
+                "upgrade",
+                "requirements"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "gates": [
+                "kong"
+            ],
+            "path": "/kong/Dockerfile",
+            "cmd_keywords": [],
+            "from_full": "kong:latest",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "from": "kong",
+            "keywords": []
+        }
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "names": [],
+            "services": [],
+            "num": 0,
+            "shared_dbs": false
+        },
+        "num_services": 12,
+        "services": [
+            {
+                "monitors": [],
+                "image": "postgres",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "kong-database",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "postgres:latest"
+            },
+            {
+                "monitors": [],
+                "image": "./favorites",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "favorites",
+                "depends_on": [
+                    "consul"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "./favorites"
+            },
+            {
+                "monitors": [],
+                "image": "postgres",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "follows_database",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "postgres:latest"
+            },
+            {
+                "monitors": [],
+                "image": "consul",
+                "discos": [
+                    "consul"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "consul",
+                "depends_on": [
+                    "kong-database"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "consul:latest"
+            },
+            {
+                "monitors": [],
+                "image": "./users",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "users",
+                "depends_on": [
+                    "consul",
+                    "users_database"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "./users"
+            },
+            {
+                "monitors": [],
+                "image": "./follows",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "follows",
+                "depends_on": [
+                    "consul",
+                    "follows_database"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "./follows"
+            },
+            {
+                "monitors": [],
+                "image": "postgres",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "favorites_database",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "postgres:latest"
+            },
+            {
+                "monitors": [],
+                "image": "./tweets",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "tweets",
+                "depends_on": [
+                    "consul",
+                    "tweets_database"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "./tweets"
+            },
+            {
+                "monitors": [],
+                "image": "./homepage",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "homepage",
+                "depends_on": [
+                    "consul"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "./homepage"
+            },
+            {
+                "monitors": [],
+                "image": "postgres",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "users_database",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "postgres:latest"
+            },
+            {
+                "monitors": [],
+                "image": "./kong",
+                "discos": [],
+                "buses": [],
+                "gates": [
+                    "kong"
+                ],
+                "name": "kong",
+                "depends_on": [
+                    "kong-database"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "./kong"
+            },
+            {
+                "monitors": [],
+                "image": "postgres",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "tweets_database",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "postgres:latest"
+            }
+        ]
+    },
+    "size": 60,
+    "num_discos": 1,
+    "languages": [
+        "python"
+    ],
+    "url": "git://github.com/add1ctus/soa-twitter.git",
+    "buses": [],
+    "gates": [
+        "kong"
+    ],
+    "shared_dbs": false,
+    "servers": [
+        "flask"
+    ],
+    "images": [
+        "kong",
+        "python"
+    ],
+    "num_servers": 1,
+    "num_dockers": 6,
+    "num_monitors": 0,
+    "num_dbs": 0
+}

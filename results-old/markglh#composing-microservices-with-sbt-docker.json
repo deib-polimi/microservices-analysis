@@ -1,0 +1,166 @@
+{
+    "size": 221,
+    "num_monitors": 0,
+    "num_discos": 0,
+    "shared_dbs": false,
+    "langs": [
+        "shell",
+        "scala"
+    ],
+    "buses": [],
+    "num_langs": 2,
+    "num_dbs": 1,
+    "discos": [],
+    "avg_size_service": 221.0,
+    "images": [],
+    "gates": [
+        "nginx"
+    ],
+    "dockers": [],
+    "structure": {
+        "detected_dbs": {
+            "num": 1,
+            "shared_dbs": false,
+            "services": [
+                "cassandra-init"
+            ],
+            "names": [
+                "cassandra"
+            ]
+        },
+        "services": [
+            {
+                "image": "cassandra",
+                "depends_on": [
+                    "cassandra-node1:cassandra"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "cassandra:2.1",
+                "gates": [],
+                "dbs": [
+                    "cassandra"
+                ],
+                "servers": [],
+                "buses": [],
+                "name": "cassandra-init"
+            },
+            {
+                "image": "tracking-service",
+                "depends_on": [
+                    "cassandra-node1:cassandra",
+                    "nginx"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "tracking-service:1.0.0-SNAPSHOT",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "tracking-service"
+            },
+            {
+                "image": "",
+                "depends_on": [],
+                "discos": [],
+                "monitors": [],
+                "image_full": "",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "cassandra-node1"
+            },
+            {
+                "image": "",
+                "depends_on": [],
+                "discos": [],
+                "monitors": [],
+                "image_full": "",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "cassandra-node3"
+            },
+            {
+                "image": "nginx",
+                "depends_on": [],
+                "discos": [],
+                "monitors": [],
+                "image_full": "nginx",
+                "gates": [
+                    "nginx"
+                ],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "nginx"
+            },
+            {
+                "image": "beacon-service",
+                "depends_on": [
+                    "cassandra-node1:cassandra",
+                    "nginx"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "beacon-service:1.0.0-SNAPSHOT",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "beacon-service"
+            },
+            {
+                "image": "",
+                "depends_on": [],
+                "discos": [],
+                "monitors": [],
+                "image_full": "",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "cassandra-node2"
+            },
+            {
+                "image": "aggregator-service",
+                "depends_on": [
+                    "beacon-service",
+                    "tracking-service",
+                    "nginx"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "aggregator-service:1.0.0-SNAPSHOT",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "aggregator-service"
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "num_services": 8
+    },
+    "num_dockers": 0,
+    "num_files": 1,
+    "num_services": 8,
+    "num_gates": 1,
+    "name": "markglh/composing-microservices-with-sbt-docker",
+    "url": "git://github.com/markglh/composing-microservices-with-sbt-docker.git",
+    "monitors": [],
+    "servers": [],
+    "dbs": [
+        "cassandra"
+    ],
+    "num_servers": 0,
+    "num_buses": 0,
+    "files": [],
+    "languages": [
+        "scala",
+        "shell"
+    ]
+}

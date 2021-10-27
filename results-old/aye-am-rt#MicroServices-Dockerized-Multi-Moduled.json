@@ -1,0 +1,324 @@
+{
+    "name": "aye-am-rt/MicroServices-Dockerized-Multi-Moduled",
+    "num_dbs": 2,
+    "num_services": 7,
+    "num_files": 12,
+    "servers": [
+        "spring"
+    ],
+    "url": "git://github.com/aye-am-rt/MicroServices-Dockerized-Multi-Moduled.git",
+    "discos": [
+        "eureka"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "spring-config-server",
+                "image_full": "spring-config-server/",
+                "image": "spring-config-server/",
+                "servers": [
+                    "spring"
+                ],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "spring-movie",
+                "image_full": "movie-service",
+                "image": "movie-service",
+                "servers": [],
+                "depends_on": [
+                    "mongo",
+                    "eureka",
+                    "spring-config-server"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "mysql",
+                "image_full": "mysql:5.7",
+                "image": "mysql",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "mongo",
+                "image_full": "mongo",
+                "image": "mongo",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "eureka",
+                "image_full": "Eureka-server/",
+                "image": "Eureka-server/",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [
+                    "eureka"
+                ],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "spring-api-gateway",
+                "image_full": "api-service/",
+                "image": "api-service/",
+                "servers": [],
+                "depends_on": [
+                    "spring-movie",
+                    "spring-user"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "spring-user",
+                "image_full": "user-demo-service",
+                "image": "user-demo-service",
+                "servers": [],
+                "depends_on": [
+                    "mysql",
+                    "eureka",
+                    "spring-config-server"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [
+                "mysql",
+                "mongo"
+            ],
+            "num": 2,
+            "names": [
+                "mysql",
+                "mongo"
+            ]
+        },
+        "num_services": 7
+    },
+    "num_buses": 0,
+    "size": 409,
+    "dockers": [
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/api-service/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:11",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/Eureka-server/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:11",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/User/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:11",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/movie/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:11",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/spring-config-server/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:11",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "languages": [
+        "java"
+    ],
+    "dbs": [
+        "mysql",
+        "mongo"
+    ],
+    "monitors": [],
+    "shared_dbs": false,
+    "avg_size_service": 81.8,
+    "num_monitors": 0,
+    "files": [
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/api-service/pom.xml",
+            "discos": [],
+            "dbs": [],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/Eureka-server/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/User/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/movie/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [
+                "mongodb"
+            ],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/spring-config-server/pom.xml",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        }
+    ],
+    "langs": [
+        "java"
+    ],
+    "num_servers": 1,
+    "buses": [],
+    "num_langs": 1,
+    "num_gates": 1,
+    "num_discos": 1,
+    "images": [
+        "openjdk"
+    ],
+    "num_dockers": 5,
+    "gates": [
+        "zuul"
+    ]
+}

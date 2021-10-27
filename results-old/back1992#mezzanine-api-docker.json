@@ -1,0 +1,220 @@
+{
+    "num_gates": 1,
+    "images": [
+        "python",
+        "tutum/nginx"
+    ],
+    "discos": [],
+    "num_buses": 0,
+    "name": "back1992/mezzanine-api-docker",
+    "gates": [
+        "nginx"
+    ],
+    "structure": {
+        "num_services": 5,
+        "detected_dbs": {
+            "services": [
+                "postgres"
+            ],
+            "names": [
+                "postgresql"
+            ],
+            "shared_dbs": false,
+            "num": 1
+        },
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image": "./scrapyd",
+                "image_full": "./scrapyd",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "scrapyd",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "./web",
+                "image_full": "./web",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "postgres"
+                ],
+                "servers": [],
+                "name": "web",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "./nginx",
+                "image_full": "./nginx",
+                "discos": [],
+                "gates": [
+                    "nginx"
+                ],
+                "depends_on": [
+                    "web:web"
+                ],
+                "servers": [],
+                "name": "nginx",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "sameersbn/postgresql",
+                "image_full": "sameersbn/postgresql:9.6-1",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "postgres",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "postgresql"
+                ]
+            },
+            {
+                "image": "./scrapyd",
+                "image_full": "./scrapyd",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "scrapy",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            }
+        ]
+    },
+    "url": "git://github.com/back1992/mezzanine-api-docker.git",
+    "langs": [
+        "python"
+    ],
+    "num_dockers": 3,
+    "num_langs": 1,
+    "dbs": [
+        "postgresql"
+    ],
+    "shared_dbs": false,
+    "size": 40765,
+    "dockers": [
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "tutum/nginx",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "tutum/nginx",
+            "cmd": "",
+            "gates": [
+                "nginx"
+            ],
+            "keywords": [
+                "sites",
+                "etc",
+                "enabled",
+                "nginx",
+                "default"
+            ],
+            "dbs": [],
+            "path": "/nginx/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "python:3.5-onbuild",
+            "servers": [
+                "django"
+            ],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "from": "python",
+            "cmd": "scrapyd",
+            "gates": [],
+            "keywords": [
+                "apt",
+                "scrapy",
+                "tar",
+                "dockerize",
+                "com"
+            ],
+            "dbs": [],
+            "path": "/scrapyd/Dockerfile",
+            "cmd_keywords": [
+                "scrapyd"
+            ]
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "python:3.5",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "from": "python",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "dockerize",
+                "apt",
+                "pypi",
+                "com",
+                "douban"
+            ],
+            "dbs": [],
+            "path": "/web/Dockerfile",
+            "cmd_keywords": []
+        }
+    ],
+    "num_servers": 1,
+    "monitors": [],
+    "num_services": 5,
+    "servers": [
+        "django"
+    ],
+    "num_monitors": 0,
+    "avg_size_service": 13588.333333333334,
+    "num_files": 6,
+    "buses": [],
+    "files": [
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/scrapyd/requirements.txt"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "django"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/web/requirements.txt"
+        }
+    ],
+    "languages": [
+        "python"
+    ],
+    "num_dbs": 1,
+    "num_discos": 0
+}

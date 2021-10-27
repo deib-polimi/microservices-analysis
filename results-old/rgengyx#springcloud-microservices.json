@@ -1,0 +1,422 @@
+{
+    "monitors": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [],
+            "names": [],
+            "num": 0
+        },
+        "services": [
+            {
+                "image": "rickygeng97/microservicesapp_nginxloadbalancer",
+                "buses": [],
+                "monitors": [],
+                "image_full": "rickygeng97/microservicesapp_nginxloadbalancer",
+                "gates": [],
+                "name": "nginxloadbalancer",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "rickygeng97/microservicesapp_eurekaserver",
+                "buses": [],
+                "monitors": [],
+                "image_full": "rickygeng97/microservicesapp_eurekaserver",
+                "gates": [],
+                "name": "eurekaserver",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "rickygeng97/microservicesapp_zuulserver",
+                "buses": [],
+                "monitors": [],
+                "image_full": "rickygeng97/microservicesapp_zuulserver",
+                "gates": [],
+                "name": "zuulserver",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "eurekaserver"
+                ]
+            },
+            {
+                "image": "rickygeng97/microservicesapp_frontend",
+                "buses": [],
+                "monitors": [],
+                "image_full": "rickygeng97/microservicesapp_frontend",
+                "gates": [],
+                "name": "frontend",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "zuulserver",
+                    "eurekaserver",
+                    "userservice",
+                    "postservice",
+                    "chatservice"
+                ]
+            },
+            {
+                "image": "rickygeng97/microservicesapp_postservice",
+                "buses": [],
+                "monitors": [],
+                "image_full": "rickygeng97/microservicesapp_postservice",
+                "gates": [],
+                "name": "postservice",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "eurekaserver"
+                ]
+            },
+            {
+                "image": "rickygeng97/microservicesapp_authservice",
+                "buses": [],
+                "monitors": [],
+                "image_full": "rickygeng97/microservicesapp_authservice",
+                "gates": [],
+                "name": "authservice",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "eurekaserver"
+                ]
+            },
+            {
+                "image": "rickygeng97/microservicesapp_chatservice",
+                "buses": [],
+                "monitors": [],
+                "image_full": "rickygeng97/microservicesapp_chatservice",
+                "gates": [],
+                "name": "chatservice",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "eurekaserver"
+                ]
+            },
+            {
+                "image": "rickygeng97/microservicesapp_dataprocessingservice",
+                "buses": [],
+                "monitors": [],
+                "image_full": "rickygeng97/microservicesapp_dataprocessingservice",
+                "gates": [],
+                "name": "dataprocessingservice",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "rickygeng97/microservicesapp_userservice",
+                "buses": [],
+                "monitors": [],
+                "image_full": "rickygeng97/microservicesapp_userservice",
+                "gates": [],
+                "name": "userservice",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "eurekaserver"
+                ]
+            }
+        ],
+        "num_services": 9
+    },
+    "num_langs": 3,
+    "name": "rgengyx/springcloud-microservices",
+    "num_dockers": 9,
+    "buses": [],
+    "dbs": [
+        "mysql"
+    ],
+    "size": 651,
+    "num_discos": 1,
+    "shared_dbs": false,
+    "discos": [
+        "eureka"
+    ],
+    "images": [
+        "python",
+        "mysql",
+        "maven",
+        "nginx"
+    ],
+    "num_servers": 2,
+    "files": [
+        {
+            "path": "/src/authservice/pom.xml"
+        },
+        {
+            "gates": [
+                "zuul"
+            ],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/src/zuulserver/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": []
+        },
+        {
+            "path": "/src/postservice/pom.xml"
+        },
+        {
+            "path": "/src/chatservice/pom.xml"
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/src/eurekaserver/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": []
+        },
+        {
+            "path": "/src/userservice/pom.xml"
+        }
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "from": "mysql",
+            "path": "/src/mysqlserver/Dockerfile",
+            "from_full": "mysql:5.7.29",
+            "cmd": "",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "mvn",
+                "boot",
+                "spring",
+                "run"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "maven",
+            "path": "/src/authservice/Dockerfile",
+            "from_full": "maven:3.6-jdk-8",
+            "cmd": "mvn spring-boot:run",
+            "keywords": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "gunicorn",
+                "app"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "python",
+            "path": "/src/dataprocessingservice/Dockerfile",
+            "from_full": "python:3.7",
+            "cmd": "gunicorn -b 0.0.0.0:5000 app",
+            "keywords": [
+                "pandas",
+                "gunicorn",
+                "flask",
+                "pip",
+                "install"
+            ],
+            "discos": [],
+            "servers": [
+                "flask"
+            ],
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "mvn",
+                "boot",
+                "spring",
+                "run"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "maven",
+            "path": "/src/zuulserver/Dockerfile",
+            "from_full": "maven:3.6-jdk-8",
+            "cmd": "mvn spring-boot:run",
+            "keywords": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "mvn",
+                "boot",
+                "spring",
+                "run"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "maven",
+            "path": "/src/postservice/Dockerfile",
+            "from_full": "maven:3.6-jdk-8",
+            "cmd": "mvn spring-boot:run",
+            "keywords": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [
+                "nginx"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "from": "nginx",
+            "path": "/src/nginxloadbalancer/Dockerfile",
+            "from_full": "nginx:1.16.1",
+            "cmd": "",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "mvn",
+                "boot",
+                "spring",
+                "run"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "maven",
+            "path": "/src/chatservice/Dockerfile",
+            "from_full": "maven:3.6-jdk-8",
+            "cmd": "mvn spring-boot:run",
+            "keywords": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "mvn",
+                "boot",
+                "spring",
+                "run"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "maven",
+            "path": "/src/eurekaserver/Dockerfile",
+            "from_full": "maven:3.6-jdk-8",
+            "cmd": "mvn spring-boot:run",
+            "keywords": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "mvn",
+                "boot",
+                "spring",
+                "run"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "maven",
+            "path": "/src/userservice/Dockerfile",
+            "from_full": "maven:3.6-jdk-8",
+            "cmd": "mvn spring-boot:run",
+            "keywords": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ],
+            "langs": []
+        }
+    ],
+    "url": "git://github.com/rgengyx/springcloud-microservices.git",
+    "gates": [
+        "nginx",
+        "zuul"
+    ],
+    "num_files": 16,
+    "num_services": 9,
+    "num_gates": 2,
+    "num_dbs": 1,
+    "avg_size_service": 72.33333333333333,
+    "langs": [
+        "python",
+        "tsql",
+        "java"
+    ],
+    "num_buses": 0,
+    "languages": [
+        "java",
+        "tsql"
+    ],
+    "num_monitors": 0,
+    "servers": [
+        "flask",
+        "spring"
+    ]
+}

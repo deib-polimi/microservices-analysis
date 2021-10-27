@@ -1,0 +1,234 @@
+{
+    "num_monitors": 0,
+    "name": "YacineMesbat/HapiVueMongo-And-Microservices",
+    "langs": [
+        "vue",
+        "php",
+        "javascript"
+    ],
+    "discos": [],
+    "files": [
+        {
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/webApi/package.json",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/webClient/package.json",
+            "dbs": []
+        }
+    ],
+    "dockers": [
+        {
+            "from": "debian",
+            "cmd_keywords": [],
+            "langs": [
+                "php"
+            ],
+            "discos": [],
+            "cmd": "",
+            "dbs": [
+                "mysql"
+            ],
+            "from_full": "debian:latest",
+            "keywords": [
+                "php",
+                "apt",
+                "composer",
+                "setup",
+                "echo"
+            ],
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/microservices/accountManager/Dockerfile"
+        },
+        {
+            "from": "debian",
+            "cmd_keywords": [],
+            "langs": [
+                "php"
+            ],
+            "discos": [],
+            "cmd": "",
+            "dbs": [
+                "mysql"
+            ],
+            "from_full": "debian:latest",
+            "keywords": [
+                "php",
+                "apt",
+                "composer",
+                "setup",
+                "echo"
+            ],
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/microservices/crimeManager/Dockerfile"
+        }
+    ],
+    "size": 5242,
+    "dbs": [
+        "mongo",
+        "mysql"
+    ],
+    "num_gates": 0,
+    "monitors": [],
+    "url": "git://github.com/YacineMesbat/HapiVueMongo-And-Microservices.git",
+    "structure": {
+        "services": [
+            {
+                "depends_on": [],
+                "servers": [],
+                "name": "mongodb",
+                "gates": [],
+                "image_full": "mongo:latest",
+                "discos": [],
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [
+                    "mysqldb"
+                ],
+                "servers": [],
+                "name": "data.api",
+                "gates": [],
+                "image_full": "ruby:latest",
+                "discos": [],
+                "image": "ruby",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [],
+                "servers": [],
+                "name": "mysqldb",
+                "gates": [],
+                "image_full": "mysql:latest",
+                "discos": [],
+                "image": "mysql",
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [
+                    "account.api",
+                    "crime.api"
+                ],
+                "servers": [
+                    "node"
+                ],
+                "name": "web.api",
+                "gates": [],
+                "image_full": "node:latest",
+                "discos": [],
+                "image": "node",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [
+                    "mongodb"
+                ],
+                "servers": [],
+                "name": "crime.api",
+                "gates": [],
+                "image_full": "./microservices/crimeManager/Dockerfile",
+                "discos": [],
+                "image": "./microservices/crimeManager/Dockerfile",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [
+                    "web.api"
+                ],
+                "servers": [],
+                "name": "web.client",
+                "gates": [],
+                "image_full": "vuejs/ci:latest",
+                "discos": [],
+                "image": "vuejs/ci",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [
+                    "mysqldb"
+                ],
+                "servers": [],
+                "name": "account.api",
+                "gates": [],
+                "image_full": "./microservices/accountManager/Dockerfile",
+                "discos": [],
+                "image": "./microservices/accountManager/Dockerfile",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "mongodb",
+                "mysqldb"
+            ],
+            "shared_dbs": true,
+            "num": 2,
+            "names": [
+                "mongo",
+                "mysql"
+            ]
+        },
+        "path": "/docker-compose.yml",
+        "num_services": 7
+    },
+    "buses": [],
+    "num_servers": 1,
+    "avg_size_service": 2621.0,
+    "num_langs": 3,
+    "images": [
+        "debian"
+    ],
+    "num_dockers": 2,
+    "servers": [
+        "node"
+    ],
+    "languages": [
+        "javascript",
+        "php",
+        "vue"
+    ],
+    "gates": [],
+    "num_services": 7,
+    "shared_dbs": true,
+    "num_files": 5,
+    "num_discos": 0,
+    "num_buses": 0,
+    "num_dbs": 2
+}

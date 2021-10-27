@@ -1,0 +1,290 @@
+{
+    "servers": [
+        "django"
+    ],
+    "languages": [
+        "shell",
+        "hcl"
+    ],
+    "url": "git://github.com/electrocucaracha/grimoirelab.git",
+    "gates": [],
+    "langs": [
+        "shell",
+        "hcl",
+        "python"
+    ],
+    "discos": [],
+    "files": [],
+    "dockers": [
+        {
+            "servers": [],
+            "from": "python",
+            "gates": [],
+            "langs": [
+                "python"
+            ],
+            "buses": [],
+            "keywords": [
+                "sirmordred",
+                "conf",
+                "install",
+                "mkdir",
+                "dir"
+            ],
+            "discos": [],
+            "cmd": "sirmordred -c setup.cfg",
+            "cmd_keywords": [
+                "sirmordred",
+                "cfg",
+                "setup"
+            ],
+            "dbs": [],
+            "path": "/sirmordred/Dockerfile",
+            "monitors": [],
+            "from_full": "python:3.6"
+        },
+        {
+            "servers": [],
+            "from": "python",
+            "gates": [],
+            "langs": [
+                "python"
+            ],
+            "buses": [],
+            "keywords": [
+                "dir",
+                "install",
+                "kingarthur",
+                "cache",
+                "pip"
+            ],
+            "discos": [],
+            "cmd": "",
+            "cmd_keywords": [],
+            "dbs": [],
+            "path": "/kingarthur/Dockerfile",
+            "monitors": [],
+            "from_full": "python:3.6"
+        },
+        {
+            "servers": [
+                "django"
+            ],
+            "from": "python",
+            "gates": [],
+            "langs": [
+                "python"
+            ],
+            "buses": [],
+            "keywords": [
+                "install",
+                "pip",
+                "manage",
+                "python",
+                "makemigrations"
+            ],
+            "discos": [],
+            "cmd": "gunicorn django_bestiary.wsgi --bind 0.0.0.0:8000",
+            "cmd_keywords": [
+                "bind",
+                "wsgi",
+                "django",
+                "bestiary",
+                "gunicorn"
+            ],
+            "dbs": [],
+            "path": "/bestiary/Dockerfile",
+            "monitors": [],
+            "from_full": "python:3.6"
+        },
+        {
+            "servers": [],
+            "from": "python",
+            "gates": [],
+            "langs": [
+                "python"
+            ],
+            "buses": [],
+            "keywords": [
+                "dir",
+                "install",
+                "sortinghat",
+                "cache",
+                "pip"
+            ],
+            "discos": [],
+            "cmd": "",
+            "cmd_keywords": [],
+            "dbs": [],
+            "path": "/sortinghat/Dockerfile",
+            "monitors": [],
+            "from_full": "python:3.6"
+        }
+    ],
+    "images": [
+        "python"
+    ],
+    "num_monitors": 0,
+    "avg_size_service": 100.5,
+    "size": 402,
+    "num_dockers": 4,
+    "num_servers": 1,
+    "num_services": 9,
+    "num_discos": 0,
+    "name": "electrocucaracha/grimoirelab",
+    "shared_dbs": true,
+    "num_dbs": 1,
+    "num_buses": 0,
+    "num_langs": 3,
+    "buses": [],
+    "num_gates": 0,
+    "dbs": [
+        "redis"
+    ],
+    "num_files": 5,
+    "monitors": [],
+    "structure": {
+        "services": [
+            {
+                "servers": [],
+                "name": "sortinghat",
+                "image": "electrocucaracha/grimoirelab-sortinghat",
+                "buses": [],
+                "depends_on": [
+                    "mariadb"
+                ],
+                "gates": [],
+                "discos": [],
+                "image_full": "electrocucaracha/grimoirelab-sortinghat:0.7.7",
+                "monitors": [],
+                "dbs": []
+            },
+            {
+                "servers": [],
+                "name": "elasticsearch",
+                "image": "bitergia/elasticsearch",
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "image_full": "bitergia/elasticsearch:6.1.0",
+                "monitors": [],
+                "dbs": []
+            },
+            {
+                "servers": [],
+                "name": "mariadb",
+                "image": "mariadb",
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "image_full": "mariadb:10.1.38",
+                "monitors": [],
+                "dbs": [
+                    "mariadb"
+                ]
+            },
+            {
+                "servers": [],
+                "name": "arthurw",
+                "image": "electrocucaracha/grimoirelab-kingarthur",
+                "buses": [],
+                "depends_on": [
+                    "redis"
+                ],
+                "gates": [],
+                "discos": [],
+                "image_full": "electrocucaracha/grimoirelab-kingarthur:0.1.18",
+                "monitors": [],
+                "dbs": []
+            },
+            {
+                "servers": [],
+                "name": "arthurd",
+                "image": "electrocucaracha/grimoirelab-kingarthur",
+                "buses": [],
+                "depends_on": [
+                    "redis",
+                    "elasticsearch"
+                ],
+                "gates": [],
+                "discos": [],
+                "image_full": "electrocucaracha/grimoirelab-kingarthur:0.1.18",
+                "monitors": [],
+                "dbs": []
+            },
+            {
+                "servers": [],
+                "name": "mordred",
+                "image": "electrocucaracha/grimoirelab-sirmordred",
+                "buses": [],
+                "depends_on": [
+                    "elasticsearch",
+                    "arthurd",
+                    "redis",
+                    "sortinghat"
+                ],
+                "gates": [],
+                "discos": [],
+                "image_full": "electrocucaracha/grimoirelab-sirmordred:0.2.25",
+                "monitors": [],
+                "dbs": []
+            },
+            {
+                "servers": [],
+                "name": "elasticsearch_node",
+                "image": "bitergia/elasticsearch",
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "image_full": "bitergia/elasticsearch:6.1.0",
+                "monitors": [],
+                "dbs": []
+            },
+            {
+                "servers": [],
+                "name": "kibiter",
+                "image": "bitergia/kibiter",
+                "buses": [],
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "gates": [],
+                "discos": [],
+                "image_full": "bitergia/kibiter:community-v6.1.4-3",
+                "monitors": [],
+                "dbs": []
+            },
+            {
+                "servers": [],
+                "name": "redis",
+                "image": "redis",
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "image_full": "redis:5.0.5",
+                "monitors": [],
+                "dbs": [
+                    "redis"
+                ]
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "num_services": 9,
+        "detected_dbs": {
+            "services": [
+                "mariadb",
+                "redis"
+            ],
+            "num": 2,
+            "shared_dbs": true,
+            "names": [
+                "mariadb",
+                "redis"
+            ]
+        }
+    }
+}

@@ -1,0 +1,334 @@
+{
+    "languages": [
+        "java"
+    ],
+    "num_servers": 1,
+    "shared_dbs": false,
+    "name": "anichakra/springboot-poc",
+    "servers": [
+        "spring"
+    ],
+    "num_monitors": 0,
+    "num_langs": 1,
+    "images": [
+        "alpine"
+    ],
+    "langs": [
+        "java"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "add",
+                "cache",
+                "openjdk",
+                "apk"
+            ],
+            "path": "/docker/Dockerfile",
+            "gates": [],
+            "from": "alpine",
+            "from_full": "alpine:edge",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [
+        "zuul"
+    ],
+    "num_buses": 1,
+    "discos": [
+        "zookeeper",
+        "eureka"
+    ],
+    "monitors": [],
+    "num_files": 14,
+    "structure": {
+        "path": "/docker/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "anichakra/config-service",
+                "depends_on": [
+                    "discovery-service"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "config-service",
+                "image": "anichakra/config-service",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "wurstmeister/kafka:1.0.0",
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "dbs": [],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "name": "kafka",
+                "image": "wurstmeister/kafka",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "anichakra/some-app-service",
+                "depends_on": [
+                    "discovery-service",
+                    "gateway-service",
+                    "config-service"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "some-app-service",
+                "image": "anichakra/some-app-service",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "wurstmeister/zookeeper:3.4.6",
+                "depends_on": [],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "zookeeper",
+                "image": "wurstmeister/zookeeper",
+                "servers": [],
+                "discos": [
+                    "zookeeper"
+                ],
+                "monitors": []
+            },
+            {
+                "image_full": "anichakra/discovery-service",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "discovery-service",
+                "image": "anichakra/discovery-service",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "anichakra/gateway-service",
+                "depends_on": [
+                    "discovery-service"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "name": "gateway-service",
+                "image": "anichakra/gateway-service",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "services": [
+                "zookeeper"
+            ],
+            "names": [
+                "zookeeper"
+            ],
+            "num": 1,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [
+        "hazelcast",
+        "zookeeper",
+        "mysql",
+        "postgresql"
+    ],
+    "num_dbs": 4,
+    "avg_size_service": 573.0,
+    "num_services": 6,
+    "buses": [
+        "kafka"
+    ],
+    "files": [
+        {
+            "dbs": [
+                "hazelcast",
+                "postgresql"
+            ],
+            "path": "/poc-hazelcast-subscriber2/build.gradle",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "hazelcast",
+                "postgresql"
+            ],
+            "path": "/poc-hazelcast-subscriber/build.gradle",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "hazelcast",
+                "postgresql"
+            ],
+            "path": "/poc-hazelcast-publisher/build.gradle",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/pom.xml",
+            "gates": [
+                "gateway"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/auth-service/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/gateway-service/pom.xml",
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/pilot-framework/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/pilot-framework/target/classes/META-INF/maven/me.anichakra.poc.springboot/pilot-framework/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/discovery-service/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/config-service/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "postgresql"
+            ],
+            "path": "/pilot-vehicle-service/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/tracing-service/pom.xml",
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "url": "git://github.com/anichakra/springboot-poc.git",
+    "num_dockers": 1,
+    "size": 573,
+    "num_discos": 2,
+    "num_gates": 1
+}

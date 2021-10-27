@@ -1,0 +1,275 @@
+{
+    "size": 819,
+    "num_servers": 2,
+    "dbs": [],
+    "files": [
+        {
+            "path": "/gamification-service/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/gateway/pom.xml",
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/testse2e/pom.xml",
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/multiplication-service/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/service-registry/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/social-multiplication-ui/package.json",
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "structure": {
+        "num_services": 5,
+        "services": [
+            {
+                "name": "rabbit",
+                "image": "rabbitmq",
+                "depends_on": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "servers": [],
+                "image_full": "rabbitmq:3-management",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "service-registry",
+                "image": "microservice/service-registry",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "microservice/service-registry:0.0.1-SNAPSHOT",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "multiplication-service",
+                "image": "microservice/multiplication-service",
+                "depends_on": [
+                    "rabbit",
+                    "gateway",
+                    "service-registry"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "microservice/multiplication-service:0.0.1-SNAPSHOT",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "gamification-service",
+                "image": "microservice/gamification-service",
+                "depends_on": [
+                    "rabbit",
+                    "gateway",
+                    "service-registry"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "microservice/gamification-service:0.0.1-SNAPSHOT",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "gateway",
+                "image": "microservice/gateway",
+                "depends_on": [
+                    "service-registry"
+                ],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "servers": [],
+                "image_full": "microservice/gateway:0.0.1-SNAPSHOT",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "shared_dbs": false,
+            "services": []
+        }
+    },
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "images": [
+        "openjdk"
+    ],
+    "num_discos": 1,
+    "url": "git://github.com/mjstewart/social-multiplication.git",
+    "num_services": 5,
+    "langs": [
+        "kotlin",
+        "typescript",
+        "java"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "num_gates": 1,
+    "shared_dbs": false,
+    "num_files": 11,
+    "num_monitors": 0,
+    "gates": [
+        "zuul"
+    ],
+    "servers": [
+        "spring",
+        "node"
+    ],
+    "num_langs": 3,
+    "languages": [
+        "java",
+        "typescript",
+        "kotlin"
+    ],
+    "monitors": [],
+    "name": "mjstewart/social-multiplication",
+    "num_buses": 2,
+    "avg_size_service": 204.75,
+    "dockers": [
+        {
+            "path": "/gamification-service/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:10",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/gateway/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:10",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/multiplication-service/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:10",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/service-registry/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:10",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        }
+    ],
+    "num_dbs": 0,
+    "num_dockers": 4
+}

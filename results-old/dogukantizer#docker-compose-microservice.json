@@ -1,0 +1,232 @@
+{
+    "num_monitors": 0,
+    "name": "dogukantizer/docker-compose-microservice",
+    "langs": [
+        "javascript"
+    ],
+    "discos": [],
+    "files": [
+        {
+            "servers": [
+                "mongoose",
+                "express",
+                "node"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/backend/user-service/src/package.json",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "express",
+                "node"
+            ],
+            "monitors": [],
+            "gates": [
+                "gateway"
+            ],
+            "buses": [],
+            "discos": [],
+            "path": "/backend/api-gateway-service/src/package.json",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/backend/faye-service/src/package.json",
+            "dbs": [
+                "redis"
+            ]
+        }
+    ],
+    "dockers": [
+        {
+            "from": "node",
+            "cmd_keywords": [
+                "nodemon",
+                "use",
+                "strict",
+                "exitcrash",
+                "app"
+            ],
+            "langs": [],
+            "discos": [],
+            "cmd": "forever -c \"nodemon --use-strict -L\" app.js --exitcrash",
+            "dbs": [],
+            "from_full": "node:4",
+            "keywords": [
+                "npm",
+                "install",
+                "src",
+                "tmp",
+                "usr"
+            ],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/backend/user-service/Dockerfile"
+        },
+        {
+            "from": "node",
+            "cmd_keywords": [
+                "nodemon",
+                "use",
+                "strict",
+                "exitcrash",
+                "app"
+            ],
+            "langs": [],
+            "discos": [],
+            "cmd": "forever -c \"nodemon --use-strict -L\" app.js --exitcrash",
+            "dbs": [],
+            "from_full": "node:4",
+            "keywords": [
+                "npm",
+                "install",
+                "src",
+                "tmp",
+                "usr"
+            ],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/backend/api-gateway-service/Dockerfile"
+        },
+        {
+            "from": "node",
+            "cmd_keywords": [
+                "nodemon",
+                "use",
+                "strict",
+                "exitcrash",
+                "app"
+            ],
+            "langs": [],
+            "discos": [],
+            "cmd": "forever -c \"nodemon --use-strict -L\" app.js --exitcrash",
+            "dbs": [],
+            "from_full": "node:4",
+            "keywords": [
+                "npm",
+                "install",
+                "src",
+                "tmp",
+                "usr"
+            ],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/backend/faye-service/Dockerfile"
+        }
+    ],
+    "size": 23,
+    "dbs": [
+        "mongo",
+        "redis"
+    ],
+    "num_gates": 1,
+    "monitors": [],
+    "url": "git://github.com/dogukantizer/docker-compose-microservice.git",
+    "structure": {
+        "services": [
+            {
+                "depends_on": [
+                    "users"
+                ],
+                "servers": [],
+                "name": "api",
+                "gates": [
+                    "gateway"
+                ],
+                "image_full": "./backend/api-gateway-service",
+                "discos": [],
+                "image": "./backend/api-gateway-service",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [
+                    "mongo"
+                ],
+                "servers": [],
+                "name": "users",
+                "gates": [],
+                "image_full": "./backend/user-service",
+                "discos": [],
+                "image": "./backend/user-service",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [],
+                "servers": [],
+                "name": "mongo",
+                "gates": [],
+                "image_full": "mongo:latest",
+                "discos": [],
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "mongo"
+            ],
+            "shared_dbs": false,
+            "num": 1,
+            "names": [
+                "mongo"
+            ]
+        },
+        "path": "/docker-compose.yml",
+        "num_services": 3
+    },
+    "buses": [],
+    "num_servers": 3,
+    "avg_size_service": 7.666666666666667,
+    "num_langs": 1,
+    "images": [
+        "node"
+    ],
+    "num_dockers": 3,
+    "servers": [
+        "mongoose",
+        "express",
+        "node"
+    ],
+    "languages": [
+        "javascript"
+    ],
+    "gates": [
+        "gateway"
+    ],
+    "num_services": 3,
+    "shared_dbs": false,
+    "num_files": 7,
+    "num_discos": 0,
+    "num_buses": 0,
+    "num_dbs": 2
+}

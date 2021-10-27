@@ -1,0 +1,151 @@
+{
+    "servers": [],
+    "name": "todhm/php_microservice",
+    "num_gates": 1,
+    "avg_size_service": 2.0,
+    "structure": {
+        "services": [
+            {
+                "gates": [
+                    "nginx"
+                ],
+                "buses": [],
+                "image_full": "./microservices/base/nginx/",
+                "servers": [],
+                "depends_on": [
+                    "autodiscovery",
+                    "microservice_base_fpm"
+                ],
+                "name": "microservice_base_nginx",
+                "dbs": [],
+                "image": "./microservices/base/nginx/",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "./autodiscovery",
+                "servers": [],
+                "depends_on": [],
+                "name": "autodiscovery",
+                "dbs": [],
+                "image": "./autodiscovery",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "./microservices/base/php-fpm/",
+                "servers": [],
+                "depends_on": [
+                    "autodiscovery"
+                ],
+                "name": "microservice_base_fpm",
+                "dbs": [],
+                "image": "./microservices/base/php-fpm/",
+                "monitors": [],
+                "discos": []
+            }
+        ],
+        "num_services": 3,
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        }
+    },
+    "num_dbs": 1,
+    "buses": [],
+    "langs": [
+        "php",
+        "dockerfile",
+        "shell"
+    ],
+    "shared_dbs": false,
+    "files": [],
+    "size": 4,
+    "num_dockers": 2,
+    "url": "git://github.com/todhm/php_microservice.git",
+    "gates": [
+        "nginx"
+    ],
+    "num_servers": 0,
+    "images": [
+        "consul",
+        "php"
+    ],
+    "num_services": 3,
+    "languages": [
+        "dockerfile",
+        "shell"
+    ],
+    "num_files": 3,
+    "discos": [
+        "consul",
+        "containerpilot"
+    ],
+    "dockers": [
+        {
+            "gates": [],
+            "from_full": "consul:v0.7.0",
+            "cmd_keywords": [],
+            "path": "/autodiscovery/Dockerfile",
+            "servers": [],
+            "cmd": "",
+            "from": "consul",
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [
+                "consul"
+            ],
+            "monitors": [],
+            "keywords": []
+        },
+        {
+            "gates": [],
+            "from_full": "php:7-fpm",
+            "cmd_keywords": [
+                "local",
+                "php",
+                "nodaemonize",
+                "bin",
+                "containerpilot"
+            ],
+            "path": "/microservices/base/php-fpm/Dockerfile",
+            "servers": [],
+            "cmd": "/usr/local/bin/containerpilot php-fpm --nodaemonize",
+            "from": "php",
+            "buses": [],
+            "langs": [
+                "php"
+            ],
+            "dbs": [
+                "redis"
+            ],
+            "discos": [
+                "containerpilot"
+            ],
+            "monitors": [],
+            "keywords": [
+                "containerpilot",
+                "consul",
+                "template",
+                "tmp",
+                "php"
+            ]
+        }
+    ],
+    "num_langs": 3,
+    "num_monitors": 0,
+    "num_buses": 0,
+    "dbs": [
+        "redis"
+    ],
+    "monitors": [],
+    "num_discos": 2
+}

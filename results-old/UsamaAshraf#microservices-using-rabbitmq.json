@@ -1,0 +1,183 @@
+{
+    "avg_size_service": 10.0,
+    "discos": [],
+    "images": [
+        "buildpack-deps",
+        "debian"
+    ],
+    "num_dockers": 3,
+    "num_servers": 1,
+    "langs": [
+        "go",
+        "erlang",
+        "shell",
+        "gcc",
+        "dockerfile"
+    ],
+    "languages": [
+        "shell",
+        "dockerfile",
+        "go"
+    ],
+    "num_services": 3,
+    "num_gates": 0,
+    "num_langs": 5,
+    "monitors": [],
+    "gates": [],
+    "servers": [
+        "flask"
+    ],
+    "num_monitors": 0,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [
+                    "rabbitmq-server"
+                ],
+                "image": "./go-service",
+                "image_full": "./go-service",
+                "gates": [],
+                "name": "go-service",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "rabbitmq-server"
+                ],
+                "image": "./python-service",
+                "image_full": "./python-service",
+                "gates": [],
+                "name": "python-service",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "./rabbitmq-server",
+                "image_full": "./rabbitmq-server",
+                "gates": [],
+                "name": "rabbitmq-server",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            }
+        ],
+        "num_services": 3,
+        "detected_dbs": {
+            "names": [],
+            "num": 0,
+            "services": [],
+            "shared_dbs": false
+        }
+    },
+    "size": 30,
+    "url": "git://github.com/UsamaAshraf/microservices-using-rabbitmq.git",
+    "num_buses": 2,
+    "shared_dbs": false,
+    "files": [],
+    "num_discos": 0,
+    "dockers": [
+        {
+            "path": "/python-service/Dockerfile",
+            "from_full": "debian:stretch-slim",
+            "from": "debian",
+            "cmd": "",
+            "keywords": [
+                "python",
+                "dev",
+                "get",
+                "apt",
+                "tar"
+            ],
+            "servers": [
+                "flask"
+            ],
+            "gates": [],
+            "langs": [
+                "gcc"
+            ],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [
+                "sqlite"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/rabbitmq-server/Dockerfile",
+            "from_full": "debian:stretch-slim",
+            "from": "debian",
+            "cmd": "rabbitmq-server",
+            "keywords": [
+                "rabbitmq",
+                "apt",
+                "erlang",
+                "server",
+                "install"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [
+                "erlang"
+            ],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "rabbitmq",
+                "server"
+            ],
+            "dbs": [],
+            "buses": [
+                "rabbitmq"
+            ]
+        },
+        {
+            "path": "/go-service/Dockerfile",
+            "from_full": "buildpack-deps:stretch-scm",
+            "from": "buildpack-deps",
+            "cmd": "",
+            "keywords": [
+                "gorelarch",
+                "echo",
+                "gorelsha",
+                "linux",
+                "tgz"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [
+                "gcc"
+            ],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [
+                "amqp"
+            ]
+        }
+    ],
+    "name": "UsamaAshraf/microservices-using-rabbitmq",
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "num_files": 4,
+    "dbs": [
+        "sqlite"
+    ],
+    "num_dbs": 1
+}

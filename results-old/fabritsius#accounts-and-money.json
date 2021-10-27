@@ -1,0 +1,233 @@
+{
+    "num_files": 7,
+    "servers": [
+        "node",
+        "express"
+    ],
+    "langs": [
+        "javascript"
+    ],
+    "num_monitors": 0,
+    "discos": [],
+    "num_servers": 2,
+    "images": [
+        "node"
+    ],
+    "dbs": [],
+    "dockers": [
+        {
+            "from_full": "node:10.16.0-alpine",
+            "keywords": [
+                "install",
+                "production",
+                "npm",
+                "only"
+            ],
+            "path": "/balance_checker/Dockerfile",
+            "servers": [
+                "node"
+            ],
+            "langs": [],
+            "cmd_keywords": [
+                "node",
+                "app"
+            ],
+            "cmd": "node app",
+            "discos": [],
+            "from": "node",
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "from_full": "node:10.16.0-alpine",
+            "keywords": [
+                "install",
+                "production",
+                "npm",
+                "only"
+            ],
+            "path": "/transaction_handler/Dockerfile",
+            "servers": [
+                "node"
+            ],
+            "langs": [],
+            "cmd_keywords": [
+                "node",
+                "app"
+            ],
+            "cmd": "node app",
+            "discos": [],
+            "from": "node",
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "from_full": "node:10.16.0-alpine",
+            "keywords": [
+                "install",
+                "production",
+                "npm",
+                "only"
+            ],
+            "path": "/api/Dockerfile",
+            "servers": [
+                "node"
+            ],
+            "langs": [],
+            "cmd_keywords": [
+                "node",
+                "app"
+            ],
+            "cmd": "node app",
+            "discos": [],
+            "from": "node",
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "num_buses": 1,
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_gates": 0,
+    "languages": [
+        "javascript"
+    ],
+    "num_langs": 1,
+    "num_services": 5,
+    "url": "git://github.com/fabritsius/accounts-and-money.git",
+    "num_dbs": 0,
+    "num_dockers": 3,
+    "avg_size_service": 109.33333333333333,
+    "name": "fabritsius/accounts-and-money",
+    "files": [
+        {
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/balance_checker/package.json",
+            "servers": [
+                "node"
+            ],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/transaction_handler/package.json",
+            "servers": [
+                "node"
+            ],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/api/package.json",
+            "servers": [
+                "node",
+                "express"
+            ],
+            "discos": []
+        }
+    ],
+    "size": 328,
+    "monitors": [],
+    "gates": [],
+    "shared_dbs": false,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "./api",
+                "monitors": [],
+                "gates": [],
+                "image": "./api",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "api",
+                "discos": [],
+                "depends_on": [
+                    "balancechecker",
+                    "transactionhandler"
+                ]
+            },
+            {
+                "image_full": "./transaction_handler",
+                "monitors": [],
+                "gates": [],
+                "image": "./transaction_handler",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "transactionhandler",
+                "discos": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "db"
+                ]
+            },
+            {
+                "image_full": "./balance_checker",
+                "monitors": [],
+                "gates": [],
+                "image": "./balance_checker",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "balancechecker",
+                "discos": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "db"
+                ]
+            },
+            {
+                "image_full": "postgres",
+                "monitors": [],
+                "gates": [],
+                "image": "postgres",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "db",
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image_full": "rabbitmq",
+                "monitors": [],
+                "gates": [],
+                "image": "rabbitmq",
+                "dbs": [],
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "name": "rabbitmq",
+                "discos": [],
+                "depends_on": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [],
+            "services": [],
+            "num": 0,
+            "shared_dbs": false
+        },
+        "num_services": 5
+    },
+    "num_discos": 0
+}

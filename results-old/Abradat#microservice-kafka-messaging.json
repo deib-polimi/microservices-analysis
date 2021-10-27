@@ -1,0 +1,211 @@
+{
+    "num_monitors": 0,
+    "name": "Abradat/microservice-kafka-messaging",
+    "langs": [
+        "java"
+    ],
+    "discos": [
+        "zookeeper"
+    ],
+    "files": [
+        {
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "path": "/central-security-settlement/pom.xml",
+            "dbs": [
+                "postgresql"
+            ]
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "path": "/participant-security-enquiry/pom.xml",
+            "dbs": [
+                "postgresql"
+            ]
+        }
+    ],
+    "dockers": [
+        {
+            "from": "maven",
+            "cmd_keywords": [],
+            "langs": [],
+            "discos": [],
+            "cmd": "",
+            "dbs": [],
+            "from_full": "maven:3.5-jdk-8-alpine",
+            "keywords": [],
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/central-security-settlement/Dockerfile"
+        },
+        {
+            "from": "postgres",
+            "cmd_keywords": [],
+            "langs": [],
+            "discos": [],
+            "cmd": "",
+            "dbs": [],
+            "from_full": "postgres:9.5",
+            "keywords": [],
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/postgres/Dockerfile"
+        },
+        {
+            "from": "maven",
+            "cmd_keywords": [],
+            "langs": [],
+            "discos": [],
+            "cmd": "",
+            "dbs": [],
+            "from_full": "maven:3.5-jdk-8-alpine",
+            "keywords": [],
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/participant-security-enquiry/Dockerfile"
+        }
+    ],
+    "size": 176,
+    "dbs": [
+        "postgresql",
+        "zookeeper"
+    ],
+    "num_gates": 0,
+    "monitors": [],
+    "url": "git://github.com/Abradat/microservice-kafka-messaging.git",
+    "structure": {
+        "services": [
+            {
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "servers": [],
+                "name": "kafka",
+                "gates": [],
+                "image_full": "wurstmeister/kafka",
+                "discos": [],
+                "image": "wurstmeister/kafka",
+                "dbs": [],
+                "buses": [
+                    "kafka"
+                ],
+                "monitors": []
+            },
+            {
+                "depends_on": [
+                    "postgres",
+                    "kafka"
+                ],
+                "servers": [],
+                "name": "pse-service",
+                "gates": [],
+                "image_full": "./participant-security-enquiry",
+                "discos": [],
+                "image": "./participant-security-enquiry",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [
+                    "postgres",
+                    "kafka"
+                ],
+                "servers": [],
+                "name": "css-service",
+                "gates": [],
+                "image_full": "./central-security-settlement",
+                "discos": [],
+                "image": "./central-security-settlement",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [],
+                "servers": [],
+                "name": "zookeeper",
+                "gates": [],
+                "image_full": "wurstmeister/zookeeper",
+                "discos": [
+                    "zookeeper"
+                ],
+                "image": "wurstmeister/zookeeper",
+                "dbs": [
+                    "zookeeper"
+                ],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [],
+                "servers": [],
+                "name": "postgres",
+                "gates": [],
+                "image_full": "./postgres",
+                "discos": [],
+                "image": "./postgres",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "zookeeper"
+            ],
+            "shared_dbs": false,
+            "num": 1,
+            "names": [
+                "zookeeper"
+            ]
+        },
+        "path": "/docker-compose.yml",
+        "num_services": 5
+    },
+    "buses": [
+        "kafka"
+    ],
+    "num_servers": 1,
+    "avg_size_service": 58.666666666666664,
+    "num_langs": 1,
+    "images": [
+        "maven",
+        "postgres"
+    ],
+    "num_dockers": 3,
+    "servers": [
+        "spring"
+    ],
+    "languages": [
+        "java"
+    ],
+    "gates": [],
+    "num_services": 5,
+    "shared_dbs": false,
+    "num_files": 6,
+    "num_discos": 1,
+    "num_buses": 1,
+    "num_dbs": 2
+}

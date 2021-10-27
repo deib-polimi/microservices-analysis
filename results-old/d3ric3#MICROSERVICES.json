@@ -1,0 +1,247 @@
+{
+    "size": 48764,
+    "num_dockers": 3,
+    "discos": [],
+    "num_files": 8,
+    "avg_size_service": 16254.666666666666,
+    "buses": [],
+    "num_gates": 1,
+    "langs": [
+        "javascript"
+    ],
+    "num_discos": 0,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "yarn watch",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "cmd_keywords": [
+                "watch",
+                "yarn"
+            ],
+            "from": "node",
+            "path": "/api-gateway/Dockerfile",
+            "keywords": [
+                "yarn"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "node:12"
+        },
+        {
+            "monitors": [],
+            "cmd": "yarn watch",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "cmd_keywords": [
+                "watch",
+                "yarn"
+            ],
+            "from": "node",
+            "path": "/listings-service/Dockerfile",
+            "keywords": [
+                "yarn"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "node:12"
+        },
+        {
+            "monitors": [],
+            "cmd": "yarn watch",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "cmd_keywords": [
+                "watch",
+                "yarn"
+            ],
+            "from": "node",
+            "path": "/users-service/Dockerfile",
+            "keywords": [
+                "yarn"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "node:12"
+        }
+    ],
+    "num_dbs": 1,
+    "monitors": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mysql",
+                "image_full": "mysql:5.7.20",
+                "discos": [],
+                "name": "listings-service-db",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./listings-service",
+                "image_full": "./listings-service",
+                "discos": [],
+                "name": "listings-service",
+                "depends_on": [
+                    "listings-service-db"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./api-gateway",
+                "image_full": "./api-gateway",
+                "discos": [],
+                "name": "api-gateway",
+                "depends_on": [
+                    "listings-service",
+                    "users-service"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": [
+                    "gateway"
+                ]
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mysql",
+                "image_full": "mysql:5.7.20",
+                "discos": [],
+                "name": "users-service-db",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "./users-service",
+                "image_full": "./users-service",
+                "discos": [],
+                "name": "users-service",
+                "depends_on": [
+                    "users-service-db"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 2,
+            "names": [
+                "mysql"
+            ],
+            "services": [
+                "listings-service-db",
+                "users-service-db"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 5,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 0,
+    "servers": [
+        "node",
+        "express"
+    ],
+    "url": "git://github.com/d3ric3/MICROSERVICES.git",
+    "num_services": 5,
+    "gates": [
+        "gateway"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/api-gateway/package.json"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "servers": [
+                "express"
+            ],
+            "path": "/listings-service/package.json"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "servers": [
+                "express"
+            ],
+            "path": "/users-service/package.json"
+        },
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "servers": [],
+            "path": "/classifieds-app/package.json"
+        }
+    ],
+    "name": "d3ric3/MICROSERVICES",
+    "languages": [
+        "javascript"
+    ],
+    "images": [
+        "node"
+    ],
+    "dbs": [
+        "mysql"
+    ],
+    "num_servers": 2,
+    "num_langs": 1
+}

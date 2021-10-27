@@ -1,0 +1,320 @@
+{
+    "avg_size_service": 594.2,
+    "buses": [],
+    "num_dbs": 1,
+    "files": [
+        {
+            "path": "/public-services/endpoints/package.json",
+            "servers": [
+                "express"
+            ],
+            "dbs": [
+                "mongodb"
+            ],
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "path": "/public-services/website/package.json",
+            "servers": [
+                "express"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "path": "/private-services/background-tasks/initializer/package.json",
+            "servers": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": []
+        }
+    ],
+    "num_dockers": 5,
+    "num_langs": 3,
+    "num_servers": 2,
+    "num_buses": 0,
+    "num_discos": 0,
+    "gates": [
+        "nginx"
+    ],
+    "images": [
+        "microsoft/dotnet",
+        "node"
+    ],
+    "size": 2971,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 7,
+        "services": [
+            {
+                "buses": [],
+                "name": "initializer",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "private-services/background-tasks/initializer",
+                "image_full": "private-services/background-tasks/initializer",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "mongodb"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "public-endpoints",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "public-services/endpoints",
+                "image_full": "public-services/endpoints",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "mongodb",
+                    "initializer"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "nginx",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "nginx",
+                "image_full": "nginx:latest",
+                "discos": [],
+                "gates": [
+                    "nginx"
+                ],
+                "depends_on": [
+                    "mongodb",
+                    "initializer",
+                    "worker",
+                    "admin",
+                    "public-endpoints",
+                    "public-website"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "worker",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "private-services/background-tasks/Worker",
+                "image_full": "private-services/background-tasks/Worker",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "mongodb",
+                    "initializer"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "public-website",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "public-services/website",
+                "image_full": "public-services/website",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "mongodb",
+                    "initializer",
+                    "public-endpoints"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "admin",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "private-services/Admin",
+                "image_full": "private-services/Admin",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "mongodb",
+                    "initializer"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "mongodb",
+                "dbs": [
+                    "mongo"
+                ],
+                "monitors": [],
+                "servers": [],
+                "image": "mongo",
+                "image_full": "mongo:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": true,
+            "num": 1,
+            "names": [
+                "mongo"
+            ],
+            "services": [
+                "mongodb"
+            ]
+        }
+    },
+    "num_files": 9,
+    "servers": [
+        "express",
+        "node"
+    ],
+    "url": "git://github.com/INNVTV/Registration-Microservices.git",
+    "dbs": [
+        "mongo"
+    ],
+    "monitors": [],
+    "dockers": [
+        {
+            "from_full": "node:alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/public-services/endpoints/Dockerfile",
+            "from": "node",
+            "cmd": "node index.js",
+            "cmd_keywords": [
+                "index",
+                "node"
+            ],
+            "servers": [
+                "node"
+            ],
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "node:alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/public-services/website/Dockerfile",
+            "from": "node",
+            "cmd": "node app.js",
+            "cmd_keywords": [
+                "app",
+                "node"
+            ],
+            "servers": [
+                "node"
+            ],
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "microsoft/dotnet:2.1-sdk",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/private-services/Admin/Dockerfile",
+            "from": "microsoft/dotnet",
+            "cmd": "",
+            "cmd_keywords": [],
+            "servers": [],
+            "keywords": [
+                "dotnet",
+                "publish",
+                "release",
+                "restore",
+                "out"
+            ],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "microsoft/dotnet:2.1-sdk",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/private-services/background-tasks/Worker/Dockerfile",
+            "from": "microsoft/dotnet",
+            "cmd": "",
+            "cmd_keywords": [],
+            "servers": [],
+            "keywords": [
+                "dotnet",
+                "publish",
+                "release",
+                "restore",
+                "out"
+            ],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "node:alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/private-services/background-tasks/initializer/Dockerfile",
+            "from": "node",
+            "cmd": "node app.js",
+            "cmd_keywords": [
+                "app",
+                "node"
+            ],
+            "servers": [
+                "node"
+            ],
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "discos": [],
+            "langs": []
+        }
+    ],
+    "languages": [
+        "javascript",
+        "c#",
+        "html"
+    ],
+    "num_services": 7,
+    "num_gates": 1,
+    "name": "INNVTV/Registration-Microservices",
+    "shared_dbs": true,
+    "langs": [
+        "html",
+        "javascript",
+        "c#"
+    ],
+    "discos": [],
+    "num_monitors": 0
+}

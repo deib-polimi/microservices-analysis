@@ -1,0 +1,453 @@
+{
+    "num_services": 18,
+    "monitors": [
+        "graphite"
+    ],
+    "num_discos": 0,
+    "num_langs": 4,
+    "images": [
+        "httpd",
+        "php",
+        "alpine",
+        "mariadb"
+    ],
+    "buses": [],
+    "num_files": 6,
+    "num_buses": 0,
+    "languages": [
+        "javascript",
+        "c",
+        "html"
+    ],
+    "num_dbs": 3,
+    "num_servers": 2,
+    "url": "git://github.com/promouseus/open-field.git",
+    "dockers": [
+        {
+            "path": "/Microservice/Icinga2/master/Dockerfile",
+            "keywords": [
+                "icinga",
+                "available",
+                "features",
+                "etc",
+                "conf"
+            ],
+            "cmd": "",
+            "from_full": "alpine:latest",
+            "buses": [],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": [
+                "graphite"
+            ],
+            "from": "alpine",
+            "gates": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "discos": []
+        },
+        {
+            "path": "/Microservice/Icinga2/db-web/Dockerfile",
+            "keywords": [
+                "chmod",
+                "bin",
+                "initdb",
+                "entrypoint",
+                "docker"
+            ],
+            "cmd": "",
+            "from_full": "mariadb:latest",
+            "buses": [],
+            "dbs": [
+                "mariadb"
+            ],
+            "monitors": [],
+            "from": "mariadb",
+            "gates": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "discos": []
+        },
+        {
+            "path": "/Microservice/Icinga2/php/Dockerfile",
+            "keywords": [
+                "php",
+                "dev",
+                "usr",
+                "etc",
+                "local"
+            ],
+            "cmd": "",
+            "from_full": "php:7.3-fpm-alpine",
+            "buses": [],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": [],
+            "from": "php",
+            "gates": [],
+            "langs": [
+                "php"
+            ],
+            "cmd_keywords": [],
+            "servers": [],
+            "discos": []
+        },
+        {
+            "path": "/Microservice/Icinga2/web/Dockerfile",
+            "keywords": [
+                "icingaweb",
+                "conf",
+                "usr",
+                "apache",
+                "local"
+            ],
+            "cmd": "",
+            "from_full": "httpd:alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [
+                "monitoring"
+            ],
+            "from": "httpd",
+            "gates": [],
+            "langs": [
+                "php"
+            ],
+            "cmd_keywords": [],
+            "servers": [
+                "httpd"
+            ],
+            "discos": []
+        },
+        {
+            "path": "/InfrastructureProvider/ssh/libssh_builder/Dockerfile",
+            "keywords": [
+                "libssh",
+                "cache",
+                "apk",
+                "dev",
+                "add"
+            ],
+            "cmd": "top",
+            "from_full": "alpine:latest",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "alpine",
+            "gates": [],
+            "langs": [],
+            "cmd_keywords": [
+                "top"
+            ],
+            "servers": [],
+            "discos": []
+        }
+    ],
+    "shared_dbs": true,
+    "structure": {
+        "path": "/Microservice/docker-compose.yml",
+        "services": [
+            {
+                "buses": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "name": "mongo-express",
+                "monitors": [],
+                "depends_on": [],
+                "image": "mongo-express",
+                "gates": [],
+                "discos": [],
+                "image_full": "mongo-express",
+                "servers": [
+                    "express"
+                ]
+            },
+            {
+                "buses": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "name": "mongo",
+                "monitors": [],
+                "depends_on": [],
+                "image": "mongo",
+                "gates": [],
+                "discos": [],
+                "image_full": "mongo:latest",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [],
+                "name": "web",
+                "monitors": [],
+                "depends_on": [
+                    "php",
+                    "db-web",
+                    "master"
+                ],
+                "image": "icinga2/web",
+                "gates": [],
+                "discos": [],
+                "image_full": "icinga2/web",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [],
+                "name": "nifi",
+                "monitors": [],
+                "depends_on": [],
+                "image": "apache/nifi",
+                "gates": [],
+                "discos": [],
+                "image_full": "apache/nifi:latest",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [],
+                "name": "db-web",
+                "monitors": [],
+                "depends_on": [],
+                "image": "icinga2/db-web",
+                "gates": [],
+                "discos": [],
+                "image_full": "icinga2/db-web",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [],
+                "name": "php",
+                "monitors": [],
+                "depends_on": [],
+                "image": "icinga2/php",
+                "gates": [],
+                "discos": [],
+                "image_full": "icinga2/php",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [
+                    "mongodb"
+                ],
+                "name": "mongo-charts",
+                "monitors": [],
+                "depends_on": [
+                    "mongo"
+                ],
+                "image": "quay.io/mongodb/charts",
+                "gates": [],
+                "discos": [],
+                "image_full": "quay.io/mongodb/charts:19.12.1",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [],
+                "name": "netbox-worker",
+                "monitors": [],
+                "depends_on": [
+                    "redis"
+                ],
+                "image": "netboxcommunity/netbox",
+                "gates": [],
+                "discos": [],
+                "image_full": "netboxcommunity/netbox:latest",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [
+                    "mariadb"
+                ],
+                "name": "db-icinga",
+                "monitors": [],
+                "depends_on": [
+                    "master"
+                ],
+                "image": "mariadb",
+                "gates": [],
+                "discos": [],
+                "image_full": "mariadb:latest",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [],
+                "name": "librenms",
+                "monitors": [],
+                "depends_on": [
+                    "db"
+                ],
+                "image": "librenms/librenms",
+                "gates": [],
+                "discos": [],
+                "image_full": "librenms/librenms:latest",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [],
+                "name": "master",
+                "monitors": [],
+                "depends_on": [],
+                "image": "icinga2/master",
+                "gates": [],
+                "discos": [],
+                "image_full": "icinga2/master",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [],
+                "name": "postgres",
+                "monitors": [],
+                "depends_on": [],
+                "image": "postgres",
+                "gates": [],
+                "discos": [],
+                "image_full": "postgres:11-alpine",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [],
+                "name": "manager",
+                "monitors": [],
+                "depends_on": [],
+                "image": "alpine",
+                "gates": [],
+                "discos": [],
+                "image_full": "alpine:latest",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [],
+                "name": "netbox",
+                "monitors": [],
+                "depends_on": [
+                    "postgres",
+                    "redis",
+                    "netbox-worker"
+                ],
+                "image": "netboxcommunity/netbox",
+                "gates": [],
+                "discos": [],
+                "image_full": "netboxcommunity/netbox:latest",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [
+                    "mariadb"
+                ],
+                "name": "db",
+                "monitors": [],
+                "depends_on": [],
+                "image": "mariadb",
+                "gates": [],
+                "discos": [],
+                "image_full": "mariadb:latest",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [],
+                "name": "nginx",
+                "monitors": [],
+                "depends_on": [
+                    "netbox"
+                ],
+                "image": "nginx",
+                "gates": [
+                    "nginx"
+                ],
+                "discos": [],
+                "image_full": "nginx:1.17-alpine",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [],
+                "name": "cron",
+                "monitors": [],
+                "depends_on": [
+                    "librenms"
+                ],
+                "image": "librenms/librenms",
+                "gates": [],
+                "discos": [],
+                "image_full": "librenms/librenms:latest",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [
+                    "redis"
+                ],
+                "name": "redis",
+                "monitors": [],
+                "depends_on": [],
+                "image": "redis",
+                "gates": [],
+                "discos": [],
+                "image_full": "redis:5-alpine",
+                "servers": []
+            }
+        ],
+        "num_services": 18,
+        "detected_dbs": {
+            "num": 6,
+            "services": [
+                "mongo-express",
+                "mongo",
+                "mongo-charts",
+                "db-icinga",
+                "db",
+                "redis"
+            ],
+            "names": [
+                "mongodb",
+                "redis",
+                "mongo",
+                "mariadb"
+            ],
+            "shared_dbs": true
+        }
+    },
+    "size": 13477,
+    "discos": [],
+    "num_dockers": 5,
+    "num_monitors": 1,
+    "name": "promouseus/open-field",
+    "langs": [
+        "html",
+        "php",
+        "javascript",
+        "c"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "dbs": [
+        "mongo",
+        "mysql",
+        "redis"
+    ],
+    "num_gates": 1,
+    "files": [],
+    "servers": [
+        "httpd",
+        "express"
+    ],
+    "avg_size_service": 2695.4
+}

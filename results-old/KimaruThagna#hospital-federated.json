@@ -1,0 +1,302 @@
+{
+    "servers": [
+        "django"
+    ],
+    "name": "KimaruThagna/hospital-federated",
+    "num_gates": 1,
+    "avg_size_service": 13.833333333333334,
+    "structure": {
+        "services": [
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "patient_microservice",
+                "servers": [],
+                "depends_on": [
+                    "db"
+                ],
+                "name": "web",
+                "dbs": [],
+                "image": "patient_microservice",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [
+                    "nginx"
+                ],
+                "buses": [],
+                "image_full": "./nginx",
+                "servers": [],
+                "depends_on": [
+                    "web"
+                ],
+                "name": "nginx",
+                "dbs": [],
+                "image": "./nginx",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "postgres:11-alpine",
+                "servers": [],
+                "depends_on": [],
+                "name": "db",
+                "dbs": [],
+                "image": "postgres",
+                "monitors": [],
+                "discos": []
+            }
+        ],
+        "num_services": 3,
+        "path": "/patients_service/docker-compose.yml",
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        }
+    },
+    "num_dbs": 1,
+    "buses": [],
+    "langs": [
+        "python"
+    ],
+    "shared_dbs": false,
+    "files": [
+        {
+            "gates": [],
+            "buses": [],
+            "path": "/patients_service/requirements.txt",
+            "servers": [
+                "django"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "path": "/doctors_service/requirements.txt",
+            "servers": [
+                "django"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "path": "/diagnosis_service/requirements.txt",
+            "servers": [
+                "django"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [
+                "gateway"
+            ],
+            "buses": [],
+            "path": "/package.json",
+            "servers": [
+                "django"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "size": 83,
+    "num_dockers": 6,
+    "url": "git://github.com/KimaruThagna/hospital-federated.git",
+    "gates": [
+        "nginx"
+    ],
+    "num_servers": 1,
+    "images": [
+        "python",
+        "nginx"
+    ],
+    "num_services": 3,
+    "languages": [
+        "python"
+    ],
+    "num_files": 11,
+    "discos": [],
+    "dockers": [
+        {
+            "gates": [],
+            "from_full": "python:3.8.3-alpine",
+            "cmd_keywords": [
+                "entrypoint",
+                "home",
+                "bin",
+                "microservice",
+                "bash"
+            ],
+            "path": "/patients_service/Dockerfile",
+            "servers": [],
+            "cmd": "/bin/bash /home/app/microservice/entrypoint.sh",
+            "from": "python",
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [],
+            "monitors": [],
+            "keywords": [
+                "dev",
+                "user",
+                "app",
+                "apk",
+                "micro"
+            ]
+        },
+        {
+            "gates": [
+                "nginx"
+            ],
+            "from_full": "nginx:1.19.0-alpine",
+            "cmd_keywords": [],
+            "path": "/patients_service/nginx/Dockerfile",
+            "servers": [],
+            "cmd": "",
+            "from": "nginx",
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "monitors": [],
+            "keywords": [
+                "conf",
+                "nginx",
+                "default",
+                "etc"
+            ]
+        },
+        {
+            "gates": [],
+            "from_full": "python:3.8.3-alpine",
+            "cmd_keywords": [
+                "entrypoint",
+                "home",
+                "bin",
+                "microservice",
+                "bash"
+            ],
+            "path": "/doctors_service/Dockerfile",
+            "servers": [],
+            "cmd": "/bin/bash /home/app/microservice/entrypoint.sh",
+            "from": "python",
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [],
+            "monitors": [],
+            "keywords": [
+                "dev",
+                "user",
+                "app",
+                "apk",
+                "micro"
+            ]
+        },
+        {
+            "gates": [
+                "nginx"
+            ],
+            "from_full": "nginx:1.19.0-alpine",
+            "cmd_keywords": [],
+            "path": "/doctors_service/nginx/Dockerfile",
+            "servers": [],
+            "cmd": "",
+            "from": "nginx",
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "monitors": [],
+            "keywords": [
+                "conf",
+                "nginx",
+                "default",
+                "etc"
+            ]
+        },
+        {
+            "gates": [],
+            "from_full": "python:3.8.3-alpine",
+            "cmd_keywords": [
+                "entrypoint",
+                "home",
+                "bin",
+                "microservice",
+                "bash"
+            ],
+            "path": "/diagnosis_service/Dockerfile",
+            "servers": [],
+            "cmd": "/bin/bash /home/app/microservice/entrypoint.sh",
+            "from": "python",
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [],
+            "monitors": [],
+            "keywords": [
+                "dev",
+                "user",
+                "app",
+                "apk",
+                "micro"
+            ]
+        },
+        {
+            "gates": [
+                "nginx"
+            ],
+            "from_full": "nginx:1.19.0-alpine",
+            "cmd_keywords": [],
+            "path": "/diagnosis_service/nginx/Dockerfile",
+            "servers": [],
+            "cmd": "",
+            "from": "nginx",
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "monitors": [],
+            "keywords": [
+                "conf",
+                "nginx",
+                "default",
+                "etc"
+            ]
+        }
+    ],
+    "num_langs": 1,
+    "num_monitors": 0,
+    "num_buses": 0,
+    "dbs": [
+        "postgresql"
+    ],
+    "monitors": [],
+    "num_discos": 0
+}

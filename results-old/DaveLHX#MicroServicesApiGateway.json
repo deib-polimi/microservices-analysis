@@ -1,0 +1,264 @@
+{
+    "size": 589,
+    "num_dockers": 6,
+    "discos": [],
+    "num_files": 7,
+    "avg_size_service": 98.16666666666667,
+    "buses": [],
+    "num_gates": 1,
+    "langs": [
+        "tsql",
+        "sql"
+    ],
+    "num_discos": 0,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "base",
+            "path": "/ApiGateway/Dockerfile",
+            "keywords": [
+                "apigateway",
+                "csproj",
+                "dotnet",
+                "app",
+                "release"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "base"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "base",
+            "path": "/HealthCheck/HealthCheck/Dockerfile",
+            "keywords": [
+                "healthcheck",
+                "csproj",
+                "dotnet",
+                "app",
+                "release"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "base"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "base",
+            "path": "/GateWay/Dockerfile",
+            "keywords": [
+                "gateway",
+                "csproj",
+                "dotnet",
+                "app",
+                "release"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [],
+            "from_full": "base"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "mcr.microsoft.com/mssql/server",
+            "path": "/Database/Dockerfile",
+            "keywords": [
+                "mssql",
+                "bin",
+                "opt",
+                "sqlservr",
+                "database"
+            ],
+            "buses": [],
+            "langs": [
+                "sql"
+            ],
+            "gates": [],
+            "dbs": [
+                "sql"
+            ],
+            "from_full": "mcr.microsoft.com/mssql/server"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "base",
+            "path": "/CommonListsApi/Dockerfile",
+            "keywords": [
+                "commonlistsapi",
+                "csproj",
+                "dotnet",
+                "app",
+                "release"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "base"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "base",
+            "path": "/CadetApi/Dockerfile",
+            "keywords": [
+                "cadetapi",
+                "csproj",
+                "dotnet",
+                "app",
+                "release"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "base"
+        }
+    ],
+    "num_dbs": 1,
+    "monitors": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mcr.microsoft.com/mssql/server",
+                "image_full": "mcr.microsoft.com/mssql/server",
+                "discos": [],
+                "name": "db",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "${DOCKER_REGISTRY-}apigateway",
+                "image_full": "${DOCKER_REGISTRY-}apigateway",
+                "discos": [],
+                "name": "apigateway",
+                "depends_on": [
+                    "cadetapi",
+                    "commonlistsapi"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "${DOCKER_REGISTRY-}commonlistsapi",
+                "image_full": "${DOCKER_REGISTRY-}commonlistsapi",
+                "discos": [],
+                "name": "commonlistsapi",
+                "depends_on": [
+                    "db"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "${DOCKER_REGISTRY-}cadetapi",
+                "image_full": "${DOCKER_REGISTRY-}cadetapi",
+                "discos": [],
+                "name": "cadetapi",
+                "depends_on": [
+                    "db"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "${DOCKER_REGISTRY-}healthcheck",
+                "image_full": "${DOCKER_REGISTRY-}healthcheck",
+                "discos": [],
+                "name": "healthcheck",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "datalust/seq",
+                "image_full": "datalust/seq",
+                "discos": [],
+                "name": "seq",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        },
+        "num_services": 6,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 0,
+    "servers": [],
+    "url": "git://github.com/DaveLHX/MicroServicesApiGateway.git",
+    "num_services": 6,
+    "gates": [
+        "gateway"
+    ],
+    "files": [],
+    "name": "DaveLHX/MicroServicesApiGateway",
+    "languages": [
+        "tsql"
+    ],
+    "images": [
+        "mcr.microsoft.com/mssql/server",
+        "base"
+    ],
+    "dbs": [
+        "sql"
+    ],
+    "num_servers": 0,
+    "num_langs": 2
+}

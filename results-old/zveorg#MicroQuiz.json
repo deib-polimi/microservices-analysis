@@ -1,0 +1,169 @@
+{
+    "servers": [],
+    "languages": [],
+    "url": "git://github.com/zveorg/MicroQuiz.git",
+    "gates": [],
+    "langs": [],
+    "discos": [
+        "consul"
+    ],
+    "files": [],
+    "dockers": [],
+    "images": [],
+    "num_monitors": 0,
+    "avg_size_service": 21.0,
+    "size": 21,
+    "num_dockers": 0,
+    "num_servers": 0,
+    "num_services": 8,
+    "num_discos": 1,
+    "name": "zveorg/MicroQuiz",
+    "shared_dbs": true,
+    "num_dbs": 2,
+    "num_buses": 1,
+    "num_langs": 0,
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_gates": 0,
+    "dbs": [
+        "mongo",
+        "mysql"
+    ],
+    "num_files": 1,
+    "monitors": [],
+    "structure": {
+        "services": [
+            {
+                "servers": [],
+                "name": "mongo",
+                "image": "mongo",
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "image_full": "mongo:latest",
+                "monitors": [],
+                "dbs": [
+                    "mongo"
+                ]
+            },
+            {
+                "servers": [],
+                "name": "consul",
+                "image": "consul",
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [
+                    "consul"
+                ],
+                "image_full": "consul:latest",
+                "monitors": [],
+                "dbs": []
+            },
+            {
+                "servers": [],
+                "name": "mongo-express",
+                "image": "mongo-express",
+                "buses": [],
+                "depends_on": [
+                    "mongo"
+                ],
+                "gates": [],
+                "discos": [],
+                "image_full": "mongo-express:latest",
+                "monitors": [],
+                "dbs": []
+            },
+            {
+                "servers": [],
+                "name": "microquiz.services.auth.api",
+                "image": "${DOCKER_REGISTRY-}microquizservicesauthapi",
+                "buses": [],
+                "depends_on": [
+                    "mysql",
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "discos": [],
+                "image_full": "${DOCKER_REGISTRY-}microquizservicesauthapi",
+                "monitors": [],
+                "dbs": []
+            },
+            {
+                "servers": [],
+                "name": "mysql",
+                "image": "mysql",
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "image_full": "mysql:latest",
+                "monitors": [],
+                "dbs": [
+                    "mysql"
+                ]
+            },
+            {
+                "servers": [],
+                "name": "microquiz.services.quizzes.api",
+                "image": "${DOCKER_REGISTRY-}microquizservicesquizzesapi",
+                "buses": [],
+                "depends_on": [
+                    "mysql",
+                    "consul",
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "discos": [],
+                "image_full": "${DOCKER_REGISTRY-}microquizservicesquizzesapi",
+                "monitors": [],
+                "dbs": []
+            },
+            {
+                "servers": [],
+                "name": "microquiz.api",
+                "image": "${DOCKER_REGISTRY-}microquizapi",
+                "buses": [],
+                "depends_on": [
+                    "consul",
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "discos": [],
+                "image_full": "${DOCKER_REGISTRY-}microquizapi",
+                "monitors": [],
+                "dbs": []
+            },
+            {
+                "servers": [],
+                "name": "rabbitmq",
+                "image": "rabbitmq",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "image_full": "rabbitmq:3-management",
+                "monitors": [],
+                "dbs": []
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "num_services": 8,
+        "detected_dbs": {
+            "services": [
+                "mongo",
+                "mysql"
+            ],
+            "num": 2,
+            "shared_dbs": true,
+            "names": [
+                "mongo",
+                "mysql"
+            ]
+        }
+    }
+}

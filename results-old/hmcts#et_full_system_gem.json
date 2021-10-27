@@ -1,0 +1,185 @@
+{
+    "size": 92,
+    "num_servers": 1,
+    "dbs": [
+        "redis",
+        "postgresql"
+    ],
+    "files": [],
+    "structure": {
+        "num_services": 7,
+        "services": [
+            {
+                "name": "zalenium",
+                "image": "dosel/zalenium",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "dosel/zalenium",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "db",
+                "image": "postgres",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "postgres:9.6.9",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "selenium-hub",
+                "image": "selenium/hub",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "selenium/hub:3.141.59-yttrium",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "chrome",
+                "image": "selenium/node-chrome",
+                "depends_on": [
+                    "selenium-hub"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [
+                    "node"
+                ],
+                "image_full": "selenium/node-chrome:3.141.59-yttrium",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "et",
+                "image": "et_full_system",
+                "depends_on": [
+                    "db",
+                    "redis"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "et_full_system:1.0.0.pre",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "firefox",
+                "image": "selenium/node-firefox",
+                "depends_on": [
+                    "selenium-hub"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [
+                    "node"
+                ],
+                "image_full": "selenium/node-firefox:3.141.59-yttrium",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "redis",
+                "image": "redis",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "redis",
+                "discos": [],
+                "dbs": [
+                    "redis"
+                ],
+                "monitors": []
+            }
+        ],
+        "path": "/docker/docker-compose.yml",
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": false,
+            "services": [
+                "redis"
+            ]
+        }
+    },
+    "buses": [],
+    "images": [
+        "phusion/passenger-customizable"
+    ],
+    "num_discos": 1,
+    "url": "git://github.com/hmcts/et_full_system_gem.git",
+    "num_services": 7,
+    "langs": [
+        "ruby"
+    ],
+    "discos": [
+        "traefik"
+    ],
+    "num_gates": 0,
+    "shared_dbs": false,
+    "num_files": 2,
+    "num_monitors": 0,
+    "gates": [],
+    "servers": [
+        "node"
+    ],
+    "num_langs": 1,
+    "languages": [
+        "ruby"
+    ],
+    "monitors": [],
+    "name": "hmcts/et_full_system_gem",
+    "num_buses": 0,
+    "avg_size_service": 92.0,
+    "dockers": [
+        {
+            "path": "/docker/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "ruby"
+            ],
+            "cmd": "/sbin/my_init",
+            "keywords": [
+                "app",
+                "home",
+                "apt",
+                "usr",
+                "get"
+            ],
+            "from": "phusion/passenger-customizable",
+            "buses": [],
+            "from_full": "phusion/passenger-customizable:0.9.34",
+            "discos": [
+                "traefik"
+            ],
+            "dbs": [
+                "postgresql"
+            ],
+            "monitors": [],
+            "cmd_keywords": [
+                "init",
+                "sbin"
+            ]
+        }
+    ],
+    "num_dbs": 2,
+    "num_dockers": 1
+}

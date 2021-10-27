@@ -1,0 +1,190 @@
+{
+    "num_langs": 3,
+    "dbs": [
+        "mysql",
+        "mongo",
+        "sql"
+    ],
+    "num_servers": 1,
+    "languages": [
+        "shell",
+        "dockerfile"
+    ],
+    "num_discos": 0,
+    "avg_size_service": 2.0,
+    "dockers": [
+        {
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": [],
+            "cmd": "",
+            "servers": [],
+            "keywords": [
+                "entrypoint"
+            ],
+            "from": "mysql",
+            "cmd_keywords": [],
+            "from_full": "mysql:5.7",
+            "path": "/docker-configs/mysql/Dockerfile",
+            "buses": [],
+            "langs": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "node",
+            "servers": [
+                "node"
+            ],
+            "keywords": [
+                "node",
+                "shasums",
+                "txt",
+                "version",
+                "tar"
+            ],
+            "from": "buildpack-deps",
+            "cmd_keywords": [
+                "node"
+            ],
+            "from_full": "buildpack-deps:jessie",
+            "path": "/docker-configs/node/Dockerfile",
+            "buses": [],
+            "langs": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "sql"
+            ],
+            "monitors": [],
+            "cmd": "",
+            "servers": [],
+            "keywords": [
+                "golang",
+                "get",
+                "tar",
+                "gopath",
+                "apt"
+            ],
+            "from": "buildpack-deps",
+            "cmd_keywords": [],
+            "from_full": "buildpack-deps:jessie-scm",
+            "path": "/docker-configs/golang/Dockerfile",
+            "buses": [],
+            "langs": [
+                "gcc"
+            ],
+            "discos": []
+        }
+    ],
+    "num_gates": 0,
+    "buses": [],
+    "langs": [
+        "shell",
+        "gcc",
+        "dockerfile"
+    ],
+    "num_buses": 0,
+    "discos": [],
+    "num_dbs": 3,
+    "num_files": 4,
+    "url": "git://github.com/smith-30/docker-golang-microservices.git",
+    "shared_dbs": false,
+    "monitors": [],
+    "num_services": 4,
+    "files": [],
+    "servers": [
+        "node"
+    ],
+    "num_monitors": 0,
+    "gates": [],
+    "size": 6,
+    "num_dockers": 3,
+    "images": [
+        "mysql",
+        "buildpack-deps"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image": "./docker-configs/mysql",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "name": "mysql",
+                "image_full": "./docker-configs/mysql",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "mongo",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "name": "mongo",
+                "image_full": "mongo:3.3.15",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "./docker-configs/golang",
+                "depends_on": [
+                    "mysql"
+                ],
+                "dbs": [],
+                "name": "golang",
+                "image_full": "./docker-configs/golang",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "./docker-configs/node",
+                "depends_on": [
+                    "golang"
+                ],
+                "dbs": [],
+                "name": "node",
+                "image_full": "./docker-configs/node",
+                "discos": [],
+                "buses": [],
+                "servers": [
+                    "node"
+                ],
+                "gates": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [
+                "mysql",
+                "mongo"
+            ],
+            "shared_dbs": false,
+            "num": 2,
+            "services": [
+                "mysql",
+                "mongo"
+            ]
+        },
+        "num_services": 4
+    },
+    "name": "smith-30/docker-golang-microservices"
+}

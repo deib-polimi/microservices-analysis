@@ -1,0 +1,208 @@
+{
+    "size": 94,
+    "shared_dbs": false,
+    "num_servers": 2,
+    "name": "dschulten/microservices-spring-cloud",
+    "files": [
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "path": "/rest/pom.xml",
+            "monitors": [
+                "prometheus"
+            ],
+            "discos": [
+                "consul"
+            ]
+        }
+    ],
+    "num_files": 5,
+    "num_langs": 1,
+    "dbs": [],
+    "servers": [
+        "tomcat",
+        "spring"
+    ],
+    "num_discos": 3,
+    "url": "git://github.com/dschulten/microservices-spring-cloud.git",
+    "gates": [
+        "gateway"
+    ],
+    "structure": {
+        "services": [
+            {
+                "image": "gliderlabs/registrator",
+                "dbs": [],
+                "image_full": "gliderlabs/registrator:master",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "registrator",
+                "gates": [],
+                "discos": [
+                    "registrator"
+                ],
+                "depends_on": [
+                    "consul"
+                ]
+            },
+            {
+                "image": "escalon/camel-microservice-rest",
+                "dbs": [],
+                "image_full": "escalon/camel-microservice-rest:latest",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "rest",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "prometheus-metrics",
+                "dbs": [],
+                "image_full": "prometheus-metrics",
+                "buses": [],
+                "servers": [],
+                "monitors": [
+                    "prometheus"
+                ],
+                "name": "metrics",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "consul"
+                ]
+            },
+            {
+                "image": "consul",
+                "dbs": [],
+                "image_full": "consul",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "consul",
+                "gates": [],
+                "discos": [
+                    "consul"
+                ],
+                "depends_on": []
+            },
+            {
+                "image": "traefik-gateway",
+                "dbs": [],
+                "image_full": "traefik-gateway",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "reverse-proxy",
+                "gates": [
+                    "gateway"
+                ],
+                "discos": [
+                    "traefik"
+                ],
+                "depends_on": [
+                    "consul"
+                ]
+            }
+        ],
+        "num_services": 5,
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        },
+        "path": "/docker-compose.yml"
+    },
+    "num_gates": 1,
+    "num_dockers": 3,
+    "num_dbs": 0,
+    "num_services": 5,
+    "langs": [
+        "java"
+    ],
+    "buses": [],
+    "num_buses": 0,
+    "num_monitors": 1,
+    "languages": [
+        "java"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "monitors": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [
+                "spring"
+            ],
+            "path": "/rest/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "spring",
+                "addgroup",
+                "adduser"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "traefik",
+            "monitors": [],
+            "from_full": "traefik:v1.7-alpine",
+            "servers": [],
+            "path": "/traefik-gateway/Dockerfile",
+            "dbs": [],
+            "keywords": [],
+            "discos": [
+                "traefik"
+            ]
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "prom/prometheus",
+            "monitors": [
+                "prometheus"
+            ],
+            "from_full": "prom/prometheus",
+            "servers": [],
+            "path": "/prometheus-metrics/Dockerfile",
+            "dbs": [],
+            "keywords": [],
+            "discos": []
+        }
+    ],
+    "monitors": [
+        "prometheus"
+    ],
+    "avg_size_service": 31.333333333333332,
+    "discos": [
+        "registrator",
+        "consul",
+        "traefik"
+    ],
+    "images": [
+        "prom/prometheus",
+        "traefik",
+        "openjdk"
+    ]
+}

@@ -1,0 +1,169 @@
+{
+    "servers": [
+        "spring"
+    ],
+    "num_monitors": 0,
+    "num_gates": 1,
+    "num_dbs": 1,
+    "num_services": 3,
+    "num_langs": 2,
+    "shared_dbs": false,
+    "num_servers": 1,
+    "avg_size_service": 6.0,
+    "files": [
+        {
+            "path": "/kotlin-user-service/pom.xml",
+            "dbs": [
+                "mongodb"
+            ],
+            "buses": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "path": "/kotlin-api-gateway/pom.xml",
+            "dbs": [],
+            "buses": [],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "size": 12,
+    "num_buses": 0,
+    "buses": [],
+    "num_discos": 0,
+    "languages": [
+        "kotlin",
+        "dockerfile"
+    ],
+    "discos": [],
+    "num_dockers": 2,
+    "dbs": [
+        "mongo"
+    ],
+    "num_files": 5,
+    "gates": [
+        "zuul"
+    ],
+    "images": [
+        "frolvlad/alpine-oraclejdk8"
+    ],
+    "url": "git://github.com/dodalovic/kotlin-microservices.git",
+    "monitors": [],
+    "name": "dodalovic/kotlin-microservices",
+    "dockers": [
+        {
+            "cmd": "",
+            "servers": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "from": "frolvlad/alpine-oraclejdk8",
+            "from_full": "frolvlad/alpine-oraclejdk8:8.131.11-slim",
+            "monitors": [],
+            "path": "/kotlin-user-service/Dockerfile",
+            "langs": [],
+            "buses": [],
+            "keywords": [
+                "app",
+                "touch",
+                "jar"
+            ],
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "from": "frolvlad/alpine-oraclejdk8",
+            "from_full": "frolvlad/alpine-oraclejdk8:8.131.11-slim",
+            "monitors": [],
+            "path": "/kotlin-api-gateway/Dockerfile",
+            "langs": [],
+            "buses": [],
+            "keywords": [
+                "app",
+                "touch",
+                "jar"
+            ],
+            "discos": [],
+            "dbs": []
+        }
+    ],
+    "langs": [
+        "kotlin",
+        "dockerfile"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "names": [
+                "mongo"
+            ],
+            "services": [
+                "kotlin-mongo"
+            ],
+            "shared_dbs": false,
+            "num": 1
+        },
+        "services": [
+            {
+                "dbs": [],
+                "image_full": "kotlin-api-gateway",
+                "name": "kotlin-api-gateway",
+                "monitors": [],
+                "depends_on": [
+                    "kotlin-user-service"
+                ],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "servers": [],
+                "discos": [],
+                "image": "kotlin-api-gateway"
+            },
+            {
+                "dbs": [
+                    "mongo"
+                ],
+                "image_full": "mongo",
+                "name": "kotlin-mongo",
+                "monitors": [],
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "discos": [],
+                "image": "mongo"
+            },
+            {
+                "dbs": [],
+                "image_full": "kotlin-user-service",
+                "name": "kotlin-user-service",
+                "monitors": [],
+                "depends_on": [
+                    "kotlin-mongo"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "discos": [],
+                "image": "kotlin-user-service"
+            }
+        ],
+        "num_services": 3
+    }
+}

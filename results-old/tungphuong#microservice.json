@@ -1,0 +1,265 @@
+{
+    "num_discos": 2,
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "name": "tungphuong/microservice",
+    "dbs": [
+        "mysql",
+        "mongo"
+    ],
+    "num_services": 10,
+    "avg_size_service": 29.0,
+    "num_monitors": 0,
+    "monitors": [],
+    "discos": [
+        "registrator",
+        "consul"
+    ],
+    "servers": [
+        "express",
+        "node",
+        "busybox"
+    ],
+    "url": "git://github.com/tungphuong/microservice.git",
+    "num_dockers": 1,
+    "files": [
+        {
+            "discos": [
+                "consul"
+            ],
+            "path": "/src/package.json",
+            "servers": [
+                "express",
+                "node"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "dbs": [
+                "mysql",
+                "mongodb",
+                "mongo"
+            ],
+            "gates": [
+                "gateway"
+            ],
+            "monitors": []
+        }
+    ],
+    "shared_dbs": false,
+    "size": 29,
+    "languages": [
+        "javascript",
+        "tsql"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_langs": 2,
+    "structure": {
+        "detected_dbs": {
+            "num": 1,
+            "services": [
+                "db_mariadb"
+            ],
+            "shared_dbs": false,
+            "names": [
+                "mariadb"
+            ]
+        },
+        "num_services": 10,
+        "path": "/src/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "communicationservice",
+                "image_full": "me/communicationservice",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "me/communicationservice"
+            },
+            {
+                "depends_on": [],
+                "discos": [
+                    "consul"
+                ],
+                "servers": [],
+                "buses": [],
+                "name": "consul1",
+                "image_full": "progrium/consul:latest",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "progrium/consul"
+            },
+            {
+                "depends_on": [
+                    "consul1"
+                ],
+                "discos": [
+                    "registrator"
+                ],
+                "servers": [],
+                "buses": [],
+                "name": "registrator",
+                "image_full": "gliderlabs/registrator",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "gliderlabs/registrator"
+            },
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [
+                    "busybox"
+                ],
+                "buses": [],
+                "name": "data",
+                "image_full": "busybox",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "busybox"
+            },
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "db_mariadb",
+                "image_full": "mariadb:latest",
+                "dbs": [
+                    "mariadb"
+                ],
+                "gates": [],
+                "monitors": [],
+                "image": "mariadb"
+            },
+            {
+                "depends_on": [
+                    "db_mariadb",
+                    "loadbalanceruserservice"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "userservice",
+                "image_full": "me/userservice",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "me/userservice"
+            },
+            {
+                "depends_on": [
+                    "consul1",
+                    "registrator",
+                    "loadbalancergateway",
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "apigateway",
+                "image_full": "me/apigateway",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "me/apigateway"
+            },
+            {
+                "depends_on": [
+                    "consul1",
+                    "registrator"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "loadbalancergateway",
+                "image_full": "me/loadbalancergateway",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "me/loadbalancergateway"
+            },
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "name": "rabbitmq",
+                "image_full": "rabbitmq:3-management",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "rabbitmq"
+            },
+            {
+                "depends_on": [
+                    "consul1",
+                    "registrator",
+                    "apigateway"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "loadbalanceruserservice",
+                "image_full": "me/loadbalanceruserservice",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "me/loadbalanceruserservice"
+            }
+        ]
+    },
+    "dockers": [
+        {
+            "from_full": "nginx:latest",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "",
+            "langs": [],
+            "from": "nginx",
+            "monitors": [],
+            "discos": [
+                "consul"
+            ],
+            "path": "/src/docker-files/load-balancer/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [
+                "nginx"
+            ],
+            "keywords": [
+                "bin",
+                "unzip",
+                "conf",
+                "apt",
+                "usr"
+            ]
+        }
+    ],
+    "num_files": 3,
+    "num_gates": 1,
+    "num_dbs": 2,
+    "langs": [
+        "javascript",
+        "tsql"
+    ],
+    "images": [
+        "nginx"
+    ],
+    "num_buses": 2,
+    "num_servers": 3
+}

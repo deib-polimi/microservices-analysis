@@ -1,0 +1,251 @@
+{
+    "num_langs": 3,
+    "dbs": [],
+    "num_servers": 1,
+    "languages": [
+        "dockerfile",
+        "python",
+        "html"
+    ],
+    "num_discos": 2,
+    "avg_size_service": 2.0,
+    "dockers": [
+        {
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "/usr/bin/runsvdir /etc/service",
+            "servers": [],
+            "keywords": [
+                "consul",
+                "template",
+                "etc",
+                "nginx",
+                "run"
+            ],
+            "from": "nginx",
+            "cmd_keywords": [
+                "bin",
+                "service",
+                "runsvdir",
+                "etc",
+                "usr"
+            ],
+            "from_full": "nginx:1.15",
+            "path": "/gateway/Dockerfile",
+            "buses": [],
+            "langs": [],
+            "discos": [
+                "consul"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "app.py",
+            "servers": [
+                "flask"
+            ],
+            "keywords": [
+                "flask",
+                "pip",
+                "install"
+            ],
+            "from": "python",
+            "cmd_keywords": [
+                "app"
+            ],
+            "from_full": "python:3.7-alpine",
+            "path": "/services/recovery/Dockerfile",
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "app.py",
+            "servers": [
+                "flask"
+            ],
+            "keywords": [
+                "flask",
+                "pip",
+                "install",
+                "requests"
+            ],
+            "from": "python",
+            "cmd_keywords": [
+                "app"
+            ],
+            "from_full": "python:3.7-alpine",
+            "path": "/services/system/Dockerfile",
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "python -m http.server 7000",
+            "servers": [],
+            "keywords": [],
+            "from": "python",
+            "cmd_keywords": [
+                "http",
+                "server",
+                "python"
+            ],
+            "from_full": "python:3.7-alpine",
+            "path": "/web/Dockerfile",
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "discos": []
+        }
+    ],
+    "num_gates": 1,
+    "buses": [],
+    "langs": [
+        "html",
+        "dockerfile",
+        "python"
+    ],
+    "num_buses": 0,
+    "discos": [
+        "registrator",
+        "consul"
+    ],
+    "num_dbs": 0,
+    "num_files": 5,
+    "url": "git://github.com/weak-head/nginx-consul-registrator.git",
+    "shared_dbs": false,
+    "monitors": [],
+    "num_services": 6,
+    "files": [],
+    "servers": [
+        "flask"
+    ],
+    "num_monitors": 0,
+    "gates": [
+        "nginx"
+    ],
+    "size": 8,
+    "num_dockers": 4,
+    "images": [
+        "nginx",
+        "python"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image": "gliderlabs/registrator",
+                "depends_on": [
+                    "consul"
+                ],
+                "dbs": [],
+                "name": "registrator",
+                "image_full": "gliderlabs/registrator",
+                "discos": [
+                    "registrator"
+                ],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "nginx-gateway",
+                "depends_on": [
+                    "consul",
+                    "registrator"
+                ],
+                "dbs": [],
+                "name": "nginx",
+                "image_full": "nginx-gateway",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [
+                    "nginx"
+                ],
+                "monitors": []
+            },
+            {
+                "image": "web-ui",
+                "depends_on": [
+                    "registrator"
+                ],
+                "dbs": [],
+                "name": "web-ui",
+                "image_full": "web-ui",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "system-service",
+                "depends_on": [
+                    "registrator"
+                ],
+                "dbs": [],
+                "name": "system",
+                "image_full": "system-service",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "consul",
+                "depends_on": [],
+                "dbs": [],
+                "name": "consul",
+                "image_full": "consul",
+                "discos": [
+                    "consul"
+                ],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "recovery-service",
+                "depends_on": [
+                    "registrator"
+                ],
+                "dbs": [],
+                "name": "recovery",
+                "image_full": "recovery-service",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [],
+            "shared_dbs": false,
+            "num": 0,
+            "services": []
+        },
+        "num_services": 6
+    },
+    "name": "weak-head/nginx-consul-registrator"
+}

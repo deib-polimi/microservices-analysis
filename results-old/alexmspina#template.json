@@ -1,0 +1,312 @@
+{
+    "size": 21135,
+    "num_dockers": 7,
+    "discos": [
+        "envoy",
+        "grpc"
+    ],
+    "num_files": 9,
+    "avg_size_service": 3019.285714285714,
+    "buses": [],
+    "num_gates": 1,
+    "langs": [
+        "go",
+        "javascript",
+        "golang"
+    ],
+    "num_discos": 2,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "/usr/local/bin/envoy -c /etc/envoy/envoy.yaml -l trace --log-path /tmp/envoy_info.log",
+            "discos": [
+                "envoy"
+            ],
+            "servers": [],
+            "cmd_keywords": [
+                "envoy",
+                "log",
+                "info",
+                "path",
+                "yaml"
+            ],
+            "from": "envoyproxy/envoy",
+            "path": "/build/salesadmin/envoy/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "envoyproxy/envoy:latest"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "golang",
+            "path": "/build/salesadmin/server/Dockerfile",
+            "keywords": [
+                "salesadmin",
+                "root",
+                "project",
+                "json",
+                "production"
+            ],
+            "buses": [],
+            "langs": [
+                "golang"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "golang:alpine3.10"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "alexmspina/godev",
+            "path": "/build/godev/Dockerfile",
+            "keywords": [
+                "org",
+                "mod",
+                "latest",
+                "download",
+                "golang"
+            ],
+            "buses": [],
+            "langs": [
+                "golang"
+            ],
+            "gates": [],
+            "dbs": [],
+            "from_full": "alexmspina/godev:v0.3.0"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "alexmspina/certdev",
+            "path": "/build/certdev/Dockerfile",
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "alexmspina/certdev:v1.0.0"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "alexmspina/rustdev",
+            "path": "/build/rustdev/Dockerfile",
+            "keywords": [
+                "qall",
+                "pluginstall",
+                "nvim"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "alexmspina/rustdev:v0.1.0"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "alexmspina/nodedev",
+            "path": "/build/nodedev/Dockerfile",
+            "keywords": [
+                "install",
+                "npm",
+                "qall",
+                "pluginstall",
+                "standard"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "alexmspina/nodedev:v0.1.0"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "nginx",
+            "path": "/web/salesadmin/Dockerfile",
+            "keywords": [
+                "npm",
+                "silent",
+                "install",
+                "unsafe",
+                "set"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "from_full": "nginx:alpine"
+        }
+    ],
+    "num_dbs": 0,
+    "monitors": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "template/godev",
+                "image_full": "template/godev",
+                "discos": [],
+                "name": "godev",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "template/envoy",
+                "image_full": "template/envoy",
+                "discos": [
+                    "envoy"
+                ],
+                "name": "envoy",
+                "depends_on": [
+                    "server"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "template/salesadmin",
+                "image_full": "template/salesadmin",
+                "discos": [],
+                "name": "server",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "template/certdev",
+                "image_full": "template/certdev",
+                "discos": [],
+                "name": "certdev",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "template/nodedev",
+                "image_full": "template/nodedev",
+                "discos": [],
+                "name": "nodedev",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "postgres",
+                "image_full": "postgres:12.1-alpine",
+                "discos": [],
+                "name": "postgres",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "template/rustdev",
+                "image_full": "template/rustdev",
+                "discos": [],
+                "name": "rustdev",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        },
+        "num_services": 7,
+        "path": "/deployments/salesadmin/docker-compose.yml"
+    },
+    "num_buses": 0,
+    "servers": [
+        "spring"
+    ],
+    "url": "git://github.com/alexmspina/template.git",
+    "num_services": 7,
+    "gates": [
+        "nginx"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [
+                "grpc"
+            ],
+            "gates": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/web/salesadmin/package.json"
+        }
+    ],
+    "name": "alexmspina/template",
+    "languages": [
+        "javascript",
+        "go"
+    ],
+    "images": [
+        "golang",
+        "alexmspina/nodedev",
+        "alexmspina/rustdev",
+        "alexmspina/godev",
+        "envoyproxy/envoy",
+        "nginx",
+        "alexmspina/certdev"
+    ],
+    "dbs": [],
+    "num_servers": 1,
+    "num_langs": 3
+}

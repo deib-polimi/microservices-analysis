@@ -1,0 +1,265 @@
+{
+    "size": 167,
+    "shared_dbs": false,
+    "num_servers": 5,
+    "name": "bidossessi/microservices-test",
+    "files": [
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [
+                "amqp"
+            ],
+            "servers": [
+                "tomcat",
+                "spring",
+                "jetty"
+            ],
+            "path": "/customers/build.gradle",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [
+                "amqp"
+            ],
+            "servers": [
+                "tomcat",
+                "spring",
+                "jetty"
+            ],
+            "path": "/billing/build.gradle",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [
+                "amqp"
+            ],
+            "servers": [
+                "tomcat",
+                "spring",
+                "jetty"
+            ],
+            "path": "/warehouse/build.gradle",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/aggregator/package.json",
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "num_files": 9,
+    "num_langs": 2,
+    "dbs": [],
+    "servers": [
+        "express",
+        "node",
+        "tomcat",
+        "spring",
+        "jetty"
+    ],
+    "num_discos": 0,
+    "url": "git://github.com/bidossessi/microservices-test.git",
+    "gates": [],
+    "structure": {
+        "services": [
+            {
+                "image": "kovaro/microservice-customers",
+                "dbs": [],
+                "image_full": "kovaro/microservice-customers",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "customers",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "rabbitmq"
+                ]
+            },
+            {
+                "image": "kovaro/microservice-billing",
+                "dbs": [],
+                "image_full": "kovaro/microservice-billing",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "billing",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "rabbitmq"
+                ]
+            },
+            {
+                "image": "kovaro/microservice-aggregator",
+                "dbs": [],
+                "image_full": "kovaro/microservice-aggregator",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "aggregator",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "customers",
+                    "billing"
+                ]
+            },
+            {
+                "image": "rabbitmq",
+                "dbs": [],
+                "image_full": "rabbitmq:management-alpine",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "servers": [],
+                "monitors": [],
+                "name": "rabbitmq",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "kovaro/microservice-warehouse",
+                "dbs": [],
+                "image_full": "kovaro/microservice-warehouse",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "warehouse",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "rabbitmq"
+                ]
+            }
+        ],
+        "num_services": 5,
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        },
+        "path": "/docker-compose.yml"
+    },
+    "num_gates": 0,
+    "num_dockers": 4,
+    "num_dbs": 0,
+    "num_services": 5,
+    "langs": [
+        "kotlin",
+        "javascript"
+    ],
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "num_buses": 2,
+    "num_monitors": 0,
+    "languages": [
+        "kotlin",
+        "javascript"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "monitors": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "path": "/customers/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "mkdir",
+                "database"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "monitors": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "path": "/billing/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "mkdir",
+                "database"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "cmd": "npm start",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "node",
+            "monitors": [],
+            "from_full": "node:alpine",
+            "servers": [
+                "node"
+            ],
+            "path": "/aggregator/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "npm",
+                "install"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "monitors": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "path": "/warehouse/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "mkdir",
+                "database"
+            ],
+            "discos": []
+        }
+    ],
+    "monitors": [],
+    "avg_size_service": 41.75,
+    "discos": [],
+    "images": [
+        "node",
+        "openjdk"
+    ]
+}

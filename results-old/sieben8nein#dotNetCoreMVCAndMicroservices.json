@@ -1,0 +1,282 @@
+{
+    "avg_size_service": 37632.666666666664,
+    "buses": [
+        "kafka"
+    ],
+    "num_dbs": 2,
+    "files": [],
+    "num_dockers": 6,
+    "num_langs": 1,
+    "num_servers": 0,
+    "num_buses": 1,
+    "num_discos": 1,
+    "gates": [],
+    "images": [
+        "base",
+        "mongo"
+    ],
+    "size": 225796,
+    "structure": {
+        "path": "/MicroservicesTest/docker-compose.yml",
+        "num_services": 6,
+        "services": [
+            {
+                "buses": [],
+                "name": "zookeeper",
+                "dbs": [
+                    "zookeeper"
+                ],
+                "monitors": [],
+                "servers": [],
+                "image": "bitnami/zookeeper",
+                "image_full": "bitnami/zookeeper:3",
+                "discos": [
+                    "zookeeper"
+                ],
+                "gates": [],
+                "depends_on": []
+            },
+            {
+                "buses": [
+                    "kafka"
+                ],
+                "name": "kafka",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "bitnami/kafka",
+                "image_full": "bitnami/kafka:2",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "zookeeper"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "noteservice",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "noteservice",
+                "image_full": "noteservice:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "mongodb",
+                    "kafka"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "apigateway",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "${DOCKER_REGISTRY-}apigateway",
+                "image_full": "${DOCKER_REGISTRY-}apigateway",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "userservice",
+                    "noteservice"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "mongodb",
+                "dbs": [
+                    "mongo"
+                ],
+                "monitors": [],
+                "servers": [],
+                "image": "mongo",
+                "image_full": "mongo",
+                "discos": [],
+                "gates": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "name": "userservice",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "userservice",
+                "image_full": "userservice:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "mongodb",
+                    "kafka"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": true,
+            "num": 2,
+            "names": [
+                "zookeeper",
+                "mongo"
+            ],
+            "services": [
+                "zookeeper",
+                "mongodb"
+            ]
+        }
+    },
+    "num_files": 7,
+    "servers": [],
+    "url": "git://github.com/sieben8nein/dotNetCoreMVCAndMicroservices.git",
+    "dbs": [
+        "zookeeper",
+        "mongo"
+    ],
+    "monitors": [],
+    "dockers": [
+        {
+            "from_full": "base",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/MicroserviceTestMVC/MicroserviceTestMVC/Dockerfile",
+            "from": "base",
+            "cmd": "",
+            "cmd_keywords": [],
+            "servers": [],
+            "keywords": [
+                "microservicetestmvc",
+                "csproj",
+                "dotnet",
+                "release",
+                "app"
+            ],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "mongo",
+            "buses": [],
+            "dbs": [
+                "mongo"
+            ],
+            "monitors": [],
+            "gates": [],
+            "path": "/MicroservicesTest/database-seed/Dockerfile",
+            "from": "mongo",
+            "cmd": "mongoimport --host mongodb --db reach-engine --collection Users --type json --file /users/init.json --jsonArray",
+            "cmd_keywords": [
+                "json",
+                "users",
+                "mongoimport",
+                "file",
+                "reach"
+            ],
+            "servers": [],
+            "keywords": [],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "mongo",
+            "buses": [],
+            "dbs": [
+                "mongo"
+            ],
+            "monitors": [],
+            "gates": [],
+            "path": "/MicroservicesTest/mongo-seed/Dockerfile",
+            "from": "mongo",
+            "cmd": "mongoimport --host=mongodb --db=UserDB --collection=Users --drop --file /init.json --jsonArray",
+            "cmd_keywords": [
+                "mongoimport",
+                "file",
+                "host",
+                "userdb",
+                "collection"
+            ],
+            "servers": [],
+            "keywords": [],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "base",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/MicroservicesTest/services/UserService/Dockerfile",
+            "from": "base",
+            "cmd": "",
+            "cmd_keywords": [],
+            "servers": [],
+            "keywords": [
+                "userservice",
+                "csproj",
+                "dotnet",
+                "release",
+                "app"
+            ],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "base",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/MicroservicesTest/services/NoteService/Dockerfile",
+            "from": "base",
+            "cmd": "",
+            "cmd_keywords": [],
+            "servers": [],
+            "keywords": [
+                "noteservice",
+                "csproj",
+                "dotnet",
+                "release",
+                "app"
+            ],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "base",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/MicroservicesTest/APIGateway/Dockerfile",
+            "from": "base",
+            "cmd": "",
+            "cmd_keywords": [],
+            "servers": [],
+            "keywords": [
+                "apigateway",
+                "csproj",
+                "dotnet",
+                "release",
+                "app"
+            ],
+            "discos": [],
+            "langs": []
+        }
+    ],
+    "languages": [
+        "c#"
+    ],
+    "num_services": 6,
+    "num_gates": 0,
+    "name": "sieben8nein/dotNetCoreMVCAndMicroservices",
+    "shared_dbs": true,
+    "langs": [
+        "c#"
+    ],
+    "discos": [
+        "zookeeper"
+    ],
+    "num_monitors": 0
+}

@@ -1,0 +1,271 @@
+{
+    "buses": [],
+    "num_servers": 0,
+    "languages": [
+        "shell",
+        "dockerfile",
+        "vcl",
+        "php"
+    ],
+    "dbs": [
+        "max",
+        "redis"
+    ],
+    "num_services": 7,
+    "avg_size_service": 148.75,
+    "servers": [],
+    "structure": {
+        "num_services": 7,
+        "detected_dbs": {
+            "services": [
+                "db",
+                "redis"
+            ],
+            "shared_dbs": true,
+            "num": 2,
+            "names": [
+                "redis",
+                "mariadb"
+            ]
+        },
+        "services": [
+            {
+                "image": "mariadb",
+                "buses": [],
+                "image_full": "mariadb:10.2",
+                "dbs": [
+                    "mariadb"
+                ],
+                "depends_on": [],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "db",
+                "gates": []
+            },
+            {
+                "image": "zsoerenm/magento2-nginx",
+                "buses": [],
+                "image_full": "zsoerenm/magento2-nginx:2.2.6",
+                "dbs": [],
+                "depends_on": [
+                    "php"
+                ],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "web",
+                "gates": [
+                    "nginx"
+                ]
+            },
+            {
+                "image": "zsoerenm/magento2-varnish",
+                "buses": [],
+                "image_full": "zsoerenm/magento2-varnish:2.2.6",
+                "dbs": [],
+                "depends_on": [
+                    "web"
+                ],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "varnish",
+                "gates": []
+            },
+            {
+                "image": "zsoerenm/magento2-php",
+                "buses": [],
+                "image_full": "zsoerenm/magento2-php:2.2.6",
+                "dbs": [],
+                "depends_on": [
+                    "db"
+                ],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "php",
+                "gates": []
+            },
+            {
+                "image": "redis",
+                "buses": [],
+                "image_full": "redis:alpine",
+                "dbs": [
+                    "redis"
+                ],
+                "depends_on": [],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "redis",
+                "gates": []
+            },
+            {
+                "image": "zsoerenm/magento2-php",
+                "buses": [],
+                "image_full": "zsoerenm/magento2-php:2.2.6",
+                "dbs": [],
+                "depends_on": [
+                    "db"
+                ],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "cron",
+                "gates": []
+            },
+            {
+                "image": "zsoerenm/magento2-sslproxy",
+                "buses": [],
+                "image_full": "zsoerenm/magento2-sslproxy:2.2.6",
+                "dbs": [],
+                "depends_on": [
+                    "varnish"
+                ],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "sslproxy",
+                "gates": []
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "monitors": [],
+    "num_buses": 0,
+    "images": [
+        "magento2-php-base",
+        "cooptilleuls/varnish",
+        "nginx",
+        "magento2-nginx-base"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_gates": 1,
+    "num_langs": 4,
+    "langs": [
+        "shell",
+        "vcl",
+        "dockerfile",
+        "php"
+    ],
+    "url": "git://github.com/zsoerenm/magento2-docker.git",
+    "num_discos": 0,
+    "num_files": 5,
+    "files": [],
+    "shared_dbs": true,
+    "num_monitors": 0,
+    "name": "zsoerenm/magento2-docker",
+    "num_dbs": 2,
+    "discos": [],
+    "dockers": [
+        {
+            "langs": [],
+            "dbs": [],
+            "path": "/nginx/Dockerfile",
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "conf",
+                "nginx",
+                "template",
+                "etc",
+                "chmod"
+            ],
+            "cmd": "envsubst '$$SERVER_NAME $$BACKEND_HOST' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'",
+            "buses": [],
+            "from_full": "magento2-nginx-base",
+            "from": "magento2-nginx-base",
+            "discos": [],
+            "cmd_keywords": [
+                "conf",
+                "nginx",
+                "default",
+                "etc",
+                "envsubst"
+            ],
+            "gates": [
+                "nginx"
+            ]
+        },
+        {
+            "langs": [],
+            "dbs": [],
+            "path": "/varnish/Dockerfile",
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "varnish",
+                "local",
+                "bin",
+                "usr",
+                "entrypoint"
+            ],
+            "cmd": "",
+            "buses": [],
+            "from_full": "cooptilleuls/varnish:4.1.10-alpine3.8",
+            "from": "cooptilleuls/varnish",
+            "discos": [],
+            "cmd_keywords": [],
+            "gates": []
+        },
+        {
+            "langs": [],
+            "dbs": [],
+            "path": "/sslproxy/Dockerfile",
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "conf",
+                "nginx",
+                "template",
+                "etc",
+                "chmod"
+            ],
+            "cmd": "envsubst '$$SERVER_NAME $$BACKEND_HOST' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'",
+            "buses": [],
+            "from_full": "nginx:1.15.7-alpine",
+            "from": "nginx",
+            "discos": [],
+            "cmd_keywords": [
+                "conf",
+                "nginx",
+                "default",
+                "etc",
+                "envsubst"
+            ],
+            "gates": [
+                "nginx"
+            ]
+        },
+        {
+            "langs": [
+                "php"
+            ],
+            "dbs": [
+                "max"
+            ],
+            "path": "/php/Dockerfile",
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "vendor",
+                "path",
+                "php",
+                "magento",
+                "type"
+            ],
+            "cmd": "",
+            "buses": [],
+            "from_full": "magento2-php-base",
+            "from": "magento2-php-base",
+            "discos": [],
+            "cmd_keywords": [],
+            "gates": []
+        }
+    ],
+    "num_dockers": 4,
+    "size": 595
+}

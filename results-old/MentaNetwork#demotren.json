@@ -1,0 +1,382 @@
+{
+    "files": [
+        {
+            "buses": [],
+            "path": "/services/frontend/source/requirements.txt",
+            "monitors": [],
+            "dbs": [],
+            "servers": [
+                "flask"
+            ],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "buses": [],
+            "path": "/services/antifraud/source/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "oracle"
+            ],
+            "servers": [],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "path": "/services/api/source/package.json"
+        }
+    ],
+    "size": 17716,
+    "url": "git://github.com/MentaNetwork/demotren.git",
+    "num_monitors": 1,
+    "languages": [
+        "javascript",
+        "java",
+        "c#",
+        "html"
+    ],
+    "langs": [
+        "python",
+        "gcc",
+        "javascript",
+        "html",
+        "c#",
+        "java"
+    ],
+    "discos": [],
+    "gates": [
+        "nginx"
+    ],
+    "num_servers": 3,
+    "num_dockers": 7,
+    "shared_dbs": false,
+    "images": [
+        "python",
+        "node",
+        "microsoft/dotnet",
+        "fluent/fluentd",
+        "tomcat",
+        "ubuntu",
+        "local-oracle-xe-11g"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 2,
+            "names": [
+                "oracle",
+                "mariadb"
+            ],
+            "services": [
+                "oracle",
+                "mysql"
+            ]
+        },
+        "services": [
+            {
+                "depends_on": [
+                    "fluentd"
+                ],
+                "buses": [],
+                "image": "services/api",
+                "monitors": [],
+                "image_full": "services/api",
+                "dbs": [],
+                "name": "api",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "fluentd"
+                ],
+                "buses": [],
+                "image": "services/core",
+                "monitors": [],
+                "image_full": "services/core",
+                "dbs": [],
+                "name": "core",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "fluentd"
+                ],
+                "buses": [],
+                "image": "services/oracle",
+                "monitors": [],
+                "image_full": "services/oracle",
+                "dbs": [
+                    "oracle"
+                ],
+                "name": "oracle",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "fluentd"
+                ],
+                "buses": [],
+                "image": "services/frontend",
+                "monitors": [],
+                "image_full": "services/frontend",
+                "dbs": [],
+                "name": "frontend",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "fluentd"
+                ],
+                "buses": [],
+                "image": "services/antifraud",
+                "monitors": [],
+                "image_full": "services/antifraud",
+                "dbs": [],
+                "name": "antifraud",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "fluentd"
+                ],
+                "buses": [],
+                "image": "mariadb",
+                "monitors": [],
+                "image_full": "mariadb:latest",
+                "dbs": [
+                    "mariadb"
+                ],
+                "name": "mysql",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "{'license': '$NEW_RELIC_LICENSE_KEY'}",
+                "monitors": [],
+                "image_full": "{'license': '$NEW_RELIC_LICENSE_KEY'}",
+                "dbs": [],
+                "name": "fluentd",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "fluentd"
+                ],
+                "buses": [],
+                "image": "services/tcpserver",
+                "monitors": [],
+                "image_full": "services/tcpserver",
+                "dbs": [],
+                "name": "tcpserver",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            }
+        ],
+        "num_services": 8
+    },
+    "num_gates": 1,
+    "buses": [],
+    "num_dbs": 2,
+    "avg_size_service": 2530.8571428571427,
+    "num_discos": 0,
+    "servers": [
+        "flask",
+        "tomcat",
+        "node"
+    ],
+    "num_buses": 0,
+    "dockers": [
+        {
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "servers": [],
+            "from": "microsoft/dotnet",
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/services/core/Dockerfile",
+            "monitors": [],
+            "from_full": "microsoft/dotnet:2.1-sdk",
+            "keywords": [
+                "apt",
+                "newrelic",
+                "list",
+                "com",
+                "get"
+            ]
+        },
+        {
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "dbs": [],
+            "discos": [],
+            "servers": [],
+            "from": "python",
+            "gates": [],
+            "cmd_keywords": [
+                "startserver"
+            ],
+            "cmd": "startserver.sh",
+            "path": "/services/tcpserver/Dockerfile",
+            "monitors": [],
+            "from_full": "python:3.7-alpine",
+            "keywords": [
+                "startserver",
+                "add",
+                "base",
+                "app",
+                "chmod"
+            ]
+        },
+        {
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "servers": [
+                "tomcat"
+            ],
+            "from": "tomcat",
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/services/antifraud/Dockerfile",
+            "monitors": [],
+            "from_full": "tomcat",
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "langs": [
+                "gcc"
+            ],
+            "dbs": [],
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "gates": [],
+            "cmd_keywords": [
+                "npm",
+                "run",
+                "dev"
+            ],
+            "cmd": "npm run dev",
+            "path": "/services/api/Dockerfile",
+            "monitors": [],
+            "from_full": "node:7.7.2-alpine",
+            "keywords": [
+                "npm",
+                "python",
+                "add",
+                "gcc",
+                "install"
+            ]
+        },
+        {
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "discos": [],
+            "servers": [],
+            "from": "ubuntu",
+            "gates": [
+                "nginx"
+            ],
+            "cmd_keywords": [
+                "supervisor",
+                "conf",
+                "supervisord",
+                "etc"
+            ],
+            "cmd": "supervisord -c /etc/supervisor/conf.d/supervisor.conf",
+            "path": "/services/frontend/Dockerfile",
+            "monitors": [],
+            "from_full": "ubuntu:16.04",
+            "keywords": [
+                "nginx",
+                "uwsgi",
+                "etc",
+                "var",
+                "apt"
+            ]
+        },
+        {
+            "buses": [],
+            "langs": [],
+            "dbs": [
+                "oracle"
+            ],
+            "discos": [],
+            "servers": [],
+            "from": "local-oracle-xe-11g",
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/services/oracle/Dockerfile",
+            "monitors": [],
+            "from_full": "local-oracle-xe-11g",
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "servers": [],
+            "from": "fluent/fluentd",
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/services/fluentd/Dockerfile",
+            "monitors": [
+                "fluentd"
+            ],
+            "from_full": "fluent/fluentd:latest",
+            "keywords": [
+                "newrelic",
+                "fluentd",
+                "conf",
+                "cat",
+                "license"
+            ]
+        }
+    ],
+    "monitors": [
+        "fluentd"
+    ],
+    "num_files": 11,
+    "dbs": [
+        "mysql",
+        "oracle"
+    ],
+    "name": "MentaNetwork/demotren",
+    "num_langs": 6,
+    "num_services": 8
+}

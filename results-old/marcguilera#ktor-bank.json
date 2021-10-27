@@ -1,0 +1,195 @@
+{
+    "name": "marcguilera/ktor-bank",
+    "num_dbs": 0,
+    "num_services": 4,
+    "num_files": 4,
+    "servers": [],
+    "url": "git://github.com/marcguilera/ktor-bank.git",
+    "discos": [
+        "consul"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "balance-service",
+                "image_full": "./balance/balance-service",
+                "image": "./balance/balance-service",
+                "servers": [],
+                "depends_on": [
+                    "consul"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "account-service",
+                "image_full": "./account/account-service",
+                "image": "./account/account-service",
+                "servers": [],
+                "depends_on": [
+                    "consul"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "consul",
+                "image_full": "consul",
+                "image": "consul",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [
+                    "consul"
+                ],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "transfer-service",
+                "image_full": "./transfer/transfer-service",
+                "image": "./transfer/transfer-service",
+                "servers": [],
+                "depends_on": [
+                    "consul",
+                    "account-service",
+                    "balance-service"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [],
+            "num": 0,
+            "names": []
+        },
+        "num_services": 4
+    },
+    "num_buses": 0,
+    "size": 213,
+    "dockers": [
+        {
+            "cmd": "java -server -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:InitialRAMFraction=2 -XX:MinRAMFraction=2 -XX:MaxRAMFraction=2 -XX:+UseG1GC -XX:MaxGCPauseMillis=100 -XX:+UseStringDeduplication -jar service.jar",
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "path": "/account/account-service/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8-jre-alpine",
+            "cmd_keywords": [
+                "jar",
+                "usestringdeduplication",
+                "maxramfraction",
+                "initialramfraction",
+                "useg"
+            ],
+            "keywords": [
+                "application",
+                "user",
+                "app",
+                "adduser",
+                "mkdir"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "java -server -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:InitialRAMFraction=2 -XX:MinRAMFraction=2 -XX:MaxRAMFraction=2 -XX:+UseG1GC -XX:MaxGCPauseMillis=100 -XX:+UseStringDeduplication -jar service.jar",
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "path": "/transfer/transfer-service/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8-jre-alpine",
+            "cmd_keywords": [
+                "jar",
+                "usestringdeduplication",
+                "maxramfraction",
+                "initialramfraction",
+                "useg"
+            ],
+            "keywords": [
+                "application",
+                "user",
+                "app",
+                "adduser",
+                "mkdir"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "java -server -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:InitialRAMFraction=2 -XX:MinRAMFraction=2 -XX:MaxRAMFraction=2 -XX:+UseG1GC -XX:MaxGCPauseMillis=100 -XX:+UseStringDeduplication -jar service.jar",
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "path": "/balance/balance-service/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8-jre-alpine",
+            "cmd_keywords": [
+                "jar",
+                "usestringdeduplication",
+                "maxramfraction",
+                "initialramfraction",
+                "useg"
+            ],
+            "keywords": [
+                "application",
+                "user",
+                "app",
+                "adduser",
+                "mkdir"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "languages": [
+        "kotlin"
+    ],
+    "dbs": [],
+    "monitors": [],
+    "shared_dbs": false,
+    "avg_size_service": 71.0,
+    "num_monitors": 0,
+    "files": [],
+    "langs": [
+        "java",
+        "kotlin"
+    ],
+    "num_servers": 0,
+    "buses": [],
+    "num_langs": 2,
+    "num_gates": 0,
+    "num_discos": 1,
+    "images": [
+        "openjdk"
+    ],
+    "num_dockers": 3,
+    "gates": []
+}

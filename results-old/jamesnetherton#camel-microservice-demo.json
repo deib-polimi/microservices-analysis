@@ -1,0 +1,240 @@
+{
+    "gates": [],
+    "num_buses": 0,
+    "url": "git://github.com/jamesnetherton/camel-microservice-demo.git",
+    "images": [],
+    "avg_size_service": 263.0,
+    "num_langs": 1,
+    "num_monitors": 3,
+    "num_dockers": 0,
+    "num_discos": 0,
+    "num_servers": 2,
+    "buses": [],
+    "discos": [],
+    "dockers": [],
+    "size": 263,
+    "name": "jamesnetherton/camel-microservice-demo",
+    "num_services": 10,
+    "dbs": [],
+    "shared_dbs": false,
+    "langs": [
+        "java"
+    ],
+    "languages": [
+        "java"
+    ],
+    "servers": [
+        "spring",
+        "node"
+    ],
+    "num_files": 5,
+    "monitors": [
+        "prometheus",
+        "grafana",
+        "jaeger"
+    ],
+    "num_dbs": 0,
+    "num_gates": 0,
+    "files": [
+        {
+            "path": "/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/name-client-service/pom.xml",
+            "servers": [],
+            "discos": [],
+            "monitors": [
+                "jaeger"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/name-prefix-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "discos": [],
+            "monitors": [
+                "jaeger"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/name-suffix-service/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "discos": [],
+            "monitors": [
+                "jaeger"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": []
+        }
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 10,
+        "detected_dbs": {
+            "services": [],
+            "num": 0,
+            "names": [],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "name-prefix-service"
+                ],
+                "servers": [],
+                "image_full": "jamesnetherton/microservice-demo-client-service:latest",
+                "name": "name-client-service",
+                "gates": [],
+                "image": "jamesnetherton/microservice-demo-client-service",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "jamesnetherton/alert-webhook-logger",
+                "name": "alert-webhook-logger",
+                "gates": [],
+                "image": "jamesnetherton/alert-webhook-logger",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "jaegertracing/all-in-one:latest",
+                "name": "opentracing",
+                "gates": [],
+                "image": "jaegertracing/all-in-one",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [
+                    "prometheus"
+                ],
+                "depends_on": [
+                    "alertmanager",
+                    "cadvisor"
+                ],
+                "servers": [],
+                "image_full": "prom/prometheus:v2.5.0",
+                "name": "prometheus",
+                "gates": [],
+                "image": "prom/prometheus",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "google/cadvisor",
+                "name": "cadvisor",
+                "gates": [],
+                "image": "google/cadvisor",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [
+                    "grafana"
+                ],
+                "depends_on": [
+                    "prometheus"
+                ],
+                "servers": [],
+                "image_full": "grafana/grafana",
+                "name": "grafana",
+                "gates": [],
+                "image": "grafana/grafana",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "name-suffix-service"
+                ],
+                "servers": [],
+                "image_full": "jamesnetherton/microservice-demo-prefix-service:latest",
+                "name": "name-prefix-service",
+                "gates": [],
+                "image": "jamesnetherton/microservice-demo-prefix-service",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "alert-webhook-logger"
+                ],
+                "servers": [],
+                "image_full": "prom/alertmanager",
+                "name": "alertmanager",
+                "gates": [],
+                "image": "prom/alertmanager",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [
+                    "node"
+                ],
+                "image_full": "prom/node-exporter",
+                "name": "node-exporter",
+                "gates": [],
+                "image": "prom/node-exporter",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "opentracing",
+                    "grafana"
+                ],
+                "servers": [],
+                "image_full": "jamesnetherton/microservice-demo-suffix-service:latest",
+                "name": "name-suffix-service",
+                "gates": [],
+                "image": "jamesnetherton/microservice-demo-suffix-service",
+                "dbs": [],
+                "buses": []
+            }
+        ]
+    }
+}

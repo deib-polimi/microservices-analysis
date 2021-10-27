@@ -1,0 +1,303 @@
+{
+    "num_files": 9,
+    "num_services": 5,
+    "num_discos": 0,
+    "gates": [],
+    "languages": [
+        "java",
+        "dockerfile",
+        "scala"
+    ],
+    "num_dbs": 1,
+    "dbs": [
+        "mysql"
+    ],
+    "num_monitors": 1,
+    "structure": {
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 0,
+            "services": [],
+            "names": []
+        },
+        "num_services": 5,
+        "services": [
+            {
+                "image_full": "docker-logs-elk/dummy-app:1.0.0",
+                "image": "docker-logs-elk/dummy-app",
+                "dbs": [],
+                "monitors": [
+                    "elk"
+                ],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "app"
+            },
+            {
+                "image_full": "docker-logs-elk/filebeat:1.0.0",
+                "image": "docker-logs-elk/filebeat",
+                "dbs": [],
+                "monitors": [
+                    "elk"
+                ],
+                "depends_on": [
+                    "logstash"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "filebeat"
+            },
+            {
+                "image_full": "docker-logs-elk/logstash:1.0.0",
+                "image": "docker-logs-elk/logstash",
+                "dbs": [],
+                "monitors": [
+                    "elk"
+                ],
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "logstash"
+            },
+            {
+                "image_full": "kibana:6.5.2",
+                "image": "kibana",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "kibana"
+            },
+            {
+                "image_full": "docker-logs-elk/elasticsearch:1.0.0",
+                "image": "docker-logs-elk/elasticsearch",
+                "dbs": [],
+                "monitors": [
+                    "elk"
+                ],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "elasticsearch"
+            }
+        ],
+        "path": "/docker-logs-elk/docker-compose.yml"
+    },
+    "discos": [],
+    "url": "git://github.com/hilmitekin82/disttracingpoc.git",
+    "num_buses": 0,
+    "files": [
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [
+                "mysql"
+            ],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/elastic-apm-java/service/pom.xml"
+        }
+    ],
+    "name": "hilmitekin82/disttracingpoc",
+    "servers": [
+        "spring"
+    ],
+    "num_dockers": 7,
+    "buses": [],
+    "num_gates": 0,
+    "num_langs": 3,
+    "shared_dbs": false,
+    "monitors": [
+        "elk"
+    ],
+    "dockers": [
+        {
+            "servers": [],
+            "from": "docker.elastic.co/logstash/logstash",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/docker-logs-elk/logstash/Dockerfile",
+            "keywords": [
+                "logstash",
+                "usr",
+                "share",
+                "conf",
+                "pipeline"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "docker.elastic.co/logstash/logstash:6.5.2"
+        },
+        {
+            "servers": [],
+            "from": "docker.elastic.co/beats/filebeat",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/docker-logs-elk/filebeat/Dockerfile",
+            "keywords": [
+                "filebeat",
+                "usr",
+                "share",
+                "mkdir",
+                "chmod"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "docker.elastic.co/beats/filebeat:6.5.2"
+        },
+        {
+            "servers": [],
+            "from": "docker.elastic.co/elasticsearch/elasticsearch",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/docker-logs-elk/elasticsearch/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "level",
+                "info",
+                "elasticsearch",
+                "elogger"
+            ],
+            "discos": [],
+            "cmd": "elasticsearch -Elogger.level=INFO",
+            "from_full": "docker.elastic.co/elasticsearch/elasticsearch:6.5.2"
+        },
+        {
+            "servers": [],
+            "from": "ubuntu",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/docker-logs-elk/dummy-app/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "while",
+                "sleep",
+                "bar",
+                "foo",
+                "true"
+            ],
+            "discos": [],
+            "cmd": "while true; do sleep 2 ; echo \"{\\\"app\\\": \\\"dummy\\\", \\\"foo\\\": \\\"bar\\\"}\"; done",
+            "from_full": "ubuntu:18.04"
+        },
+        {
+            "servers": [],
+            "from": "docker.elastic.co/apm/apm-server",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/elastic-apm-java/docker/apm-server/Dockerfile",
+            "keywords": [
+                "apm",
+                "server",
+                "chown",
+                "usr",
+                "share"
+            ],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "docker.elastic.co/apm/apm-server:7.1.1"
+        },
+        {
+            "servers": [],
+            "from": "hilmit82/elastic-apm-agent-alpine-glibc",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/elastic-apm-java/docker/java/Dockerfile",
+            "keywords": [
+                "java",
+                "output",
+                "comma",
+                "file",
+                "jar"
+            ],
+            "dbs": [],
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [
+                "jar",
+                "javaagent",
+                "agent",
+                "apm",
+                "app"
+            ],
+            "discos": [],
+            "cmd": "java -javaagent:apm-agent.jar -jar app.jar",
+            "from_full": "hilmit82/elastic-apm-agent-alpine-glibc:3.9"
+        },
+        {
+            "servers": [],
+            "from": "docker.elastic.co/elasticsearch/elasticsearch",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/elastic-apm-java/docker/elasticsearch/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "level",
+                "info",
+                "elasticsearch",
+                "elogger"
+            ],
+            "discos": [],
+            "cmd": "elasticsearch -Elogger.level=INFO",
+            "from_full": "docker.elastic.co/elasticsearch/elasticsearch:7.1.1"
+        }
+    ],
+    "langs": [
+        "scala",
+        "java",
+        "dockerfile"
+    ],
+    "num_servers": 1,
+    "size": 4934,
+    "images": [
+        "docker.elastic.co/logstash/logstash",
+        "hilmit82/elastic-apm-agent-alpine-glibc",
+        "docker.elastic.co/apm/apm-server",
+        "ubuntu",
+        "docker.elastic.co/elasticsearch/elasticsearch",
+        "docker.elastic.co/beats/filebeat"
+    ],
+    "avg_size_service": 704.8571428571429
+}

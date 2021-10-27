@@ -1,0 +1,587 @@
+{
+    "gates": [
+        "zuul"
+    ],
+    "num_buses": 1,
+    "url": "git://github.com/astro-rizki/e-commerce-microservice.git",
+    "images": [
+        "docker.elastic.co/elasticsearch/elasticsearch",
+        "anapsix/alpine-java",
+        "smebberson/alpine-redis",
+        "mvertes/alpine-mongo"
+    ],
+    "avg_size_service": 80.0,
+    "num_langs": 2,
+    "num_monitors": 0,
+    "num_dockers": 10,
+    "num_discos": 2,
+    "num_servers": 2,
+    "buses": [
+        "kafka"
+    ],
+    "discos": [
+        "zookeeper",
+        "eureka"
+    ],
+    "dockers": [
+        {
+            "path": "/product-catalog-microservice/Dockerfile",
+            "cmd_keywords": [
+                "dcom",
+                "jmxremote",
+                "sun",
+                "management",
+                "false"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "anapsix/alpine-java",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "cmd": "java -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=4444 -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Xmx1024m -jar /app/product-catalog-microservice-0.0.1-SNAPSHOT.jar",
+            "from_full": "anapsix/alpine-java:8_jdk_unlimited",
+            "monitors": [],
+            "keywords": [
+                "apk",
+                "cache",
+                "update",
+                "var",
+                "add"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/cart-microservice/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "cart",
+                "microservice",
+                "xmx"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "anapsix/alpine-java",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "cmd": "java -Xmx1024m -jar /app/cart-microservice-0.0.1-SNAPSHOT.jar",
+            "from_full": "anapsix/alpine-java:8_jdk_unlimited",
+            "monitors": [],
+            "keywords": [
+                "apk",
+                "cache",
+                "update",
+                "var",
+                "add"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/gateway-microservice/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "snapshot",
+                "gateway",
+                "microservice"
+            ],
+            "discos": [],
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [],
+            "from": "anapsix/alpine-java",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "cmd": "java -Xmx1024m -jar /app/gateway-microservice-0.0.1-SNAPSHOT.jar",
+            "from_full": "anapsix/alpine-java:8_jdk_unlimited",
+            "monitors": [],
+            "keywords": [
+                "apk",
+                "cache",
+                "update",
+                "var",
+                "add"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/mongodb/Dockerfile",
+            "cmd_keywords": [
+                "config",
+                "conf",
+                "smallfiles",
+                "mongodb",
+                "etc"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [
+                "mongo"
+            ],
+            "from": "mvertes/alpine-mongo",
+            "langs": [],
+            "servers": [],
+            "cmd": "mongod --config /etc/mongodb.conf --smallfiles",
+            "from_full": "mvertes/alpine-mongo:3.4.4-0",
+            "monitors": [],
+            "keywords": [
+                "data",
+                "mongodb",
+                "files",
+                "insert",
+                "create"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/product-services/Dockerfile",
+            "cmd_keywords": [
+                "dcom",
+                "jmxremote",
+                "sun",
+                "management",
+                "false"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "anapsix/alpine-java",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "cmd": "java -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=4447 -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Xmx1024m -jar /app/product-services-0.0.1-SNAPSHOT.jar",
+            "from_full": "anapsix/alpine-java:8_jdk_unlimited",
+            "monitors": [],
+            "keywords": [
+                "apk",
+                "cache",
+                "update",
+                "var",
+                "add"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/redis/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [
+                "redis"
+            ],
+            "from": "smebberson/alpine-redis",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "smebberson/alpine-redis",
+            "monitors": [],
+            "keywords": [
+                "apk",
+                "cache",
+                "update",
+                "var",
+                "add"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/configuration-microservice/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "snapshot",
+                "configuration",
+                "microservice"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "anapsix/alpine-java",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "cmd": "java -Xmx200m -jar /app/configuration-microservice-0.0.1-SNAPSHOT.jar",
+            "from_full": "anapsix/alpine-java:8_jdk_unlimited",
+            "monitors": [],
+            "keywords": [
+                "apk",
+                "cache",
+                "update",
+                "var",
+                "add"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/discovery-microservice/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "discovery",
+                "snapshot",
+                "microservice"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "anapsix/alpine-java",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "cmd": "java -Xmx200m -jar /app/discovery-microservice-0.0.1-SNAPSHOT.jar",
+            "from_full": "anapsix/alpine-java:8_jdk_unlimited",
+            "monitors": [],
+            "keywords": [
+                "apk",
+                "cache",
+                "update",
+                "var",
+                "add"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/product-search-service/Dockerfile",
+            "cmd_keywords": [
+                "dcom",
+                "jmxremote",
+                "sun",
+                "management",
+                "false"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "anapsix/alpine-java",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "cmd": "java -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=4448 -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Xmx1024m -jar /app/product-search-service-0.0.1-SNAPSHOT.jar",
+            "from_full": "anapsix/alpine-java:8_jdk_unlimited",
+            "monitors": [],
+            "keywords": [
+                "apk",
+                "cache",
+                "update",
+                "var",
+                "add"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/elasticsearch/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "docker.elastic.co/elasticsearch/elasticsearch",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "docker.elastic.co/elasticsearch/elasticsearch:7.6.2",
+            "monitors": [],
+            "keywords": [],
+            "buses": []
+        }
+    ],
+    "size": 800,
+    "name": "astro-rizki/e-commerce-microservice",
+    "num_services": 6,
+    "dbs": [
+        "zookeeper",
+        "redis",
+        "mongo"
+    ],
+    "shared_dbs": false,
+    "langs": [
+        "java",
+        "javascript"
+    ],
+    "languages": [
+        "java",
+        "javascript"
+    ],
+    "servers": [
+        "spring",
+        "node"
+    ],
+    "num_files": 23,
+    "monitors": [],
+    "num_dbs": 3,
+    "num_gates": 1,
+    "files": [
+        {
+            "path": "/build.gradle",
+            "servers": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/settings.gradle",
+            "servers": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/product-catalog-microservice/build.gradle",
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [],
+            "dbs": [
+                "mongodb",
+                "mongo"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/cart-microservice/build.gradle",
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [],
+            "dbs": [
+                "redis"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/gateway-microservice/build.gradle",
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/product-services/build.gradle",
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "buses": [
+                "kafka"
+            ]
+        },
+        {
+            "path": "/product-services/settings.gradle",
+            "servers": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/configuration-microservice/build.gradle",
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/discovery-microservice/build.gradle",
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/product-search-service/build.gradle",
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [],
+            "dbs": [],
+            "buses": [
+                "kafka"
+            ]
+        },
+        {
+            "path": "/product-search-service/settings.gradle",
+            "servers": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/ecommerce-webapp/package.json",
+            "servers": [
+                "spring",
+                "node"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "dbs": [],
+            "buses": []
+        }
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 6,
+        "detected_dbs": {
+            "services": [
+                "zookeeper",
+                "mongodb"
+            ],
+            "num": 2,
+            "names": [
+                "mongodb",
+                "zookeeper"
+            ],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "mongodb"
+                ],
+                "servers": [],
+                "image_full": "./product-services",
+                "name": "product-services",
+                "gates": [],
+                "image": "./product-services",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [
+                    "zookeeper"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "wurstmeister/zookeeper",
+                "name": "zookeeper",
+                "gates": [],
+                "image": "wurstmeister/zookeeper",
+                "dbs": [
+                    "zookeeper"
+                ],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "elasticsearch",
+                    "kafka"
+                ],
+                "servers": [],
+                "image_full": "./product-search-service",
+                "name": "product-search-service",
+                "gates": [],
+                "image": "./product-search-service",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:7.6.2",
+                "name": "elasticsearch",
+                "gates": [],
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "./mongodb",
+                "name": "mongodb",
+                "gates": [],
+                "image": "./mongodb",
+                "dbs": [
+                    "mongodb"
+                ],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "wurstmeister/kafka",
+                "name": "kafka",
+                "gates": [],
+                "image": "wurstmeister/kafka",
+                "dbs": [],
+                "buses": [
+                    "kafka"
+                ]
+            }
+        ]
+    }
+}

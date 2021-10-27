@@ -1,0 +1,191 @@
+{
+    "languages": [
+        "c#"
+    ],
+    "num_servers": 0,
+    "shared_dbs": false,
+    "name": "rajabalianomid/OraConfigurable",
+    "servers": [],
+    "num_monitors": 0,
+    "num_langs": 1,
+    "images": [
+        "base"
+    ],
+    "langs": [
+        "c#"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "ora",
+                "web",
+                "csproj",
+                "dotnet",
+                "build"
+            ],
+            "path": "/Ora.Web/Dockerfile",
+            "gates": [],
+            "from": "base",
+            "from_full": "base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "ora",
+                "api",
+                "csproj",
+                "dotnet",
+                "build"
+            ],
+            "path": "/Ora.API/Dockerfile",
+            "gates": [],
+            "from": "base",
+            "from_full": "base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "configurable",
+                "ora",
+                "services",
+                "csproj",
+                "dotnet"
+            ],
+            "path": "/Ora.Services.Configurable/Dockerfile",
+            "gates": [],
+            "from": "base",
+            "from_full": "base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [],
+    "num_buses": 1,
+    "discos": [],
+    "monitors": [],
+    "num_files": 4,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "${DOCKER_REGISTRY-}oraservicesconfigurable",
+                "depends_on": [
+                    "rabbitmq",
+                    "mongo"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "ora.service.configurable",
+                "image": "${DOCKER_REGISTRY-}oraservicesconfigurable",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "${DOCKER_REGISTRY-}oraapi",
+                "depends_on": [
+                    "ora.service.configurable",
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "ora.api",
+                "image": "${DOCKER_REGISTRY-}oraapi",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mongo",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "mongo",
+                "image": "mongo",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "${DOCKER_REGISTRY-}oraweb",
+                "depends_on": [
+                    "ora.api",
+                    "ora.service.configurable"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "ora.web",
+                "image": "${DOCKER_REGISTRY-}oraweb",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "rabbitmq:3-management",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "name": "rabbitmq",
+                "image": "rabbitmq",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 5,
+        "detected_dbs": {
+            "services": [
+                "mongo"
+            ],
+            "names": [
+                "mongo"
+            ],
+            "num": 1,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [
+        "mongo"
+    ],
+    "num_dbs": 1,
+    "avg_size_service": 378.0,
+    "num_services": 5,
+    "buses": [
+        "rabbitmq"
+    ],
+    "files": [],
+    "url": "git://github.com/rajabalianomid/OraConfigurable.git",
+    "num_dockers": 3,
+    "size": 1134,
+    "num_discos": 0,
+    "num_gates": 0
+}

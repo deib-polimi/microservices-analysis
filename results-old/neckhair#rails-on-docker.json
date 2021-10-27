@@ -1,0 +1,182 @@
+{
+    "discos": [],
+    "avg_size_service": 89.0,
+    "buses": [],
+    "num_gates": 1,
+    "name": "neckhair/rails-on-docker",
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "proxy",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "jwilder/nginx-proxy:latest",
+                "image": "jwilder/nginx-proxy",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": [
+                    "nginx"
+                ]
+            },
+            {
+                "name": "web",
+                "dbs": [],
+                "depends_on": [
+                    "db",
+                    "redis",
+                    "cache"
+                ],
+                "discos": [],
+                "image_full": ".",
+                "image": ".",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "cache",
+                "dbs": [
+                    "memcached"
+                ],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "memcached:alpine",
+                "image": "memcached",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "worker",
+                "dbs": [],
+                "depends_on": [
+                    "db",
+                    "redis",
+                    "cache"
+                ],
+                "discos": [],
+                "image_full": ".",
+                "image": ".",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "db",
+                "dbs": [
+                    "mariadb"
+                ],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "mariadb:10.1",
+                "image": "mariadb",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "redis:3.0-alpine",
+                "image": "redis",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [
+                "redis",
+                "mariadb",
+                "memcached"
+            ],
+            "num": 3,
+            "shared_dbs": true,
+            "services": [
+                "cache",
+                "db",
+                "redis"
+            ]
+        },
+        "num_services": 6
+    },
+    "dbs": [
+        "redis",
+        "mysql",
+        "memcached"
+    ],
+    "dockers": [
+        {
+            "langs": [
+                "ruby"
+            ],
+            "cmd_keywords": [
+                "start",
+                "docker",
+                "app"
+            ],
+            "from_full": "ruby:2.4-alpine",
+            "buses": [],
+            "monitors": [],
+            "from": "ruby",
+            "keywords": [
+                "dev",
+                "mysql",
+                "bundle",
+                "app",
+                "apk"
+            ],
+            "gates": [],
+            "path": "/Dockerfile",
+            "dbs": [
+                "mysql"
+            ],
+            "discos": [],
+            "cmd": "/app/docker/start.sh",
+            "servers": []
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "size": 89,
+    "num_monitors": 0,
+    "images": [
+        "ruby"
+    ],
+    "num_buses": 0,
+    "num_services": 6,
+    "servers": [],
+    "shared_dbs": true,
+    "monitors": [],
+    "num_discos": 0,
+    "languages": [
+        "css",
+        "ruby",
+        "html"
+    ],
+    "url": "git://github.com/neckhair/rails-on-docker.git",
+    "langs": [
+        "ruby",
+        "css",
+        "html"
+    ],
+    "num_dbs": 3,
+    "num_servers": 0,
+    "num_langs": 3,
+    "files": [],
+    "num_dockers": 1,
+    "num_files": 2
+}

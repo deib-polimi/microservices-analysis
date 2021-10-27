@@ -1,0 +1,296 @@
+{
+    "files": [
+        {
+            "buses": [
+                "amqp",
+                "activemq"
+            ],
+            "path": "/admin/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "mysql",
+                "redis",
+                "postgresql"
+            ],
+            "servers": [
+                "spring",
+                "tomcat"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": []
+        },
+        {
+            "buses": [
+                "amqp"
+            ],
+            "path": "/saver/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "redis",
+                "postgresql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": []
+        },
+        {
+            "buses": [
+                "amqp",
+                "activemq"
+            ],
+            "path": "/scrapper/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "redis"
+            ],
+            "servers": [
+                "jetty",
+                "spring",
+                "tomcat"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": []
+        },
+        {
+            "buses": [],
+            "path": "/bookstore/pom.xml",
+            "monitors": [],
+            "dbs": [
+                "mysql",
+                "redis",
+                "postgresql"
+            ],
+            "servers": [
+                "spring",
+                "tomcat"
+            ],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "buses": [],
+            "path": "/eurekaserver/pom.xml",
+            "monitors": [],
+            "dbs": [],
+            "servers": [
+                "spring",
+                "tomcat",
+                "glassfish"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": []
+        }
+    ],
+    "size": 31449,
+    "url": "git://github.com/GinYM/bookstore.git",
+    "num_monitors": 0,
+    "languages": [
+        "java"
+    ],
+    "langs": [
+        "java"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_servers": 4,
+    "num_dockers": 4,
+    "shared_dbs": false,
+    "images": [
+        "java",
+        "nginx"
+    ],
+    "structure": {
+        "path": "/app-admin/docker-compose.yml",
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 0,
+            "names": [],
+            "services": []
+        },
+        "services": [
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "030355243416.dkr.ecr.us-east-1.amazonaws.com/bookstore/adminportal",
+                "monitors": [],
+                "image_full": "030355243416.dkr.ecr.us-east-1.amazonaws.com/bookstore/adminportal:latest",
+                "dbs": [],
+                "name": "adminportal",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "scrapper",
+                    "adminportal"
+                ],
+                "buses": [],
+                "image": "./nginx-load-balancer",
+                "monitors": [],
+                "image_full": "./nginx-load-balancer",
+                "dbs": [],
+                "name": "nginx-lb",
+                "servers": [],
+                "discos": [],
+                "gates": [
+                    "nginx"
+                ]
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "030355243416.dkr.ecr.us-east-1.amazonaws.com/bookstore/scrapper",
+                "monitors": [],
+                "image_full": "030355243416.dkr.ecr.us-east-1.amazonaws.com/bookstore/scrapper:latest",
+                "dbs": [],
+                "name": "scrapper",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            }
+        ],
+        "num_services": 3
+    },
+    "num_gates": 1,
+    "buses": [
+        "amqp",
+        "activemq"
+    ],
+    "num_dbs": 3,
+    "avg_size_service": 7862.25,
+    "num_discos": 1,
+    "servers": [
+        "jetty",
+        "spring",
+        "tomcat",
+        "glassfish"
+    ],
+    "num_buses": 2,
+    "dockers": [
+        {
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "servers": [],
+            "from": "nginx",
+            "gates": [
+                "nginx"
+            ],
+            "cmd_keywords": [
+                "off",
+                "daemon",
+                "nginx"
+            ],
+            "cmd": "nginx -g daemon off;",
+            "path": "/app-admin/nginx-load-balancer/Dockerfile",
+            "monitors": [],
+            "from_full": "nginx",
+            "keywords": [
+                "conf",
+                "default",
+                "etc",
+                "nginx"
+            ]
+        },
+        {
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "servers": [],
+            "from": "nginx",
+            "gates": [
+                "nginx"
+            ],
+            "cmd_keywords": [
+                "off",
+                "daemon",
+                "nginx"
+            ],
+            "cmd": "nginx -g daemon off;",
+            "path": "/aws-config/nginx-load-balancer/Dockerfile",
+            "monitors": [],
+            "from_full": "nginx",
+            "keywords": [
+                "conf",
+                "default",
+                "etc",
+                "nginx"
+            ]
+        },
+        {
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "servers": [],
+            "from": "nginx",
+            "gates": [
+                "nginx"
+            ],
+            "cmd_keywords": [
+                "off",
+                "daemon",
+                "nginx"
+            ],
+            "cmd": "nginx -g daemon off;",
+            "path": "/app/nginx-load-balancer/Dockerfile",
+            "monitors": [],
+            "from_full": "nginx",
+            "keywords": [
+                "conf",
+                "default",
+                "etc",
+                "nginx"
+            ]
+        },
+        {
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "discos": [],
+            "servers": [],
+            "from": "java",
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/eurekaserver/src/main/docker/Dockerfile",
+            "monitors": [],
+            "from_full": "java:8",
+            "keywords": [
+                "touch",
+                "app",
+                "bash",
+                "jar"
+            ]
+        }
+    ],
+    "monitors": [],
+    "num_files": 10,
+    "dbs": [
+        "mysql",
+        "redis",
+        "postgresql"
+    ],
+    "name": "GinYM/bookstore",
+    "num_langs": 1,
+    "num_services": 3
+}

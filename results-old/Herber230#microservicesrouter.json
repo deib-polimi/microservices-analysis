@@ -1,0 +1,294 @@
+{
+    "dbs": [],
+    "num_langs": 3,
+    "buses": [],
+    "monitors": [],
+    "num_services": 4,
+    "num_dbs": 0,
+    "num_servers": 4,
+    "discos": [],
+    "dockers": [
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "off",
+                "daemon",
+                "nginx"
+            ],
+            "from_full": "nginx",
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "from": "nginx",
+            "cmd": "nginx -g daemon off;",
+            "discos": [],
+            "langs": [],
+            "path": "/services/angularjs-app/Dockerfile",
+            "keywords": [
+                "install",
+                "npm"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "microsoft/aspnetcore:2.0",
+            "gates": [],
+            "dbs": [],
+            "from": "microsoft/aspnetcore",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/services/tx2-api/Dockerfile",
+            "keywords": [
+                "dotnet",
+                "publish",
+                "restore",
+                "out",
+                "release"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "baseapi"
+            ],
+            "from_full": "openjdk:8",
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "cmd": "java -jar baseapi-0.0.0.1.jar",
+            "discos": [],
+            "langs": [
+                "java"
+            ],
+            "path": "/services/tx1-api/Dockerfile",
+            "keywords": [
+                "mvn",
+                "src",
+                "app",
+                "package",
+                "usr"
+            ]
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "node:8.1",
+            "gates": [],
+            "dbs": [],
+            "from": "node",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/services/auth-api/Dockerfile",
+            "keywords": []
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "node:8.1",
+            "gates": [],
+            "dbs": [],
+            "from": "node",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/services/auth-app/Dockerfile",
+            "keywords": []
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "node:8.1",
+            "gates": [],
+            "dbs": [],
+            "from": "node",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/services/express-api/Dockerfile",
+            "keywords": []
+        }
+    ],
+    "num_files": 12,
+    "num_dockers": 6,
+    "images": [
+        "node",
+        "microsoft/aspnetcore",
+        "openjdk",
+        "nginx"
+    ],
+    "size": 776,
+    "servers": [
+        "express",
+        "mongoose",
+        "node",
+        "spring"
+    ],
+    "structure": {
+        "detected_dbs": {
+            "names": [],
+            "shared_dbs": false,
+            "services": [],
+            "num": 0
+        },
+        "num_services": 4,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "services/tx2-api/",
+                "name": "tx2api",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "services/tx2-api/",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [
+                    "express"
+                ],
+                "image_full": "services/express-api/",
+                "name": "expressapi",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "services/express-api/",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "services/tx1-api/",
+                "name": "tx1api",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "services/tx1-api/",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "services/angularjs-app/",
+                "name": "angularjsapp",
+                "depends_on": [
+                    "tx2api",
+                    "tx1api",
+                    "expressapi"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "services/angularjs-app/",
+                "gates": [],
+                "monitors": []
+            }
+        ]
+    },
+    "num_discos": 0,
+    "files": [
+        {
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/services/tx1-api/src/pom.xml"
+        },
+        {
+            "servers": [],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/services/angularjs-app/src/package.json"
+        },
+        {
+            "servers": [
+                "express",
+                "mongoose",
+                "node"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/services/auth-api/src/package.json"
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/services/auth-app/src/package.json"
+        },
+        {
+            "servers": [
+                "express",
+                "node"
+            ],
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/services/express-api/src/package.json"
+        }
+    ],
+    "num_monitors": 0,
+    "num_buses": 0,
+    "num_gates": 1,
+    "gates": [
+        "nginx"
+    ],
+    "name": "Herber230/microservicesrouter",
+    "avg_size_service": 129.33333333333334,
+    "url": "git://github.com/Herber230/microservicesrouter.git",
+    "shared_dbs": false,
+    "langs": [
+        "typescript",
+        "java",
+        "html"
+    ],
+    "languages": [
+        "typescript",
+        "html"
+    ]
+}

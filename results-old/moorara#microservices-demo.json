@@ -1,0 +1,719 @@
+{
+    "monitors": [
+        "prometheus",
+        "grafana",
+        "fluentd",
+        "jaeger"
+    ],
+    "structure": {
+        "path": "/docker/docker-compose.yml",
+        "detected_dbs": {
+            "shared_dbs": true,
+            "services": [
+                "mongo",
+                "redis",
+                "cockroach",
+                "cockroach-init",
+                "arango"
+            ],
+            "names": [
+                "cockroachdb",
+                "redis",
+                "arangodb",
+                "mongo"
+            ],
+            "num": 5
+        },
+        "services": [
+            {
+                "image": "traefik",
+                "buses": [],
+                "monitors": [],
+                "image_full": "traefik:2.2.7",
+                "gates": [],
+                "name": "traefik",
+                "discos": [
+                    "traefik"
+                ],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "fluentd"
+                ]
+            },
+            {
+                "image": "postgres",
+                "buses": [],
+                "monitors": [],
+                "image_full": "postgres:12.3",
+                "gates": [],
+                "name": "postgres",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "moorara/site-service",
+                "buses": [],
+                "monitors": [],
+                "image_full": "moorara/site-service:latest",
+                "gates": [],
+                "name": "site-service",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "mongo",
+                    "fluentd",
+                    "jaeger"
+                ]
+            },
+            {
+                "image": "kibana",
+                "buses": [],
+                "monitors": [],
+                "image_full": "kibana:7.8.0",
+                "gates": [],
+                "name": "kibana",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "elasticsearch"
+                ]
+            },
+            {
+                "image": "nats",
+                "buses": [
+                    "nats"
+                ],
+                "monitors": [],
+                "image_full": "nats:2.1.7",
+                "gates": [],
+                "name": "nats",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "moorara/asset-service",
+                "buses": [],
+                "monitors": [],
+                "image_full": "moorara/asset-service:latest",
+                "gates": [],
+                "name": "asset-service",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "nats",
+                    "cockroach",
+                    "cockroach-init",
+                    "fluentd",
+                    "jaeger"
+                ]
+            },
+            {
+                "image": "grafana/grafana",
+                "buses": [],
+                "monitors": [
+                    "grafana"
+                ],
+                "image_full": "grafana/grafana:5.4.5",
+                "gates": [],
+                "name": "grafana",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "prometheus"
+                ]
+            },
+            {
+                "image": "mongo",
+                "buses": [],
+                "monitors": [],
+                "image_full": "mongo:4.2.8",
+                "gates": [],
+                "name": "mongo",
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "depends_on": []
+            },
+            {
+                "image": "elasticsearch",
+                "buses": [],
+                "monitors": [],
+                "image_full": "elasticsearch:7.8.0",
+                "gates": [],
+                "name": "elasticsearch",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "moorara/sensor-service",
+                "buses": [],
+                "monitors": [],
+                "image_full": "moorara/sensor-service:latest",
+                "gates": [],
+                "name": "sensor-service",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "postgres",
+                    "fluentd",
+                    "jaeger"
+                ]
+            },
+            {
+                "image": "redis",
+                "buses": [],
+                "monitors": [],
+                "image_full": "redis:5.0.9",
+                "gates": [],
+                "name": "redis",
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "redis"
+                ],
+                "depends_on": []
+            },
+            {
+                "image": "cockroachdb/cockroach",
+                "buses": [],
+                "monitors": [],
+                "image_full": "cockroachdb/cockroach:v19.2.9",
+                "gates": [],
+                "name": "cockroach",
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "cockroachdb"
+                ],
+                "depends_on": []
+            },
+            {
+                "image": "./nats-exporter",
+                "buses": [
+                    "nats"
+                ],
+                "monitors": [],
+                "image_full": "./nats-exporter",
+                "gates": [],
+                "name": "nats-exporter",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "cockroachdb/cockroach",
+                "buses": [],
+                "monitors": [],
+                "image_full": "cockroachdb/cockroach:v19.2.9",
+                "gates": [],
+                "name": "cockroach-init",
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "cockroachdb"
+                ],
+                "depends_on": [
+                    "cockroach"
+                ]
+            },
+            {
+                "image": "google/cadvisor",
+                "buses": [],
+                "monitors": [],
+                "image_full": "google/cadvisor:v0.33.0",
+                "gates": [],
+                "name": "cadvisor",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "./fluentd",
+                "buses": [],
+                "monitors": [
+                    "fluentd"
+                ],
+                "image_full": "./fluentd",
+                "gates": [],
+                "name": "fluentd",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "elasticsearch"
+                ]
+            },
+            {
+                "image": "moorara/client-service",
+                "buses": [],
+                "monitors": [],
+                "image_full": "moorara/client-service:latest",
+                "gates": [],
+                "name": "client-service",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "fluentd"
+                ]
+            },
+            {
+                "image": "./caddy",
+                "buses": [],
+                "monitors": [],
+                "image_full": "./caddy",
+                "gates": [],
+                "name": "caddy",
+                "discos": [],
+                "servers": [
+                    "caddy"
+                ],
+                "dbs": [],
+                "depends_on": [
+                    "fluentd"
+                ]
+            },
+            {
+                "image": "moorara/graphql-service",
+                "buses": [],
+                "monitors": [],
+                "image_full": "moorara/graphql-service:latest",
+                "gates": [],
+                "name": "graphql-service",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "fluentd",
+                    "jaeger"
+                ]
+            },
+            {
+                "image": "prom/alertmanager",
+                "buses": [],
+                "monitors": [],
+                "image_full": "prom/alertmanager:v0.21.0",
+                "gates": [],
+                "name": "alertmanager",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "moorara/switch-service",
+                "buses": [],
+                "monitors": [],
+                "image_full": "moorara/switch-service:latest",
+                "gates": [],
+                "name": "switch-service",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "arango",
+                    "fluentd",
+                    "jaeger"
+                ]
+            },
+            {
+                "image": "arangodb/arangodb",
+                "buses": [],
+                "monitors": [],
+                "image_full": "arangodb/arangodb:3.6.5",
+                "gates": [],
+                "name": "arango",
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "arangodb"
+                ],
+                "depends_on": []
+            },
+            {
+                "image": "prom/node-exporter",
+                "buses": [],
+                "monitors": [],
+                "image_full": "prom/node-exporter:v0.18.1",
+                "gates": [],
+                "name": "node-exporter",
+                "discos": [],
+                "servers": [
+                    "node"
+                ],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "jaegertracing/all-in-one",
+                "buses": [],
+                "monitors": [],
+                "image_full": "jaegertracing/all-in-one:1.18.1",
+                "gates": [],
+                "name": "jaeger",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "prom/prometheus",
+                "buses": [],
+                "monitors": [
+                    "prometheus"
+                ],
+                "image_full": "prom/prometheus:v2.20.0",
+                "gates": [],
+                "name": "prometheus",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            }
+        ],
+        "num_services": 25
+    },
+    "num_langs": 3,
+    "name": "moorara/microservices-demo",
+    "num_dockers": 9,
+    "buses": [
+        "nats"
+    ],
+    "dbs": [
+        "redis",
+        "mongo"
+    ],
+    "size": 3062,
+    "num_discos": 2,
+    "shared_dbs": true,
+    "discos": [
+        "traefik",
+        "grpc"
+    ],
+    "images": [
+        "alpine",
+        "node",
+        "fluent/fluentd"
+    ],
+    "num_servers": 4,
+    "files": [
+        {
+            "gates": [],
+            "buses": [
+                "nats"
+            ],
+            "monitors": [
+                "jaeger"
+            ],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/services/graphql/package.json",
+            "discos": [
+                "grpc"
+            ],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/services/client/package.json",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/services/client/server/package.json",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [
+                "jaeger"
+            ],
+            "servers": [
+                "express",
+                "node",
+                "mongoose"
+            ],
+            "path": "/services/site/package.json",
+            "discos": [],
+            "dbs": []
+        }
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [
+                "fluentd"
+            ],
+            "dbs": [],
+            "from": "fluent/fluentd",
+            "path": "/docker/fluentd/Dockerfile",
+            "from_full": "fluent/fluentd:v1.11",
+            "cmd": "",
+            "keywords": [
+                "fluent",
+                "gem",
+                "build",
+                "deps",
+                "plugin"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": [
+                "ruby"
+            ]
+        },
+        {
+            "buses": [
+                "nats"
+            ],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "dbs": [],
+            "from": "alpine",
+            "path": "/docker/nats-exporter/Dockerfile",
+            "from_full": "alpine:3.12",
+            "cmd": "",
+            "keywords": [
+                "nats",
+                "exporter",
+                "prometheus",
+                "usr",
+                "github"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "alpine",
+            "path": "/docker/caddy/Dockerfile",
+            "from_full": "alpine:3.12",
+            "cmd": "",
+            "keywords": [
+                "certificates",
+                "add",
+                "cache",
+                "apk",
+                "get"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "sensor"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "alpine",
+            "path": "/services/sensor/Dockerfile",
+            "from_full": "alpine:3.12",
+            "cmd": "sensor",
+            "keywords": [
+                "add",
+                "apk",
+                "main",
+                "cache",
+                "sensor"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "switch"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "alpine",
+            "path": "/services/switch/Dockerfile",
+            "from_full": "alpine:3.12",
+            "cmd": "switch",
+            "keywords": [
+                "add",
+                "apk",
+                "main",
+                "cache",
+                "switch"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "src",
+                "server",
+                "node"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "node",
+            "path": "/services/graphql/Dockerfile",
+            "from_full": "node:12.18-alpine",
+            "cmd": "node src/server.js",
+            "keywords": [
+                "certificates",
+                "add",
+                "cache",
+                "apk",
+                "production"
+            ],
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "asset"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "alpine",
+            "path": "/services/asset/Dockerfile",
+            "from_full": "alpine:3.12",
+            "cmd": "asset",
+            "keywords": [
+                "add",
+                "apk",
+                "main",
+                "cache",
+                "asset"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "server",
+                "node",
+                "index"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "node",
+            "path": "/services/client/Dockerfile",
+            "from_full": "node:12.18-alpine",
+            "cmd": "node server/index.js",
+            "keywords": [
+                "yarn",
+                "install",
+                "server",
+                "certificates",
+                "build"
+            ],
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "server",
+                "node"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "node",
+            "path": "/services/site/Dockerfile",
+            "from_full": "node:12.18-alpine",
+            "cmd": "node server.js",
+            "keywords": [
+                "certificates",
+                "add",
+                "cache",
+                "apk",
+                "production"
+            ],
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "langs": []
+        }
+    ],
+    "url": "git://github.com/moorara/microservices-demo.git",
+    "gates": [],
+    "num_files": 14,
+    "num_services": 25,
+    "num_gates": 0,
+    "num_dbs": 2,
+    "avg_size_service": 340.22222222222223,
+    "langs": [
+        "ruby",
+        "javascript",
+        "go"
+    ],
+    "num_buses": 1,
+    "languages": [
+        "javascript",
+        "go"
+    ],
+    "num_monitors": 4,
+    "servers": [
+        "express",
+        "caddy",
+        "node",
+        "mongoose"
+    ]
+}

@@ -1,0 +1,170 @@
+{
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_servers": 0,
+    "languages": [
+        "go"
+    ],
+    "dbs": [
+        "redis"
+    ],
+    "num_services": 5,
+    "avg_size_service": 349.0,
+    "servers": [],
+    "structure": {
+        "num_services": 5,
+        "detected_dbs": {
+            "services": [
+                "redis"
+            ],
+            "shared_dbs": false,
+            "num": 1,
+            "names": [
+                "redis"
+            ]
+        },
+        "services": [
+            {
+                "image": "docker",
+                "buses": [],
+                "image_full": "docker:18-dind",
+                "dbs": [],
+                "depends_on": [],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "dind",
+                "gates": []
+            },
+            {
+                "image": "codebox_app",
+                "buses": [],
+                "image_full": "codebox_app",
+                "dbs": [],
+                "depends_on": [
+                    "dind",
+                    "redis"
+                ],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "app",
+                "gates": []
+            },
+            {
+                "image": "redis",
+                "buses": [],
+                "image_full": "redis:5-alpine",
+                "dbs": [
+                    "redis"
+                ],
+                "depends_on": [],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "redis",
+                "gates": []
+            },
+            {
+                "image": "jaegertracing/all-in-one",
+                "buses": [],
+                "image_full": "jaegertracing/all-in-one:1.17",
+                "dbs": [],
+                "depends_on": [],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "jaeger",
+                "gates": []
+            },
+            {
+                "image": "rabbitmq",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "image_full": "rabbitmq:3.8-alpine",
+                "dbs": [],
+                "depends_on": [],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "rabbitmq",
+                "gates": []
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "monitors": [],
+    "num_buses": 1,
+    "images": [
+        "golang",
+        "alpine"
+    ],
+    "gates": [],
+    "num_gates": 0,
+    "num_langs": 2,
+    "langs": [
+        "golang",
+        "go"
+    ],
+    "url": "git://github.com/Syncano/codebox.git",
+    "num_discos": 0,
+    "num_files": 3,
+    "files": [],
+    "shared_dbs": false,
+    "num_monitors": 0,
+    "name": "Syncano/codebox",
+    "num_dbs": 1,
+    "discos": [],
+    "dockers": [
+        {
+            "langs": [
+                "golang"
+            ],
+            "dbs": [],
+            "path": "/Dockerfile",
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "squashfuse",
+                "apt",
+                "dev",
+                "install",
+                "get"
+            ],
+            "cmd": "",
+            "buses": [],
+            "from_full": "golang:1.15",
+            "from": "golang",
+            "discos": [],
+            "cmd_keywords": [],
+            "gates": []
+        },
+        {
+            "langs": [],
+            "dbs": [],
+            "path": "/build/Dockerfile",
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "squashfuse",
+                "dev",
+                "tar",
+                "version",
+                "codebox"
+            ],
+            "cmd": "codebox",
+            "buses": [],
+            "from_full": "alpine:3.11",
+            "from": "alpine",
+            "discos": [],
+            "cmd_keywords": [
+                "codebox"
+            ],
+            "gates": []
+        }
+    ],
+    "num_dockers": 2,
+    "size": 698
+}

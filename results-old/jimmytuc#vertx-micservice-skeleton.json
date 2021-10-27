@@ -1,0 +1,393 @@
+{
+    "files": [
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [
+                "gateway"
+            ],
+            "path": "/pom.xml",
+            "dbs": [
+                "mysql",
+                "hazelcast"
+            ],
+            "servers": []
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/microservice-blueprint-common/pom.xml",
+            "dbs": [
+                "mysql"
+            ],
+            "servers": []
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [
+                "gateway"
+            ],
+            "path": "/api-gateway/pom.xml",
+            "dbs": [],
+            "servers": []
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/database-middleware/pom.xml",
+            "dbs": [],
+            "servers": []
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/sample-microservice/pom.xml",
+            "dbs": [
+                "redis"
+            ],
+            "servers": []
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/monitor-dashboard/pom.xml",
+            "dbs": [],
+            "servers": []
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/cache-infrastructure/pom.xml",
+            "dbs": [
+                "redis"
+            ],
+            "servers": []
+        }
+    ],
+    "num_services": 11,
+    "discos": [],
+    "dbs": [
+        "mysql",
+        "hazelcast",
+        "redis"
+    ],
+    "avg_size_service": 33.0,
+    "name": "jimmytuc/vertx-micservice-skeleton",
+    "num_buses": 0,
+    "num_langs": 2,
+    "monitors": [],
+    "num_files": 12,
+    "langs": [
+        "javascript",
+        "java"
+    ],
+    "num_gates": 1,
+    "dockers": [
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "gates": [
+                "gateway"
+            ],
+            "path": "/api-gateway/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "vertx",
+                "api",
+                "fat",
+                "json"
+            ],
+            "from_full": "java:8-jre",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "java -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory -jar api-gateway-fat.jar -cluster -ha -conf docker.json",
+            "from": "java",
+            "keywords": []
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "path": "/sample-microservice/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "dvertx",
+                "cluster",
+                "json",
+                "name"
+            ],
+            "from_full": "java:8-jre",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "java -Dvertx.disableDnsResolver=true -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory -jar sample-microservice-fat.jar -cluster -conf docker.json",
+            "from": "java",
+            "keywords": []
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "path": "/monitor-dashboard/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "dvertx",
+                "metrics",
+                "cluster",
+                "json"
+            ],
+            "from_full": "java:8-jre",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "java -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory -jar monitor-dashboard-fat.jar -Dvertx.metrics.options.enabled=true -cluster -conf docker.json",
+            "from": "java",
+            "keywords": []
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "path": "/cache-infrastructure/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "vertx",
+                "cluster",
+                "cache",
+                "json"
+            ],
+            "from_full": "java:8-jre",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "java -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory -jar cache-infrastructure-fat.jar -cluster -conf docker.json",
+            "from": "java",
+            "keywords": []
+        }
+    ],
+    "structure": {
+        "path": "/deployment/docker-compose.yml",
+        "detected_dbs": {
+            "names": [
+                "mysql",
+                "redis"
+            ],
+            "services": [
+                "redis",
+                "mysql"
+            ],
+            "num": 2,
+            "shared_dbs": true
+        },
+        "num_services": 11,
+        "services": [
+            {
+                "monitors": [],
+                "image": "vertx-blueprint/sample-microservice",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "sample-microservice",
+                "depends_on": [
+                    "config-server",
+                    "redis",
+                    "logstash"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "vertx-blueprint/sample-microservice"
+            },
+            {
+                "monitors": [],
+                "image": "redis",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "redis",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "image_full": "redis:latest"
+            },
+            {
+                "monitors": [],
+                "image": "vertx-blueprint/api-gateway",
+                "discos": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "name": "api-gateway",
+                "depends_on": [
+                    "keycloak-server",
+                    "logstash"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "vertx-blueprint/api-gateway"
+            },
+            {
+                "monitors": [],
+                "image": "mysql",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "mysql",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "servers": [],
+                "image_full": "mysql:latest"
+            },
+            {
+                "monitors": [],
+                "image": "vertx-blueprint/cache-infrastructure",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "cache-infrastructure",
+                "depends_on": [
+                    "redis",
+                    "logstash"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "vertx-blueprint/cache-infrastructure"
+            },
+            {
+                "monitors": [],
+                "image": "httpd",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "config-server",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [
+                    "httpd"
+                ],
+                "image_full": "httpd:alpine"
+            },
+            {
+                "monitors": [],
+                "image": "kibana",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "kibana",
+                "depends_on": [
+                    "logstash"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "kibana"
+            },
+            {
+                "monitors": [],
+                "image": "jboss/keycloak",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "keycloak-server",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [
+                    "jboss"
+                ],
+                "image_full": "jboss/keycloak:latest"
+            },
+            {
+                "monitors": [],
+                "image": "logstash",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "logstash",
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "logstash"
+            },
+            {
+                "monitors": [],
+                "image": "elasticsearch",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "elasticsearch",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "elasticsearch"
+            },
+            {
+                "monitors": [],
+                "image": "vertx-blueprint/monitor-dashboard",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "monitor-dashboard",
+                "depends_on": [
+                    "logstash"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "vertx-blueprint/monitor-dashboard"
+            }
+        ]
+    },
+    "size": 132,
+    "num_discos": 0,
+    "languages": [
+        "java",
+        "javascript"
+    ],
+    "url": "git://github.com/jimmytuc/vertx-micservice-skeleton.git",
+    "buses": [],
+    "gates": [
+        "gateway"
+    ],
+    "shared_dbs": true,
+    "servers": [
+        "httpd",
+        "jboss"
+    ],
+    "images": [
+        "java"
+    ],
+    "num_servers": 2,
+    "num_dockers": 4,
+    "num_monitors": 0,
+    "num_dbs": 3
+}

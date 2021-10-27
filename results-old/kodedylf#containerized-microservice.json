@@ -1,0 +1,152 @@
+{
+    "dbs": [],
+    "name": "kodedylf/containerized-microservice",
+    "num_langs": 2,
+    "languages": [
+        "c#",
+        "javascript"
+    ],
+    "shared_dbs": false,
+    "servers": [],
+    "langs": [
+        "c#",
+        "javascript"
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/Dockerfile",
+            "from_full": "microsoft/dotnet:2.2-aspnetcore-runtime-alpine",
+            "gates": [],
+            "from": "microsoft/dotnet",
+            "langs": [],
+            "keywords": [
+                "npm",
+                "install",
+                "dotnet",
+                "publish",
+                "webpack"
+            ]
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "size": 28,
+    "num_dockers": 1,
+    "num_discos": 0,
+    "num_buses": 0,
+    "buses": [],
+    "images": [
+        "microsoft/dotnet"
+    ],
+    "num_servers": 0,
+    "num_services": 5,
+    "monitors": [],
+    "structure": {
+        "services": [
+            {
+                "buses": [],
+                "image": "./",
+                "dbs": [],
+                "gates": [],
+                "image_full": "./",
+                "monitors": [],
+                "name": "service",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "database",
+                    "elasticsearch"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "nginx",
+                "dbs": [],
+                "gates": [
+                    "nginx"
+                ],
+                "image_full": "nginx:alpine",
+                "monitors": [],
+                "name": "nginx",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "service",
+                    "kibana"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "docker.elastic.co/elasticsearch/elasticsearch-oss",
+                "dbs": [],
+                "gates": [],
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch-oss:6.1.0",
+                "monitors": [],
+                "name": "elasticsearch",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "postgres",
+                "dbs": [],
+                "gates": [],
+                "image_full": "postgres:alpine",
+                "monitors": [],
+                "name": "database",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "docker.elastic.co/kibana/kibana-oss",
+                "dbs": [],
+                "gates": [],
+                "image_full": "docker.elastic.co/kibana/kibana-oss:6.1.0",
+                "monitors": [],
+                "name": "kibana",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "elasticsearch"
+                ]
+            }
+        ],
+        "num_services": 5,
+        "detected_dbs": {
+            "num": 0,
+            "shared_dbs": false,
+            "names": [],
+            "services": []
+        },
+        "path": "/docker-compose.yml"
+    },
+    "discos": [],
+    "num_files": 3,
+    "num_dbs": 0,
+    "num_monitors": 0,
+    "num_gates": 1,
+    "url": "git://github.com/kodedylf/containerized-microservice.git",
+    "avg_size_service": 28.0,
+    "files": [
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [],
+            "path": "/frontend/package.json"
+        }
+    ]
+}

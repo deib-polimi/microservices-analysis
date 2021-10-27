@@ -1,0 +1,267 @@
+{
+    "num_langs": 2,
+    "dbs": [
+        "mysql"
+    ],
+    "num_servers": 0,
+    "languages": [
+        "php",
+        "html"
+    ],
+    "num_discos": 0,
+    "avg_size_service": 76.4,
+    "dockers": [
+        {
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "nginx",
+            "servers": [],
+            "keywords": [
+                "upstream",
+                "conf",
+                "php",
+                "fpm",
+                "nginx"
+            ],
+            "from": "nginx",
+            "cmd_keywords": [
+                "nginx"
+            ],
+            "from_full": "nginx:latest",
+            "path": "/build/nginx/Dockerfile",
+            "buses": [],
+            "langs": [
+                "php"
+            ],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": [],
+            "cmd": "mysqld",
+            "servers": [],
+            "keywords": [],
+            "from": "mysql",
+            "cmd_keywords": [
+                "mysqld"
+            ],
+            "from_full": "mysql:5.7",
+            "path": "/build/mysql/Dockerfile",
+            "buses": [],
+            "langs": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": [],
+            "cmd": "php-fpm",
+            "servers": [],
+            "keywords": [
+                "apt",
+                "install",
+                "get",
+                "pdo",
+                "mysql"
+            ],
+            "from": "php",
+            "cmd_keywords": [
+                "fpm",
+                "php"
+            ],
+            "from_full": "php:7.1-fpm",
+            "path": "/build/php-fpm/Dockerfile",
+            "buses": [],
+            "langs": [
+                "php"
+            ],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "true",
+            "servers": [],
+            "keywords": [
+                "www",
+                "var",
+                "chown",
+                "data"
+            ],
+            "from": "debian",
+            "cmd_keywords": [
+                "true"
+            ],
+            "from_full": "debian:jessie",
+            "path": "/build/application/Dockerfile",
+            "buses": [],
+            "langs": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": [],
+            "cmd": "/sbin/init.sh",
+            "servers": [],
+            "keywords": [
+                "php",
+                "apt",
+                "get",
+                "bashrc",
+                "bin"
+            ],
+            "from": "phusion/baseimage",
+            "cmd_keywords": [
+                "sbin",
+                "init"
+            ],
+            "from_full": "phusion/baseimage:latest",
+            "path": "/build/workspace/Dockerfile",
+            "buses": [],
+            "langs": [
+                "php"
+            ],
+            "discos": []
+        }
+    ],
+    "num_gates": 1,
+    "buses": [],
+    "langs": [
+        "html",
+        "php"
+    ],
+    "num_buses": 0,
+    "discos": [],
+    "num_dbs": 1,
+    "num_files": 6,
+    "url": "git://github.com/Hnto/guid-microservice-lumen.git",
+    "shared_dbs": true,
+    "monitors": [],
+    "num_services": 6,
+    "files": [],
+    "servers": [],
+    "num_monitors": 0,
+    "gates": [
+        "nginx"
+    ],
+    "size": 382,
+    "num_dockers": 5,
+    "images": [
+        "nginx",
+        "phusion/baseimage",
+        "debian",
+        "php",
+        "mysql"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image": "./build/nginx",
+                "depends_on": [
+                    "php-fpm"
+                ],
+                "dbs": [],
+                "name": "nginx",
+                "image_full": "./build/nginx",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [
+                    "nginx"
+                ],
+                "monitors": []
+            },
+            {
+                "image": "./build/mysql",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "name": "mysql",
+                "image_full": "./build/mysql",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "adminer",
+                "depends_on": [],
+                "dbs": [],
+                "name": "adminer",
+                "image_full": "adminer",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "./build/php-fpm",
+                "depends_on": [
+                    "mysql"
+                ],
+                "dbs": [],
+                "name": "php-fpm",
+                "image_full": "./build/php-fpm",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "./build/workspace",
+                "depends_on": [
+                    "mysql"
+                ],
+                "dbs": [],
+                "name": "workspace",
+                "image_full": "./build/workspace",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "./build/application",
+                "depends_on": [],
+                "dbs": [],
+                "name": "application",
+                "image_full": "./build/application",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": true,
+            "num": 1,
+            "services": [
+                "mysql"
+            ]
+        },
+        "num_services": 6
+    },
+    "name": "Hnto/guid-microservice-lumen"
+}

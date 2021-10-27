@@ -1,0 +1,312 @@
+{
+    "size": 1014,
+    "num_monitors": 2,
+    "num_discos": 1,
+    "shared_dbs": false,
+    "langs": [
+        "lua",
+        "dockerfile",
+        "python",
+        "php"
+    ],
+    "buses": [],
+    "num_langs": 4,
+    "num_dbs": 0,
+    "discos": [
+        "consul"
+    ],
+    "avg_size_service": 253.5,
+    "images": [
+        "grafana/grafana",
+        "consul",
+        "ubuntu",
+        "openresty/openresty"
+    ],
+    "gates": [
+        "loadbalancer",
+        "nginx"
+    ],
+    "dockers": [
+        {
+            "monitors": [
+                "grafana"
+            ],
+            "from": "grafana/grafana",
+            "langs": [],
+            "servers": [],
+            "buses": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/grafana/Dockerfile",
+            "keywords": [
+                "consul",
+                "zip",
+                "tmp",
+                "grafana",
+                "version"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "grafana/grafana:7.0.3",
+            "discos": [
+                "consul"
+            ]
+        },
+        {
+            "monitors": [
+                "prometheus"
+            ],
+            "from": "openresty/openresty",
+            "langs": [
+                "python"
+            ],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/loadbalancer/Dockerfile",
+            "keywords": [
+                "consul",
+                "template",
+                "amd",
+                "linux",
+                "zip"
+            ],
+            "dbs": [],
+            "gates": [
+                "nginx"
+            ],
+            "from_full": "openresty/openresty:1.15.8.2-1-xenial",
+            "discos": [
+                "consul"
+            ]
+        },
+        {
+            "monitors": [
+                "prometheus"
+            ],
+            "from": "ubuntu",
+            "langs": [
+                "php"
+            ],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/webserver/Dockerfile",
+            "keywords": [
+                "consul",
+                "exporter",
+                "amd",
+                "linux",
+                "apache"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "ubuntu:16.04",
+            "discos": [
+                "consul"
+            ]
+        },
+        {
+            "monitors": [],
+            "from": "consul",
+            "langs": [],
+            "servers": [],
+            "buses": [],
+            "cmd_keywords": [
+                "dev",
+                "client",
+                "agent"
+            ],
+            "cmd": "agent -dev -client 0.0.0.0",
+            "path": "/consul/Dockerfile",
+            "keywords": [
+                "template",
+                "consul",
+                "apk",
+                "version",
+                "add"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "consul:1.6.5",
+            "discos": [
+                "consul"
+            ]
+        }
+    ],
+    "structure": {
+        "detected_dbs": {
+            "num": 0,
+            "shared_dbs": false,
+            "services": [],
+            "names": []
+        },
+        "services": [
+            {
+                "image": "./grafana",
+                "depends_on": [
+                    "prometheus"
+                ],
+                "discos": [],
+                "monitors": [
+                    "grafana"
+                ],
+                "image_full": "./grafana",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "grafana"
+            },
+            {
+                "image": "prom/alertmanager",
+                "depends_on": [
+                    "prometheus"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "prom/alertmanager:v0.12.0",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "alertmanager"
+            },
+            {
+                "image": "./consul",
+                "depends_on": [
+                    "consul1"
+                ],
+                "discos": [
+                    "consul"
+                ],
+                "monitors": [],
+                "image_full": "./consul",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "consul3"
+            },
+            {
+                "image": "./consul",
+                "depends_on": [],
+                "discos": [
+                    "consul"
+                ],
+                "monitors": [],
+                "image_full": "./consul",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "consul1"
+            },
+            {
+                "image": "./webserver",
+                "depends_on": [
+                    "loadbalancer"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "./webserver",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "webserver"
+            },
+            {
+                "image": "prom/prometheus",
+                "depends_on": [
+                    "loadbalancer"
+                ],
+                "discos": [],
+                "monitors": [
+                    "prometheus"
+                ],
+                "image_full": "prom/prometheus",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "prometheus"
+            },
+            {
+                "image": "./loadbalancer",
+                "depends_on": [
+                    "consul1"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "./loadbalancer",
+                "gates": [
+                    "loadbalancer"
+                ],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "loadbalancer"
+            },
+            {
+                "image": "./consul",
+                "depends_on": [
+                    "consul1"
+                ],
+                "discos": [
+                    "consul"
+                ],
+                "monitors": [],
+                "image_full": "./consul",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "consul2"
+            },
+            {
+                "image": "mailhog/mailhog",
+                "depends_on": [
+                    "alertmanager"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "mailhog/mailhog",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "mailhog"
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "num_services": 9
+    },
+    "num_dockers": 4,
+    "num_files": 5,
+    "num_services": 9,
+    "num_gates": 2,
+    "name": "katzefudder/cat_service",
+    "url": "git://github.com/katzefudder/cat_service.git",
+    "monitors": [
+        "grafana",
+        "prometheus"
+    ],
+    "servers": [
+        "node"
+    ],
+    "dbs": [],
+    "num_servers": 1,
+    "num_buses": 0,
+    "files": [],
+    "languages": [
+        "lua",
+        "dockerfile"
+    ]
+}

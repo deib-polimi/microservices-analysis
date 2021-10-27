@@ -1,0 +1,263 @@
+{
+    "name": "justiandre/exemplo.springcloudconfig",
+    "num_dbs": 0,
+    "num_services": 4,
+    "num_files": 10,
+    "servers": [
+        "spring"
+    ],
+    "url": "git://github.com/justiandre/exemplo.springcloudconfig.git",
+    "discos": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "configserver",
+                "image_full": "exemplo.springcloudconfig.server",
+                "image": "exemplo.springcloudconfig.server",
+                "servers": [],
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "rabbitmq",
+                "image_full": "rabbitmq:3-management",
+                "image": "rabbitmq",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "monitors": []
+            },
+            {
+                "name": "service01",
+                "image_full": "exemplo.springcloudconfig.service01",
+                "image": "exemplo.springcloudconfig.service01",
+                "servers": [],
+                "depends_on": [
+                    "configserver"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "service02",
+                "image_full": "exemplo.springcloudconfig.service02",
+                "image": "exemplo.springcloudconfig.service02",
+                "servers": [],
+                "depends_on": [
+                    "configserver"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [],
+            "num": 0,
+            "names": []
+        },
+        "num_services": 4
+    },
+    "num_buses": 2,
+    "size": 125,
+    "dockers": [
+        {
+            "cmd": "java ${JAVA_OPTS} -Djava.security.egd=file:/dev/./urandom -jar app.jar",
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "path": "/exemplo.springcloudconfig.service02/Dockerfile",
+            "discos": [],
+            "from": "adoptopenjdk/openjdk11",
+            "buses": [],
+            "from_full": "adoptopenjdk/openjdk11:jdk-11.0.3_7-alpine",
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "urandom",
+                "security",
+                "file"
+            ],
+            "keywords": [
+                "build",
+                "jar",
+                "gradle",
+                "libs",
+                "exemplo"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "java ${JAVA_OPTS} -Djava.security.egd=file:/dev/./urandom -jar app.jar",
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "path": "/exemplo.springcloudconfig.server/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8-alpine",
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "urandom",
+                "security",
+                "file"
+            ],
+            "keywords": [
+                "build",
+                "jar",
+                "apk",
+                "gradle",
+                "curl"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "java ${JAVA_OPTS} -Djava.security.egd=file:/dev/./urandom -jar app.jar",
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "path": "/exemplo.springcloudconfig.service01/Dockerfile",
+            "discos": [],
+            "from": "adoptopenjdk/openjdk11",
+            "buses": [],
+            "from_full": "adoptopenjdk/openjdk11:jdk-11.0.3_7-alpine",
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "urandom",
+                "security",
+                "file"
+            ],
+            "keywords": [
+                "build",
+                "jar",
+                "gradle",
+                "libs",
+                "exemplo"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "languages": [
+        "java",
+        "dockerfile"
+    ],
+    "dbs": [],
+    "monitors": [],
+    "shared_dbs": false,
+    "avg_size_service": 41.666666666666664,
+    "num_monitors": 0,
+    "files": [
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/exemplo.springcloudconfig.service02/build.gradle",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": [
+                "amqp"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "path": "/exemplo.springcloudconfig.service02/settings.gradle",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/exemplo.springcloudconfig.server/build.gradle",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "path": "/exemplo.springcloudconfig.server/settings.gradle",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/exemplo.springcloudconfig.service01/build.gradle",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": [
+                "amqp"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "path": "/exemplo.springcloudconfig.service01/settings.gradle",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        }
+    ],
+    "langs": [
+        "java",
+        "dockerfile"
+    ],
+    "num_servers": 1,
+    "buses": [
+        "rabbitmq",
+        "amqp"
+    ],
+    "num_langs": 2,
+    "num_gates": 0,
+    "num_discos": 0,
+    "images": [
+        "openjdk",
+        "adoptopenjdk/openjdk11"
+    ],
+    "num_dockers": 3,
+    "gates": []
+}

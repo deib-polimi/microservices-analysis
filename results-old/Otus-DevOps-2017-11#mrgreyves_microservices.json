@@ -1,0 +1,355 @@
+{
+    "avg_size_service": 42.7,
+    "buses": [],
+    "num_dbs": 1,
+    "files": [
+        {
+            "path": "/src/post-py/requirements.txt",
+            "servers": [
+                "flask"
+            ],
+            "dbs": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "buses": [],
+            "discos": [],
+            "gates": []
+        }
+    ],
+    "num_dockers": 10,
+    "num_langs": 3,
+    "num_servers": 2,
+    "num_buses": 0,
+    "num_discos": 0,
+    "gates": [],
+    "images": [
+        "python",
+        "prom/prometheus",
+        "quay.io/prometheus/busybox",
+        "grafana/grafana",
+        "prom/alertmanager",
+        "ubuntu",
+        "ruby",
+        "fluent/fluentd"
+    ],
+    "size": 427,
+    "structure": {
+        "path": "/docker/docker-compose.yml",
+        "num_services": 4,
+        "services": [
+            {
+                "buses": [],
+                "name": "post",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "mrgreyves/post",
+                "image_full": "mrgreyves/post",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "post_db"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "post_db",
+                "dbs": [
+                    "mongo"
+                ],
+                "monitors": [],
+                "servers": [],
+                "image": "mongo",
+                "image_full": "mongo:3.2",
+                "discos": [],
+                "gates": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "name": "ui",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "${USERNAME}/ui",
+                "image_full": "${USERNAME}/ui:${UI_VER}",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "post"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "comment",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "${USERNAME}/comment",
+                "image_full": "${USERNAME}/comment:${COMMENT_VER}",
+                "discos": [],
+                "gates": [],
+                "depends_on": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 1,
+            "names": [
+                "mongo"
+            ],
+            "services": [
+                "post_db"
+            ]
+        }
+    },
+    "num_files": 12,
+    "servers": [
+        "busybox",
+        "flask"
+    ],
+    "url": "git://github.com/Otus-DevOps-2017-11/mrgreyves_microservices.git",
+    "dbs": [
+        "mongo"
+    ],
+    "monitors": [
+        "prometheus",
+        "grafana",
+        "fluentd"
+    ],
+    "dockers": [
+        {
+            "from_full": "ubuntu:16.04",
+            "buses": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "monitors": [],
+            "gates": [],
+            "path": "/docker/docker-monolith/Dockerfile",
+            "from": "ubuntu",
+            "cmd": "/start.sh",
+            "cmd_keywords": [
+                "start"
+            ],
+            "servers": [],
+            "keywords": [
+                "git",
+                "install",
+                "reddit",
+                "apt",
+                "get"
+            ],
+            "discos": [],
+            "langs": [
+                "ruby"
+            ]
+        },
+        {
+            "from_full": "fluent/fluentd:v0.12",
+            "buses": [],
+            "dbs": [],
+            "monitors": [
+                "fluentd"
+            ],
+            "gates": [],
+            "path": "/docker/fluentd/Dockerfile",
+            "from": "fluent/fluentd",
+            "cmd": "",
+            "cmd_keywords": [],
+            "servers": [],
+            "keywords": [
+                "install",
+                "rdoc",
+                "gem",
+                "fluent",
+                "plugin"
+            ],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "grafana/grafana:5.0.0-beta4",
+            "buses": [],
+            "dbs": [],
+            "monitors": [
+                "grafana"
+            ],
+            "gates": [],
+            "path": "/monitoring/grafana/Dockerfile",
+            "from": "grafana/grafana",
+            "cmd": "",
+            "cmd_keywords": [],
+            "servers": [],
+            "keywords": [],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "quay.io/prometheus/busybox:latest",
+            "buses": [],
+            "dbs": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "gates": [],
+            "path": "/monitoring/mongodb_exporter/Dockerfile",
+            "from": "quay.io/prometheus/busybox",
+            "cmd": "",
+            "cmd_keywords": [],
+            "servers": [
+                "busybox"
+            ],
+            "keywords": [],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "prom/alertmanager:v0.14.0",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/monitoring/alertmanager/Dockerfile",
+            "from": "prom/alertmanager",
+            "cmd": "",
+            "cmd_keywords": [],
+            "servers": [],
+            "keywords": [],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "prom/prometheus",
+            "buses": [],
+            "dbs": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "gates": [],
+            "path": "/monitoring/prometheus/Dockerfile",
+            "from": "prom/prometheus",
+            "cmd": "",
+            "cmd_keywords": [],
+            "servers": [],
+            "keywords": [],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "quay.io/prometheus/busybox:latest",
+            "buses": [],
+            "dbs": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "gates": [],
+            "path": "/monitoring/blackbox-exporter/Dockerfile",
+            "from": "quay.io/prometheus/busybox",
+            "cmd": "--config.file=/etc/blackbox_exporter/config.yml",
+            "cmd_keywords": [
+                "config",
+                "file",
+                "yml",
+                "blackbox",
+                "etc"
+            ],
+            "servers": [
+                "busybox"
+            ],
+            "keywords": [],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "python:3.6.0-alpine",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/src/post-py/Dockerfile",
+            "from": "python",
+            "cmd": "",
+            "cmd_keywords": [],
+            "servers": [],
+            "keywords": [
+                "install",
+                "requirements",
+                "app",
+                "dev",
+                "gcc"
+            ],
+            "discos": [],
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "from_full": "ubuntu:16.04",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/src/ui/Dockerfile",
+            "from": "ubuntu",
+            "cmd": "puma",
+            "cmd_keywords": [
+                "puma"
+            ],
+            "servers": [],
+            "keywords": [
+                "install",
+                "apt",
+                "get",
+                "ruby",
+                "bundler"
+            ],
+            "discos": [],
+            "langs": [
+                "ruby"
+            ]
+        },
+        {
+            "from_full": "ruby:2.2",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/src/comment/Dockerfile",
+            "from": "ruby",
+            "cmd": "puma",
+            "cmd_keywords": [
+                "puma"
+            ],
+            "servers": [],
+            "keywords": [
+                "install",
+                "apt",
+                "get",
+                "update",
+                "mkdir"
+            ],
+            "discos": [],
+            "langs": [
+                "ruby"
+            ]
+        }
+    ],
+    "languages": [
+        "ruby",
+        "html",
+        "python"
+    ],
+    "num_services": 4,
+    "num_gates": 0,
+    "name": "Otus-DevOps-2017-11/mrgreyves_microservices",
+    "shared_dbs": false,
+    "langs": [
+        "ruby",
+        "python",
+        "html"
+    ],
+    "discos": [],
+    "num_monitors": 3
+}

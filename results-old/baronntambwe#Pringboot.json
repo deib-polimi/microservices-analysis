@@ -1,0 +1,459 @@
+{
+    "num_gates": 2,
+    "images": [
+        "nginx",
+        "java",
+        "cassandra"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "num_buses": 0,
+    "name": "baronntambwe/Pringboot",
+    "gates": [
+        "nginx",
+        "zuul"
+    ],
+    "structure": {
+        "num_services": 4,
+        "detected_dbs": {
+            "services": [
+                "course-mysql"
+            ],
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": false,
+            "num": 1
+        },
+        "path": "/course-enrollment-baron/docker-compose.yml",
+        "services": [
+            {
+                "image": "./eureka-discovery-service",
+                "image_full": "./eureka-discovery-service",
+                "discos": [
+                    "eureka"
+                ],
+                "gates": [],
+                "depends_on": [
+                    "course-mysql:mysql"
+                ],
+                "servers": [],
+                "name": "discovery-service",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "./microservice-user-management",
+                "image_full": "./microservice-user-management",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "discovery-service"
+                ],
+                "servers": [],
+                "name": "user-service",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "./zuul-gateway-service",
+                "image_full": "./zuul-gateway-service",
+                "discos": [],
+                "gates": [
+                    "zuul"
+                ],
+                "depends_on": [
+                    "user-service"
+                ],
+                "servers": [],
+                "name": "gateway-service",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "mysql",
+                "image_full": "mysql:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "course-mysql",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "mysql"
+                ]
+            }
+        ]
+    },
+    "url": "git://github.com/baronntambwe/Pringboot.git",
+    "langs": [
+        "bash",
+        "shell",
+        "java"
+    ],
+    "num_dockers": 7,
+    "num_langs": 3,
+    "dbs": [
+        "mysql",
+        "cassandra"
+    ],
+    "shared_dbs": false,
+    "size": 51574,
+    "dockers": [
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "java:8",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "gradle",
+                "bash",
+                "touch",
+                "app",
+                "chmod"
+            ],
+            "dbs": [],
+            "path": "/course-enrollment-baron/microservice-log-management/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "java:8",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "gradle",
+                "bash",
+                "touch",
+                "app",
+                "chmod"
+            ],
+            "dbs": [],
+            "path": "/course-enrollment-baron/microservice-user-management/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "java:8",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "gradle",
+                "bash",
+                "touch",
+                "app",
+                "chmod"
+            ],
+            "dbs": [],
+            "path": "/course-enrollment-baron/zuul-gateway-service/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "cassandra:latest",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "bash"
+            ],
+            "from": "cassandra",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "admin",
+                "entrypoint",
+                "docker",
+                "bin",
+                "useradd"
+            ],
+            "dbs": [
+                "cassandra"
+            ],
+            "path": "/course-enrollment-baron/cassandra/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "java:8",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "admin",
+                "bash",
+                "wait",
+                "for",
+                "bin"
+            ],
+            "dbs": [],
+            "path": "/course-enrollment-baron/microservice-course-management/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "java:8",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "gradle",
+                "bash",
+                "touch",
+                "app",
+                "chmod"
+            ],
+            "dbs": [],
+            "path": "/course-enrollment-baron/eureka-discovery-service/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "nginx:1.17.1-alpine",
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "langs": [],
+            "from": "nginx",
+            "cmd": "nginx -g daemon off;",
+            "gates": [
+                "nginx"
+            ],
+            "keywords": [
+                "npm",
+                "set",
+                "app",
+                "bin",
+                "nginx"
+            ],
+            "dbs": [],
+            "path": "/course-enrollment-baron/course-enrollment-client/Dockerfile",
+            "cmd_keywords": [
+                "nginx",
+                "off",
+                "daemon"
+            ]
+        }
+    ],
+    "num_servers": 3,
+    "monitors": [],
+    "num_services": 4,
+    "servers": [
+        "spring",
+        "node",
+        "tomcat"
+    ],
+    "num_monitors": 0,
+    "avg_size_service": 7367.714285714285,
+    "num_files": 21,
+    "buses": [],
+    "files": [
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring",
+                "tomcat"
+            ],
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/Exchange/ds-client-service/build.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/Exchange/ds-client-service/settings.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [
+                "cassandra"
+            ],
+            "path": "/course-enrollment-baron/microservice-log-management/build.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/course-enrollment-baron/microservice-log-management/settings.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/course-enrollment-baron/microservice-user-management/build.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/course-enrollment-baron/microservice-user-management/settings.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/course-enrollment-baron/zuul-gateway-service/build.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/course-enrollment-baron/zuul-gateway-service/settings.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring",
+                "tomcat"
+            ],
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/course-enrollment-baron/microservice-course-management/build.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/course-enrollment-baron/microservice-course-management/settings.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/course-enrollment-baron/eureka-discovery-service/build.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/course-enrollment-baron/eureka-discovery-service/settings.gradle"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/course-enrollment-baron/course-enrollment-client/package.json"
+        }
+    ],
+    "languages": [
+        "java",
+        "shell"
+    ],
+    "num_dbs": 2,
+    "num_discos": 1
+}

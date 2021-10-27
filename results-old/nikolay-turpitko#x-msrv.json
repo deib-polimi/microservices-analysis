@@ -1,0 +1,123 @@
+{
+    "dbs": [
+        "aerospike"
+    ],
+    "num_dbs": 1,
+    "shared_dbs": false,
+    "name": "nikolay-turpitko/x-msrv",
+    "num_buses": 0,
+    "num_monitors": 0,
+    "monitors": [],
+    "langs": [
+        "shell",
+        "go",
+        "makefile"
+    ],
+    "gates": [],
+    "size": 37,
+    "languages": [
+        "go",
+        "makefile",
+        "shell"
+    ],
+    "num_langs": 3,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "aerospike"
+                ],
+                "image": "aerospike/aerospike-server",
+                "name": "db",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "aerospike/aerospike-server"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "nsqio/nsq",
+                "name": "queue-admin",
+                "depends_on": [
+                    "queue",
+                    "queue-lookup"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "nsqio/nsq"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "./${PKG_TYPE}-deploy",
+                "name": "app",
+                "depends_on": [
+                    "db",
+                    "queue",
+                    "queue-lookup"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "./${PKG_TYPE}-deploy"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "nsqio/nsq",
+                "name": "queue",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "nsqio/nsq"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "nsqio/nsq",
+                "name": "queue-lookup",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "nsqio/nsq"
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "db"
+            ],
+            "names": [
+                "aerospike"
+            ],
+            "shared_dbs": false,
+            "num": 1
+        },
+        "num_services": 5
+    },
+    "servers": [],
+    "num_servers": 0,
+    "num_files": 1,
+    "images": [],
+    "buses": [],
+    "avg_size_service": 37.0,
+    "num_services": 5,
+    "files": [],
+    "num_dockers": 0,
+    "dockers": [],
+    "num_discos": 0,
+    "discos": [],
+    "num_gates": 0,
+    "url": "git://github.com/nikolay-turpitko/x-msrv.git"
+}

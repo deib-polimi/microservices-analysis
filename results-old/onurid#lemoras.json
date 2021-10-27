@@ -1,0 +1,255 @@
+{
+    "num_discos": 0,
+    "buses": [],
+    "gates": [
+        "nginx"
+    ],
+    "num_servers": 0,
+    "num_gates": 1,
+    "num_dbs": 0,
+    "monitors": [],
+    "num_langs": 5,
+    "num_files": 6,
+    "structure": {
+        "services": [
+            {
+                "name": "lemoras.remora.roomshare.api",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "${DOCKER_REGISTRY-}lemorasremoraroomshareapi",
+                "image_full": "${DOCKER_REGISTRY-}lemorasremoraroomshareapi",
+                "monitors": [],
+                "depends_on": [
+                    "lemoras.remora.security.api"
+                ]
+            },
+            {
+                "name": "lemoras.remora.gateway.base",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "dbs": [],
+                "image": "nginx",
+                "image_full": "nginx:alpine",
+                "monitors": [],
+                "depends_on": [
+                    "lemoras.remora.gateway.reverseproxy"
+                ]
+            },
+            {
+                "name": "lemoras.remora.security.api",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "${DOCKER_REGISTRY-}lemorasremorasecurityapi",
+                "image_full": "${DOCKER_REGISTRY-}lemorasremorasecurityapi",
+                "monitors": [],
+                "depends_on": [
+                    "db"
+                ]
+            },
+            {
+                "name": "lemoras.remora.gateway.reverseproxy",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": {
+                    "dockerfile": "src/Gateways/Lemoras.Remora.Gateway.Base/Dockerfile",
+                    "context": "."
+                },
+                "image_full": {
+                    "dockerfile": "src/Gateways/Lemoras.Remora.Gateway.Base/Dockerfile",
+                    "context": "."
+                },
+                "monitors": [],
+                "depends_on": [
+                    "lemoras.remora.security.api",
+                    "lemoras.remora.admin.api",
+                    "lemoras.remora.roomshare.api"
+                ]
+            },
+            {
+                "name": "db",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "postgres",
+                "image_full": "postgres",
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "lemoras.remora.admin.api",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "${DOCKER_REGISTRY-}lemorasremoraadminapi",
+                "image_full": "${DOCKER_REGISTRY-}lemorasremoraadminapi",
+                "monitors": [],
+                "depends_on": [
+                    "lemoras.remora.security.api"
+                ]
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "names": [],
+            "num": 0,
+            "services": [],
+            "shared_dbs": false
+        },
+        "num_services": 6
+    },
+    "servers": [],
+    "shared_dbs": false,
+    "langs": [
+        "html",
+        "javascript",
+        "golang",
+        "css",
+        "c#"
+    ],
+    "dockers": [
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/Src/Gateways/Lemoras.Remora.Gateway.Base/Dockerfile",
+            "from": "nginx",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [],
+            "dbs": [],
+            "gates": [
+                "nginx"
+            ],
+            "from_full": "nginx:alpine",
+            "langs": []
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/Src/Applications/Lemoras.Shark.Backoffice/Dockerfile",
+            "from": "base",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "lemoras",
+                "shark",
+                "backoffice",
+                "dotnet",
+                "csproj"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "base",
+            "langs": []
+        },
+        {
+            "discos": [],
+            "cmd": "./main",
+            "buses": [],
+            "path": "/Src/Services/Security/Dockerfile",
+            "from": "golang",
+            "cmd_keywords": [
+                "main"
+            ],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "cache",
+                "git",
+                "get",
+                "apk",
+                "main"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "golang:alpine",
+            "langs": [
+                "golang"
+            ]
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/Src/Services/Admin/Lemoras.Remora.Admin.Api/Dockerfile",
+            "from": "base",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "admin",
+                "lemoras",
+                "remora",
+                "api",
+                "dotnet"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "base",
+            "langs": []
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/Src/Services/Roomshare/Lemoras.Remora.Roomshare.Api/Dockerfile",
+            "from": "base",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "roomshare",
+                "lemoras",
+                "remora",
+                "api",
+                "dotnet"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "base",
+            "langs": []
+        }
+    ],
+    "name": "onurid/lemoras",
+    "discos": [],
+    "avg_size_service": 7721.2,
+    "num_monitors": 0,
+    "images": [
+        "golang",
+        "nginx",
+        "base"
+    ],
+    "url": "git://github.com/onurid/lemoras.git",
+    "files": [],
+    "size": 38606,
+    "languages": [
+        "css",
+        "javascript",
+        "c#",
+        "html"
+    ],
+    "dbs": [],
+    "num_buses": 0,
+    "num_services": 6,
+    "num_dockers": 5
+}

@@ -1,0 +1,1102 @@
+{
+    "num_gates": 2,
+    "images": [
+        "neo4j",
+        "nginx",
+        "openjdk"
+    ],
+    "discos": [
+        "eureka",
+        "zookeeper"
+    ],
+    "num_buses": 1,
+    "name": "vinodkalamati/google-cloud",
+    "gates": [
+        "nginx",
+        "zuul"
+    ],
+    "structure": {
+        "num_services": 27,
+        "detected_dbs": {
+            "services": [
+                "redis-spring",
+                "redis",
+                "zookeeper",
+                "cassandra",
+                "mongo",
+                "mysql",
+                "mongo-express"
+            ],
+            "names": [
+                "mysql",
+                "redis",
+                "mongo",
+                "cassandra",
+                "zookeeper"
+            ],
+            "shared_dbs": true,
+            "num": 7
+        },
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image": "redis-spring",
+                "image_full": "redis-spring:1.0.0",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "redis",
+                    "kafka"
+                ],
+                "servers": [
+                    "spring"
+                ],
+                "name": "redis-spring",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "redis"
+                ]
+            },
+            {
+                "image": "redis",
+                "image_full": "redis",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "redis",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "redis"
+                ]
+            },
+            {
+                "image": "result-fetcher",
+                "image_full": "result-fetcher:1.0.0",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "neo4j-apoc",
+                    "kafka",
+                    "config-server",
+                    "eureka-server"
+                ],
+                "servers": [],
+                "name": "result-fetcher",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "prom/prometheus",
+                "image_full": "prom/prometheus",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "prometheus",
+                "monitors": [
+                    "prometheus"
+                ],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "angular-image",
+                "image_full": "angular-image:1.0.0",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "frontend",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "wurstmeister/zookeeper",
+                "image_full": "wurstmeister/zookeeper",
+                "discos": [
+                    "zookeeper"
+                ],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "zookeeper",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "zookeeper"
+                ]
+            },
+            {
+                "image": "grafana/grafana",
+                "image_full": "grafana/grafana",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "prometheus"
+                ],
+                "servers": [],
+                "name": "grafana",
+                "monitors": [
+                    "grafana"
+                ],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "eureka-server/",
+                "image_full": "eureka-server/",
+                "discos": [
+                    "eureka"
+                ],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "eureka-server",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "webcrawler-service",
+                "image_full": "webcrawler-service",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "kafka",
+                    "config-server",
+                    "eureka-server"
+                ],
+                "servers": [],
+                "name": "webcrawler-service",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "api-gateway/",
+                "image_full": "api-gateway/",
+                "discos": [],
+                "gates": [
+                    "gateway"
+                ],
+                "depends_on": [
+                    "config-server",
+                    "eureka-server"
+                ],
+                "servers": [],
+                "name": "api-gateway",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "analytics-service",
+                "image_full": "analytics-service",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "cassandra",
+                    "eureka-server",
+                    "config-server"
+                ],
+                "servers": [],
+                "name": "analytics",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "neo4j-apoc",
+                "image_full": "neo4j-apoc:1.0.0",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "kafka",
+                    "eureka-server"
+                ],
+                "servers": [],
+                "name": "neo4j-apoc",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "cassandra",
+                "image_full": "cassandra:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "cassandra",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "cassandra"
+                ]
+            },
+            {
+                "image": "user-service",
+                "image_full": "user-service",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "mysql",
+                    "config-server",
+                    "eureka-server"
+                ],
+                "servers": [],
+                "name": "user",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "wikiscrappermovie-service",
+                "image_full": "wikiscrappermovie-service",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "kafka",
+                    "config-server",
+                    "eureka-server"
+                ],
+                "servers": [],
+                "name": "wikiScrapperMovie-service",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "wikiscrappermedical-service",
+                "image_full": "wikiscrappermedical-service",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "kafka",
+                    "config-server",
+                    "eureka-server"
+                ],
+                "servers": [],
+                "name": "wikiScrapperMedical-service",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "mongo",
+                "image_full": "mongo",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "mongo",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "mongo"
+                ]
+            },
+            {
+                "image": "google-search",
+                "image_full": "google-search",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "mongo",
+                    "eureka-server",
+                    "config-server",
+                    "kafka"
+                ],
+                "servers": [],
+                "name": "google-search",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "nlp-microservice",
+                "image_full": "nlp-microservice",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "mongo",
+                    "eureka-server",
+                    "config-server",
+                    "kafka"
+                ],
+                "servers": [],
+                "name": "nlp-microservice",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "mysql",
+                "image_full": "mysql:5.7",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "mysql",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "mysql"
+                ]
+            },
+            {
+                "image": "data-populator",
+                "image_full": "data-populator:1.0.0",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "neo4j-apoc",
+                    "kafka",
+                    "eureka-server",
+                    "config-server"
+                ],
+                "servers": [],
+                "name": "data-populator",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "quartz-scheduler",
+                "image_full": "quartz-scheduler",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "kafka",
+                    "config-server",
+                    "eureka-server"
+                ],
+                "servers": [],
+                "name": "quartz-scheduler",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "queryservice",
+                "image_full": "queryservice",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "eureka-server",
+                    "config-server",
+                    "kafka"
+                ],
+                "servers": [],
+                "name": "queryservice",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "mongo-express",
+                "image_full": "mongo-express",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "mongo"
+                ],
+                "servers": [
+                    "express"
+                ],
+                "name": "mongo-express",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "mongo"
+                ]
+            },
+            {
+                "image": "notification-service",
+                "image_full": "notification-service",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "kafka",
+                    "config-server",
+                    "eureka-server"
+                ],
+                "servers": [],
+                "name": "notification-service",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "wurstmeister/kafka",
+                "image_full": "wurstmeister/kafka:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "servers": [],
+                "name": "kafka",
+                "monitors": [],
+                "buses": [
+                    "kafka"
+                ],
+                "dbs": []
+            },
+            {
+                "image": "config-server/",
+                "image_full": "config-server/",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "config-server",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            }
+        ]
+    },
+    "url": "git://github.com/vinodkalamati/google-cloud.git",
+    "langs": [
+        "typescript",
+        "java"
+    ],
+    "num_dockers": 19,
+    "num_langs": 2,
+    "dbs": [
+        "redis",
+        "mongo",
+        "zookeeper",
+        "mysql",
+        "neo4j",
+        "cassandra"
+    ],
+    "shared_dbs": true,
+    "size": 16448,
+    "dockers": [
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:11",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/quartz-scheduler/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:11",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/analytics-service/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:11",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/api-gateway/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:11",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/queryservice/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:11",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/eureka-server/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:11",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/track-service/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:11",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/user-service/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:11",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/data-populator-service/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:11",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/web-crawler-service/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:11",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/result-fetcher/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:11",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/wiki-scrapper-medical-service/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:11",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/wiki-scrapper-movie-service/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:11",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/notification-service/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:11",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/config-server/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:11",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/redis-service/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "neo4j:3.4.4",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "neo4j",
+            "cmd": "neo4j",
+            "gates": [],
+            "keywords": [
+                "apoc",
+                "version",
+                "all",
+                "jar",
+                "plugins"
+            ],
+            "dbs": [
+                "neo4j"
+            ],
+            "path": "/neo4j-apoc-service/Dockerfile",
+            "cmd_keywords": [
+                "neo"
+            ]
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:11",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/nlp-microservice/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "openjdk:11",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "cmd": "",
+            "gates": [],
+            "keywords": [],
+            "dbs": [],
+            "path": "/google-search-api-service/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "nginx:stable-alpine",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "nginx",
+            "cmd": "",
+            "gates": [
+                "nginx"
+            ],
+            "keywords": [],
+            "dbs": [],
+            "path": "/frontend/Dockerfile",
+            "cmd_keywords": []
+        }
+    ],
+    "num_servers": 3,
+    "monitors": [
+        "grafana",
+        "prometheus"
+    ],
+    "num_services": 27,
+    "servers": [
+        "spring",
+        "express",
+        "node"
+    ],
+    "num_monitors": 2,
+    "avg_size_service": 865.6842105263158,
+    "num_files": 40,
+    "buses": [
+        "kafka"
+    ],
+    "files": [
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "gateway"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [
+                "prometheus"
+            ],
+            "dbs": [
+                "redis"
+            ],
+            "path": "/pom.xml"
+        },
+        {
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/quartz-scheduler/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [
+                "cassandra"
+            ],
+            "path": "/analytics-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/api-gateway/pom.xml"
+        },
+        {
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "path": "/queryservice/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/eureka-server/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "path": "/track-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/user-service/pom.xml"
+        },
+        {
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/data-populator-service/pom.xml"
+        },
+        {
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/web-crawler-service/pom.xml"
+        },
+        {
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/result-fetcher/pom.xml"
+        },
+        {
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/wiki-scrapper-medical-service/pom.xml"
+        },
+        {
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/wiki-scrapper-movie-service/pom.xml"
+        },
+        {
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "zuul"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/notification-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/config-server/pom.xml"
+        },
+        {
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [
+                "redis"
+            ],
+            "path": "/redis-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/neo4j-apoc-service/pom.xml"
+        },
+        {
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [
+                "mongodb",
+                "mongo"
+            ],
+            "path": "/nlp-microservice/pom.xml"
+        },
+        {
+            "buses": [
+                "kafka"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "path": "/google-search-api-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "path": "/frontend/package.json"
+        }
+    ],
+    "languages": [
+        "java",
+        "typescript"
+    ],
+    "num_dbs": 6,
+    "num_discos": 2
+}

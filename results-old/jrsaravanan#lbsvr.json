@@ -1,0 +1,132 @@
+{
+    "dbs": [
+        "oracle",
+        "mysql"
+    ],
+    "num_dbs": 2,
+    "shared_dbs": false,
+    "name": "jrsaravanan/lbsvr",
+    "num_buses": 0,
+    "num_monitors": 0,
+    "monitors": [],
+    "langs": [
+        "dockerfile",
+        "java"
+    ],
+    "gates": [],
+    "size": 57084,
+    "languages": [
+        "dockerfile"
+    ],
+    "num_langs": 2,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "image": "mysql",
+                "name": "db",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "mysql:5.6"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "jrsaravanan/lbsvr",
+                "name": "web",
+                "depends_on": [
+                    "db:db"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "jrsaravanan/lbsvr"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "dockercloud/haproxy",
+                "name": "lb",
+                "depends_on": [
+                    "web"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "dockercloud/haproxy"
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "db"
+            ],
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": false,
+            "num": 1
+        },
+        "num_services": 3
+    },
+    "servers": [
+        "tomcat"
+    ],
+    "num_servers": 1,
+    "num_files": 2,
+    "images": [
+        "ubuntu"
+    ],
+    "buses": [],
+    "avg_size_service": 57084.0,
+    "num_services": 3,
+    "files": [],
+    "num_dockers": 1,
+    "dockers": [
+        {
+            "cmd": "${CATALINA_HOME}/bin/startup.sh && tail -f ${CATALINA_HOME}/logs/catalina.out",
+            "dbs": [
+                "oracle"
+            ],
+            "buses": [],
+            "servers": [
+                "tomcat"
+            ],
+            "from_full": "ubuntu:latest",
+            "path": "/Dockerfile",
+            "from": "ubuntu",
+            "monitors": [],
+            "langs": [
+                "java"
+            ],
+            "gates": [],
+            "cmd_keywords": [
+                "catalina",
+                "home",
+                "out",
+                "startup",
+                "tail"
+            ],
+            "discos": [],
+            "keywords": [
+                "tomcat",
+                "apt",
+                "version",
+                "opt",
+                "full"
+            ]
+        }
+    ],
+    "num_discos": 0,
+    "discos": [],
+    "num_gates": 0,
+    "url": "git://github.com/jrsaravanan/lbsvr.git"
+}

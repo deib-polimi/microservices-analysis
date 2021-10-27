@@ -1,0 +1,612 @@
+{
+    "dbs": [
+        "mysql"
+    ],
+    "name": "NayanBhiwapurkar/Stage4_Week2_841643_NayanBhiwapurkar",
+    "num_langs": 2,
+    "languages": [
+        "vba",
+        "java"
+    ],
+    "shared_dbs": true,
+    "servers": [
+        "spring"
+    ],
+    "langs": [
+        "vba",
+        "java"
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "jar",
+                "zuulservice",
+                "java"
+            ],
+            "discos": [],
+            "cmd": "java -jar ZuulService.jar",
+            "path": "/HandsOn-3/docker-build --with Docker and JWT/zuul/Dockerfile",
+            "from_full": "openjdk:8u131-jdk-alpine",
+            "gates": [],
+            "from": "openjdk",
+            "langs": [
+                "java"
+            ],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "jar",
+                "eurekaservice",
+                "java"
+            ],
+            "discos": [],
+            "cmd": "java -jar EurekaService.jar",
+            "path": "/HandsOn-3/docker-build --with Docker and JWT/eureka-server/Dockerfile",
+            "from_full": "openjdk:8u131-jdk-alpine",
+            "gates": [],
+            "from": "openjdk",
+            "langs": [
+                "java"
+            ],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "jar",
+                "authenticationservice",
+                "java"
+            ],
+            "discos": [],
+            "cmd": "java -jar AuthenticationService.jar",
+            "path": "/HandsOn-3/docker-build --with Docker and JWT/authentication-service/Dockerfile",
+            "from_full": "openjdk:8u131-jdk-alpine",
+            "gates": [],
+            "from": "openjdk",
+            "langs": [
+                "java"
+            ],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "jar",
+                "authenticationservice",
+                "java"
+            ],
+            "discos": [],
+            "cmd": "java -jar AuthenticationService.jar",
+            "path": "/HandsOn-3/docker-build --with Docker and JWT/authentication-service/bin/Dockerfile",
+            "from_full": "openjdk:8u131-jdk-alpine",
+            "gates": [],
+            "from": "openjdk",
+            "langs": [
+                "java"
+            ],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "employeeservice"
+            ],
+            "discos": [],
+            "cmd": "java -jar EmployeeService.jar",
+            "path": "/HandsOn-3/docker-build --with Docker and JWT/employee-service/Dockerfile",
+            "from_full": "openjdk:8u131-jdk-alpine",
+            "gates": [],
+            "from": "openjdk",
+            "langs": [
+                "java"
+            ],
+            "keywords": []
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "path": "/HandsOn-3/html/Dockerfile",
+            "from_full": "nginx:1.17.5",
+            "gates": [
+                "nginx"
+            ],
+            "from": "nginx",
+            "langs": [],
+            "keywords": []
+        }
+    ],
+    "gates": [
+        "nginx",
+        "zuul"
+    ],
+    "size": 208997,
+    "num_dockers": 6,
+    "num_discos": 1,
+    "num_buses": 0,
+    "buses": [],
+    "images": [
+        "nginx",
+        "openjdk"
+    ],
+    "num_servers": 1,
+    "num_services": 5,
+    "monitors": [],
+    "structure": {
+        "services": [
+            {
+                "buses": [],
+                "image": "authentication-service",
+                "dbs": [],
+                "gates": [],
+                "image_full": "authentication-service",
+                "monitors": [],
+                "name": "authentication",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "db",
+                    "eureka",
+                    "zuul"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "employee-service",
+                "dbs": [],
+                "gates": [],
+                "image_full": "employee-service",
+                "monitors": [],
+                "name": "employee-service",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "db",
+                    "eureka",
+                    "zuul"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "zuul-service",
+                "dbs": [],
+                "gates": [
+                    "zuul"
+                ],
+                "image_full": "zuul-service",
+                "monitors": [],
+                "name": "zuul",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "db",
+                    "eureka"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "mysql",
+                "dbs": [
+                    "mysql"
+                ],
+                "gates": [],
+                "image_full": "mysql:5.7",
+                "monitors": [],
+                "name": "db",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "eureka-server",
+                "dbs": [],
+                "gates": [],
+                "image_full": "eureka-server",
+                "monitors": [],
+                "name": "eureka",
+                "discos": [
+                    "eureka"
+                ],
+                "servers": [],
+                "depends_on": []
+            }
+        ],
+        "num_services": 5,
+        "detected_dbs": {
+            "num": 1,
+            "shared_dbs": true,
+            "names": [
+                "mysql"
+            ],
+            "services": [
+                "db"
+            ]
+        },
+        "path": "/HandsOn-3/docker-build --with Docker and JWT/docker-compose.yml"
+    },
+    "discos": [
+        "eureka"
+    ],
+    "num_files": 32,
+    "num_dbs": 1,
+    "num_monitors": 0,
+    "num_gates": 2,
+    "url": "git://github.com/NayanBhiwapurkar/Stage4_Week2_841643_NayanBhiwapurkar.git",
+    "avg_size_service": 34832.833333333336,
+    "files": [
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [
+                "zuul"
+            ],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/HandsOn-3/docker-build --with Docker and JWT/zuul/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/HandsOn-3/docker-build --with Docker and JWT/eureka-server/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/HandsOn-3/docker-build --with Docker and JWT/authentication-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/HandsOn-3/docker-build --with Docker and JWT/authentication-service/bin/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/HandsOn-3/docker-build --with Docker and JWT/employee-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/HandsOn-3/docker-build -- without Docker -- JWT basic/zuul-gateway-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/HandsOn-3/docker-build -- without Docker -- JWT basic/authentication-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/HandsOn-3/docker-build -- without Docker -- JWT basic/eureka-discovery-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/HandsOn-3/docker-build -- without Docker -- JWT basic/employee-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/Practice and final check/spring-cloud-config-server/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/Practice and final check/menuitem-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/Practice and final check/favourite-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/Practice and final check/zuul-gateway-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/Practice and final check/cart-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/Practice and final check/authentication-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/Practice and final check/eureka-discovery-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/Practice and final check/movie-service/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/HandsOn-1/microservices/Account_MicroService/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/HandsOn-1/microservices/Account_MicroService/target/classes/META-INF/maven/com.cognizant/account/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/HandsOn-1/microservices/Loan_MicroService/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/HandsOn-1/microservices/Loan_MicroService/target/classes/META-INF/maven/com.cognizant/loan/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/HandsOn-1/microservices/Zuul_Gateway/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/HandsOn-1/microservices/Zuul_Gateway/target/classes/META-INF/maven/com.cognizant/zuul/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/HandsOn-1/microservices/Eureka_Discovery_Server/pom.xml"
+        },
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/HandsOn-1/microservices/Eureka_Discovery_Server/target/classes/META-INF/maven/com.cognizant/eureka-discovery-server/pom.xml"
+        }
+    ]
+}

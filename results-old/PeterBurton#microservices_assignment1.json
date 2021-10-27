@@ -1,0 +1,232 @@
+{
+    "avg_size_service": 7.333333333333333,
+    "discos": [],
+    "images": [
+        "python",
+        "golang"
+    ],
+    "num_dockers": 3,
+    "num_servers": 1,
+    "langs": [
+        "go",
+        "shell",
+        "python",
+        "golang"
+    ],
+    "languages": [
+        "shell",
+        "python",
+        "go"
+    ],
+    "num_services": 5,
+    "num_gates": 0,
+    "num_langs": 4,
+    "monitors": [],
+    "gates": [],
+    "servers": [
+        "flask"
+    ],
+    "num_monitors": 0,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "image": "./tweet_collection",
+                "image_full": "./tweet_collection",
+                "gates": [],
+                "name": "tweet_collection",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "mongo",
+                "image_full": "mongo:latest",
+                "gates": [],
+                "name": "datastore",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "rabbitmq",
+                "image_full": "rabbitmq:latest",
+                "gates": [],
+                "name": "rabbitmq",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "rabbitmq",
+                    "datastore"
+                ],
+                "image": "./sentiment_analysis",
+                "image_full": "./sentiment_analysis",
+                "gates": [],
+                "name": "sentiment_analysis",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "datastore"
+                ],
+                "image": "./frontend",
+                "image_full": "./frontend",
+                "gates": [],
+                "name": "frontend",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            }
+        ],
+        "num_services": 5,
+        "detected_dbs": {
+            "names": [
+                "mongo"
+            ],
+            "num": 1,
+            "services": [
+                "datastore"
+            ],
+            "shared_dbs": true
+        }
+    },
+    "size": 22,
+    "url": "git://github.com/PeterBurton/microservices_assignment1.git",
+    "num_buses": 1,
+    "shared_dbs": true,
+    "files": [
+        {
+            "path": "/sentiment_analysis/requirements.txt",
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/frontend/requirements.txt",
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "dbs": [],
+            "buses": []
+        }
+    ],
+    "num_discos": 0,
+    "dockers": [
+        {
+            "path": "/sentiment_analysis/Dockerfile",
+            "from_full": "python:3.6-slim",
+            "from": "python",
+            "cmd": "python sentiment.py",
+            "keywords": [
+                "install",
+                "pip",
+                "python",
+                "host",
+                "txt"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [
+                "python"
+            ],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "sentiment",
+                "python"
+            ],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/tweet_collection/Dockerfile",
+            "from_full": "golang:1.8",
+            "from": "golang",
+            "cmd": "go run collect_publish.go",
+            "keywords": [
+                "install",
+                "get"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [
+                "golang"
+            ],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "collect",
+                "publish",
+                "run"
+            ],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/frontend/Dockerfile",
+            "from_full": "python:3.6-slim",
+            "from": "python",
+            "cmd": "python front_end.py",
+            "keywords": [
+                "install",
+                "pip",
+                "python",
+                "host",
+                "txt"
+            ],
+            "servers": [],
+            "gates": [],
+            "langs": [
+                "python"
+            ],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "front",
+                "end",
+                "python"
+            ],
+            "dbs": [],
+            "buses": []
+        }
+    ],
+    "name": "PeterBurton/microservices_assignment1",
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_files": 6,
+    "dbs": [
+        "mongo"
+    ],
+    "num_dbs": 1
+}

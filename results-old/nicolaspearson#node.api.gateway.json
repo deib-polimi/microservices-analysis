@@ -1,0 +1,424 @@
+{
+    "languages": [
+        "typescript"
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "from_full": "node:10-alpine",
+            "keywords": [
+                "app",
+                "npm",
+                "addgroup",
+                "install",
+                "adduser"
+            ],
+            "from": "node",
+            "dbs": [],
+            "cmd": "node .",
+            "path": "/template-service/Dockerfile",
+            "servers": [
+                "node"
+            ],
+            "langs": [],
+            "monitors": [],
+            "gates": [],
+            "discos": [],
+            "cmd_keywords": [
+                "node"
+            ]
+        },
+        {
+            "buses": [],
+            "from_full": "node:10-slim",
+            "keywords": [
+                "app",
+                "npm",
+                "useradd",
+                "install",
+                "groupadd"
+            ],
+            "from": "node",
+            "dbs": [],
+            "cmd": "node .",
+            "path": "/auth-service/Dockerfile",
+            "servers": [
+                "node"
+            ],
+            "langs": [],
+            "monitors": [],
+            "gates": [],
+            "discos": [],
+            "cmd_keywords": [
+                "node"
+            ]
+        },
+        {
+            "buses": [],
+            "from_full": "node:10-alpine",
+            "keywords": [
+                "app",
+                "npm",
+                "addgroup",
+                "install",
+                "adduser"
+            ],
+            "from": "node",
+            "dbs": [],
+            "cmd": "node .",
+            "path": "/cache-service/Dockerfile",
+            "servers": [
+                "node"
+            ],
+            "langs": [],
+            "monitors": [],
+            "gates": [],
+            "discos": [],
+            "cmd_keywords": [
+                "node"
+            ]
+        },
+        {
+            "buses": [],
+            "from_full": "node:10-alpine",
+            "keywords": [
+                "app",
+                "npm",
+                "addgroup",
+                "install",
+                "adduser"
+            ],
+            "from": "node",
+            "dbs": [],
+            "cmd": "node .",
+            "path": "/api-gateway/Dockerfile",
+            "servers": [
+                "node"
+            ],
+            "langs": [],
+            "monitors": [],
+            "gates": [],
+            "discos": [],
+            "cmd_keywords": [
+                "node"
+            ]
+        },
+        {
+            "buses": [],
+            "from_full": "node:10-alpine",
+            "keywords": [
+                "app",
+                "npm",
+                "addgroup",
+                "install",
+                "adduser"
+            ],
+            "from": "node",
+            "dbs": [],
+            "cmd": "node .",
+            "path": "/registration-service/Dockerfile",
+            "servers": [
+                "node"
+            ],
+            "langs": [],
+            "monitors": [],
+            "gates": [],
+            "discos": [],
+            "cmd_keywords": [
+                "node"
+            ]
+        },
+        {
+            "buses": [
+                "nats"
+            ],
+            "from_full": "alpine:3.8",
+            "keywords": [
+                "gnatsd",
+                "nats",
+                "version",
+                "linux",
+                "certificates"
+            ],
+            "from": "alpine",
+            "dbs": [],
+            "cmd": "gnatsd -c /etc/gnatsd.conf",
+            "path": "/nats/Dockerfile",
+            "servers": [],
+            "langs": [],
+            "monitors": [],
+            "gates": [],
+            "discos": [],
+            "cmd_keywords": [
+                "gnatsd",
+                "conf",
+                "etc"
+            ]
+        }
+    ],
+    "num_dockers": 6,
+    "url": "git://github.com/nicolaspearson/node.api.gateway.git",
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 9,
+        "detected_dbs": {
+            "num": 1,
+            "shared_dbs": true,
+            "names": [
+                "redis"
+            ],
+            "services": [
+                "redis"
+            ]
+        },
+        "services": [
+            {
+                "buses": [],
+                "depends_on": [
+                    "nats",
+                    "redis",
+                    "jaeger"
+                ],
+                "dbs": [],
+                "name": "registration-service",
+                "servers": [],
+                "image_full": "registration-service-lupinemoon:1.0",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "image": "registration-service-lupinemoon"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "name": "redis",
+                "servers": [],
+                "image_full": "redis:alpine",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "image": "redis"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "dbs": [],
+                "name": "postgres-lupinemoon",
+                "servers": [],
+                "image_full": "postgres:11",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "image": "postgres"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "nats",
+                    "redis"
+                ],
+                "dbs": [],
+                "name": "cache-service",
+                "servers": [],
+                "image_full": "cache-service-lupinemoon:1.0",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "image": "cache-service-lupinemoon"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "dbs": [],
+                "name": "jaeger",
+                "servers": [],
+                "image_full": "jaegertracing/all-in-one:latest",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "image": "jaegertracing/all-in-one"
+            },
+            {
+                "buses": [
+                    "nats"
+                ],
+                "depends_on": [],
+                "dbs": [],
+                "name": "nats",
+                "servers": [],
+                "image_full": "nats-lupinemoon:1.0",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "image": "nats-lupinemoon"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "dbs": [],
+                "name": "traefik",
+                "servers": [],
+                "image_full": "traefik:latest",
+                "monitors": [],
+                "gates": [],
+                "discos": [
+                    "traefik"
+                ],
+                "image": "traefik"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "nats",
+                    "jaeger"
+                ],
+                "dbs": [],
+                "name": "api-gateway",
+                "servers": [],
+                "image_full": "api-gateway-lupinemoon:1.0",
+                "monitors": [],
+                "gates": [
+                    "gateway"
+                ],
+                "discos": [],
+                "image": "api-gateway-lupinemoon"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "nats",
+                    "redis",
+                    "jaeger"
+                ],
+                "dbs": [],
+                "name": "auth-service",
+                "servers": [],
+                "image_full": "auth-service-lupinemoon:1.0",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "image": "auth-service-lupinemoon"
+            }
+        ]
+    },
+    "num_files": 12,
+    "dbs": [
+        "redis"
+    ],
+    "images": [
+        "alpine",
+        "node"
+    ],
+    "num_dbs": 1,
+    "langs": [
+        "typescript"
+    ],
+    "servers": [
+        "node"
+    ],
+    "num_monitors": 1,
+    "gates": [
+        "gateway"
+    ],
+    "discos": [
+        "traefik"
+    ],
+    "num_discos": 1,
+    "files": [
+        {
+            "path": "/template-service/package.json",
+            "dbs": [],
+            "buses": [
+                "nats"
+            ],
+            "servers": [
+                "node"
+            ],
+            "monitors": [
+                "jaeger"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/auth-service/package.json",
+            "dbs": [],
+            "buses": [
+                "nats"
+            ],
+            "servers": [
+                "node"
+            ],
+            "monitors": [
+                "jaeger"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/cache-service/package.json",
+            "dbs": [
+                "redis"
+            ],
+            "buses": [
+                "nats"
+            ],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/api-gateway/package.json",
+            "dbs": [],
+            "buses": [
+                "nats"
+            ],
+            "servers": [
+                "node"
+            ],
+            "monitors": [
+                "jaeger"
+            ],
+            "gates": [
+                "gateway"
+            ],
+            "discos": []
+        },
+        {
+            "path": "/registration-service/package.json",
+            "dbs": [],
+            "buses": [
+                "nats"
+            ],
+            "servers": [
+                "node"
+            ],
+            "monitors": [
+                "jaeger"
+            ],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "buses": [
+        "nats"
+    ],
+    "num_services": 9,
+    "num_gates": 1,
+    "avg_size_service": 148.0,
+    "shared_dbs": true,
+    "size": 888,
+    "name": "nicolaspearson/node.api.gateway",
+    "num_buses": 1,
+    "monitors": [
+        "jaeger"
+    ],
+    "num_servers": 1,
+    "num_langs": 1
+}

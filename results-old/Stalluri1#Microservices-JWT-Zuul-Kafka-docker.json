@@ -1,0 +1,366 @@
+{
+    "structure": {
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "zookeeper"
+            ],
+            "shared_dbs": false,
+            "services": [
+                "zookeeper"
+            ]
+        },
+        "num_services": 10,
+        "path": "/docker/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [
+                    "kafka",
+                    "db",
+                    "eureka-server"
+                ],
+                "name": "invoices",
+                "dbs": [],
+                "image": "../Invoices/target/docker",
+                "monitors": [],
+                "servers": [],
+                "image_full": "../Invoices/target/docker",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "name": "kafka",
+                "dbs": [],
+                "image": "wurstmeister/kafka",
+                "monitors": [],
+                "servers": [],
+                "image_full": "wurstmeister/kafka:1.0.0",
+                "buses": [
+                    "kafka"
+                ],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "eureka-server"
+                ],
+                "name": "product",
+                "dbs": [],
+                "image": "../Products/target/docker",
+                "monitors": [],
+                "servers": [],
+                "image_full": "../Products/target/docker",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "kafka",
+                    "db",
+                    "eureka-server"
+                ],
+                "name": "user",
+                "dbs": [],
+                "image": "../Users/target/docker",
+                "monitors": [],
+                "servers": [],
+                "image_full": "../Users/target/docker",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "kafka",
+                    "db",
+                    "eureka-server"
+                ],
+                "name": "auth",
+                "dbs": [],
+                "image": "../Auth/target/docker",
+                "monitors": [],
+                "servers": [],
+                "image_full": "../Auth/target/docker",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "name": "zookeeper",
+                "dbs": [
+                    "zookeeper"
+                ],
+                "image": "wurstmeister/zookeeper",
+                "monitors": [],
+                "servers": [],
+                "image_full": "wurstmeister/zookeeper:3.4.6",
+                "buses": [],
+                "discos": [
+                    "zookeeper"
+                ],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "kafka",
+                    "db",
+                    "eureka-server"
+                ],
+                "name": "orderss",
+                "dbs": [],
+                "image": "../Orders/target/docker",
+                "monitors": [],
+                "servers": [],
+                "image_full": "../Orders/target/docker",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "name": "eureka-server",
+                "dbs": [],
+                "image": "../EurekaServer/target/docker",
+                "monitors": [],
+                "servers": [],
+                "image_full": "../EurekaServer/target/docker",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "name": "db",
+                "dbs": [],
+                "image": "postgresmultidb",
+                "monitors": [],
+                "servers": [],
+                "image_full": "postgresmultidb",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "auth",
+                    "db",
+                    "eureka-server"
+                ],
+                "name": "zuul",
+                "dbs": [],
+                "image": "../Zuul/target/docker",
+                "monitors": [],
+                "servers": [],
+                "image_full": "../Zuul/target/docker",
+                "buses": [],
+                "discos": [],
+                "gates": [
+                    "zuul"
+                ]
+            }
+        ]
+    },
+    "dbs": [
+        "postgresql",
+        "zookeeper"
+    ],
+    "dockers": [
+        {
+            "dbs": [],
+            "path": "/docker/postgresmultidb/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": [],
+            "from_full": "postgres:9.5",
+            "langs": [],
+            "monitors": [],
+            "servers": [],
+            "keywords": [],
+            "from": "postgres",
+            "cmd": ""
+        }
+    ],
+    "files": [
+        {
+            "dbs": [],
+            "path": "/pom.xml",
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [
+                "zuul"
+            ],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "path": "/Zuul/pom.xml",
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [
+                "zuul"
+            ],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "dbs": [
+                "hsqldb",
+                "postgresql"
+            ],
+            "path": "/Auth/pom.xml",
+            "monitors": [],
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "dbs": [
+                "hsqldb",
+                "postgresql"
+            ],
+            "path": "/Orders/pom.xml",
+            "monitors": [],
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "dbs": [
+                "hsqldb"
+            ],
+            "path": "/Products/pom.xml",
+            "monitors": [],
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "dbs": [],
+            "path": "/EurekaServer/pom.xml",
+            "monitors": [],
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "dbs": [
+                "hsqldb",
+                "postgresql"
+            ],
+            "path": "/Users/pom.xml",
+            "monitors": [],
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "dbs": [
+                "hsqldb",
+                "postgresql"
+            ],
+            "path": "/Invoices/pom.xml",
+            "monitors": [],
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ]
+        }
+    ],
+    "languages": [
+        "java"
+    ],
+    "num_dbs": 2,
+    "num_monitors": 0,
+    "images": [
+        "postgres"
+    ],
+    "name": "Stalluri1/Microservices-JWT-Zuul-Kafka-docker",
+    "shared_dbs": false,
+    "num_servers": 2,
+    "num_langs": 1,
+    "buses": [
+        "kafka"
+    ],
+    "num_services": 10,
+    "num_dockers": 1,
+    "size": 84,
+    "avg_size_service": 84.0,
+    "gates": [
+        "zuul"
+    ],
+    "discos": [
+        "eureka",
+        "zookeeper"
+    ],
+    "langs": [
+        "java"
+    ],
+    "num_files": 10,
+    "url": "git://github.com/Stalluri1/Microservices-JWT-Zuul-Kafka-docker.git",
+    "monitors": [],
+    "servers": [
+        "tomcat",
+        "spring"
+    ],
+    "num_buses": 1,
+    "num_discos": 2,
+    "num_gates": 1
+}

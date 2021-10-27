@@ -1,0 +1,261 @@
+{
+    "monitors": [
+        "prometheus"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [
+                "mongo"
+            ],
+            "names": [
+                "mongo"
+            ],
+            "num": 1
+        },
+        "services": [
+            {
+                "image": "${USER_NAME}/post",
+                "buses": [],
+                "monitors": [],
+                "image_full": "${USER_NAME}/post:${POST_VERSION}",
+                "gates": [],
+                "name": "post",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "mongo",
+                "buses": [],
+                "monitors": [],
+                "image_full": "mongo:${MONGODB_VERSION}",
+                "gates": [],
+                "name": "mongo",
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "depends_on": []
+            },
+            {
+                "image": "${USER_NAME}/ui",
+                "buses": [],
+                "monitors": [],
+                "image_full": "${USER_NAME}/ui:${UI_VERSION}",
+                "gates": [],
+                "name": "ui",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "${USER_NAME}/comment",
+                "buses": [],
+                "monitors": [],
+                "image_full": "${USER_NAME}/comment:${COMMENT_VERSION}",
+                "gates": [],
+                "name": "comment",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            }
+        ],
+        "num_services": 4
+    },
+    "num_langs": 4,
+    "name": "drsklif/microservices",
+    "num_dockers": 6,
+    "buses": [],
+    "dbs": [
+        "mongo"
+    ],
+    "size": 391,
+    "num_discos": 0,
+    "shared_dbs": false,
+    "discos": [],
+    "images": [
+        "ruby",
+        "python",
+        "ubuntu",
+        "prom/prometheus",
+        "prom/alertmanager"
+    ],
+    "num_servers": 1,
+    "files": [
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "servers": [
+                "flask"
+            ],
+            "path": "/post-py/requirements.txt",
+            "discos": [],
+            "dbs": []
+        }
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "python",
+            "path": "/post-py/Dockerfile",
+            "from_full": "python:3.6.0-alpine",
+            "cmd": "",
+            "keywords": [
+                "txt",
+                "pip",
+                "install",
+                "requirements"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "prom/alertmanager",
+            "path": "/alertmanager/Dockerfile",
+            "from_full": "prom/alertmanager",
+            "cmd": "",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "puma"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "ruby",
+            "path": "/ui/Dockerfile",
+            "from_full": "ruby:2.4-alpine3.6",
+            "cmd": "puma",
+            "keywords": [
+                "apk",
+                "build",
+                "cache",
+                "deps",
+                "base"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": [
+                "ruby"
+            ]
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "puma"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "ruby",
+            "path": "/comment/Dockerfile",
+            "from_full": "ruby:2.4-alpine3.6",
+            "cmd": "puma",
+            "keywords": [
+                "apk",
+                "build",
+                "cache",
+                "deps",
+                "base"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": [
+                "ruby"
+            ]
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "dbs": [],
+            "from": "prom/prometheus",
+            "path": "/prometheus/Dockerfile",
+            "from_full": "prom/prometheus",
+            "cmd": "",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "start"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "from": "ubuntu",
+            "path": "/monolith/Dockerfile",
+            "from_full": "ubuntu:16.04",
+            "cmd": "/start.sh",
+            "keywords": [
+                "git",
+                "install",
+                "get",
+                "reddit",
+                "apt"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": [
+                "ruby"
+            ]
+        }
+    ],
+    "url": "git://github.com/drsklif/microservices.git",
+    "gates": [],
+    "num_files": 8,
+    "num_services": 4,
+    "num_gates": 0,
+    "num_dbs": 1,
+    "avg_size_service": 65.16666666666667,
+    "langs": [
+        "ruby",
+        "python",
+        "smarty",
+        "html"
+    ],
+    "num_buses": 0,
+    "languages": [
+        "ruby",
+        "html",
+        "smarty"
+    ],
+    "num_monitors": 1,
+    "servers": [
+        "flask"
+    ]
+}

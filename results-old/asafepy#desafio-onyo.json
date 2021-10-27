@@ -1,0 +1,237 @@
+{
+    "servers": [
+        "node",
+        "django",
+        "flask"
+    ],
+    "name": "asafepy/desafio-onyo",
+    "num_gates": 1,
+    "avg_size_service": 213.75,
+    "structure": {
+        "services": [
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "postgres:10.1-alpine",
+                "servers": [],
+                "depends_on": [],
+                "name": "db",
+                "dbs": [],
+                "image": "postgres",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "./microservice_cep",
+                "servers": [],
+                "depends_on": [],
+                "name": "microservice_cep",
+                "dbs": [],
+                "image": "./microservice_cep",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "image_full": "./funcionarios",
+                "servers": [],
+                "depends_on": [
+                    "db"
+                ],
+                "name": "funcionarios",
+                "dbs": [],
+                "image": "./funcionarios",
+                "monitors": [],
+                "discos": []
+            },
+            {
+                "gates": [
+                    "nginx"
+                ],
+                "buses": [],
+                "image_full": "docker/nginx",
+                "servers": [],
+                "depends_on": [
+                    "funcionarios",
+                    "microservice_cep"
+                ],
+                "name": "nginx",
+                "dbs": [],
+                "image": "docker/nginx",
+                "monitors": [],
+                "discos": []
+            }
+        ],
+        "num_services": 4,
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        }
+    },
+    "num_dbs": 1,
+    "buses": [],
+    "langs": [
+        "python",
+        "vue"
+    ],
+    "shared_dbs": false,
+    "files": [
+        {
+            "gates": [],
+            "buses": [],
+            "path": "/microservice_cep/requirements.txt",
+            "servers": [
+                "flask"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "path": "/funcionarios/requirements.txt",
+            "servers": [
+                "django"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "path": "/funcionario-front/package.json",
+            "servers": [
+                "node"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "size": 855,
+    "num_dockers": 4,
+    "url": "git://github.com/asafepy/desafio-onyo.git",
+    "gates": [
+        "nginx"
+    ],
+    "num_servers": 3,
+    "images": [
+        "nginx",
+        "mysql",
+        "python"
+    ],
+    "num_services": 4,
+    "languages": [
+        "python",
+        "vue"
+    ],
+    "num_files": 8,
+    "discos": [],
+    "dockers": [
+        {
+            "gates": [
+                "nginx"
+            ],
+            "from_full": "nginx:latest",
+            "cmd_keywords": [],
+            "path": "/docker/nginx/Dockerfile",
+            "servers": [],
+            "cmd": "",
+            "from": "nginx",
+            "buses": [],
+            "langs": [],
+            "dbs": [],
+            "discos": [],
+            "monitors": [],
+            "keywords": [
+                "www",
+                "var",
+                "nginx",
+                "mkdir",
+                "chown"
+            ]
+        },
+        {
+            "gates": [],
+            "from_full": "mysql:5.7",
+            "cmd_keywords": [],
+            "path": "/docker/mysql/Dockerfile",
+            "servers": [],
+            "cmd": "",
+            "from": "mysql",
+            "buses": [],
+            "langs": [],
+            "dbs": [
+                "mysql"
+            ],
+            "discos": [],
+            "monitors": [],
+            "keywords": []
+        },
+        {
+            "gates": [],
+            "from_full": "python:3.6",
+            "cmd_keywords": [
+                "app",
+                "gunicorn",
+                "bind"
+            ],
+            "path": "/microservice_cep/Dockerfile",
+            "servers": [],
+            "cmd": "gunicorn --bind=0.0.0.0:5000 app:app",
+            "from": "python",
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "dbs": [],
+            "discos": [],
+            "monitors": [],
+            "keywords": [
+                "pip",
+                "txt",
+                "requirements",
+                "install"
+            ]
+        },
+        {
+            "gates": [],
+            "from_full": "python:3.7-slim",
+            "cmd_keywords": [],
+            "path": "/funcionarios/Dockerfile",
+            "servers": [],
+            "cmd": "",
+            "from": "python",
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "dbs": [],
+            "discos": [],
+            "monitors": [],
+            "keywords": [
+                "install",
+                "pipenv",
+                "pip",
+                "lock",
+                "skip"
+            ]
+        }
+    ],
+    "num_langs": 2,
+    "num_monitors": 0,
+    "num_buses": 0,
+    "dbs": [
+        "mysql"
+    ],
+    "monitors": [],
+    "num_discos": 0
+}

@@ -1,0 +1,171 @@
+{
+    "structure": {
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": false,
+            "services": [
+                "db"
+            ]
+        },
+        "num_services": 4,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [
+                    "db"
+                ],
+                "name": "php",
+                "dbs": [],
+                "image": "./php-fpm",
+                "monitors": [],
+                "servers": [],
+                "image_full": "./php-fpm",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "name": "db",
+                "dbs": [
+                    "mysql"
+                ],
+                "image": "mysql",
+                "monitors": [],
+                "servers": [],
+                "image_full": "mysql",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "name": "elk",
+                "dbs": [],
+                "image": "willdurand/elk",
+                "monitors": [
+                    "elk"
+                ],
+                "servers": [],
+                "image_full": "willdurand/elk",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "php"
+                ],
+                "name": "nginx",
+                "dbs": [],
+                "image": "./nginx",
+                "monitors": [],
+                "servers": [],
+                "image_full": "./nginx",
+                "buses": [],
+                "discos": [],
+                "gates": [
+                    "nginx"
+                ]
+            }
+        ]
+    },
+    "dbs": [
+        "mysql"
+    ],
+    "dockers": [
+        {
+            "dbs": [],
+            "path": "/nginx/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "nginx"
+            ],
+            "gates": [
+                "nginx"
+            ],
+            "discos": [],
+            "from_full": "alpine:3.8",
+            "langs": [
+                "php"
+            ],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "upstream",
+                "data",
+                "php",
+                "www",
+                "nginx"
+            ],
+            "from": "alpine",
+            "cmd": "nginx"
+        },
+        {
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/php-fpm/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "php",
+                "fpm"
+            ],
+            "gates": [],
+            "discos": [],
+            "from_full": "alpine:3.8",
+            "langs": [
+                "php"
+            ],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "php",
+                "curl",
+                "composer",
+                "apk",
+                "phar"
+            ],
+            "from": "alpine",
+            "cmd": "php-fpm7 -F"
+        }
+    ],
+    "files": [],
+    "languages": [
+        "dockerfile"
+    ],
+    "num_dbs": 1,
+    "num_monitors": 1,
+    "images": [
+        "alpine"
+    ],
+    "name": "okwinza/docker-sf-micro",
+    "shared_dbs": false,
+    "num_servers": 0,
+    "num_langs": 2,
+    "buses": [],
+    "num_services": 4,
+    "num_dockers": 2,
+    "size": 21,
+    "avg_size_service": 10.5,
+    "gates": [
+        "nginx"
+    ],
+    "discos": [],
+    "langs": [
+        "php",
+        "dockerfile"
+    ],
+    "num_files": 3,
+    "url": "git://github.com/okwinza/docker-sf-micro.git",
+    "monitors": [
+        "elk"
+    ],
+    "servers": [],
+    "num_buses": 0,
+    "num_discos": 0,
+    "num_gates": 1
+}

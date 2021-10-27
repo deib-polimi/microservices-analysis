@@ -1,0 +1,594 @@
+{
+    "discos": [],
+    "avg_size_service": 291.94736842105266,
+    "buses": [],
+    "num_gates": 0,
+    "name": "CrunchyData/crunchy-containers",
+    "structure": {
+        "path": "/examples/docker/swarm-service/docker-compose.yml",
+        "services": [
+            {
+                "name": "primary",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "crunchydata/crunchy-postgres:centos7-11.9-4.4.0",
+                "image": "crunchydata/crunchy-postgres",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "replica",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "crunchydata/crunchy-postgres:centos7-11.9-4.4.0",
+                "image": "crunchydata/crunchy-postgres",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [],
+            "num": 0,
+            "shared_dbs": false,
+            "services": []
+        },
+        "num_services": 2
+    },
+    "dbs": [
+        "postgresql"
+    ],
+    "dockers": [
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "tail",
+                "dev",
+                "null"
+            ],
+            "from_full": "${PREFIX}/crunchy-pg-base:${BASEOS}-${PG_FULL}-${BASEVER}",
+            "buses": [],
+            "monitors": [],
+            "from": "${PREFIX}/crunchy-pg-base",
+            "keywords": [
+                "etc",
+                "chmod",
+                "group",
+                "passwd"
+            ],
+            "gates": [],
+            "path": "/build/admin/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "tail -f /dev/null",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "patroni",
+                "usr",
+                "local",
+                "bin"
+            ],
+            "from_full": "${PREFIX}/crunchy-postgres-ha:${BASEOS}-${PG_FULL}-${BASEVER}",
+            "buses": [],
+            "monitors": [],
+            "from": "${PREFIX}/crunchy-postgres-ha",
+            "keywords": [
+                "postgis",
+                "major",
+                "lbl",
+                "install",
+                "packager"
+            ],
+            "gates": [],
+            "path": "/build/postgres-gis-ha/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "/usr/local/bin/patroni",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "cpm",
+                "opt",
+                "bin",
+                "pgbadger",
+                "start"
+            ],
+            "from_full": "${PREFIX}/crunchy-pg-base:${BASEOS}-${PG_FULL}-${BASEVER}",
+            "buses": [],
+            "monitors": [],
+            "from": "${PREFIX}/crunchy-pg-base",
+            "keywords": [
+                "install",
+                "packager",
+                "enablerepo",
+                "rhel",
+                "optional"
+            ],
+            "gates": [],
+            "path": "/build/pgbadger/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "/opt/cpm/bin/start-pgbadger.sh",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "cpm",
+                "opt",
+                "bin",
+                "start"
+            ],
+            "from_full": "${PREFIX}/crunchy-pg-base:${BASEOS}-${PG_FULL}-${BASEVER}",
+            "buses": [],
+            "monitors": [],
+            "from": "${PREFIX}/crunchy-pg-base",
+            "keywords": [
+                "major",
+                "postgresql",
+                "packager",
+                "install",
+                "backrest"
+            ],
+            "gates": [],
+            "path": "/build/postgres/Dockerfile",
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [],
+            "cmd": "/opt/cpm/bin/start.sh",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "cpm",
+                "opt",
+                "bin",
+                "start"
+            ],
+            "from_full": "${PREFIX}/crunchy-pg-base:${BASEOS}-${PG_FULL}-${BASEVER}",
+            "buses": [],
+            "monitors": [],
+            "from": "${PREFIX}/crunchy-pg-base",
+            "keywords": [
+                "cpm",
+                "opt",
+                "pgdata",
+                "chmod",
+                "install"
+            ],
+            "gates": [],
+            "path": "/build/pgrestore/Dockerfile",
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [],
+            "cmd": "/opt/cpm/bin/start.sh",
+            "servers": []
+        },
+        {
+            "langs": [
+                "python"
+            ],
+            "cmd_keywords": [
+                "patroni",
+                "usr",
+                "local",
+                "bin"
+            ],
+            "from_full": "${PREFIX}/crunchy-pg-base:${BASEOS}-${PG_FULL}-${BASEVER}",
+            "buses": [],
+            "monitors": [],
+            "from": "${PREFIX}/crunchy-pg-base",
+            "keywords": [
+                "install",
+                "major",
+                "python",
+                "packager",
+                "postgresql"
+            ],
+            "gates": [],
+            "path": "/build/postgres-ha/Dockerfile",
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [],
+            "cmd": "/usr/local/bin/patroni",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "cpm",
+                "opt",
+                "bin",
+                "start"
+            ],
+            "from_full": "${PREFIX}/crunchy-postgres:${BASEOS}-${PG_FULL}-${BASEVER}",
+            "buses": [],
+            "monitors": [],
+            "from": "${PREFIX}/crunchy-postgres",
+            "keywords": [
+                "postgis",
+                "major",
+                "lbl",
+                "install",
+                "packager"
+            ],
+            "gates": [],
+            "path": "/build/postgres-gis/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "/opt/cpm/bin/start.sh",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "cpm",
+                "opt",
+                "bin",
+                "start"
+            ],
+            "from_full": "${PREFIX}/crunchy-pg-base:${BASEOS}-${PG_FULL}-${BASEVER}",
+            "buses": [],
+            "monitors": [],
+            "from": "${PREFIX}/crunchy-pg-base",
+            "keywords": [
+                "opt",
+                "cpm",
+                "chmod",
+                "install",
+                "packager"
+            ],
+            "gates": [],
+            "path": "/build/pgbench/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "/opt/cpm/bin/start.sh",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "cpm",
+                "opt",
+                "bin",
+                "startpgpool"
+            ],
+            "from_full": "${PREFIX}/crunchy-pg-base:${BASEOS}-${PG_FULL}-${BASEVER}",
+            "buses": [],
+            "monitors": [],
+            "from": "${PREFIX}/crunchy-pg-base",
+            "keywords": [
+                "cpm",
+                "opt",
+                "conf",
+                "pgpool",
+                "major"
+            ],
+            "gates": [],
+            "path": "/build/pgpool/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "/opt/cpm/bin/startpgpool.sh",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "cpm",
+                "opt",
+                "bin",
+                "start"
+            ],
+            "from_full": "${PREFIX}/crunchy-pg-base:${BASEOS}-${PG_FULL}-${BASEVER}",
+            "buses": [],
+            "monitors": [],
+            "from": "${PREFIX}/crunchy-pg-base",
+            "keywords": [
+                "opt",
+                "cpm",
+                "pgconf",
+                "install",
+                "chmod"
+            ],
+            "gates": [],
+            "path": "/build/pgbouncer/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "/opt/cpm/bin/start.sh",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "cpm",
+                "opt",
+                "bin",
+                "start"
+            ],
+            "from_full": "${PREFIX}/crunchy-base:${BASEOS}-${PG_FULL}-${BASEVER}",
+            "buses": [],
+            "monitors": [],
+            "from": "${PREFIX}/crunchy-base",
+            "keywords": [
+                "postgres",
+                "cpm",
+                "opt",
+                "install",
+                "etc"
+            ],
+            "gates": [],
+            "path": "/build/pgbasebackup-restore/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "/opt/cpm/bin/start.sh",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "cpm",
+                "backupjob",
+                "opt",
+                "bin",
+                "start"
+            ],
+            "from_full": "${PREFIX}/crunchy-pg-base:${BASEOS}-${PG_FULL}-${BASEVER}",
+            "buses": [],
+            "monitors": [],
+            "from": "${PREFIX}/crunchy-pg-base",
+            "keywords": [
+                "cpm",
+                "opt",
+                "pgdata",
+                "chmod",
+                "install"
+            ],
+            "gates": [],
+            "path": "/build/backup/Dockerfile",
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [],
+            "cmd": "/opt/cpm/bin/start-backupjob.sh",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "cpm",
+                "opt",
+                "bin",
+                "start"
+            ],
+            "from_full": "${PREFIX}/crunchy-pg-base:${BASEOS}-${PG_FULL}-${BASEVER}",
+            "buses": [],
+            "monitors": [],
+            "from": "${PREFIX}/crunchy-pg-base",
+            "keywords": [
+                "cpm",
+                "opt",
+                "pgdata",
+                "chmod",
+                "install"
+            ],
+            "gates": [],
+            "path": "/build/pgdump/Dockerfile",
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [],
+            "cmd": "/opt/cpm/bin/start.sh",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [],
+            "from_full": "${PREFIX}/crunchy-base:${BASEOS}-${PG_FULL}-${BASEVER}",
+            "buses": [],
+            "monitors": [],
+            "from": "${PREFIX}/crunchy-base",
+            "keywords": [
+                "packager",
+                "rpm",
+                "key",
+                "install",
+                "crunchypg"
+            ],
+            "gates": [],
+            "path": "/build/pg-base/Dockerfile",
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [],
+            "from_full": "${DOCKERBASEREGISTRY}${BASEOS}",
+            "buses": [],
+            "monitors": [],
+            "from": "${DOCKERBASEREGISTRY}${BASEOS}",
+            "keywords": [
+                "packager",
+                "install",
+                "epel",
+                "names",
+                "skip"
+            ],
+            "gates": [],
+            "path": "/build/base/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        },
+        {
+            "langs": [
+                "gcc"
+            ],
+            "cmd_keywords": [
+                "cpm",
+                "pgadmin",
+                "opt",
+                "bin",
+                "start"
+            ],
+            "from_full": "${PREFIX}/crunchy-pg-base:${BASEOS}-${PG_FULL}-${BASEVER}",
+            "buses": [],
+            "monitors": [],
+            "from": "${PREFIX}/crunchy-pg-base",
+            "keywords": [
+                "pgadmin",
+                "var",
+                "httpd",
+                "lib",
+                "conf"
+            ],
+            "gates": [],
+            "path": "/build/pgadmin4/Dockerfile",
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [],
+            "cmd": "/opt/cpm/bin/start-pgadmin4.sh",
+            "servers": [
+                "httpd"
+            ]
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "cpm",
+                "opt",
+                "bin",
+                "start"
+            ],
+            "from_full": "${PREFIX}/crunchy-pg-base:${BASEOS}-${PG_FULL}-${BASEVER}",
+            "buses": [],
+            "monitors": [],
+            "from": "${PREFIX}/crunchy-pg-base",
+            "keywords": [
+                "var",
+                "install",
+                "cpm",
+                "packager",
+                "opt"
+            ],
+            "gates": [],
+            "path": "/build/backrest-restore/Dockerfile",
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [],
+            "cmd": "/opt/cpm/bin/start.sh",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "cpm",
+                "opt",
+                "bin",
+                "start"
+            ],
+            "from_full": "${PREFIX}/crunchy-pg-base:${BASEOS}-${PG_FULL}-${BASEVER}",
+            "buses": [],
+            "monitors": [],
+            "from": "${PREFIX}/crunchy-pg-base",
+            "keywords": [
+                "major",
+                "postgresql",
+                "cpm",
+                "opt",
+                "chmod"
+            ],
+            "gates": [],
+            "path": "/build/postgres-appdev/Dockerfile",
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [],
+            "cmd": "/opt/cpm/bin/start.sh",
+            "servers": []
+        },
+        {
+            "langs": [],
+            "cmd_keywords": [
+                "cpm",
+                "opt",
+                "bin",
+                "start"
+            ],
+            "from_full": "${PREFIX}/crunchy-pg-base:${BASEOS}-${PG_FULL}-${BASEVER}",
+            "buses": [],
+            "monitors": [],
+            "from": "${PREFIX}/crunchy-pg-base",
+            "keywords": [
+                "postgresql",
+                "major",
+                "install",
+                "cpm",
+                "packager"
+            ],
+            "gates": [],
+            "path": "/build/upgrade/Dockerfile",
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [],
+            "cmd": "/opt/cpm/bin/start.sh",
+            "servers": []
+        }
+    ],
+    "gates": [],
+    "size": 5547,
+    "num_monitors": 0,
+    "images": [
+        "${PREFIX}/crunchy-base",
+        "${PREFIX}/crunchy-postgres-ha",
+        "${PREFIX}/crunchy-postgres",
+        "${DOCKERBASEREGISTRY}${BASEOS}",
+        "${PREFIX}/crunchy-pg-base"
+    ],
+    "num_buses": 0,
+    "num_services": 2,
+    "servers": [
+        "httpd"
+    ],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_discos": 0,
+    "languages": [
+        "shell",
+        "dockerfile"
+    ],
+    "url": "git://github.com/CrunchyData/crunchy-containers.git",
+    "langs": [
+        "dockerfile",
+        "gcc",
+        "python",
+        "shell"
+    ],
+    "num_dbs": 1,
+    "num_servers": 1,
+    "num_langs": 4,
+    "files": [],
+    "num_dockers": 19,
+    "num_files": 20
+}

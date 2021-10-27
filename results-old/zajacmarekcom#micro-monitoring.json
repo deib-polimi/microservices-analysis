@@ -1,0 +1,175 @@
+{
+    "name": "zajacmarekcom/micro-monitoring",
+    "num_dbs": 0,
+    "num_services": 9,
+    "num_files": 1,
+    "servers": [
+        "node"
+    ],
+    "url": "git://github.com/zajacmarekcom/micro-monitoring.git",
+    "discos": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "kibana",
+                "image_full": "docker.elastic.co/kibana/kibana:7.2.0",
+                "image": "docker.elastic.co/kibana/kibana",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "elasticsearch",
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:7.2.0",
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "node-exporter",
+                "image_full": "prom/node-exporter:latest",
+                "image": "prom/node-exporter",
+                "servers": [
+                    "node"
+                ],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "grafana",
+                "image_full": "grafana/grafana:latest",
+                "image": "grafana/grafana",
+                "servers": [],
+                "depends_on": [
+                    "prometheus"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": [
+                    "grafana"
+                ]
+            },
+            {
+                "name": "rabbit",
+                "image_full": "rabbitmq:3-management",
+                "image": "rabbitmq",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "monitors": []
+            },
+            {
+                "name": "cadvisor",
+                "image_full": "google/cadvisor:latest",
+                "image": "google/cadvisor",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "logstash",
+                "image_full": "docker.elastic.co/logstash/logstash:7.2.0",
+                "image": "docker.elastic.co/logstash/logstash",
+                "servers": [],
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "prometheus",
+                "image_full": "prom/prometheus:latest",
+                "image": "prom/prometheus",
+                "servers": [],
+                "depends_on": [
+                    "cadvisor",
+                    "node-exporter",
+                    "rabbit-exporter"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": [
+                    "prometheus"
+                ]
+            },
+            {
+                "name": "rabbit-exporter",
+                "image_full": "kbudde/rabbitmq-exporter",
+                "image": "kbudde/rabbitmq-exporter",
+                "servers": [],
+                "depends_on": [
+                    "rabbit"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [],
+            "num": 0,
+            "names": []
+        },
+        "num_services": 9
+    },
+    "num_buses": 1,
+    "size": 91,
+    "dockers": [],
+    "languages": [],
+    "dbs": [],
+    "monitors": [
+        "grafana",
+        "prometheus"
+    ],
+    "shared_dbs": false,
+    "avg_size_service": 91.0,
+    "num_monitors": 2,
+    "files": [],
+    "langs": [],
+    "num_servers": 1,
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_langs": 0,
+    "num_gates": 0,
+    "num_discos": 0,
+    "images": [],
+    "num_dockers": 0,
+    "gates": []
+}

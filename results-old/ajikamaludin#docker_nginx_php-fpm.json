@@ -1,0 +1,197 @@
+{
+    "num_services": 4,
+    "dbs": [
+        "redis"
+    ],
+    "name": "ajikamaludin/docker_nginx_php-fpm",
+    "files": [],
+    "discos": [
+        "consul",
+        "containerpilot"
+    ],
+    "num_gates": 1,
+    "num_buses": 0,
+    "langs": [
+        "dockerfile",
+        "shell",
+        "php"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_monitors": 0,
+    "monitors": [],
+    "images": [
+        "consul",
+        "php",
+        "nginx"
+    ],
+    "structure": {
+        "num_services": 4,
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "names": [],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "buses": [],
+                "depends_on": [
+                    "autodiscovery"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "./engine/base/php-fpm/",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "base_fpm",
+                "image": "./engine/base/php-fpm/"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "./autodiscovery/",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "autodiscovery",
+                "image": "./autodiscovery/"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "autodiscovery",
+                    "base_fpm"
+                ],
+                "gates": [
+                    "nginx"
+                ],
+                "dbs": [],
+                "image_full": "./engine/base/nginx/",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "base_nginx",
+                "image": "./engine/base/nginx/"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [
+                    "nginx"
+                ],
+                "dbs": [],
+                "image_full": "nginx:stable",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "source_code",
+                "image": "nginx"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "shared_dbs": false,
+    "languages": [
+        "dockerfile",
+        "shell"
+    ],
+    "avg_size_service": 3.6666666666666665,
+    "buses": [],
+    "dockers": [
+        {
+            "from_full": "consul:v0.7.0",
+            "langs": [],
+            "dbs": [],
+            "path": "/autodiscovery/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [
+                "consul"
+            ],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "consul",
+            "keywords": [],
+            "cmd": ""
+        },
+        {
+            "from_full": "nginx:stable",
+            "langs": [],
+            "dbs": [],
+            "path": "/engine/base/nginx/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "off",
+                "daemon",
+                "usr",
+                "nginx",
+                "bin"
+            ],
+            "discos": [
+                "containerpilot"
+            ],
+            "monitors": [],
+            "gates": [
+                "nginx"
+            ],
+            "servers": [],
+            "from": "nginx",
+            "keywords": [
+                "template",
+                "consul",
+                "containerpilot",
+                "tmp",
+                "tar"
+            ],
+            "cmd": "/usr/local/bin/containerpilot nginx -g daemon off;"
+        },
+        {
+            "from_full": "php:7.0-fpm",
+            "langs": [
+                "php"
+            ],
+            "dbs": [
+                "redis"
+            ],
+            "path": "/engine/base/php-fpm/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "fpm",
+                "usr",
+                "php",
+                "bin",
+                "containerpilot"
+            ],
+            "discos": [
+                "containerpilot"
+            ],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "php",
+            "keywords": [
+                "tmp",
+                "template",
+                "consul",
+                "containerpilot",
+                "usr"
+            ],
+            "cmd": "/usr/local/bin/containerpilot php-fpm --nodaemonize"
+        }
+    ],
+    "servers": [],
+    "num_dockers": 3,
+    "url": "git://github.com/ajikamaludin/docker_nginx_php-fpm.git",
+    "num_dbs": 1,
+    "num_servers": 0,
+    "num_discos": 2,
+    "num_langs": 3,
+    "num_files": 4,
+    "size": 11
+}

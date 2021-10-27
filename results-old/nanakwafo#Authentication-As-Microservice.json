@@ -1,0 +1,181 @@
+{
+    "name": "nanakwafo/Authentication-As-Microservice",
+    "num_dbs": 1,
+    "num_services": 3,
+    "num_files": 4,
+    "servers": [],
+    "url": "git://github.com/nanakwafo/Authentication-As-Microservice.git",
+    "discos": [],
+    "structure": {
+        "path": "/docker-compose-deployment/docker-compose.yml",
+        "services": [
+            {
+                "name": "php",
+                "image_full": "Dockerfile",
+                "image": "Dockerfile",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "nginx",
+                "image_full": "nginx:stable-alpine",
+                "image": "nginx",
+                "servers": [],
+                "depends_on": [
+                    "php",
+                    "mysql"
+                ],
+                "gates": [
+                    "nginx"
+                ],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "mysql",
+                "image_full": "mysql:5.7.22",
+                "image": "mysql",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [
+                "mysql"
+            ],
+            "num": 1,
+            "names": [
+                "mysql"
+            ]
+        },
+        "num_services": 3
+    },
+    "num_buses": 0,
+    "size": 429100,
+    "dockers": [
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [
+                "php"
+            ],
+            "path": "/docker-stack-deployment/dockerUtil/Dockerfile",
+            "discos": [],
+            "from": "php",
+            "buses": [],
+            "from_full": "php:7.4-fpm",
+            "cmd_keywords": [],
+            "keywords": [
+                "install",
+                "php",
+                "apt",
+                "get",
+                "docker"
+            ],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [
+                "php"
+            ],
+            "path": "/kubernetes-deployment/Dockerfile",
+            "discos": [],
+            "from": "php",
+            "buses": [],
+            "from_full": "php:7.4-fpm",
+            "cmd_keywords": [],
+            "keywords": [
+                "install",
+                "php",
+                "docker",
+                "dev",
+                "ext"
+            ],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": []
+        },
+        {
+            "cmd": "bash -c \"composer install && chmod 777 -R * && php-fpm\"",
+            "servers": [],
+            "langs": [
+                "php"
+            ],
+            "path": "/docker-compose-deployment/Dockerfile",
+            "discos": [],
+            "from": "php",
+            "buses": [],
+            "from_full": "php:7.4-fpm",
+            "cmd_keywords": [
+                "chmod",
+                "fpm",
+                "composer",
+                "php",
+                "install"
+            ],
+            "keywords": [
+                "install",
+                "php",
+                "apt",
+                "get",
+                "docker"
+            ],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": []
+        }
+    ],
+    "languages": [
+        "vba",
+        "php"
+    ],
+    "dbs": [
+        "mysql"
+    ],
+    "monitors": [],
+    "shared_dbs": false,
+    "avg_size_service": 143033.33333333334,
+    "num_monitors": 0,
+    "files": [],
+    "langs": [
+        "php",
+        "vba"
+    ],
+    "num_servers": 0,
+    "buses": [],
+    "num_langs": 2,
+    "num_gates": 1,
+    "num_discos": 0,
+    "images": [
+        "php"
+    ],
+    "num_dockers": 3,
+    "gates": [
+        "nginx"
+    ]
+}

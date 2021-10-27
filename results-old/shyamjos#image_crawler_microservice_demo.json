@@ -1,0 +1,247 @@
+{
+    "languages": [
+        "python",
+        "html",
+        "dockerfile"
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "from_full": "python:3.6",
+            "keywords": [
+                "requirements",
+                "pip",
+                "app",
+                "mkdir",
+                "install"
+            ],
+            "from": "python",
+            "dbs": [],
+            "cmd": "crawl.py",
+            "path": "/flask-image-crawler/Dockerfile",
+            "servers": [],
+            "langs": [
+                "python"
+            ],
+            "monitors": [],
+            "gates": [],
+            "discos": [],
+            "cmd_keywords": [
+                "crawl"
+            ]
+        },
+        {
+            "buses": [],
+            "from_full": "python:3.6",
+            "keywords": [
+                "app",
+                "mkdir",
+                "requirements",
+                "pip",
+                "install"
+            ],
+            "from": "python",
+            "dbs": [],
+            "cmd": "download.py",
+            "path": "/python-image-downloader/Dockerfile",
+            "servers": [],
+            "langs": [
+                "python"
+            ],
+            "monitors": [],
+            "gates": [],
+            "discos": [],
+            "cmd_keywords": [
+                "download"
+            ]
+        },
+        {
+            "buses": [],
+            "from_full": "python:3.6",
+            "keywords": [
+                "manage",
+                "python",
+                "requirements",
+                "migrate",
+                "makemigrations"
+            ],
+            "from": "python",
+            "dbs": [],
+            "cmd": "runserver 0.0.0.0:8000",
+            "path": "/django-frontend/Dockerfile",
+            "servers": [],
+            "langs": [
+                "python"
+            ],
+            "monitors": [],
+            "gates": [],
+            "discos": [],
+            "cmd_keywords": [
+                "runserver"
+            ]
+        },
+        {
+            "buses": [],
+            "from_full": "redis:alpine",
+            "keywords": [],
+            "from": "redis",
+            "dbs": [
+                "redis"
+            ],
+            "cmd": "",
+            "path": "/redis-server/Dockerfile",
+            "servers": [],
+            "langs": [],
+            "monitors": [],
+            "gates": [],
+            "discos": [],
+            "cmd_keywords": []
+        }
+    ],
+    "num_dockers": 4,
+    "url": "git://github.com/shyamjos/image_crawler_microservice_demo.git",
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 4,
+        "detected_dbs": {
+            "num": 1,
+            "shared_dbs": true,
+            "names": [
+                "redis"
+            ],
+            "services": [
+                "redis-server"
+            ]
+        },
+        "services": [
+            {
+                "buses": [],
+                "depends_on": [
+                    "redis-server"
+                ],
+                "dbs": [],
+                "name": "python-image-downloader",
+                "servers": [],
+                "image_full": "shyamjos/python-image-downloader:latest",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "image": "shyamjos/python-image-downloader"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "dbs": [],
+                "name": "django-frontend",
+                "servers": [
+                    "django"
+                ],
+                "image_full": "shyamjos/django-frontend:latest",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "image": "shyamjos/django-frontend"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "redis-server"
+                ],
+                "dbs": [],
+                "name": "flask-image-crawler",
+                "servers": [
+                    "flask"
+                ],
+                "image_full": "shyamjos/flask-image-crawler:latest",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "image": "shyamjos/flask-image-crawler"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "name": "redis-server",
+                "servers": [],
+                "image_full": "./redis-server",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "image": "./redis-server"
+            }
+        ]
+    },
+    "num_files": 8,
+    "dbs": [
+        "redis"
+    ],
+    "images": [
+        "redis",
+        "python"
+    ],
+    "num_dbs": 1,
+    "langs": [
+        "dockerfile",
+        "python",
+        "html"
+    ],
+    "servers": [
+        "flask",
+        "django"
+    ],
+    "num_monitors": 0,
+    "gates": [],
+    "discos": [],
+    "num_discos": 0,
+    "files": [
+        {
+            "path": "/flask-image-crawler/src/requirements.txt",
+            "dbs": [
+                "redis"
+            ],
+            "buses": [],
+            "servers": [
+                "flask"
+            ],
+            "monitors": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/python-image-downloader/src/requirements.txt",
+            "dbs": [
+                "redis"
+            ],
+            "buses": [],
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/django-frontend/src/requirements.txt",
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "django"
+            ],
+            "monitors": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "buses": [],
+    "num_services": 4,
+    "num_gates": 0,
+    "avg_size_service": 5.5,
+    "shared_dbs": true,
+    "size": 22,
+    "name": "shyamjos/image_crawler_microservice_demo",
+    "num_buses": 0,
+    "monitors": [],
+    "num_servers": 2,
+    "num_langs": 3
+}

@@ -1,0 +1,298 @@
+{
+    "files": [],
+    "size": 14,
+    "url": "git://github.com/RuslanKononov/docker-for-symfony.git",
+    "num_monitors": 0,
+    "languages": [
+        "dockerfile"
+    ],
+    "langs": [
+        "php",
+        "dockerfile"
+    ],
+    "discos": [],
+    "gates": [],
+    "num_servers": 1,
+    "num_dockers": 3,
+    "shared_dbs": true,
+    "images": [
+        "php"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "shared_dbs": true,
+            "num": 2,
+            "names": [
+                "redis",
+                "mongo"
+            ],
+            "services": [
+                "mongodb",
+                "redis"
+            ]
+        },
+        "services": [
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "monitors": [],
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:6.4.0",
+                "dbs": [],
+                "name": "elasticsearch",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "buses": [],
+                "image": "docker.elastic.co/kibana/kibana",
+                "monitors": [],
+                "image_full": "docker.elastic.co/kibana/kibana:6.4.0",
+                "dbs": [],
+                "name": "kibana",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "postgres",
+                "monitors": [],
+                "image_full": "postgres:9",
+                "dbs": [],
+                "name": "micro2db",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "centrifugo/centrifugo",
+                "monitors": [],
+                "image_full": "centrifugo/centrifugo",
+                "dbs": [],
+                "name": "centrifugo",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "micro2db"
+                ],
+                "buses": [],
+                "image": "{'TIMEZONE': '${TIMEZONE}'}",
+                "monitors": [],
+                "image_full": "{'TIMEZONE': '${TIMEZONE}'}",
+                "dbs": [],
+                "name": "micro2php",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "mongo",
+                "monitors": [],
+                "image_full": "mongo:4.0",
+                "dbs": [
+                    "mongo"
+                ],
+                "name": "mongodb",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "image": "rabbitmq",
+                "monitors": [],
+                "image_full": "rabbitmq:3-management",
+                "dbs": [],
+                "name": "rabbit",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "redis"
+                ],
+                "buses": [],
+                "image": "{'TIMEZONE': '${TIMEZONE}'}",
+                "monitors": [],
+                "image_full": "{'TIMEZONE': '${TIMEZONE}'}",
+                "dbs": [],
+                "name": "micro1php",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "redis",
+                    "db",
+                    "centrifugo"
+                ],
+                "buses": [],
+                "image": "{'TIMEZONE': '${TIMEZONE}'}",
+                "monitors": [],
+                "image_full": "{'TIMEZONE': '${TIMEZONE}'}",
+                "dbs": [],
+                "name": "php",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "node",
+                "monitors": [],
+                "image_full": "node:alpine",
+                "dbs": [],
+                "name": "nodejs",
+                "servers": [
+                    "node"
+                ],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "redis",
+                "monitors": [],
+                "image_full": "redis:alpine",
+                "dbs": [
+                    "redis"
+                ],
+                "name": "redis",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "buses": [],
+                "image": "postgres",
+                "monitors": [],
+                "image_full": "postgres:9",
+                "dbs": [],
+                "name": "db",
+                "servers": [],
+                "discos": [],
+                "gates": []
+            }
+        ],
+        "num_services": 12
+    },
+    "num_gates": 0,
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_dbs": 2,
+    "avg_size_service": 4.666666666666667,
+    "num_discos": 0,
+    "servers": [
+        "node"
+    ],
+    "num_buses": 1,
+    "dockers": [
+        {
+            "buses": [],
+            "langs": [
+                "php"
+            ],
+            "dbs": [
+                "redis"
+            ],
+            "discos": [],
+            "servers": [],
+            "from": "php",
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/micro2-php7-fpm/Dockerfile",
+            "monitors": [],
+            "from_full": "php:7.3.4-fpm",
+            "keywords": [
+                "php",
+                "install",
+                "apt",
+                "get",
+                "timezone"
+            ]
+        },
+        {
+            "buses": [],
+            "langs": [
+                "php"
+            ],
+            "dbs": [
+                "redis"
+            ],
+            "discos": [],
+            "servers": [],
+            "from": "php",
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/micro1-php7-fpm/Dockerfile",
+            "monitors": [],
+            "from_full": "php:7.3.4-fpm",
+            "keywords": [
+                "php",
+                "install",
+                "apt",
+                "get",
+                "timezone"
+            ]
+        },
+        {
+            "buses": [],
+            "langs": [
+                "php"
+            ],
+            "dbs": [
+                "redis"
+            ],
+            "discos": [],
+            "servers": [],
+            "from": "php",
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/php7-fpm/Dockerfile",
+            "monitors": [],
+            "from_full": "php:7.3.4-fpm",
+            "keywords": [
+                "php",
+                "install",
+                "apt",
+                "get",
+                "timezone"
+            ]
+        }
+    ],
+    "monitors": [],
+    "num_files": 4,
+    "dbs": [
+        "redis",
+        "mongo"
+    ],
+    "name": "RuslanKononov/docker-for-symfony",
+    "num_langs": 2,
+    "num_services": 12
+}

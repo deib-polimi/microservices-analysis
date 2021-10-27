@@ -1,0 +1,194 @@
+{
+    "num_services": 4,
+    "dbs": [
+        "mysql"
+    ],
+    "name": "rjkeller/microservice-demo",
+    "files": [
+        {
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/demo-auth1/package.json",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "express",
+                "node"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/demo-rest1/package.json",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "express",
+                "node"
+            ]
+        }
+    ],
+    "discos": [],
+    "num_gates": 1,
+    "num_buses": 0,
+    "langs": [
+        "dockerfile",
+        "shell",
+        "javascript"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_monitors": 0,
+    "monitors": [],
+    "images": [
+        "node"
+    ],
+    "structure": {
+        "num_services": 4,
+        "detected_dbs": {
+            "num": 1,
+            "services": [
+                "demo-auth-db1"
+            ],
+            "names": [
+                "mariadb"
+            ],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [
+                    "mariadb"
+                ],
+                "image_full": "mariadb:10.4",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "demo-auth-db1",
+                "image": "mariadb"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "demo-auth1",
+                    "demo-rest1"
+                ],
+                "gates": [
+                    "nginx"
+                ],
+                "dbs": [],
+                "image_full": "nginx:1.13-alpine",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "lb",
+                "image": "nginx"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "demo-auth-db1:demo-auth-db1"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "demo-auth1:v1.0",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "demo-auth1",
+                "image": "demo-auth1"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "demo-auth1:demo-auth1"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "demo-rest1:v1.0",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "demo-rest1",
+                "image": "demo-rest1"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "shared_dbs": false,
+    "languages": [
+        "javascript",
+        "dockerfile",
+        "shell"
+    ],
+    "avg_size_service": 122.0,
+    "buses": [],
+    "dockers": [
+        {
+            "from_full": "node:12-alpine",
+            "langs": [],
+            "dbs": [],
+            "path": "/demo-auth1/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "keywords": [
+                "app",
+                "home",
+                "npm",
+                "config",
+                "production"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "node:12-alpine",
+            "langs": [],
+            "dbs": [],
+            "path": "/demo-rest1/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "from": "node",
+            "keywords": [
+                "app",
+                "home",
+                "npm",
+                "config",
+                "production"
+            ],
+            "cmd": ""
+        }
+    ],
+    "servers": [
+        "node",
+        "express"
+    ],
+    "num_dockers": 2,
+    "url": "git://github.com/rjkeller/microservice-demo.git",
+    "num_dbs": 1,
+    "num_servers": 2,
+    "num_discos": 0,
+    "num_langs": 3,
+    "num_files": 5,
+    "size": 244
+}

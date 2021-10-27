@@ -1,0 +1,268 @@
+{
+    "num_dbs": 0,
+    "dbs": [],
+    "images": [
+        "java"
+    ],
+    "langs": [
+        "java",
+        "dockerfile"
+    ],
+    "size": 18,
+    "num_discos": 1,
+    "dockers": [
+        {
+            "dbs": [],
+            "from": "java",
+            "keywords": [],
+            "from_full": "java:8u92-jre-alpine",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "java -jar /app/config.jar",
+            "path": "/config/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "java",
+                "config"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "from": "java",
+            "keywords": [],
+            "from_full": "java:8u92-jre-alpine",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "java -jar /app/gateway.jar",
+            "path": "/gateway/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "java",
+                "gateway"
+            ],
+            "gates": [
+                "gateway"
+            ],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "from": "java",
+            "keywords": [],
+            "from_full": "java:8u92-jre-alpine",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "java -jar /app/registry.jar",
+            "path": "/registry/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "java",
+                "registry"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "from": "java",
+            "keywords": [],
+            "from_full": "java:8u92-jre-alpine",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "java -jar /app/notes.jar",
+            "path": "/notes-service/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "java",
+                "notes"
+            ],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "servers": [
+        "spring"
+    ],
+    "monitors": [],
+    "num_dockers": 4,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 4,
+        "detected_dbs": {
+            "services": [],
+            "names": [],
+            "num": 0,
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "image": "alexey777/notes-config",
+                "dbs": [],
+                "depends_on": [],
+                "image_full": "alexey777/notes-config",
+                "buses": [],
+                "name": "config",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "alexey777/notes-registry",
+                "dbs": [],
+                "depends_on": [
+                    "config"
+                ],
+                "image_full": "alexey777/notes-registry",
+                "buses": [],
+                "name": "registry",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "alexey777/notes-service",
+                "dbs": [],
+                "depends_on": [
+                    "registry"
+                ],
+                "image_full": "alexey777/notes-service",
+                "buses": [],
+                "name": "notes-service",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "alexey777/notes-gateway",
+                "dbs": [],
+                "depends_on": [
+                    "notes-service"
+                ],
+                "image_full": "alexey777/notes-gateway",
+                "buses": [],
+                "name": "gateway",
+                "monitors": [],
+                "gates": [
+                    "gateway"
+                ],
+                "discos": [],
+                "servers": []
+            }
+        ]
+    },
+    "num_buses": 0,
+    "gates": [
+        "zuul"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "num_gates": 1,
+    "num_services": 4,
+    "name": "Alexey911/Notes",
+    "shared_dbs": false,
+    "avg_size_service": 4.5,
+    "num_langs": 2,
+    "num_servers": 1,
+    "languages": [
+        "java",
+        "dockerfile"
+    ],
+    "buses": [],
+    "files": [
+        {
+            "dbs": [],
+            "buses": [],
+            "path": "/pom.xml",
+            "monitors": [],
+            "gates": [
+                "gateway"
+            ],
+            "discos": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "dbs": [],
+            "buses": [],
+            "path": "/config/pom.xml",
+            "monitors": [],
+            "gates": [],
+            "discos": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "dbs": [],
+            "buses": [],
+            "path": "/gateway/pom.xml",
+            "monitors": [],
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "dbs": [],
+            "buses": [],
+            "path": "/registry/pom.xml",
+            "monitors": [],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "dbs": [],
+            "buses": [],
+            "path": "/notes-service/pom.xml",
+            "monitors": [],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ]
+        }
+    ],
+    "url": "git://github.com/Alexey911/Notes.git",
+    "num_files": 10,
+    "num_monitors": 0
+}

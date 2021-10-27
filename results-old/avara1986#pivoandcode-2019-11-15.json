@@ -1,0 +1,296 @@
+{
+    "num_services": 6,
+    "dbs": [],
+    "name": "avara1986/pivoandcode-2019-11-15",
+    "files": [
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/chat_db/requirements.txt",
+            "buses": [],
+            "monitors": [
+                "jaeger"
+            ],
+            "discos": [],
+            "servers": [
+                "flask"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/chat_svc/requirements.txt",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "flask"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/chat_front/requirements.txt",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/chat_baas/requirements.txt",
+            "buses": [],
+            "monitors": [
+                "jaeger"
+            ],
+            "discos": [],
+            "servers": [
+                "flask"
+            ]
+        }
+    ],
+    "discos": [],
+    "num_gates": 0,
+    "num_buses": 0,
+    "langs": [
+        "html",
+        "python",
+        "javascript"
+    ],
+    "gates": [],
+    "num_monitors": 1,
+    "monitors": [
+        "jaeger"
+    ],
+    "images": [
+        "postgres",
+        "python"
+    ],
+    "structure": {
+        "num_services": 6,
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "names": [],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "buses": [],
+                "depends_on": [
+                    "chat-baas"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "./chat_svc",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "chat-svc",
+                "image": "./chat_svc"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "chat-daas"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "./chat_baas",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "chat-baas",
+                "image": "./chat_baas"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "jaegertracing/all-in-one:1.14",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "jaeger",
+                "image": "jaegertracing/all-in-one"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "./db",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "db",
+                "image": "./db"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "chat-svc"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "./chat_front",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "chat-front",
+                "image": "./chat_front"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "db"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "./chat_db",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "chat-daas",
+                "image": "./chat_db"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "shared_dbs": false,
+    "languages": [
+        "python",
+        "html",
+        "javascript"
+    ],
+    "avg_size_service": 761.8,
+    "buses": [],
+    "dockers": [
+        {
+            "from_full": "python:3.7.5-slim",
+            "langs": [
+                "python"
+            ],
+            "dbs": [],
+            "path": "/chat_db/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "python",
+            "keywords": [
+                "install",
+                "pip",
+                "apt",
+                "get",
+                "txt"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "python:3.7.5-slim",
+            "langs": [
+                "python"
+            ],
+            "dbs": [],
+            "path": "/chat_svc/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "python",
+            "keywords": [
+                "install",
+                "pip",
+                "apt",
+                "get",
+                "txt"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "postgres:11.2-alpine",
+            "langs": [],
+            "dbs": [],
+            "path": "/db/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "postgres",
+            "keywords": [],
+            "cmd": ""
+        },
+        {
+            "from_full": "python:3.7.5-slim",
+            "langs": [
+                "python"
+            ],
+            "dbs": [],
+            "path": "/chat_front/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "class",
+                "manage",
+                "worker",
+                "info",
+                "gunicorn"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "python",
+            "keywords": [
+                "install",
+                "pip",
+                "apt",
+                "get",
+                "txt"
+            ],
+            "cmd": "gunicorn --worker-class gevent --workers 1 --log-level INFO --bind 0.0.0.0:8081 manage:app"
+        },
+        {
+            "from_full": "python:3.7.5-slim",
+            "langs": [
+                "python"
+            ],
+            "dbs": [],
+            "path": "/chat_baas/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "python",
+            "keywords": [
+                "install",
+                "pip",
+                "apt",
+                "get",
+                "txt"
+            ],
+            "cmd": ""
+        }
+    ],
+    "servers": [
+        "flask"
+    ],
+    "num_dockers": 5,
+    "url": "git://github.com/avara1986/pivoandcode-2019-11-15.git",
+    "num_dbs": 0,
+    "num_servers": 1,
+    "num_discos": 0,
+    "num_langs": 3,
+    "num_files": 10,
+    "size": 3809
+}

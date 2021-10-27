@@ -1,0 +1,337 @@
+{
+    "num_discos": 0,
+    "buses": [
+        "mqtt"
+    ],
+    "name": "lelylan/lelylan",
+    "dbs": [
+        "redis",
+        "mongo",
+        "memcached"
+    ],
+    "num_services": 17,
+    "avg_size_service": 179.0,
+    "num_monitors": 0,
+    "monitors": [],
+    "discos": [],
+    "servers": [],
+    "url": "git://github.com/lelylan/lelylan.git",
+    "num_dockers": 0,
+    "files": [],
+    "shared_dbs": true,
+    "size": 179,
+    "languages": [],
+    "gates": [
+        "nginx"
+    ],
+    "num_langs": 0,
+    "structure": {
+        "detected_dbs": {
+            "num": 5,
+            "services": [
+                "mongodb-data",
+                "redis-data",
+                "memcached",
+                "redis",
+                "mongodb"
+            ],
+            "shared_dbs": true,
+            "names": [
+                "redis",
+                "mongo",
+                "memcached"
+            ]
+        },
+        "num_services": 17,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [
+                    "mongodb",
+                    "redis",
+                    "memcached"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "types",
+                "image_full": "lelylanlab/types:latest",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "lelylanlab/types"
+            },
+            {
+                "depends_on": [
+                    "types",
+                    "mongodb",
+                    "redis",
+                    "memcached"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "subscriptions",
+                "image_full": "lelylanlab/subscriptions:latest",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "lelylanlab/subscriptions"
+            },
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "mongodb-data",
+                "image_full": "mongo:2.6",
+                "dbs": [
+                    "mongo"
+                ],
+                "gates": [],
+                "monitors": [],
+                "image": "mongo"
+            },
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "redis-data",
+                "image_full": "redis:2.6",
+                "dbs": [
+                    "redis"
+                ],
+                "gates": [],
+                "monitors": [],
+                "image": "redis"
+            },
+            {
+                "depends_on": [
+                    "types",
+                    "subscriptions",
+                    "mongodb",
+                    "redis",
+                    "memcached"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "profiles",
+                "image_full": "lelylanlab/profiles:latest",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "lelylanlab/profiles"
+            },
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "memcached",
+                "image_full": "bitnami/memcached:latest",
+                "dbs": [
+                    "memcached"
+                ],
+                "gates": [],
+                "monitors": [],
+                "image": "bitnami/memcached"
+            },
+            {
+                "depends_on": [
+                    "mongodb",
+                    "redis",
+                    "memcached"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "webhooks",
+                "image_full": "lelylanlab/webhooks:latest",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "lelylanlab/webhooks"
+            },
+            {
+                "depends_on": [
+                    "types",
+                    "subscriptions",
+                    "profiles",
+                    "mongodb",
+                    "redis",
+                    "memcached"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "people",
+                "image_full": "lelylanlab/people:latest",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "lelylanlab/people"
+            },
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "redis",
+                "image_full": "redis:2.6",
+                "dbs": [
+                    "redis"
+                ],
+                "gates": [],
+                "monitors": [],
+                "image": "redis"
+            },
+            {
+                "depends_on": [
+                    "mongodb",
+                    "redis",
+                    "memcached"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "websockets",
+                "image_full": "lelylanlab/websockets:latest",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "lelylanlab/websockets"
+            },
+            {
+                "depends_on": [
+                    "mongodb",
+                    "redis",
+                    "memcached"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "physicals",
+                "image_full": "lelylanlab/physicals:latest",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "lelylanlab/physicals"
+            },
+            {
+                "depends_on": [
+                    "mongodb",
+                    "redis",
+                    "memcached",
+                    "api-proxy",
+                    "mqtt"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "nodes",
+                "image_full": "lelylanlab/nodes:latest",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "lelylanlab/nodes"
+            },
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "nginx-proxy",
+                "image_full": "jwilder/nginx-proxy",
+                "dbs": [],
+                "gates": [
+                    "nginx"
+                ],
+                "monitors": [],
+                "image": "jwilder/nginx-proxy"
+            },
+            {
+                "depends_on": [
+                    "people",
+                    "devices",
+                    "types",
+                    "subscriptions",
+                    "profiles",
+                    "mongodb",
+                    "redis",
+                    "memcached"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "api-proxy",
+                "image_full": "lelylanlab/api-proxy:latest",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "lelylanlab/api-proxy"
+            },
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "mongodb",
+                "image_full": "mongo:2.6",
+                "dbs": [
+                    "mongo"
+                ],
+                "gates": [],
+                "monitors": [],
+                "image": "mongo"
+            },
+            {
+                "depends_on": [
+                    "mongodb",
+                    "redis",
+                    "memcached",
+                    "people",
+                    "types",
+                    "subscriptions",
+                    "profiles"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "devices",
+                "image_full": "lelylanlab/devices:latest",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "lelylanlab/devices"
+            },
+            {
+                "depends_on": [
+                    "mongodb",
+                    "redis",
+                    "memcached"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "mqtt"
+                ],
+                "name": "mqtt",
+                "image_full": "lelylanlab/mqtt:latest",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "lelylanlab/mqtt"
+            }
+        ]
+    },
+    "dockers": [],
+    "num_files": 1,
+    "num_gates": 1,
+    "num_dbs": 3,
+    "langs": [],
+    "images": [],
+    "num_buses": 1,
+    "num_servers": 0
+}

@@ -1,0 +1,115 @@
+{
+    "buses": [],
+    "num_servers": 0,
+    "languages": [
+        "dockerfile",
+        "smarty"
+    ],
+    "dbs": [
+        "postgresql"
+    ],
+    "num_services": 2,
+    "avg_size_service": 11.0,
+    "servers": [],
+    "structure": {
+        "num_services": 2,
+        "detected_dbs": {
+            "services": [],
+            "shared_dbs": false,
+            "num": 0,
+            "names": []
+        },
+        "services": [
+            {
+                "image": "kalaksi/mezzanine",
+                "buses": [],
+                "image_full": "kalaksi/mezzanine",
+                "dbs": [],
+                "depends_on": [],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "mezzanine",
+                "gates": []
+            },
+            {
+                "image": "nginx",
+                "buses": [],
+                "image_full": "nginx:stable",
+                "dbs": [],
+                "depends_on": [
+                    "mezzanine"
+                ],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "nginx",
+                "gates": [
+                    "nginx"
+                ]
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "monitors": [],
+    "num_buses": 0,
+    "images": [
+        "alpine"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_gates": 1,
+    "num_langs": 3,
+    "langs": [
+        "gcc",
+        "dockerfile",
+        "smarty"
+    ],
+    "url": "git://github.com/kalaksi/docker-mezzanine.git",
+    "num_discos": 0,
+    "num_files": 2,
+    "files": [],
+    "shared_dbs": false,
+    "num_monitors": 0,
+    "name": "kalaksi/docker-mezzanine",
+    "num_dbs": 1,
+    "discos": [],
+    "dockers": [
+        {
+            "langs": [
+                "gcc"
+            ],
+            "dbs": [
+                "postgresql"
+            ],
+            "path": "/Dockerfile",
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "mezzanine",
+                "dev",
+                "pip",
+                "conf",
+                "cache"
+            ],
+            "cmd": "set -eu;     [ -z \"$MEZZANINE_PROJECT\" ] && (echo \"MEZZANINE_PROJECT has to be defined!\" >&2; exit 1);     cd \"$MEZZANINE_PROJECT\" || (echo \"Failed to descend into project directory. Does it exist?\" >&2; exit 1);     sed -r \"s/MEZZANINE_PROJECT/$MEZZANINE_PROJECT/g\" /etc/nginx/mezzanine.conf.tpl > \"/etc/nginx/conf.d/mezzanine.conf\" || echo \"Failed to generate Nginx configuration! Skipping.\" >&2;     exec gunicorn -b \"0.0.0.0:${GUNICORN_PORT}\" -w \"$GUNICORN_WORKERS\" \"${MEZZANINE_PROJECT}.wsgi\"",
+            "buses": [],
+            "from_full": "alpine:3.12.0",
+            "from": "alpine",
+            "discos": [],
+            "cmd_keywords": [
+                "mezzanine",
+                "project",
+                "nginx",
+                "conf",
+                "gunicorn"
+            ],
+            "gates": [
+                "nginx"
+            ]
+        }
+    ],
+    "num_dockers": 1,
+    "size": 11
+}

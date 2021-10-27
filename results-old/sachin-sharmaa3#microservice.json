@@ -1,0 +1,196 @@
+{
+    "size": 239,
+    "num_servers": 1,
+    "dbs": [
+        "mysql"
+    ],
+    "files": [
+        {
+            "path": "/user/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": [
+                "jaeger"
+            ]
+        },
+        {
+            "path": "/aggregator/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": [
+                "jaeger"
+            ]
+        },
+        {
+            "path": "/order/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": [
+                "jaeger"
+            ]
+        }
+    ],
+    "structure": {
+        "num_services": 4,
+        "services": [
+            {
+                "name": "nagp-order",
+                "image": "3147181/order",
+                "depends_on": [
+                    "jaeger-allinone"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "3147181/order:assignment-2",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "nagp-aggregator",
+                "image": "3147181/aggregator",
+                "depends_on": [
+                    "jaeger-allinone",
+                    "nagp-user",
+                    "nagp-order"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "3147181/aggregator:assignment-2",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "jaeger-allinone",
+                "image": "jaegertracing/all-in-one",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "jaegertracing/all-in-one:1.7",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "nagp-user",
+                "image": "3147181/user",
+                "depends_on": [
+                    "jaeger-allinone"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "3147181/user:assignment-2",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            }
+        ],
+        "path": "/docker-build/docker-compose.yml",
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "shared_dbs": false,
+            "services": []
+        }
+    },
+    "buses": [],
+    "images": [
+        "openjdk"
+    ],
+    "num_discos": 0,
+    "url": "git://github.com/sachin-sharmaa3/microservice.git",
+    "num_services": 4,
+    "langs": [
+        "java"
+    ],
+    "discos": [],
+    "num_gates": 0,
+    "shared_dbs": false,
+    "num_files": 7,
+    "num_monitors": 1,
+    "gates": [],
+    "servers": [
+        "spring"
+    ],
+    "num_langs": 1,
+    "languages": [
+        "java"
+    ],
+    "monitors": [
+        "jaeger"
+    ],
+    "name": "sachin-sharmaa3/microservice",
+    "num_buses": 0,
+    "avg_size_service": 79.66666666666667,
+    "dockers": [
+        {
+            "path": "/user/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/aggregator/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/order/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        }
+    ],
+    "num_dbs": 1,
+    "num_dockers": 3
+}

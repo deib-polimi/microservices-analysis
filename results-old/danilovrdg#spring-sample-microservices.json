@@ -1,0 +1,262 @@
+{
+    "gates": [
+        "zuul"
+    ],
+    "images": [
+        "avinb/jdk8-64"
+    ],
+    "num_dbs": 0,
+    "structure": {
+        "num_services": 4,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "danilor/discovery",
+                "gates": [],
+                "image": "danilor/discovery",
+                "depends_on": [
+                    "config"
+                ],
+                "dbs": [],
+                "name": "discovery",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "danilor/gateway",
+                "gates": [
+                    "gateway"
+                ],
+                "image": "danilor/gateway",
+                "depends_on": [
+                    "config",
+                    "discovery"
+                ],
+                "dbs": [],
+                "name": "gateway",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "danilor/account",
+                "gates": [],
+                "image": "danilor/account",
+                "depends_on": [
+                    "config",
+                    "discovery",
+                    "gateway"
+                ],
+                "dbs": [],
+                "name": "account",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "danilor/config",
+                "gates": [],
+                "image": "danilor/config",
+                "depends_on": [],
+                "dbs": [],
+                "name": "config",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "shared_dbs": false,
+            "names": []
+        }
+    },
+    "num_files": 9,
+    "num_gates": 1,
+    "discos": [
+        "eureka"
+    ],
+    "num_dockers": 4,
+    "shared_dbs": false,
+    "languages": [
+        "java",
+        "dockerfile"
+    ],
+    "name": "danilovrdg/spring-sample-microservices",
+    "num_langs": 2,
+    "avg_size_service": 4.0,
+    "monitors": [],
+    "num_servers": 1,
+    "num_services": 4,
+    "dbs": [],
+    "langs": [
+        "java",
+        "dockerfile"
+    ],
+    "dockers": [
+        {
+            "gates": [
+                "gateway"
+            ],
+            "path": "/gateway-service/Dockerfile",
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "avinb/jdk8-64",
+            "discos": [],
+            "from_full": "avinb/jdk8-64:latest",
+            "cmd": "java -Xmx200m -jar /app/gateway.jar",
+            "monitors": [],
+            "cmd_keywords": [
+                "jar",
+                "gateway",
+                "java",
+                "xmx",
+                "app"
+            ],
+            "keywords": []
+        },
+        {
+            "gates": [],
+            "path": "/discovery-service/Dockerfile",
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "avinb/jdk8-64",
+            "discos": [],
+            "from_full": "avinb/jdk8-64:latest",
+            "cmd": "java -Xmx200m -jar /app/discovery.jar",
+            "monitors": [],
+            "cmd_keywords": [
+                "jar",
+                "discovery",
+                "java",
+                "xmx",
+                "app"
+            ],
+            "keywords": []
+        },
+        {
+            "gates": [],
+            "path": "/config-service/Dockerfile",
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "avinb/jdk8-64",
+            "discos": [],
+            "from_full": "avinb/jdk8-64:latest",
+            "cmd": "java -Xmx200m -jar /app/config.jar",
+            "monitors": [],
+            "cmd_keywords": [
+                "jar",
+                "java",
+                "xmx",
+                "app",
+                "config"
+            ],
+            "keywords": []
+        },
+        {
+            "gates": [],
+            "path": "/account-service/Dockerfile",
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "avinb/jdk8-64",
+            "discos": [],
+            "from_full": "avinb/jdk8-64:latest",
+            "cmd": "java -Xmx200m -jar /app/account.jar",
+            "monitors": [],
+            "cmd_keywords": [
+                "jar",
+                "account",
+                "java",
+                "xmx",
+                "app"
+            ],
+            "keywords": []
+        }
+    ],
+    "buses": [],
+    "servers": [
+        "spring"
+    ],
+    "size": 16,
+    "files": [
+        {
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "path": "/gateway-service/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "path": "/discovery-service/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "path": "/config-service/pom.xml",
+            "discos": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "path": "/account-service/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        }
+    ],
+    "num_buses": 0,
+    "num_monitors": 0,
+    "url": "git://github.com/danilovrdg/spring-sample-microservices.git",
+    "num_discos": 1
+}

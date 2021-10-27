@@ -1,0 +1,217 @@
+{
+    "servers": [],
+    "images": [
+        "php"
+    ],
+    "num_servers": 0,
+    "gates": [
+        "nginx"
+    ],
+    "buses": [],
+    "shared_dbs": false,
+    "files": [],
+    "num_langs": 1,
+    "num_dockers": 3,
+    "num_files": 4,
+    "monitors": [],
+    "dockers": [
+        {
+            "servers": [],
+            "gates": [],
+            "from_full": "php:5.6.12-fpm",
+            "buses": [],
+            "keywords": [
+                "dev",
+                "apt",
+                "get",
+                "php",
+                "install"
+            ],
+            "cmd_keywords": [],
+            "langs": [
+                "php"
+            ],
+            "from": "php",
+            "cmd": "",
+            "monitors": [],
+            "dbs": [],
+            "path": "/src/bilbot-welive/Dockerfile",
+            "discos": []
+        },
+        {
+            "servers": [],
+            "gates": [],
+            "from_full": "php:7.1.10-apache",
+            "buses": [],
+            "keywords": [
+                "pdo",
+                "install",
+                "mysql",
+                "ext",
+                "php"
+            ],
+            "cmd_keywords": [
+                "php",
+                "init",
+                "html",
+                "www",
+                "var"
+            ],
+            "langs": [
+                "php"
+            ],
+            "from": "php",
+            "cmd": "php -f /var/www/html/init.php",
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/src/bilbot-php/Dockerfile",
+            "discos": []
+        },
+        {
+            "servers": [],
+            "gates": [],
+            "from_full": "php:5.6.12-fpm",
+            "buses": [],
+            "keywords": [
+                "dev",
+                "apt",
+                "get",
+                "php",
+                "install"
+            ],
+            "cmd_keywords": [],
+            "langs": [
+                "php"
+            ],
+            "from": "php",
+            "cmd": "",
+            "monitors": [],
+            "dbs": [],
+            "path": "/src/bilbot-watson/Dockerfile",
+            "discos": []
+        }
+    ],
+    "dbs": [
+        "mysql"
+    ],
+    "num_services": 6,
+    "num_discos": 0,
+    "avg_size_service": 1497.3333333333333,
+    "languages": [
+        "php"
+    ],
+    "discos": [],
+    "num_buses": 0,
+    "num_gates": 1,
+    "num_dbs": 1,
+    "url": "git://github.com/kronosnhz/Bilbot.git",
+    "size": 4492,
+    "name": "kronosnhz/Bilbot",
+    "num_monitors": 0,
+    "langs": [
+        "php"
+    ],
+    "structure": {
+        "num_services": 6,
+        "detected_dbs": {
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": false,
+            "num": 1,
+            "services": [
+                "bilbot-mysql"
+            ]
+        },
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "servers": [],
+                "monitors": [],
+                "gates": [
+                    "nginx"
+                ],
+                "name": "watson-nginx",
+                "image": "nginx",
+                "image_full": "nginx:1.9.10",
+                "depends_on": [
+                    "watson-php"
+                ],
+                "dbs": [],
+                "buses": [],
+                "discos": []
+            },
+            {
+                "servers": [],
+                "monitors": [],
+                "gates": [
+                    "nginx"
+                ],
+                "name": "welive-nginx",
+                "image": "nginx",
+                "image_full": "nginx:1.9.10",
+                "depends_on": [
+                    "welive-php"
+                ],
+                "dbs": [],
+                "buses": [],
+                "discos": []
+            },
+            {
+                "servers": [],
+                "monitors": [],
+                "gates": [],
+                "name": "bilbot-mysql",
+                "image": "mysql",
+                "image_full": "mysql",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "discos": []
+            },
+            {
+                "servers": [],
+                "monitors": [],
+                "gates": [],
+                "name": "welive-php",
+                "image": "./src/bilbot-welive",
+                "image_full": "./src/bilbot-welive",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "discos": []
+            },
+            {
+                "servers": [],
+                "monitors": [],
+                "gates": [],
+                "name": "watson-php",
+                "image": "./src/bilbot-watson",
+                "image_full": "./src/bilbot-watson",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "discos": []
+            },
+            {
+                "servers": [],
+                "monitors": [],
+                "gates": [],
+                "name": "bilbot-php",
+                "image": "./src/bilbot-php",
+                "image_full": "./src/bilbot-php",
+                "depends_on": [
+                    "bilbot-mysql",
+                    "watson-php"
+                ],
+                "dbs": [],
+                "buses": [],
+                "discos": []
+            }
+        ]
+    }
+}

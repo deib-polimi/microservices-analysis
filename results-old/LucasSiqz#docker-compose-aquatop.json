@@ -1,0 +1,213 @@
+{
+    "gates": [
+        "nginx"
+    ],
+    "num_buses": 1,
+    "url": "git://github.com/LucasSiqz/docker-compose-aquatop.git",
+    "images": [],
+    "avg_size_service": 7.0,
+    "num_langs": 0,
+    "num_monitors": 1,
+    "num_dockers": 0,
+    "num_discos": 1,
+    "num_servers": 0,
+    "buses": [
+        "kafka"
+    ],
+    "discos": [
+        "zookeeper"
+    ],
+    "dockers": [],
+    "size": 7,
+    "name": "LucasSiqz/docker-compose-aquatop",
+    "num_services": 10,
+    "dbs": [
+        "zookeeper",
+        "mongo"
+    ],
+    "shared_dbs": true,
+    "langs": [],
+    "languages": [],
+    "servers": [],
+    "num_files": 1,
+    "monitors": [
+        "monitoring"
+    ],
+    "num_dbs": 2,
+    "num_gates": 1,
+    "files": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 10,
+        "detected_dbs": {
+            "services": [
+                "zookeeper",
+                "mongo-aquatop"
+            ],
+            "num": 2,
+            "names": [
+                "zookeeper",
+                "mongo"
+            ],
+            "shared_dbs": true
+        },
+        "services": [
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "kafka",
+                    "mongo-aquatop"
+                ],
+                "servers": [],
+                "image_full": "${AQUARIUM_BUILD}",
+                "name": "aquarium-microservice",
+                "gates": [],
+                "image": "${AQUARIUM_BUILD}",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [
+                    "monitoring"
+                ],
+                "depends_on": [
+                    "kafka",
+                    "mongo-aquatop"
+                ],
+                "servers": [],
+                "image_full": "${MONITORING_BUILD}",
+                "name": "monitoring-microservice",
+                "gates": [],
+                "image": "${MONITORING_BUILD}",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [
+                    "zookeeper"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "wurstmeister/zookeeper:latest",
+                "name": "zookeeper",
+                "gates": [],
+                "image": "wurstmeister/zookeeper",
+                "dbs": [
+                    "zookeeper"
+                ],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "mongo",
+                "name": "mongo-aquatop",
+                "gates": [],
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "kafka",
+                    "mongo-aquatop"
+                ],
+                "servers": [],
+                "image_full": "${SCHEDULING_BUILD}",
+                "name": "scheduling-worker",
+                "gates": [],
+                "image": "${SCHEDULING_BUILD}",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "user-microservice",
+                    "aquarium-microservice",
+                    "monitoring-microservice",
+                    "websocket-server",
+                    "notification-microservice"
+                ],
+                "servers": [],
+                "image_full": "nginx:1.15-alpine",
+                "name": "nginx",
+                "gates": [
+                    "nginx"
+                ],
+                "image": "nginx",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "mongo-aquatop"
+                ],
+                "servers": [],
+                "image_full": "${USER_BUILD}",
+                "name": "user-microservice",
+                "gates": [],
+                "image": "${USER_BUILD}",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "kafka"
+                ],
+                "servers": [],
+                "image_full": "${WEBSOCKET_BUILD}",
+                "name": "websocket-server",
+                "gates": [],
+                "image": "${WEBSOCKET_BUILD}",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "kafka",
+                    "mongo-aquatop"
+                ],
+                "servers": [],
+                "image_full": "${NOTIFICATION_BUILD}",
+                "name": "notification-microservice",
+                "gates": [],
+                "image": "${NOTIFICATION_BUILD}",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "servers": [],
+                "image_full": "wurstmeister/kafka:2.11-1.1.0",
+                "name": "kafka",
+                "gates": [],
+                "image": "wurstmeister/kafka",
+                "dbs": [],
+                "buses": [
+                    "kafka"
+                ]
+            }
+        ]
+    }
+}

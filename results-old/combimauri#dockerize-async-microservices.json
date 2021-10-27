@@ -1,0 +1,248 @@
+{
+    "dbs": [],
+    "size": 9,
+    "num_buses": 1,
+    "num_servers": 2,
+    "structure": {
+        "services": [
+            {
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "discos": [],
+                "image": "./web-service",
+                "image_full": "./web-service",
+                "depends_on": [
+                    "setup-service"
+                ],
+                "name": "web-service",
+                "servers": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "discos": [],
+                "image": "./rabbitmq-service",
+                "image_full": "./rabbitmq-service",
+                "depends_on": [],
+                "name": "myrabbitmq",
+                "servers": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "discos": [],
+                "image": "./setup-service",
+                "image_full": "./setup-service",
+                "depends_on": [
+                    "myrabbitmq"
+                ],
+                "name": "setup-service",
+                "servers": [],
+                "monitors": []
+            },
+            {
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "discos": [],
+                "image": "./processor-service",
+                "image_full": "./processor-service",
+                "depends_on": [
+                    "setup-service"
+                ],
+                "name": "processor-service",
+                "servers": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [],
+            "shared_dbs": false,
+            "num": 0,
+            "names": []
+        },
+        "num_services": 4,
+        "path": "/docker-compose.yml"
+    },
+    "buses": [
+        "rabbitmq"
+    ],
+    "dockers": [
+        {
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "service",
+                "processor",
+                "app",
+                "node",
+                "wait"
+            ],
+            "buses": [],
+            "keywords": [
+                "install",
+                "npm",
+                "app",
+                "service",
+                "processor"
+            ],
+            "from_full": "node:10",
+            "monitors": [],
+            "gates": [],
+            "cmd": "/wait && node /app/processor-service/processor-service.js",
+            "path": "/processor-service/Dockerfile",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "from": "node"
+        },
+        {
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "buses": [
+                "rabbitmq"
+            ],
+            "keywords": [],
+            "from_full": "rabbitmq",
+            "monitors": [],
+            "gates": [],
+            "cmd": "",
+            "path": "/rabbitmq-service/Dockerfile",
+            "discos": [],
+            "servers": [],
+            "from": "rabbitmq"
+        },
+        {
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "setup",
+                "node",
+                "rabbit",
+                "app",
+                "service"
+            ],
+            "buses": [],
+            "keywords": [
+                "install",
+                "setup",
+                "app",
+                "service",
+                "npm"
+            ],
+            "from_full": "node:10",
+            "monitors": [],
+            "gates": [],
+            "cmd": "/wait && node /app/setup-service/rabbit-mq-setup.js",
+            "path": "/setup-service/Dockerfile",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "from": "node"
+        },
+        {
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [
+                "service",
+                "web",
+                "app",
+                "node",
+                "wait"
+            ],
+            "buses": [],
+            "keywords": [
+                "install",
+                "web",
+                "app",
+                "service",
+                "npm"
+            ],
+            "from_full": "node:10",
+            "monitors": [],
+            "gates": [],
+            "cmd": "/wait && node /app/web-service/web-service.js",
+            "path": "/web-service/Dockerfile",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "from": "node"
+        }
+    ],
+    "files": [
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/processor-service/package.json",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/setup-service/package.json",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/web-service/package.json",
+            "discos": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "buses": [],
+            "monitors": []
+        }
+    ],
+    "url": "git://github.com/combimauri/dockerize-async-microservices.git",
+    "discos": [],
+    "num_monitors": 0,
+    "num_services": 4,
+    "num_langs": 2,
+    "num_dbs": 0,
+    "avg_size_service": 2.25,
+    "num_discos": 0,
+    "languages": [
+        "javascript",
+        "dockerfile"
+    ],
+    "servers": [
+        "express",
+        "node"
+    ],
+    "num_files": 8,
+    "name": "combimauri/dockerize-async-microservices",
+    "monitors": [],
+    "num_gates": 0,
+    "num_dockers": 4,
+    "gates": [],
+    "langs": [
+        "javascript",
+        "dockerfile"
+    ],
+    "images": [
+        "node",
+        "rabbitmq"
+    ],
+    "shared_dbs": false
+}

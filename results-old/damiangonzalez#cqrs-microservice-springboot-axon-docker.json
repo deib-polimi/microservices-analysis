@@ -1,0 +1,381 @@
+{
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "mongodb",
+                "dbs": [
+                    "mongo"
+                ],
+                "depends_on": [],
+                "image": "mongo",
+                "image_full": "mongo:2.4",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "config",
+                "dbs": [],
+                "depends_on": [],
+                "image": "benwilcock/config-service",
+                "image_full": "benwilcock/config-service",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "monitors": [],
+                "name": "rabbitmq",
+                "dbs": [],
+                "depends_on": [],
+                "image": "rabbitmq",
+                "image_full": "rabbitmq:3-management",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "product-query-side",
+                "dbs": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "discovery",
+                    "config"
+                ],
+                "image": "benwilcock/product-query-side",
+                "image_full": "benwilcock/product-query-side:latest",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "discovery",
+                "dbs": [],
+                "depends_on": [],
+                "image": "benwilcock/discovery-service",
+                "image_full": "benwilcock/discovery-service",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "monitors": [],
+                "name": "gateway",
+                "dbs": [],
+                "depends_on": [
+                    "discovery",
+                    "config"
+                ],
+                "image": "benwilcock/gateway-service",
+                "image_full": "benwilcock/gateway-service",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "product-command-side",
+                "dbs": [],
+                "depends_on": [
+                    "mongodb",
+                    "rabbitmq",
+                    "discovery",
+                    "config"
+                ],
+                "image": "benwilcock/product-command-side",
+                "image_full": "benwilcock/product-command-side:latest",
+                "discos": []
+            }
+        ],
+        "num_services": 7,
+        "detected_dbs": {
+            "names": [
+                "mongo"
+            ],
+            "num": 1,
+            "services": [
+                "mongodb"
+            ],
+            "shared_dbs": false
+        }
+    },
+    "discos": [
+        "eureka"
+    ],
+    "size": 912,
+    "num_gates": 1,
+    "num_langs": 1,
+    "servers": [
+        "tomcat",
+        "jetty",
+        "spring"
+    ],
+    "gates": [
+        "zuul"
+    ],
+    "num_servers": 3,
+    "num_buses": 2,
+    "files": [
+        {
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/build.gradle",
+            "dbs": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "gates": [
+                "gateway"
+            ],
+            "monitors": [],
+            "discos": [],
+            "path": "/settings.gradle",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "tomcat",
+                "jetty",
+                "spring"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "path": "/query-side/build.gradle",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "tomcat",
+                "jetty",
+                "spring"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "path": "/command-side/build.gradle",
+            "dbs": [
+                "mongodb",
+                "mongo"
+            ]
+        },
+        {
+            "servers": [
+                "tomcat",
+                "jetty",
+                "spring"
+            ],
+            "buses": [],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "path": "/gateway-service/build.gradle",
+            "dbs": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/common-things/build.gradle",
+            "dbs": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/integration-test/build.gradle",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "path": "/discovery-service/build.gradle",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "tomcat",
+                "jetty",
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/config-service/build.gradle",
+            "dbs": []
+        }
+    ],
+    "num_dockers": 5,
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "languages": [
+        "java"
+    ],
+    "monitors": [],
+    "dbs": [
+        "mongo"
+    ],
+    "num_monitors": 0,
+    "num_files": 15,
+    "num_dbs": 1,
+    "num_services": 7,
+    "images": [
+        "frolvlad/alpine-oraclejdk8"
+    ],
+    "url": "git://github.com/damiangonzalez/cqrs-microservice-springboot-axon-docker.git",
+    "dockers": [
+        {
+            "cmd": "",
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/query-side/src/main/docker/Dockerfile",
+            "cmd_keywords": [],
+            "keywords": [
+                "jar",
+                "app",
+                "touch"
+            ],
+            "from_full": "frolvlad/alpine-oraclejdk8:slim",
+            "gates": [],
+            "from": "frolvlad/alpine-oraclejdk8",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/command-side/src/main/docker/Dockerfile",
+            "cmd_keywords": [],
+            "keywords": [
+                "jar",
+                "app",
+                "touch"
+            ],
+            "from_full": "frolvlad/alpine-oraclejdk8:slim",
+            "gates": [],
+            "from": "frolvlad/alpine-oraclejdk8",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/gateway-service/src/main/docker/Dockerfile",
+            "cmd_keywords": [],
+            "keywords": [
+                "jar",
+                "app",
+                "touch"
+            ],
+            "from_full": "frolvlad/alpine-oraclejdk8:slim",
+            "gates": [],
+            "from": "frolvlad/alpine-oraclejdk8",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/discovery-service/src/main/docker/Dockerfile",
+            "cmd_keywords": [],
+            "keywords": [
+                "jar",
+                "app",
+                "touch"
+            ],
+            "from_full": "frolvlad/alpine-oraclejdk8:slim",
+            "gates": [],
+            "from": "frolvlad/alpine-oraclejdk8",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/config-service/src/main/docker/Dockerfile",
+            "cmd_keywords": [],
+            "keywords": [
+                "jar",
+                "app",
+                "touch"
+            ],
+            "from_full": "frolvlad/alpine-oraclejdk8:slim",
+            "gates": [],
+            "from": "frolvlad/alpine-oraclejdk8",
+            "langs": [],
+            "dbs": []
+        }
+    ],
+    "avg_size_service": 182.4,
+    "shared_dbs": false,
+    "num_discos": 1,
+    "langs": [
+        "java"
+    ],
+    "name": "damiangonzalez/cqrs-microservice-springboot-axon-docker"
+}

@@ -1,0 +1,289 @@
+{
+    "num_discos": 0,
+    "buses": [],
+    "gates": [
+        "nginx"
+    ],
+    "num_servers": 2,
+    "num_gates": 1,
+    "num_dbs": 1,
+    "monitors": [],
+    "num_langs": 1,
+    "num_files": 8,
+    "structure": {
+        "services": [
+            {
+                "name": "api",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": {
+                    "dockerfile": "Dockerfile",
+                    "context": "./server"
+                },
+                "image_full": {
+                    "dockerfile": "Dockerfile",
+                    "context": "./server"
+                },
+                "monitors": [],
+                "depends_on": [
+                    "postgres",
+                    "redis"
+                ]
+            },
+            {
+                "name": "client",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": {
+                    "dockerfile": "Dockerfile",
+                    "context": "./client"
+                },
+                "image_full": {
+                    "dockerfile": "Dockerfile",
+                    "context": "./client"
+                },
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "worker",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": {
+                    "dockerfile": "Dockerfile",
+                    "context": "./worker"
+                },
+                "image_full": {
+                    "dockerfile": "Dockerfile",
+                    "context": "./worker"
+                },
+                "monitors": [],
+                "depends_on": [
+                    "redis"
+                ]
+            },
+            {
+                "name": "nginx",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": {
+                    "dockerfile": "Dockerfile",
+                    "context": "./nginx"
+                },
+                "image_full": {
+                    "dockerfile": "Dockerfile",
+                    "context": "./nginx"
+                },
+                "monitors": [],
+                "depends_on": [
+                    "api",
+                    "client"
+                ]
+            },
+            {
+                "name": "redis",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [
+                    "redis"
+                ],
+                "image": "redis",
+                "image_full": "redis:latest",
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "postgres",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "postgres",
+                "image_full": "postgres:latest",
+                "monitors": [],
+                "depends_on": []
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "names": [
+                "redis"
+            ],
+            "num": 1,
+            "services": [
+                "redis"
+            ],
+            "shared_dbs": true
+        },
+        "num_services": 6
+    },
+    "servers": [
+        "express",
+        "node"
+    ],
+    "shared_dbs": true,
+    "langs": [
+        "javascript"
+    ],
+    "dockers": [
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/nginx/Dockerfile",
+            "from": "nginx",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [],
+            "dbs": [],
+            "gates": [
+                "nginx"
+            ],
+            "from_full": "nginx",
+            "langs": []
+        },
+        {
+            "discos": [],
+            "cmd": "npm run start",
+            "buses": [],
+            "path": "/server/Dockerfile",
+            "from": "node",
+            "cmd_keywords": [
+                "run",
+                "start",
+                "npm"
+            ],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "keywords": [
+                "npm",
+                "install"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "node:alpine",
+            "langs": []
+        },
+        {
+            "discos": [],
+            "cmd": "npm run start",
+            "buses": [],
+            "path": "/worker/Dockerfile",
+            "from": "node",
+            "cmd_keywords": [
+                "run",
+                "start",
+                "npm"
+            ],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "keywords": [
+                "npm",
+                "install"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "node:alpine",
+            "langs": []
+        },
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/client/Dockerfile",
+            "from": "nginx",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "npm",
+                "run",
+                "build",
+                "install"
+            ],
+            "dbs": [],
+            "gates": [
+                "nginx"
+            ],
+            "from_full": "nginx",
+            "langs": []
+        }
+    ],
+    "name": "umbongo/docker-complex",
+    "discos": [],
+    "avg_size_service": 220.25,
+    "num_monitors": 0,
+    "images": [
+        "nginx",
+        "node"
+    ],
+    "url": "git://github.com/umbongo/docker-complex.git",
+    "files": [
+        {
+            "discos": [],
+            "buses": [],
+            "path": "/server/package.json",
+            "dbs": [
+                "redis"
+            ],
+            "gates": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "buses": [],
+            "path": "/worker/package.json",
+            "dbs": [
+                "redis"
+            ],
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "buses": [],
+            "path": "/client/package.json",
+            "dbs": [],
+            "gates": [],
+            "servers": [],
+            "monitors": []
+        }
+    ],
+    "size": 881,
+    "languages": [
+        "javascript"
+    ],
+    "dbs": [
+        "redis"
+    ],
+    "num_buses": 0,
+    "num_services": 6,
+    "num_dockers": 4
+}

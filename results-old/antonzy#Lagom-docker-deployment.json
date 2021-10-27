@@ -1,0 +1,214 @@
+{
+    "num_langs": 2,
+    "dbs": [
+        "oracle"
+    ],
+    "num_servers": 1,
+    "languages": [
+        "scala",
+        "java"
+    ],
+    "num_discos": 2,
+    "avg_size_service": 29.0,
+    "dockers": [
+        {
+            "gates": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "$SCRIPT -Dplay.crypto.secret=$SECRET -Dhttp.port=$PORT -Dhttp.server=$LISTEN -Dlagom.discovery.consul.agent-hostname=$CONSUL",
+            "servers": [
+                "busybox"
+            ],
+            "keywords": [
+                "tmp",
+                "tgz",
+                "package",
+                "opt",
+                "zxf"
+            ],
+            "from": "leansys/jdk8-busybox",
+            "cmd_keywords": [
+                "dhttp",
+                "secret",
+                "consul",
+                "port",
+                "script"
+            ],
+            "from_full": "leansys/jdk8-busybox",
+            "path": "/lagom-scala-hello-consul/docker/2-service/Dockerfile",
+            "buses": [],
+            "langs": [],
+            "discos": [
+                "consul"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "-consul=consul:8500",
+            "servers": [],
+            "keywords": [
+                "consul",
+                "template",
+                "zip",
+                "tmp",
+                "wget"
+            ],
+            "from": "alpine",
+            "cmd_keywords": [
+                "consul"
+            ],
+            "from_full": "alpine",
+            "path": "/lagom-scala-hello-consul/docker/3-deploy/haproxy/Dockerfile",
+            "buses": [],
+            "langs": [],
+            "discos": [
+                "consul"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "oracle"
+            ],
+            "monitors": [],
+            "cmd": "java -version",
+            "servers": [
+                "busybox"
+            ],
+            "keywords": [
+                "opt",
+                "jdk",
+                "lib",
+                "jre",
+                "java"
+            ],
+            "from": "progrium/busybox",
+            "cmd_keywords": [
+                "java",
+                "version"
+            ],
+            "from_full": "progrium/busybox",
+            "path": "/lagom-scala-hello-consul/docker/1-java8/Dockerfile",
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "discos": []
+        }
+    ],
+    "num_gates": 0,
+    "buses": [],
+    "langs": [
+        "scala",
+        "java"
+    ],
+    "num_buses": 0,
+    "discos": [
+        "registrator",
+        "consul"
+    ],
+    "num_dbs": 1,
+    "num_files": 4,
+    "url": "git://github.com/antonzy/Lagom-docker-deployment.git",
+    "shared_dbs": false,
+    "monitors": [],
+    "num_services": 5,
+    "files": [],
+    "servers": [
+        "busybox"
+    ],
+    "num_monitors": 0,
+    "gates": [],
+    "size": 87,
+    "num_dockers": 3,
+    "images": [
+        "alpine",
+        "leansys/jdk8-busybox",
+        "progrium/busybox"
+    ],
+    "structure": {
+        "path": "/lagom-scala-hello-consul/docker/3-deploy/docker-compose.yml",
+        "services": [
+            {
+                "image": "training/greetingservice",
+                "depends_on": [
+                    "backend-hello"
+                ],
+                "dbs": [],
+                "name": "backend-greeting",
+                "image_full": "training/greetingservice",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "gliderlabs/registrator",
+                "depends_on": [
+                    "service-locator"
+                ],
+                "dbs": [],
+                "name": "service-discovery",
+                "image_full": "gliderlabs/registrator",
+                "discos": [
+                    "registrator"
+                ],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "./haproxy/",
+                "depends_on": [
+                    "service-locator"
+                ],
+                "dbs": [],
+                "name": "service-gateway",
+                "image_full": "./haproxy/",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "progrium/consul",
+                "depends_on": [],
+                "dbs": [],
+                "name": "service-locator",
+                "image_full": "progrium/consul",
+                "discos": [
+                    "consul"
+                ],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "training/helloservice",
+                "depends_on": [],
+                "dbs": [],
+                "name": "backend-hello",
+                "image_full": "training/helloservice",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [],
+            "shared_dbs": false,
+            "num": 0,
+            "services": []
+        },
+        "num_services": 5
+    },
+    "name": "antonzy/Lagom-docker-deployment"
+}

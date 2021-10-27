@@ -1,0 +1,608 @@
+{
+    "structure": {
+        "detected_dbs": {
+            "num": 2,
+            "names": [
+                "zookeeper",
+                "mysql"
+            ],
+            "shared_dbs": true,
+            "services": [
+                "kafka",
+                "mysql"
+            ]
+        },
+        "num_services": 7,
+        "path": "/Docker_Camunda/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [
+                    "kafka",
+                    "eureka"
+                ],
+                "name": "ecpconnectservice",
+                "dbs": [],
+                "image": "./ECPConnectService",
+                "monitors": [],
+                "servers": [],
+                "image_full": "./ECPConnectService",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "kafka",
+                    "eureka"
+                ],
+                "name": "formattingservice",
+                "dbs": [],
+                "image": "./FormattingService",
+                "monitors": [],
+                "servers": [],
+                "image_full": "./FormattingService",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "name": "kafka",
+                "dbs": [
+                    "zookeeper"
+                ],
+                "image": "johnnypark/kafka-zookeeper",
+                "monitors": [],
+                "servers": [],
+                "image_full": "johnnypark/kafka-zookeeper",
+                "buses": [
+                    "kafka"
+                ],
+                "discos": [
+                    "zookeeper"
+                ],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "kafka",
+                    "eureka"
+                ],
+                "name": "meteringservice",
+                "dbs": [],
+                "image": "./MeteringService",
+                "monitors": [],
+                "servers": [],
+                "image_full": "./MeteringService",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [
+                    "kafka",
+                    "mysql",
+                    "eureka",
+                    "ecpconnectservice"
+                ],
+                "name": "timeseriesservice",
+                "dbs": [],
+                "image": "./TimeseriesService",
+                "monitors": [],
+                "servers": [],
+                "image_full": "./TimeseriesService",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "name": "eureka",
+                "dbs": [],
+                "image": "netflix",
+                "monitors": [],
+                "servers": [],
+                "image_full": "netflix:eureka",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            },
+            {
+                "depends_on": [],
+                "name": "mysql",
+                "dbs": [
+                    "mysql"
+                ],
+                "image": "mysql",
+                "monitors": [],
+                "servers": [],
+                "image_full": "mysql:5.7.22",
+                "buses": [],
+                "discos": [],
+                "gates": []
+            }
+        ]
+    },
+    "dbs": [
+        "redis",
+        "zookeeper",
+        "sql",
+        "mysql"
+    ],
+    "dockers": [
+        {
+            "dbs": [],
+            "path": "/Docker_Conductor/conductor-master-prototyp/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "startup",
+                "app"
+            ],
+            "gates": [],
+            "discos": [],
+            "from_full": "java:8-jre-alpine",
+            "langs": [
+                "java"
+            ],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "app",
+                "mkdir",
+                "config",
+                "startup",
+                "chmod"
+            ],
+            "from": "java",
+            "cmd": "/app/startup.sh"
+        },
+        {
+            "dbs": [],
+            "path": "/Docker_Conductor/conductor-master-prototyp/docker/serverAndUI/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "startup",
+                "app"
+            ],
+            "gates": [],
+            "discos": [],
+            "from_full": "java:8-jdk",
+            "langs": [
+                "java"
+            ],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "app",
+                "build",
+                "conductor",
+                "git",
+                "server"
+            ],
+            "from": "java",
+            "cmd": "/app/startup.sh"
+        },
+        {
+            "dbs": [],
+            "path": "/Docker_Conductor/conductor-master-prototyp/docker/server/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "startup",
+                "app"
+            ],
+            "gates": [],
+            "discos": [],
+            "from_full": "java:8-jre-alpine",
+            "langs": [
+                "java"
+            ],
+            "monitors": [],
+            "servers": [],
+            "keywords": [
+                "app",
+                "mkdir",
+                "config",
+                "startup",
+                "chmod"
+            ],
+            "from": "java",
+            "cmd": "/app/startup.sh"
+        },
+        {
+            "dbs": [],
+            "path": "/Docker_Conductor/conductor-master-prototyp/docker/services/MeteringService/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [],
+            "monitors": [],
+            "servers": [],
+            "keywords": [],
+            "from": "openjdk",
+            "cmd": ""
+        },
+        {
+            "dbs": [],
+            "path": "/Docker_Conductor/conductor-master-prototyp/docker/services/TimeseriesService/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [],
+            "monitors": [],
+            "servers": [],
+            "keywords": [],
+            "from": "openjdk",
+            "cmd": ""
+        },
+        {
+            "dbs": [],
+            "path": "/Docker_Conductor/conductor-master-prototyp/docker/services/FormattingService/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [],
+            "monitors": [],
+            "servers": [],
+            "keywords": [],
+            "from": "openjdk",
+            "cmd": ""
+        },
+        {
+            "dbs": [],
+            "path": "/Docker_Conductor/conductor-master-prototyp/docker/services/ECPConnectService/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [],
+            "monitors": [],
+            "servers": [],
+            "keywords": [],
+            "from": "openjdk",
+            "cmd": ""
+        },
+        {
+            "dbs": [],
+            "path": "/Docker_Conductor/conductor-master-prototyp/docker/ui/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "startup",
+                "app"
+            ],
+            "gates": [],
+            "discos": [],
+            "from_full": "node:alpine",
+            "langs": [
+                "gcc"
+            ],
+            "monitors": [],
+            "servers": [
+                "node"
+            ],
+            "keywords": [
+                "app",
+                "turbo",
+                "npm",
+                "build",
+                "apk"
+            ],
+            "from": "node",
+            "cmd": "/app/startup.sh"
+        },
+        {
+            "dbs": [],
+            "path": "/Docker_Conductor/conductor-master-prototyp/docker/eureka/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "jar",
+                "srv",
+                "server",
+                "java"
+            ],
+            "gates": [],
+            "discos": [],
+            "from_full": "java:8",
+            "langs": [
+                "java"
+            ],
+            "monitors": [],
+            "servers": [],
+            "keywords": [],
+            "from": "java",
+            "cmd": "java -jar /srv/server.jar"
+        },
+        {
+            "dbs": [],
+            "path": "/Docker_Camunda/MeteringService/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [],
+            "monitors": [],
+            "servers": [],
+            "keywords": [],
+            "from": "openjdk",
+            "cmd": ""
+        },
+        {
+            "dbs": [],
+            "path": "/Docker_Camunda/TimeseriesService/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [],
+            "monitors": [],
+            "servers": [],
+            "keywords": [],
+            "from": "openjdk",
+            "cmd": ""
+        },
+        {
+            "dbs": [],
+            "path": "/Docker_Camunda/FormattingService/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [],
+            "monitors": [],
+            "servers": [],
+            "keywords": [],
+            "from": "openjdk",
+            "cmd": ""
+        },
+        {
+            "dbs": [],
+            "path": "/Docker_Camunda/ECPConnectService/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "langs": [],
+            "monitors": [],
+            "servers": [],
+            "keywords": [],
+            "from": "openjdk",
+            "cmd": ""
+        },
+        {
+            "dbs": [],
+            "path": "/Docker_Camunda/eureka/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "jar",
+                "srv",
+                "server",
+                "java"
+            ],
+            "gates": [],
+            "discos": [],
+            "from_full": "java:8",
+            "langs": [
+                "java"
+            ],
+            "monitors": [],
+            "servers": [],
+            "keywords": [],
+            "from": "java",
+            "cmd": "java -jar /srv/server.jar"
+        }
+    ],
+    "files": [
+        {
+            "dbs": [],
+            "path": "/Docker_Conductor/conductor-master-prototyp/build.gradle",
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "path": "/Docker_Conductor/conductor-master-prototyp/versionsOfDependencies.gradle",
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [
+                "redis",
+                "mysql"
+            ],
+            "path": "/Docker_Conductor/conductor-master-prototyp/settings.gradle",
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "path": "/Docker_Conductor/conductor-master-prototyp/core/build.gradle",
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "dbs": [
+                "redis",
+                "mysql"
+            ],
+            "path": "/Docker_Conductor/conductor-master-prototyp/server/build.gradle",
+            "monitors": [],
+            "servers": [
+                "jetty",
+                "tomcat"
+            ],
+            "buses": [],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "dbs": [],
+            "path": "/Docker_Conductor/conductor-master-prototyp/contribs/build.gradle",
+            "monitors": [],
+            "servers": [
+                "jetty"
+            ],
+            "buses": [
+                "nats"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "path": "/Docker_Conductor/conductor-master-prototyp/jersey/build.gradle",
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [
+                "redis"
+            ],
+            "path": "/Docker_Conductor/conductor-master-prototyp/test-harness/build.gradle",
+            "monitors": [],
+            "servers": [
+                "jetty"
+            ],
+            "buses": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "path": "/Docker_Conductor/conductor-master-prototyp/common/build.gradle",
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [
+                "mysql",
+                "sql",
+                "mariadb"
+            ],
+            "path": "/Docker_Conductor/conductor-master-prototyp/mysql-persistence/build.gradle",
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "path": "/Docker_Conductor/conductor-master-prototyp/client/build.gradle",
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "dbs": [
+                "redis"
+            ],
+            "path": "/Docker_Conductor/conductor-master-prototyp/redis-persistence/build.gradle",
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "path": "/Docker_Conductor/conductor-master-prototyp/es5-persistence/build.gradle",
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "path": "/Docker_Conductor/conductor-master-prototyp/ui/package.json",
+            "monitors": [],
+            "servers": [
+                "express"
+            ],
+            "buses": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "languages": [
+        "java",
+        "javascript"
+    ],
+    "num_dbs": 4,
+    "num_monitors": 0,
+    "images": [
+        "node",
+        "java",
+        "openjdk"
+    ],
+    "name": "SrnKn/MicroserviceKompositionDocker",
+    "shared_dbs": true,
+    "num_servers": 4,
+    "num_langs": 3,
+    "buses": [
+        "nats",
+        "kafka"
+    ],
+    "num_services": 7,
+    "num_dockers": 14,
+    "size": 576745,
+    "avg_size_service": 41196.07142857143,
+    "gates": [],
+    "discos": [
+        "eureka",
+        "zookeeper"
+    ],
+    "langs": [
+        "javascript",
+        "gcc",
+        "java"
+    ],
+    "num_files": 29,
+    "url": "git://github.com/SrnKn/MicroserviceKompositionDocker.git",
+    "monitors": [],
+    "servers": [
+        "node",
+        "jetty",
+        "express",
+        "tomcat"
+    ],
+    "num_buses": 2,
+    "num_discos": 2,
+    "num_gates": 0
+}

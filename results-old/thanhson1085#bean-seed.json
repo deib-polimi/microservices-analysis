@@ -1,0 +1,338 @@
+{
+    "dbs": [
+        "redis",
+        "mongo"
+    ],
+    "num_dbs": 2,
+    "shared_dbs": false,
+    "name": "thanhson1085/bean-seed",
+    "num_buses": 0,
+    "num_monitors": 3,
+    "monitors": [
+        "grafana",
+        "influxdb",
+        "fluentd"
+    ],
+    "langs": [
+        "ruby",
+        "javascript",
+        "html"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "size": 251,
+    "languages": [
+        "javascript",
+        "html"
+    ],
+    "num_langs": 3,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "image": "mongo",
+                "name": "db",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "mongo:3.2"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "elasticsearch",
+                "name": "elasticsearch",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "elasticsearch"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "thanhson1085/api-seed",
+                "name": "apis",
+                "depends_on": [
+                    "db",
+                    "redis",
+                    "fluentd"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "thanhson1085/api-seed"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "grafana/grafana",
+                "name": "grafana",
+                "depends_on": [
+                    "influxdb"
+                ],
+                "monitors": [
+                    "grafana"
+                ],
+                "buses": [],
+                "gates": [],
+                "image_full": "grafana/grafana"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "redis"
+                ],
+                "image": "redis",
+                "name": "redis",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "redis:alpine"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "kapacitor",
+                "name": "kapacitor",
+                "depends_on": [
+                    "influxdb"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "kapacitor"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "thanhson1085/fluentd-es",
+                "name": "fluentd",
+                "depends_on": [],
+                "monitors": [
+                    "fluentd"
+                ],
+                "buses": [],
+                "gates": [],
+                "image_full": "thanhson1085/fluentd-es"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "kibana",
+                "name": "kibana",
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "kibana"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "influxdb",
+                "name": "influxdb",
+                "depends_on": [],
+                "monitors": [
+                    "influxdb"
+                ],
+                "buses": [],
+                "gates": [],
+                "image_full": "influxdb"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "nginx",
+                "name": "gateway",
+                "depends_on": [
+                    "apis"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "image_full": "nginx"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "telegraf",
+                "name": "telegraf",
+                "depends_on": [
+                    "influxdb"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "telegraf"
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "image": "thanhson1085/site-seed",
+                "name": "site",
+                "depends_on": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "thanhson1085/site-seed"
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "db",
+                "redis"
+            ],
+            "names": [
+                "redis",
+                "mongo"
+            ],
+            "shared_dbs": false,
+            "num": 2
+        },
+        "num_services": 12
+    },
+    "servers": [
+        "mongoose",
+        "node",
+        "express"
+    ],
+    "num_servers": 3,
+    "num_files": 6,
+    "images": [
+        "ruby",
+        "mhart/alpine-node",
+        "nginx"
+    ],
+    "buses": [],
+    "avg_size_service": 83.66666666666667,
+    "num_services": 12,
+    "files": [
+        {
+            "path": "/api-seed/package.json",
+            "servers": [
+                "mongoose",
+                "node",
+                "express"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "dbs": [
+                "redis",
+                "mongodb"
+            ],
+            "discos": []
+        },
+        {
+            "path": "/site-seed/package.json",
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "dbs": [],
+            "discos": []
+        }
+    ],
+    "num_dockers": 3,
+    "dockers": [
+        {
+            "cmd": "",
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "from_full": "mhart/alpine-node:4.4",
+            "path": "/api-seed/Dockerfile",
+            "from": "mhart/alpine-node",
+            "monitors": [],
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "build",
+                "json",
+                "config",
+                "install",
+                "local"
+            ]
+        },
+        {
+            "cmd": "nginx -g daemon off;",
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "nginx:1.11-alpine",
+            "path": "/site-seed/Dockerfile",
+            "from": "nginx",
+            "monitors": [],
+            "langs": [],
+            "gates": [
+                "nginx"
+            ],
+            "cmd_keywords": [
+                "off",
+                "nginx",
+                "daemon"
+            ],
+            "discos": [],
+            "keywords": []
+        },
+        {
+            "cmd": "",
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "ruby:2.2.0",
+            "path": "/monitor/fluentd/Dockerfile",
+            "from": "ruby",
+            "monitors": [
+                "fluentd"
+            ],
+            "langs": [
+                "ruby"
+            ],
+            "gates": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "keywords": [
+                "install",
+                "fluent",
+                "get",
+                "apt",
+                "gem"
+            ]
+        }
+    ],
+    "num_discos": 0,
+    "discos": [],
+    "num_gates": 1,
+    "url": "git://github.com/thanhson1085/bean-seed.git"
+}

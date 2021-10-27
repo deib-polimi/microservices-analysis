@@ -1,0 +1,224 @@
+{
+    "buses": [
+        "kafka"
+    ],
+    "num_langs": 1,
+    "dbs": [
+        "zookeeper",
+        "mysql"
+    ],
+    "languages": [
+        "java"
+    ],
+    "files": [
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "monitors": [],
+            "path": "/persistenceservice/pom.xml",
+            "dbs": [
+                "mariadb",
+                "mysql"
+            ],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "monitors": [],
+            "path": "/signupservice/pom.xml",
+            "dbs": [],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "monitors": [],
+            "path": "/distributed-system-tests/pom.xml",
+            "dbs": [
+                "mariadb"
+            ],
+            "discos": [],
+            "gates": []
+        }
+    ],
+    "size": 226,
+    "name": "e1-one/distributed-signup",
+    "num_servers": 1,
+    "structure": {
+        "num_services": 5,
+        "services": [
+            {
+                "image": "confluentinc/cp-zookeeper",
+                "servers": [],
+                "name": "zookeeper",
+                "monitors": [],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "image_full": "confluentinc/cp-zookeeper:latest",
+                "buses": [],
+                "discos": [
+                    "zookeeper"
+                ],
+                "depends_on": [],
+                "gates": []
+            },
+            {
+                "image": "./signupservice",
+                "servers": [],
+                "name": "signup-service",
+                "monitors": [],
+                "dbs": [],
+                "image_full": "./signupservice",
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "kafka"
+                ],
+                "gates": []
+            },
+            {
+                "image": "./persistenceservice",
+                "servers": [],
+                "name": "persistence-service",
+                "monitors": [],
+                "dbs": [],
+                "image_full": "./persistenceservice",
+                "buses": [],
+                "discos": [],
+                "depends_on": [
+                    "kafka",
+                    "mariadb-db"
+                ],
+                "gates": []
+            },
+            {
+                "image": "confluentinc/cp-kafka",
+                "servers": [],
+                "name": "kafka",
+                "monitors": [],
+                "dbs": [],
+                "image_full": "confluentinc/cp-kafka:latest",
+                "buses": [
+                    "kafka"
+                ],
+                "discos": [],
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "gates": []
+            },
+            {
+                "image": "mariadb/server",
+                "servers": [],
+                "name": "mariadb-db",
+                "monitors": [],
+                "dbs": [
+                    "mariadb"
+                ],
+                "image_full": "mariadb/server:10.3",
+                "buses": [],
+                "discos": [],
+                "depends_on": [],
+                "gates": []
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "names": [
+                "zookeeper",
+                "mariadb"
+            ],
+            "num": 2,
+            "services": [
+                "zookeeper",
+                "mariadb-db"
+            ],
+            "shared_dbs": false
+        }
+    },
+    "shared_dbs": false,
+    "num_services": 5,
+    "num_dbs": 2,
+    "discos": [
+        "zookeeper"
+    ],
+    "gates": [],
+    "servers": [
+        "spring"
+    ],
+    "images": [
+        "openjdk"
+    ],
+    "num_gates": 0,
+    "num_buses": 1,
+    "dockers": [
+        {
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "keywords": [
+                "mvnw",
+                "clean",
+                "install",
+                "dskiptests",
+                "bin"
+            ],
+            "from_full": "openjdk:8-jdk-alpine",
+            "monitors": [],
+            "langs": [],
+            "from": "openjdk",
+            "discos": [],
+            "gates": [],
+            "cmd": "",
+            "cmd_keywords": [],
+            "path": "/persistenceservice/Dockerfile"
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "keywords": [
+                "mvnw",
+                "clean",
+                "install",
+                "dskiptests",
+                "bin"
+            ],
+            "from_full": "openjdk:8-jdk-alpine",
+            "monitors": [],
+            "langs": [],
+            "from": "openjdk",
+            "discos": [],
+            "gates": [],
+            "cmd": "",
+            "cmd_keywords": [],
+            "path": "/signupservice/Dockerfile"
+        }
+    ],
+    "num_discos": 1,
+    "num_dockers": 2,
+    "monitors": [],
+    "url": "git://github.com/e1-one/distributed-signup.git",
+    "langs": [
+        "java"
+    ],
+    "num_files": 6,
+    "num_monitors": 0,
+    "avg_size_service": 113.0
+}

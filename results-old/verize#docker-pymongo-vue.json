@@ -1,0 +1,187 @@
+{
+    "languages": [
+        "python",
+        "javascript",
+        "vue",
+        "dockerfile"
+    ],
+    "num_servers": 2,
+    "shared_dbs": true,
+    "name": "verize/docker-pymongo-vue",
+    "servers": [
+        "flask",
+        "node"
+    ],
+    "num_monitors": 0,
+    "num_langs": 4,
+    "images": [
+        "nginx",
+        "python"
+    ],
+    "langs": [
+        "javascript",
+        "dockerfile",
+        "vue",
+        "python"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [
+                "nginx"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "nginx",
+            "keywords": [
+                "www",
+                "data",
+                "adduser",
+                "addgroup"
+            ],
+            "path": "/nginx/Dockerfile",
+            "gates": [
+                "nginx"
+            ],
+            "from": "nginx",
+            "from_full": "nginx:1.14.0-alpine",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "app",
+                "entrypoint"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "cmd": "sh /app-entrypoint.sh",
+            "keywords": [
+                "www",
+                "dev",
+                "data",
+                "app",
+                "cache"
+            ],
+            "path": "/python/Dockerfile",
+            "gates": [],
+            "from": "python",
+            "from_full": "python:3.6.5-alpine3.7",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_buses": 0,
+    "discos": [],
+    "monitors": [],
+    "num_files": 5,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "mongo:latest",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "mongodb",
+                "image": "mongo",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "./nginx",
+                "depends_on": [
+                    "python",
+                    "mongodb"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "name": "nginx",
+                "image": "./nginx",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "./python",
+                "depends_on": [
+                    "mongodb"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "python",
+                "image": "./python",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 3,
+        "detected_dbs": {
+            "services": [
+                "mongodb"
+            ],
+            "names": [
+                "mongo"
+            ],
+            "num": 1,
+            "shared_dbs": true
+        }
+    },
+    "dbs": [
+        "mongo"
+    ],
+    "num_dbs": 1,
+    "avg_size_service": 138.5,
+    "num_services": 3,
+    "buses": [],
+    "files": [
+        {
+            "dbs": [],
+            "path": "/python/requirements.txt",
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "mongodb",
+                "mongo"
+            ],
+            "path": "/python/app/package.json",
+            "gates": [],
+            "servers": [
+                "flask",
+                "node"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "url": "git://github.com/verize/docker-pymongo-vue.git",
+    "num_dockers": 2,
+    "size": 277,
+    "num_discos": 0,
+    "num_gates": 1
+}

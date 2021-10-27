@@ -1,0 +1,506 @@
+{
+    "languages": [
+        "java"
+    ],
+    "num_servers": 1,
+    "shared_dbs": true,
+    "name": "meghnadsaha/Spring-Store-Microservices",
+    "servers": [
+        "spring"
+    ],
+    "num_monitors": 0,
+    "num_langs": 1,
+    "images": [
+        "openjdk"
+    ],
+    "langs": [
+        "java"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "siriusxi",
+                "jar",
+                "layertools",
+                "preview",
+                "bin"
+            ],
+            "path": "/store-services/review-service/Dockerfile",
+            "gates": [],
+            "from": "openjdk",
+            "from_full": "openjdk:14.0.1-jdk-slim-buster",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "siriusxi",
+                "jar",
+                "layertools",
+                "preview",
+                "bin"
+            ],
+            "path": "/store-services/product-service/Dockerfile",
+            "gates": [],
+            "from": "openjdk",
+            "from_full": "openjdk:14.0.1-jdk-slim-buster",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "siriusxi",
+                "jar",
+                "layertools",
+                "preview",
+                "bin"
+            ],
+            "path": "/store-services/store-service/Dockerfile",
+            "gates": [],
+            "from": "openjdk",
+            "from_full": "openjdk:14.0.1-jdk-slim-buster",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "siriusxi",
+                "jar",
+                "layertools",
+                "preview",
+                "bin"
+            ],
+            "path": "/store-services/recommendation-service/Dockerfile",
+            "gates": [],
+            "from": "openjdk",
+            "from_full": "openjdk:14.0.1-jdk-slim-buster",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "snapshot",
+                "dependencies",
+                "siriusxi",
+                "jar",
+                "layertools"
+            ],
+            "path": "/store-cloud-infra/eureka-server/Dockerfile",
+            "gates": [],
+            "from": "openjdk",
+            "from_full": "openjdk:14.0.1-jdk-slim-buster",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "snapshot",
+                "dependencies",
+                "siriusxi",
+                "jar",
+                "layertools"
+            ],
+            "path": "/store-cloud-infra/edge-server/Dockerfile",
+            "gates": [],
+            "from": "openjdk",
+            "from_full": "openjdk:14.0.1-jdk-slim-buster",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "",
+            "keywords": [
+                "snapshot",
+                "dependencies",
+                "siriusxi",
+                "jar",
+                "layertools"
+            ],
+            "path": "/store-cloud-infra/authorization-server/Dockerfile",
+            "gates": [],
+            "from": "openjdk",
+            "from_full": "openjdk:14.0.1-jdk-slim-buster",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [
+        "loadbalancer"
+    ],
+    "num_buses": 1,
+    "discos": [
+        "eureka"
+    ],
+    "monitors": [],
+    "num_files": 21,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "store-services/recommendation-service",
+                "depends_on": [
+                    "mongodb",
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "recommendation",
+                "image": "store-services/recommendation-service",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "rabbitmq:3.8.3-management",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "name": "rabbitmq",
+                "image": "rabbitmq",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "store-services/review-service",
+                "depends_on": [
+                    "mysql",
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "review",
+                "image": "store-services/review-service",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mongo:4.2.6-bionic",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "mongodb",
+                "image": "mongo",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "store-services/product-service",
+                "depends_on": [
+                    "mongodb",
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "product",
+                "image": "store-services/product-service",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "store-cloud-infra/eureka-server",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "eureka",
+                "image": "store-cloud-infra/eureka-server",
+                "servers": [],
+                "discos": [
+                    "eureka"
+                ],
+                "monitors": []
+            },
+            {
+                "image_full": "mysql:8.0.20",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "mysql",
+                "image": "mysql",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "store-cloud-infra/edge-server",
+                "depends_on": [
+                    "eureka"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "gateway",
+                "image": "store-cloud-infra/edge-server",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "store-cloud-infra/authorization-server",
+                "depends_on": [
+                    "eureka"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "auth-server",
+                "image": "store-cloud-infra/authorization-server",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "store-services/store-service",
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "store",
+                "image": "store-services/store-service",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 10,
+        "detected_dbs": {
+            "services": [
+                "mongodb",
+                "mysql"
+            ],
+            "names": [
+                "mysql",
+                "mongo"
+            ],
+            "num": 2,
+            "shared_dbs": true
+        }
+    },
+    "dbs": [
+        "mysql",
+        "mongo"
+    ],
+    "num_dbs": 2,
+    "avg_size_service": 139.71428571428572,
+    "num_services": 10,
+    "buses": [
+        "rabbitmq"
+    ],
+    "files": [
+        {
+            "path": "/pom.xml"
+        },
+        {
+            "dbs": [],
+            "path": "/store-common/store-api/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/store-common/store-utils/pom.xml",
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/store-services/review-service/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "mongodb",
+                "mongo"
+            ],
+            "path": "/store-services/product-service/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/store-services/store-service/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "mongodb",
+                "mongo"
+            ],
+            "path": "/store-services/recommendation-service/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "path": "/store-base/store-build-chassis/pom.xml"
+        },
+        {
+            "dbs": [],
+            "path": "/store-base/store-cloud-chassis/pom.xml",
+            "gates": [
+                "loadbalancer"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "path": "/store-base/store-service-chassis/pom.xml"
+        },
+        {
+            "dbs": [],
+            "path": "/store-cloud-infra/eureka-server/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/store-cloud-infra/edge-server/pom.xml",
+            "gates": [
+                "gateway"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/store-cloud-infra/authorization-server/pom.xml",
+            "gates": [
+                "gateway"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [
+                "eureka"
+            ],
+            "monitors": []
+        }
+    ],
+    "url": "git://github.com/meghnadsaha/Spring-Store-Microservices.git",
+    "num_dockers": 7,
+    "size": 978,
+    "num_discos": 1,
+    "num_gates": 1
+}

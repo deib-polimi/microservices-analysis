@@ -1,0 +1,210 @@
+{
+    "gates": [],
+    "num_buses": 0,
+    "url": "git://github.com/PestaKit/microservice-status.git",
+    "images": [
+        "mysql",
+        "openjdk",
+        "httpd",
+        "phpmyadmin/phpmyadmin"
+    ],
+    "avg_size_service": 13053.0,
+    "num_langs": 2,
+    "num_monitors": 0,
+    "num_dockers": 4,
+    "num_discos": 0,
+    "num_servers": 3,
+    "buses": [],
+    "discos": [],
+    "dockers": [
+        {
+            "path": "/docker/mysql/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "from": "mysql",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "mysql:5.7.15",
+            "monitors": [],
+            "keywords": [],
+            "buses": []
+        },
+        {
+            "path": "/docker/angular/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "httpd",
+            "langs": [],
+            "servers": [
+                "httpd"
+            ],
+            "cmd": "",
+            "from_full": "httpd:2.2",
+            "monitors": [],
+            "keywords": [],
+            "buses": []
+        },
+        {
+            "path": "/docker/microservice-status/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "openjdk",
+            "langs": [
+                "bash"
+            ],
+            "servers": [],
+            "cmd": "",
+            "from_full": "openjdk:8-jdk-alpine",
+            "monitors": [],
+            "keywords": [
+                "cache",
+                "apk",
+                "bash",
+                "add"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/docker/phpmyadmin/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "phpmyadmin/phpmyadmin",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "phpmyadmin/phpmyadmin:latest",
+            "monitors": [],
+            "keywords": [],
+            "buses": []
+        }
+    ],
+    "size": 52212,
+    "name": "PestaKit/microservice-status",
+    "num_services": 4,
+    "dbs": [
+        "mysql"
+    ],
+    "shared_dbs": false,
+    "langs": [
+        "css",
+        "bash"
+    ],
+    "languages": [
+        "css"
+    ],
+    "servers": [
+        "tomcat",
+        "spring",
+        "httpd"
+    ],
+    "num_files": 7,
+    "monitors": [],
+    "num_dbs": 1,
+    "num_gates": 0,
+    "files": [
+        {
+            "path": "/swagger/spring-server/pom.xml",
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/swagger/services-specs/pom.xml",
+            "servers": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "dbs": [],
+            "buses": []
+        }
+    ],
+    "structure": {
+        "path": "/docker/docker-compose.yml",
+        "num_services": 4,
+        "detected_dbs": {
+            "services": [
+                "database"
+            ],
+            "num": 1,
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "database:db"
+                ],
+                "servers": [],
+                "image_full": "phpmyadmin/",
+                "name": "phpmyadmin",
+                "gates": [],
+                "image": "phpmyadmin/",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "mysql/",
+                "name": "database",
+                "gates": [],
+                "image": "mysql/",
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "angular/",
+                "name": "angular",
+                "gates": [],
+                "image": "angular/",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "database"
+                ],
+                "servers": [],
+                "image_full": "microservice-status",
+                "name": "springboot",
+                "gates": [],
+                "image": "microservice-status",
+                "dbs": [],
+                "buses": []
+            }
+        ]
+    }
+}

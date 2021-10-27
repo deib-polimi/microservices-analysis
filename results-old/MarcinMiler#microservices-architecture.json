@@ -1,0 +1,171 @@
+{
+    "size": 100,
+    "num_servers": 2,
+    "dbs": [],
+    "files": [
+        {
+            "path": "/gateway/package.json",
+            "gates": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/auth/package.json",
+            "gates": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "structure": {
+        "num_services": 3,
+        "services": [
+            {
+                "name": "rabbit",
+                "image": "rabbitmq",
+                "depends_on": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "servers": [],
+                "image_full": "rabbitmq:management",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "auth",
+                "image": "./auth",
+                "depends_on": [
+                    "rabbit"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "./auth",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "gateway",
+                "image": "./gateway",
+                "depends_on": [
+                    "rabbit"
+                ],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "servers": [],
+                "image_full": "./gateway",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "shared_dbs": false,
+            "services": []
+        }
+    },
+    "buses": [
+        "rabbitmq"
+    ],
+    "images": [
+        "mhart/alpine-node"
+    ],
+    "num_discos": 0,
+    "url": "git://github.com/MarcinMiler/microservices-architecture.git",
+    "num_services": 3,
+    "langs": [
+        "typescript"
+    ],
+    "discos": [],
+    "num_gates": 1,
+    "shared_dbs": false,
+    "num_files": 5,
+    "num_monitors": 0,
+    "gates": [
+        "gateway"
+    ],
+    "servers": [
+        "node",
+        "express"
+    ],
+    "num_langs": 1,
+    "languages": [
+        "typescript"
+    ],
+    "monitors": [],
+    "name": "MarcinMiler/microservices-architecture",
+    "num_buses": 1,
+    "avg_size_service": 50.0,
+    "dockers": [
+        {
+            "path": "/gateway/Dockerfile",
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "langs": [],
+            "cmd": "yarn start:prod",
+            "keywords": [
+                "yarn",
+                "compile"
+            ],
+            "from": "mhart/alpine-node",
+            "buses": [],
+            "from_full": "mhart/alpine-node:latest",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "prod",
+                "yarn",
+                "start"
+            ]
+        },
+        {
+            "path": "/auth/Dockerfile",
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "langs": [],
+            "cmd": "yarn start:prod",
+            "keywords": [
+                "yarn",
+                "compile"
+            ],
+            "from": "mhart/alpine-node",
+            "buses": [],
+            "from_full": "mhart/alpine-node:latest",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "prod",
+                "yarn",
+                "start"
+            ]
+        }
+    ],
+    "num_dbs": 0,
+    "num_dockers": 2
+}

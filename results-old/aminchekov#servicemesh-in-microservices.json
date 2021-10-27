@@ -1,0 +1,217 @@
+{
+    "files": [
+        {
+            "monitors": [
+                "prometheus"
+            ],
+            "discos": [
+                "linkerd"
+            ],
+            "buses": [],
+            "gates": [
+                "gateway",
+                "linkerd"
+            ],
+            "path": "/api-gateway/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "monitors": [
+                "prometheus"
+            ],
+            "discos": [
+                "linkerd"
+            ],
+            "buses": [],
+            "gates": [
+                "linkerd"
+            ],
+            "path": "/user-service/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "path": "/user-service/settings.gradle",
+            "dbs": [],
+            "servers": []
+        }
+    ],
+    "num_services": 8,
+    "discos": [
+        "registrator",
+        "linkerd",
+        "consul"
+    ],
+    "dbs": [],
+    "avg_size_service": 1224.0,
+    "name": "aminchekov/servicemesh-in-microservices",
+    "num_buses": 0,
+    "num_langs": 2,
+    "monitors": [
+        "prometheus"
+    ],
+    "num_files": 4,
+    "langs": [
+        "kotlin",
+        "shell"
+    ],
+    "num_gates": 1,
+    "dockers": [],
+    "structure": {
+        "path": "/docker/docker-compose.yml",
+        "detected_dbs": {
+            "names": [],
+            "services": [],
+            "num": 0,
+            "shared_dbs": false
+        },
+        "num_services": 8,
+        "services": [
+            {
+                "monitors": [],
+                "image": "openzipkin/zipkin",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "zipkin",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "openzipkin/zipkin"
+            },
+            {
+                "monitors": [],
+                "image": "gliderlabs/registrator",
+                "discos": [
+                    "registrator"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "consul-registrator",
+                "depends_on": [
+                    "consul-server"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "gliderlabs/registrator"
+            },
+            {
+                "monitors": [],
+                "image": "buoyantio/linkerd",
+                "discos": [
+                    "linkerd"
+                ],
+                "buses": [],
+                "gates": [
+                    "linkerd"
+                ],
+                "name": "linkerd",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "buoyantio/linkerd:1.6.0"
+            },
+            {
+                "monitors": [],
+                "image": "$dockerRepository/user-service",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "user-service",
+                "depends_on": [
+                    "consul-registrator"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "$dockerRepository/user-service"
+            },
+            {
+                "monitors": [],
+                "image": "gliderlabs/consul-server",
+                "discos": [
+                    "consul"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "consul-server",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "gliderlabs/consul-server"
+            },
+            {
+                "monitors": [],
+                "image": "$dockerRepository/order-service",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "order-service",
+                "depends_on": [
+                    "consul-registrator"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "$dockerRepository/order-service"
+            },
+            {
+                "monitors": [],
+                "image": "$dockerRepository/api-gateway",
+                "discos": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "name": "api-gateway",
+                "depends_on": [
+                    "consul-registrator"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "$dockerRepository/api-gateway"
+            },
+            {
+                "monitors": [],
+                "image": "$dockerRepository/order-service",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "order-service-v2",
+                "depends_on": [
+                    "consul-registrator"
+                ],
+                "dbs": [],
+                "servers": [],
+                "image_full": "$dockerRepository/order-service"
+            }
+        ]
+    },
+    "size": 1224,
+    "num_discos": 3,
+    "languages": [
+        "shell",
+        "kotlin"
+    ],
+    "url": "git://github.com/aminchekov/servicemesh-in-microservices.git",
+    "buses": [],
+    "gates": [
+        "linkerd"
+    ],
+    "shared_dbs": false,
+    "servers": [
+        "spring"
+    ],
+    "images": [],
+    "num_servers": 1,
+    "num_dockers": 0,
+    "num_monitors": 1,
+    "num_dbs": 0
+}

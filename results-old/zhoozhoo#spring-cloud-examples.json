@@ -1,0 +1,384 @@
+{
+    "gates": [
+        "loadbalancer"
+    ],
+    "images": [
+        "adoptopenjdk",
+        "jboss/keycloak"
+    ],
+    "num_dbs": 0,
+    "structure": {
+        "num_services": 10,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "zhoozhoo/spring-cloud-auth-server",
+                "gates": [],
+                "image": "zhoozhoo/spring-cloud-auth-server",
+                "depends_on": [],
+                "dbs": [],
+                "name": "auth-server",
+                "buses": [],
+                "servers": [
+                    "spring"
+                ],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "zhoozhoo/spring-cloud-discovery-server",
+                "gates": [],
+                "image": "zhoozhoo/spring-cloud-discovery-server",
+                "depends_on": [
+                    "config-server"
+                ],
+                "dbs": [],
+                "name": "discovery-server",
+                "buses": [],
+                "servers": [
+                    "spring"
+                ],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "zhoozhoo/spring-cloud-guest-service",
+                "gates": [],
+                "image": "zhoozhoo/spring-cloud-guest-service",
+                "depends_on": [
+                    "config-server",
+                    "discovery-server",
+                    "auth-server"
+                ],
+                "dbs": [],
+                "name": "guest-service",
+                "buses": [],
+                "servers": [
+                    "spring"
+                ],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "openzipkin/zipkin",
+                "gates": [],
+                "image": "openzipkin/zipkin",
+                "depends_on": [],
+                "dbs": [],
+                "name": "tracing-server",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "zhoozhoo/spring-cloud-api-gateway",
+                "gates": [
+                    "gateway"
+                ],
+                "image": "zhoozhoo/spring-cloud-api-gateway",
+                "depends_on": [
+                    "config-server",
+                    "discovery-server",
+                    "auth-server"
+                ],
+                "dbs": [],
+                "name": "api-gateway",
+                "buses": [],
+                "servers": [
+                    "spring"
+                ],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "zhoozhoo/spring-cloud-config-server",
+                "gates": [],
+                "image": "zhoozhoo/spring-cloud-config-server",
+                "depends_on": [],
+                "dbs": [],
+                "name": "config-server",
+                "buses": [],
+                "servers": [
+                    "spring"
+                ],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "zhoozhoo/spring-cloud-reservation-service",
+                "gates": [],
+                "image": "zhoozhoo/spring-cloud-reservation-service",
+                "depends_on": [
+                    "config-server",
+                    "discovery-server",
+                    "auth-server"
+                ],
+                "dbs": [],
+                "name": "reservation-service",
+                "buses": [],
+                "servers": [
+                    "spring"
+                ],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "zhoozhoo/spring-cloud-room-service",
+                "gates": [],
+                "image": "zhoozhoo/spring-cloud-room-service",
+                "depends_on": [
+                    "config-server",
+                    "discovery-server",
+                    "auth-server"
+                ],
+                "dbs": [],
+                "name": "room-service",
+                "buses": [],
+                "servers": [
+                    "spring"
+                ],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "zhoozhoo/spring-cloud-admin-server",
+                "gates": [],
+                "image": "zhoozhoo/spring-cloud-admin-server",
+                "depends_on": [
+                    "config-server",
+                    "discovery-server"
+                ],
+                "dbs": [],
+                "name": "admin-server",
+                "buses": [],
+                "servers": [
+                    "spring"
+                ],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "zhoozhoo/spring-cloud-room-reservation-service",
+                "gates": [],
+                "image": "zhoozhoo/spring-cloud-room-reservation-service",
+                "depends_on": [
+                    "config-server",
+                    "discovery-server",
+                    "auth-server",
+                    "guest-service",
+                    "reservation-service",
+                    "room-service"
+                ],
+                "dbs": [],
+                "name": "room-reservation-service",
+                "buses": [],
+                "servers": [
+                    "spring"
+                ],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "shared_dbs": false,
+            "names": []
+        }
+    },
+    "num_files": 12,
+    "num_gates": 1,
+    "discos": [
+        "eureka"
+    ],
+    "num_dockers": 2,
+    "shared_dbs": false,
+    "languages": [
+        "java"
+    ],
+    "name": "zhoozhoo/spring-cloud-examples",
+    "num_langs": 1,
+    "avg_size_service": 421.5,
+    "monitors": [],
+    "num_servers": 2,
+    "num_services": 10,
+    "dbs": [],
+    "langs": [
+        "java"
+    ],
+    "dockers": [
+        {
+            "gates": [],
+            "path": "/docker/Dockerfile",
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "adoptopenjdk",
+            "discos": [],
+            "from_full": "adoptopenjdk:14-jre-hotspot",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": [
+                "dockerize",
+                "tar",
+                "version",
+                "linux",
+                "jar"
+            ]
+        },
+        {
+            "gates": [],
+            "path": "/docker/keycloak/Dockerfile",
+            "langs": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "jboss"
+            ],
+            "from": "jboss/keycloak",
+            "discos": [],
+            "from_full": "jboss/keycloak",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": []
+        }
+    ],
+    "buses": [],
+    "servers": [
+        "spring",
+        "jboss"
+    ],
+    "size": 843,
+    "files": [
+        {
+            "gates": [
+                "gateway"
+            ],
+            "path": "/pom.xml",
+            "discos": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "path": "/spring-cloud-config-server/pom.xml",
+            "discos": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "path": "/spring-cloud-room-service/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [
+                "gateway",
+                "loadbalancer"
+            ],
+            "path": "/spring-cloud-api-gateway/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "path": "/spring-cloud-discovery-server/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "path": "/spring-cloud-reservation-service/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "path": "/spring-cloud-admin-server/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "path": "/spring-cloud-guest-service/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [
+                "loadbalancer"
+            ],
+            "path": "/spring-cloud-room-reservation-service/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        }
+    ],
+    "num_buses": 0,
+    "num_monitors": 0,
+    "url": "git://github.com/zhoozhoo/spring-cloud-examples.git",
+    "num_discos": 1
+}

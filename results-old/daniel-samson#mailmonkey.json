@@ -1,0 +1,127 @@
+{
+    "size": 11,
+    "shared_dbs": false,
+    "num_servers": 0,
+    "name": "daniel-samson/mailmonkey",
+    "files": [],
+    "num_files": 2,
+    "num_langs": 2,
+    "dbs": [
+        "zookeeper"
+    ],
+    "servers": [],
+    "num_discos": 1,
+    "url": "git://github.com/daniel-samson/mailmonkey.git",
+    "gates": [],
+    "structure": {
+        "services": [
+            {
+                "image": "yappabe/mailcatcher",
+                "dbs": [],
+                "image_full": "yappabe/mailcatcher",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "mailcatcher",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "wurstmeister/zookeeper",
+                "dbs": [
+                    "zookeeper"
+                ],
+                "image_full": "wurstmeister/zookeeper",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "zookeeper",
+                "gates": [],
+                "discos": [
+                    "zookeeper"
+                ],
+                "depends_on": []
+            },
+            {
+                "image": "wurstmeister/kafka",
+                "dbs": [],
+                "image_full": "wurstmeister/kafka:2.11-0.11.0.3",
+                "buses": [
+                    "kafka"
+                ],
+                "servers": [],
+                "monitors": [],
+                "name": "kafka",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "zookeeper"
+                ]
+            }
+        ],
+        "num_services": 3,
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "zookeeper"
+            ],
+            "services": [
+                "zookeeper"
+            ],
+            "shared_dbs": false
+        },
+        "path": "/docker-compose.yml"
+    },
+    "num_gates": 0,
+    "num_dockers": 1,
+    "num_dbs": 1,
+    "num_services": 3,
+    "langs": [
+        "go",
+        "golang"
+    ],
+    "buses": [
+        "kafka"
+    ],
+    "num_buses": 1,
+    "num_monitors": 0,
+    "languages": [
+        "go"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [
+                "app",
+                "src",
+                "microservice",
+                "bin"
+            ],
+            "cmd": "/go/src/app/bin/microservice",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "golang"
+            ],
+            "from": "golang",
+            "monitors": [],
+            "from_full": "golang:1.9",
+            "servers": [],
+            "path": "/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "make",
+                "deps"
+            ],
+            "discos": []
+        }
+    ],
+    "monitors": [],
+    "avg_size_service": 11.0,
+    "discos": [
+        "zookeeper"
+    ],
+    "images": [
+        "golang"
+    ]
+}

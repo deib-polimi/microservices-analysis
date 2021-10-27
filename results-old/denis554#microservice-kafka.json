@@ -1,0 +1,352 @@
+{
+    "size": 194,
+    "num_servers": 1,
+    "dbs": [
+        "zookeeper",
+        "postgresql"
+    ],
+    "files": [
+        {
+            "path": "/microservice-kafka/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/microservice-kafka/microservice-kafka-shipping/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "dbs": [
+                "hsqldb",
+                "postgresql"
+            ],
+            "monitors": []
+        },
+        {
+            "path": "/microservice-kafka/microservice-kafka-invoicing/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "dbs": [
+                "hsqldb",
+                "postgresql"
+            ],
+            "monitors": []
+        },
+        {
+            "path": "/microservice-kafka/microservice-kafka-order/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "dbs": [
+                "hsqldb",
+                "postgresql"
+            ],
+            "monitors": []
+        }
+    ],
+    "structure": {
+        "num_services": 7,
+        "services": [
+            {
+                "name": "postgres",
+                "image": "postgres",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "postgres",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "shipping",
+                "image": "../microservice-kafka/microservice-kafka-shipping",
+                "depends_on": [
+                    "kafka",
+                    "postgres"
+                ],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "servers": [],
+                "image_full": "../microservice-kafka/microservice-kafka-shipping",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "invoicing",
+                "image": "../microservice-kafka/microservice-kafka-invoicing",
+                "depends_on": [
+                    "kafka",
+                    "postgres"
+                ],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "servers": [],
+                "image_full": "../microservice-kafka/microservice-kafka-invoicing",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "zookeeper",
+                "image": "wurstmeister/zookeeper",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "wurstmeister/zookeeper:3.4.6",
+                "discos": [
+                    "zookeeper"
+                ],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "monitors": []
+            },
+            {
+                "name": "order",
+                "image": "../microservice-kafka/microservice-kafka-order",
+                "depends_on": [
+                    "kafka",
+                    "postgres"
+                ],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "servers": [],
+                "image_full": "../microservice-kafka/microservice-kafka-order",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "kafka",
+                "image": "wurstmeister/kafka",
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "servers": [],
+                "image_full": "wurstmeister/kafka:2.12-2.1.0",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "apache",
+                "image": "apache",
+                "depends_on": [
+                    "order",
+                    "shipping",
+                    "invoicing"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "apache",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            }
+        ],
+        "path": "/docker/docker-compose.yml",
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "zookeeper"
+            ],
+            "shared_dbs": false,
+            "services": [
+                "zookeeper"
+            ]
+        }
+    },
+    "buses": [
+        "kafka"
+    ],
+    "images": [
+        "postgres",
+        "ubuntu",
+        "openjdk"
+    ],
+    "num_discos": 1,
+    "url": "git://github.com/denis554/microservice-kafka.git",
+    "num_services": 7,
+    "langs": [
+        "html",
+        "java"
+    ],
+    "discos": [
+        "zookeeper"
+    ],
+    "num_gates": 0,
+    "shared_dbs": false,
+    "num_files": 10,
+    "num_monitors": 0,
+    "gates": [],
+    "servers": [
+        "spring"
+    ],
+    "num_langs": 2,
+    "languages": [
+        "java",
+        "html"
+    ],
+    "monitors": [],
+    "name": "denis554/microservice-kafka",
+    "num_buses": 1,
+    "avg_size_service": 38.8,
+    "dockers": [
+        {
+            "path": "/docker/apache/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [],
+            "cmd": "apache2ctl -D FOREGROUND",
+            "keywords": [
+                "proxy",
+                "apache",
+                "get",
+                "apt",
+                "mkdir"
+            ],
+            "from": "ubuntu",
+            "buses": [],
+            "from_full": "ubuntu:16.04",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "foreground",
+                "ctl",
+                "apache"
+            ]
+        },
+        {
+            "path": "/docker/postgres/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [],
+            "from": "postgres",
+            "buses": [],
+            "from_full": "postgres:9.6.3",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/microservice-kafka/microservice-kafka-shipping/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "/usr/bin/java -Xmx400m -Xms400m -jar microservice-kafka-shipping-0.0.1-SNAPSHOT.jar",
+            "keywords": [],
+            "from": "openjdk",
+            "buses": [
+                "kafka"
+            ],
+            "from_full": "openjdk:10.0.2-jre-slim",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "jar",
+                "shipping",
+                "microservice",
+                "xmx",
+                "java"
+            ]
+        },
+        {
+            "path": "/microservice-kafka/microservice-kafka-invoicing/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "/usr/bin/java -Xmx400m -Xms400m -jar microservice-kafka-invoicing-0.0.1-SNAPSHOT.jar",
+            "keywords": [],
+            "from": "openjdk",
+            "buses": [
+                "kafka"
+            ],
+            "from_full": "openjdk:10.0.2-jre-slim",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "jar",
+                "snapshot",
+                "microservice",
+                "invoicing",
+                "xmx"
+            ]
+        },
+        {
+            "path": "/microservice-kafka/microservice-kafka-order/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "cmd": "/usr/bin/java -Xmx400m -Xms400m -jar microservice-kafka-order-0.0.1-SNAPSHOT.jar",
+            "keywords": [],
+            "from": "openjdk",
+            "buses": [
+                "kafka"
+            ],
+            "from_full": "openjdk:10.0.2-jre-slim",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "jar",
+                "snapshot",
+                "microservice",
+                "xmx",
+                "java"
+            ]
+        }
+    ],
+    "num_dbs": 2,
+    "num_dockers": 5
+}

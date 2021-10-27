@@ -1,0 +1,142 @@
+{
+    "num_services": 5,
+    "num_gates": 0,
+    "files": [],
+    "num_buses": 1,
+    "servers": [],
+    "num_langs": 1,
+    "avg_size_service": 6.0,
+    "num_dockers": 1,
+    "discos": [],
+    "num_monitors": 0,
+    "monitors": [],
+    "buses": [
+        "rabbitmq"
+    ],
+    "langs": [
+        "dockerfile"
+    ],
+    "shared_dbs": false,
+    "dockers": [
+        {
+            "discos": [],
+            "servers": [],
+            "monitors": [],
+            "from": "rabbitmq",
+            "path": "/rabbitmq/Dockerfile",
+            "keywords": [
+                "get",
+                "apt",
+                "curl",
+                "update",
+                "install"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "rabbitmq:3-management",
+            "cmd_keywords": [],
+            "buses": [
+                "rabbitmq"
+            ],
+            "langs": [],
+            "cmd": ""
+        }
+    ],
+    "name": "skateonrails/job_import",
+    "num_discos": 0,
+    "structure": {
+        "num_services": 5,
+        "services": [
+            {
+                "dbs": [],
+                "gates": [],
+                "servers": [],
+                "name": "sneakers_job",
+                "monitors": [],
+                "image": "./job_api",
+                "discos": [],
+                "image_full": "./job_api",
+                "buses": [],
+                "depends_on": [
+                    "postgres",
+                    "rabbitmq"
+                ]
+            },
+            {
+                "dbs": [],
+                "gates": [],
+                "servers": [],
+                "name": "rabbitmq",
+                "monitors": [],
+                "image": "rabbitmq/.",
+                "discos": [],
+                "image_full": "rabbitmq/.",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "depends_on": []
+            },
+            {
+                "dbs": [],
+                "gates": [],
+                "servers": [],
+                "name": "postgres",
+                "monitors": [],
+                "image": "postgres",
+                "discos": [],
+                "image_full": "postgres",
+                "buses": [],
+                "depends_on": []
+            },
+            {
+                "dbs": [],
+                "gates": [],
+                "servers": [],
+                "name": "job_api",
+                "monitors": [],
+                "image": "./job_api",
+                "discos": [],
+                "image_full": "./job_api",
+                "buses": [],
+                "depends_on": [
+                    "postgres"
+                ]
+            },
+            {
+                "dbs": [],
+                "gates": [],
+                "servers": [],
+                "name": "job_queue",
+                "monitors": [],
+                "image": "./job_queue",
+                "discos": [],
+                "image_full": "./job_queue",
+                "buses": [],
+                "depends_on": [
+                    "sneakers_job",
+                    "rabbitmq"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 0,
+            "services": [],
+            "names": []
+        },
+        "path": "/docker-compose.yml"
+    },
+    "images": [
+        "rabbitmq"
+    ],
+    "dbs": [],
+    "gates": [],
+    "size": 6,
+    "num_dbs": 0,
+    "num_servers": 0,
+    "num_files": 2,
+    "languages": [
+        "dockerfile"
+    ],
+    "url": "git://github.com/skateonrails/job_import.git"
+}

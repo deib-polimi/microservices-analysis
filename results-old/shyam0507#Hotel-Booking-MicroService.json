@@ -1,0 +1,343 @@
+{
+    "size": 872,
+    "avg_size_service": 218.0,
+    "name": "shyam0507/Hotel-Booking-MicroService",
+    "languages": [
+        "html"
+    ],
+    "servers": [
+        "node",
+        "express",
+        "mongoose"
+    ],
+    "num_dbs": 2,
+    "images": [
+        "node"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 9,
+        "services": [
+            {
+                "depends_on": [
+                    "mongo",
+                    "kafka"
+                ],
+                "image_full": "./notification-service",
+                "monitors": [],
+                "name": "hotel-notification-service",
+                "image": "./notification-service",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "elasticsearch:7.5.1",
+                "monitors": [],
+                "name": "elasticsearch",
+                "image": "elasticsearch",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "elasticsearch",
+                    "kafka"
+                ],
+                "image_full": "./search-service",
+                "monitors": [],
+                "name": "hotel-search-service",
+                "image": "./search-service",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "mongo",
+                    "kafka"
+                ],
+                "image_full": "./booking-service",
+                "monitors": [],
+                "name": "hotel-booking-service",
+                "image": "./booking-service",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "image_full": "docker.elastic.co/kibana/kibana:7.5.2",
+                "monitors": [],
+                "name": "kibana",
+                "image": "docker.elastic.co/kibana/kibana",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "wurstmeister/zookeeper",
+                "monitors": [],
+                "name": "zookeeper",
+                "image": "wurstmeister/zookeeper",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "gates": [],
+                "discos": [
+                    "zookeeper"
+                ]
+            },
+            {
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "image_full": "wurstmeister/kafka",
+                "monitors": [],
+                "name": "kafka",
+                "image": "wurstmeister/kafka",
+                "servers": [],
+                "buses": [
+                    "kafka"
+                ],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "mongo",
+                "monitors": [],
+                "name": "mongo",
+                "image": "mongo",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "mongo",
+                    "kafka"
+                ],
+                "image_full": "./user-service",
+                "monitors": [],
+                "name": "hotel-user-service",
+                "image": "./user-service",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "zookeeper",
+                "mongo"
+            ],
+            "names": [
+                "mongo",
+                "zookeeper"
+            ],
+            "shared_dbs": true,
+            "num": 2
+        }
+    },
+    "num_dockers": 4,
+    "num_buses": 1,
+    "num_services": 9,
+    "dockers": [
+        {
+            "path": "/booking-service/Dockerfile",
+            "from": "node",
+            "langs": [],
+            "cmd": "node app.js",
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:13.4.0",
+            "keywords": [
+                "install",
+                "npm",
+                "quiet"
+            ],
+            "cmd_keywords": [
+                "node",
+                "app"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/user-service/Dockerfile",
+            "from": "node",
+            "langs": [],
+            "cmd": "node app.js",
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:13.4.0",
+            "keywords": [
+                "install",
+                "npm",
+                "quiet"
+            ],
+            "cmd_keywords": [
+                "node",
+                "app"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/notification-service/Dockerfile",
+            "from": "node",
+            "langs": [],
+            "cmd": "node app.js",
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:13.4.0",
+            "keywords": [
+                "install",
+                "npm",
+                "quiet"
+            ],
+            "cmd_keywords": [
+                "node",
+                "app"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/search-service/Dockerfile",
+            "from": "node",
+            "langs": [],
+            "cmd": "node app.js",
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:13.4.0",
+            "keywords": [
+                "install",
+                "npm",
+                "quiet"
+            ],
+            "cmd_keywords": [
+                "node",
+                "app"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "num_langs": 1,
+    "langs": [
+        "html"
+    ],
+    "discos": [
+        "zookeeper"
+    ],
+    "num_gates": 0,
+    "num_monitors": 0,
+    "num_files": 10,
+    "files": [
+        {
+            "path": "/booking-service/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "express",
+                "mongoose"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/user-service/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "express",
+                "mongoose"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/notification-service/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "express",
+                "mongoose"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/search-service/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/website/package.json"
+        }
+    ],
+    "shared_dbs": true,
+    "monitors": [],
+    "num_servers": 3,
+    "url": "git://github.com/shyam0507/Hotel-Booking-MicroService.git",
+    "dbs": [
+        "mongo",
+        "zookeeper"
+    ],
+    "num_discos": 1,
+    "gates": [],
+    "buses": [
+        "kafka"
+    ]
+}

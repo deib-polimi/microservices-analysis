@@ -1,0 +1,211 @@
+{
+    "name": "cristianoventura/microservices-implementation-example",
+    "num_dbs": 0,
+    "num_services": 4,
+    "num_files": 6,
+    "servers": [
+        "express",
+        "node",
+        "flask"
+    ],
+    "url": "git://github.com/cristianoventura/microservices-implementation-example.git",
+    "discos": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "nodejs-service",
+                "image_full": "./nodejs-service",
+                "image": "./nodejs-service",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "python-service",
+                "image_full": "./python-service",
+                "image": "./python-service",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "go-service",
+                "image_full": "./go-service",
+                "image": "./go-service",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "nginx",
+                "image_full": "nginx:latest",
+                "image": "nginx",
+                "servers": [],
+                "depends_on": [
+                    "go-service",
+                    "nodejs-service",
+                    "python-service"
+                ],
+                "gates": [
+                    "nginx"
+                ],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [],
+            "num": 0,
+            "names": []
+        },
+        "num_services": 4
+    },
+    "num_buses": 0,
+    "size": 16,
+    "dockers": [
+        {
+            "cmd": "python app.py",
+            "servers": [],
+            "langs": [
+                "python"
+            ],
+            "path": "/python-service/Dockerfile",
+            "discos": [],
+            "from": "python",
+            "buses": [],
+            "from_full": "python:3",
+            "cmd_keywords": [
+                "app",
+                "python"
+            ],
+            "keywords": [
+                "install",
+                "txt",
+                "pip",
+                "requirements"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "node app.js",
+            "servers": [
+                "node"
+            ],
+            "langs": [],
+            "path": "/nodejs-service/Dockerfile",
+            "discos": [],
+            "from": "node",
+            "buses": [],
+            "from_full": "node:10",
+            "cmd_keywords": [
+                "node",
+                "app"
+            ],
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "./main",
+            "servers": [],
+            "langs": [
+                "golang"
+            ],
+            "path": "/go-service/Dockerfile",
+            "discos": [],
+            "from": "golang",
+            "buses": [],
+            "from_full": "golang:latest",
+            "cmd_keywords": [
+                "main"
+            ],
+            "keywords": [
+                "main",
+                "build",
+                "download",
+                "mod"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "languages": [
+        "go",
+        "dockerfile",
+        "python",
+        "javascript"
+    ],
+    "dbs": [],
+    "monitors": [],
+    "shared_dbs": false,
+    "avg_size_service": 5.333333333333333,
+    "num_monitors": 0,
+    "files": [
+        {
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/python-service/requirements.txt",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "express"
+            ],
+            "path": "/nodejs-service/package.json",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        }
+    ],
+    "langs": [
+        "dockerfile",
+        "javascript",
+        "go",
+        "golang",
+        "python"
+    ],
+    "num_servers": 3,
+    "buses": [],
+    "num_langs": 5,
+    "num_gates": 1,
+    "num_discos": 0,
+    "images": [
+        "node",
+        "golang",
+        "python"
+    ],
+    "num_dockers": 3,
+    "gates": [
+        "nginx"
+    ]
+}

@@ -1,0 +1,455 @@
+{
+    "name": "EgorRepnikov/artaeum",
+    "buses": [],
+    "images": [
+        "java",
+        "node"
+    ],
+    "num_langs": 3,
+    "num_discos": 1,
+    "num_buses": 0,
+    "dockers": [
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "node",
+            "cmd_keywords": [
+                "index",
+                "app",
+                "src",
+                "node"
+            ],
+            "from_full": "node",
+            "keywords": [],
+            "path": "/profile/Dockerfile",
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "cmd": "node /app/src/index.js"
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "node",
+            "cmd_keywords": [
+                "index",
+                "app",
+                "src",
+                "node"
+            ],
+            "from_full": "node",
+            "keywords": [],
+            "path": "/blog/Dockerfile",
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "cmd": "node /app/src/index.js"
+        },
+        {
+            "discos": [],
+            "langs": [
+                "java"
+            ],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "java",
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "java",
+                "gateway"
+            ],
+            "from_full": "java:8-jre",
+            "keywords": [],
+            "path": "/gateway/Dockerfile",
+            "servers": [],
+            "gates": [
+                "gateway"
+            ],
+            "cmd": "java -jar /app/gateway.jar"
+        },
+        {
+            "discos": [],
+            "langs": [
+                "java"
+            ],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "java",
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "java",
+                "registry"
+            ],
+            "from_full": "java:8-jre",
+            "keywords": [],
+            "path": "/registry/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": "java -jar /app/registry.jar"
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "node",
+            "cmd_keywords": [
+                "index",
+                "app",
+                "src",
+                "node"
+            ],
+            "from_full": "node",
+            "keywords": [],
+            "path": "/media/Dockerfile",
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "cmd": "node /app/src/index.js"
+        },
+        {
+            "discos": [],
+            "langs": [
+                "java"
+            ],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "java",
+            "cmd_keywords": [
+                "jar",
+                "uaa",
+                "app",
+                "java"
+            ],
+            "from_full": "java:8-jre",
+            "keywords": [],
+            "path": "/uaa/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": "java -jar /app/uaa.jar"
+        },
+        {
+            "discos": [],
+            "langs": [
+                "java"
+            ],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "java",
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "java",
+                "storage"
+            ],
+            "from_full": "java:8-jre",
+            "keywords": [],
+            "path": "/storage/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": "java -jar /app/storage.jar"
+        }
+    ],
+    "monitors": [],
+    "dbs": [
+        "mongo",
+        "postgresql",
+        "sqlite"
+    ],
+    "structure": {
+        "detected_dbs": {
+            "num": 1,
+            "services": [
+                "mongodb"
+            ],
+            "names": [
+                "mongo"
+            ],
+            "shared_dbs": true
+        },
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "monitors": [],
+                "name": "storage",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "registry"
+                ],
+                "image": "egorrepnikov/artaeum-storage",
+                "image_full": "egorrepnikov/artaeum-storage",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "mongodb",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image": "aashreys/mongo-auth",
+                "image_full": "aashreys/mongo-auth:latest",
+                "gates": [],
+                "dbs": [
+                    "mongo"
+                ]
+            },
+            {
+                "monitors": [],
+                "name": "uaa",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "postgresql",
+                    "registry"
+                ],
+                "image": "egorrepnikov/artaeum-uaa",
+                "image_full": "egorrepnikov/artaeum-uaa",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "profile",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "postgresql",
+                    "registry"
+                ],
+                "image": "egorrepnikov/artaeum-profile",
+                "image_full": "egorrepnikov/artaeum-profile",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "postgresql",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image": "postgres",
+                "image_full": "postgres:latest",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "media",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "mongodb",
+                    "registry"
+                ],
+                "image": "egorrepnikov/artaeum-media",
+                "image_full": "egorrepnikov/artaeum-media",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "blog",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "mongodb",
+                    "registry"
+                ],
+                "image": "egorrepnikov/artaeum-blog",
+                "image_full": "egorrepnikov/artaeum-blog",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "gateway",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "registry"
+                ],
+                "image": "egorrepnikov/artaeum-gateway",
+                "image_full": "egorrepnikov/artaeum-gateway",
+                "gates": [
+                    "gateway"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "registry",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image": "egorrepnikov/artaeum-registry",
+                "image_full": "egorrepnikov/artaeum-registry",
+                "gates": [],
+                "dbs": []
+            }
+        ],
+        "num_services": 9
+    },
+    "gates": [
+        "zuul"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "path": "/gateway/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "path": "/registry/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "path": "/uaa/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "dbs": [
+                "postgresql"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "path": "/storage/pom.xml",
+            "servers": [],
+            "gates": [],
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "path": "/profile/package.json",
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "dbs": [
+                "sqlite"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "path": "/blog/package.json",
+            "servers": [
+                "node",
+                "mongoose"
+            ],
+            "gates": [],
+            "dbs": [
+                "mongodb"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "path": "/media/package.json",
+            "servers": [
+                "node",
+                "mongoose"
+            ],
+            "gates": [],
+            "dbs": [
+                "mongodb"
+            ]
+        }
+    ],
+    "avg_size_service": 30.571428571428573,
+    "langs": [
+        "java",
+        "javascript",
+        "html"
+    ],
+    "num_dbs": 3,
+    "num_services": 9,
+    "num_monitors": 0,
+    "size": 214,
+    "languages": [
+        "java",
+        "javascript",
+        "html"
+    ],
+    "num_files": 15,
+    "num_gates": 1,
+    "num_dockers": 7,
+    "shared_dbs": true,
+    "servers": [
+        "node",
+        "spring",
+        "mongoose"
+    ],
+    "num_servers": 3,
+    "url": "git://github.com/EgorRepnikov/artaeum.git",
+    "discos": [
+        "eureka"
+    ]
+}

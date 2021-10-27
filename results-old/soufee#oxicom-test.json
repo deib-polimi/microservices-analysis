@@ -1,0 +1,287 @@
+{
+    "gates": [],
+    "images": [
+        "woahbase/alpine-openjdk8"
+    ],
+    "num_dbs": 1,
+    "structure": {
+        "num_services": 7,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "consul:latest",
+                "gates": [],
+                "image": "consul",
+                "depends_on": [],
+                "dbs": [],
+                "name": "consul",
+                "buses": [],
+                "servers": [],
+                "discos": [
+                    "consul"
+                ],
+                "monitors": []
+            },
+            {
+                "image_full": "./api-service",
+                "gates": [],
+                "image": "./api-service",
+                "depends_on": [
+                    "rabbit",
+                    "consul"
+                ],
+                "dbs": [],
+                "name": "api",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "rabbitmq:3-management",
+                "gates": [],
+                "image": "rabbitmq",
+                "depends_on": [],
+                "dbs": [],
+                "name": "rabbit",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "postgres:latest",
+                "gates": [],
+                "image": "postgres",
+                "depends_on": [],
+                "dbs": [],
+                "name": "db",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "./approval-service",
+                "gates": [],
+                "image": "./approval-service",
+                "depends_on": [
+                    "rabbit",
+                    "consul"
+                ],
+                "dbs": [],
+                "name": "approver",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "./id-generator",
+                "gates": [],
+                "image": "./id-generator",
+                "depends_on": [
+                    "consul"
+                ],
+                "dbs": [],
+                "name": "idgenerator",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "./mailer-service",
+                "gates": [],
+                "image": "./mailer-service",
+                "depends_on": [
+                    "rabbit",
+                    "consul"
+                ],
+                "dbs": [],
+                "name": "mailer",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "shared_dbs": false,
+            "names": []
+        }
+    },
+    "num_files": 10,
+    "num_gates": 0,
+    "discos": [
+        "consul"
+    ],
+    "num_dockers": 4,
+    "shared_dbs": false,
+    "languages": [
+        "kotlin",
+        "html"
+    ],
+    "name": "soufee/oxicom-test",
+    "num_langs": 2,
+    "avg_size_service": 87.75,
+    "monitors": [],
+    "num_servers": 1,
+    "num_services": 7,
+    "dbs": [
+        "postgresql"
+    ],
+    "langs": [
+        "html",
+        "kotlin"
+    ],
+    "dockers": [
+        {
+            "gates": [],
+            "path": "/api-service/Dockerfile",
+            "langs": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "woahbase/alpine-openjdk8",
+            "discos": [],
+            "from_full": "woahbase/alpine-openjdk8:latest",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": []
+        },
+        {
+            "gates": [],
+            "path": "/id-generator/Dockerfile",
+            "langs": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "woahbase/alpine-openjdk8",
+            "discos": [],
+            "from_full": "woahbase/alpine-openjdk8:latest",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": []
+        },
+        {
+            "gates": [],
+            "path": "/mailer-service/Dockerfile",
+            "langs": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "woahbase/alpine-openjdk8",
+            "discos": [],
+            "from_full": "woahbase/alpine-openjdk8:latest",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": []
+        },
+        {
+            "gates": [],
+            "path": "/approval-service/Dockerfile",
+            "langs": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "woahbase/alpine-openjdk8",
+            "discos": [],
+            "from_full": "woahbase/alpine-openjdk8:latest",
+            "cmd": "",
+            "monitors": [],
+            "cmd_keywords": [],
+            "keywords": []
+        }
+    ],
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "size": 351,
+    "files": [
+        {
+            "gates": [],
+            "path": "/pom.xml",
+            "discos": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "path": "/api-service/pom.xml",
+            "discos": [
+                "consul"
+            ],
+            "dbs": [
+                "postgresql"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "path": "/id-generator/pom.xml",
+            "discos": [
+                "consul"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "path": "/mailer-service/pom.xml",
+            "discos": [],
+            "dbs": [],
+            "buses": [
+                "amqp"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "path": "/approval-service/pom.xml",
+            "discos": [
+                "consul"
+            ],
+            "dbs": [],
+            "buses": [
+                "amqp"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "monitors": []
+        }
+    ],
+    "num_buses": 2,
+    "num_monitors": 0,
+    "url": "git://github.com/soufee/oxicom-test.git",
+    "num_discos": 1
+}

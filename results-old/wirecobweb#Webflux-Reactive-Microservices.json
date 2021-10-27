@@ -1,0 +1,212 @@
+{
+    "dbs": [
+        "db"
+    ],
+    "name": "wirecobweb/Webflux-Reactive-Microservices",
+    "num_langs": 1,
+    "languages": [
+        "java"
+    ],
+    "shared_dbs": false,
+    "servers": [
+        "spring",
+        "glassfish"
+    ],
+    "langs": [
+        "java"
+    ],
+    "dockers": [],
+    "gates": [
+        "loadbalancer"
+    ],
+    "size": 496,
+    "num_dockers": 0,
+    "num_discos": 1,
+    "num_buses": 2,
+    "buses": [
+        "rabbitmq",
+        "amqp"
+    ],
+    "images": [],
+    "num_servers": 2,
+    "num_services": 6,
+    "monitors": [],
+    "structure": {
+        "services": [
+            {
+                "buses": [],
+                "image": "gateway.Dockerfile",
+                "dbs": [],
+                "gates": [
+                    "gateway"
+                ],
+                "image_full": "gateway.Dockerfile",
+                "monitors": [],
+                "name": "gateway",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "servicio-eureka-server",
+                    "service-assistance",
+                    "service-factory",
+                    "service-farming"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "factory.Dockerfile",
+                "dbs": [],
+                "gates": [],
+                "image_full": "factory.Dockerfile",
+                "monitors": [],
+                "name": "service-factory",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "servicio-eureka-server"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "zipkin.Dockerfile",
+                "dbs": [],
+                "gates": [],
+                "image_full": "zipkin.Dockerfile",
+                "monitors": [],
+                "name": "zipkin-server",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "microservicios-rabbitmq38"
+                ]
+            },
+            {
+                "buses": [],
+                "image": "eureka.Dockerfile",
+                "dbs": [],
+                "gates": [],
+                "image_full": "eureka.Dockerfile",
+                "monitors": [],
+                "name": "servicio-eureka-server",
+                "discos": [
+                    "eureka"
+                ],
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "image": "farming.Dockerfile",
+                "dbs": [],
+                "gates": [],
+                "image_full": "farming.Dockerfile",
+                "monitors": [],
+                "name": "service-farming",
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "servicio-eureka-server"
+                ]
+            },
+            {
+                "buses": [
+                    "rabbitmq"
+                ],
+                "image": "rabbitmq",
+                "dbs": [],
+                "gates": [],
+                "image_full": "rabbitmq:3.8-management-alpine",
+                "monitors": [],
+                "name": "microservicios-rabbitmq38",
+                "discos": [],
+                "servers": [],
+                "depends_on": []
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "num": 0,
+            "shared_dbs": false,
+            "names": [],
+            "services": []
+        },
+        "path": "/DockerMicroser/docker-compose.yml"
+    },
+    "discos": [
+        "eureka"
+    ],
+    "num_files": 5,
+    "num_dbs": 1,
+    "num_monitors": 0,
+    "num_gates": 1,
+    "url": "git://github.com/wirecobweb/Webflux-Reactive-Microservices.git",
+    "avg_size_service": 496.0,
+    "files": [
+        {
+            "buses": [],
+            "dbs": [],
+            "gates": [
+                "gateway",
+                "loadbalancer"
+            ],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/cloud-gateway/pom.xml"
+        },
+        {
+            "buses": [
+                "amqp"
+            ],
+            "dbs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring",
+                "glassfish"
+            ],
+            "path": "/eureka-server/pom.xml"
+        },
+        {
+            "buses": [
+                "amqp"
+            ],
+            "dbs": [
+                "mongodb"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/microservice-farming/pom.xml"
+        },
+        {
+            "buses": [
+                "amqp"
+            ],
+            "dbs": [
+                "mongodb"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/microservice-factory/pom.xml"
+        }
+    ]
+}

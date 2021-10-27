@@ -1,0 +1,280 @@
+{
+    "dbs": [
+        "redis"
+    ],
+    "num_buses": 1,
+    "avg_size_service": 2787.8,
+    "structure": {
+        "detected_dbs": {
+            "num": 1,
+            "services": [
+                "basket.data"
+            ],
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 8,
+        "services": [
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "tokenserver",
+                "image": ".\\TokenServiceApi",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "mssqlserver"
+                ],
+                "discos": [],
+                "image_full": ".\\TokenServiceApi"
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "cart",
+                "image": "cartimage",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "basket.data",
+                    "tokenserver"
+                ],
+                "discos": [],
+                "image_full": "cartimage"
+            },
+            {
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "buses": [],
+                "name": "basket.data",
+                "image": "redis",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "redis"
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "mssqlserver",
+                "image": "microsoft/mssql-server-linux",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "microsoft/mssql-server-linux:latest"
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "name": "rabbitmq",
+                "image": "rabbitmq",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "rabbitmq:3-management"
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "order",
+                "image": "event/order",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "mssqlserver",
+                    "tokenserver"
+                ],
+                "discos": [],
+                "image_full": "event/order"
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "webmvc",
+                "image": ".\\WebMvc",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "event",
+                    "tokenserver",
+                    "cart"
+                ],
+                "discos": [],
+                "image_full": ".\\WebMvc"
+            },
+            {
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "event",
+                "image": "event/catalogapi",
+                "gates": [],
+                "monitors": [],
+                "depends_on": [
+                    "mssqlserver"
+                ],
+                "discos": [],
+                "image_full": "event/catalogapi"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "num_servers": 0,
+    "monitors": [],
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "from": "build",
+            "dbs": [],
+            "langs": [],
+            "monitors": [],
+            "buses": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "from_full": "build",
+            "path": "/WebMvc/Dockerfile",
+            "gates": [],
+            "cmd": "",
+            "discos": [],
+            "keywords": [
+                "webmvc",
+                "csproj",
+                "dotnet",
+                "publish",
+                "app"
+            ]
+        },
+        {
+            "from": "microsoft/aspnetcore",
+            "dbs": [],
+            "langs": [],
+            "monitors": [],
+            "buses": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "from_full": "microsoft/aspnetcore:2.0",
+            "path": "/CartApi/Dockerfile",
+            "gates": [],
+            "cmd": "",
+            "discos": [],
+            "keywords": [
+                "dotnet",
+                "publish",
+                "out",
+                "release",
+                "restore"
+            ]
+        },
+        {
+            "from": "base",
+            "dbs": [],
+            "langs": [],
+            "monitors": [],
+            "buses": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "from_full": "base",
+            "path": "/TokenServiceApi/Dockerfile",
+            "gates": [],
+            "cmd": "",
+            "discos": [],
+            "keywords": [
+                "dotnet",
+                "publish",
+                "app",
+                "release",
+                "restore"
+            ]
+        },
+        {
+            "from": "microsoft/aspnetcore",
+            "dbs": [],
+            "langs": [],
+            "monitors": [],
+            "buses": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "from_full": "microsoft/aspnetcore:2.0",
+            "path": "/OrderAPI/Dockerfile",
+            "gates": [],
+            "cmd": "",
+            "discos": [],
+            "keywords": [
+                "dotnet",
+                "publish",
+                "out",
+                "release",
+                "restore"
+            ]
+        },
+        {
+            "from": "build",
+            "dbs": [],
+            "langs": [],
+            "monitors": [],
+            "buses": [],
+            "cmd_keywords": [],
+            "servers": [],
+            "from_full": "build",
+            "path": "/EventCatalogAPI/Dockerfile",
+            "gates": [],
+            "cmd": "",
+            "discos": [],
+            "keywords": [
+                "csproj",
+                "eventcatalogapi",
+                "dotnet",
+                "publish",
+                "app"
+            ]
+        }
+    ],
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_dockers": 5,
+    "languages": [
+        "c#",
+        "css",
+        "html"
+    ],
+    "num_services": 8,
+    "gates": [],
+    "size": 13939,
+    "url": "git://github.com/lmarlina16/EventBrite.git",
+    "images": [
+        "build",
+        "microsoft/aspnetcore",
+        "base"
+    ],
+    "num_gates": 0,
+    "langs": [
+        "c#",
+        "css",
+        "html"
+    ],
+    "num_dbs": 1,
+    "num_files": 6,
+    "shared_dbs": false,
+    "num_langs": 3,
+    "files": [],
+    "servers": [],
+    "name": "lmarlina16/EventBrite",
+    "discos": [],
+    "num_discos": 0
+}

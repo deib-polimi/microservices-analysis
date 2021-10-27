@@ -1,0 +1,373 @@
+{
+    "num_services": 10,
+    "dbs": [
+        "redis"
+    ],
+    "name": "pwlodek/ECommerce.Microservices",
+    "files": [],
+    "discos": [],
+    "num_gates": 0,
+    "num_buses": 1,
+    "langs": [
+        "bash",
+        "c#"
+    ],
+    "gates": [],
+    "num_monitors": 0,
+    "monitors": [],
+    "images": [
+        "base",
+        "microsoft/mssql-server-linux"
+    ],
+    "structure": {
+        "num_services": 10,
+        "detected_dbs": {
+            "num": 1,
+            "services": [
+                "redis"
+            ],
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "buses": [],
+                "depends_on": [
+                    "rabbit",
+                    "sqlserver"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "ecommerce/catalog.api",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "ecommerce.catalog.api",
+                "image": "ecommerce/catalog.api"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "rabbit"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "ecommerce/payment.host",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "ecommerce.payment.host",
+                "image": "ecommerce/payment.host"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "rabbit"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "ecommerce/shipping.host",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "ecommerce.shipping.host",
+                "image": "ecommerce/shipping.host"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "sqlserver",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "sqlserver",
+                "image": "sqlserver"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "ecommerce.catalog.api",
+                    "ecommerce.customers.api",
+                    "ecommerce.reporting.api",
+                    "ecommerce.sales.api"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "ecommerce/webapp",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "ecommerce.webapp",
+                "image": "ecommerce/webapp"
+            },
+            {
+                "buses": [
+                    "rabbitmq"
+                ],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "rabbitmq:3.6-management",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "rabbit",
+                "image": "rabbitmq"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "rabbit",
+                    "sqlserver"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "ecommerce/customers.api",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "ecommerce.customers.api",
+                "image": "ecommerce/customers.api"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "rabbit",
+                    "sqlserver"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "ecommerce/reporting.api",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "ecommerce.reporting.api",
+                "image": "ecommerce/reporting.api"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [
+                    "redis"
+                ],
+                "image_full": "redis",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "redis",
+                "image": "redis"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "rabbit",
+                    "sqlserver"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "ecommerce/sales.api",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "ecommerce.sales.api",
+                "image": "ecommerce/sales.api"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "shared_dbs": false,
+    "languages": [
+        "c#"
+    ],
+    "avg_size_service": 7129.0,
+    "buses": [
+        "rabbitmq"
+    ],
+    "dockers": [
+        {
+            "from_full": "microsoft/mssql-server-linux:2017-latest",
+            "langs": [
+                "bash"
+            ],
+            "dbs": [],
+            "path": "/Database/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "bash",
+                "bin",
+                "entrypoint"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "microsoft/mssql-server-linux",
+            "keywords": [
+                "chmod",
+                "sqlcmdstartup"
+            ],
+            "cmd": "/bin/bash ./Entrypoint.sh"
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/Services/ECommerce.Sales.Api/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "ecommerce",
+                "sales",
+                "api",
+                "dotnet",
+                "csproj"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/Services/ECommerce.Payment.Host/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "payment",
+                "ecommerce",
+                "host",
+                "dotnet",
+                "csproj"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/Services/ECommerce.Shipping.Host/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "ecommerce",
+                "shipping",
+                "host",
+                "dotnet",
+                "csproj"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/Services/ECommerce.Catalog.Api/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "catalog",
+                "ecommerce",
+                "api",
+                "dotnet",
+                "csproj"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/Services/ECommerce.Reporting.Api/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "ecommerce",
+                "api",
+                "reporting",
+                "dotnet",
+                "csproj"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/Services/ECommerce.Customers.Api/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "ecommerce",
+                "customers",
+                "api",
+                "dotnet",
+                "csproj"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/Web/ECommerce.WebApp/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "webapp",
+                "ecommerce",
+                "dotnet",
+                "csproj",
+                "app"
+            ],
+            "cmd": ""
+        }
+    ],
+    "servers": [],
+    "num_dockers": 8,
+    "url": "git://github.com/pwlodek/ECommerce.Microservices.git",
+    "num_dbs": 1,
+    "num_servers": 0,
+    "num_discos": 0,
+    "num_langs": 2,
+    "num_files": 9,
+    "size": 57032
+}

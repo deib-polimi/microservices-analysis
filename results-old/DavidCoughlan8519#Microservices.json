@@ -1,0 +1,317 @@
+{
+    "gates": [],
+    "images": [
+        "python"
+    ],
+    "num_dbs": 1,
+    "structure": {
+        "num_services": 6,
+        "path": "/Assignment2/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "./NewsStreamer",
+                "gates": [],
+                "image": "./NewsStreamer",
+                "depends_on": [
+                    "rabbitmq",
+                    "mongo"
+                ],
+                "dbs": [],
+                "name": "news",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "rabbitmq:3.6.1-management",
+                "gates": [],
+                "image": "rabbitmq",
+                "depends_on": [],
+                "dbs": [],
+                "name": "rabbitmq",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mongo:3.0.2",
+                "gates": [],
+                "image": "mongo",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "name": "mongo",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "./TwitterStreamer",
+                "gates": [],
+                "image": "./TwitterStreamer",
+                "depends_on": [
+                    "rabbitmq",
+                    "mongo"
+                ],
+                "dbs": [],
+                "name": "twitter",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "./Sentiment",
+                "gates": [],
+                "image": "./Sentiment",
+                "depends_on": [
+                    "rabbitmq",
+                    "mongo",
+                    "twitter",
+                    "news"
+                ],
+                "dbs": [],
+                "name": "server",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "./Web",
+                "gates": [],
+                "image": "./Web",
+                "depends_on": [
+                    "rabbitmq",
+                    "mongo"
+                ],
+                "dbs": [],
+                "name": "web",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 1,
+            "services": [
+                "mongo"
+            ],
+            "shared_dbs": true,
+            "names": [
+                "mongo"
+            ]
+        }
+    },
+    "num_files": 9,
+    "num_gates": 0,
+    "discos": [],
+    "num_dockers": 4,
+    "shared_dbs": true,
+    "languages": [
+        "html"
+    ],
+    "name": "DavidCoughlan8519/Microservices",
+    "num_langs": 2,
+    "avg_size_service": 40034.5,
+    "monitors": [],
+    "num_servers": 1,
+    "num_services": 6,
+    "dbs": [
+        "mongo"
+    ],
+    "langs": [
+        "html",
+        "python"
+    ],
+    "dockers": [
+        {
+            "gates": [],
+            "path": "/Assignment2/TwitterStreamer/Dockerfile",
+            "langs": [
+                "python"
+            ],
+            "dbs": [],
+            "buses": [
+                "rabbitmq"
+            ],
+            "servers": [],
+            "from": "python",
+            "discos": [],
+            "from_full": "python:3.6",
+            "cmd": "./wait-for-it.sh -t 0 rabbitmq:5672 -- python twitterclient.py",
+            "monitors": [],
+            "cmd_keywords": [
+                "python",
+                "rabbitmq",
+                "wait",
+                "twitterclient",
+                "for"
+            ],
+            "keywords": [
+                "requirements",
+                "trusted",
+                "host",
+                "install",
+                "pypi"
+            ]
+        },
+        {
+            "gates": [],
+            "path": "/Assignment2/Sentiment/Dockerfile",
+            "langs": [
+                "python"
+            ],
+            "dbs": [],
+            "buses": [
+                "rabbitmq"
+            ],
+            "servers": [],
+            "from": "python",
+            "discos": [],
+            "from_full": "python:3.6",
+            "cmd": "./wait-for-it.sh -t 0 rabbitmq:5672 -- python TwitterSentiment1.py",
+            "monitors": [],
+            "cmd_keywords": [
+                "python",
+                "rabbitmq",
+                "wait",
+                "twittersentiment",
+                "for"
+            ],
+            "keywords": [
+                "requirements",
+                "trusted",
+                "host",
+                "install",
+                "pypi"
+            ]
+        },
+        {
+            "gates": [],
+            "path": "/Assignment2/NewsStreamer/Dockerfile",
+            "langs": [
+                "python"
+            ],
+            "dbs": [],
+            "buses": [
+                "rabbitmq"
+            ],
+            "servers": [],
+            "from": "python",
+            "discos": [],
+            "from_full": "python:3.6",
+            "cmd": "./wait-for-it.sh -t 0 rabbitmq:5672 -- python NewsStreamer.py",
+            "monitors": [],
+            "cmd_keywords": [
+                "python",
+                "rabbitmq",
+                "wait",
+                "newsstreamer",
+                "for"
+            ],
+            "keywords": [
+                "requirements",
+                "trusted",
+                "host",
+                "install",
+                "pypi"
+            ]
+        },
+        {
+            "gates": [],
+            "path": "/Assignment2/Web/Dockerfile",
+            "langs": [
+                "python"
+            ],
+            "dbs": [],
+            "buses": [
+                "rabbitmq"
+            ],
+            "servers": [],
+            "from": "python",
+            "discos": [],
+            "from_full": "python:3.6",
+            "cmd": "./wait-for-it.sh -t 0 rabbitmq:5672 -- python twitterweb.py",
+            "monitors": [],
+            "cmd_keywords": [
+                "twitterweb",
+                "python",
+                "rabbitmq",
+                "wait",
+                "for"
+            ],
+            "keywords": [
+                "requirements",
+                "trusted",
+                "host",
+                "install",
+                "pypi"
+            ]
+        }
+    ],
+    "buses": [
+        "rabbitmq"
+    ],
+    "servers": [
+        "flask"
+    ],
+    "size": 160138,
+    "files": [
+        {
+            "gates": [],
+            "path": "/Assignment2/TwitterStreamer/requirements.txt",
+            "discos": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "flask"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "path": "/Assignment2/Sentiment/requirements.txt",
+            "discos": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "flask"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "path": "/Assignment2/NewsStreamer/requirements.txt",
+            "discos": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "flask"
+            ],
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "path": "/Assignment2/Web/requirements.txt",
+            "discos": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "flask"
+            ],
+            "monitors": []
+        }
+    ],
+    "num_buses": 1,
+    "num_monitors": 0,
+    "url": "git://github.com/DavidCoughlan8519/Microservices.git",
+    "num_discos": 0
+}

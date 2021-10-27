@@ -1,0 +1,194 @@
+{
+    "languages": [
+        "typescript"
+    ],
+    "num_servers": 3,
+    "shared_dbs": true,
+    "name": "murnax/microservices-ecommerce-system",
+    "servers": [
+        "mongoose",
+        "node",
+        "express"
+    ],
+    "num_monitors": 0,
+    "num_langs": 1,
+    "images": [
+        "mhart/alpine-node"
+    ],
+    "langs": [
+        "typescript"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "app",
+                "yarn",
+                "install",
+                "npm",
+                "chmod"
+            ],
+            "path": "/orderingService/Dockerfile",
+            "gates": [],
+            "from": "mhart/alpine-node",
+            "from_full": "mhart/alpine-node:9.11",
+            "servers": [
+                "node"
+            ],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "app",
+                "yarn",
+                "install",
+                "npm",
+                "chmod"
+            ],
+            "path": "/shipmentService/Dockerfile",
+            "gates": [],
+            "from": "mhart/alpine-node",
+            "from_full": "mhart/alpine-node:9.11",
+            "servers": [
+                "node"
+            ],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [],
+    "num_buses": 1,
+    "discos": [],
+    "monitors": [],
+    "num_files": 5,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "./orderingService",
+                "depends_on": [
+                    "mongo"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "ordering",
+                "image": "./orderingService",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "./shipmentService",
+                "depends_on": [
+                    "mongo"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "shipment",
+                "image": "./shipmentService",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "landoop/fast-data-dev",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "kafka",
+                "image": "landoop/fast-data-dev",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mongo:latest",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "mongo",
+                "image": "mongo",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 4,
+        "detected_dbs": {
+            "services": [
+                "mongo"
+            ],
+            "names": [
+                "mongo"
+            ],
+            "num": 1,
+            "shared_dbs": true
+        }
+    },
+    "dbs": [
+        "mongo"
+    ],
+    "num_dbs": 1,
+    "avg_size_service": 105.5,
+    "num_services": 4,
+    "buses": [
+        "kafka"
+    ],
+    "files": [
+        {
+            "dbs": [
+                "mongodb"
+            ],
+            "path": "/orderingService/package.json",
+            "gates": [],
+            "servers": [
+                "mongoose",
+                "node",
+                "express"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "mongodb"
+            ],
+            "path": "/shipmentService/package.json",
+            "gates": [],
+            "servers": [
+                "mongoose",
+                "node",
+                "express"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "url": "git://github.com/murnax/microservices-ecommerce-system.git",
+    "num_dockers": 2,
+    "size": 211,
+    "num_discos": 0,
+    "num_gates": 0
+}

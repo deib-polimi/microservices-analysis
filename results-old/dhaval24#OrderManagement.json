@@ -1,0 +1,186 @@
+{
+    "num_monitors": 1,
+    "name": "dhaval24/OrderManagement",
+    "langs": [
+        "java",
+        "shell"
+    ],
+    "discos": [],
+    "files": [
+        {
+            "servers": [
+                "spring"
+            ],
+            "monitors": [
+                "monitoring"
+            ],
+            "gates": [],
+            "buses": [
+                "amqp"
+            ],
+            "discos": [],
+            "path": "/pom.xml",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/OrderLoggingService/pom.xml",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/OrderCreationService/pom.xml",
+            "dbs": [
+                "postgresql"
+            ]
+        }
+    ],
+    "dockers": [
+        {
+            "from": "openjdk",
+            "cmd_keywords": [],
+            "langs": [],
+            "discos": [],
+            "cmd": "",
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "keywords": [],
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/OrderLoggingService/Dockerfile"
+        },
+        {
+            "from": "openjdk",
+            "cmd_keywords": [],
+            "langs": [],
+            "discos": [],
+            "cmd": "",
+            "dbs": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "keywords": [
+                "chmod",
+                "start"
+            ],
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/OrderCreationService/Dockerfile"
+        }
+    ],
+    "size": 1632,
+    "dbs": [
+        "postgresql"
+    ],
+    "num_gates": 0,
+    "monitors": [
+        "monitoring"
+    ],
+    "url": "git://github.com/dhaval24/OrderManagement.git",
+    "structure": {
+        "services": [
+            {
+                "depends_on": [],
+                "servers": [],
+                "name": "rabbitmq",
+                "gates": [],
+                "image_full": "rabbitmq:management",
+                "discos": [],
+                "image": "rabbitmq",
+                "dbs": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "monitors": []
+            },
+            {
+                "depends_on": [],
+                "servers": [],
+                "name": "postgres",
+                "gates": [],
+                "image_full": "postgres",
+                "discos": [],
+                "image": "postgres",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "servers": [],
+                "name": "order-logging-service",
+                "gates": [],
+                "image_full": "./OrderLoggingService",
+                "discos": [],
+                "image": "./OrderLoggingService",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [
+                    "rabbitmq",
+                    "postgres"
+                ],
+                "servers": [],
+                "name": "order-creation-service",
+                "gates": [],
+                "image_full": "./OrderCreationService",
+                "discos": [],
+                "image": "./OrderCreationService",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [],
+            "shared_dbs": false,
+            "num": 0,
+            "names": []
+        },
+        "path": "/docker-compose.yml",
+        "num_services": 4
+    },
+    "buses": [
+        "rabbitmq",
+        "amqp"
+    ],
+    "num_servers": 1,
+    "avg_size_service": 816.0,
+    "num_langs": 2,
+    "images": [
+        "openjdk"
+    ],
+    "num_dockers": 2,
+    "servers": [
+        "spring"
+    ],
+    "languages": [
+        "java",
+        "shell"
+    ],
+    "gates": [],
+    "num_services": 4,
+    "shared_dbs": false,
+    "num_files": 6,
+    "num_discos": 0,
+    "num_buses": 2,
+    "num_dbs": 1
+}

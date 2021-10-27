@@ -1,0 +1,204 @@
+{
+    "size": 1658,
+    "num_monitors": 0,
+    "num_discos": 0,
+    "shared_dbs": false,
+    "langs": [
+        "javascript",
+        "html",
+        "bash",
+        "golang",
+        "go"
+    ],
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_langs": 5,
+    "num_dbs": 0,
+    "discos": [],
+    "avg_size_service": 552.6666666666666,
+    "images": [
+        "node",
+        "nginx",
+        "golang"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "dockers": [
+        {
+            "monitors": [],
+            "from": "nginx",
+            "langs": [],
+            "servers": [],
+            "buses": [],
+            "cmd_keywords": [
+                "nginx"
+            ],
+            "cmd": "nginx",
+            "path": "/nginx/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "gates": [
+                "nginx"
+            ],
+            "from_full": "nginx",
+            "discos": []
+        },
+        {
+            "monitors": [],
+            "from": "golang",
+            "langs": [
+                "golang"
+            ],
+            "servers": [],
+            "buses": [],
+            "cmd_keywords": [
+                "wrapper",
+                "run"
+            ],
+            "cmd": "go-wrapper run",
+            "path": "/worker/Dockerfile",
+            "keywords": [
+                "wrapper",
+                "image",
+                "add",
+                "cache",
+                "mkdir"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "golang:1.8.3-alpine",
+            "discos": []
+        },
+        {
+            "monitors": [],
+            "from": "node",
+            "langs": [
+                "bash"
+            ],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "cmd_keywords": [
+                "node"
+            ],
+            "cmd": "node .",
+            "path": "/api/Dockerfile",
+            "keywords": [
+                "app",
+                "tmp",
+                "opt",
+                "node",
+                "add"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "node:8.0.0-alpine",
+            "discos": []
+        }
+    ],
+    "structure": {
+        "detected_dbs": {
+            "num": 0,
+            "shared_dbs": false,
+            "services": [],
+            "names": []
+        },
+        "services": [
+            {
+                "image": "./nginx",
+                "depends_on": [
+                    "api"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "./nginx",
+                "gates": [
+                    "nginx"
+                ],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "nginx"
+            },
+            {
+                "image": "rabbitmq",
+                "depends_on": [],
+                "discos": [],
+                "monitors": [],
+                "image_full": "rabbitmq:3.6.10-management-alpine",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "name": "rabbitmq"
+            },
+            {
+                "image": "./api",
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "./api",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "api"
+            },
+            {
+                "image": "./worker",
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "./worker",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "worker"
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "num_services": 4
+    },
+    "num_dockers": 3,
+    "num_files": 5,
+    "num_services": 4,
+    "num_gates": 1,
+    "name": "RolfKoenders/image-processing-service",
+    "url": "git://github.com/RolfKoenders/image-processing-service.git",
+    "monitors": [],
+    "servers": [
+        "node",
+        "express"
+    ],
+    "dbs": [],
+    "num_servers": 2,
+    "num_buses": 1,
+    "files": [
+        {
+            "path": "/api/package.json",
+            "monitors": [],
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "express"
+            ],
+            "buses": [],
+            "discos": []
+        }
+    ],
+    "languages": [
+        "javascript",
+        "html",
+        "go"
+    ]
+}

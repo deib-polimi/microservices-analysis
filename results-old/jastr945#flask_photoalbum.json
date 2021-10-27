@@ -1,0 +1,224 @@
+{
+    "avg_size_service": 737.0,
+    "buses": [],
+    "num_dbs": 0,
+    "files": [
+        {
+            "path": "/server/requirements.txt",
+            "servers": [
+                "flask"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "path": "/client/package.json",
+            "servers": [],
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": []
+        }
+    ],
+    "num_dockers": 4,
+    "num_langs": 3,
+    "num_servers": 1,
+    "num_buses": 0,
+    "num_discos": 0,
+    "gates": [
+        "nginx"
+    ],
+    "images": [
+        "nginx",
+        "python",
+        "postgres"
+    ],
+    "size": 2948,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 4,
+        "services": [
+            {
+                "buses": [],
+                "name": "albums-db",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "./server/project/db",
+                "image_full": "./server/project/db",
+                "discos": [],
+                "gates": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "name": "albums-service",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "./server",
+                "image_full": "./server",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "albums-db"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "nginx",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "./nginx",
+                "image_full": "./nginx",
+                "discos": [],
+                "gates": [
+                    "nginx"
+                ],
+                "depends_on": [
+                    "albums-service",
+                    "web-service"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "web-service",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "['REACT_APP_REDIRECT_URI=${REACT_APP_REDIRECT_URI}', 'REACT_APP_CLIENT_ID=${REACT_APP_CLIENT_ID}']",
+                "image_full": "['REACT_APP_REDIRECT_URI=${REACT_APP_REDIRECT_URI}', 'REACT_APP_CLIENT_ID=${REACT_APP_CLIENT_ID}']",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "albums-service"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 0,
+            "names": [],
+            "services": []
+        }
+    },
+    "num_files": 7,
+    "servers": [
+        "flask"
+    ],
+    "url": "git://github.com/jastr945/flask_photoalbum.git",
+    "dbs": [],
+    "monitors": [],
+    "dockers": [
+        {
+            "from_full": "nginx",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [
+                "nginx"
+            ],
+            "path": "/nginx/Dockerfile",
+            "from": "nginx",
+            "cmd": "",
+            "cmd_keywords": [],
+            "servers": [],
+            "keywords": [
+                "conf",
+                "nginx",
+                "default",
+                "etc"
+            ],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "python:3.6.1",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/server/Dockerfile",
+            "from": "python",
+            "cmd": "./entrypoint.sh",
+            "cmd_keywords": [
+                "entrypoint"
+            ],
+            "servers": [],
+            "keywords": [
+                "apt",
+                "get",
+                "install",
+                "yqq",
+                "netcat"
+            ],
+            "discos": [],
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "from_full": "postgres",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/server/project/db/Dockerfile",
+            "from": "postgres",
+            "cmd": "",
+            "cmd_keywords": [],
+            "servers": [],
+            "keywords": [],
+            "discos": [],
+            "langs": []
+        },
+        {
+            "from_full": "nginx",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [
+                "nginx"
+            ],
+            "path": "/client/Dockerfile",
+            "from": "nginx",
+            "cmd": "nginx -g daemon off;",
+            "cmd_keywords": [
+                "nginx",
+                "off",
+                "daemon"
+            ],
+            "servers": [],
+            "keywords": [
+                "npm",
+                "install",
+                "react",
+                "save",
+                "loader"
+            ],
+            "discos": [],
+            "langs": []
+        }
+    ],
+    "languages": [
+        "python",
+        "javascript",
+        "css"
+    ],
+    "num_services": 4,
+    "num_gates": 1,
+    "name": "jastr945/flask_photoalbum",
+    "shared_dbs": false,
+    "langs": [
+        "javascript",
+        "python",
+        "css"
+    ],
+    "discos": [],
+    "num_monitors": 0
+}

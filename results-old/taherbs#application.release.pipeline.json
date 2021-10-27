@@ -1,0 +1,188 @@
+{
+    "name": "taherbs/application.release.pipeline",
+    "buses": [],
+    "images": [
+        "redis",
+        "php",
+        "mysql",
+        "nginx"
+    ],
+    "num_langs": 4,
+    "num_discos": 0,
+    "num_buses": 0,
+    "dockers": [
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": [],
+            "from": "mysql",
+            "cmd_keywords": [
+                "init",
+                "mysql",
+                "file",
+                "etc",
+                "mysqld"
+            ],
+            "from_full": "mysql:5.7",
+            "keywords": [
+                "mysql",
+                "etc",
+                "sed",
+                "startup",
+                "database"
+            ],
+            "path": "/docker_artifacts/mysql/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": "mysqld --init-file=/etc/mysql/startup"
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [
+                "redis"
+            ],
+            "monitors": [],
+            "from": "redis",
+            "cmd_keywords": [
+                "redis",
+                "server"
+            ],
+            "from_full": "redis:latest",
+            "keywords": [],
+            "path": "/docker_artifacts/redis/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": "redis-server"
+        },
+        {
+            "discos": [],
+            "langs": [
+                "php"
+            ],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "php",
+            "cmd_keywords": [
+                "bin",
+                "log",
+                "stream",
+                "php",
+                "fpm"
+            ],
+            "from_full": "php:7-fpm",
+            "keywords": [
+                "log",
+                "stream",
+                "chmod",
+                "mkfifo"
+            ],
+            "path": "/docker_artifacts/app/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": "/bin/sh -c php-fpm -R -D | tail -f $LOG_STREAM"
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "nginx",
+            "cmd_keywords": [
+                "daemon",
+                "off",
+                "nginx"
+            ],
+            "from_full": "nginx:stable-alpine",
+            "keywords": [
+                "etc",
+                "nginx",
+                "conf",
+                "fcgi",
+                "europe"
+            ],
+            "path": "/docker_artifacts/web/Dockerfile",
+            "servers": [],
+            "gates": [
+                "nginx"
+            ],
+            "cmd": "nginx -g daemon off;"
+        }
+    ],
+    "monitors": [],
+    "dbs": [
+        "redis",
+        "mysql"
+    ],
+    "structure": {
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "names": [],
+            "shared_dbs": false
+        },
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "monitors": [],
+                "name": "web",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image": "['FCGI_HOST=php']",
+                "image_full": "['FCGI_HOST=php']",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "php",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image": "docker_artifacts/app/Dockerfile",
+                "image_full": "docker_artifacts/app/Dockerfile",
+                "gates": [],
+                "dbs": []
+            }
+        ],
+        "num_services": 2
+    },
+    "gates": [
+        "nginx"
+    ],
+    "files": [],
+    "avg_size_service": 24.75,
+    "langs": [
+        "php",
+        "makefile",
+        "python",
+        "dockerfile"
+    ],
+    "num_dbs": 2,
+    "num_services": 2,
+    "num_monitors": 0,
+    "size": 99,
+    "languages": [
+        "python",
+        "dockerfile",
+        "makefile"
+    ],
+    "num_files": 5,
+    "num_gates": 1,
+    "num_dockers": 4,
+    "shared_dbs": false,
+    "servers": [],
+    "num_servers": 0,
+    "url": "git://github.com/taherbs/application.release.pipeline.git",
+    "discos": []
+}

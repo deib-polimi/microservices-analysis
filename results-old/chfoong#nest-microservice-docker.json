@@ -1,0 +1,210 @@
+{
+    "num_monitors": 0,
+    "name": "chfoong/nest-microservice-docker",
+    "langs": [
+        "typescript"
+    ],
+    "discos": [],
+    "files": [
+        {
+            "servers": [
+                "express",
+                "node"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/payments-app/package.json",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "mongoose",
+                "express",
+                "node"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/orders-app/package.json",
+            "dbs": []
+        }
+    ],
+    "dockers": [
+        {
+            "from": "mongo",
+            "cmd_keywords": [
+                "init"
+            ],
+            "langs": [],
+            "discos": [],
+            "cmd": "sh /init.sh",
+            "dbs": [
+                "mongo"
+            ],
+            "from_full": "mongo",
+            "keywords": [],
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/mongo-seed/Dockerfile"
+        },
+        {
+            "from": "node",
+            "cmd_keywords": [
+                "npm",
+                "dev",
+                "start",
+                "run"
+            ],
+            "langs": [],
+            "discos": [],
+            "cmd": "npm run start:dev",
+            "dbs": [],
+            "from_full": "node:latest",
+            "keywords": [
+                "npm",
+                "install"
+            ],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/payments-app/Dockerfile"
+        },
+        {
+            "from": "node",
+            "cmd_keywords": [
+                "npm",
+                "dev",
+                "start",
+                "run"
+            ],
+            "langs": [],
+            "discos": [],
+            "cmd": "npm run start:dev",
+            "dbs": [],
+            "from_full": "node:latest",
+            "keywords": [
+                "npm",
+                "install"
+            ],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/orders-app/Dockerfile"
+        }
+    ],
+    "size": 608,
+    "dbs": [
+        "mongo"
+    ],
+    "num_gates": 0,
+    "monitors": [],
+    "url": "git://github.com/chfoong/nest-microservice-docker.git",
+    "structure": {
+        "services": [
+            {
+                "depends_on": [],
+                "servers": [],
+                "name": "payments",
+                "gates": [],
+                "image_full": "./payments-app",
+                "discos": [],
+                "image": "./payments-app",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [
+                    "mongodb"
+                ],
+                "servers": [],
+                "name": "orders",
+                "gates": [],
+                "image_full": "./orders-app",
+                "discos": [],
+                "image": "./orders-app",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [
+                    "mongodb"
+                ],
+                "servers": [],
+                "name": "mongodb_seed",
+                "gates": [],
+                "image_full": "./mongo-seed",
+                "discos": [],
+                "image": "./mongo-seed",
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [],
+                "servers": [],
+                "name": "mongodb",
+                "gates": [],
+                "image_full": "mongo",
+                "discos": [],
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "mongodb_seed",
+                "mongodb"
+            ],
+            "shared_dbs": true,
+            "num": 2,
+            "names": [
+                "mongo"
+            ]
+        },
+        "path": "/docker-compose.yml",
+        "num_services": 4
+    },
+    "buses": [],
+    "num_servers": 3,
+    "avg_size_service": 202.66666666666666,
+    "num_langs": 1,
+    "images": [
+        "mongo",
+        "node"
+    ],
+    "num_dockers": 3,
+    "servers": [
+        "mongoose",
+        "express",
+        "node"
+    ],
+    "languages": [
+        "typescript"
+    ],
+    "gates": [],
+    "num_services": 4,
+    "shared_dbs": true,
+    "num_files": 6,
+    "num_discos": 0,
+    "num_buses": 0,
+    "num_dbs": 1
+}

@@ -1,0 +1,257 @@
+{
+    "num_services": 12,
+    "dbs": [
+        "mysql",
+        "mongo"
+    ],
+    "name": "LJJW-Arquitectura/unreads_proxy",
+    "files": [],
+    "discos": [],
+    "num_gates": 1,
+    "num_buses": 0,
+    "langs": [
+        "dockerfile"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_monitors": 0,
+    "monitors": [],
+    "images": [
+        "nginx"
+    ],
+    "structure": {
+        "num_services": 12,
+        "detected_dbs": {
+            "num": 3,
+            "services": [
+                "books-db",
+                "reviews-db",
+                "booklist-db"
+            ],
+            "names": [
+                "mysql",
+                "mongo"
+            ],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "buses": [],
+                "depends_on": [
+                    "reviews-db"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "../ms-reviews/nodejs-microservice",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "reviews-ms",
+                "image": "../ms-reviews/nodejs-microservice"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "image_full": "mysql:5.7",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "books-db",
+                "image": "mysql"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "booklist-db"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "../ms-booklist",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "booklist-ms",
+                "image": "../ms-booklist"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "osixia/openldap:1.1.8",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "UNreads-ldap",
+                "image": "osixia/openldap"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "unreads-api",
+                    "users-ms",
+                    "booklist-ms",
+                    "books-ms",
+                    "reviews-ms",
+                    "UNreads-ldap"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": ".",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "unreads-proxy",
+                "image": "."
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "image_full": "mysql:5.7",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "reviews-db",
+                "image": "mysql"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "users-db"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "../ms-users",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "users-ms",
+                "image": "../ms-users"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "../unreads_api",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "unreads-api",
+                "image": "../unreads_api"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "image_full": "mongo:3.0.2",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "booklist-db",
+                "image": "mongo"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "UNreads-ldap"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "osixia/phpldapadmin:latest",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "phpldapadmin",
+                "image": "osixia/phpldapadmin"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "postgres",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "users-db",
+                "image": "postgres"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "books-db"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "../ms-books",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "books-ms",
+                "image": "../ms-books"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "shared_dbs": false,
+    "languages": [
+        "dockerfile"
+    ],
+    "avg_size_service": 7.0,
+    "buses": [],
+    "dockers": [
+        {
+            "from_full": "nginx",
+            "langs": [],
+            "dbs": [],
+            "path": "/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "daemon",
+                "off",
+                "nginx"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [
+                "nginx"
+            ],
+            "servers": [
+                "node"
+            ],
+            "from": "nginx",
+            "keywords": [
+                "conf",
+                "nginx",
+                "get",
+                "apt",
+                "apache"
+            ],
+            "cmd": "nginx -g daemon off;"
+        }
+    ],
+    "servers": [
+        "node"
+    ],
+    "num_dockers": 1,
+    "url": "git://github.com/LJJW-Arquitectura/unreads_proxy.git",
+    "num_dbs": 2,
+    "num_servers": 1,
+    "num_discos": 0,
+    "num_langs": 1,
+    "num_files": 2,
+    "size": 7
+}

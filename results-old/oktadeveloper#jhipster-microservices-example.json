@@ -1,0 +1,396 @@
+{
+    "num_dbs": 3,
+    "dbs": [
+        "hazelcast",
+        "postgresql",
+        "mongo"
+    ],
+    "images": [
+        "openjdk"
+    ],
+    "langs": [
+        "java",
+        "typescript",
+        "css",
+        "html"
+    ],
+    "size": 11401,
+    "num_discos": 1,
+    "dockers": [
+        {
+            "dbs": [],
+            "from": "openjdk",
+            "keywords": [],
+            "from_full": "openjdk:8-jre-alpine",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "echo \"The application will start in ${JHIPSTER_SLEEP}s...\" &&     sleep ${JHIPSTER_SLEEP} &&     java ${JAVA_OPTS} -Djava.security.egd=file:/dev/./urandom -jar /app.war",
+            "path": "/blog/src/main/docker/Dockerfile",
+            "cmd_keywords": [
+                "sleep",
+                "jhipster",
+                "java",
+                "start",
+                "echo"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "from": "openjdk",
+            "keywords": [],
+            "from_full": "openjdk:8-jre-alpine",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "echo \"The application will start in ${JHIPSTER_SLEEP}s...\" &&     sleep ${JHIPSTER_SLEEP} &&     java ${JAVA_OPTS} -Djava.security.egd=file:/dev/./urandom -jar /app.war",
+            "path": "/store/src/main/docker/Dockerfile",
+            "cmd_keywords": [
+                "sleep",
+                "jhipster",
+                "java",
+                "start",
+                "echo"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "from": "openjdk",
+            "keywords": [
+                "code",
+                "root",
+                "target",
+                "mvnw",
+                "war"
+            ],
+            "from_full": "openjdk:8",
+            "langs": [
+                "java"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "monitors": [],
+            "buses": [],
+            "cmd": "java -Djava.security.egd=file:/dev/./urandom -jar /jhipster-registry.war --spring.cloud.config.server.git.uri=${GIT_URI} --spring.cloud.config.server.git.search-paths=${GIT_SEARCH_PATHS}",
+            "path": "/registry/Dockerfile",
+            "cmd_keywords": [
+                "git",
+                "paths",
+                "config",
+                "spring",
+                "uri"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "from": "openjdk",
+            "keywords": [],
+            "from_full": "openjdk:8-jre-alpine",
+            "langs": [
+                "java"
+            ],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "echo \"The application will start in ${JHIPSTER_SLEEP}s...\" &&     sleep ${JHIPSTER_SLEEP} &&     java -Djava.security.egd=file:/dev/./urandom -jar /app.war",
+            "path": "/registry/src/main/docker/Dockerfile",
+            "cmd_keywords": [
+                "sleep",
+                "jhipster",
+                "start",
+                "urandom",
+                "egd"
+            ],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "servers": [
+        "node",
+        "tomcat",
+        "spring"
+    ],
+    "monitors": [
+        "prometheus",
+        "graphite"
+    ],
+    "num_dockers": 4,
+    "structure": {
+        "path": "/docker/docker-compose.yml",
+        "num_services": 10,
+        "detected_dbs": {
+            "services": [
+                "store-mongodb"
+            ],
+            "names": [
+                "mongo"
+            ],
+            "num": 1,
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "image": "postgres",
+                "dbs": [],
+                "depends_on": [],
+                "image_full": "postgres:9.6.2",
+                "buses": [],
+                "name": "blog-postgresql",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "blog",
+                "dbs": [],
+                "depends_on": [],
+                "image_full": "blog",
+                "buses": [],
+                "name": "blog-app",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "",
+                "dbs": [],
+                "depends_on": [],
+                "image_full": "",
+                "buses": [],
+                "name": "jhipster-console",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "store",
+                "dbs": [],
+                "depends_on": [],
+                "image_full": "store",
+                "buses": [],
+                "name": "store-app",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "",
+                "dbs": [],
+                "depends_on": [],
+                "image_full": "",
+                "buses": [],
+                "name": "jhipster-elasticsearch",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "",
+                "dbs": [],
+                "depends_on": [],
+                "image_full": "",
+                "buses": [],
+                "name": "jhipster-registry",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "depends_on": [],
+                "image_full": "mongo:3.2.10",
+                "buses": [],
+                "name": "store-mongodb",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "",
+                "dbs": [],
+                "depends_on": [],
+                "image_full": "",
+                "buses": [],
+                "name": "jhipster-logstash",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "elasticsearch",
+                "dbs": [],
+                "depends_on": [],
+                "image_full": "elasticsearch:2.4.1",
+                "buses": [],
+                "name": "blog-elasticsearch",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "",
+                "dbs": [],
+                "depends_on": [],
+                "image_full": "",
+                "buses": [],
+                "name": "jhipster-zipkin",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            }
+        ]
+    },
+    "num_buses": 0,
+    "gates": [
+        "zuul"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "num_gates": 1,
+    "num_services": 10,
+    "name": "oktadeveloper/jhipster-microservices-example",
+    "shared_dbs": false,
+    "avg_size_service": 2850.25,
+    "num_langs": 4,
+    "num_servers": 3,
+    "languages": [
+        "java",
+        "typescript",
+        "html",
+        "css"
+    ],
+    "buses": [],
+    "files": [
+        {
+            "dbs": [
+                "hazelcast",
+                "postgresql"
+            ],
+            "buses": [],
+            "path": "/blog/pom.xml",
+            "monitors": [
+                "prometheus",
+                "monitoring",
+                "graphite"
+            ],
+            "gates": [
+                "zuul"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "node",
+                "tomcat",
+                "spring"
+            ]
+        },
+        {
+            "dbs": [
+                "mongodb",
+                "mongo"
+            ],
+            "buses": [],
+            "path": "/store/pom.xml",
+            "monitors": [
+                "prometheus",
+                "monitoring",
+                "graphite"
+            ],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "node",
+                "tomcat",
+                "spring"
+            ]
+        },
+        {
+            "dbs": [],
+            "buses": [],
+            "path": "/registry/pom.xml",
+            "monitors": [
+                "prometheus",
+                "monitoring",
+                "graphite"
+            ],
+            "gates": [
+                "zuul"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "node",
+                "tomcat",
+                "spring"
+            ]
+        },
+        {
+            "dbs": [],
+            "buses": [],
+            "path": "/blog/package.json",
+            "monitors": [],
+            "gates": [],
+            "discos": [],
+            "servers": [
+                "node"
+            ]
+        },
+        {
+            "dbs": [],
+            "buses": [],
+            "path": "/store/package.json",
+            "monitors": [],
+            "gates": [],
+            "discos": [],
+            "servers": []
+        },
+        {
+            "dbs": [],
+            "buses": [],
+            "path": "/registry/package.json",
+            "monitors": [],
+            "gates": [],
+            "discos": [
+                "eureka"
+            ],
+            "servers": [
+                "node",
+                "spring"
+            ]
+        }
+    ],
+    "url": "git://github.com/oktadeveloper/jhipster-microservices-example.git",
+    "num_files": 11,
+    "num_monitors": 2
+}

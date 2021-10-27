@@ -1,0 +1,199 @@
+{
+    "files": [],
+    "num_services": 7,
+    "discos": [
+        "registrator",
+        "consul"
+    ],
+    "dbs": [],
+    "avg_size_service": 96.5,
+    "name": "Microkubes/microkubes",
+    "num_buses": 0,
+    "num_langs": 2,
+    "monitors": [
+        "prometheus"
+    ],
+    "num_files": 3,
+    "langs": [
+        "smarty",
+        "shell"
+    ],
+    "num_gates": 2,
+    "dockers": [
+        {
+            "monitors": [
+                "prometheus"
+            ],
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "path": "/docker/prometheus/Dockerfile",
+            "cmd_keywords": [],
+            "from_full": "prom/prometheus:v2.2.1",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "from": "prom/prometheus",
+            "keywords": []
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "gates": [
+                "kong"
+            ],
+            "path": "/docker/kong/Dockerfile",
+            "cmd_keywords": [
+                "kong",
+                "start",
+                "etc",
+                "config"
+            ],
+            "from_full": "kong:0.14.1-alpine",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "kong start -c /etc/kong/kong.config -vv",
+            "from": "kong",
+            "keywords": [
+                "tools",
+                "bind",
+                "add",
+                "apk",
+                "cache"
+            ]
+        }
+    ],
+    "structure": {
+        "path": "/docker/docker-compose.yml",
+        "detected_dbs": {
+            "names": [],
+            "services": [],
+            "num": 0,
+            "shared_dbs": false
+        },
+        "num_services": 7,
+        "services": [
+            {
+                "monitors": [],
+                "image": "postgres",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "kong-database",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "postgres:9.5"
+            },
+            {
+                "monitors": [],
+                "image": "microkubes/kong",
+                "discos": [],
+                "buses": [],
+                "gates": [
+                    "kong"
+                ],
+                "name": "kong-migration",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "microkubes/kong:v1.0.0-beta"
+            },
+            {
+                "monitors": [],
+                "image": "gliderlabs/registrator",
+                "discos": [
+                    "registrator"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "registrator",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "gliderlabs/registrator:v7"
+            },
+            {
+                "monitors": [],
+                "image": "consul",
+                "discos": [
+                    "consul"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "consul",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "consul:1.0.1"
+            },
+            {
+                "monitors": [
+                    "prometheus"
+                ],
+                "image": "microkubes/prometheus",
+                "discos": [],
+                "buses": [],
+                "gates": [],
+                "name": "prometheus",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "microkubes/prometheus:latest"
+            },
+            {
+                "monitors": [],
+                "image": "microkubes/kong",
+                "discos": [],
+                "buses": [],
+                "gates": [
+                    "kong"
+                ],
+                "name": "kong",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "microkubes/kong:v1.0.0-beta"
+            },
+            {
+                "monitors": [],
+                "image": "nginx",
+                "discos": [],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "name": "nginx",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "image_full": "nginx:latest"
+            }
+        ]
+    },
+    "size": 193,
+    "num_discos": 2,
+    "languages": [
+        "shell",
+        "smarty"
+    ],
+    "url": "git://github.com/Microkubes/microkubes.git",
+    "buses": [],
+    "gates": [
+        "nginx",
+        "kong"
+    ],
+    "shared_dbs": false,
+    "servers": [],
+    "images": [
+        "kong",
+        "prom/prometheus"
+    ],
+    "num_servers": 0,
+    "num_dockers": 2,
+    "num_monitors": 1,
+    "num_dbs": 0
+}

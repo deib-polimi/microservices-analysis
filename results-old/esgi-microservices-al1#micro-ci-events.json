@@ -1,0 +1,199 @@
+{
+    "num_gates": 0,
+    "images": [
+        "python"
+    ],
+    "discos": [
+        "consul",
+        "traefik"
+    ],
+    "num_buses": 1,
+    "name": "esgi-microservices-al1/micro-ci-events",
+    "gates": [],
+    "structure": {
+        "num_services": 6,
+        "detected_dbs": {
+            "services": [
+                "management1",
+                "ndb1",
+                "ndb2",
+                "mysql1"
+            ],
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": true,
+            "num": 4
+        },
+        "path": "/.github/azure/docker-compose.yml",
+        "services": [
+            {
+                "image": "mysql/mysql-cluster",
+                "image_full": "mysql/mysql-cluster:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "management1",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "mysql"
+                ]
+            },
+            {
+                "image": "traefik",
+                "image_full": "traefik:v2.2",
+                "discos": [
+                    "traefik"
+                ],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "traefik",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "mysql/mysql-cluster",
+                "image_full": "mysql/mysql-cluster:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "management1"
+                ],
+                "servers": [],
+                "name": "ndb1",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "mysql"
+                ]
+            },
+            {
+                "image": "mysql/mysql-cluster",
+                "image_full": "mysql/mysql-cluster:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "management1"
+                ],
+                "servers": [],
+                "name": "ndb2",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "mysql"
+                ]
+            },
+            {
+                "image": "ci-events",
+                "image_full": "ci-events:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "mysql1"
+                ],
+                "servers": [],
+                "name": "micro-ci-events",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "mysql/mysql-cluster",
+                "image_full": "mysql/mysql-cluster:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "management1",
+                    "ndb1",
+                    "ndb2"
+                ],
+                "servers": [],
+                "name": "mysql1",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "mysql"
+                ]
+            }
+        ]
+    },
+    "url": "git://github.com/esgi-microservices-al1/micro-ci-events.git",
+    "langs": [
+        "python"
+    ],
+    "num_dockers": 1,
+    "num_langs": 1,
+    "dbs": [
+        "mysql"
+    ],
+    "shared_dbs": true,
+    "size": 20,
+    "dockers": [
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "python:3.7.4-alpine3.10",
+            "servers": [],
+            "buses": [
+                "rabbitmq"
+            ],
+            "langs": [
+                "python"
+            ],
+            "from": "python",
+            "cmd": "python app.py",
+            "gates": [],
+            "keywords": [
+                "pip",
+                "install",
+                "mkdir",
+                "events",
+                "chmod"
+            ],
+            "dbs": [],
+            "path": "/Dockerfile",
+            "cmd_keywords": [
+                "python",
+                "app"
+            ]
+        }
+    ],
+    "num_servers": 1,
+    "monitors": [],
+    "num_services": 6,
+    "servers": [
+        "flask"
+    ],
+    "num_monitors": 0,
+    "avg_size_service": 20.0,
+    "num_files": 3,
+    "buses": [
+        "rabbitmq"
+    ],
+    "files": [
+        {
+            "buses": [],
+            "discos": [
+                "consul"
+            ],
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "path": "/app/requirements.txt"
+        }
+    ],
+    "languages": [
+        "python"
+    ],
+    "num_dbs": 1,
+    "num_discos": 2
+}

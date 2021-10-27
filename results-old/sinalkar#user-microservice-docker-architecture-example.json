@@ -1,0 +1,324 @@
+{
+    "size": 587,
+    "avg_size_service": 117.4,
+    "name": "sinalkar/user-microservice-docker-architecture-example",
+    "languages": [
+        "javascript",
+        "shell",
+        "dockerfile",
+        "html"
+    ],
+    "servers": [
+        "node",
+        "express",
+        "mongoose"
+    ],
+    "num_dbs": 1,
+    "images": [
+        "node",
+        "ubuntu",
+        "redis"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 7,
+        "services": [
+            {
+                "depends_on": [],
+                "image_full": "techvit/redis_cluster",
+                "monitors": [],
+                "name": "redis-cluster",
+                "image": "techvit/redis_cluster",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "redis"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "mongodb",
+                    "redis-cluster"
+                ],
+                "image_full": "techvit/user-service-app",
+                "monitors": [],
+                "name": "app2",
+                "image": "techvit/user-service-app",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "mongodb",
+                    "redis-cluster"
+                ],
+                "image_full": "techvit/user-service-app",
+                "monitors": [],
+                "name": "app3",
+                "image": "techvit/user-service-app",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "mongodb",
+                    "redis-cluster"
+                ],
+                "image_full": "techvit/user-service-app",
+                "monitors": [],
+                "name": "app4",
+                "image": "techvit/user-service-app",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "mongodb",
+                    "redis-cluster"
+                ],
+                "image_full": "techvit/user-service-app",
+                "monitors": [],
+                "name": "app1",
+                "image": "techvit/user-service-app",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "app1:app1",
+                    "app2:app2",
+                    "app3:app3",
+                    "app4:app4"
+                ],
+                "image_full": "techvit/user-haproxy",
+                "monitors": [],
+                "name": "user-haproxy",
+                "image": "techvit/user-haproxy",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "techvit/user-service-mongodb",
+                "monitors": [],
+                "name": "mongodb",
+                "image": "techvit/user-service-mongodb",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "mongodb"
+                ],
+                "gates": [],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "redis-cluster",
+                "mongodb"
+            ],
+            "names": [
+                "redis",
+                "mongodb"
+            ],
+            "shared_dbs": true,
+            "num": 2
+        }
+    },
+    "num_dockers": 5,
+    "num_buses": 0,
+    "num_services": 7,
+    "dockers": [
+        {
+            "path": "/haproxy/Dockerfile",
+            "from": "ubuntu",
+            "langs": [],
+            "cmd": "\"/usr/bin/supervisord\"",
+            "servers": [],
+            "from_full": "ubuntu:16.04",
+            "keywords": [
+                "haproxy",
+                "opt",
+                "tar",
+                "install",
+                "supervisor"
+            ],
+            "cmd_keywords": [
+                "usr",
+                "bin",
+                "supervisord"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/mongodb/Dockerfile",
+            "from": "ubuntu",
+            "langs": [],
+            "cmd": "\"/usr/bin/supervisord\"",
+            "servers": [],
+            "from_full": "ubuntu:16.04",
+            "keywords": [
+                "apt",
+                "linux",
+                "get",
+                "var",
+                "mongodb"
+            ],
+            "cmd_keywords": [
+                "usr",
+                "bin",
+                "supervisord"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/redis/Dockerfile",
+            "from": "ubuntu",
+            "langs": [],
+            "cmd": "\"/usr/bin/supervisord\"",
+            "servers": [],
+            "from_full": "ubuntu:16.04",
+            "keywords": [
+                "redis",
+                "opt",
+                "tar",
+                "stable",
+                "supervisor"
+            ],
+            "cmd_keywords": [
+                "usr",
+                "bin",
+                "supervisord"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [
+                "redis"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/app/Dockerfile",
+            "from": "node",
+            "langs": [],
+            "cmd": "\"/usr/bin/supervisord\"",
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:6.11",
+            "keywords": [
+                "opt",
+                "apt",
+                "mkdir",
+                "haproxy",
+                "install"
+            ],
+            "cmd_keywords": [
+                "usr",
+                "bin",
+                "supervisord"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/redis_cluster/Dockerfile",
+            "from": "redis",
+            "langs": [
+                "gcc"
+            ],
+            "cmd": "redis-cluster",
+            "servers": [],
+            "from_full": "redis:3.2.9",
+            "keywords": [
+                "redis",
+                "tar",
+                "apt",
+                "get",
+                "install"
+            ],
+            "cmd_keywords": [
+                "redis",
+                "cluster"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [
+                "redis"
+            ],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "num_langs": 5,
+    "langs": [
+        "javascript",
+        "gcc",
+        "shell",
+        "html",
+        "dockerfile"
+    ],
+    "discos": [],
+    "num_gates": 0,
+    "num_monitors": 0,
+    "num_files": 7,
+    "files": [
+        {
+            "path": "/app/src/package.json",
+            "monitors": [],
+            "dbs": [
+                "redis",
+                "mongodb"
+            ],
+            "buses": [],
+            "servers": [
+                "node",
+                "express",
+                "mongoose"
+            ],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "shared_dbs": true,
+    "monitors": [],
+    "num_servers": 3,
+    "url": "git://github.com/sinalkar/user-microservice-docker-architecture-example.git",
+    "dbs": [
+        "redis"
+    ],
+    "num_discos": 0,
+    "gates": [],
+    "buses": []
+}

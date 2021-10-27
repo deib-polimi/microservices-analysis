@@ -1,0 +1,1036 @@
+{
+    "num_services": 27,
+    "dbs": [
+        "redis",
+        "mongo"
+    ],
+    "name": "hhy37/eShopOnContainersAI",
+    "files": [
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/src/Web/WebDashboardRazor/package.json",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/src/Web/WebMVC/package.json",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "asp"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/src/Web/WebSPA/package.json",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "node"
+            ]
+        }
+    ],
+    "discos": [],
+    "num_gates": 0,
+    "num_buses": 1,
+    "langs": [
+        "c#",
+        "javascript"
+    ],
+    "gates": [],
+    "num_monitors": 0,
+    "monitors": [],
+    "images": [
+        "microsoft/aspnetcore",
+        "base",
+        "microsoft/aspnet",
+        "microsoft/dotnet"
+    ],
+    "structure": {
+        "num_services": 27,
+        "detected_dbs": {
+            "num": 2,
+            "services": [
+                "basket.data",
+                "nosql.data"
+            ],
+            "names": [
+                "redis",
+                "mongo"
+            ],
+            "shared_dbs": true
+        },
+        "services": [
+            {
+                "buses": [],
+                "depends_on": [
+                    "webshoppingagg",
+                    "webshoppingapigw",
+                    "webmarketingapigw",
+                    "webaiapigw"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "eshopai/webmvc:${TAG:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "webmvc",
+                "image": "eshopai/webmvc"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "nosql.data",
+                    "sql.data",
+                    "identity.api",
+                    "rabbitmq",
+                    "ordering.api",
+                    "marketing.api",
+                    "catalog.api",
+                    "basket.api"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "eshopai/ocelotapigw:${TAG:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "webmarketingapigw",
+                "image": "eshopai/ocelotapigw"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "basket.data",
+                    "identity.api",
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "eshopai/basket.api:${TAG:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "basket.api",
+                "image": "eshopai/basket.api"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "nosql.data",
+                    "sql.data",
+                    "identity.api",
+                    "rabbitmq",
+                    "ordering.api",
+                    "marketing.api",
+                    "catalog.api",
+                    "basket.api",
+                    "locations.api"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "eshopai/ocelotapigw:${TAG:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "mobilemarketingapigw",
+                "image": "eshopai/ocelotapigw"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "microsoft/mssql-server-linux:2017-latest",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "sql.data",
+                "image": "microsoft/mssql-server-linux"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "nosql.data",
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "eshopai/locations.api:${TAG:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "locations.api",
+                "image": "eshopai/locations.api"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "webshoppingapigw",
+                    "webaiapigw"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "eshopai/webraz:${TAG:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "webraz",
+                "image": "eshopai/webraz"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "ai.salesforecasting.mlnet.api",
+                    "catalog.api",
+                    "ordering.api",
+                    "ai.productrecommender.azureml.api",
+                    "ai.productsearchimagebased.tensorflow.api",
+                    "ai.productsearchimagebased.azurecognitiveservices.api"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "eshopai/ocelotapigw:${TAG:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "webaiapigw",
+                "image": "eshopai/ocelotapigw"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "eshopai/ai.salesforecasting.mlnet.api:${TAG:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "ai.salesforecasting.mlnet.api",
+                "image": "eshopai/ai.salesforecasting.mlnet.api"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "sql.data"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "eshopai/identity.api:${TAG:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "identity.api",
+                "image": "eshopai/identity.api"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "sql.data",
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "eshopai/ordering.backgroundtasks:${TAG:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "ordering.backgroundtasks",
+                "image": "eshopai/ordering.backgroundtasks"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "webshoppingapigw",
+                    "webaiapigw"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "eshopai/bot.api:${TAG:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "bot.api",
+                "image": "eshopai/bot.api"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [
+                    "redis"
+                ],
+                "image_full": "redis:alpine",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "basket.data",
+                "image": "redis"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "eshopai/ai.productsearchimagebased.azurecognitiveservices.api:${TAG:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "ai.productsearchimagebased.azurecognitiveservices.api",
+                "image": "eshopai/ai.productsearchimagebased.azurecognitiveservices.api"
+            },
+            {
+                "buses": [
+                    "rabbitmq"
+                ],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "rabbitmq:3-management-alpine",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "rabbitmq",
+                "image": "rabbitmq"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "eshopai/payment.api:${TAG:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "payment.api",
+                "image": "eshopai/payment.api"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "nosql.data",
+                    "sql.data",
+                    "identity.api",
+                    "rabbitmq",
+                    "ordering.api",
+                    "marketing.api",
+                    "catalog.api",
+                    "basket.api"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "eshopai/ordering.signalrhub:${TAG:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "ordering.signalrhub",
+                "image": "eshopai/ordering.signalrhub"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "eshopai/ai.productrecommender.azureml.api:${TAG:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "ai.productrecommender.azureml.api",
+                "image": "eshopai/ai.productrecommender.azureml.api"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "nosql.data",
+                    "sql.data",
+                    "identity.api",
+                    "rabbitmq",
+                    "ordering.api",
+                    "marketing.api",
+                    "catalog.api",
+                    "basket.api"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "eshopai/webshoppingagg:${TAG:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "webshoppingagg",
+                "image": "eshopai/webshoppingagg"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "eshopai/ai.productsearchimagebased.tensorflow.api:${TAG:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "ai.productsearchimagebased.tensorflow.api",
+                "image": "eshopai/ai.productsearchimagebased.tensorflow.api"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "nosql.data",
+                    "sql.data",
+                    "identity.api",
+                    "rabbitmq",
+                    "ordering.api",
+                    "marketing.api",
+                    "catalog.api",
+                    "basket.api"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "eshopai/ocelotapigw:${TAG:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "webshoppingapigw",
+                "image": "eshopai/ocelotapigw"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "nosql.data",
+                    "sql.data",
+                    "identity.api",
+                    "rabbitmq",
+                    "ordering.api",
+                    "marketing.api",
+                    "catalog.api",
+                    "basket.api"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "eshopai/mobileshoppingagg:${TAG:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "mobileshoppingagg",
+                "image": "eshopai/mobileshoppingagg"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "image_full": "mongo",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "nosql.data",
+                "image": "mongo"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "nosql.data",
+                    "sql.data",
+                    "identity.api",
+                    "rabbitmq",
+                    "ordering.api",
+                    "marketing.api",
+                    "catalog.api",
+                    "basket.api",
+                    "ai.productsearchimagebased.tensorflow.api",
+                    "ai.productsearchimagebased.azurecognitiveservices.api"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "eshopai/ocelotapigw:${TAG:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "mobileshoppingapigw",
+                "image": "eshopai/ocelotapigw"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "sql.data",
+                    "nosql.data",
+                    "identity.api",
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "eshopai/marketing.api:${TAG:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "marketing.api",
+                "image": "eshopai/marketing.api"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "sql.data",
+                    "nosql.data",
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "eshopai/catalog.api:${TAG:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "catalog.api",
+                "image": "eshopai/catalog.api"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "sql.data",
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "eshopai/ordering.api:${TAG:-latest}",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "ordering.api",
+                "image": "eshopai/ordering.api"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "shared_dbs": true,
+    "languages": [
+        "javascript",
+        "c#"
+    ],
+    "avg_size_service": 27330.666666666668,
+    "buses": [
+        "rabbitmq"
+    ],
+    "dockers": [
+        {
+            "from_full": "microsoft/dotnet:2.0-sdk",
+            "langs": [],
+            "dbs": [],
+            "path": "/test/Services/UnitTest/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "microsoft/dotnet",
+            "keywords": [
+                "dotnet",
+                "release",
+                "build",
+                "msb",
+                "nowarn"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/src/Services/AI.ProductRecommender/AI.ProductRecommender.AzureML.API/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "dotnet",
+                "app",
+                "configuration",
+                "restore",
+                "publish"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/src/Services/Payment/Payment.API/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "dotnet",
+                "restore",
+                "app",
+                "release",
+                "publish"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/src/Services/Marketing/Marketing.API/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "dotnet",
+                "restore",
+                "app",
+                "release",
+                "publish"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/src/Services/Ordering/Ordering.BackgroundTasks/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "dotnet",
+                "restore",
+                "app",
+                "configuration",
+                "publish"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/src/Services/Ordering/Ordering.API/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "dotnet",
+                "restore",
+                "app",
+                "configuration",
+                "publish"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/src/Services/Ordering/Ordering.SignalrHub/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "dotnet",
+                "restore",
+                "signalrhub",
+                "release",
+                "ordering"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/src/Services/AI.SalesForecasting/AI.SalesForecasting.MLNet.API/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "dotnet",
+                "app",
+                "configuration",
+                "restore",
+                "publish"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/src/Services/Location/Locations.API/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "dotnet",
+                "restore",
+                "app",
+                "release",
+                "publish"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/src/Services/AI.ProductSearchImageBased/AI.ProductSearchImageBased.AzureCognitiveServices.API/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "dotnet",
+                "app",
+                "configuration",
+                "restore",
+                "publish"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/src/Services/AI.ProductSearchImageBased/AI.ProductSearchImageBased.TensorFlow.API/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "dotnet",
+                "app",
+                "configuration",
+                "restore",
+                "publish"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/src/Services/Basket/Basket.API/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "dotnet",
+                "restore",
+                "app",
+                "configuration",
+                "publish"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/src/Services/Identity/Identity.API/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "restore",
+                "dotnet",
+                "bower",
+                "app",
+                "install"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/src/Services/Catalog/Catalog.API/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "configuration",
+                "dotnet",
+                "build",
+                "restore",
+                "echo"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/src/ApiGateways/Mobile.Bff.Shopping/aggregator/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "dotnet",
+                "restore",
+                "app",
+                "release",
+                "publish"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/src/ApiGateways/ApiGw-Base/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "dotnet",
+                "app",
+                "release",
+                "src",
+                "publish"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/src/ApiGateways/Web.Bff.Shopping/aggregator/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "dotnet",
+                "restore",
+                "app",
+                "release",
+                "publish"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "microsoft/aspnet",
+            "langs": [],
+            "dbs": [],
+            "path": "/src/Bots/Bot.API/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "microsoft/aspnet",
+            "keywords": [
+                "system",
+                "exe",
+                "apphost",
+                "config",
+                "section"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/src/Bots/Bot.Core.API/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "dotnet",
+                "app",
+                "configuration",
+                "restore",
+                "publish"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/src/Web/WebDashboardRazor/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "dotnet",
+                "app",
+                "install",
+                "restore",
+                "configuration"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/src/Web/WebMVC/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "bower",
+                "install",
+                "restore",
+                "dotnet",
+                "root"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/src/Web/WebStatus/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "dotnet",
+                "restore",
+                "app",
+                "release",
+                "publish"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "base",
+            "langs": [],
+            "dbs": [],
+            "path": "/src/Web/WebSPA/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "base",
+            "keywords": [
+                "npm",
+                "run",
+                "publish",
+                "dotnet",
+                "app"
+            ],
+            "cmd": ""
+        },
+        {
+            "from_full": "microsoft/aspnetcore:1.1",
+            "langs": [],
+            "dbs": [],
+            "path": "/src/Web/WebMonolithic/eShopWeb/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "microsoft/aspnetcore",
+            "keywords": [],
+            "cmd": ""
+        }
+    ],
+    "servers": [
+        "asp",
+        "node"
+    ],
+    "num_dockers": 24,
+    "url": "git://github.com/hhy37/eShopOnContainersAI.git",
+    "num_dbs": 2,
+    "num_servers": 2,
+    "num_discos": 0,
+    "num_langs": 2,
+    "num_files": 28,
+    "size": 655936
+}

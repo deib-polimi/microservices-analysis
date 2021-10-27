@@ -1,0 +1,263 @@
+{
+    "size": 7881,
+    "shared_dbs": true,
+    "num_servers": 0,
+    "name": "nxxbahhy/EclipseGitHub",
+    "files": [
+        {
+            "path": "/pom.xml"
+        },
+        {
+            "path": "/microservice-gateway-zuul/pom.xml"
+        },
+        {
+            "path": "/microservice-gateway-zuul/target/classes/META-INF/maven/com.itheima/microservice-gateway-zuul/pom.xml"
+        },
+        {
+            "path": "/microservice-eureka-server/pom.xml"
+        },
+        {
+            "path": "/microservice-eureka-server/target/classes/META-INF/maven/com.itheima/microservice-eureka-server/pom.xml"
+        },
+        {
+            "path": "/microservice-orderservice/pom.xml"
+        },
+        {
+            "path": "/microservice-orderservice/target/classes/META-INF/maven/com.itheima/microservice-orderservice/pom.xml"
+        },
+        {
+            "path": "/microservice-userservice/pom.xml"
+        },
+        {
+            "path": "/microservice-userservice/target/classes/META-INF/maven/com.itheima/microservice-userservice/pom.xml"
+        }
+    ],
+    "num_files": 14,
+    "num_langs": 1,
+    "dbs": [
+        "mysql"
+    ],
+    "servers": [],
+    "num_discos": 1,
+    "url": "git://github.com/nxxbahhy/EclipseGitHub.git",
+    "gates": [
+        "gateway"
+    ],
+    "structure": {
+        "services": [
+            {
+                "image": "192.168.88.137",
+                "dbs": [],
+                "image_full": "192.168.88.137:5000/microservice-userservice:0.0.1-SNAPSHOT",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "user-service",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "mysql",
+                    "eureka-server"
+                ]
+            },
+            {
+                "image": "192.168.88.137",
+                "dbs": [],
+                "image_full": "192.168.88.137:5000/microservice-orderservice:0.0.1-SNAPSHOT",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "order-service",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "mysql",
+                    "eureka-server"
+                ]
+            },
+            {
+                "image": "dockersamples/visualizer",
+                "dbs": [],
+                "image_full": "dockersamples/visualizer:stable",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "visualizer",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "192.168.88.137",
+                "dbs": [],
+                "image_full": "192.168.88.137:5000/microservice-gateway-zuul:0.0.1-SNAPSHOT",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "gateway-zuul",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "eureka-server"
+                ]
+            },
+            {
+                "image": "mysql",
+                "dbs": [
+                    "mysql"
+                ],
+                "image_full": "mysql:5.6",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "mysql",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "192.168.88.137",
+                "dbs": [],
+                "image_full": "192.168.88.137:5000/microservice-eureka-server:0.0.1-SNAPSHOT",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "eureka-server",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "mysql"
+            ],
+            "services": [
+                "mysql"
+            ],
+            "shared_dbs": true
+        },
+        "path": "/docker-compose.yml"
+    },
+    "num_gates": 1,
+    "num_dockers": 4,
+    "num_dbs": 1,
+    "num_services": 6,
+    "langs": [
+        "java"
+    ],
+    "buses": [],
+    "num_buses": 0,
+    "num_monitors": 0,
+    "languages": [
+        "java"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [
+                "jar",
+                "zuul",
+                "app",
+                "gateway",
+                "microservice"
+            ],
+            "cmd": "java -Xmx200m -jar /app/microservice-gateway-zuul.jar",
+            "gates": [
+                "gateway"
+            ],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "monitors": [],
+            "from_full": "java:8-jre",
+            "servers": [],
+            "path": "/microservice-gateway-zuul/Dockerfile",
+            "dbs": [],
+            "keywords": [],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "service",
+                "microservice",
+                "java"
+            ],
+            "cmd": "java -Xmx200m -jar /app/microservice-eureka-service.jar",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "monitors": [],
+            "from_full": "java:8-jre",
+            "servers": [],
+            "path": "/microservice-eureka-server/Dockerfile",
+            "dbs": [],
+            "keywords": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "microservice",
+                "orderservice",
+                "java"
+            ],
+            "cmd": "java -Xmx200m -jar /app/microservice-orderservice.jar",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "monitors": [],
+            "from_full": "java:8-jre",
+            "servers": [],
+            "path": "/microservice-orderservice/Dockerfile",
+            "dbs": [],
+            "keywords": [],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "microservice",
+                "userservice",
+                "java"
+            ],
+            "cmd": "java -Xmx200m -jar /app/microservice-userservice.jar",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "monitors": [],
+            "from_full": "java:8-jre",
+            "servers": [],
+            "path": "/microservice-userservice/Dockerfile",
+            "dbs": [],
+            "keywords": [],
+            "discos": []
+        }
+    ],
+    "monitors": [],
+    "avg_size_service": 1970.25,
+    "discos": [
+        "eureka"
+    ],
+    "images": [
+        "java"
+    ]
+}

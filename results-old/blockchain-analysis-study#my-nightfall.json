@@ -1,0 +1,489 @@
+{
+    "dockers": [
+        {
+            "keywords": [
+                "npm"
+            ],
+            "servers": [
+                "node"
+            ],
+            "dbs": [],
+            "from_full": "node:11.15",
+            "cmd": "npm start",
+            "langs": [],
+            "monitors": [],
+            "path": "/api-gateway/Dockerfile",
+            "discos": [],
+            "from": "node",
+            "gates": [],
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "buses": []
+        },
+        {
+            "keywords": [
+                "npm"
+            ],
+            "servers": [
+                "node"
+            ],
+            "dbs": [],
+            "from_full": "node:11.15",
+            "cmd": "npm start",
+            "langs": [],
+            "monitors": [],
+            "path": "/ui/Dockerfile",
+            "discos": [],
+            "from": "node",
+            "gates": [],
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "buses": []
+        },
+        {
+            "keywords": [
+                "npm"
+            ],
+            "servers": [
+                "node"
+            ],
+            "dbs": [],
+            "from_full": "node:11.15",
+            "cmd": "npm start",
+            "langs": [],
+            "monitors": [],
+            "path": "/accounts/Dockerfile",
+            "discos": [],
+            "from": "node",
+            "gates": [],
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "buses": []
+        },
+        {
+            "keywords": [
+                "npm"
+            ],
+            "servers": [
+                "node"
+            ],
+            "dbs": [],
+            "from_full": "node:11.15",
+            "cmd": "npm start",
+            "langs": [],
+            "monitors": [],
+            "path": "/offchain/Dockerfile",
+            "discos": [],
+            "from": "node",
+            "gates": [],
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "buses": []
+        },
+        {
+            "keywords": [
+                "apt",
+                "mongodb",
+                "org",
+                "get",
+                "keyserver"
+            ],
+            "servers": [
+                "node"
+            ],
+            "dbs": [
+                "mongodb"
+            ],
+            "from_full": "node:11.15",
+            "cmd": "npm start",
+            "langs": [],
+            "monitors": [],
+            "path": "/database/Dockerfile",
+            "discos": [],
+            "from": "node",
+            "gates": [],
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "buses": []
+        },
+        {
+            "keywords": [
+                "npm"
+            ],
+            "servers": [
+                "node"
+            ],
+            "dbs": [],
+            "from_full": "node:11.15",
+            "cmd": "npm start",
+            "langs": [],
+            "monitors": [],
+            "path": "/zkp/Dockerfile",
+            "discos": [],
+            "from": "node",
+            "gates": [],
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ],
+            "buses": []
+        }
+    ],
+    "languages": [
+        "javascript",
+        "solidity",
+        "typescript"
+    ],
+    "name": "blockchain-analysis-study/my-nightfall",
+    "num_buses": 2,
+    "structure": {
+        "detected_dbs": {
+            "num": 2,
+            "shared_dbs": false,
+            "services": [
+                "mongo-merkle-tree",
+                "mongo-nightfall"
+            ],
+            "names": [
+                "mongo"
+            ]
+        },
+        "num_services": 13,
+        "services": [
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "mongo-nightfall"
+                ],
+                "name": "database",
+                "image_full": "Dockerfile",
+                "image": "Dockerfile",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "ganache"
+                ],
+                "name": "truffle-offchain",
+                "image_full": "ajmay/truffle:5.0.9",
+                "image": "ajmay/truffle",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "ganache"
+                ],
+                "name": "accounts",
+                "image_full": "Dockerfile",
+                "image": "Dockerfile",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "accounts",
+                    "offchain",
+                    "zkp",
+                    "database"
+                ],
+                "name": "api-gateway",
+                "image_full": "Dockerfile",
+                "image": "Dockerfile",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "ganache"
+                ],
+                "name": "offchain",
+                "image_full": "Dockerfile",
+                "image": "Dockerfile",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "ganache"
+                ],
+                "name": "truffle-zkp",
+                "image_full": "ajmay/truffle:5.0.9",
+                "image": "ajmay/truffle",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "name": "ui",
+                "image_full": "Dockerfile",
+                "image": "Dockerfile",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [
+                    "mongo"
+                ],
+                "discos": [],
+                "servers": [],
+                "depends_on": [],
+                "name": "mongo-merkle-tree",
+                "image_full": "mongo",
+                "image": "mongo",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "mongo-merkle-tree",
+                    "ganache"
+                ],
+                "name": "merkle-tree",
+                "image_full": "eyblockchain/timber:v2.1.0",
+                "image": "eyblockchain/timber",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [],
+                "name": "rabbitmq",
+                "image_full": "rabbitmq",
+                "image": "rabbitmq",
+                "gates": [],
+                "monitors": [],
+                "buses": [
+                    "rabbitmq"
+                ]
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [
+                    "ganache",
+                    "merkle-tree"
+                ],
+                "name": "zkp",
+                "image_full": "Dockerfile",
+                "image": "Dockerfile",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "servers": [],
+                "depends_on": [],
+                "name": "ganache",
+                "image_full": "trufflesuite/ganache-cli:latest",
+                "image": "trufflesuite/ganache-cli",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            },
+            {
+                "dbs": [
+                    "mongo"
+                ],
+                "discos": [],
+                "servers": [],
+                "depends_on": [],
+                "name": "mongo-nightfall",
+                "image_full": "mongo",
+                "image": "mongo",
+                "gates": [],
+                "monitors": [],
+                "buses": []
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "num_dockers": 6,
+    "num_servers": 3,
+    "num_monitors": 0,
+    "discos": [],
+    "gates": [
+        "gateway"
+    ],
+    "shared_dbs": false,
+    "num_dbs": 1,
+    "num_files": 15,
+    "num_discos": 0,
+    "files": [
+        {
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "path": "/package.json",
+            "discos": [],
+            "gates": [],
+            "monitors": [],
+            "buses": []
+        },
+        {
+            "dbs": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "path": "/api-gateway/package.json",
+            "discos": [],
+            "gates": [
+                "gateway"
+            ],
+            "monitors": [],
+            "buses": []
+        },
+        {
+            "dbs": [],
+            "servers": [],
+            "path": "/zkp-utils/package.json",
+            "discos": [],
+            "gates": [],
+            "monitors": [],
+            "buses": []
+        },
+        {
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "path": "/ui/package.json",
+            "discos": [],
+            "gates": [],
+            "monitors": [],
+            "buses": [
+                "stomp"
+            ]
+        },
+        {
+            "dbs": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "path": "/accounts/package.json",
+            "discos": [],
+            "gates": [],
+            "monitors": [],
+            "buses": []
+        },
+        {
+            "dbs": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "path": "/offchain/package.json",
+            "discos": [],
+            "gates": [],
+            "monitors": [],
+            "buses": []
+        },
+        {
+            "dbs": [
+                "mongo"
+            ],
+            "servers": [
+                "node",
+                "mongoose",
+                "express"
+            ],
+            "path": "/database/package.json",
+            "discos": [],
+            "gates": [],
+            "monitors": [],
+            "buses": []
+        },
+        {
+            "dbs": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "path": "/zkp/package.json",
+            "discos": [],
+            "gates": [],
+            "monitors": [],
+            "buses": []
+        }
+    ],
+    "url": "git://github.com/blockchain-analysis-study/my-nightfall.git",
+    "images": [
+        "node"
+    ],
+    "avg_size_service": 2084.6666666666665,
+    "num_services": 13,
+    "dbs": [
+        "mongo"
+    ],
+    "servers": [
+        "node",
+        "mongoose",
+        "express"
+    ],
+    "langs": [
+        "solidity",
+        "typescript",
+        "javascript"
+    ],
+    "num_gates": 1,
+    "size": 12508,
+    "num_langs": 3,
+    "monitors": [],
+    "buses": [
+        "rabbitmq",
+        "stomp"
+    ]
+}

@@ -1,0 +1,188 @@
+{
+    "num_dbs": 1,
+    "dbs": [
+        "mongo"
+    ],
+    "images": [
+        "node",
+        "mongo"
+    ],
+    "langs": [
+        "javascript"
+    ],
+    "size": 45,
+    "num_discos": 0,
+    "dockers": [
+        {
+            "dbs": [],
+            "from": "node",
+            "keywords": [
+                "app",
+                "opt",
+                "mkdir",
+                "install",
+                "npm"
+            ],
+            "from_full": "node:latest",
+            "langs": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "buses": [],
+            "cmd": "npm run build",
+            "path": "/Dockerfile",
+            "cmd_keywords": [
+                "run",
+                "npm",
+                "build"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [
+                "mongo"
+            ],
+            "from": "mongo",
+            "keywords": [
+                "cinemabackup",
+                "mongodump",
+                "port",
+                "soy",
+                "mongodb"
+            ],
+            "from_full": "mongo:latest",
+            "langs": [],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "mongorestore --host mongodb --drop -d cinema  cinemaBackup/cinema",
+            "path": "/mongodb-sed/Dockerfile",
+            "cmd_keywords": [
+                "cinema",
+                "cinemabackup",
+                "host",
+                "mongodb",
+                "drop"
+            ],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "servers": [
+        "node"
+    ],
+    "monitors": [],
+    "num_dockers": 2,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 5,
+        "detected_dbs": {
+            "services": [
+                "mongodb"
+            ],
+            "names": [
+                "mongo"
+            ],
+            "num": 1,
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "depends_on": [],
+                "image_full": "mongo",
+                "buses": [],
+                "name": "mongodb",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "nginx",
+                "dbs": [],
+                "depends_on": [],
+                "image_full": "nginx",
+                "buses": [],
+                "name": "nginx-broker",
+                "monitors": [],
+                "gates": [
+                    "nginx"
+                ],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "darcusfenix/activemq",
+                "dbs": [],
+                "depends_on": [],
+                "image_full": "darcusfenix/activemq:v1.0.0",
+                "buses": [
+                    "activemq"
+                ],
+                "name": "message-broker",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "nginx",
+                "dbs": [],
+                "depends_on": [],
+                "image_full": "nginx",
+                "buses": [],
+                "name": "nginx-services",
+                "monitors": [],
+                "gates": [
+                    "nginx"
+                ],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "../microservice-cinema-movies",
+                "dbs": [],
+                "depends_on": [],
+                "image_full": "../microservice-cinema-movies",
+                "buses": [],
+                "name": "micro-cinema-movies",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            }
+        ]
+    },
+    "num_buses": 1,
+    "gates": [
+        "nginx"
+    ],
+    "discos": [],
+    "num_gates": 1,
+    "num_services": 5,
+    "name": "darcusfenix/microservice-cinema-core",
+    "shared_dbs": false,
+    "avg_size_service": 22.5,
+    "num_langs": 1,
+    "num_servers": 1,
+    "languages": [
+        "javascript"
+    ],
+    "buses": [
+        "activemq"
+    ],
+    "files": [
+        {
+            "path": "/package.json"
+        }
+    ],
+    "url": "git://github.com/darcusfenix/microservice-cinema-core.git",
+    "num_files": 4,
+    "num_monitors": 0
+}

@@ -1,0 +1,155 @@
+{
+    "servers": [
+        "spring",
+        "node"
+    ],
+    "images": [],
+    "num_servers": 2,
+    "gates": [
+        "zuul"
+    ],
+    "buses": [],
+    "shared_dbs": false,
+    "files": [
+        {
+            "servers": [
+                "spring"
+            ],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "path": "/SampleMicroservice/pom.xml",
+            "discos": []
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "monitors": [],
+            "dbs": [
+                "redis"
+            ],
+            "buses": [],
+            "path": "/ZuulGatewayService/pom.xml",
+            "discos": []
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "path": "/UI/package.json",
+            "discos": []
+        }
+    ],
+    "num_langs": 3,
+    "num_dockers": 0,
+    "num_files": 4,
+    "monitors": [],
+    "dockers": [],
+    "dbs": [
+        "redis"
+    ],
+    "num_services": 4,
+    "num_discos": 0,
+    "avg_size_service": 738.0,
+    "languages": [
+        "java",
+        "typescript",
+        "html"
+    ],
+    "discos": [],
+    "num_buses": 0,
+    "num_gates": 1,
+    "num_dbs": 1,
+    "url": "git://github.com/neeraj97/demo-microservice-gateway-accesstoken-pattern.git",
+    "size": 738,
+    "name": "neeraj97/demo-microservice-gateway-accesstoken-pattern",
+    "num_monitors": 0,
+    "langs": [
+        "html",
+        "java",
+        "typescript"
+    ],
+    "structure": {
+        "num_services": 4,
+        "detected_dbs": {
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": false,
+            "num": 1,
+            "services": [
+                "redis"
+            ]
+        },
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "servers": [],
+                "monitors": [],
+                "gates": [],
+                "name": "redis",
+                "image": "redis",
+                "image_full": "redis:6.0.5",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "buses": [],
+                "discos": []
+            },
+            {
+                "servers": [],
+                "monitors": [],
+                "gates": [],
+                "name": "zuulgateway",
+                "image": "./ZuulGatewayService",
+                "image_full": "./ZuulGatewayService",
+                "depends_on": [
+                    "redis",
+                    "api",
+                    "ui"
+                ],
+                "dbs": [],
+                "buses": [],
+                "discos": []
+            },
+            {
+                "servers": [],
+                "monitors": [],
+                "gates": [],
+                "name": "api",
+                "image": "./SampleMicroservice",
+                "image_full": "./SampleMicroservice",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "discos": []
+            },
+            {
+                "servers": [],
+                "monitors": [],
+                "gates": [],
+                "name": "ui",
+                "image": "./UI",
+                "image_full": "./UI",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "discos": []
+            }
+        ]
+    }
+}

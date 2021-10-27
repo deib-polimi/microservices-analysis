@@ -1,0 +1,308 @@
+{
+    "monitors": [],
+    "structure": {
+        "path": "/docker/docker-compose.yml",
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [
+                "customers-mysql",
+                "users-mysql"
+            ],
+            "names": [
+                "mysql"
+            ],
+            "num": 2
+        },
+        "services": [
+            {
+                "image": "bactrian/confsvr",
+                "buses": [],
+                "monitors": [],
+                "image_full": "bactrian/confsvr",
+                "gates": [],
+                "name": "bactrian-config",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "bactrian/customers-service",
+                "buses": [],
+                "monitors": [],
+                "image_full": "bactrian/customers-service",
+                "gates": [],
+                "name": "customers-service",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "customers-mysql",
+                    "bactrian-config"
+                ]
+            },
+            {
+                "image": "bactrian/users-service",
+                "buses": [],
+                "monitors": [],
+                "image_full": "bactrian/users-service",
+                "gates": [],
+                "name": "users-service",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "users-mysql",
+                    "bactrian-config"
+                ]
+            },
+            {
+                "image": "bactrian/frontendsvr",
+                "buses": [],
+                "monitors": [],
+                "image_full": "bactrian/frontendsvr",
+                "gates": [],
+                "name": "frontend",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "customers-service",
+                    "users-service"
+                ]
+            },
+            {
+                "image": "mysql",
+                "buses": [],
+                "monitors": [],
+                "image_full": "mysql",
+                "gates": [],
+                "name": "customers-mysql",
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "depends_on": []
+            },
+            {
+                "image": "mysql",
+                "buses": [],
+                "monitors": [],
+                "image_full": "mysql",
+                "gates": [],
+                "name": "users-mysql",
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "depends_on": []
+            }
+        ],
+        "num_services": 6
+    },
+    "num_langs": 2,
+    "name": "dubersfeld/bactrian",
+    "num_dockers": 6,
+    "buses": [],
+    "dbs": [
+        "mysql"
+    ],
+    "size": 665,
+    "num_discos": 0,
+    "shared_dbs": false,
+    "discos": [],
+    "images": [
+        "mysql",
+        "openjdk"
+    ],
+    "num_servers": 1,
+    "files": [
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/frontendsvr/pom.xml",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/confsvr/pom.xml",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/users-service/pom.xml",
+            "discos": [],
+            "dbs": [
+                "mysql"
+            ]
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/customers-service/pom.xml",
+            "discos": [],
+            "dbs": [
+                "mysql"
+            ]
+        }
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "from": "mysql",
+            "path": "/docker/customers/Dockerfile",
+            "from_full": "mysql",
+            "cmd": "",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [
+                "mysql"
+            ],
+            "from": "mysql",
+            "path": "/docker/users/Dockerfile",
+            "from_full": "mysql",
+            "cmd": "",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "openjdk",
+            "path": "/frontendsvr/src/main/docker/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "cmd": "",
+            "keywords": [
+                "apk",
+                "wrapper",
+                "add",
+                "netcat",
+                "chmod"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "openjdk",
+            "path": "/confsvr/src/main/docker/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "cmd": "",
+            "keywords": [
+                "chmod",
+                "wrapper"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "openjdk",
+            "path": "/users-service/src/main/docker/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "cmd": "",
+            "keywords": [
+                "apk",
+                "wrapper",
+                "add",
+                "netcat",
+                "chmod"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "openjdk",
+            "path": "/customers-service/src/main/docker/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "cmd": "",
+            "keywords": [
+                "apk",
+                "wrapper",
+                "add",
+                "netcat",
+                "chmod"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        }
+    ],
+    "url": "git://github.com/dubersfeld/bactrian.git",
+    "gates": [],
+    "num_files": 11,
+    "num_services": 6,
+    "num_gates": 0,
+    "num_dbs": 1,
+    "avg_size_service": 110.83333333333333,
+    "langs": [
+        "html",
+        "java"
+    ],
+    "num_buses": 0,
+    "languages": [
+        "java",
+        "html"
+    ],
+    "num_monitors": 0,
+    "servers": [
+        "spring"
+    ]
+}

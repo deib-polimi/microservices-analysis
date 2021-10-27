@@ -1,0 +1,508 @@
+{
+    "name": "projekt-opal/converter",
+    "num_dbs": 0,
+    "num_services": 13,
+    "num_files": 20,
+    "servers": [
+        "spring"
+    ],
+    "url": "git://github.com/projekt-opal/converter.git",
+    "discos": [
+        "eureka"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "kibana",
+                "image_full": "kibana:7.3.2",
+                "image": "kibana",
+                "servers": [],
+                "depends_on": [
+                    "es"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "discovery-server",
+                "image_full": "discovery-server",
+                "image": "discovery-server",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "quality-metrics-service",
+                "image_full": "quality-metrics-service",
+                "image": "quality-metrics-service",
+                "servers": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "discovery-server",
+                    "config-server"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "es",
+                "image_full": "elasticsearch:7.3.2",
+                "image": "elasticsearch",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "data-cleaner-service",
+                "image_full": "data-cleaner-service",
+                "image": "data-cleaner-service",
+                "servers": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "discovery-server",
+                    "config-server"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "rabbitmq",
+                "image_full": "rabbitmq:3.7.23-management",
+                "image": "rabbitmq",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "monitors": []
+            },
+            {
+                "name": "dataset-file-fetcher",
+                "image_full": "dataset-file-fetcher",
+                "image": "dataset-file-fetcher",
+                "servers": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "discovery-server",
+                    "config-server"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "elasticsearch-writer",
+                "image_full": "elasticsearch-writer",
+                "image": "elasticsearch-writer",
+                "servers": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "discovery-server",
+                    "config-server"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "config-server",
+                "image_full": "config-server",
+                "image": "config-server",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "logstash",
+                "image_full": "logstash:7.3.2",
+                "image": "logstash",
+                "servers": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "es"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "triplestore-writer",
+                "image_full": "triplestore-writer",
+                "image": "triplestore-writer",
+                "servers": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "discovery-server",
+                    "config-server"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "dataset-fetcher",
+                "image_full": "dataset-fetcher",
+                "image": "dataset-fetcher",
+                "servers": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "discovery-server",
+                    "config-server"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "opal-confirm-conversion-service",
+                "image_full": "opal-confirm-conversion-service",
+                "image": "opal-confirm-conversion-service",
+                "servers": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "discovery-server",
+                    "config-server"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [],
+            "num": 0,
+            "names": []
+        },
+        "num_services": 13
+    },
+    "num_buses": 1,
+    "size": 295,
+    "dockers": [
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/quality-metrics-service/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/triplestore-writer/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/dataset-fetcher/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/discovery-server/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/opal-confirm-conversion-service/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/config-server/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/elasticsearch-writer/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/data-cleaner-service/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "langs": [],
+            "path": "/dataset-file-fetcher/Dockerfile",
+            "discos": [],
+            "from": "openjdk",
+            "buses": [],
+            "from_full": "openjdk:8",
+            "cmd_keywords": [],
+            "keywords": [],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "languages": [
+        "java"
+    ],
+    "dbs": [],
+    "monitors": [],
+    "shared_dbs": false,
+    "avg_size_service": 32.77777777777778,
+    "num_monitors": 0,
+    "files": [
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/pom.xml",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/quality-metrics-service/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/triplestore-writer/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/dataset-fetcher/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/discovery-server/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/opal-confirm-conversion-service/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/config-server/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/elasticsearch-writer/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/data-cleaner-service/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/dataset-file-fetcher/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        }
+    ],
+    "langs": [
+        "java"
+    ],
+    "num_servers": 1,
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_langs": 1,
+    "num_gates": 0,
+    "num_discos": 1,
+    "images": [
+        "openjdk"
+    ],
+    "num_dockers": 9,
+    "gates": []
+}

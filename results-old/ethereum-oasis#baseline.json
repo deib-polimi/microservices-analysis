@@ -1,0 +1,653 @@
+{
+    "monitors": [],
+    "gates": [],
+    "num_gates": 0,
+    "discos": [],
+    "url": "git://github.com/ethereum-oasis/baseline.git",
+    "size": 24173,
+    "shared_dbs": true,
+    "name": "ethereum-oasis/baseline",
+    "num_dockers": 5,
+    "num_files": 15,
+    "avg_size_service": 4834.6,
+    "buses": [],
+    "num_servers": 3,
+    "num_services": 22,
+    "images": [
+        "ubuntu",
+        "node"
+    ],
+    "num_langs": 3,
+    "structure": {
+        "detected_dbs": {
+            "num": 7,
+            "shared_dbs": true,
+            "names": [
+                "redis",
+                "mongo"
+            ],
+            "services": [
+                "redis-supplier1",
+                "redis-supplier2",
+                "mongo-supplier1",
+                "redis-buyer",
+                "mongo-merkle-tree",
+                "mongo-buyer",
+                "mongo-supplier2"
+            ]
+        },
+        "path": "/radish34/docker-compose.yml",
+        "num_services": 22,
+        "services": [
+            {
+                "dbs": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "name": "ui",
+                "image_full": "./ui/",
+                "discos": [],
+                "image": "./ui/",
+                "servers": [],
+                "depends_on": [
+                    "ganache",
+                    "messenger-buyer",
+                    "messenger-supplier1",
+                    "messenger-supplier2",
+                    "mongo-buyer",
+                    "mongo-supplier1",
+                    "mongo-supplier2",
+                    "zkp"
+                ]
+            },
+            {
+                "dbs": [
+                    "redis"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "name": "redis-supplier1",
+                "image_full": "redis",
+                "discos": [],
+                "image": "redis",
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "dbs": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "name": "api-buyer",
+                "image_full": "./api/",
+                "discos": [],
+                "image": "./api/",
+                "servers": [],
+                "depends_on": [
+                    "mongo-buyer",
+                    "ganache",
+                    "messenger-buyer",
+                    "redis-buyer",
+                    "merkle-tree"
+                ]
+            },
+            {
+                "dbs": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "name": "geth-node",
+                "image_full": "{'privatekey': '54c68a6104df07a9661b9b8fe1106263feeeddfd67aed8dafed1438040e421d1', 'password': 'word'}",
+                "discos": [],
+                "image": "{'privatekey': '54c68a6104df07a9661b9b8fe1106263feeeddfd67aed8dafed1438040e421d1', 'password': 'word'}",
+                "servers": [],
+                "depends_on": [
+                    "geth-miner1",
+                    "geth-miner2"
+                ]
+            },
+            {
+                "dbs": [
+                    "redis"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "name": "redis-supplier2",
+                "image_full": "redis",
+                "discos": [],
+                "image": "redis",
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "dbs": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "name": "messenger-supplier1",
+                "image_full": "./messenger",
+                "discos": [],
+                "image": "./messenger",
+                "servers": [],
+                "depends_on": [
+                    "mongo-supplier1",
+                    "redis-supplier1",
+                    "geth-node"
+                ]
+            },
+            {
+                "dbs": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "name": "api-supplier2",
+                "image_full": "./api/",
+                "discos": [],
+                "image": "./api/",
+                "servers": [],
+                "depends_on": [
+                    "mongo-supplier2",
+                    "ganache",
+                    "messenger-supplier2",
+                    "merkle-tree"
+                ]
+            },
+            {
+                "dbs": [
+                    "mongo"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "name": "mongo-supplier1",
+                "image_full": "mongo:latest",
+                "discos": [],
+                "image": "mongo",
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "dbs": [
+                    "redis"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "name": "redis-buyer",
+                "image_full": "redis",
+                "discos": [],
+                "image": "redis",
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "dbs": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "name": "messenger-supplier2",
+                "image_full": "./messenger",
+                "discos": [],
+                "image": "./messenger",
+                "servers": [],
+                "depends_on": [
+                    "mongo-supplier2",
+                    "redis-supplier2",
+                    "geth-node"
+                ]
+            },
+            {
+                "dbs": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "name": "messenger-buyer",
+                "image_full": "./messenger",
+                "discos": [],
+                "image": "./messenger",
+                "servers": [],
+                "depends_on": [
+                    "mongo-buyer",
+                    "redis-buyer",
+                    "geth-node"
+                ]
+            },
+            {
+                "dbs": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "name": "ganache",
+                "image_full": "trufflesuite/ganache-cli:latest",
+                "discos": [],
+                "image": "trufflesuite/ganache-cli",
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "dbs": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "name": "geth-miner2",
+                "image_full": "{'privatekey': 'bc5b578e0dcb2dbf98dd6e5fe62cb5a28b84a55e15fc112d4ca88e1f62bd7c35', 'password': 'word'}",
+                "discos": [],
+                "image": "{'privatekey': 'bc5b578e0dcb2dbf98dd6e5fe62cb5a28b84a55e15fc112d4ca88e1f62bd7c35', 'password': 'word'}",
+                "servers": [],
+                "depends_on": [
+                    "geth-bootnode"
+                ]
+            },
+            {
+                "dbs": [
+                    "mongo"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "name": "mongo-merkle-tree",
+                "image_full": "mongo:latest",
+                "discos": [],
+                "image": "mongo",
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "dbs": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "name": "deploy",
+                "image_full": "./deploy/",
+                "discos": [],
+                "image": "./deploy/",
+                "servers": [],
+                "depends_on": [
+                    "ganache",
+                    "messenger-buyer",
+                    "messenger-supplier1",
+                    "messenger-supplier2",
+                    "mongo-buyer",
+                    "mongo-supplier1",
+                    "mongo-supplier2",
+                    "zkp"
+                ]
+            },
+            {
+                "dbs": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "name": "geth-miner1",
+                "image_full": "{'privatekey': 'df504d175ae63abf209bad9dda965310d99559620550e74521a6798a41215f46', 'password': 'pass'}",
+                "discos": [],
+                "image": "{'privatekey': 'df504d175ae63abf209bad9dda965310d99559620550e74521a6798a41215f46', 'password': 'pass'}",
+                "servers": [],
+                "depends_on": [
+                    "geth-bootnode"
+                ]
+            },
+            {
+                "dbs": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "name": "geth-bootnode",
+                "image_full": "./geth-env",
+                "discos": [],
+                "image": "./geth-env",
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "dbs": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "name": "zkp",
+                "image_full": "./zkp/",
+                "discos": [],
+                "image": "./zkp/",
+                "servers": [],
+                "depends_on": [
+                    "mongo-buyer"
+                ]
+            },
+            {
+                "dbs": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "name": "merkle-tree",
+                "image_full": "eyblockchain/timber:v2.0.1",
+                "discos": [],
+                "image": "eyblockchain/timber",
+                "servers": [],
+                "depends_on": [
+                    "mongo-merkle-tree",
+                    "ganache"
+                ]
+            },
+            {
+                "dbs": [
+                    "mongo"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "name": "mongo-buyer",
+                "image_full": "mongo:latest",
+                "discos": [],
+                "image": "mongo",
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "dbs": [
+                    "mongo"
+                ],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "name": "mongo-supplier2",
+                "image_full": "mongo:latest",
+                "discos": [],
+                "image": "mongo",
+                "servers": [],
+                "depends_on": []
+            },
+            {
+                "dbs": [],
+                "monitors": [],
+                "buses": [],
+                "gates": [],
+                "name": "api-supplier1",
+                "image_full": "./api/",
+                "discos": [],
+                "image": "./api/",
+                "servers": [],
+                "depends_on": [
+                    "mongo-supplier1",
+                    "ganache",
+                    "messenger-supplier1",
+                    "redis-supplier1",
+                    "merkle-tree"
+                ]
+            }
+        ]
+    },
+    "langs": [
+        "javascript",
+        "solidity",
+        "python"
+    ],
+    "files": [
+        {
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "path": "/package.json",
+            "discos": [],
+            "servers": [],
+            "gates": []
+        },
+        {
+            "dbs": [
+                "mongodb"
+            ],
+            "monitors": [],
+            "buses": [],
+            "path": "/radish34/package.json",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "path": "/radish34/logger/package.json",
+            "discos": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "path": "/radish34/contracts/package.json",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "path": "/radish34/deploy/package.json",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "gates": []
+        },
+        {
+            "dbs": [
+                "redis",
+                "mongodb",
+                "mongo"
+            ],
+            "monitors": [],
+            "buses": [],
+            "path": "/radish34/messenger/package.json",
+            "discos": [],
+            "servers": [
+                "mongoose",
+                "express",
+                "node"
+            ],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "path": "/radish34/ui/package.json",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "gates": []
+        },
+        {
+            "dbs": [
+                "mongodb"
+            ],
+            "monitors": [],
+            "buses": [],
+            "path": "/radish34/api/package.json",
+            "discos": [],
+            "servers": [
+                "mongoose",
+                "express",
+                "node"
+            ],
+            "gates": []
+        },
+        {
+            "dbs": [
+                "mongodb"
+            ],
+            "monitors": [],
+            "buses": [],
+            "path": "/radish34/zkp/package.json",
+            "discos": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "gates": []
+        }
+    ],
+    "dockers": [
+        {
+            "langs": [],
+            "monitors": [],
+            "buses": [],
+            "gates": [],
+            "from": "ubuntu",
+            "discos": [],
+            "keywords": [
+                "apt",
+                "get",
+                "ethereum",
+                "privatekey",
+                "update"
+            ],
+            "from_full": "ubuntu:xenial",
+            "cmd": "exec geth --bootnodes \"enode://$bootnodeId@$bootnodeIp:30301\" --nodekeyhex $nodekeyhex --networkid \"$networkId\" --nousb --verbosity=$verbosity  --syncmode=full --mine --shh --rpc --rpcaddr \"0.0.0.0\" --rpcapi \"eth,web3,net,admin,debug,db,shh\" --gasprice \"0\" --etherbase $address --unlock $address --password ~/.accountpassword --allow-insecure-unlock",
+            "path": "/radish34/geth-env/miner/Dockerfile",
+            "dbs": [],
+            "servers": [],
+            "cmd_keywords": [
+                "unlock",
+                "nodekeyhex",
+                "verbosity",
+                "address",
+                "networkid"
+            ]
+        },
+        {
+            "langs": [],
+            "monitors": [],
+            "buses": [],
+            "gates": [],
+            "from": "ubuntu",
+            "discos": [],
+            "keywords": [
+                "apt",
+                "get",
+                "ethereum",
+                "privatekey",
+                "update"
+            ],
+            "from_full": "ubuntu:xenial",
+            "cmd": "exec geth --bootnodes \"enode://$bootnodeId@$bootnodeIp:30301\" --networkid \"$networkId\" --nousb --verbosity=$verbosity --ws --wsport 8546 --wsaddr \"0.0.0.0\" --wsorigins=\"*\" --wsapi=web3,shh,net,admin --rpc --rpcaddr \"0.0.0.0\" --rpcapi \"eth,web3,net,admin,debug,db,shh\" --rpccorsdomain \"*\" --syncmode=\"$nodeType\" --etherbase $address --unlock $address --password ~/.accountpassword --allow-insecure-unlock --shh",
+            "path": "/radish34/geth-env/node/Dockerfile",
+            "dbs": [],
+            "servers": [],
+            "cmd_keywords": [
+                "shh",
+                "unlock",
+                "verbosity",
+                "address",
+                "networkid"
+            ]
+        },
+        {
+            "langs": [],
+            "monitors": [],
+            "buses": [],
+            "gates": [],
+            "from": "ubuntu",
+            "discos": [],
+            "keywords": [
+                "apt",
+                "get",
+                "ethereum",
+                "install",
+                "update"
+            ],
+            "from_full": "ubuntu:xenial",
+            "cmd": "exec bootnode -nodekeyhex $nodekeyhex",
+            "path": "/radish34/geth-env/bootnode/Dockerfile",
+            "dbs": [],
+            "servers": [],
+            "cmd_keywords": [
+                "nodekeyhex",
+                "exec",
+                "bootnode"
+            ]
+        },
+        {
+            "langs": [
+                "python"
+            ],
+            "monitors": [],
+            "buses": [],
+            "gates": [],
+            "from": "node",
+            "discos": [],
+            "keywords": [
+                "git",
+                "npm",
+                "install",
+                "mkdir",
+                "pip"
+            ],
+            "from_full": "node:13.3",
+            "cmd": "npm run deploy",
+            "path": "/radish34/deploy/Dockerfile",
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "cmd_keywords": [
+                "npm",
+                "deploy",
+                "run"
+            ]
+        },
+        {
+            "langs": [],
+            "monitors": [],
+            "buses": [],
+            "gates": [],
+            "from": "node",
+            "discos": [],
+            "keywords": [
+                "mkdir",
+                "npm",
+                "app",
+                "logger"
+            ],
+            "from_full": "node:12.16",
+            "cmd": "npm start",
+            "path": "/radish34/messenger/Dockerfile",
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "cmd_keywords": [
+                "start",
+                "npm"
+            ]
+        }
+    ],
+    "languages": [
+        "javascript",
+        "solidity"
+    ],
+    "num_dbs": 2,
+    "dbs": [
+        "redis",
+        "mongo"
+    ],
+    "num_discos": 0,
+    "servers": [
+        "mongoose",
+        "express",
+        "node"
+    ],
+    "num_buses": 0,
+    "num_monitors": 0
+}

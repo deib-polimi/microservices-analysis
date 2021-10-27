@@ -1,0 +1,295 @@
+{
+    "num_dbs": 2,
+    "dbs": [
+        "mongo",
+        "redis"
+    ],
+    "images": [
+        "quay.io/letsencrypt/letsencrypt",
+        "nginx"
+    ],
+    "langs": [
+        "shell"
+    ],
+    "size": 562,
+    "num_discos": 1,
+    "dockers": [
+        {
+            "dbs": [],
+            "from": "quay.io/letsencrypt/letsencrypt",
+            "keywords": [
+                "chmod",
+                "start"
+            ],
+            "from_full": "quay.io/letsencrypt/letsencrypt:latest",
+            "langs": [],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "",
+            "path": "/le/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "dbs": [],
+            "from": "nginx",
+            "keywords": [
+                "chmod",
+                "start",
+                "for",
+                "wait"
+            ],
+            "from_full": "nginx",
+            "langs": [],
+            "servers": [],
+            "monitors": [],
+            "buses": [],
+            "cmd": "/start.sh",
+            "path": "/nginx/Dockerfile",
+            "cmd_keywords": [
+                "start"
+            ],
+            "gates": [
+                "nginx"
+            ],
+            "discos": []
+        }
+    ],
+    "servers": [
+        "node"
+    ],
+    "monitors": [],
+    "num_dockers": 2,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 12,
+        "detected_dbs": {
+            "services": [
+                "profile-db",
+                "cars-db",
+                "redis"
+            ],
+            "names": [
+                "mongo",
+                "redis"
+            ],
+            "num": 3,
+            "shared_dbs": true
+        },
+        "services": [
+            {
+                "image": "aksenchyk/fm-image",
+                "dbs": [],
+                "depends_on": [
+                    "etcd",
+                    "rabbitmq"
+                ],
+                "image_full": "aksenchyk/fm-image:latest",
+                "buses": [],
+                "name": "image",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "rabbitmq",
+                "dbs": [],
+                "depends_on": [],
+                "image_full": "rabbitmq:latest",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "name": "rabbitmq",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "aksenchyk/fm-web",
+                "dbs": [],
+                "depends_on": [
+                    "etcd"
+                ],
+                "image_full": "aksenchyk/fm-web:latest",
+                "buses": [],
+                "name": "web",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "aksenchyk/fm-profile",
+                "dbs": [],
+                "depends_on": [
+                    "etcd",
+                    "rabbitmq",
+                    "profile-db"
+                ],
+                "image_full": "aksenchyk/fm-profile:latest",
+                "buses": [],
+                "name": "profile",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "quay.io/coreos/etcd",
+                "dbs": [],
+                "depends_on": [],
+                "image_full": "quay.io/coreos/etcd:v2.3.7",
+                "buses": [],
+                "name": "etcd",
+                "monitors": [],
+                "gates": [],
+                "discos": [
+                    "etcd"
+                ],
+                "servers": []
+            },
+            {
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "depends_on": [],
+                "image_full": "mongo",
+                "buses": [],
+                "name": "profile-db",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "aksenchyk/fm-tracker",
+                "dbs": [],
+                "depends_on": [
+                    "etcd",
+                    "rabbitmq"
+                ],
+                "image_full": "aksenchyk/fm-tracker:latest",
+                "buses": [],
+                "name": "tracker",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "depends_on": [],
+                "image_full": "mongo",
+                "buses": [],
+                "name": "cars-db",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "aksenchyk/fm-cars",
+                "dbs": [],
+                "depends_on": [
+                    "cars-db",
+                    "etcd",
+                    "rabbitmq"
+                ],
+                "image_full": "aksenchyk/fm-cars:latest",
+                "buses": [],
+                "name": "cars",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "aksenchyk/fm-200loc",
+                "dbs": [],
+                "depends_on": [
+                    "profile-db",
+                    "redis"
+                ],
+                "image_full": "aksenchyk/fm-200loc:latest",
+                "buses": [],
+                "name": "gateway",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "aksenchyk/200loc-dashboard",
+                "dbs": [],
+                "depends_on": [],
+                "image_full": "aksenchyk/200loc-dashboard:latest",
+                "buses": [],
+                "name": "dashboard",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            },
+            {
+                "image": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "depends_on": [],
+                "image_full": "redis:latest",
+                "buses": [],
+                "name": "redis",
+                "monitors": [],
+                "gates": [],
+                "discos": [],
+                "servers": []
+            }
+        ]
+    },
+    "num_buses": 1,
+    "gates": [
+        "nginx"
+    ],
+    "discos": [
+        "etcd"
+    ],
+    "num_gates": 1,
+    "num_services": 12,
+    "name": "byavv/funny-market",
+    "shared_dbs": true,
+    "avg_size_service": 281.0,
+    "num_langs": 1,
+    "num_servers": 1,
+    "languages": [
+        "shell"
+    ],
+    "buses": [
+        "rabbitmq"
+    ],
+    "files": [
+        {
+            "dbs": [],
+            "buses": [],
+            "path": "/package.json",
+            "monitors": [],
+            "gates": [
+                "gateway"
+            ],
+            "discos": [],
+            "servers": [
+                "node"
+            ]
+        }
+    ],
+    "url": "git://github.com/byavv/funny-market.git",
+    "num_files": 4,
+    "num_monitors": 0
+}

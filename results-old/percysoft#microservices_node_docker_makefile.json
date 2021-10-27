@@ -1,0 +1,201 @@
+{
+    "name": "percysoft/microservices_node_docker_makefile",
+    "num_dbs": 1,
+    "num_services": 3,
+    "num_files": 6,
+    "servers": [
+        "express",
+        "node"
+    ],
+    "url": "git://github.com/percysoft/microservices_node_docker_makefile.git",
+    "discos": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "gateway",
+                "image_full": "./microservice_gateway/container",
+                "image": "./microservice_gateway/container",
+                "servers": [],
+                "depends_on": [
+                    "microservice"
+                ],
+                "gates": [
+                    "gateway"
+                ],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "microservice",
+                "image_full": "express_api:latest",
+                "image": "express_api",
+                "servers": [
+                    "express"
+                ],
+                "depends_on": [
+                    "microservice_db"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "microservice_db",
+                "image_full": "microservice_mysql/container/mysql",
+                "image": "microservice_mysql/container/mysql",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [
+                "microservice_db"
+            ],
+            "num": 1,
+            "names": [
+                "mysql"
+            ]
+        },
+        "num_services": 3
+    },
+    "num_buses": 0,
+    "size": 176,
+    "dockers": [
+        {
+            "cmd": "",
+            "servers": [
+                "node"
+            ],
+            "langs": [],
+            "path": "/microservice_gateway/container/Dockerfile",
+            "discos": [],
+            "from": "node",
+            "buses": [],
+            "from_full": "node:10",
+            "cmd_keywords": [],
+            "keywords": [
+                "mkdir",
+                "home",
+                "app"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "mysqld",
+            "servers": [],
+            "langs": [],
+            "path": "/microservice_mysql/container/mysql/Dockerfile",
+            "discos": [],
+            "from": "mysql",
+            "buses": [],
+            "from_full": "mysql:5.6",
+            "cmd_keywords": [
+                "mysqld"
+            ],
+            "keywords": [
+                "get",
+                "apt",
+                "update",
+                "install"
+            ],
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": []
+        },
+        {
+            "cmd": "",
+            "servers": [
+                "node"
+            ],
+            "langs": [],
+            "path": "/microservice_mysql/container/node/Dockerfile",
+            "discos": [],
+            "from": "node",
+            "buses": [],
+            "from_full": "node:10",
+            "cmd_keywords": [],
+            "keywords": [
+                "mkdir",
+                "home",
+                "app"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "languages": [
+        "typescript",
+        "makefile"
+    ],
+    "dbs": [
+        "mysql"
+    ],
+    "monitors": [],
+    "shared_dbs": false,
+    "avg_size_service": 58.666666666666664,
+    "num_monitors": 0,
+    "files": [
+        {
+            "monitors": [],
+            "servers": [
+                "node"
+            ],
+            "path": "/microservice_gateway/package.json",
+            "discos": [],
+            "dbs": [],
+            "gates": [
+                "gateway"
+            ],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/microservice_mysql/application/package.json",
+            "discos": [],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "buses": []
+        }
+    ],
+    "langs": [
+        "makefile",
+        "typescript"
+    ],
+    "num_servers": 2,
+    "buses": [],
+    "num_langs": 2,
+    "num_gates": 1,
+    "num_discos": 0,
+    "images": [
+        "node",
+        "mysql"
+    ],
+    "num_dockers": 3,
+    "gates": [
+        "gateway"
+    ]
+}

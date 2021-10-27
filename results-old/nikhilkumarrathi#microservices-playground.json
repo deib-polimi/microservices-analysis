@@ -1,0 +1,348 @@
+{
+    "avg_size_service": 12479.0,
+    "buses": [
+        "kafka"
+    ],
+    "num_dbs": 2,
+    "files": [
+        {
+            "path": "/build.gradle",
+            "servers": [],
+            "dbs": [
+                "mongodb",
+                "mongo"
+            ],
+            "monitors": [
+                "prometheus"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "path": "/settings.gradle",
+            "servers": [],
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "path": "/ui/build.gradle",
+            "servers": [
+                "node"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": []
+        },
+        {
+            "path": "/ui/package.json",
+            "servers": [
+                "express",
+                "node"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "gates": []
+        }
+    ],
+    "num_dockers": 1,
+    "num_langs": 2,
+    "num_servers": 2,
+    "num_buses": 1,
+    "num_discos": 2,
+    "gates": [],
+    "images": [
+        "adoptopenjdk/openjdk13-openj9"
+    ],
+    "size": 12479,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 13,
+        "services": [
+            {
+                "buses": [],
+                "name": "prometheus",
+                "dbs": [],
+                "monitors": [
+                    "prometheus"
+                ],
+                "servers": [],
+                "image": "prom/prometheus",
+                "image_full": "prom/prometheus",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "zipkin"
+                ]
+            },
+            {
+                "buses": [
+                    "kafka"
+                ],
+                "name": "kafka",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "wurstmeister/kafka",
+                "image_full": "wurstmeister/kafka",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "zookeeper"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "zipkin",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "openzipkin/zipkin",
+                "image_full": "openzipkin/zipkin",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "mongodb"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "micronaut-producer",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "Dockerfile",
+                "image_full": "Dockerfile",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "kafka",
+                    "mongodb",
+                    "zipkin"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "promtail",
+                "dbs": [],
+                "monitors": [
+                    "grafana"
+                ],
+                "servers": [],
+                "image": "grafana/promtail",
+                "image_full": "grafana/promtail:1.5.0",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "loki"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "micronaut-analytics",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "Dockerfile",
+                "image_full": "Dockerfile",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "consul",
+                    "micronaut-consumer"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "grafana",
+                "dbs": [],
+                "monitors": [
+                    "grafana"
+                ],
+                "servers": [],
+                "image": "grafana/grafana",
+                "image_full": "grafana/grafana",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "loki",
+                    "promtail",
+                    "prometheus"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "zookeeper",
+                "dbs": [
+                    "zookeeper"
+                ],
+                "monitors": [],
+                "servers": [],
+                "image": "wurstmeister/zookeeper",
+                "image_full": "wurstmeister/zookeeper",
+                "discos": [
+                    "zookeeper"
+                ],
+                "gates": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "name": "micronaut-consumer",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "Dockerfile",
+                "image_full": "Dockerfile",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "kafka",
+                    "mongodb",
+                    "zipkin",
+                    "micronaut-producer"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "mongoexpress",
+                "dbs": [
+                    "mongo"
+                ],
+                "monitors": [],
+                "servers": [
+                    "express"
+                ],
+                "image": "mongo-express",
+                "image_full": "mongo-express:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "consul"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "loki",
+                "dbs": [],
+                "monitors": [
+                    "grafana"
+                ],
+                "servers": [],
+                "image": "grafana/loki",
+                "image_full": "grafana/loki:1.5.0",
+                "discos": [],
+                "gates": [],
+                "depends_on": []
+            },
+            {
+                "buses": [],
+                "name": "consul",
+                "dbs": [],
+                "monitors": [],
+                "servers": [],
+                "image": "consul",
+                "image_full": "consul:1.2.4",
+                "discos": [
+                    "consul"
+                ],
+                "gates": [],
+                "depends_on": [
+                    "prometheus"
+                ]
+            },
+            {
+                "buses": [],
+                "name": "mongodb",
+                "dbs": [
+                    "mongo"
+                ],
+                "monitors": [],
+                "servers": [],
+                "image": "mongo",
+                "image_full": "mongo:latest",
+                "discos": [],
+                "gates": [],
+                "depends_on": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": true,
+            "num": 3,
+            "names": [
+                "zookeeper",
+                "mongo"
+            ],
+            "services": [
+                "zookeeper",
+                "mongoexpress",
+                "mongodb"
+            ]
+        }
+    },
+    "num_files": 6,
+    "servers": [
+        "express",
+        "node"
+    ],
+    "url": "git://github.com/nikhilkumarrathi/microservices-playground.git",
+    "dbs": [
+        "zookeeper",
+        "mongo"
+    ],
+    "monitors": [
+        "prometheus",
+        "grafana"
+    ],
+    "dockers": [
+        {
+            "from_full": "adoptopenjdk/openjdk13-openj9:jdk-13.0.2_8_openj9-0.18.0-alpine-slim",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "path": "/Dockerfile",
+            "from": "adoptopenjdk/openjdk13-openj9",
+            "cmd": "java -Dcom.sun.management.jmxremote -Xmx128m -XX:+IdleTuningGcOnIdle -Xtune:virtualized -jar micronautapp.jar",
+            "cmd_keywords": [
+                "jar",
+                "sun",
+                "virtualized",
+                "micronautapp",
+                "java"
+            ],
+            "servers": [],
+            "keywords": [],
+            "discos": [],
+            "langs": [
+                "java"
+            ]
+        }
+    ],
+    "languages": [
+        "java",
+        "typescript"
+    ],
+    "num_services": 13,
+    "num_gates": 0,
+    "name": "nikhilkumarrathi/microservices-playground",
+    "shared_dbs": true,
+    "langs": [
+        "typescript",
+        "java"
+    ],
+    "discos": [
+        "consul",
+        "zookeeper"
+    ],
+    "num_monitors": 2
+}

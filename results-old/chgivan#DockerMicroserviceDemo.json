@@ -1,0 +1,217 @@
+{
+    "langs": [
+        "python",
+        "golang",
+        "javascript",
+        "html",
+        "go"
+    ],
+    "languages": [
+        "go",
+        "html",
+        "javascript",
+        "python"
+    ],
+    "url": "git://github.com/chgivan/DockerMicroserviceDemo.git",
+    "files": [],
+    "gates": [
+        "nginx"
+    ],
+    "discos": [],
+    "num_monitors": 0,
+    "num_dockers": 3,
+    "num_dbs": 2,
+    "avg_size_service": 3.6666666666666665,
+    "num_gates": 1,
+    "num_servers": 1,
+    "name": "chgivan/DockerMicroserviceDemo",
+    "num_discos": 0,
+    "num_files": 4,
+    "num_buses": 0,
+    "servers": [
+        "flask"
+    ],
+    "dbs": [
+        "mongo",
+        "redis"
+    ],
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "depends_on": [],
+                "image": "mongo",
+                "servers": [],
+                "gates": [],
+                "image_full": "mongo",
+                "buses": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "discos": [],
+                "name": "mongo"
+            },
+            {
+                "monitors": [],
+                "depends_on": [],
+                "image": "redis",
+                "servers": [],
+                "gates": [],
+                "image_full": "redis:alpine",
+                "buses": [],
+                "dbs": [
+                    "redis"
+                ],
+                "discos": [],
+                "name": "redis"
+            },
+            {
+                "monitors": [],
+                "depends_on": [
+                    "redis"
+                ],
+                "image": "./likesService/",
+                "servers": [],
+                "gates": [],
+                "image_full": "./likesService/",
+                "buses": [],
+                "dbs": [],
+                "discos": [],
+                "name": "like"
+            },
+            {
+                "monitors": [],
+                "depends_on": [
+                    "message",
+                    "like"
+                ],
+                "image": "./api-gateway/",
+                "servers": [],
+                "gates": [
+                    "gateway"
+                ],
+                "image_full": "./api-gateway/",
+                "buses": [],
+                "dbs": [],
+                "discos": [],
+                "name": "gateway"
+            },
+            {
+                "monitors": [],
+                "depends_on": [
+                    "mongo"
+                ],
+                "image": "./messageService/",
+                "servers": [],
+                "gates": [],
+                "image_full": "./messageService/",
+                "buses": [],
+                "dbs": [],
+                "discos": [],
+                "name": "message"
+            }
+        ],
+        "num_services": 5,
+        "detected_dbs": {
+            "names": [
+                "mongo",
+                "redis"
+            ],
+            "services": [
+                "mongo",
+                "redis"
+            ],
+            "shared_dbs": false,
+            "num": 2
+        },
+        "path": "/docker-compose.yml"
+    },
+    "monitors": [],
+    "size": 11,
+    "dockers": [
+        {
+            "langs": [
+                "golang"
+            ],
+            "buses": [],
+            "servers": [],
+            "from_full": "golang:1.7",
+            "gates": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "app",
+            "keywords": [
+                "gopkg",
+                "mgo",
+                "bson",
+                "get",
+                "github"
+            ],
+            "path": "/messageService/Dockerfile",
+            "from": "golang",
+            "cmd_keywords": [
+                "app"
+            ]
+        },
+        {
+            "langs": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "nginx",
+            "gates": [
+                "nginx"
+            ],
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "",
+            "keywords": [
+                "etc",
+                "nginx",
+                "conf"
+            ],
+            "path": "/api-gateway/Dockerfile",
+            "from": "nginx",
+            "cmd_keywords": []
+        },
+        {
+            "langs": [
+                "python"
+            ],
+            "buses": [],
+            "servers": [
+                "flask"
+            ],
+            "from_full": "python:3.4-alpine",
+            "gates": [],
+            "discos": [],
+            "dbs": [
+                "redis"
+            ],
+            "monitors": [],
+            "cmd": "python app.py",
+            "keywords": [
+                "install",
+                "flask",
+                "pip",
+                "redis"
+            ],
+            "path": "/likesService/Dockerfile",
+            "from": "python",
+            "cmd_keywords": [
+                "python",
+                "app"
+            ]
+        }
+    ],
+    "images": [
+        "python",
+        "nginx",
+        "golang"
+    ],
+    "buses": [],
+    "num_services": 5,
+    "num_langs": 5,
+    "shared_dbs": false
+}

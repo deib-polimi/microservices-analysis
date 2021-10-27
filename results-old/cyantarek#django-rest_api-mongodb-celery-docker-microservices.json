@@ -1,0 +1,272 @@
+{
+    "name": "cyantarek/django-rest_api-mongodb-celery-docker-microservices",
+    "buses": [
+        "rabbitmq"
+    ],
+    "images": [
+        "python",
+        "nginx"
+    ],
+    "num_langs": 1,
+    "num_discos": 0,
+    "num_buses": 1,
+    "dockers": [
+        {
+            "discos": [],
+            "langs": [
+                "python"
+            ],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "python",
+            "cmd_keywords": [],
+            "from_full": "python:3.6.4-slim",
+            "keywords": [
+                "code",
+                "mkdir",
+                "pip",
+                "txt",
+                "requirements"
+            ],
+            "path": "/products/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": ""
+        },
+        {
+            "discos": [],
+            "langs": [
+                "python"
+            ],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "python",
+            "cmd_keywords": [],
+            "from_full": "python:3.6.4-slim",
+            "keywords": [
+                "code",
+                "mkdir",
+                "pip",
+                "txt",
+                "requirements"
+            ],
+            "path": "/emails/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": ""
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "nginx",
+            "cmd_keywords": [],
+            "from_full": "nginx",
+            "keywords": [
+                "conf",
+                "etc",
+                "nginx",
+                "default"
+            ],
+            "path": "/web/Dockerfile",
+            "servers": [],
+            "gates": [
+                "nginx"
+            ],
+            "cmd": ""
+        },
+        {
+            "discos": [],
+            "langs": [
+                "python"
+            ],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "python",
+            "cmd_keywords": [],
+            "from_full": "python:3.6.4-slim",
+            "keywords": [
+                "code",
+                "mkdir",
+                "pip",
+                "txt",
+                "requirements"
+            ],
+            "path": "/orders/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": ""
+        }
+    ],
+    "monitors": [],
+    "dbs": [
+        "mongo"
+    ],
+    "structure": {
+        "detected_dbs": {
+            "num": 1,
+            "services": [
+                "mongod"
+            ],
+            "names": [
+                "mongo"
+            ],
+            "shared_dbs": true
+        },
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "monitors": [],
+                "name": "orders_web",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "mongod",
+                    "rabbitmq"
+                ],
+                "image": "./orders",
+                "image_full": "./orders",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "mongod",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image": "mongo",
+                "image_full": "mongo:3.4.7",
+                "gates": [],
+                "dbs": [
+                    "mongo"
+                ]
+            },
+            {
+                "monitors": [],
+                "name": "rabbitmq",
+                "servers": [],
+                "discos": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "depends_on": [],
+                "image": "rabbitmq",
+                "image_full": "rabbitmq:latest",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "products_web",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "mongod"
+                ],
+                "image": "./products",
+                "image_full": "./products",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "emails_web",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "mongod"
+                ],
+                "image": "./emails",
+                "image_full": "./emails",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "nginx",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "products_web",
+                    "orders_web",
+                    "emails_web"
+                ],
+                "image": "./web",
+                "image_full": "./web",
+                "gates": [],
+                "dbs": []
+            }
+        ],
+        "num_services": 6
+    },
+    "gates": [
+        "nginx"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/products/requirements.txt",
+            "servers": [
+                "django"
+            ],
+            "gates": [],
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/emails/requirements.txt",
+            "servers": [
+                "django"
+            ],
+            "gates": [],
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/orders/requirements.txt",
+            "servers": [
+                "django"
+            ],
+            "gates": [],
+            "dbs": []
+        }
+    ],
+    "avg_size_service": 5.0,
+    "langs": [
+        "python"
+    ],
+    "num_dbs": 1,
+    "num_services": 6,
+    "num_monitors": 0,
+    "size": 20,
+    "languages": [
+        "python"
+    ],
+    "num_files": 8,
+    "num_gates": 1,
+    "num_dockers": 4,
+    "shared_dbs": true,
+    "servers": [
+        "django"
+    ],
+    "num_servers": 1,
+    "url": "git://github.com/cyantarek/django-rest_api-mongodb-celery-docker-microservices.git",
+    "discos": []
+}

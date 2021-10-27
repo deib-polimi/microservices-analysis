@@ -1,0 +1,180 @@
+{
+    "languages": [
+        "tsql"
+    ],
+    "num_servers": 0,
+    "shared_dbs": true,
+    "name": "ibm-cloudacademy/msa-solutions",
+    "servers": [],
+    "num_monitors": 0,
+    "num_langs": 1,
+    "images": [],
+    "langs": [
+        "tsql"
+    ],
+    "dockers": [],
+    "gates": [],
+    "num_buses": 1,
+    "discos": [
+        "zookeeper"
+    ],
+    "monitors": [],
+    "num_files": 1,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "redis",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "redis-master",
+                "image": "redis",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "nexweb1/payment",
+                "depends_on": [
+                    "broker",
+                    "postgres"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "payment",
+                "image": "nexweb1/payment",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "nexweb1/order",
+                "depends_on": [
+                    "postgres"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "order",
+                "image": "nexweb1/order",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "nexweb1/cp-enterprise-kafka:klab-0.1",
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "dbs": [
+                    "enterprise"
+                ],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "name": "broker",
+                "image": "nexweb1/cp-enterprise-kafka",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "redis",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "redis-slave",
+                "image": "redis",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "nexweb1/stock",
+                "depends_on": [
+                    "broker",
+                    "redis-master",
+                    "postgres"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "stock",
+                "image": "nexweb1/stock",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "confluentinc/cp-zookeeper",
+                "depends_on": [],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "zookeeper",
+                "image": "confluentinc/cp-zookeeper",
+                "servers": [],
+                "discos": [
+                    "zookeeper"
+                ],
+                "monitors": []
+            },
+            {
+                "image_full": "postgres:10",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "postgres",
+                "image": "postgres",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 8,
+        "detected_dbs": {
+            "services": [
+                "redis-master",
+                "broker",
+                "redis-slave",
+                "zookeeper"
+            ],
+            "names": [
+                "zookeeper",
+                "enterprise",
+                "redis"
+            ],
+            "num": 4,
+            "shared_dbs": true
+        }
+    },
+    "dbs": [
+        "zookeeper",
+        "enterprise",
+        "redis"
+    ],
+    "num_dbs": 3,
+    "avg_size_service": 324.0,
+    "num_services": 8,
+    "buses": [
+        "kafka"
+    ],
+    "files": [],
+    "url": "git://github.com/ibm-cloudacademy/msa-solutions.git",
+    "num_dockers": 0,
+    "size": 324,
+    "num_discos": 1,
+    "num_gates": 0
+}

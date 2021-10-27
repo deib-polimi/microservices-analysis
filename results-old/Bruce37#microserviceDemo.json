@@ -1,0 +1,208 @@
+{
+    "monitors": [],
+    "avg_size_service": 1.6666666666666667,
+    "num_dbs": 1,
+    "url": "git://github.com/Bruce37/microserviceDemo.git",
+    "num_files": 5,
+    "servers": [
+        "node",
+        "express"
+    ],
+    "gates": [],
+    "num_gates": 0,
+    "buses": [],
+    "num_services": 4,
+    "num_langs": 4,
+    "size": 5,
+    "num_dockers": 3,
+    "num_servers": 2,
+    "dbs": [
+        "redis"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "buses": [],
+            "discos": [],
+            "dbs": [
+                "redis"
+            ],
+            "path": "/server/package.json",
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": []
+        }
+    ],
+    "langs": [
+        "javascript",
+        "makefile",
+        "shell",
+        "dockerfile"
+    ],
+    "num_buses": 0,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "discos": [],
+                "name": "poller",
+                "image_full": "slashdeploy/microservice-example:poller-v2",
+                "dbs": [],
+                "servers": [],
+                "image": "slashdeploy/microservice-example",
+                "gates": [],
+                "depends_on": [
+                    "server"
+                ]
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "discos": [],
+                "name": "counter",
+                "image_full": "slashdeploy/microservice-example:counter-v2",
+                "dbs": [],
+                "servers": [],
+                "image": "slashdeploy/microservice-example",
+                "gates": [],
+                "depends_on": [
+                    "server"
+                ]
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "discos": [],
+                "name": "redis",
+                "image_full": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "image": "redis",
+                "gates": [],
+                "depends_on": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "discos": [],
+                "name": "server",
+                "image_full": "slashdeploy/microservice-example:server-v2",
+                "dbs": [],
+                "servers": [],
+                "image": "slashdeploy/microservice-example",
+                "gates": [],
+                "depends_on": [
+                    "redis"
+                ]
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [
+                "redis"
+            ],
+            "num": 1,
+            "names": [
+                "redis"
+            ]
+        },
+        "num_services": 4
+    },
+    "num_monitors": 0,
+    "discos": [],
+    "name": "Bruce37/microserviceDemo",
+    "images": [
+        "node",
+        "alpine"
+    ],
+    "shared_dbs": false,
+    "num_discos": 0,
+    "languages": [
+        "javascript",
+        "shell",
+        "dockerfile",
+        "makefile"
+    ],
+    "dockers": [
+        {
+            "monitors": [],
+            "from": "node",
+            "cmd": "npm start",
+            "dbs": [],
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "langs": [],
+            "path": "/server/Dockerfile",
+            "servers": [
+                "node"
+            ],
+            "keywords": [
+                "mkdir",
+                "app",
+                "install",
+                "npm",
+                "src"
+            ],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "from_full": "node:6-alpine"
+        },
+        {
+            "monitors": [],
+            "from": "alpine",
+            "cmd": "/app/count.sh",
+            "dbs": [],
+            "cmd_keywords": [
+                "count",
+                "app"
+            ],
+            "langs": [],
+            "path": "/counter/Dockerfile",
+            "servers": [],
+            "keywords": [
+                "apk",
+                "cache",
+                "mkdir",
+                "app",
+                "add"
+            ],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "from_full": "alpine:3.5"
+        },
+        {
+            "monitors": [],
+            "from": "alpine",
+            "cmd": "/app/poll.sh",
+            "dbs": [],
+            "cmd_keywords": [
+                "app",
+                "poll"
+            ],
+            "langs": [],
+            "path": "/poller/Dockerfile",
+            "servers": [],
+            "keywords": [
+                "apk",
+                "cache",
+                "mkdir",
+                "app",
+                "add"
+            ],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "from_full": "alpine:3.5"
+        }
+    ]
+}

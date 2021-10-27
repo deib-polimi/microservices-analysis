@@ -1,0 +1,144 @@
+{
+    "gates": [],
+    "num_buses": 0,
+    "url": "git://github.com/H2020-IPM-Decisions/IdentityProviderService.git",
+    "images": [
+        "base"
+    ],
+    "avg_size_service": 623.0,
+    "num_langs": 1,
+    "num_monitors": 1,
+    "num_dockers": 1,
+    "num_discos": 0,
+    "num_servers": 0,
+    "buses": [],
+    "discos": [],
+    "dockers": [
+        {
+            "path": "/Docker/Dockerfile",
+            "cmd_keywords": [],
+            "discos": [],
+            "gates": [],
+            "dbs": [],
+            "from": "base",
+            "langs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "base",
+            "monitors": [],
+            "keywords": [
+                "ipmdecisions",
+                "idp",
+                "dotnet",
+                "api",
+                "csproj"
+            ],
+            "buses": []
+        }
+    ],
+    "size": 623,
+    "name": "H2020-IPM-Decisions/IdentityProviderService",
+    "num_services": 5,
+    "dbs": [
+        "mysql"
+    ],
+    "shared_dbs": true,
+    "langs": [
+        "c#"
+    ],
+    "languages": [
+        "c#"
+    ],
+    "servers": [],
+    "num_files": 2,
+    "monitors": [
+        "elk"
+    ],
+    "num_dbs": 1,
+    "num_gates": 0,
+    "files": [],
+    "structure": {
+        "path": "/Docker/docker-compose.yml",
+        "num_services": 5,
+        "detected_dbs": {
+            "services": [
+                "idp.db"
+            ],
+            "num": 1,
+            "names": [
+                "mysql"
+            ],
+            "shared_dbs": true
+        },
+        "services": [
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "idp.db"
+                ],
+                "servers": [],
+                "image_full": "phpmyadmin/phpmyadmin",
+                "name": "phpmyadmin",
+                "gates": [],
+                "image": "phpmyadmin/phpmyadmin",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "mysql:8.0.19",
+                "name": "idp.db",
+                "gates": [],
+                "image": "mysql",
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "idp.db"
+                ],
+                "servers": [],
+                "image_full": "ipmdecisions/identityproviderservice:latest",
+                "name": "idp.api",
+                "gates": [],
+                "image": "ipmdecisions/identityproviderservice",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "docker.elastic.co/beats/filebeat:7.6.1",
+                "name": "filebeat",
+                "gates": [],
+                "image": "docker.elastic.co/beats/filebeat",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [
+                    "elk"
+                ],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "sebp/elk",
+                "name": "elk",
+                "gates": [],
+                "image": "sebp/elk",
+                "dbs": [],
+                "buses": []
+            }
+        ]
+    }
+}

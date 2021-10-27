@@ -1,0 +1,308 @@
+{
+    "avg_size_service": 213.75,
+    "discos": [
+        "eureka"
+    ],
+    "images": [
+        "openjdk"
+    ],
+    "num_dockers": 4,
+    "num_servers": 1,
+    "langs": [
+        "java"
+    ],
+    "languages": [
+        "java"
+    ],
+    "num_services": 6,
+    "num_gates": 1,
+    "num_langs": 1,
+    "monitors": [],
+    "gates": [
+        "zuul"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "num_monitors": 0,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [
+                    "currency-exchange-service",
+                    "naming-server",
+                    "rabbitmq",
+                    "zipkin-server"
+                ],
+                "image": "currency-conversion-service",
+                "image_full": "currency-conversion-service",
+                "gates": [],
+                "name": "currency-conversion-service",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "rabbitmq",
+                "image_full": "rabbitmq:3.5.3-management",
+                "gates": [],
+                "name": "rabbitmq",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "rabbitmq"
+                ],
+                "image": "openzipkin/zipkin",
+                "image_full": "openzipkin/zipkin",
+                "gates": [],
+                "name": "zipkin-server",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "naming-server",
+                    "rabbitmq",
+                    "zipkin-server"
+                ],
+                "image": "microservices/zuul-api-gateway",
+                "image_full": "microservices/zuul-api-gateway:0.0.1-SNAPSHOT",
+                "gates": [
+                    "zuul"
+                ],
+                "name": "zuul-api",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "naming-server",
+                    "rabbitmq",
+                    "zipkin-server"
+                ],
+                "image": "currency-exchange-service",
+                "image_full": "currency-exchange-service",
+                "gates": [],
+                "name": "currency-exchange-service",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image": "eureka-server",
+                "image_full": "eureka-server",
+                "gates": [],
+                "name": "naming-server",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "dbs": [],
+                "discos": [
+                    "eureka"
+                ]
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "names": [],
+            "num": 0,
+            "services": [],
+            "shared_dbs": false
+        }
+    },
+    "size": 855,
+    "url": "git://github.com/jayavardhanpatil/microservices-SE.git",
+    "num_buses": 2,
+    "shared_dbs": false,
+    "files": [
+        {
+            "path": "/pom.xml",
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/currency-conversion-service/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "buses": [
+                "amqp"
+            ]
+        },
+        {
+            "path": "/spring-cloud-config-server/pom.xml",
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "buses": [
+                "amqp"
+            ]
+        },
+        {
+            "path": "/eureka-server/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/zuul-api-gateway/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "buses": [
+                "amqp"
+            ]
+        },
+        {
+            "path": "/currency-exchange-service/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "buses": [
+                "amqp"
+            ]
+        },
+        {
+            "path": "/limits-services/pom.xml",
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "buses": [
+                "amqp"
+            ]
+        }
+    ],
+    "num_discos": 1,
+    "dockers": [
+        {
+            "path": "/currency-conversion-service/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "from": "openjdk",
+            "cmd": "",
+            "keywords": [],
+            "servers": [],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/eureka-server/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "from": "openjdk",
+            "cmd": "",
+            "keywords": [],
+            "servers": [],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/zuul-api-gateway/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "from": "openjdk",
+            "cmd": "",
+            "keywords": [],
+            "servers": [],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": []
+        },
+        {
+            "path": "/currency-exchange-service/Dockerfile",
+            "from_full": "openjdk:8-jdk-alpine",
+            "from": "openjdk",
+            "cmd": "",
+            "keywords": [],
+            "servers": [],
+            "gates": [],
+            "langs": [],
+            "discos": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": []
+        }
+    ],
+    "name": "jayavardhanpatil/microservices-SE",
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "num_files": 12,
+    "dbs": [],
+    "num_dbs": 0
+}

@@ -1,0 +1,243 @@
+{
+    "num_langs": 1,
+    "dbs": [
+        "redis"
+    ],
+    "num_servers": 0,
+    "languages": [
+        "python"
+    ],
+    "num_discos": 0,
+    "avg_size_service": 46.5,
+    "dockers": [
+        {
+            "gates": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "",
+            "servers": [],
+            "keywords": [
+                "nameko",
+                "install",
+                "get",
+                "dev",
+                "pip"
+            ],
+            "from": "nameko-example-base",
+            "cmd_keywords": [],
+            "from_full": "nameko-example-base",
+            "path": "/Dockerfile",
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "/var/nameko/run.sh;",
+            "servers": [],
+            "keywords": [
+                "nameko",
+                "pip",
+                "wheelhouse",
+                "install",
+                "run"
+            ],
+            "from": "nameko-example-base",
+            "cmd_keywords": [
+                "nameko",
+                "var",
+                "run"
+            ],
+            "from_full": "nameko-example-base",
+            "path": "/products/Dockerfile",
+            "buses": [],
+            "langs": [],
+            "discos": []
+        },
+        {
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "/var/nameko/run.sh;",
+            "servers": [],
+            "keywords": [
+                "nameko",
+                "pip",
+                "wheelhouse",
+                "install",
+                "run"
+            ],
+            "from": "nameko-example-base",
+            "cmd_keywords": [
+                "nameko",
+                "var",
+                "run"
+            ],
+            "from_full": "nameko-example-base",
+            "path": "/gateway/Dockerfile",
+            "buses": [],
+            "langs": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd": "/var/nameko/run.sh;",
+            "servers": [],
+            "keywords": [
+                "nameko",
+                "pip",
+                "wheelhouse",
+                "install",
+                "run"
+            ],
+            "from": "nameko-example-base",
+            "cmd_keywords": [
+                "nameko",
+                "var",
+                "run"
+            ],
+            "from_full": "nameko-example-base",
+            "path": "/orders/Dockerfile",
+            "buses": [],
+            "langs": [],
+            "discos": []
+        }
+    ],
+    "num_gates": 1,
+    "buses": [
+        "rabbitmq"
+    ],
+    "langs": [
+        "python"
+    ],
+    "num_buses": 1,
+    "discos": [],
+    "num_dbs": 1,
+    "num_files": 5,
+    "url": "git://github.com/nameko/nameko-examples.git",
+    "shared_dbs": false,
+    "monitors": [],
+    "num_services": 6,
+    "files": [],
+    "servers": [],
+    "num_monitors": 0,
+    "gates": [
+        "gateway"
+    ],
+    "size": 186,
+    "num_dockers": 4,
+    "images": [
+        "nameko-example-base"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image": "redis",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "name": "redis",
+                "image_full": "redis",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "nameko/nameko-example-products",
+                "depends_on": [
+                    "rabbit",
+                    "redis"
+                ],
+                "dbs": [],
+                "name": "products",
+                "image_full": "nameko/nameko-example-products:latest",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "postgres",
+                "depends_on": [],
+                "dbs": [],
+                "name": "postgres",
+                "image_full": "postgres",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "nameko/nameko-example-orders",
+                "depends_on": [
+                    "rabbit",
+                    "postgres"
+                ],
+                "dbs": [],
+                "name": "orders",
+                "image_full": "nameko/nameko-example-orders:latest",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "rabbitmq",
+                "depends_on": [],
+                "dbs": [],
+                "name": "rabbit",
+                "image_full": "rabbitmq:3.7-management",
+                "discos": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "servers": [],
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "image": "nameko/nameko-example-gateway",
+                "depends_on": [
+                    "rabbit"
+                ],
+                "dbs": [],
+                "name": "gateway",
+                "image_full": "nameko/nameko-example-gateway:latest",
+                "discos": [],
+                "buses": [],
+                "servers": [],
+                "gates": [
+                    "gateway"
+                ],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": false,
+            "num": 1,
+            "services": [
+                "redis"
+            ]
+        },
+        "num_services": 6
+    },
+    "name": "nameko/nameko-examples"
+}

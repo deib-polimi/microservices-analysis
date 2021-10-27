@@ -1,0 +1,569 @@
+{
+    "name": "vietnam-devs/coolstore-microservices",
+    "buses": [],
+    "images": [
+        "envoyproxy/envoy",
+        "brennovich/protobuf-tools",
+        "nginx",
+        "base",
+        "mysql",
+        "microsoft/mssql-server-linux",
+        "node"
+    ],
+    "num_langs": 2,
+    "num_discos": 2,
+    "num_buses": 0,
+    "dockers": [
+        {
+            "discos": [],
+            "langs": [
+                "bash"
+            ],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "microsoft/mssql-server-linux",
+            "cmd_keywords": [
+                "null",
+                "tail",
+                "dev"
+            ],
+            "from_full": "microsoft/mssql-server-linux:2017-latest",
+            "keywords": [
+                "chmod",
+                "bin",
+                "bash",
+                "entrypoint",
+                "init"
+            ],
+            "path": "/deploys/dockers/mssqldb/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": "tail -f /dev/null"
+        },
+        {
+            "discos": [
+                "grpc"
+            ],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "brennovich/protobuf-tools",
+            "cmd_keywords": [
+                "include",
+                "proto",
+                "protoc",
+                "usr",
+                "descriptor"
+            ],
+            "from_full": "brennovich/protobuf-tools",
+            "keywords": [],
+            "path": "/deploys/dockers/docker-volume/Dockerfile",
+            "servers": [],
+            "gates": [
+                "gateway"
+            ],
+            "cmd": "protoc -I./v1 -I/usr/local/include -I./googleapis  -I./grpc-gateway   --include_imports --include_source_info   --descriptor_set_out=/tmp/proto.pb ./v1/*.proto"
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "node",
+            "cmd_keywords": [],
+            "from_full": "node:alpine",
+            "keywords": [
+                "curl",
+                "cache",
+                "self",
+                "add",
+                "apk"
+            ],
+            "path": "/deploys/dockers/pnpm/Dockerfile",
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "cmd": ""
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [
+                "mysql"
+            ],
+            "monitors": [],
+            "from": "mysql",
+            "cmd_keywords": [],
+            "from_full": "mysql:8.0.12",
+            "keywords": [],
+            "path": "/deploys/dockers/mysqldb/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": ""
+        },
+        {
+            "discos": [
+                "envoy"
+            ],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "envoyproxy/envoy",
+            "cmd_keywords": [
+                "envoy",
+                "service",
+                "bin",
+                "usr",
+                "cluster"
+            ],
+            "from_full": "envoyproxy/envoy:latest",
+            "keywords": [],
+            "path": "/deploys/dockers/envoy-proxy/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": "/usr/local/bin/envoy -c /etc/envoy.yaml -l debug --service-cluster envoy-proxy"
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "base",
+            "cmd_keywords": [],
+            "from_full": "base",
+            "keywords": [
+                "dbmigration",
+                "coolstore",
+                "vnd",
+                "csproj",
+                "dotnet"
+            ],
+            "path": "/src/migrations/VND.CoolStore.DbMigration/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": ""
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "base",
+            "cmd_keywords": [],
+            "from_full": "base",
+            "keywords": [
+                "dotnet",
+                "csproj",
+                "coolstore",
+                "vnd",
+                "webapigateway"
+            ],
+            "path": "/src/gateways/webapi-gateway/Dockerfile",
+            "servers": [],
+            "gates": [
+                "gateway"
+            ],
+            "cmd": ""
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "nginx",
+            "cmd_keywords": [
+                "daemon",
+                "off",
+                "nginx"
+            ],
+            "from_full": "nginx:perl",
+            "keywords": [
+                "npm",
+                "install",
+                "nginx",
+                "build",
+                "run"
+            ],
+            "path": "/src/web/Dockerfile",
+            "servers": [],
+            "gates": [
+                "nginx"
+            ],
+            "cmd": "nginx -g daemon off;"
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "base",
+            "cmd_keywords": [],
+            "from_full": "base",
+            "keywords": [
+                "vnd",
+                "coolstore",
+                "accesscontrol",
+                "csproj",
+                "dotnet"
+            ],
+            "path": "/src/microservices/access-control-service/VND.CoolStore.AccessControl/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": ""
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "base",
+            "cmd_keywords": [],
+            "from_full": "base",
+            "keywords": [
+                "shoppingcart",
+                "api",
+                "coolstore",
+                "vnd",
+                "csproj"
+            ],
+            "path": "/src/microservices/shopping-cart-service/VND.CoolStore.ShoppingCart.Api/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": ""
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "base",
+            "cmd_keywords": [],
+            "from_full": "base",
+            "keywords": [
+                "release",
+                "restore",
+                "dotnet",
+                "app",
+                "apk"
+            ],
+            "path": "/src/microservices/graphql-service/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": ""
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "base",
+            "cmd_keywords": [],
+            "from_full": "base",
+            "keywords": [
+                "search",
+                "api",
+                "coolstore",
+                "vnd",
+                "csproj"
+            ],
+            "path": "/src/microservices/search-service/VND.CoolStore.Search.Api/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": ""
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "base",
+            "cmd_keywords": [],
+            "from_full": "base",
+            "keywords": [
+                "api",
+                "coolstore",
+                "vnd",
+                "productcatalog",
+                "csproj"
+            ],
+            "path": "/src/microservices/product-catalog-service/VND.CoolStore.ProductCatalog.Api/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": ""
+        },
+        {
+            "discos": [
+                "grpc"
+            ],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "node",
+            "cmd_keywords": [
+                "start",
+                "yarn"
+            ],
+            "from_full": "node:alpine",
+            "keywords": [
+                "grpc",
+                "health",
+                "probe",
+                "version",
+                "bin"
+            ],
+            "path": "/src/microservices/rating-service/Dockerfile",
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "cmd": "yarn start"
+        },
+        {
+            "discos": [],
+            "langs": [],
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "base",
+            "cmd_keywords": [],
+            "from_full": "base",
+            "keywords": [
+                "inventory",
+                "api",
+                "coolstore",
+                "vnd",
+                "csproj"
+            ],
+            "path": "/src/microservices/inventory-service/VND.CoolStore.Inventory.Api/Dockerfile",
+            "servers": [],
+            "gates": [],
+            "cmd": ""
+        }
+    ],
+    "monitors": [],
+    "dbs": [
+        "mysql",
+        "solid"
+    ],
+    "structure": {
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "names": [],
+            "shared_dbs": false
+        },
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "monitors": [],
+                "name": "web",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "webapi-gateway",
+                    "product-catalog-api",
+                    "shopping-cart-api",
+                    "inventory-api",
+                    "search-api"
+                ],
+                "image": "vndg/web-v3",
+                "image_full": "vndg/web-v3:latest",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "shopping-cart-api",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "migration-data",
+                    "sqlserver",
+                    "redis"
+                ],
+                "image": "vndg/shopping-cart-api-v3",
+                "image_full": "vndg/shopping-cart-api-v3:latest",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "webapi-gateway",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "product-catalog-api",
+                    "shopping-cart-api",
+                    "inventory-api"
+                ],
+                "image": "vndg/webapi-gateway-v3",
+                "image_full": "vndg/webapi-gateway-v3:latest",
+                "gates": [
+                    "gateway"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "inventory-api",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "migration-data",
+                    "sqlserver"
+                ],
+                "image": "vndg/inventory-api-v3",
+                "image_full": "vndg/inventory-api-v3:latest",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "migration-data",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "sqlserver",
+                    "elasticsearch",
+                    "redis",
+                    "seq"
+                ],
+                "image": "vndg/migration-data-v3",
+                "image_full": "vndg/migration-data-v3:latest",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "access-control-api",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image": "vndg/access-control-api-v3",
+                "image_full": "vndg/access-control-api-v3:latest",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "product-catalog-api",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "migration-data",
+                    "sqlserver",
+                    "redis"
+                ],
+                "image": "vndg/product-catalog-api-v3",
+                "image_full": "vndg/product-catalog-api-v3:latest",
+                "gates": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "name": "search-api",
+                "servers": [],
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "migration-data",
+                    "elasticsearch"
+                ],
+                "image": "vndg/search-api-v3",
+                "image_full": "vndg/search-api-v3:latest",
+                "gates": [],
+                "dbs": []
+            }
+        ],
+        "num_services": 8
+    },
+    "gates": [
+        "nginx"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/package.json",
+            "servers": [],
+            "gates": [],
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/src/web/package.json",
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "dbs": [
+                "solid"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [
+                "grpc"
+            ],
+            "buses": [],
+            "path": "/src/microservices/rating-service/package.json",
+            "servers": [
+                "node",
+                "mongoose"
+            ],
+            "gates": [],
+            "dbs": []
+        }
+    ],
+    "avg_size_service": 1269.5333333333333,
+    "langs": [
+        "c#",
+        "bash"
+    ],
+    "num_dbs": 2,
+    "num_services": 8,
+    "num_monitors": 0,
+    "size": 19043,
+    "languages": [
+        "c#"
+    ],
+    "num_files": 19,
+    "num_gates": 1,
+    "num_dockers": 15,
+    "shared_dbs": false,
+    "servers": [
+        "node",
+        "mongoose"
+    ],
+    "num_servers": 2,
+    "url": "git://github.com/vietnam-devs/coolstore-microservices.git",
+    "discos": [
+        "envoy",
+        "grpc"
+    ]
+}

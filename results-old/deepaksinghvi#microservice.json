@@ -1,0 +1,325 @@
+{
+    "num_services": 5,
+    "num_buses": 0,
+    "files": [
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/catalogservice/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [
+                "hsqldb"
+            ]
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/orderservice/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [
+                "hsqldb"
+            ]
+        },
+        {
+            "gates": [
+                "zuul"
+            ],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/proxyservice/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/discoveryserver/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/userservice/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "dbs": [
+                "hsqldb"
+            ]
+        }
+    ],
+    "num_dbs": 1,
+    "num_discos": 1,
+    "languages": [
+        "java"
+    ],
+    "num_langs": 1,
+    "images": [
+        "java"
+    ],
+    "buses": [],
+    "size": 109,
+    "servers": [
+        "spring"
+    ],
+    "num_gates": 1,
+    "discos": [
+        "eureka"
+    ],
+    "num_monitors": 0,
+    "avg_size_service": 21.8,
+    "langs": [
+        "java"
+    ],
+    "dockers": [
+        {
+            "keywords": [
+                "touch",
+                "jar",
+                "app",
+                "bash"
+            ],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "path": "/catalogservice/src/main/docker/Dockerfile",
+            "cmd": "",
+            "gates": [],
+            "from": "java",
+            "monitors": [],
+            "servers": [],
+            "from_full": "java:8",
+            "discos": [],
+            "cmd_keywords": [],
+            "dbs": []
+        },
+        {
+            "keywords": [
+                "touch",
+                "jar",
+                "app",
+                "bash"
+            ],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "path": "/orderservice/src/main/docker/Dockerfile",
+            "cmd": "",
+            "gates": [],
+            "from": "java",
+            "monitors": [],
+            "servers": [],
+            "from_full": "java:8",
+            "discos": [],
+            "cmd_keywords": [],
+            "dbs": []
+        },
+        {
+            "keywords": [
+                "touch",
+                "jar",
+                "app",
+                "bash"
+            ],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "path": "/proxyservice/src/main/docker/Dockerfile",
+            "cmd": "",
+            "gates": [],
+            "from": "java",
+            "monitors": [],
+            "servers": [],
+            "from_full": "java:8",
+            "discos": [],
+            "cmd_keywords": [],
+            "dbs": []
+        },
+        {
+            "keywords": [
+                "touch",
+                "jar",
+                "app",
+                "bash"
+            ],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "path": "/discoveryserver/src/main/docker/Dockerfile",
+            "cmd": "",
+            "gates": [],
+            "from": "java",
+            "monitors": [],
+            "servers": [],
+            "from_full": "java:8",
+            "discos": [],
+            "cmd_keywords": [],
+            "dbs": []
+        },
+        {
+            "keywords": [
+                "touch",
+                "jar",
+                "app",
+                "bash"
+            ],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "path": "/userservice/src/main/docker/Dockerfile",
+            "cmd": "",
+            "gates": [],
+            "from": "java",
+            "monitors": [],
+            "servers": [],
+            "from_full": "java:8",
+            "discos": [],
+            "cmd_keywords": [],
+            "dbs": []
+        }
+    ],
+    "name": "deepaksinghvi/microservice",
+    "url": "git://github.com/deepaksinghvi/microservice.git",
+    "gates": [
+        "zuul"
+    ],
+    "num_servers": 1,
+    "monitors": [],
+    "num_files": 12,
+    "shared_dbs": false,
+    "num_dockers": 5,
+    "dbs": [
+        "db"
+    ],
+    "structure": {
+        "num_services": 5,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "deepaksinghvi/proxyservice",
+                "image_full": "deepaksinghvi/proxyservice",
+                "servers": [],
+                "discos": [],
+                "depends_on": [
+                    "discoveryserver",
+                    "catalogservice",
+                    "userservice",
+                    "orderservice"
+                ],
+                "name": "proxyservice"
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "deepaksinghvi/orderservice",
+                "image_full": "deepaksinghvi/orderservice",
+                "servers": [],
+                "discos": [],
+                "depends_on": [
+                    "discoveryserver",
+                    "userservice",
+                    "catalogservice"
+                ],
+                "name": "orderservice"
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "deepaksinghvi/discoveryserver",
+                "image_full": "deepaksinghvi/discoveryserver",
+                "servers": [],
+                "discos": [],
+                "depends_on": [],
+                "name": "discoveryserver"
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "deepaksinghvi/userservice",
+                "image_full": "deepaksinghvi/userservice",
+                "servers": [],
+                "discos": [],
+                "depends_on": [
+                    "discoveryserver"
+                ],
+                "name": "userservice"
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "deepaksinghvi/catalogservice",
+                "image_full": "deepaksinghvi/catalogservice",
+                "servers": [],
+                "discos": [],
+                "depends_on": [
+                    "discoveryserver"
+                ],
+                "name": "catalogservice"
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 0,
+            "services": [],
+            "names": []
+        }
+    }
+}

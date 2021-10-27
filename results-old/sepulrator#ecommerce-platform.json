@@ -1,0 +1,417 @@
+{
+    "dockers": [
+        {
+            "discos": [],
+            "path": "/microservices/config-server/Dockerfile",
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "keywords": [],
+            "monitors": [],
+            "from_full": "java:8-jre",
+            "from": "java",
+            "gates": [],
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "server",
+                "java",
+                "snapshot"
+            ],
+            "cmd": "java -Xmx200m -jar /app/config-server-0.0.1-SNAPSHOT.jar"
+        },
+        {
+            "discos": [],
+            "path": "/microservices/monitoring-server/Dockerfile",
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "keywords": [],
+            "monitors": [
+                "monitoring"
+            ],
+            "from_full": "java:8-jre",
+            "from": "java",
+            "gates": [],
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "monitoring",
+                "java",
+                "snapshot"
+            ],
+            "cmd": "java -Xmx200m -jar /app/monitoring-server-0.0.1-SNAPSHOT.jar"
+        },
+        {
+            "discos": [],
+            "path": "/microservices/product-microservice/Dockerfile",
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "keywords": [],
+            "monitors": [],
+            "from_full": "java:8-jre",
+            "from": "java",
+            "gates": [],
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "xmx",
+                "microservice",
+                "snapshot"
+            ],
+            "cmd": "java -Xmx200m -jar /app/product-microservice-0.0.2-SNAPSHOT.jar"
+        },
+        {
+            "discos": [],
+            "path": "/microservices/gateway-server/Dockerfile",
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "keywords": [],
+            "monitors": [],
+            "from_full": "java:8-jre",
+            "from": "java",
+            "gates": [
+                "gateway"
+            ],
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "gateway",
+                "java",
+                "snapshot"
+            ],
+            "cmd": "java -Xmx200m -jar /app/gateway-server-0.0.1-SNAPSHOT.jar"
+        },
+        {
+            "discos": [],
+            "path": "/microservices/registry-server/Dockerfile",
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "langs": [
+                "java"
+            ],
+            "keywords": [],
+            "monitors": [],
+            "from_full": "java:8-jre",
+            "from": "java",
+            "gates": [],
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "server",
+                "registry",
+                "java"
+            ],
+            "cmd": "java -Xmx200m -jar /app/registry-server-0.0.1-SNAPSHOT.jar"
+        },
+        {
+            "discos": [],
+            "path": "/data-stores/mongodb/Dockerfile",
+            "buses": [],
+            "dbs": [
+                "mongo"
+            ],
+            "servers": [],
+            "langs": [],
+            "keywords": [
+                "apt",
+                "get",
+                "var",
+                "update",
+                "lists"
+            ],
+            "monitors": [],
+            "from_full": "mongo:3",
+            "from": "mongo",
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": ""
+        }
+    ],
+    "num_buses": 2,
+    "languages": [
+        "java",
+        "javascript",
+        "dockerfile",
+        "shell"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "name": "sepulrator/ecommerce-platform",
+    "url": "git://github.com/sepulrator/ecommerce-platform.git",
+    "gates": [
+        "zuul"
+    ],
+    "num_monitors": 1,
+    "monitors": [
+        "turbine"
+    ],
+    "num_dockers": 6,
+    "avg_size_service": 68.5,
+    "images": [
+        "java",
+        "mongo"
+    ],
+    "num_services": 7,
+    "num_discos": 1,
+    "size": 411,
+    "buses": [
+        "rabbitmq",
+        "amqp"
+    ],
+    "dbs": [
+        "mongo"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "langs": [
+        "dockerfile",
+        "javascript",
+        "java",
+        "shell"
+    ],
+    "structure": {
+        "num_services": 7,
+        "services": [
+            {
+                "monitors": [],
+                "discos": [],
+                "name": "product-microservice",
+                "depends_on": [
+                    "config-server"
+                ],
+                "image_full": "microservices/product-microservice",
+                "image": "microservices/product-microservice",
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "servers": []
+            },
+            {
+                "monitors": [],
+                "discos": [],
+                "name": "gateway-server",
+                "depends_on": [
+                    "config-server"
+                ],
+                "image_full": "microservices/gateway-server",
+                "image": "microservices/gateway-server",
+                "dbs": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "servers": []
+            },
+            {
+                "monitors": [],
+                "discos": [],
+                "name": "config-server",
+                "depends_on": [],
+                "image_full": "microservices/config-server",
+                "image": "microservices/config-server",
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "servers": []
+            },
+            {
+                "monitors": [],
+                "discos": [],
+                "name": "rabbitmq",
+                "depends_on": [],
+                "image_full": "rabbitmq:3-management",
+                "image": "rabbitmq",
+                "dbs": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "servers": []
+            },
+            {
+                "monitors": [
+                    "monitoring"
+                ],
+                "discos": [],
+                "name": "monitoring-server",
+                "depends_on": [
+                    "config-server"
+                ],
+                "image_full": "microservices/monitoring-server",
+                "image": "microservices/monitoring-server",
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "servers": []
+            },
+            {
+                "monitors": [],
+                "discos": [],
+                "name": "registry-server",
+                "depends_on": [
+                    "config-server"
+                ],
+                "image_full": "microservices/registry-server",
+                "image": "microservices/registry-server",
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "servers": []
+            },
+            {
+                "monitors": [],
+                "discos": [],
+                "name": "product-mongodb",
+                "depends_on": [],
+                "image_full": "data-stores/mongodb",
+                "image": "data-stores/mongodb",
+                "dbs": [
+                    "mongodb"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 1,
+            "shared_dbs": false,
+            "services": [
+                "product-mongodb"
+            ],
+            "names": [
+                "mongodb"
+            ]
+        },
+        "path": "/docker-compose.yml"
+    },
+    "shared_dbs": false,
+    "num_servers": 1,
+    "num_langs": 4,
+    "num_gates": 1,
+    "num_dbs": 1,
+    "files": [
+        {
+            "monitors": [],
+            "discos": [],
+            "path": "/build.gradle",
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "gates": []
+        },
+        {
+            "monitors": [
+                "monitoring"
+            ],
+            "discos": [],
+            "path": "/settings.gradle",
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "gates": [
+                "gateway"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "path": "/microservices/config-server/build.gradle",
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": []
+        },
+        {
+            "monitors": [
+                "turbine",
+                "monitoring"
+            ],
+            "discos": [],
+            "path": "/microservices/monitoring-server/build.gradle",
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": []
+        },
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "path": "/microservices/product-microservice/build.gradle",
+            "buses": [
+                "amqp"
+            ],
+            "dbs": [
+                "mongodb",
+                "mongo"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "gates": []
+        },
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "path": "/microservices/gateway-server/build.gradle",
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [
+                "gateway",
+                "zuul"
+            ]
+        },
+        {
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ],
+            "path": "/microservices/registry-server/build.gradle",
+            "buses": [],
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": []
+        },
+        {
+            "monitors": [],
+            "discos": [],
+            "path": "/microservices/search-microservice/build.gradle",
+            "buses": [],
+            "dbs": [],
+            "servers": [],
+            "gates": []
+        }
+    ],
+    "num_files": 15
+}

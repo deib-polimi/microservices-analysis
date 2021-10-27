@@ -1,0 +1,267 @@
+{
+    "num_services": 5,
+    "dbs": [
+        "postgresql"
+    ],
+    "name": "emrahburak/api-lab",
+    "files": [
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/kandilli_back_service/requirements.txt",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "django"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "path": "/kandilli_front_service/requirements.txt",
+            "buses": [],
+            "monitors": [],
+            "discos": [],
+            "servers": [
+                "django"
+            ]
+        }
+    ],
+    "discos": [],
+    "num_gates": 1,
+    "num_buses": 0,
+    "langs": [
+        "python",
+        "tsql"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_monitors": 0,
+    "monitors": [],
+    "images": [
+        "python",
+        "nginx"
+    ],
+    "structure": {
+        "num_services": 5,
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "names": [],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "buses": [],
+                "depends_on": [
+                    "databasepostgresql"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "./kandilli_front_service/",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "djangoapp_front",
+                "image": "./kandilli_front_service/"
+            },
+            {
+                "buses": [],
+                "depends_on": [],
+                "gates": [],
+                "dbs": [],
+                "image_full": "postgres:latest",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "databasepostgresql",
+                "image": "postgres"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "djangoapp_back"
+                ],
+                "gates": [
+                    "nginx"
+                ],
+                "dbs": [],
+                "image_full": "./nginx.health/",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "nginx_back",
+                "image": "./nginx.health/"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "djangoapp_front"
+                ],
+                "gates": [
+                    "nginx"
+                ],
+                "dbs": [],
+                "image_full": "./nginx.health/",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "nginx_front",
+                "image": "./nginx.health/"
+            },
+            {
+                "buses": [],
+                "depends_on": [
+                    "databasepostgresql"
+                ],
+                "gates": [],
+                "dbs": [],
+                "image_full": "./kandilli_back_service/",
+                "monitors": [],
+                "discos": [],
+                "servers": [],
+                "name": "djangoapp_back",
+                "image": "./kandilli_back_service/"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "shared_dbs": false,
+    "languages": [
+        "tsql",
+        "python"
+    ],
+    "avg_size_service": 115.5,
+    "buses": [],
+    "dockers": [
+        {
+            "from_full": "python:3.7-slim",
+            "langs": [
+                "python"
+            ],
+            "dbs": [
+                "postgresql"
+            ],
+            "path": "/kandilli_back_service/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "kandilli",
+                "remote",
+                "application",
+                "gunicorn",
+                "app"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "python",
+            "keywords": [
+                "apt",
+                "install",
+                "get",
+                "dev",
+                "pip"
+            ],
+            "cmd": "gunicorn --chdir app --bind :8001 kandilli_remote.wsgi:application"
+        },
+        {
+            "from_full": "python:3.7-slim",
+            "langs": [
+                "python"
+            ],
+            "dbs": [
+                "postgresql"
+            ],
+            "path": "/kandilli_front_service/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "kandilli",
+                "obsvr",
+                "application",
+                "gunicorn",
+                "app"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "python",
+            "keywords": [
+                "apt",
+                "install",
+                "get",
+                "dev",
+                "pip"
+            ],
+            "cmd": "gunicorn --chdir app --bind :8000 kandilli_obsvr.wsgi:application"
+        },
+        {
+            "from_full": "python:3.6-alpine",
+            "langs": [
+                "python"
+            ],
+            "dbs": [
+                "postgresql"
+            ],
+            "path": "/kandilli_front_service/kandilli/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "kandilli",
+                "obsvr",
+                "application",
+                "gunicorn",
+                "app"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "servers": [],
+            "from": "python",
+            "keywords": [
+                "pip",
+                "app",
+                "install",
+                "postgresql",
+                "txt"
+            ],
+            "cmd": "gunicorn --chdir app --bind :8000 kandilli_obsvr.wsgi:application"
+        },
+        {
+            "from_full": "nginx:latest",
+            "langs": [],
+            "dbs": [],
+            "path": "/nginx.health/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "monitors": [],
+            "gates": [
+                "nginx"
+            ],
+            "servers": [],
+            "from": "nginx",
+            "keywords": [
+                "apt",
+                "get",
+                "install",
+                "recommends",
+                "var"
+            ],
+            "cmd": ""
+        }
+    ],
+    "servers": [
+        "django"
+    ],
+    "num_dockers": 4,
+    "url": "git://github.com/emrahburak/api-lab.git",
+    "num_dbs": 1,
+    "num_servers": 1,
+    "num_discos": 0,
+    "num_langs": 2,
+    "num_files": 7,
+    "size": 462
+}

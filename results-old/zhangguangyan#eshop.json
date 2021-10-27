@@ -1,0 +1,343 @@
+{
+    "num_servers": 3,
+    "num_gates": 1,
+    "num_dockers": 5,
+    "num_buses": 1,
+    "dockers": [
+        {
+            "monitors": [],
+            "servers": [
+                "httpd"
+            ],
+            "buses": [],
+            "from_full": "httpd:2.4",
+            "discos": [],
+            "from": "httpd",
+            "langs": [],
+            "gates": [
+                "gateway"
+            ],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/webSPA/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "apt",
+                "conf",
+                "enabled",
+                "etc",
+                "apache"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "adoptopenjdk/openjdk8:alpine-jre",
+            "discos": [],
+            "from": "adoptopenjdk/openjdk8",
+            "langs": [
+                "bash"
+            ],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/services/catalog/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "apk",
+                "wait",
+                "for",
+                "bash",
+                "add"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "adoptopenjdk/openjdk8:alpine-jre",
+            "discos": [],
+            "from": "adoptopenjdk/openjdk8",
+            "langs": [
+                "bash"
+            ],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/services/ordering/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "apk",
+                "wait",
+                "for",
+                "bash",
+                "add"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "adoptopenjdk/openjdk8:alpine-jre",
+            "discos": [],
+            "from": "adoptopenjdk/openjdk8",
+            "langs": [
+                "bash"
+            ],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/services/basket/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "apk",
+                "wait",
+                "for",
+                "bash",
+                "add"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "adoptopenjdk/openjdk8:alpine-jre",
+            "discos": [],
+            "from": "adoptopenjdk/openjdk8",
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/api.gateway/web.bff.shopping/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "apk",
+                "update",
+                "upgrade"
+            ]
+        }
+    ],
+    "shared_dbs": false,
+    "languages": [
+        "java",
+        "typescript",
+        "shell",
+        "css"
+    ],
+    "gates": [
+        "gateway"
+    ],
+    "avg_size_service": 552.8,
+    "discos": [],
+    "num_dbs": 1,
+    "monitors": [],
+    "servers": [
+        "node",
+        "httpd",
+        "spring"
+    ],
+    "num_langs": 5,
+    "buses": [
+        "amqp"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "${DOCKER_REGISTRY}/web.bff.shopping:${IMG_TAG:-latest}",
+                "image": "${DOCKER_REGISTRY}/web.bff.shopping",
+                "buses": [],
+                "name": "api.gateway",
+                "discos": [],
+                "depends_on": [
+                    "catalog.api",
+                    "basket.api",
+                    "ordering.api"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "${DOCKER_REGISTRY}/ordering:${IMG_TAG:-latest}",
+                "image": "${DOCKER_REGISTRY}/ordering",
+                "buses": [],
+                "name": "ordering.api",
+                "discos": [],
+                "depends_on": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "${DOCKER_REGISTRY}/webspa:${IMG_TAG:-latest}",
+                "image": "${DOCKER_REGISTRY}/webspa",
+                "buses": [],
+                "name": "web.spa",
+                "discos": [],
+                "depends_on": [
+                    "api.gateway"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "${DOCKER_REGISTRY}/catalog:${IMG_TAG:-latest}",
+                "image": "${DOCKER_REGISTRY}/catalog",
+                "buses": [],
+                "name": "catalog.api",
+                "discos": [],
+                "depends_on": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "${DOCKER_REGISTRY}/basket:${IMG_TAG:-latest}",
+                "image": "${DOCKER_REGISTRY}/basket",
+                "buses": [],
+                "name": "basket.api",
+                "discos": [],
+                "depends_on": [],
+                "dbs": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "names": [],
+            "shared_dbs": false
+        },
+        "num_services": 5
+    },
+    "images": [
+        "adoptopenjdk/openjdk8",
+        "httpd"
+    ],
+    "num_files": 14,
+    "num_services": 5,
+    "langs": [
+        "typescript",
+        "css",
+        "bash",
+        "shell",
+        "java"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "servers": [],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/build.gradle",
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "gates": [
+                "gateway"
+            ],
+            "buses": [],
+            "discos": [],
+            "path": "/settings.gradle",
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "buses": [
+                "amqp"
+            ],
+            "discos": [],
+            "path": "/services/catalog/build.gradle",
+            "dbs": [
+                "postgresql"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "buses": [
+                "amqp"
+            ],
+            "discos": [],
+            "path": "/services/ordering/build.gradle",
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "buses": [
+                "amqp"
+            ],
+            "discos": [],
+            "path": "/services/basket/build.gradle",
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "buses": [
+                "amqp"
+            ],
+            "discos": [],
+            "path": "/building.blocks/build.gradle",
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [
+                "gateway"
+            ],
+            "buses": [],
+            "discos": [],
+            "path": "/api.gateway/web.bff.shopping/build.gradle",
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/webSPA/package.json",
+            "dbs": []
+        }
+    ],
+    "url": "git://github.com/zhangguangyan/eshop.git",
+    "size": 2764,
+    "name": "zhangguangyan/eshop",
+    "num_discos": 0,
+    "num_monitors": 0,
+    "dbs": [
+        "postgresql"
+    ]
+}

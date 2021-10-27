@@ -1,0 +1,223 @@
+{
+    "servers": [
+        "express",
+        "mongoose",
+        "node"
+    ],
+    "images": [
+        "node"
+    ],
+    "num_servers": 3,
+    "gates": [],
+    "buses": [
+        "nats"
+    ],
+    "shared_dbs": false,
+    "files": [
+        {
+            "servers": [
+                "express",
+                "mongoose",
+                "node"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [
+                "mongo"
+            ],
+            "buses": [],
+            "path": "/backend/package.json",
+            "discos": []
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [
+                "mongo"
+            ],
+            "buses": [
+                "nats"
+            ],
+            "path": "/backendMoleculer/package.json",
+            "discos": []
+        },
+        {
+            "servers": [
+                "express",
+                "mongoose",
+                "node"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [
+                "mongo"
+            ],
+            "buses": [],
+            "path": "/backendGraphQL/package.json",
+            "discos": []
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "path": "/backendPrisma/package.json",
+            "discos": []
+        },
+        {
+            "servers": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "path": "/frontend/package.json",
+            "discos": []
+        }
+    ],
+    "num_langs": 1,
+    "num_dockers": 1,
+    "num_files": 7,
+    "monitors": [],
+    "dockers": [
+        {
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "from_full": "node:8-alpine",
+            "buses": [],
+            "keywords": [
+                "npm",
+                "install",
+                "app",
+                "mkdir",
+                "production"
+            ],
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "langs": [],
+            "from": "node",
+            "cmd": "npm start",
+            "monitors": [],
+            "dbs": [],
+            "path": "/backendMoleculer/Dockerfile",
+            "discos": []
+        }
+    ],
+    "dbs": [
+        "mongo"
+    ],
+    "num_services": 5,
+    "num_discos": 1,
+    "avg_size_service": 323666.0,
+    "languages": [
+        "javascript"
+    ],
+    "discos": [
+        "traefik"
+    ],
+    "num_buses": 1,
+    "num_gates": 0,
+    "num_dbs": 1,
+    "url": "git://github.com/sanesga/proyectoServidor.git",
+    "size": 323666,
+    "name": "sanesga/proyectoServidor",
+    "num_monitors": 0,
+    "langs": [
+        "javascript"
+    ],
+    "structure": {
+        "num_services": 5,
+        "detected_dbs": {
+            "names": [
+                "mongo"
+            ],
+            "shared_dbs": false,
+            "num": 1,
+            "services": [
+                "mongo"
+            ]
+        },
+        "path": "/backendMoleculer/docker-compose.yml",
+        "services": [
+            {
+                "servers": [],
+                "monitors": [],
+                "gates": [],
+                "name": "nats",
+                "image": "nats",
+                "image_full": "nats",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [
+                    "nats"
+                ],
+                "discos": []
+            },
+            {
+                "servers": [],
+                "monitors": [],
+                "gates": [],
+                "name": "mongo",
+                "image": "mongo",
+                "image_full": "mongo",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "discos": []
+            },
+            {
+                "servers": [],
+                "monitors": [],
+                "gates": [],
+                "name": "api",
+                "image": "microservice",
+                "image_full": "microservice",
+                "depends_on": [
+                    "nats"
+                ],
+                "dbs": [],
+                "buses": [],
+                "discos": []
+            },
+            {
+                "servers": [],
+                "monitors": [],
+                "gates": [],
+                "name": "traefik",
+                "image": "traefik",
+                "image_full": "traefik:v1.7",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "discos": [
+                    "traefik"
+                ]
+            },
+            {
+                "servers": [],
+                "monitors": [],
+                "gates": [],
+                "name": "promotions",
+                "image": "microservice",
+                "image_full": "microservice",
+                "depends_on": [
+                    "nats"
+                ],
+                "dbs": [],
+                "buses": [],
+                "discos": []
+            }
+        ]
+    }
+}

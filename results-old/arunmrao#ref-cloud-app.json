@@ -1,0 +1,388 @@
+{
+    "num_servers": 2,
+    "num_gates": 0,
+    "num_dockers": 6,
+    "num_buses": 1,
+    "dockers": [
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "discos": [],
+            "from": "openjdk",
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/product_service/Dockerfile",
+            "dbs": [],
+            "keywords": []
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "discos": [],
+            "from": "openjdk",
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/api_service/Dockerfile",
+            "dbs": [],
+            "keywords": []
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "cassandra",
+            "discos": [],
+            "from": "cassandra",
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [
+                "cassandra"
+            ],
+            "cmd": "cassandra -f",
+            "path": "/cassandra_node/Dockerfile",
+            "dbs": [
+                "cassandra"
+            ],
+            "keywords": [
+                "get",
+                "apt",
+                "chmod",
+                "netcat",
+                "update"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "discos": [],
+            "from": "openjdk",
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/consumer_service/Dockerfile",
+            "dbs": [],
+            "keywords": []
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "discos": [],
+            "from": "openjdk",
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/user_service/Dockerfile",
+            "dbs": [],
+            "keywords": []
+        },
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "discos": [],
+            "from": "openjdk",
+            "langs": [],
+            "gates": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/order_service/Dockerfile",
+            "dbs": [],
+            "keywords": []
+        }
+    ],
+    "shared_dbs": true,
+    "languages": [
+        "java"
+    ],
+    "gates": [],
+    "avg_size_service": 99.33333333333333,
+    "discos": [
+        "zookeeper"
+    ],
+    "num_dbs": 2,
+    "monitors": [],
+    "servers": [
+        "node",
+        "spring"
+    ],
+    "num_langs": 1,
+    "buses": [
+        "kafka"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "order-service",
+                "image": "order-service",
+                "buses": [],
+                "name": "order",
+                "discos": [],
+                "depends_on": [
+                    "kafka",
+                    "cassandra-node-1",
+                    "cassandra-node-2"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "product-service",
+                "image": "product-service",
+                "buses": [],
+                "name": "product",
+                "discos": [],
+                "depends_on": [
+                    "kafka",
+                    "cassandra-node-1",
+                    "cassandra-node-2"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "user-service",
+                "image": "user-service",
+                "buses": [],
+                "name": "user",
+                "discos": [],
+                "depends_on": [
+                    "kafka",
+                    "cassandra-node-1",
+                    "cassandra-node-2"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "api-service",
+                "image": "api-service",
+                "buses": [],
+                "name": "api",
+                "discos": [],
+                "depends_on": [
+                    "user",
+                    "order",
+                    "product"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "wurstmeister/zookeeper",
+                "image": "wurstmeister/zookeeper",
+                "buses": [],
+                "name": "zookeeper",
+                "discos": [
+                    "zookeeper"
+                ],
+                "depends_on": [],
+                "dbs": [
+                    "zookeeper"
+                ]
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "wurstmeister/kafka",
+                "image": "wurstmeister/kafka",
+                "buses": [
+                    "kafka"
+                ],
+                "name": "kafka",
+                "discos": [],
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "consumer-service",
+                "image": "consumer-service",
+                "buses": [],
+                "name": "consumer-service",
+                "discos": [],
+                "depends_on": [
+                    "kafka"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [
+                    "node"
+                ],
+                "gates": [],
+                "image_full": "cassandra-node",
+                "image": "cassandra-node",
+                "buses": [],
+                "name": "cassandra-node-2",
+                "discos": [],
+                "depends_on": [
+                    "cassandra-node-1"
+                ],
+                "dbs": [
+                    "cassandra"
+                ]
+            },
+            {
+                "monitors": [],
+                "servers": [
+                    "node"
+                ],
+                "gates": [],
+                "image_full": "cassandra-node",
+                "image": "cassandra-node",
+                "buses": [],
+                "name": "cassandra-node-1",
+                "discos": [],
+                "depends_on": [],
+                "dbs": [
+                    "cassandra"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "num": 3,
+            "services": [
+                "zookeeper",
+                "cassandra-node-2",
+                "cassandra-node-1"
+            ],
+            "names": [
+                "zookeeper",
+                "cassandra"
+            ],
+            "shared_dbs": true
+        },
+        "num_services": 9
+    },
+    "images": [
+        "openjdk",
+        "cassandra"
+    ],
+    "num_files": 13,
+    "num_services": 9,
+    "langs": [
+        "java"
+    ],
+    "files": [
+        {
+            "monitors": [],
+            "servers": [],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/pom.xml",
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "path": "/product_service/pom.xml",
+            "dbs": [
+                "cassandra"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/api_service/pom.xml",
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "path": "/consumer_service/pom.xml",
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "path": "/user_service/pom.xml",
+            "dbs": [
+                "cassandra"
+            ]
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "gates": [],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "path": "/order_service/pom.xml",
+            "dbs": [
+                "cassandra"
+            ]
+        }
+    ],
+    "url": "git://github.com/arunmrao/ref-cloud-app.git",
+    "size": 596,
+    "name": "arunmrao/ref-cloud-app",
+    "num_discos": 1,
+    "num_monitors": 0,
+    "dbs": [
+        "zookeeper",
+        "cassandra"
+    ]
+}

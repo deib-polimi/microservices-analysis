@@ -1,0 +1,368 @@
+{
+    "monitors": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [],
+            "names": [],
+            "num": 0
+        },
+        "services": [
+            {
+                "image": "./personnel-service",
+                "buses": [],
+                "monitors": [],
+                "image_full": "./personnel-service",
+                "gates": [],
+                "name": "personnel-service",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "personneldb"
+                ]
+            },
+            {
+                "image": "postgres",
+                "buses": [],
+                "monitors": [],
+                "image_full": "postgres:12-alpine",
+                "gates": [],
+                "name": "warehousedb",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "./execution-service",
+                "buses": [],
+                "monitors": [],
+                "image_full": "./execution-service",
+                "gates": [],
+                "name": "execution-service",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "executiondb"
+                ]
+            },
+            {
+                "image": "postgres",
+                "buses": [],
+                "monitors": [],
+                "image_full": "postgres:12-alpine",
+                "gates": [],
+                "name": "personneldb",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "./warehouse-service",
+                "buses": [],
+                "monitors": [],
+                "image_full": "./warehouse-service",
+                "gates": [],
+                "name": "warehouse-service",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "warehousedb"
+                ]
+            },
+            {
+                "image": "./api-gateway",
+                "buses": [],
+                "monitors": [],
+                "image_full": "./api-gateway",
+                "gates": [
+                    "gateway"
+                ],
+                "name": "api-gateway",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "warehouse-service"
+                ]
+            },
+            {
+                "image": "postgres",
+                "buses": [],
+                "monitors": [],
+                "image_full": "postgres:12-alpine",
+                "gates": [],
+                "name": "executiondb",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            }
+        ],
+        "num_services": 7
+    },
+    "num_langs": 3,
+    "name": "strahinja16/grpc-kubernetes",
+    "num_dockers": 5,
+    "buses": [],
+    "dbs": [],
+    "size": 4005,
+    "num_discos": 1,
+    "shared_dbs": false,
+    "discos": [
+        "grpc"
+    ],
+    "images": [
+        "node"
+    ],
+    "num_servers": 2,
+    "files": [
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/personnel-service/package.json",
+            "discos": [
+                "grpc"
+            ],
+            "dbs": []
+        },
+        {
+            "gates": [
+                "gateway"
+            ],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/api-gateway/package.json",
+            "discos": [
+                "grpc"
+            ],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/warehouse-service/package.json",
+            "discos": [
+                "grpc"
+            ],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "node"
+            ],
+            "path": "/client/package.json",
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/execution-service/package.json",
+            "discos": [
+                "grpc"
+            ],
+            "dbs": []
+        }
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "start",
+                "run",
+                "dev",
+                "npm"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "node",
+            "path": "/personnel-service/Dockerfile",
+            "from_full": "node:10.16-alpine",
+            "cmd": "npm run start:dev",
+            "keywords": [
+                "make",
+                "add",
+                "cache",
+                "npm",
+                "update"
+            ],
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "start",
+                "run",
+                "dev",
+                "npm"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "node",
+            "path": "/api-gateway/Dockerfile",
+            "from_full": "node:10.16-alpine",
+            "cmd": "npm run start:dev",
+            "keywords": [
+                "make",
+                "add",
+                "cache",
+                "npm",
+                "update"
+            ],
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "start",
+                "run",
+                "dev",
+                "npm"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "node",
+            "path": "/warehouse-service/Dockerfile",
+            "from_full": "node:10.16-alpine",
+            "cmd": "npm run start:dev",
+            "keywords": [
+                "make",
+                "add",
+                "cache",
+                "npm",
+                "update"
+            ],
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "langs": [
+                "python"
+            ]
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "start",
+                "dev",
+                "yarn"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "node",
+            "path": "/client/Dockerfile",
+            "from_full": "node:13.12.0-alpine",
+            "cmd": "yarn start:dev",
+            "keywords": [
+                "silent",
+                "yarn",
+                "add",
+                "react",
+                "scripts"
+            ],
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "start",
+                "run",
+                "dev",
+                "npm"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "node",
+            "path": "/execution-service/Dockerfile",
+            "from_full": "node:10.16-alpine",
+            "cmd": "npm run start:dev",
+            "keywords": [
+                "make",
+                "add",
+                "cache",
+                "npm",
+                "update"
+            ],
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "langs": [
+                "python"
+            ]
+        }
+    ],
+    "url": "git://github.com/strahinja16/grpc-kubernetes.git",
+    "gates": [
+        "gateway"
+    ],
+    "num_files": 11,
+    "num_services": 7,
+    "num_gates": 1,
+    "num_dbs": 0,
+    "avg_size_service": 801.0,
+    "langs": [
+        "python",
+        "typescript",
+        "javascript"
+    ],
+    "num_buses": 0,
+    "languages": [
+        "javascript",
+        "typescript"
+    ],
+    "num_monitors": 0,
+    "servers": [
+        "express",
+        "node"
+    ]
+}

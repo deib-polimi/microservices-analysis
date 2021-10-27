@@ -1,0 +1,288 @@
+{
+    "num_services": 15,
+    "monitors": [],
+    "num_discos": 0,
+    "num_langs": 1,
+    "images": [
+        "node"
+    ],
+    "buses": [],
+    "num_files": 3,
+    "num_buses": 0,
+    "languages": [
+        "javascript"
+    ],
+    "num_dbs": 0,
+    "num_servers": 1,
+    "url": "git://github.com/hmcts/attic-cmc-legal-integration-tests.git",
+    "dockers": [
+        {
+            "path": "/Dockerfile",
+            "keywords": [
+                "app",
+                "mkdir",
+                "usr",
+                "yarn",
+                "install"
+            ],
+            "cmd": "test",
+            "from_full": "node:7.8.0",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "from": "node",
+            "gates": [],
+            "langs": [],
+            "cmd_keywords": [
+                "test"
+            ],
+            "servers": [
+                "node"
+            ],
+            "discos": []
+        }
+    ],
+    "shared_dbs": false,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "buses": [],
+                "dbs": [],
+                "name": "draft-store-api",
+                "monitors": [],
+                "depends_on": [
+                    "draft-store-database",
+                    "service-auth-provider-api"
+                ],
+                "image": "docker.artifactory.reform.hmcts.net/reform/draft-store-api",
+                "gates": [],
+                "discos": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/reform/draft-store-api:${DRAFT_STORE_API_VERSION:-latest}",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [],
+                "name": "claim-store-database",
+                "monitors": [],
+                "depends_on": [],
+                "image": "docker.artifactory.reform.hmcts.net/cmc/claim-store-database",
+                "gates": [],
+                "discos": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/cmc/claim-store-database:${CLAIM_STORE_DATABASE_VERSION:-latest}",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [],
+                "name": "service-auth-provider-api",
+                "monitors": [],
+                "depends_on": [],
+                "image": "docker.artifactory.reform.hmcts.net/auth/service-auth-provider-api",
+                "gates": [],
+                "discos": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/auth/service-auth-provider-api:47e18b53aad48ae8124744041988565e07dfed50",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [],
+                "name": "idam-database",
+                "monitors": [],
+                "depends_on": [],
+                "image": "docker.artifactory.reform.hmcts.net/auth/idam-database",
+                "gates": [],
+                "discos": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/auth/idam-database",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [],
+                "name": "legal-frontend",
+                "monitors": [],
+                "depends_on": [
+                    "draft-store-api",
+                    "service-auth-provider-api",
+                    "authentication-web",
+                    "fees-api",
+                    "idam-api",
+                    "claim-store-api",
+                    "pdf-service-api"
+                ],
+                "image": "docker.artifactory.reform.hmcts.net/cmc/legal-frontend",
+                "gates": [],
+                "discos": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/cmc/legal-frontend:${LEGAL_FRONTEND_VERSION:-latest}",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [],
+                "name": "legal-integration-tests",
+                "monitors": [],
+                "depends_on": [
+                    "legal-frontend",
+                    "remote-webdriver"
+                ],
+                "image": "docker.artifactory.reform.hmcts.net/cmc/legal-integration-tests",
+                "gates": [],
+                "discos": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/cmc/legal-integration-tests:${LEGAL_INTEGRATION_TESTS_VERSION:-latest}",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [],
+                "name": "pdf-service-api",
+                "monitors": [],
+                "depends_on": [],
+                "image": "docker.artifactory.reform.hmcts.net/cmc/pdf-service-api",
+                "gates": [],
+                "discos": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/cmc/pdf-service-api",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [],
+                "name": "smtp-server",
+                "monitors": [],
+                "depends_on": [],
+                "image": "mailhog/mailhog",
+                "gates": [],
+                "discos": [],
+                "image_full": "mailhog/mailhog",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [],
+                "name": "authentication-web",
+                "monitors": [],
+                "depends_on": [
+                    "idam-api"
+                ],
+                "image": "docker.artifactory.reform.hmcts.net/auth/authentication-web",
+                "gates": [],
+                "discos": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/auth/authentication-web:65e9cbfeeee1c6f238e7ef25e7159ae066058c8f",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [],
+                "name": "fees-database",
+                "monitors": [],
+                "depends_on": [],
+                "image": "docker.artifactory.reform.hmcts.net/fees-register/fees-database",
+                "gates": [],
+                "discos": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/fees-register/fees-database",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [],
+                "name": "draft-store-database",
+                "monitors": [],
+                "depends_on": [],
+                "image": "docker.artifactory.reform.hmcts.net/reform/draft-store-database",
+                "gates": [],
+                "discos": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/reform/draft-store-database:${DRAFT_STORE_DATABASE_VERSION:-latest}",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [],
+                "name": "idam-api",
+                "monitors": [],
+                "depends_on": [
+                    "idam-database"
+                ],
+                "image": "docker.artifactory.reform.hmcts.net/auth/idam-api",
+                "gates": [],
+                "discos": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/auth/idam-api:386ea4e56789cdd0db35f3a532722b5a8de15f18",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [],
+                "name": "fees-api",
+                "monitors": [],
+                "depends_on": [
+                    "fees-database"
+                ],
+                "image": "docker.artifactory.reform.hmcts.net/fees-register/fees-api",
+                "gates": [],
+                "discos": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/fees-register/fees-api",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [],
+                "name": "remote-webdriver",
+                "monitors": [],
+                "depends_on": [],
+                "image": "docker.artifactory.reform.hmcts.net/selenium/standalone-chrome",
+                "gates": [],
+                "discos": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/selenium/standalone-chrome:3.5.2",
+                "servers": []
+            },
+            {
+                "buses": [],
+                "dbs": [],
+                "name": "claim-store-api",
+                "monitors": [],
+                "depends_on": [
+                    "pdf-service-api",
+                    "claim-store-database",
+                    "smtp-server"
+                ],
+                "image": "docker.artifactory.reform.hmcts.net/cmc/claim-store-api",
+                "gates": [],
+                "discos": [],
+                "image_full": "docker.artifactory.reform.hmcts.net/cmc/claim-store-api:${CLAIM_STORE_API_VERSION:-latest}",
+                "servers": []
+            }
+        ],
+        "num_services": 15,
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "names": [],
+            "shared_dbs": false
+        }
+    },
+    "size": 175,
+    "discos": [],
+    "num_dockers": 1,
+    "num_monitors": 0,
+    "name": "hmcts/attic-cmc-legal-integration-tests",
+    "langs": [
+        "javascript"
+    ],
+    "gates": [],
+    "dbs": [],
+    "num_gates": 0,
+    "files": [
+        {
+            "path": "/package.json",
+            "buses": [],
+            "dbs": [],
+            "monitors": [],
+            "gates": [],
+            "discos": [],
+            "servers": []
+        }
+    ],
+    "servers": [
+        "node"
+    ],
+    "avg_size_service": 175.0
+}

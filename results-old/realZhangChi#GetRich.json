@@ -1,0 +1,343 @@
+{
+    "num_gates": 1,
+    "images": [
+        "base",
+        "mcr.microsoft.com/mssql-tools",
+        "build"
+    ],
+    "discos": [],
+    "num_buses": 1,
+    "name": "realZhangChi/GetRich",
+    "gates": [
+        "gateway"
+    ],
+    "structure": {
+        "num_services": 10,
+        "detected_dbs": {
+            "services": [
+                "redis",
+                "mongodb"
+            ],
+            "names": [
+                "redis",
+                "mongo"
+            ],
+            "shared_dbs": true,
+            "num": 2
+        },
+        "path": "/GetRich.Service/docker-compose.yml",
+        "services": [
+            {
+                "image": "redis",
+                "image_full": "redis",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "redis",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "redis"
+                ]
+            },
+            {
+                "image": "mongo",
+                "image_full": "mongo",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "mongodb",
+                "monitors": [],
+                "buses": [],
+                "dbs": [
+                    "mongo"
+                ]
+            },
+            {
+                "image": "docker.elastic.co/logstash/logstash",
+                "image_full": "docker.elastic.co/logstash/logstash:6.6.0",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "servers": [],
+                "name": "logstash",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "${DOCKER_REGISTRY-}identity-service",
+                "image_full": "${DOCKER_REGISTRY-}identity-service",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "elasticsearch",
+                    "rabbitmq",
+                    "redis",
+                    "sqlserver"
+                ],
+                "servers": [],
+                "name": "identity-service",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "${DOCKER_REGISTRY-}internal-gateway",
+                "image_full": "${DOCKER_REGISTRY-}internal-gateway",
+                "discos": [],
+                "gates": [
+                    "gateway"
+                ],
+                "depends_on": [
+                    "elasticsearch",
+                    "redis",
+                    "sqlserver",
+                    "identity-service"
+                ],
+                "servers": [],
+                "name": "internal-gateway",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "${DOCKER_REGISTRY-}auth-server",
+                "image_full": "${DOCKER_REGISTRY-}auth-server",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "elasticsearch",
+                    "redis",
+                    "sqlserver",
+                    "rabbitmq",
+                    "identity-service"
+                ],
+                "servers": [],
+                "name": "auth-server",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:6.6.0",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "elasticsearch",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "docker.elastic.co/kibana/kibana",
+                "image_full": "docker.elastic.co/kibana/kibana:6.6.0",
+                "discos": [],
+                "gates": [],
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "servers": [],
+                "name": "kibana",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "mcr.microsoft.com/mssql/server",
+                "image_full": "mcr.microsoft.com/mssql/server",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "sqlserver",
+                "monitors": [],
+                "buses": [],
+                "dbs": []
+            },
+            {
+                "image": "rabbitmq",
+                "image_full": "rabbitmq:3-management-alpine",
+                "discos": [],
+                "gates": [],
+                "depends_on": [],
+                "servers": [],
+                "name": "rabbitmq",
+                "monitors": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "dbs": []
+            }
+        ]
+    },
+    "url": "git://github.com/realZhangChi/GetRich.git",
+    "langs": [
+        "bash",
+        "javascript",
+        "c#",
+        "css"
+    ],
+    "num_dockers": 5,
+    "num_langs": 4,
+    "dbs": [
+        "redis",
+        "mongo"
+    ],
+    "shared_dbs": true,
+    "size": 52865,
+    "dockers": [
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "base",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "base",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "host",
+                "internalgateway",
+                "dotnet",
+                "csproj",
+                "release"
+            ],
+            "dbs": [],
+            "path": "/GetRich.Service/Gateways/InternalGateway.Host/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "base",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "base",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "host",
+                "authserver",
+                "dotnet",
+                "csproj",
+                "release"
+            ],
+            "dbs": [],
+            "path": "/GetRich.Service/Applications/AuthServer.Host/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "build",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "bash"
+            ],
+            "from": "build",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "bash",
+                "entrypoint",
+                "dotnet",
+                "restore",
+                "bin"
+            ],
+            "dbs": [],
+            "path": "/GetRich.Service/databases/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "mcr.microsoft.com/mssql-tools",
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "bash"
+            ],
+            "from": "mcr.microsoft.com/mssql-tools",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "entrypoint",
+                "unzip",
+                "bin",
+                "bash",
+                "add"
+            ],
+            "dbs": [],
+            "path": "/GetRich.Service/databases/restore/Dockerfile",
+            "cmd_keywords": []
+        },
+        {
+            "discos": [],
+            "monitors": [],
+            "from_full": "base",
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "from": "base",
+            "cmd": "",
+            "gates": [],
+            "keywords": [
+                "host",
+                "identityservice",
+                "dotnet",
+                "csproj",
+                "release"
+            ],
+            "dbs": [],
+            "path": "/GetRich.Service/Microservices/IdentityService.Host/Dockerfile",
+            "cmd_keywords": []
+        }
+    ],
+    "num_servers": 0,
+    "monitors": [],
+    "num_services": 10,
+    "servers": [],
+    "num_monitors": 0,
+    "avg_size_service": 10573.0,
+    "num_files": 8,
+    "buses": [
+        "rabbitmq"
+    ],
+    "files": [
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/GetRich.Service/Applications/AuthServer.Host/package.json"
+        },
+        {
+            "buses": [],
+            "discos": [],
+            "gates": [],
+            "servers": [],
+            "monitors": [],
+            "dbs": [],
+            "path": "/GetRich.Service/Applications/AuthServer.Host/wwwroot/libs/malihu-custom-scrollbar-plugin/package.json"
+        }
+    ],
+    "languages": [
+        "javascript",
+        "c#",
+        "css"
+    ],
+    "num_dbs": 2,
+    "num_discos": 0
+}

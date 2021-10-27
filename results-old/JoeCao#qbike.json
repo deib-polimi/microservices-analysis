@@ -1,0 +1,290 @@
+{
+    "num_files": 11,
+    "num_services": 10,
+    "num_discos": 1,
+    "gates": [
+        "gateway"
+    ],
+    "languages": [
+        "tsql",
+        "java"
+    ],
+    "num_dbs": 2,
+    "dbs": [
+        "mysql",
+        "redis"
+    ],
+    "num_monitors": 0,
+    "structure": {
+        "detected_dbs": {
+            "shared_dbs": true,
+            "num": 2,
+            "services": [
+                "mysql",
+                "redis"
+            ],
+            "names": [
+                "mysql",
+                "redis"
+            ]
+        },
+        "num_services": 10,
+        "services": [
+            {
+                "image_full": "mysql:5.7",
+                "image": "mysql",
+                "dbs": [
+                    "mysql"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "mysql"
+            },
+            {
+                "image_full": "rabbitmq:3-management",
+                "image": "rabbitmq",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "name": "rabbit"
+            },
+            {
+                "image_full": "club.newtech/uc",
+                "image": "club.newtech/uc",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "eureka",
+                    "mysql",
+                    "rabbit"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "uc"
+            },
+            {
+                "image_full": "club.newtech/api-gateway",
+                "image": "club.newtech/api-gateway",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "eureka",
+                    "rabbit"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "name": "api-gateway"
+            },
+            {
+                "image_full": "club.newtech/position",
+                "image": "club.newtech/position",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "eureka",
+                    "mysql",
+                    "rabbit"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "position"
+            },
+            {
+                "image_full": "club.newtech/microservice-discovery-eureka",
+                "image": "club.newtech/microservice-discovery-eureka",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [
+                    "eureka"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "eureka"
+            },
+            {
+                "image_full": "openzipkin/zipkin",
+                "image": "openzipkin/zipkin",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "rabbit"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "zipkin"
+            },
+            {
+                "image_full": "club.newtech/order",
+                "image": "club.newtech/order",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "eureka",
+                    "mysql",
+                    "rabbit"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "order"
+            },
+            {
+                "image_full": "redis:latest",
+                "image": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "monitors": [],
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "redis"
+            },
+            {
+                "image_full": "club.newtech/intention",
+                "image": "club.newtech/intention",
+                "dbs": [],
+                "monitors": [],
+                "depends_on": [
+                    "eureka",
+                    "mysql",
+                    "rabbit"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "name": "intention"
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "discos": [
+        "eureka"
+    ],
+    "url": "git://github.com/JoeCao/qbike.git",
+    "num_buses": 1,
+    "files": [
+        {
+            "path": "/pom.xml"
+        },
+        {
+            "servers": [
+                "spring"
+            ],
+            "dbs": [],
+            "discos": [
+                "eureka"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/microservice-discovery-eureka/pom.xml"
+        },
+        {
+            "path": "/api-gateway/pom.xml"
+        },
+        {
+            "path": "/intention/pom.xml"
+        },
+        {
+            "path": "/order/pom.xml"
+        },
+        {
+            "path": "/position/pom.xml"
+        },
+        {
+            "path": "/testclient/pom.xml"
+        },
+        {
+            "path": "/uc/pom.xml"
+        }
+    ],
+    "name": "JoeCao/qbike",
+    "servers": [
+        "spring"
+    ],
+    "num_dockers": 2,
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_gates": 1,
+    "num_langs": 2,
+    "shared_dbs": true,
+    "monitors": [],
+    "dockers": [
+        {
+            "servers": [],
+            "from": "openjdk",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/microservice-discovery-eureka/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "langs": [],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "openjdk:8-jdk-alpine"
+        },
+        {
+            "servers": [],
+            "from": "java",
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "path": "/microservice-discovery-eureka/src/main/docker/Dockerfile",
+            "keywords": [
+                "app",
+                "touch",
+                "bash",
+                "jar"
+            ],
+            "dbs": [],
+            "langs": [
+                "java"
+            ],
+            "cmd_keywords": [],
+            "discos": [],
+            "cmd": "",
+            "from_full": "java:8"
+        }
+    ],
+    "langs": [
+        "java",
+        "tsql"
+    ],
+    "num_servers": 1,
+    "size": 458,
+    "images": [
+        "java",
+        "openjdk"
+    ],
+    "avg_size_service": 229.0
+}

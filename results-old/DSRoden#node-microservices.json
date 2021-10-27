@@ -1,0 +1,437 @@
+{
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "users-service",
+                "dbs": [],
+                "depends_on": [
+                    "users-db"
+                ],
+                "image": "./services/users/",
+                "image_full": "./services/users/",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "swagger",
+                "dbs": [],
+                "depends_on": [
+                    "users-service",
+                    "movies-service"
+                ],
+                "image": "./services/movies/swagger/",
+                "image_full": "./services/movies/swagger/",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "movies-db",
+                "dbs": [],
+                "depends_on": [],
+                "image": "./services/movies/src/db",
+                "image_full": "./services/movies/src/db",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "auth-service",
+                "dbs": [],
+                "depends_on": [],
+                "image": "./services/auth/",
+                "image_full": "./services/auth/",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "movies-service",
+                "dbs": [],
+                "depends_on": [
+                    "movies-db",
+                    "users-service"
+                ],
+                "image": "./services/movies/",
+                "image_full": "./services/movies/",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "users-db",
+                "dbs": [],
+                "depends_on": [],
+                "image": "./services/users/src/db",
+                "image_full": "./services/users/src/db",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "monitors": [],
+                "name": "api-gateway",
+                "dbs": [],
+                "depends_on": [
+                    "users-service",
+                    "movies-service",
+                    "auth-service"
+                ],
+                "image": "./services/api-gateway",
+                "image_full": "./services/api-gateway",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "name": "web-service",
+                "dbs": [],
+                "depends_on": [
+                    "users-service",
+                    "movies-service"
+                ],
+                "image": "./services/web/",
+                "image_full": "./services/web/",
+                "discos": []
+            },
+            {
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "monitors": [],
+                "name": "nginx",
+                "dbs": [],
+                "depends_on": [],
+                "image": "./services/nginx",
+                "image_full": "./services/nginx",
+                "discos": []
+            }
+        ],
+        "num_services": 9,
+        "detected_dbs": {
+            "names": [],
+            "num": 0,
+            "services": [],
+            "shared_dbs": false
+        }
+    },
+    "discos": [],
+    "size": 2780,
+    "num_gates": 1,
+    "num_langs": 1,
+    "servers": [
+        "node",
+        "express"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_servers": 2,
+    "num_buses": 0,
+    "files": [
+        {
+            "servers": [
+                "node",
+                "express"
+            ],
+            "buses": [],
+            "gates": [
+                "gateway"
+            ],
+            "monitors": [],
+            "discos": [],
+            "path": "/services/api-gateway/package.json",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "node",
+                "express"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/services/movies/package.json",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/services/movies/swagger/package.json",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "node",
+                "express"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/services/users/package.json",
+            "dbs": []
+        },
+        {
+            "servers": [
+                "node",
+                "express"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/services/auth/package.json",
+            "dbs": []
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "path": "/services/web/package.json",
+            "dbs": []
+        }
+    ],
+    "num_dockers": 8,
+    "buses": [],
+    "languages": [
+        "javascript"
+    ],
+    "monitors": [],
+    "dbs": [],
+    "num_monitors": 0,
+    "num_files": 15,
+    "num_dbs": 0,
+    "num_services": 9,
+    "images": [
+        "postgres",
+        "node"
+    ],
+    "url": "git://github.com/DSRoden/node-microservices.git",
+    "dockers": [
+        {
+            "cmd": "npm start",
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/services/api-gateway/Dockerfile",
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "keywords": [
+                "mkdir",
+                "src",
+                "install",
+                "app",
+                "usr"
+            ],
+            "from_full": "node:latest",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "cmd": "npm start",
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/services/movies/Dockerfile",
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "keywords": [
+                "mkdir",
+                "src",
+                "install",
+                "app",
+                "usr"
+            ],
+            "from_full": "node:latest",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "cmd": "npm start",
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/services/movies/swagger/Dockerfile",
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "keywords": [
+                "mkdir",
+                "src",
+                "install",
+                "app",
+                "usr"
+            ],
+            "from_full": "node:latest",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/services/movies/src/db/Dockerfile",
+            "cmd_keywords": [],
+            "keywords": [],
+            "from_full": "postgres",
+            "gates": [],
+            "from": "postgres",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "cmd": "npm start",
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/services/users/Dockerfile",
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "keywords": [
+                "mkdir",
+                "src",
+                "install",
+                "app",
+                "usr"
+            ],
+            "from_full": "node:latest",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/services/users/src/db/Dockerfile",
+            "cmd_keywords": [],
+            "keywords": [],
+            "from_full": "postgres",
+            "gates": [],
+            "from": "postgres",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "cmd": "npm start",
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/services/auth/Dockerfile",
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "keywords": [
+                "mkdir",
+                "src",
+                "install",
+                "app",
+                "usr"
+            ],
+            "from_full": "node:latest",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "dbs": []
+        },
+        {
+            "cmd": "npm start",
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "discos": [],
+            "buses": [],
+            "path": "/services/web/Dockerfile",
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "keywords": [
+                "install",
+                "npm",
+                "react",
+                "mkdir",
+                "src"
+            ],
+            "from_full": "node:latest",
+            "gates": [],
+            "from": "node",
+            "langs": [],
+            "dbs": []
+        }
+    ],
+    "avg_size_service": 347.5,
+    "shared_dbs": false,
+    "num_discos": 0,
+    "langs": [
+        "javascript"
+    ],
+    "name": "DSRoden/node-microservices"
+}

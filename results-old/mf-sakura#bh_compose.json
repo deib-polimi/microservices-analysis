@@ -1,0 +1,165 @@
+{
+    "num_discos": 0,
+    "buses": [],
+    "gates": [],
+    "num_servers": 0,
+    "num_gates": 0,
+    "num_dbs": 1,
+    "monitors": [],
+    "num_langs": 1,
+    "num_files": 1,
+    "structure": {
+        "services": [
+            {
+                "name": "mysql_user",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "image": "mysql",
+                "image_full": "mysql:5.7",
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "user",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "user/app",
+                "image_full": "user/app",
+                "monitors": [],
+                "depends_on": [
+                    "mysql_user",
+                    "jaeger"
+                ]
+            },
+            {
+                "name": "jaeger",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "jaegertracing/all-in-one",
+                "image_full": "jaegertracing/all-in-one:1.7",
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "mysql_user_setup",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "user/db",
+                "image_full": "user/db",
+                "monitors": [],
+                "depends_on": [
+                    "mysql_user"
+                ]
+            },
+            {
+                "name": "gateway",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "gateway/app",
+                "image_full": "gateway/app",
+                "monitors": [],
+                "depends_on": [
+                    "user",
+                    "hotel",
+                    "jaeger"
+                ]
+            },
+            {
+                "name": "hotel",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "hotel/app",
+                "image_full": "hotel/app",
+                "monitors": [],
+                "depends_on": [
+                    "mysql_hotel",
+                    "jaeger"
+                ]
+            },
+            {
+                "name": "mysql_hotel",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "image": "mysql",
+                "image_full": "mysql:5.7",
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "mysql_hotel_setup",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "hotel/db",
+                "image_full": "hotel/db",
+                "monitors": [],
+                "depends_on": [
+                    "mysql_hotel"
+                ]
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "names": [
+                "mysql"
+            ],
+            "num": 2,
+            "services": [
+                "mysql_user",
+                "mysql_hotel"
+            ],
+            "shared_dbs": true
+        },
+        "num_services": 8
+    },
+    "servers": [],
+    "shared_dbs": true,
+    "langs": [
+        "makefile"
+    ],
+    "dockers": [],
+    "name": "mf-sakura/bh_compose",
+    "discos": [],
+    "avg_size_service": 2.0,
+    "num_monitors": 0,
+    "images": [],
+    "url": "git://github.com/mf-sakura/bh_compose.git",
+    "files": [],
+    "size": 2,
+    "languages": [
+        "makefile"
+    ],
+    "dbs": [
+        "mysql"
+    ],
+    "num_buses": 0,
+    "num_services": 8,
+    "num_dockers": 0
+}

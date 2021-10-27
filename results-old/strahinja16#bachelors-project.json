@@ -1,0 +1,260 @@
+{
+    "size": 2753,
+    "num_discos": 0,
+    "num_services": 5,
+    "num_monitors": 0,
+    "num_langs": 2,
+    "dockers": [
+        {
+            "dbs": [],
+            "cmd": "node /app/src/bin/www",
+            "gates": [],
+            "from_full": "node:latest",
+            "langs": [
+                "bash"
+            ],
+            "keywords": [
+                "npm",
+                "apt",
+                "install",
+                "get",
+                "python"
+            ],
+            "path": "/bachelors-subscription/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "www",
+                "bin",
+                "node",
+                "src",
+                "app"
+            ],
+            "from": "node",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "cmd": "node /app/src/bin/www",
+            "gates": [],
+            "from_full": "node:latest",
+            "langs": [
+                "bash"
+            ],
+            "keywords": [
+                "npm",
+                "apt",
+                "install",
+                "get",
+                "python"
+            ],
+            "path": "/bachelors-node/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "www",
+                "bin",
+                "node",
+                "src",
+                "app"
+            ],
+            "from": "node",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "cmd": "npm run start",
+            "gates": [],
+            "from_full": "node:12.11.0",
+            "langs": [
+                "bash"
+            ],
+            "keywords": [
+                "apt",
+                "get",
+                "mkdir",
+                "npm",
+                "install"
+            ],
+            "path": "/bachelors-react/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "npm",
+                "start",
+                "run"
+            ],
+            "from": "node",
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "monitors": []
+        }
+    ],
+    "files": [
+        {
+            "dbs": [],
+            "gates": [],
+            "discos": [],
+            "monitors": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/bachelors-subscription/package.json",
+            "buses": []
+        },
+        {
+            "dbs": [
+                "solid"
+            ],
+            "gates": [],
+            "discos": [],
+            "monitors": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/bachelors-node/package.json",
+            "buses": []
+        },
+        {
+            "dbs": [],
+            "gates": [],
+            "discos": [],
+            "monitors": [],
+            "servers": [
+                "node"
+            ],
+            "path": "/bachelors-react/package.json",
+            "buses": []
+        }
+    ],
+    "langs": [
+        "bash",
+        "javascript"
+    ],
+    "url": "git://github.com/strahinja16/bachelors-project.git",
+    "buses": [],
+    "shared_dbs": true,
+    "structure": {
+        "services": [
+            {
+                "dbs": [],
+                "image_full": "postgres",
+                "image": "postgres",
+                "gates": [],
+                "name": "postgres",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "./bachelors-node",
+                "image": "./bachelors-node",
+                "gates": [],
+                "name": "api",
+                "discos": [],
+                "monitors": [],
+                "servers": [
+                    "node"
+                ],
+                "depends_on": [
+                    "postgres",
+                    "redis"
+                ],
+                "buses": []
+            },
+            {
+                "dbs": [
+                    "redis"
+                ],
+                "image_full": "redis:latest",
+                "image": "redis",
+                "gates": [],
+                "name": "redis",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "['NODE_ENV=development']",
+                "image": "['NODE_ENV=development']",
+                "gates": [],
+                "name": "frontend",
+                "discos": [],
+                "monitors": [],
+                "servers": [
+                    "node"
+                ],
+                "depends_on": [
+                    "api"
+                ],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "./bachelors-subscription",
+                "image": "./bachelors-subscription",
+                "gates": [],
+                "name": "subscription",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [
+                    "redis"
+                ],
+                "buses": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [
+                "redis"
+            ],
+            "services": [
+                "redis"
+            ],
+            "shared_dbs": true,
+            "num": 1
+        },
+        "num_services": 5,
+        "path": "/docker-compose.yml"
+    },
+    "name": "strahinja16/bachelors-project",
+    "num_buses": 0,
+    "servers": [
+        "express",
+        "node"
+    ],
+    "num_files": 7,
+    "num_dbs": 2,
+    "num_gates": 0,
+    "gates": [],
+    "monitors": [],
+    "avg_size_service": 917.6666666666666,
+    "languages": [
+        "javascript"
+    ],
+    "num_dockers": 3,
+    "dbs": [
+        "redis",
+        "solid"
+    ],
+    "num_servers": 2,
+    "discos": [],
+    "images": [
+        "node"
+    ]
+}

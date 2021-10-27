@@ -1,0 +1,208 @@
+{
+    "servers": [
+        "spring",
+        "jetty",
+        "tomcat"
+    ],
+    "num_monitors": 0,
+    "num_gates": 0,
+    "num_dbs": 2,
+    "num_services": 0,
+    "num_langs": 2,
+    "shared_dbs": false,
+    "num_servers": 3,
+    "avg_size_service": 28.0,
+    "files": [
+        {
+            "path": "/microservices-shared/pom.xml",
+            "dbs": [],
+            "buses": [],
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "path": "/microservices-eventprocessor/pom.xml",
+            "dbs": [],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [],
+            "servers": [
+                "spring",
+                "tomcat",
+                "jetty"
+            ],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "path": "/microservices-web/pom.xml",
+            "dbs": [],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [],
+            "servers": [
+                "spring",
+                "tomcat",
+                "jetty"
+            ],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "path": "/microservices-admin/pom.xml",
+            "dbs": [
+                "hazelcast"
+            ],
+            "buses": [],
+            "gates": [],
+            "servers": [
+                "spring",
+                "jetty"
+            ],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "size": 112,
+    "num_buses": 2,
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "num_discos": 0,
+    "languages": [
+        "tsql",
+        "java"
+    ],
+    "discos": [],
+    "num_dockers": 4,
+    "dbs": [
+        "postgresql",
+        "hazelcast"
+    ],
+    "num_files": 9,
+    "gates": [],
+    "images": [
+        "kartoza/postgis",
+        "dgageot/java8"
+    ],
+    "url": "git://github.com/boonen/microservices-demo.git",
+    "monitors": [],
+    "name": "boonen/microservices-demo",
+    "dockers": [
+        {
+            "cmd": "java -jar   -Dspring.datasource.url=jdbc:postgresql://${DB_PORT_5432_TCP_ADDR}:${DB_PORT_5432_TCP_PORT}/microservices   -Dspring.datasource.username=microservices   -Dspring.datasource.password=microservices   -Dspring.rabbitmq.host=${RABBITMQ_PORT_5672_TCP_ADDR}   -Dspring.boot.admin.url=http://${ADMIN_PORT_8080_TCP_ADDR}:${ADMIN_PORT_8080_TCP_PORT}   -Dspring.boot.admin.client.url=http://janb-docker:8082   -Dlogback.configurationFile=/opt/microservices-eventprocessor/logback-custom.xml   /opt/microservices-eventprocessor.jar",
+            "servers": [],
+            "cmd_keywords": [
+                "port",
+                "dspring",
+                "tcp",
+                "microservices",
+                "admin"
+            ],
+            "gates": [],
+            "from": "dgageot/java8",
+            "from_full": "dgageot/java8",
+            "monitors": [],
+            "path": "/microservices-eventprocessor/Dockerfile",
+            "langs": [
+                "java"
+            ],
+            "buses": [
+                "rabbitmq"
+            ],
+            "keywords": [],
+            "discos": [],
+            "dbs": [
+                "postgresql"
+            ]
+        },
+        {
+            "cmd": "",
+            "servers": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "from": "dgageot/java8",
+            "from_full": "dgageot/java8",
+            "monitors": [],
+            "path": "/microservices-web/Dockerfile",
+            "langs": [
+                "java"
+            ],
+            "buses": [],
+            "keywords": [],
+            "discos": [],
+            "dbs": []
+        },
+        {
+            "cmd": "/init-postgis.sh",
+            "servers": [],
+            "cmd_keywords": [
+                "init",
+                "postgis"
+            ],
+            "gates": [],
+            "from": "kartoza/postgis",
+            "from_full": "kartoza/postgis",
+            "monitors": [],
+            "path": "/postgis-railways/Dockerfile",
+            "langs": [],
+            "buses": [],
+            "keywords": [
+                "all",
+                "conf",
+                "main",
+                "hba",
+                "etc"
+            ],
+            "discos": [],
+            "dbs": [
+                "postgresql"
+            ]
+        },
+        {
+            "cmd": "java -jar /opt/microservices-admin.jar",
+            "servers": [],
+            "cmd_keywords": [
+                "jar",
+                "opt",
+                "admin",
+                "java",
+                "microservices"
+            ],
+            "gates": [],
+            "from": "dgageot/java8",
+            "from_full": "dgageot/java8",
+            "monitors": [],
+            "path": "/microservices-admin/Dockerfile",
+            "langs": [
+                "java"
+            ],
+            "buses": [],
+            "keywords": [],
+            "discos": [],
+            "dbs": []
+        }
+    ],
+    "langs": [
+        "java",
+        "tsql"
+    ],
+    "structure": {
+        "path": [],
+        "detected_dbs": {
+            "names": [],
+            "services": [],
+            "shared_dbs": false,
+            "num": 0
+        },
+        "services": [],
+        "num_services": 0
+    }
+}

@@ -1,0 +1,221 @@
+{
+    "monitors": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [
+                "redis"
+            ],
+            "names": [
+                "redis"
+            ],
+            "num": 1
+        },
+        "services": [
+            {
+                "image": "${DOCKER_REGISTRY-}persondiarygatewaywebapi",
+                "buses": [],
+                "monitors": [],
+                "image_full": "${DOCKER_REGISTRY-}persondiarygatewaywebapi",
+                "gates": [],
+                "name": "persondiary.gateway.webapi",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "persondiary.lifeevent.webapi",
+                    "persondiary.person.webapi"
+                ]
+            },
+            {
+                "image": "postgres",
+                "buses": [],
+                "monitors": [],
+                "image_full": "postgres",
+                "gates": [],
+                "name": "pgserver",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "${DOCKER_REGISTRY-}persondiarylifeeventwebapi",
+                "buses": [],
+                "monitors": [],
+                "image_full": "${DOCKER_REGISTRY-}persondiarylifeeventwebapi",
+                "gates": [],
+                "name": "persondiary.lifeevent.webapi",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "pgserver",
+                    "redis"
+                ]
+            },
+            {
+                "image": "redis",
+                "buses": [],
+                "monitors": [],
+                "image_full": "redis",
+                "gates": [],
+                "name": "redis",
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "redis"
+                ],
+                "depends_on": []
+            },
+            {
+                "image": "rabbitmq",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "monitors": [],
+                "image_full": "rabbitmq:3.8.3-management",
+                "gates": [],
+                "name": "rabbitmq",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "${DOCKER_REGISTRY-}persondiarypersonwebapi",
+                "buses": [],
+                "monitors": [],
+                "image_full": "${DOCKER_REGISTRY-}persondiarypersonwebapi",
+                "gates": [],
+                "name": "persondiary.person.webapi",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "pgserver",
+                    "persondiary.lifeevent.webapi"
+                ]
+            }
+        ],
+        "num_services": 6
+    },
+    "num_langs": 2,
+    "name": "potandr1977/PersonDiarySimple",
+    "num_dockers": 3,
+    "buses": [
+        "rabbitmq"
+    ],
+    "dbs": [
+        "redis"
+    ],
+    "size": 900,
+    "num_discos": 0,
+    "shared_dbs": false,
+    "discos": [],
+    "images": [
+        "base"
+    ],
+    "num_servers": 0,
+    "files": [
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [],
+            "path": "/PersonDiary.WebClient.React.Redux/ClientApp/package.json",
+            "discos": [],
+            "dbs": []
+        }
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "base",
+            "path": "/PersonDiary.Person.WebApi/Dockerfile",
+            "from_full": "base",
+            "cmd": "",
+            "keywords": [
+                "persondiary",
+                "webapi",
+                "person",
+                "csproj",
+                "dotnet"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [
+                "gateway"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "from": "base",
+            "path": "/GatewayWebApi/Dockerfile",
+            "from_full": "base",
+            "cmd": "",
+            "keywords": [
+                "persondiary",
+                "gateway",
+                "webapi",
+                "csproj",
+                "dotnet"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "base",
+            "path": "/PersonDiary.LifeEvent.WebApi/Dockerfile",
+            "from_full": "base",
+            "cmd": "",
+            "keywords": [
+                "persondiary",
+                "webapi",
+                "lifeevent",
+                "csproj",
+                "dotnet"
+            ],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        }
+    ],
+    "url": "git://github.com/potandr1977/PersonDiarySimple.git",
+    "gates": [
+        "gateway"
+    ],
+    "num_files": 5,
+    "num_services": 6,
+    "num_gates": 1,
+    "num_dbs": 1,
+    "avg_size_service": 300.0,
+    "langs": [
+        "c#",
+        "javascript"
+    ],
+    "num_buses": 1,
+    "languages": [
+        "c#",
+        "javascript"
+    ],
+    "num_monitors": 0,
+    "servers": []
+}

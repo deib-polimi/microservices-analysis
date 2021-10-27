@@ -1,0 +1,186 @@
+{
+    "monitors": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [
+                "venda-api-mongo"
+            ],
+            "names": [
+                "mongo"
+            ],
+            "num": 1
+        },
+        "services": [
+            {
+                "image": "mongo",
+                "buses": [],
+                "monitors": [],
+                "image_full": "mongo",
+                "gates": [],
+                "name": "venda-api-mongo",
+                "discos": [],
+                "servers": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "depends_on": []
+            },
+            {
+                "image": "rabbitmq",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "monitors": [],
+                "image_full": "rabbitmq:3-management",
+                "gates": [],
+                "name": "dge_rabbit",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "./produto-api",
+                "buses": [],
+                "monitors": [],
+                "image_full": "./produto-api",
+                "gates": [],
+                "name": "produto-api",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "produto-api-db",
+                    "dge_rabbit"
+                ]
+            },
+            {
+                "image": "postgres",
+                "buses": [],
+                "monitors": [],
+                "image_full": "postgres",
+                "gates": [],
+                "name": "produto-api-db",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": []
+            },
+            {
+                "image": "./venda-api",
+                "buses": [],
+                "monitors": [],
+                "image_full": "./venda-api",
+                "gates": [],
+                "name": "venda-api",
+                "discos": [],
+                "servers": [],
+                "dbs": [],
+                "depends_on": [
+                    "venda-api-mongo",
+                    "dge_rabbit"
+                ]
+            }
+        ],
+        "num_services": 5
+    },
+    "num_langs": 2,
+    "name": "vhnegrisoli/docker-microservices",
+    "num_dockers": 2,
+    "buses": [
+        "rabbitmq"
+    ],
+    "dbs": [
+        "mongo"
+    ],
+    "size": 226,
+    "num_discos": 0,
+    "shared_dbs": false,
+    "discos": [],
+    "images": [
+        "openjdk",
+        "node"
+    ],
+    "num_servers": 3,
+    "files": [
+        {
+            "path": "/produto-api/pom.xml"
+        },
+        {
+            "gates": [],
+            "buses": [],
+            "monitors": [],
+            "servers": [
+                "express",
+                "mongoose"
+            ],
+            "path": "/venda-api/package.json",
+            "discos": [],
+            "dbs": []
+        }
+    ],
+    "dockers": [
+        {
+            "buses": [],
+            "cmd_keywords": [
+                "start",
+                "yarn"
+            ],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "node",
+            "path": "/venda-api/Dockerfile",
+            "from_full": "node:12",
+            "cmd": "yarn start",
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "discos": [],
+            "servers": [
+                "node"
+            ],
+            "langs": []
+        },
+        {
+            "buses": [],
+            "cmd_keywords": [],
+            "gates": [],
+            "monitors": [],
+            "dbs": [],
+            "from": "openjdk",
+            "path": "/produto-api/Dockerfile",
+            "from_full": "openjdk:11.0.5-jdk-slim",
+            "cmd": "",
+            "keywords": [],
+            "discos": [],
+            "servers": [],
+            "langs": []
+        }
+    ],
+    "url": "git://github.com/vhnegrisoli/docker-microservices.git",
+    "gates": [],
+    "num_files": 5,
+    "num_services": 5,
+    "num_gates": 0,
+    "num_dbs": 1,
+    "avg_size_service": 113.0,
+    "langs": [
+        "javascript",
+        "java"
+    ],
+    "num_buses": 1,
+    "languages": [
+        "java",
+        "javascript"
+    ],
+    "num_monitors": 0,
+    "servers": [
+        "express",
+        "node",
+        "mongoose"
+    ]
+}

@@ -1,0 +1,245 @@
+{
+    "num_discos": 0,
+    "buses": [],
+    "name": "willpdp/docker-compose-pi-demo",
+    "dbs": [],
+    "num_services": 4,
+    "avg_size_service": 6.8,
+    "num_monitors": 0,
+    "monitors": [],
+    "discos": [],
+    "servers": [
+        "flask"
+    ],
+    "url": "git://github.com/willpdp/docker-compose-pi-demo.git",
+    "num_dockers": 5,
+    "files": [
+        {
+            "discos": [],
+            "path": "/funky_colour_service/requirements.txt",
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "path": "/style_service/style_service/pom.xml",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "monitors": []
+        }
+    ],
+    "shared_dbs": false,
+    "size": 34,
+    "languages": [
+        "java",
+        "ruby",
+        "dockerfile"
+    ],
+    "gates": [],
+    "num_langs": 5,
+    "structure": {
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "shared_dbs": false,
+            "names": []
+        },
+        "num_services": 4,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "style_service",
+                "image_full": "style_service",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "style_service"
+            },
+            {
+                "depends_on": [
+                    "time_source_service",
+                    "funky_colour_service",
+                    "style_service"
+                ],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "time_display_service",
+                "image_full": "time_display_service",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "time_display_service"
+            },
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "time_source_service",
+                "image_full": "time_source_service",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "time_source_service"
+            },
+            {
+                "depends_on": [],
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "name": "funky_colour_service",
+                "image_full": "funky_colour_service",
+                "dbs": [],
+                "gates": [],
+                "monitors": [],
+                "image": "funky_colour_service"
+            }
+        ]
+    },
+    "dockers": [
+        {
+            "from_full": "armhf/haproxy:1.6",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "",
+            "langs": [],
+            "from": "armhf/haproxy",
+            "monitors": [],
+            "discos": [],
+            "path": "/load_balancer/Dockerfile",
+            "cmd_keywords": [],
+            "gates": [],
+            "keywords": []
+        },
+        {
+            "from_full": "armhf/ruby:2.1-onbuild",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "bundle exec ruby time_display_service.rb",
+            "langs": [
+                "ruby"
+            ],
+            "from": "armhf/ruby",
+            "monitors": [],
+            "discos": [],
+            "path": "/time_display_service/Dockerfile",
+            "cmd_keywords": [
+                "display",
+                "service",
+                "exec",
+                "bundle",
+                "time"
+            ],
+            "gates": [],
+            "keywords": []
+        },
+        {
+            "from_full": "armhf/golang:1.6-onbuild",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "go run main.go",
+            "langs": [
+                "golang"
+            ],
+            "from": "armhf/golang",
+            "monitors": [],
+            "discos": [],
+            "path": "/time_source_service/Dockerfile",
+            "cmd_keywords": [
+                "run",
+                "main"
+            ],
+            "gates": [],
+            "keywords": []
+        },
+        {
+            "from_full": "armhf/openjdk:openjdk-8-jdk",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "java -jar target/style_service-1.0.jar server",
+            "langs": [
+                "java"
+            ],
+            "from": "armhf/openjdk",
+            "monitors": [],
+            "discos": [],
+            "path": "/style_service/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "style",
+                "service",
+                "java",
+                "target"
+            ],
+            "gates": [],
+            "keywords": [
+                "apt",
+                "get",
+                "mvn",
+                "install",
+                "maven"
+            ]
+        },
+        {
+            "from_full": "armhf/python:3.6-slim",
+            "servers": [],
+            "buses": [],
+            "dbs": [],
+            "cmd": "./funky_colour_service.py",
+            "langs": [
+                "python"
+            ],
+            "from": "armhf/python",
+            "monitors": [],
+            "discos": [],
+            "path": "/funky_colour_service/Dockerfile",
+            "cmd_keywords": [
+                "service",
+                "funky",
+                "colour"
+            ],
+            "gates": [],
+            "keywords": [
+                "install",
+                "requirements",
+                "pip",
+                "txt"
+            ]
+        }
+    ],
+    "num_files": 8,
+    "num_gates": 0,
+    "num_dbs": 0,
+    "langs": [
+        "dockerfile",
+        "java",
+        "python",
+        "ruby",
+        "golang"
+    ],
+    "images": [
+        "armhf/haproxy",
+        "armhf/ruby",
+        "armhf/golang",
+        "armhf/python",
+        "armhf/openjdk"
+    ],
+    "num_buses": 0,
+    "num_servers": 1
+}

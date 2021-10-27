@@ -1,0 +1,214 @@
+{
+    "size": 627,
+    "shared_dbs": false,
+    "num_servers": 1,
+    "name": "nakash2050/K8S",
+    "files": [
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "path": "/SPA/package.json",
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "num_files": 5,
+    "num_langs": 3,
+    "dbs": [
+        "redis"
+    ],
+    "servers": [
+        "node"
+    ],
+    "num_discos": 0,
+    "url": "git://github.com/nakash2050/K8S.git",
+    "gates": [
+        "nginx"
+    ],
+    "structure": {
+        "services": [
+            {
+                "image": "employee-spa",
+                "dbs": [],
+                "image_full": "employee-spa",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "spa",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "image_full": "redis",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "redis",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "cache-microservice",
+                "dbs": [],
+                "image_full": "cache-microservice",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "cache",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "db"
+                ]
+            },
+            {
+                "image": "employee-microservice",
+                "dbs": [],
+                "image_full": "employee-microservice",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "web",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "db",
+                    "cache"
+                ]
+            },
+            {
+                "image": "postgres",
+                "dbs": [],
+                "image_full": "postgres",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "db",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            }
+        ],
+        "num_services": 5,
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "redis"
+            ],
+            "services": [
+                "redis"
+            ],
+            "shared_dbs": false
+        },
+        "path": "/docker-compose.yml"
+    },
+    "num_gates": 1,
+    "num_dockers": 3,
+    "num_dbs": 1,
+    "num_services": 5,
+    "langs": [
+        "html",
+        "c#",
+        "typescript"
+    ],
+    "buses": [],
+    "num_buses": 0,
+    "num_monitors": 0,
+    "languages": [
+        "c#",
+        "typescript",
+        "html"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "base",
+            "monitors": [],
+            "from_full": "base",
+            "servers": [],
+            "path": "/Registration/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "registration",
+                "csproj",
+                "dotnet",
+                "release",
+                "build"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "nginx",
+                "json",
+                "usr",
+                "html",
+                "settings"
+            ],
+            "cmd": "/bin/sh -c envsubst < /usr/share/nginx/html/assets/settings.template.json > /usr/share/nginx/html/assets/settings.json && exec nginx -g 'daemon off;'",
+            "gates": [
+                "nginx"
+            ],
+            "buses": [],
+            "langs": [],
+            "from": "nginx",
+            "monitors": [],
+            "from_full": "nginx:1.14.1-alpine",
+            "servers": [
+                "node"
+            ],
+            "path": "/SPA/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "app",
+                "npm",
+                "install",
+                "output",
+                "usr"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "base",
+            "monitors": [],
+            "from_full": "base",
+            "servers": [],
+            "path": "/CacheService/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "cacheservice",
+                "csproj",
+                "dotnet",
+                "app",
+                "release"
+            ],
+            "discos": []
+        }
+    ],
+    "monitors": [],
+    "avg_size_service": 209.0,
+    "discos": [],
+    "images": [
+        "base",
+        "nginx"
+    ]
+}

@@ -1,0 +1,205 @@
+{
+    "num_monitors": 0,
+    "name": "fabgas/apigateway",
+    "langs": [
+        "java"
+    ],
+    "discos": [],
+    "files": [
+        {
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/pom.xml",
+            "dbs": [
+                "hazelcast"
+            ]
+        },
+        {
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/apigateway/pom.xml",
+            "dbs": []
+        },
+        {
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/customer/pom.xml",
+            "dbs": []
+        },
+        {
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/common/pom.xml",
+            "dbs": []
+        },
+        {
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "discos": [],
+            "path": "/order/pom.xml",
+            "dbs": []
+        }
+    ],
+    "dockers": [
+        {
+            "from": "java",
+            "cmd_keywords": [
+                "jar",
+                "cluster",
+                "java",
+                "logging",
+                "name"
+            ],
+            "langs": [
+                "java"
+            ],
+            "discos": [],
+            "cmd": "java -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory -jar apigateway-fat.jar -cluster -ha -conf docker.json",
+            "dbs": [],
+            "from_full": "java:8-jre",
+            "keywords": [],
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/apigateway/Dockerfile"
+        },
+        {
+            "from": "java",
+            "cmd_keywords": [
+                "jar",
+                "cluster",
+                "java",
+                "logging",
+                "name"
+            ],
+            "langs": [
+                "java"
+            ],
+            "discos": [],
+            "cmd": "java -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory -jar customer-fat.jar -cluster -ha -conf docker.json",
+            "dbs": [],
+            "from_full": "java:8-jre",
+            "keywords": [],
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/customer/Dockerfile"
+        },
+        {
+            "from": "java",
+            "cmd_keywords": [
+                "jar",
+                "cluster",
+                "java",
+                "logging",
+                "name"
+            ],
+            "langs": [
+                "java"
+            ],
+            "discos": [],
+            "cmd": "java -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory -jar order-fat.jar -cluster -ha -conf docker.json",
+            "dbs": [],
+            "from_full": "java:8-jre",
+            "keywords": [],
+            "servers": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "path": "/order/Dockerfile"
+        }
+    ],
+    "size": 36,
+    "dbs": [
+        "hazelcast"
+    ],
+    "num_gates": 0,
+    "monitors": [],
+    "url": "git://github.com/fabgas/apigateway.git",
+    "structure": {
+        "services": [
+            {
+                "depends_on": [],
+                "servers": [],
+                "name": "customer",
+                "gates": [],
+                "image_full": "microservice/customer",
+                "discos": [],
+                "image": "microservice/customer",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [
+                    "customer",
+                    "order"
+                ],
+                "servers": [],
+                "name": "apigateway",
+                "gates": [],
+                "image_full": "microservice/apigateway",
+                "discos": [],
+                "image": "microservice/apigateway",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "depends_on": [],
+                "servers": [],
+                "name": "order",
+                "gates": [],
+                "image_full": "microservice/order",
+                "discos": [],
+                "image": "microservice/order",
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [],
+            "shared_dbs": false,
+            "num": 0,
+            "names": []
+        },
+        "path": "/docker/docker-compose.yml",
+        "num_services": 3
+    },
+    "buses": [],
+    "num_servers": 0,
+    "avg_size_service": 12.0,
+    "num_langs": 1,
+    "images": [
+        "java"
+    ],
+    "num_dockers": 3,
+    "servers": [],
+    "languages": [
+        "java"
+    ],
+    "gates": [],
+    "num_services": 3,
+    "shared_dbs": false,
+    "num_files": 9,
+    "num_discos": 0,
+    "num_buses": 0,
+    "num_dbs": 1
+}

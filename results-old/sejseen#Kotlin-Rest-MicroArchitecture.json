@@ -1,0 +1,171 @@
+{
+    "languages": [
+        "kotlin",
+        "dockerfile"
+    ],
+    "num_servers": 1,
+    "shared_dbs": false,
+    "name": "sejseen/Kotlin-Rest-MicroArchitecture",
+    "servers": [
+        "spring"
+    ],
+    "num_monitors": 0,
+    "num_langs": 2,
+    "images": [
+        "frolvlad/alpine-oraclejdk8"
+    ],
+    "langs": [
+        "dockerfile",
+        "kotlin"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "app",
+                "jar",
+                "touch"
+            ],
+            "path": "/api-gateway/Dockerfile",
+            "gates": [],
+            "from": "frolvlad/alpine-oraclejdk8",
+            "from_full": "frolvlad/alpine-oraclejdk8:8.131.11-slim",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "app",
+                "jar",
+                "touch"
+            ],
+            "path": "/mock-service/Dockerfile",
+            "gates": [],
+            "from": "frolvlad/alpine-oraclejdk8",
+            "from_full": "frolvlad/alpine-oraclejdk8:8.131.11-slim",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [
+        "zuul"
+    ],
+    "num_buses": 0,
+    "discos": [],
+    "monitors": [],
+    "num_files": 5,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "mock-service",
+                "depends_on": [
+                    "kotlin-mongo"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "mock-service",
+                "image": "mock-service",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "api-gateway",
+                "depends_on": [
+                    "mock-service"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "name": "api-gateway",
+                "image": "api-gateway",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mongo",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "kotlin-mongo",
+                "image": "mongo",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 3,
+        "detected_dbs": {
+            "services": [
+                "kotlin-mongo"
+            ],
+            "names": [
+                "mongo"
+            ],
+            "num": 1,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [
+        "mongo"
+    ],
+    "num_dbs": 1,
+    "avg_size_service": 6.5,
+    "num_services": 3,
+    "buses": [],
+    "files": [
+        {
+            "dbs": [],
+            "path": "/api-gateway/pom.xml",
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "mongodb"
+            ],
+            "path": "/mock-service/pom.xml",
+            "gates": [
+                "gateway"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "url": "git://github.com/sejseen/Kotlin-Rest-MicroArchitecture.git",
+    "num_dockers": 2,
+    "size": 13,
+    "num_discos": 0,
+    "num_gates": 1
+}

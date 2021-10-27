@@ -1,0 +1,151 @@
+{
+    "gates": [
+        "nginx"
+    ],
+    "images": [
+        "nginx",
+        "ruby"
+    ],
+    "num_dbs": 0,
+    "structure": {
+        "num_services": 3,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "./nginx",
+                "gates": [
+                    "nginx"
+                ],
+                "image": "./nginx",
+                "depends_on": [
+                    "api"
+                ],
+                "dbs": [],
+                "name": "nginx",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "postgres:10.3",
+                "gates": [],
+                "image": "postgres",
+                "depends_on": [],
+                "dbs": [],
+                "name": "db",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "./blog_api",
+                "gates": [],
+                "image": "./blog_api",
+                "depends_on": [
+                    "db"
+                ],
+                "dbs": [],
+                "name": "api",
+                "buses": [],
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "shared_dbs": false,
+            "names": []
+        }
+    },
+    "num_files": 3,
+    "num_gates": 1,
+    "discos": [],
+    "num_dockers": 2,
+    "shared_dbs": false,
+    "languages": [
+        "ruby"
+    ],
+    "name": "arthurmmoreira/microservices-testing",
+    "num_langs": 1,
+    "avg_size_service": 15.0,
+    "monitors": [],
+    "num_servers": 1,
+    "num_services": 3,
+    "dbs": [],
+    "langs": [
+        "ruby"
+    ],
+    "dockers": [
+        {
+            "gates": [
+                "nginx"
+            ],
+            "path": "/nginx/Dockerfile",
+            "langs": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "from": "nginx",
+            "discos": [],
+            "from_full": "nginx",
+            "cmd": "nginx -g \"daemon off;\"",
+            "monitors": [],
+            "cmd_keywords": [
+                "daemon",
+                "nginx",
+                "off"
+            ],
+            "keywords": [
+                "apt",
+                "get",
+                "utils",
+                "install",
+                "mkdir"
+            ]
+        },
+        {
+            "gates": [],
+            "path": "/blog_api/Dockerfile",
+            "langs": [
+                "ruby"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "rails"
+            ],
+            "from": "ruby",
+            "discos": [],
+            "from_full": "ruby:2.5.1",
+            "cmd": "bundle exec puma -C config/puma.rb",
+            "monitors": [],
+            "cmd_keywords": [
+                "puma",
+                "bundle",
+                "config",
+                "exec"
+            ],
+            "keywords": [
+                "apt",
+                "get",
+                "chmod",
+                "install",
+                "mkdir"
+            ]
+        }
+    ],
+    "buses": [],
+    "servers": [
+        "rails"
+    ],
+    "size": 30,
+    "files": [],
+    "num_buses": 0,
+    "num_monitors": 0,
+    "url": "git://github.com/arthurmmoreira/microservices-testing.git",
+    "num_discos": 0
+}

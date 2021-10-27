@@ -1,0 +1,299 @@
+{
+    "num_servers": 2,
+    "servers": [
+        "tomcat",
+        "spring"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "num_dbs": 0,
+    "files": [
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [
+                "zuul"
+            ],
+            "buses": [],
+            "path": "/zuul-service/pom.xml",
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "tomcat",
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "buses": [],
+            "path": "/Eureka-Service/pom.xml",
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "buses": [],
+            "path": "/Product-Service/pom.xml",
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "discos": [],
+            "gates": [],
+            "buses": [],
+            "path": "/Configuration-Service/pom.xml",
+            "dbs": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "spring"
+            ],
+            "discos": [
+                "eureka"
+            ],
+            "gates": [],
+            "buses": [],
+            "path": "/Pricing-Service/pom.xml",
+            "dbs": []
+        }
+    ],
+    "langs": [
+        "java",
+        "dockerfile"
+    ],
+    "dockers": [
+        {
+            "keywords": [
+                "chmod",
+                "zuul",
+                "service",
+                "mvn",
+                "package"
+            ],
+            "path": "/zuul-service/Dockerfile",
+            "discos": [],
+            "cmd": "",
+            "from_full": "openjdk:8-jre-alpine",
+            "from": "openjdk",
+            "servers": [],
+            "langs": [],
+            "monitors": [],
+            "gates": [
+                "zuul"
+            ],
+            "buses": [],
+            "cmd_keywords": [],
+            "dbs": []
+        },
+        {
+            "keywords": [
+                "mvn",
+                "package"
+            ],
+            "path": "/Eureka-Service/Dockerfile",
+            "discos": [],
+            "cmd": "",
+            "from_full": "openjdk:8-jre-alpine",
+            "from": "openjdk",
+            "servers": [],
+            "langs": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "cmd_keywords": [],
+            "dbs": []
+        },
+        {
+            "keywords": [
+                "chmod",
+                "service",
+                "product",
+                "mvn",
+                "package"
+            ],
+            "path": "/Product-Service/Dockerfile",
+            "discos": [],
+            "cmd": "",
+            "from_full": "openjdk:8-jre-alpine",
+            "from": "openjdk",
+            "servers": [],
+            "langs": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "cmd_keywords": [],
+            "dbs": []
+        },
+        {
+            "keywords": [
+                "mvn",
+                "package"
+            ],
+            "path": "/Configuration-Service/Dockerfile",
+            "discos": [],
+            "cmd": "",
+            "from_full": "openjdk:8-jre-alpine",
+            "from": "openjdk",
+            "servers": [],
+            "langs": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "cmd_keywords": [],
+            "dbs": []
+        },
+        {
+            "keywords": [
+                "pricing",
+                "chmod",
+                "service",
+                "mvn",
+                "package"
+            ],
+            "path": "/Pricing-Service/Dockerfile",
+            "discos": [],
+            "cmd": "",
+            "from_full": "openjdk:8-jre-alpine",
+            "from": "openjdk",
+            "servers": [],
+            "langs": [],
+            "monitors": [],
+            "gates": [],
+            "buses": [],
+            "cmd_keywords": [],
+            "dbs": []
+        }
+    ],
+    "size": 346,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "dbs": [],
+                "servers": [],
+                "discos": [],
+                "image_full": "devilmustcry/microservice-config-server:0.1",
+                "gates": [],
+                "buses": [],
+                "name": "config-service",
+                "depends_on": [
+                    "eureka-service"
+                ],
+                "image": "devilmustcry/microservice-config-server"
+            },
+            {
+                "monitors": [],
+                "dbs": [],
+                "servers": [],
+                "discos": [
+                    "eureka"
+                ],
+                "image_full": "devilmustcry/microservice-eureka-server:0.1",
+                "gates": [],
+                "buses": [],
+                "name": "eureka-service",
+                "depends_on": [],
+                "image": "devilmustcry/microservice-eureka-server"
+            },
+            {
+                "monitors": [],
+                "dbs": [],
+                "servers": [],
+                "discos": [],
+                "image_full": "devilmustcry/microservice-product:0.1",
+                "gates": [],
+                "buses": [],
+                "name": "product-service",
+                "depends_on": [
+                    "config-service",
+                    "eureka-service"
+                ],
+                "image": "devilmustcry/microservice-product"
+            },
+            {
+                "monitors": [],
+                "dbs": [],
+                "servers": [],
+                "discos": [],
+                "image_full": "devilmustcry/microservice-pricing:0.1",
+                "gates": [],
+                "buses": [],
+                "name": "pricing-service",
+                "depends_on": [
+                    "config-service",
+                    "eureka-service"
+                ],
+                "image": "devilmustcry/microservice-pricing"
+            },
+            {
+                "monitors": [],
+                "dbs": [],
+                "servers": [],
+                "discos": [],
+                "image_full": "devilmustcry/microservice-zuul:0.1",
+                "gates": [
+                    "zuul"
+                ],
+                "buses": [],
+                "name": "zuul-service",
+                "depends_on": [
+                    "config-service",
+                    "eureka-service"
+                ],
+                "image": "devilmustcry/microservice-zuul"
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "num": 0,
+            "services": [],
+            "names": [],
+            "shared_dbs": false
+        },
+        "num_services": 5
+    },
+    "images": [
+        "openjdk"
+    ],
+    "num_files": 11,
+    "gates": [
+        "zuul"
+    ],
+    "buses": [],
+    "num_langs": 2,
+    "name": "devilmustcry/microservice-example",
+    "url": "git://github.com/devilmustcry/microservice-example.git",
+    "num_gates": 1,
+    "num_buses": 0,
+    "num_discos": 1,
+    "num_monitors": 0,
+    "num_dockers": 5,
+    "num_services": 5,
+    "monitors": [],
+    "avg_size_service": 69.2,
+    "languages": [
+        "java",
+        "dockerfile"
+    ],
+    "dbs": [],
+    "shared_dbs": false
+}

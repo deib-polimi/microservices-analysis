@@ -1,0 +1,167 @@
+{
+    "size": 111,
+    "shared_dbs": false,
+    "num_servers": 2,
+    "name": "kmalon/binance-service",
+    "files": [
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/pom.xml",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/binance-api/pom.xml",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/client/pom.xml",
+            "monitors": [
+                "prometheus"
+            ],
+            "discos": []
+        }
+    ],
+    "num_files": 5,
+    "num_langs": 2,
+    "dbs": [],
+    "servers": [
+        "jboss",
+        "spring"
+    ],
+    "num_discos": 0,
+    "url": "git://github.com/kmalon/binance-service.git",
+    "gates": [],
+    "structure": {
+        "services": [
+            {
+                "image": "prom/prometheus",
+                "dbs": [],
+                "image_full": "prom/prometheus",
+                "buses": [],
+                "servers": [],
+                "monitors": [
+                    "prometheus"
+                ],
+                "name": "prom",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "postgres",
+                "dbs": [],
+                "image_full": "postgres",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "db",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "microservice/client",
+                "dbs": [],
+                "image_full": "microservice/client:${CLIENT_VERSION}",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "client",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "jboss/keycloak",
+                "dbs": [],
+                "image_full": "jboss/keycloak",
+                "buses": [],
+                "servers": [
+                    "jboss"
+                ],
+                "monitors": [],
+                "name": "keycloak",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "db"
+                ]
+            }
+        ],
+        "num_services": 4,
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        },
+        "path": "/docker/docker-compose.yml"
+    },
+    "num_gates": 0,
+    "num_dockers": 1,
+    "num_dbs": 0,
+    "num_services": 4,
+    "langs": [
+        "java",
+        "groovy"
+    ],
+    "buses": [],
+    "num_buses": 0,
+    "num_monitors": 1,
+    "languages": [
+        "java",
+        "groovy"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [
+                "run"
+            ],
+            "cmd": "./run.sh",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "monitors": [],
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "path": "/client/docker/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "run",
+                "jar",
+                "service",
+                "name",
+                "mkdir"
+            ],
+            "discos": []
+        }
+    ],
+    "monitors": [
+        "prometheus"
+    ],
+    "avg_size_service": 111.0,
+    "discos": [],
+    "images": [
+        "openjdk"
+    ]
+}

@@ -1,0 +1,173 @@
+{
+    "num_services": 5,
+    "num_buses": 1,
+    "files": [],
+    "num_dbs": 1,
+    "num_discos": 2,
+    "languages": [
+        "f#"
+    ],
+    "num_langs": 2,
+    "images": [
+        "microsoft/dotnet"
+    ],
+    "buses": [
+        "kafka"
+    ],
+    "size": 11,
+    "servers": [],
+    "num_gates": 0,
+    "discos": [
+        "zookeeper",
+        "consul"
+    ],
+    "num_monitors": 0,
+    "avg_size_service": 5.5,
+    "langs": [
+        "f#",
+        "bash"
+    ],
+    "dockers": [
+        {
+            "keywords": [],
+            "buses": [],
+            "langs": [],
+            "path": "/Consumer/Dockerfile",
+            "cmd": "",
+            "gates": [],
+            "from": "microsoft/dotnet",
+            "monitors": [],
+            "servers": [],
+            "from_full": "microsoft/dotnet",
+            "discos": [],
+            "cmd_keywords": [],
+            "dbs": []
+        },
+        {
+            "keywords": [
+                "curl",
+                "get",
+                "apt",
+                "aka",
+                "unzip"
+            ],
+            "buses": [],
+            "langs": [
+                "bash"
+            ],
+            "path": "/Producer/Dockerfile",
+            "cmd": "",
+            "gates": [],
+            "from": "microsoft/dotnet",
+            "monitors": [],
+            "servers": [],
+            "from_full": "microsoft/dotnet",
+            "discos": [],
+            "cmd_keywords": [],
+            "dbs": []
+        }
+    ],
+    "name": "alxmglk/kafka-fsharp-sample",
+    "url": "git://github.com/alxmglk/kafka-fsharp-sample.git",
+    "gates": [],
+    "num_servers": 0,
+    "monitors": [],
+    "num_files": 3,
+    "shared_dbs": false,
+    "num_dockers": 2,
+    "dbs": [
+        "zookeeper"
+    ],
+    "structure": {
+        "num_services": 5,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "monitors": [],
+                "image": "wurstmeister/zookeeper",
+                "image_full": "wurstmeister/zookeeper",
+                "servers": [],
+                "discos": [
+                    "zookeeper"
+                ],
+                "depends_on": [],
+                "name": "zookeeper"
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "./Consumer",
+                "image_full": "./Consumer",
+                "servers": [],
+                "discos": [],
+                "depends_on": [
+                    "kafka",
+                    "consul"
+                ],
+                "name": "consumer"
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "./Producer",
+                "image_full": "./Producer",
+                "servers": [],
+                "discos": [],
+                "depends_on": [
+                    "kafka",
+                    "consul"
+                ],
+                "name": "producer"
+            },
+            {
+                "gates": [],
+                "buses": [
+                    "kafka"
+                ],
+                "dbs": [],
+                "monitors": [],
+                "image": "wurstmeister/kafka",
+                "image_full": "wurstmeister/kafka",
+                "servers": [],
+                "discos": [],
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "name": "kafka"
+            },
+            {
+                "gates": [],
+                "buses": [],
+                "dbs": [],
+                "monitors": [],
+                "image": "consul",
+                "image_full": "consul",
+                "servers": [],
+                "discos": [
+                    "consul"
+                ],
+                "depends_on": [],
+                "name": "consul"
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "num": 1,
+            "services": [
+                "zookeeper"
+            ],
+            "names": [
+                "zookeeper"
+            ]
+        }
+    }
+}

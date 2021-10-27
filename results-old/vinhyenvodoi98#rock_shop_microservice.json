@@ -1,0 +1,235 @@
+{
+    "num_discos": 0,
+    "buses": [],
+    "gates": [
+        "kong"
+    ],
+    "num_servers": 3,
+    "num_gates": 1,
+    "num_dbs": 2,
+    "monitors": [],
+    "num_langs": 3,
+    "num_files": 5,
+    "structure": {
+        "services": [
+            {
+                "name": "mysql_master",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "image": "mysql",
+                "image_full": "mysql:5.7",
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "auth_service",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "./auth_service",
+                "image_full": "./auth_service",
+                "monitors": [],
+                "depends_on": [
+                    "mongo"
+                ]
+            },
+            {
+                "name": "kong_API_Gateway",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "kong"
+                ],
+                "dbs": [],
+                "image": "kong",
+                "image_full": "kong",
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "mysql_slave",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "image": "mysql",
+                "image_full": "mysql:5.7",
+                "monitors": [],
+                "depends_on": [
+                    "mysql_master"
+                ]
+            },
+            {
+                "name": "frontendreact",
+                "discos": [],
+                "servers": [
+                    "node"
+                ],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "node",
+                "image_full": "node:10-alpine",
+                "monitors": [],
+                "depends_on": []
+            },
+            {
+                "name": "product_service",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [],
+                "image": "./product_service",
+                "image_full": "./product_service",
+                "monitors": [],
+                "depends_on": [
+                    "mysql_master"
+                ]
+            },
+            {
+                "name": "mongo",
+                "discos": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "image": "mongo",
+                "image_full": "mongo",
+                "monitors": [],
+                "depends_on": []
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "names": [
+                "mysql",
+                "mongo"
+            ],
+            "num": 3,
+            "services": [
+                "mysql_master",
+                "mysql_slave",
+                "mongo"
+            ],
+            "shared_dbs": true
+        },
+        "num_services": 7
+    },
+    "servers": [
+        "express",
+        "mongoose",
+        "node"
+    ],
+    "shared_dbs": true,
+    "langs": [
+        "javascript",
+        "golang",
+        "go"
+    ],
+    "dockers": [
+        {
+            "discos": [],
+            "cmd": "",
+            "buses": [],
+            "path": "/product_service/Dockerfile",
+            "from": "golang",
+            "cmd_keywords": [],
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "cgo",
+                "linux",
+                "mod",
+                "goarch",
+                "enabled"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "golang:1.12",
+            "langs": [
+                "golang"
+            ]
+        },
+        {
+            "discos": [],
+            "cmd": "node server.js",
+            "buses": [],
+            "path": "/auth_service/Dockerfile",
+            "from": "node",
+            "cmd_keywords": [
+                "server",
+                "node"
+            ],
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "keywords": [
+                "npm",
+                "install"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "node:10-alpine",
+            "langs": []
+        }
+    ],
+    "name": "vinhyenvodoi98/rock_shop_microservice",
+    "discos": [],
+    "avg_size_service": 350.5,
+    "num_monitors": 0,
+    "images": [
+        "golang",
+        "node"
+    ],
+    "url": "git://github.com/vinhyenvodoi98/rock_shop_microservice.git",
+    "files": [
+        {
+            "discos": [],
+            "buses": [],
+            "path": "/auth_service/package.json",
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "express",
+                "mongoose"
+            ],
+            "monitors": []
+        },
+        {
+            "discos": [],
+            "buses": [],
+            "path": "/frontend_service/package.json",
+            "dbs": [],
+            "gates": [],
+            "servers": [],
+            "monitors": []
+        }
+    ],
+    "size": 701,
+    "languages": [
+        "javascript",
+        "go"
+    ],
+    "dbs": [
+        "mysql",
+        "mongo"
+    ],
+    "num_buses": 0,
+    "num_services": 7,
+    "num_dockers": 2
+}

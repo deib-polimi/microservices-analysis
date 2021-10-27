@@ -1,0 +1,236 @@
+{
+    "size": 11515,
+    "num_servers": 3,
+    "dbs": [
+        "redis"
+    ],
+    "files": [
+        {
+            "path": "/random_image_microservice/requirements.txt",
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/musicrecommender/requirements.txt",
+            "gates": [],
+            "servers": [
+                "django"
+            ],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/build.gradle",
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/settings.gradle",
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "path": "/hystrix/hystrix-hello-world/pom.xml",
+            "gates": [],
+            "servers": [
+                "jetty"
+            ],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "structure": {
+        "num_services": 6,
+        "services": [
+            {
+                "name": "dynomite",
+                "image": "dictcp/dynomite",
+                "depends_on": [
+                    "redis"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "dictcp/dynomite",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "musicrecommender",
+                "image": "../../musicrecommender",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "../../musicrecommender",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "graphite",
+                "image": "hopsoft/graphite-statsd",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "hopsoft/graphite-statsd",
+                "discos": [],
+                "dbs": [],
+                "monitors": [
+                    "graphite"
+                ]
+            },
+            {
+                "name": "grafana",
+                "image": "grafana/grafana",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "grafana/grafana",
+                "discos": [],
+                "dbs": [],
+                "monitors": [
+                    "grafana"
+                ]
+            },
+            {
+                "name": "redis",
+                "image": "redis",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "redis",
+                "discos": [],
+                "dbs": [
+                    "redis"
+                ],
+                "monitors": []
+            },
+            {
+                "name": "image-service",
+                "image": "../../random_image_microservice",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "../../random_image_microservice",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            }
+        ],
+        "path": "/src/resources/docker-compose.yml",
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": false,
+            "services": [
+                "redis"
+            ]
+        }
+    },
+    "buses": [],
+    "images": [
+        "ubuntu",
+        "python"
+    ],
+    "num_discos": 0,
+    "url": "git://github.com/mariusz89016/sius-project.git",
+    "num_services": 6,
+    "langs": [
+        "python"
+    ],
+    "discos": [],
+    "num_gates": 0,
+    "shared_dbs": false,
+    "num_files": 8,
+    "num_monitors": 2,
+    "gates": [],
+    "servers": [
+        "django",
+        "jetty",
+        "flask"
+    ],
+    "num_langs": 1,
+    "languages": [
+        "python"
+    ],
+    "monitors": [
+        "graphite",
+        "grafana"
+    ],
+    "name": "mariusz89016/sius-project",
+    "num_buses": 0,
+    "avg_size_service": 5757.5,
+    "dockers": [
+        {
+            "path": "/random_image_microservice/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "python"
+            ],
+            "cmd": "python3 randimg.py",
+            "keywords": [
+                "app",
+                "pip",
+                "install",
+                "home",
+                "python"
+            ],
+            "from": "ubuntu",
+            "buses": [],
+            "from_full": "ubuntu:latest",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "randimg",
+                "python"
+            ]
+        },
+        {
+            "path": "/musicrecommender/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "python"
+            ],
+            "cmd": "",
+            "keywords": [],
+            "from": "python",
+            "buses": [],
+            "from_full": "python:2.7.11-onbuild",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": []
+        }
+    ],
+    "num_dbs": 1,
+    "num_dockers": 2
+}

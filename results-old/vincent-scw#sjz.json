@@ -1,0 +1,287 @@
+{
+    "languages": [
+        "c#",
+        "typescript",
+        "css"
+    ],
+    "num_servers": 1,
+    "shared_dbs": false,
+    "name": "vincent-scw/sjz",
+    "servers": [
+        "node"
+    ],
+    "num_monitors": 0,
+    "num_langs": 4,
+    "images": [
+        "nginx",
+        "base"
+    ],
+    "langs": [
+        "gcc",
+        "typescript",
+        "css",
+        "c#"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "userprofileservice",
+                "sjz",
+                "csproj",
+                "dotnet",
+                "build"
+            ],
+            "path": "/server/SJZ.UserProfileService/Dockerfile",
+            "gates": [],
+            "from": "base",
+            "from_full": "base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "sjz",
+                "timelineservice",
+                "csproj",
+                "dotnet",
+                "build"
+            ],
+            "path": "/server/SJZ.TimelineService/Dockerfile",
+            "gates": [],
+            "from": "base",
+            "from_full": "base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "sjz",
+                "imageservice",
+                "dotnet",
+                "apt",
+                "csproj"
+            ],
+            "path": "/server/SJZ.ImageService/Dockerfile",
+            "gates": [],
+            "from": "base",
+            "from_full": "base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "",
+            "keywords": [
+                "oauthservice",
+                "sjz",
+                "csproj",
+                "dotnet",
+                "build"
+            ],
+            "path": "/server/SJZ.OAuthService/Dockerfile",
+            "gates": [],
+            "from": "base",
+            "from_full": "base",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "nginx",
+                "daemon",
+                "off"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "gcc"
+            ],
+            "cmd": "nginx -g daemon off;",
+            "keywords": [
+                "npm",
+                "install",
+                "gyp",
+                "gcc",
+                "quiet"
+            ],
+            "path": "/client/Dockerfile",
+            "gates": [
+                "nginx"
+            ],
+            "from": "nginx",
+            "from_full": "nginx:alpine",
+            "servers": [
+                "node"
+            ],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_buses": 0,
+    "discos": [],
+    "monitors": [],
+    "num_files": 7,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "./dev.Dockerfile",
+                "depends_on": [
+                    "timelinesvc"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "angularclient",
+                "image": "./dev.Dockerfile",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "./SJZ.UserProfileService/Dockerfile",
+                "depends_on": [
+                    "neo4j"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "userprofilesvc",
+                "image": "./SJZ.UserProfileService/Dockerfile",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "./SJZ.TimelineService/Dockerfile",
+                "depends_on": [
+                    "oauthsvc",
+                    "mongo"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "timelinesvc",
+                "image": "./SJZ.TimelineService/Dockerfile",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "./SJZ.OAuthService/Dockerfile",
+                "depends_on": [
+                    "userprofilesvc"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "oauthsvc",
+                "image": "./SJZ.OAuthService/Dockerfile",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "./SJZ.ImageService/Dockerfile",
+                "depends_on": [
+                    "oauthsvc"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "imagesvc",
+                "image": "./SJZ.ImageService/Dockerfile",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "neo4j:4.0",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "neo4j",
+                "image": "neo4j",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mongo",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "mongo",
+                "image": "mongo",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 7,
+        "detected_dbs": {
+            "services": [
+                "mongo"
+            ],
+            "names": [
+                "mongo"
+            ],
+            "num": 1,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [
+        "mongo"
+    ],
+    "num_dbs": 1,
+    "avg_size_service": 188.6,
+    "num_services": 7,
+    "buses": [],
+    "files": [
+        {
+            "dbs": [],
+            "path": "/client/package.json",
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "url": "git://github.com/vincent-scw/sjz.git",
+    "num_dockers": 5,
+    "size": 943,
+    "num_discos": 0,
+    "num_gates": 1
+}

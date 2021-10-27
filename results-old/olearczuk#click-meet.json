@@ -1,0 +1,556 @@
+{
+    "size": 1056,
+    "shared_dbs": true,
+    "num_servers": 3,
+    "name": "olearczuk/click-meet",
+    "files": [
+        {
+            "gates": [],
+            "dbs": [
+                "redis"
+            ],
+            "buses": [],
+            "servers": [
+                "express",
+                "node",
+                "mongoose"
+            ],
+            "path": "/users-microservice/package.json",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "redis"
+            ],
+            "buses": [],
+            "servers": [
+                "express",
+                "node",
+                "mongoose"
+            ],
+            "path": "/availability-microservice/package.json",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "redis"
+            ],
+            "buses": [],
+            "servers": [
+                "express",
+                "node",
+                "mongoose"
+            ],
+            "path": "/reservations-microservice/package.json",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "redis"
+            ],
+            "buses": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "path": "/interests-microservice/package.json",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "path": "/click-meet/package.json",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [
+                "rabbitmq"
+            ],
+            "servers": [],
+            "path": "/rabbit-service/package.json",
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "num_files": 15,
+    "num_langs": 2,
+    "dbs": [
+        "mongo",
+        "redis"
+    ],
+    "servers": [
+        "express",
+        "node",
+        "mongoose"
+    ],
+    "num_discos": 0,
+    "url": "git://github.com/olearczuk/click-meet.git",
+    "gates": [
+        "nginx"
+    ],
+    "structure": {
+        "services": [
+            {
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "image_full": "mongo",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "mongo-reservations",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "./availability-microservice",
+                "dbs": [],
+                "image_full": "./availability-microservice",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "availability-microservice",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo-availability",
+                    "redis"
+                ]
+            },
+            {
+                "image": "postgres",
+                "dbs": [],
+                "image_full": "postgres",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "postgresql-interests",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "image_full": "mongo",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "mongo-availability",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "./click-meet",
+                "dbs": [],
+                "image_full": "./click-meet",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "click-meet2",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "users-microservice",
+                    "availability-microservice",
+                    "interests-microservice",
+                    "reservations-microservice"
+                ]
+            },
+            {
+                "image": "nginx/",
+                "dbs": [],
+                "image_full": "nginx/",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "nginx",
+                "gates": [
+                    "nginx"
+                ],
+                "discos": [],
+                "depends_on": [
+                    "click-meet1",
+                    "click-meet2",
+                    "click-meet3"
+                ]
+            },
+            {
+                "image": "rabbitmq",
+                "dbs": [],
+                "image_full": "rabbitmq:management",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "servers": [],
+                "monitors": [],
+                "name": "rabbit",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "./interests-microservice",
+                "dbs": [],
+                "image_full": "./interests-microservice",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "interests-microservice",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "postgresql-interests",
+                    "redis"
+                ]
+            },
+            {
+                "image": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "image_full": "redis",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "redis",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "./click-meet",
+                "dbs": [],
+                "image_full": "./click-meet",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "click-meet3",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "users-microservice",
+                    "availability-microservice",
+                    "interests-microservice",
+                    "reservations-microservice"
+                ]
+            },
+            {
+                "image": "./reservations-microservice",
+                "dbs": [],
+                "image_full": "./reservations-microservice",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "reservations-microservice",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo-reservations",
+                    "redis",
+                    "rabbit",
+                    "users-microservice",
+                    "availability-microservice"
+                ]
+            },
+            {
+                "image": "./users-microservice",
+                "dbs": [],
+                "image_full": "./users-microservice",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "users-microservice",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo-users",
+                    "redis"
+                ]
+            },
+            {
+                "image": "./click-meet",
+                "dbs": [],
+                "image_full": "./click-meet",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "click-meet1",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "users-microservice",
+                    "availability-microservice",
+                    "interests-microservice",
+                    "reservations-microservice"
+                ]
+            },
+            {
+                "image": "./rabbit-service",
+                "dbs": [],
+                "image_full": "./rabbit-service",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "rabbit-service",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "rabbit"
+                ]
+            },
+            {
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "image_full": "mongo",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "mongo-users",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            }
+        ],
+        "num_services": 15,
+        "detected_dbs": {
+            "num": 4,
+            "names": [
+                "mongo",
+                "redis"
+            ],
+            "services": [
+                "mongo-reservations",
+                "mongo-availability",
+                "redis",
+                "mongo-users"
+            ],
+            "shared_dbs": true
+        },
+        "path": "/docker-compose.yml"
+    },
+    "num_gates": 1,
+    "num_dockers": 8,
+    "num_dbs": 2,
+    "num_services": 15,
+    "langs": [
+        "javascript",
+        "typescript"
+    ],
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_buses": 1,
+    "num_monitors": 0,
+    "languages": [
+        "typescript",
+        "javascript"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "cmd": "npm start",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "node",
+            "monitors": [],
+            "from_full": "node:8",
+            "servers": [
+                "node"
+            ],
+            "path": "/users-microservice/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "npm",
+                "install"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "library/postgres",
+            "monitors": [],
+            "from_full": "library/postgres",
+            "servers": [],
+            "path": "/postgres/Dockerfile",
+            "dbs": [],
+            "keywords": [],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "cmd": "npm start",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "node",
+            "monitors": [],
+            "from_full": "node:8",
+            "servers": [
+                "node"
+            ],
+            "path": "/availability-microservice/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "npm",
+                "install"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "cmd": "npm start",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "node",
+            "monitors": [],
+            "from_full": "node:8",
+            "servers": [
+                "node"
+            ],
+            "path": "/reservations-microservice/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "npm",
+                "install"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [
+                "nginx"
+            ],
+            "buses": [],
+            "langs": [],
+            "from": "nginx",
+            "monitors": [],
+            "from_full": "nginx",
+            "servers": [],
+            "path": "/nginx/Dockerfile",
+            "dbs": [],
+            "keywords": [],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "cmd": "npm start",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "node",
+            "monitors": [],
+            "from_full": "node:8",
+            "servers": [
+                "node"
+            ],
+            "path": "/interests-microservice/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "npm",
+                "install"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "off",
+                "nginx",
+                "daemon"
+            ],
+            "cmd": "nginx -g daemon off;",
+            "gates": [
+                "nginx"
+            ],
+            "buses": [],
+            "langs": [],
+            "from": "nginx",
+            "monitors": [],
+            "from_full": "nginx:1.13.3-alpine",
+            "servers": [
+                "node"
+            ],
+            "path": "/click-meet/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "npm",
+                "app",
+                "set",
+                "config",
+                "clean"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "cmd": "npm start",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "node",
+            "monitors": [],
+            "from_full": "node:8",
+            "servers": [
+                "node"
+            ],
+            "path": "/rabbit-service/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "npm",
+                "install"
+            ],
+            "discos": []
+        }
+    ],
+    "monitors": [],
+    "avg_size_service": 132.0,
+    "discos": [],
+    "images": [
+        "library/postgres",
+        "nginx",
+        "node"
+    ]
+}

@@ -1,0 +1,291 @@
+{
+    "avg_size_service": 344.25,
+    "num_langs": 2,
+    "servers": [
+        "jboss",
+        "spring",
+        "node"
+    ],
+    "files": [
+        {
+            "path": "/pom.xml",
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "buses": [],
+            "servers": []
+        },
+        {
+            "path": "/order-service/pom.xml",
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "avro"
+            ],
+            "dbs": [
+                "postgresql"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "servers": [
+                "jboss",
+                "spring"
+            ]
+        },
+        {
+            "path": "/notification-service/pom.xml",
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "avro"
+            ],
+            "dbs": [
+                "mongo",
+                "mongodb"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "servers": [
+                "jboss"
+            ]
+        },
+        {
+            "path": "/customer-service/pom.xml",
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "avro"
+            ],
+            "dbs": [],
+            "buses": [
+                "kafka"
+            ],
+            "servers": [
+                "jboss"
+            ]
+        },
+        {
+            "path": "/product-service/pom.xml",
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "avro"
+            ],
+            "dbs": [
+                "postgresql"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "servers": [
+                "jboss",
+                "spring"
+            ]
+        },
+        {
+            "path": "/front-angular/pom.xml",
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "buses": [],
+            "servers": []
+        },
+        {
+            "path": "/front-angular/package.json",
+            "gates": [],
+            "monitors": [],
+            "discos": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ]
+        }
+    ],
+    "num_dockers": 4,
+    "num_files": 12,
+    "name": "MossabTN/quarkus-microservices-poc",
+    "url": "git://github.com/MossabTN/quarkus-microservices-poc.git",
+    "languages": [
+        "java"
+    ],
+    "num_discos": 1,
+    "structure": {
+        "path": "/observability/logs/docker-compose.yml",
+        "num_services": 3,
+        "detected_dbs": {
+            "names": [],
+            "num": 0,
+            "shared_dbs": false,
+            "services": []
+        },
+        "services": [
+            {
+                "image": "docker.elastic.co/elasticsearch/elasticsearch-oss",
+                "name": "elasticsearch",
+                "depends_on": [],
+                "monitors": [],
+                "servers": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch-oss:6.8.2"
+            },
+            {
+                "image": "docker.elastic.co/logstash/logstash-oss",
+                "name": "logstash",
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "monitors": [],
+                "servers": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "docker.elastic.co/logstash/logstash-oss:6.8.2"
+            },
+            {
+                "image": "docker.elastic.co/kibana/kibana-oss",
+                "name": "kibana",
+                "depends_on": [
+                    "elasticsearch"
+                ],
+                "monitors": [],
+                "servers": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "image_full": "docker.elastic.co/kibana/kibana-oss:6.8.2"
+            }
+        ]
+    },
+    "langs": [
+        "java",
+        "bash"
+    ],
+    "dbs": [
+        "mongo",
+        "postgresql"
+    ],
+    "num_gates": 1,
+    "size": 1377,
+    "num_dbs": 2,
+    "buses": [
+        "kafka"
+    ],
+    "num_servers": 3,
+    "shared_dbs": false,
+    "gates": [
+        "kong"
+    ],
+    "dockers": [
+        {
+            "path": "/gateway/prod/Dockerfile",
+            "from": "kong",
+            "discos": [],
+            "buses": [],
+            "gates": [
+                "kong"
+            ],
+            "servers": [],
+            "from_full": "kong:1.4.0",
+            "langs": [],
+            "monitors": [],
+            "keywords": [
+                "install",
+                "oidc",
+                "luarocks",
+                "kong"
+            ],
+            "cmd": "",
+            "dbs": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/gateway/prod/config/Dockerfile",
+            "from": "alpine",
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "servers": [],
+            "from_full": "alpine:3.10",
+            "langs": [
+                "bash"
+            ],
+            "monitors": [],
+            "keywords": [
+                "cache",
+                "add",
+                "usr",
+                "docker",
+                "chmod"
+            ],
+            "cmd": "",
+            "dbs": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/gateway/dev/Dockerfile",
+            "from": "kong",
+            "discos": [],
+            "buses": [],
+            "gates": [
+                "kong"
+            ],
+            "servers": [],
+            "from_full": "kong:1.4.0",
+            "langs": [],
+            "monitors": [],
+            "keywords": [
+                "install",
+                "oidc",
+                "luarocks",
+                "kong"
+            ],
+            "cmd": "",
+            "dbs": [],
+            "cmd_keywords": []
+        },
+        {
+            "path": "/gateway/dev/config/Dockerfile",
+            "from": "alpine",
+            "discos": [],
+            "buses": [],
+            "gates": [],
+            "servers": [],
+            "from_full": "alpine:3.10",
+            "langs": [
+                "bash"
+            ],
+            "monitors": [],
+            "keywords": [
+                "cache",
+                "add",
+                "usr",
+                "docker",
+                "chmod"
+            ],
+            "cmd": "",
+            "dbs": [],
+            "cmd_keywords": []
+        }
+    ],
+    "num_services": 3,
+    "discos": [
+        "avro"
+    ],
+    "num_monitors": 0,
+    "images": [
+        "alpine",
+        "kong"
+    ],
+    "num_buses": 1,
+    "monitors": []
+}

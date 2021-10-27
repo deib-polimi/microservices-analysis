@@ -1,0 +1,646 @@
+{
+    "size": 838,
+    "shared_dbs": false,
+    "num_servers": 4,
+    "name": "onlythinking/micro-starter",
+    "files": [
+        {
+            "gates": [],
+            "dbs": [
+                "nexus"
+            ],
+            "buses": [],
+            "servers": [
+                "spring",
+                "node"
+            ],
+            "path": "/build.gradle",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "path": "/settings.gradle",
+            "monitors": [
+                "monitoring"
+            ],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/monitoring-service/build.gradle",
+            "monitors": [
+                "monitoring"
+            ],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [
+                "amqp"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/documentation/build.gradle",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "mongo",
+                "mongodb"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/users-command-service/build.gradle",
+            "monitors": [
+                "turbine"
+            ],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [
+                "amqp"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/users-query/build.gradle",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "tomcat",
+                "spring",
+                "jetty"
+            ],
+            "path": "/gateway-service/build.gradle",
+            "monitors": [
+                "turbine"
+            ],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "tomcat",
+                "spring",
+                "jetty"
+            ],
+            "path": "/adminserver/build.gradle",
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "path": "/users-api/build.gradle",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [
+                "amqp"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/commons-command/build.gradle",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [
+                "amqp"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/users-command/build.gradle",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/registry-service/build.gradle",
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "tomcat",
+                "spring",
+                "jetty"
+            ],
+            "path": "/config-service/build.gradle",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [
+                "amqp"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/commons-query/build.gradle",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [],
+            "path": "/commons-api/build.gradle",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/users-query-service/build.gradle",
+            "monitors": [
+                "turbine"
+            ],
+            "discos": [
+                "eureka"
+            ]
+        }
+    ],
+    "num_files": 24,
+    "num_langs": 2,
+    "dbs": [
+        "mongo",
+        "mysql",
+        "nexus"
+    ],
+    "servers": [
+        "tomcat",
+        "spring",
+        "node",
+        "jetty"
+    ],
+    "num_discos": 1,
+    "url": "git://github.com/onlythinking/micro-starter.git",
+    "gates": [
+        "zuul"
+    ],
+    "structure": {
+        "services": [
+            {
+                "image": "sky233/registry-service",
+                "dbs": [],
+                "image_full": "sky233/registry-service",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "registry",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "configserver"
+                ]
+            },
+            {
+                "image": "sky233/users-command-service",
+                "dbs": [],
+                "image_full": "sky233/users-command-service:latest",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "users-command-side",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "mongodb",
+                    "rabbitmq",
+                    "registry",
+                    "configserver"
+                ]
+            },
+            {
+                "image": "sky233/adminserver",
+                "dbs": [],
+                "image_full": "sky233/adminserver",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "adminserver",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "registry",
+                    "configserver"
+                ]
+            },
+            {
+                "image": "mysql",
+                "dbs": [
+                    "mysql"
+                ],
+                "image_full": "mysql:5.7",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "mysql",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "image_full": "mongo:3.2",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "mongodb",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "sky233/monitoring-service",
+                "dbs": [],
+                "image_full": "sky233/monitoring-service",
+                "buses": [],
+                "servers": [],
+                "monitors": [
+                    "monitoring"
+                ],
+                "name": "monitoring",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "registry",
+                    "configserver"
+                ]
+            },
+            {
+                "image": "sky233/gateway-service",
+                "dbs": [],
+                "image_full": "sky233/gateway-service",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "gateway",
+                "gates": [
+                    "gateway"
+                ],
+                "discos": [],
+                "depends_on": [
+                    "registry",
+                    "configserver"
+                ]
+            },
+            {
+                "image": "sky233/config-service",
+                "dbs": [],
+                "image_full": "sky233/config-service",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "configserver",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "sky233/users-query-service",
+                "dbs": [],
+                "image_full": "sky233/users-query-service:latest",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "users-query-side",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "mysql",
+                    "rabbitmq",
+                    "registry",
+                    "configserver"
+                ]
+            },
+            {
+                "image": "rabbitmq",
+                "dbs": [],
+                "image_full": "rabbitmq:3-management",
+                "buses": [
+                    "rabbitmq"
+                ],
+                "servers": [],
+                "monitors": [],
+                "name": "rabbitmq",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            }
+        ],
+        "num_services": 10,
+        "detected_dbs": {
+            "num": 2,
+            "names": [
+                "mongo",
+                "mysql"
+            ],
+            "services": [
+                "mysql",
+                "mongodb"
+            ],
+            "shared_dbs": false
+        },
+        "path": "/docker/docker-compose.yml"
+    },
+    "num_gates": 1,
+    "num_dockers": 7,
+    "num_dbs": 3,
+    "num_services": 10,
+    "langs": [
+        "java",
+        "shell"
+    ],
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "num_buses": 2,
+    "num_monitors": 1,
+    "languages": [
+        "java",
+        "shell"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [
+                "jar",
+                "urandom",
+                "egd",
+                "security",
+                "dspring"
+            ],
+            "cmd": "java -Djava.security.egd=file:/dev/./urandom -Dspring.profiles.active=docker -jar /app.jar",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "monitors": [],
+            "from_full": "java:8",
+            "servers": [],
+            "path": "/monitoring-service/src/main/docker/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "bash",
+                "jar",
+                "for",
+                "wait",
+                "chmod"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "jar",
+                "urandom",
+                "egd",
+                "security",
+                "dspring"
+            ],
+            "cmd": "java -Djava.security.egd=file:/dev/./urandom -Dspring.profiles.active=docker -jar /app.jar",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "monitors": [],
+            "from_full": "java:8",
+            "servers": [],
+            "path": "/users-command-service/src/main/docker/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "bash",
+                "jar",
+                "for",
+                "wait",
+                "chmod"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "jar",
+                "urandom",
+                "egd",
+                "security",
+                "dspring"
+            ],
+            "cmd": "java -Djava.security.egd=file:/dev/./urandom -Dspring.profiles.active=docker -jar /app.jar",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "monitors": [],
+            "from_full": "java:8",
+            "servers": [],
+            "path": "/gateway-service/src/main/docker/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "bash",
+                "jar",
+                "for",
+                "wait",
+                "chmod"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "jar",
+                "dspring",
+                "java",
+                "docker",
+                "active"
+            ],
+            "cmd": "java -Dspring.profiles.active=docker -jar /app.jar",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "monitors": [],
+            "from_full": "java:8",
+            "servers": [],
+            "path": "/adminserver/src/main/docker/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "bash",
+                "jar",
+                "for",
+                "wait",
+                "chmod"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "jar",
+                "urandom",
+                "egd",
+                "security",
+                "dspring"
+            ],
+            "cmd": "java -Djava.security.egd=file:/dev/./urandom -Dspring.profiles.active=docker -jar /app.jar",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "monitors": [],
+            "from_full": "java:8",
+            "servers": [],
+            "path": "/registry-service/src/main/docker/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "bash",
+                "jar",
+                "for",
+                "wait",
+                "chmod"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "monitors": [],
+            "from_full": "java:8",
+            "servers": [],
+            "path": "/config-service/src/main/docker/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "jar",
+                "app",
+                "bash",
+                "touch"
+            ],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [
+                "jar",
+                "urandom",
+                "egd",
+                "security",
+                "dspring"
+            ],
+            "cmd": "java -Djava.security.egd=file:/dev/./urandom -Dspring.profiles.active=docker -jar /app.jar",
+            "gates": [],
+            "buses": [],
+            "langs": [
+                "java"
+            ],
+            "from": "java",
+            "monitors": [],
+            "from_full": "java:8",
+            "servers": [],
+            "path": "/users-query-service/src/main/docker/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "bash",
+                "jar",
+                "for",
+                "wait",
+                "chmod"
+            ],
+            "discos": []
+        }
+    ],
+    "monitors": [
+        "turbine"
+    ],
+    "avg_size_service": 119.71428571428571,
+    "discos": [
+        "eureka"
+    ],
+    "images": [
+        "java"
+    ]
+}

@@ -1,0 +1,270 @@
+{
+    "dbs": [
+        "postgresql",
+        "redis"
+    ],
+    "num_langs": 2,
+    "buses": [
+        "amqp"
+    ],
+    "monitors": [],
+    "num_services": 8,
+    "num_dbs": 2,
+    "num_servers": 1,
+    "discos": [],
+    "dockers": [
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "nginx:1.15",
+            "gates": [
+                "nginx"
+            ],
+            "dbs": [],
+            "from": "nginx",
+            "cmd": "",
+            "discos": [],
+            "langs": [],
+            "path": "/nginx/Dockerfile",
+            "keywords": [
+                "nginx",
+                "conf",
+                "etc",
+                "dos",
+                "unix"
+            ]
+        },
+        {
+            "servers": [],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "redis",
+                "local",
+                "etc",
+                "usr",
+                "conf"
+            ],
+            "from_full": "redis:4.0",
+            "gates": [],
+            "dbs": [
+                "redis"
+            ],
+            "from": "redis",
+            "cmd": "redis-server /usr/local/etc/redis/redis.conf",
+            "discos": [],
+            "langs": [],
+            "path": "/redis/Dockerfile",
+            "keywords": [
+                "redis",
+                "apt",
+                "dos",
+                "unix",
+                "get"
+            ]
+        },
+        {
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "monitors": [],
+            "cmd_keywords": [],
+            "from_full": "python:3.6",
+            "gates": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "from": "python",
+            "cmd": "",
+            "discos": [],
+            "langs": [
+                "python"
+            ],
+            "path": "/web/Dockerfile",
+            "keywords": [
+                "flask",
+                "home",
+                "pip",
+                "install",
+                "web"
+            ]
+        }
+    ],
+    "num_files": 5,
+    "num_dockers": 3,
+    "images": [
+        "python",
+        "redis",
+        "nginx"
+    ],
+    "size": 311,
+    "servers": [
+        "flask"
+    ],
+    "structure": {
+        "detected_dbs": {
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": true,
+            "services": [
+                "redis"
+            ],
+            "num": 1
+        },
+        "num_services": 8,
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "${DOCKER_REPO}/${DOCKER_STACK}_redis:${GIT_REV_SHORT:-latest}",
+                "name": "redis",
+                "depends_on": [],
+                "dbs": [
+                    "redis"
+                ],
+                "buses": [],
+                "image": "${DOCKER_REPO}/${DOCKER_STACK}_redis",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "${DOCKER_REPO}/${DOCKER_STACK}_nginx:${GIT_REV_SHORT:-latest}",
+                "name": "nginx",
+                "depends_on": [
+                    "web"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "${DOCKER_REPO}/${DOCKER_STACK}_nginx",
+                "gates": [
+                    "nginx"
+                ],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "${DOCKER_REPO}/${DOCKER_STACK}_web:${GIT_REV_SHORT:-latest}",
+                "name": "flower",
+                "depends_on": [
+                    "postgres",
+                    "redis",
+                    "celery"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "${DOCKER_REPO}/${DOCKER_STACK}_web",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "${DOCKER_REPO}/${DOCKER_STACK}_web:${GIT_REV_SHORT:-latest}",
+                "name": "celery",
+                "depends_on": [
+                    "postgres",
+                    "redis"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "${DOCKER_REPO}/${DOCKER_STACK}_web",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "dockersamples/visualizer:stable",
+                "name": "visualizer",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "dockersamples/visualizer",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "postgres:9.6",
+                "name": "postgres",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "postgres",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "${DOCKER_REPO}/${DOCKER_STACK}_web:${GIT_REV_SHORT:-latest}",
+                "name": "web",
+                "depends_on": [
+                    "celery"
+                ],
+                "dbs": [],
+                "buses": [],
+                "image": "${DOCKER_REPO}/${DOCKER_STACK}_web",
+                "gates": [],
+                "monitors": []
+            },
+            {
+                "discos": [],
+                "servers": [],
+                "image_full": "postgres:9.6",
+                "name": "postgres_test",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "image": "postgres",
+                "gates": [],
+                "monitors": []
+            }
+        ]
+    },
+    "num_discos": 0,
+    "files": [
+        {
+            "servers": [
+                "flask"
+            ],
+            "gates": [],
+            "dbs": [
+                "redis"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "monitors": [],
+            "discos": [],
+            "path": "/web/requirements.txt"
+        }
+    ],
+    "num_monitors": 0,
+    "num_buses": 1,
+    "num_gates": 1,
+    "gates": [
+        "nginx"
+    ],
+    "name": "innocorps/pyIoT",
+    "avg_size_service": 103.66666666666667,
+    "url": "git://github.com/innocorps/pyIoT.git",
+    "shared_dbs": true,
+    "langs": [
+        "python",
+        "shell"
+    ],
+    "languages": [
+        "python",
+        "shell"
+    ]
+}

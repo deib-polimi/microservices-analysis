@@ -1,0 +1,247 @@
+{
+    "size": 33,
+    "num_discos": 0,
+    "num_services": 5,
+    "num_monitors": 0,
+    "num_langs": 2,
+    "dockers": [
+        {
+            "dbs": [],
+            "cmd": "/start.sh",
+            "gates": [],
+            "from_full": "python:3.6-slim",
+            "langs": [
+                "python"
+            ],
+            "keywords": [
+                "python",
+                "org",
+                "txt",
+                "requirements",
+                "install"
+            ],
+            "path": "/part2/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "start"
+            ],
+            "from": "python",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "cmd": "",
+            "gates": [],
+            "from_full": "onjin/alpine-postgres:9.5",
+            "langs": [],
+            "keywords": [],
+            "path": "/part2/postgres/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "from": "onjin/alpine-postgres",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "cmd": "",
+            "gates": [
+                "nginx"
+            ],
+            "from_full": "nginx",
+            "langs": [],
+            "keywords": [],
+            "path": "/part2/nginx/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [],
+            "from": "nginx",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "cmd": "python app.py",
+            "gates": [],
+            "from_full": "python:3.6-slim",
+            "langs": [
+                "python"
+            ],
+            "keywords": [
+                "python",
+                "org",
+                "txt",
+                "requirements",
+                "install"
+            ],
+            "path": "/part1/Dockerfile",
+            "buses": [],
+            "cmd_keywords": [
+                "python",
+                "app"
+            ],
+            "from": "python",
+            "discos": [],
+            "servers": [],
+            "monitors": []
+        }
+    ],
+    "files": [
+        {
+            "dbs": [
+                "redis"
+            ],
+            "gates": [],
+            "discos": [],
+            "monitors": [],
+            "servers": [
+                "django"
+            ],
+            "path": "/part2/requirements.txt",
+            "buses": []
+        },
+        {
+            "dbs": [
+                "redis"
+            ],
+            "gates": [],
+            "discos": [],
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/part1/requirements.txt",
+            "buses": []
+        }
+    ],
+    "langs": [
+        "python",
+        "dockerfile"
+    ],
+    "url": "git://github.com/inovizz/gdg-talk.git",
+    "buses": [],
+    "shared_dbs": true,
+    "structure": {
+        "services": [
+            {
+                "dbs": [],
+                "image_full": "django_service",
+                "image": "django_service",
+                "gates": [],
+                "name": "django",
+                "discos": [],
+                "monitors": [],
+                "servers": [
+                    "django"
+                ],
+                "depends_on": [
+                    "redis",
+                    "postgres"
+                ],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "postgres_service",
+                "image": "postgres_service",
+                "gates": [],
+                "name": "postgres",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "flask_service",
+                "image": "flask_service",
+                "gates": [],
+                "name": "flask",
+                "discos": [],
+                "monitors": [],
+                "servers": [
+                    "flask"
+                ],
+                "depends_on": [
+                    "redis"
+                ],
+                "buses": []
+            },
+            {
+                "dbs": [
+                    "redis"
+                ],
+                "image_full": "redis",
+                "image": "redis",
+                "gates": [],
+                "name": "redis",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [],
+                "buses": []
+            },
+            {
+                "dbs": [],
+                "image_full": "nginx_service",
+                "image": "nginx_service",
+                "gates": [
+                    "nginx"
+                ],
+                "name": "nginx",
+                "discos": [],
+                "monitors": [],
+                "servers": [],
+                "depends_on": [
+                    "flask"
+                ],
+                "buses": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [
+                "redis"
+            ],
+            "services": [
+                "redis"
+            ],
+            "shared_dbs": true,
+            "num": 1
+        },
+        "num_services": 5,
+        "path": "/part2/docker-compose.yml"
+    },
+    "name": "inovizz/gdg-talk",
+    "num_buses": 0,
+    "servers": [
+        "django",
+        "flask"
+    ],
+    "num_files": 7,
+    "num_dbs": 1,
+    "num_gates": 1,
+    "gates": [
+        "nginx"
+    ],
+    "monitors": [],
+    "avg_size_service": 8.25,
+    "languages": [
+        "python",
+        "dockerfile"
+    ],
+    "num_dockers": 4,
+    "dbs": [
+        "redis"
+    ],
+    "num_servers": 2,
+    "discos": [],
+    "images": [
+        "python",
+        "onjin/alpine-postgres",
+        "nginx"
+    ]
+}

@@ -1,0 +1,122 @@
+{
+    "languages": [],
+    "num_servers": 0,
+    "shared_dbs": false,
+    "name": "kopickik/full-docker-microservices-nodejs-app",
+    "servers": [],
+    "num_monitors": 0,
+    "num_langs": 0,
+    "images": [],
+    "langs": [],
+    "dockers": [],
+    "gates": [
+        "gateway"
+    ],
+    "num_buses": 0,
+    "discos": [],
+    "monitors": [],
+    "num_files": 1,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "./listings-svc",
+                "depends_on": [
+                    "listings-svc-db"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "listings-svc",
+                "image": "./listings-svc",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "./api-gateway",
+                "depends_on": [
+                    "listings-svc",
+                    "users-svc"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "name": "api-gateway",
+                "image": "./api-gateway",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mysql:5.7.20",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "listings-svc-db",
+                "image": "mysql",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "./users-svc",
+                "depends_on": [
+                    "users-svc-db"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "users-svc",
+                "image": "./users-svc",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mysql:5.7.20",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "users-svc-db",
+                "image": "mysql",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 5,
+        "detected_dbs": {
+            "services": [
+                "listings-svc-db",
+                "users-svc-db"
+            ],
+            "names": [
+                "mysql"
+            ],
+            "num": 2,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [
+        "mysql"
+    ],
+    "num_dbs": 1,
+    "avg_size_service": 4.0,
+    "num_services": 5,
+    "buses": [],
+    "files": [],
+    "url": "git://github.com/kopickik/full-docker-microservices-nodejs-app.git",
+    "num_dockers": 0,
+    "size": 4,
+    "num_discos": 0,
+    "num_gates": 1
+}

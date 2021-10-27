@@ -1,0 +1,211 @@
+{
+    "discos": [],
+    "avg_size_service": 128.66666666666666,
+    "buses": [],
+    "num_gates": 0,
+    "name": "larrow/shelter",
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "proxy",
+                "dbs": [],
+                "depends_on": [
+                    "db",
+                    "registry",
+                    "web"
+                ],
+                "discos": [],
+                "image_full": "larrow/caddy",
+                "image": "larrow/caddy",
+                "servers": [
+                    "caddy"
+                ],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "redis",
+                "image": "redis",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "worker",
+                "dbs": [],
+                "depends_on": [
+                    "web",
+                    "registry",
+                    "redis"
+                ],
+                "discos": [],
+                "image_full": "worker",
+                "image": "worker",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "db",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "postgres",
+                "image": "postgres",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "registry",
+                "dbs": [],
+                "depends_on": [],
+                "discos": [],
+                "image_full": "larrow/registry:2.6",
+                "image": "larrow/registry",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            },
+            {
+                "name": "web",
+                "dbs": [],
+                "depends_on": [
+                    "db",
+                    "registry",
+                    "redis"
+                ],
+                "discos": [],
+                "image_full": ".",
+                "image": ".",
+                "servers": [],
+                "buses": [],
+                "monitors": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "names": [
+                "redis"
+            ],
+            "num": 1,
+            "shared_dbs": true,
+            "services": [
+                "redis"
+            ]
+        },
+        "num_services": 6
+    },
+    "dbs": [
+        "redis"
+    ],
+    "dockers": [
+        {
+            "langs": [
+                "ruby"
+            ],
+            "cmd_keywords": [],
+            "from_full": "ruby:2.3",
+            "buses": [],
+            "monitors": [],
+            "from": "ruby",
+            "keywords": [
+                "bundle",
+                "install",
+                "entrypoint",
+                "get",
+                "prepare"
+            ],
+            "gates": [],
+            "path": "/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "",
+            "servers": []
+        },
+        {
+            "langs": [
+                "ruby"
+            ],
+            "cmd_keywords": [
+                "run"
+            ],
+            "from_full": "fsword/alpine-ruby:onbuild",
+            "buses": [],
+            "monitors": [],
+            "from": "fsword/alpine-ruby",
+            "keywords": [],
+            "gates": [],
+            "path": "/integration_test/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "./run.rb",
+            "servers": []
+        },
+        {
+            "langs": [
+                "ruby"
+            ],
+            "cmd_keywords": [
+                "sidekiq",
+                "bundle",
+                "config",
+                "boot",
+                "exec"
+            ],
+            "from_full": "fsword/alpine-ruby:onbuild",
+            "buses": [],
+            "monitors": [],
+            "from": "fsword/alpine-ruby",
+            "keywords": [],
+            "gates": [],
+            "path": "/worker/Dockerfile",
+            "dbs": [],
+            "discos": [],
+            "cmd": "bundle exec sidekiq -r ./config/boot.rb",
+            "servers": []
+        }
+    ],
+    "gates": [],
+    "size": 386,
+    "num_monitors": 0,
+    "images": [
+        "ruby",
+        "fsword/alpine-ruby"
+    ],
+    "num_buses": 0,
+    "num_services": 6,
+    "servers": [
+        "caddy"
+    ],
+    "shared_dbs": true,
+    "monitors": [],
+    "num_discos": 0,
+    "languages": [
+        "ruby",
+        "html"
+    ],
+    "url": "git://github.com/larrow/shelter.git",
+    "langs": [
+        "ruby",
+        "html"
+    ],
+    "num_dbs": 1,
+    "num_servers": 1,
+    "num_langs": 2,
+    "files": [],
+    "num_dockers": 3,
+    "num_files": 4
+}

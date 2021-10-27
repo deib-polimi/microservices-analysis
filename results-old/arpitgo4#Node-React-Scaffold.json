@@ -1,0 +1,141 @@
+{
+    "num_servers": 1,
+    "num_gates": 1,
+    "num_dockers": 1,
+    "num_buses": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "servers": [],
+            "buses": [],
+            "from_full": "nginx:1.15.7-alpine",
+            "discos": [],
+            "from": "nginx",
+            "langs": [],
+            "gates": [
+                "nginx"
+            ],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/api-gateway/Dockerfile",
+            "dbs": [],
+            "keywords": [
+                "conf",
+                "default",
+                "nginx",
+                "etc"
+            ]
+        }
+    ],
+    "shared_dbs": false,
+    "languages": [
+        "javascript"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "avg_size_service": 44.0,
+    "discos": [],
+    "num_dbs": 1,
+    "monitors": [],
+    "servers": [
+        "node"
+    ],
+    "num_langs": 1,
+    "buses": [],
+    "structure": {
+        "path": "/deployment/development/docker-compose.yml",
+        "services": [
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [],
+                "image_full": "mongo:latest",
+                "image": "mongo",
+                "buses": [],
+                "name": "mongo",
+                "discos": [],
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ]
+            },
+            {
+                "monitors": [],
+                "servers": [],
+                "gates": [
+                    "gateway"
+                ],
+                "image_full": "../../api-gateway",
+                "image": "../../api-gateway",
+                "buses": [],
+                "name": "api_gateway",
+                "discos": [],
+                "depends_on": [],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [
+                    "node"
+                ],
+                "gates": [],
+                "image_full": "arpitgo4/alpine-node",
+                "image": "arpitgo4/alpine-node",
+                "buses": [],
+                "name": "server",
+                "discos": [],
+                "depends_on": [
+                    "mongo",
+                    "api_gateway"
+                ],
+                "dbs": []
+            },
+            {
+                "monitors": [],
+                "servers": [
+                    "node"
+                ],
+                "gates": [],
+                "image_full": "arpitgo4/alpine-node",
+                "image": "arpitgo4/alpine-node",
+                "buses": [],
+                "name": "client",
+                "discos": [],
+                "depends_on": [
+                    "server",
+                    "api_gateway"
+                ],
+                "dbs": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 1,
+            "services": [
+                "mongo"
+            ],
+            "names": [
+                "mongo"
+            ],
+            "shared_dbs": false
+        },
+        "num_services": 4
+    },
+    "images": [
+        "nginx"
+    ],
+    "num_files": 2,
+    "num_services": 4,
+    "langs": [
+        "javascript"
+    ],
+    "files": [],
+    "url": "git://github.com/arpitgo4/Node-React-Scaffold.git",
+    "size": 44,
+    "name": "arpitgo4/Node-React-Scaffold",
+    "num_discos": 0,
+    "num_monitors": 0,
+    "dbs": [
+        "mongo"
+    ]
+}

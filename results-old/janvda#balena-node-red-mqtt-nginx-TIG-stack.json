@@ -1,0 +1,300 @@
+{
+    "buses": [
+        "mosquitto"
+    ],
+    "num_servers": 1,
+    "languages": [
+        "javascript"
+    ],
+    "dbs": [],
+    "num_services": 8,
+    "avg_size_service": 82.83333333333333,
+    "servers": [
+        "node"
+    ],
+    "structure": {
+        "num_services": 8,
+        "detected_dbs": {
+            "services": [],
+            "shared_dbs": false,
+            "num": 0,
+            "names": []
+        },
+        "services": [
+            {
+                "image": "influxdb",
+                "buses": [],
+                "image_full": "influxdb",
+                "dbs": [],
+                "depends_on": [],
+                "servers": [],
+                "monitors": [
+                    "influxdb"
+                ],
+                "discos": [],
+                "name": "influxdb",
+                "gates": []
+            },
+            {
+                "image": "nginx",
+                "buses": [],
+                "image_full": "nginx",
+                "dbs": [],
+                "depends_on": [
+                    "grafana",
+                    "node-red",
+                    "node-red-test"
+                ],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "nginx",
+                "gates": [
+                    "nginx"
+                ]
+            },
+            {
+                "image": "grafana",
+                "buses": [],
+                "image_full": "grafana",
+                "dbs": [],
+                "depends_on": [
+                    "influxdb"
+                ],
+                "servers": [],
+                "monitors": [
+                    "grafana"
+                ],
+                "discos": [],
+                "name": "grafana",
+                "gates": []
+            },
+            {
+                "image": "node-red",
+                "buses": [],
+                "image_full": "node-red",
+                "dbs": [],
+                "depends_on": [
+                    "mqtt"
+                ],
+                "servers": [
+                    "node"
+                ],
+                "monitors": [],
+                "discos": [],
+                "name": "node-red",
+                "gates": []
+            },
+            {
+                "image": "panuwitp/mosquitto-arm",
+                "buses": [
+                    "mosquitto"
+                ],
+                "image_full": "panuwitp/mosquitto-arm",
+                "dbs": [],
+                "depends_on": [],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "mqtt",
+                "gates": []
+            },
+            {
+                "image": "node-red-test",
+                "buses": [],
+                "image_full": "node-red-test",
+                "dbs": [],
+                "depends_on": [
+                    "mqtt-test"
+                ],
+                "servers": [
+                    "node"
+                ],
+                "monitors": [],
+                "discos": [],
+                "name": "node-red-test",
+                "gates": []
+            },
+            {
+                "image": "telegraf",
+                "buses": [],
+                "image_full": "telegraf",
+                "dbs": [],
+                "depends_on": [
+                    "influxdb"
+                ],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "telegraf",
+                "gates": []
+            },
+            {
+                "image": "panuwitp/mosquitto-arm",
+                "buses": [
+                    "mosquitto"
+                ],
+                "image_full": "panuwitp/mosquitto-arm",
+                "dbs": [],
+                "depends_on": [],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "mqtt-test",
+                "gates": []
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "monitors": [
+        "grafana",
+        "influxdb"
+    ],
+    "num_buses": 1,
+    "images": [
+        "arm32v7/influxdb",
+        "arm32v7/telegraf",
+        "tobi312/rpi-nginx",
+        "fg2it/grafana-armhf",
+        "nodered/node-red-docker"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "num_gates": 1,
+    "num_langs": 1,
+    "langs": [
+        "javascript"
+    ],
+    "url": "git://github.com/janvda/balena-node-red-mqtt-nginx-TIG-stack.git",
+    "num_discos": 0,
+    "num_files": 7,
+    "files": [],
+    "shared_dbs": false,
+    "num_monitors": 2,
+    "name": "janvda/balena-node-red-mqtt-nginx-TIG-stack",
+    "num_dbs": 0,
+    "discos": [],
+    "dockers": [
+        {
+            "langs": [],
+            "dbs": [],
+            "path": "/grafana/Dockerfile",
+            "servers": [],
+            "monitors": [
+                "grafana"
+            ],
+            "keywords": [],
+            "cmd": "",
+            "buses": [],
+            "from_full": "fg2it/grafana-armhf:v5.1.4",
+            "from": "fg2it/grafana-armhf",
+            "discos": [],
+            "cmd_keywords": [],
+            "gates": []
+        },
+        {
+            "langs": [],
+            "dbs": [],
+            "path": "/node-red-test/Dockerfile",
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "keywords": [
+                "install",
+                "red",
+                "npm",
+                "node",
+                "contrib"
+            ],
+            "cmd": "",
+            "buses": [],
+            "from_full": "nodered/node-red-docker:rpi-v8",
+            "from": "nodered/node-red-docker",
+            "discos": [],
+            "cmd_keywords": [],
+            "gates": []
+        },
+        {
+            "langs": [],
+            "dbs": [],
+            "path": "/nginx/Dockerfile",
+            "servers": [],
+            "monitors": [],
+            "keywords": [],
+            "cmd": "",
+            "buses": [],
+            "from_full": "tobi312/rpi-nginx",
+            "from": "tobi312/rpi-nginx",
+            "discos": [],
+            "cmd_keywords": [],
+            "gates": [
+                "nginx"
+            ]
+        },
+        {
+            "langs": [],
+            "dbs": [],
+            "path": "/telegraf/Dockerfile",
+            "servers": [],
+            "monitors": [],
+            "keywords": [],
+            "cmd": "",
+            "buses": [],
+            "from_full": "arm32v7/telegraf:1.8.2",
+            "from": "arm32v7/telegraf",
+            "discos": [],
+            "cmd_keywords": [],
+            "gates": []
+        },
+        {
+            "langs": [],
+            "dbs": [],
+            "path": "/node-red/Dockerfile",
+            "servers": [
+                "node"
+            ],
+            "monitors": [],
+            "keywords": [
+                "install",
+                "red",
+                "npm",
+                "node",
+                "contrib"
+            ],
+            "cmd": "",
+            "buses": [],
+            "from_full": "nodered/node-red-docker:rpi-v8",
+            "from": "nodered/node-red-docker",
+            "discos": [],
+            "cmd_keywords": [],
+            "gates": []
+        },
+        {
+            "langs": [],
+            "dbs": [],
+            "path": "/influxdb/Dockerfile",
+            "servers": [],
+            "monitors": [
+                "influxdb"
+            ],
+            "keywords": [
+                "influxdb",
+                "mnt",
+                "data",
+                "chmod",
+                "fstab"
+            ],
+            "cmd": "",
+            "buses": [],
+            "from_full": "arm32v7/influxdb:latest",
+            "from": "arm32v7/influxdb",
+            "discos": [],
+            "cmd_keywords": [],
+            "gates": []
+        }
+    ],
+    "num_dockers": 6,
+    "size": 497
+}

@@ -1,0 +1,368 @@
+{
+    "languages": [
+        "java"
+    ],
+    "num_servers": 1,
+    "shared_dbs": false,
+    "name": "sergio11/covid_tweets_etl_architecture",
+    "servers": [
+        "spring"
+    ],
+    "num_monitors": 0,
+    "num_langs": 1,
+    "images": [
+        "openjdk"
+    ],
+    "langs": [
+        "java"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [
+                "for",
+                "kafka",
+                "jar",
+                "starting",
+                "app"
+            ],
+            "dbs": [],
+            "buses": [
+                "kafka"
+            ],
+            "langs": [
+                "java"
+            ],
+            "cmd": "sh -c echo 'waiting for 300 seconds for kafka:9092 to be accessable before starting application' && ./wait-for-it.sh -t 300 kafka:9092 -- java -jar app.jar",
+            "keywords": [
+                "apk",
+                "bin",
+                "wait",
+                "usr",
+                "for"
+            ],
+            "path": "/covid_tweets/covid_tweets_api/Dockerfile",
+            "gates": [],
+            "from": "openjdk",
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "for",
+                "kafka",
+                "jar",
+                "starting",
+                "app"
+            ],
+            "dbs": [],
+            "buses": [
+                "kafka"
+            ],
+            "langs": [
+                "java"
+            ],
+            "cmd": "sh -c echo 'waiting for 300 seconds for kafka:9092 to be accessable before starting application' && ./wait-for-it.sh -t 300 kafka:9092 -- java -jar app.jar",
+            "keywords": [
+                "apk",
+                "bin",
+                "wait",
+                "usr",
+                "for"
+            ],
+            "path": "/covid_tweets/covid_tweets_ingest/Dockerfile",
+            "gates": [],
+            "from": "openjdk",
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "for",
+                "kafka",
+                "jar",
+                "starting",
+                "app"
+            ],
+            "dbs": [],
+            "buses": [
+                "kafka"
+            ],
+            "langs": [
+                "java"
+            ],
+            "cmd": "sh -c echo 'waiting for 300 seconds for kafka:9092 to be accessable before starting application' && ./wait-for-it.sh -t 300 kafka:9092 -- java -Xmx2048m -jar app.jar",
+            "keywords": [
+                "apk",
+                "bin",
+                "wait",
+                "usr",
+                "for"
+            ],
+            "path": "/covid_tweets/covid_tweets_processor/Dockerfile",
+            "gates": [],
+            "from": "openjdk",
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "for",
+                "kafka",
+                "jar",
+                "starting",
+                "app"
+            ],
+            "dbs": [],
+            "buses": [
+                "kafka"
+            ],
+            "langs": [
+                "java"
+            ],
+            "cmd": "sh -c echo 'waiting for 300 seconds for kafka:9092 to be accessable before starting application' && ./wait-for-it.sh -t 300 kafka:9092 -- java -jar app.jar",
+            "keywords": [
+                "apk",
+                "bin",
+                "wait",
+                "usr",
+                "for"
+            ],
+            "path": "/covid_tweets/covid_tweets_collector/Dockerfile",
+            "gates": [],
+            "from": "openjdk",
+            "from_full": "openjdk:8-jdk-alpine",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [],
+    "num_buses": 1,
+    "discos": [
+        "zookeeper"
+    ],
+    "monitors": [],
+    "num_files": 11,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch-oss:7.6.2",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "elasticsearch",
+                "image": "docker.elastic.co/elasticsearch/elasticsearch-oss",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "ssanchez11/covid_tweets_ingest:0.0.1-SNAPSHOT",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "covid_tweets_ingest",
+                "image": "ssanchez11/covid_tweets_ingest",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "ssanchez11/covid_tweets_api:0.0.1-SNAPSHOT",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "covid_tweets_api",
+                "image": "ssanchez11/covid_tweets_api",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "docker.elastic.co/kibana/kibana-oss:7.6.2",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "kibana",
+                "image": "docker.elastic.co/kibana/kibana-oss",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "confluentinc/cp-kafka",
+                "depends_on": [
+                    "zookeeper"
+                ],
+                "dbs": [],
+                "buses": [
+                    "kafka"
+                ],
+                "gates": [],
+                "name": "kafka",
+                "image": "confluentinc/cp-kafka",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "tchiotludo/akhq",
+                "depends_on": [
+                    "kafka"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "akhq",
+                "image": "tchiotludo/akhq",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "confluentinc/cp-zookeeper",
+                "depends_on": [],
+                "dbs": [
+                    "zookeeper"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "zookeeper",
+                "image": "confluentinc/cp-zookeeper",
+                "servers": [],
+                "discos": [
+                    "zookeeper"
+                ],
+                "monitors": []
+            },
+            {
+                "image_full": "ssanchez11/covid_tweets_processor:0.0.1-SNAPSHOT",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "covid_tweets_processor",
+                "image": "ssanchez11/covid_tweets_processor",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "ssanchez11/covid_tweets_collector:0.0.1-SNAPSHOT",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "covid_tweets_collector",
+                "image": "ssanchez11/covid_tweets_collector",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 9,
+        "detected_dbs": {
+            "services": [
+                "zookeeper"
+            ],
+            "names": [
+                "zookeeper"
+            ],
+            "num": 1,
+            "shared_dbs": false
+        }
+    },
+    "dbs": [
+        "zookeeper"
+    ],
+    "num_dbs": 1,
+    "avg_size_service": 621.75,
+    "num_services": 9,
+    "buses": [
+        "kafka"
+    ],
+    "files": [
+        {
+            "dbs": [],
+            "path": "/covid_tweets/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "kafka"
+            ],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/covid_tweets/covid_tweets_api/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/covid_tweets/covid_tweets_ingest/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/covid_tweets/covid_tweets_processor/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/covid_tweets/covid_tweets_collector/pom.xml",
+            "gates": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/covid_tweets/covid_tweets_commons/pom.xml",
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "url": "git://github.com/sergio11/covid_tweets_etl_architecture.git",
+    "num_dockers": 4,
+    "size": 2487,
+    "num_discos": 1,
+    "num_gates": 0
+}

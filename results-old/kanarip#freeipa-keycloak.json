@@ -1,0 +1,339 @@
+{
+    "buses": [],
+    "num_servers": 2,
+    "languages": [
+        "javascript",
+        "python",
+        "dockerfile",
+        "shell"
+    ],
+    "dbs": [],
+    "num_services": 8,
+    "avg_size_service": 133.0,
+    "servers": [
+        "httpd",
+        "jboss"
+    ],
+    "structure": {
+        "num_services": 8,
+        "detected_dbs": {
+            "services": [],
+            "shared_dbs": false,
+            "num": 0,
+            "names": []
+        },
+        "services": [
+            {
+                "image": "./src/ipa/",
+                "buses": [],
+                "image_full": "./src/ipa/",
+                "dbs": [],
+                "depends_on": [],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "ipa",
+                "gates": []
+            },
+            {
+                "image": "./src/test/",
+                "buses": [],
+                "image_full": "./src/test/",
+                "dbs": [],
+                "depends_on": [
+                    "postgres",
+                    "ipa",
+                    "keycloak"
+                ],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "test",
+                "gates": []
+            },
+            {
+                "image": "./src/cdn/",
+                "buses": [],
+                "image_full": "./src/cdn/",
+                "dbs": [],
+                "depends_on": [],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "cdn",
+                "gates": []
+            },
+            {
+                "image": "./src/keycloak/",
+                "buses": [],
+                "image_full": "./src/keycloak/",
+                "dbs": [],
+                "depends_on": [
+                    "postgres",
+                    "ipa"
+                ],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "keycloak",
+                "gates": []
+            },
+            {
+                "image": "./src/api/",
+                "buses": [],
+                "image_full": "./src/api/",
+                "dbs": [],
+                "depends_on": [
+                    "postgres",
+                    "imap",
+                    "ipa",
+                    "keycloak"
+                ],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "api",
+                "gates": []
+            },
+            {
+                "image": "postgres",
+                "buses": [],
+                "image_full": "postgres",
+                "dbs": [],
+                "depends_on": [],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "postgres",
+                "gates": []
+            },
+            {
+                "image": "./src/imap/",
+                "buses": [],
+                "image_full": "./src/imap/",
+                "dbs": [],
+                "depends_on": [
+                    "postgres",
+                    "ipa",
+                    "keycloak"
+                ],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "imap",
+                "gates": []
+            },
+            {
+                "image": "./src/demo/",
+                "buses": [],
+                "image_full": "./src/demo/",
+                "dbs": [],
+                "depends_on": [
+                    "ipa",
+                    "keycloak"
+                ],
+                "servers": [],
+                "monitors": [],
+                "discos": [],
+                "name": "demo",
+                "gates": []
+            }
+        ],
+        "path": "/docker-compose.yml"
+    },
+    "monitors": [],
+    "num_buses": 0,
+    "images": [
+        "freeipa/freeipa-server",
+        "fedora",
+        "centos/systemd",
+        "httpd"
+    ],
+    "gates": [],
+    "num_gates": 0,
+    "num_langs": 5,
+    "langs": [
+        "shell",
+        "javascript",
+        "python",
+        "dockerfile",
+        "java"
+    ],
+    "url": "git://github.com/kanarip/freeipa-keycloak.git",
+    "num_discos": 0,
+    "num_files": 8,
+    "files": [],
+    "shared_dbs": false,
+    "num_monitors": 0,
+    "name": "kanarip/freeipa-keycloak",
+    "num_dbs": 0,
+    "discos": [],
+    "dockers": [
+        {
+            "langs": [
+                "java"
+            ],
+            "dbs": [],
+            "path": "/src/keycloak/Dockerfile",
+            "servers": [
+                "jboss"
+            ],
+            "monitors": [],
+            "keywords": [
+                "keycloak",
+                "etc",
+                "yum",
+                "sysconfig",
+                "echo"
+            ],
+            "cmd": "/lib/systemd/systemd",
+            "buses": [],
+            "from_full": "centos/systemd",
+            "from": "centos/systemd",
+            "discos": [],
+            "cmd_keywords": [
+                "systemd",
+                "lib"
+            ],
+            "gates": []
+        },
+        {
+            "langs": [],
+            "dbs": [],
+            "path": "/src/ipa/Dockerfile",
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "pki",
+                "enable",
+                "random",
+                "numbers",
+                "serial"
+            ],
+            "cmd": "",
+            "buses": [],
+            "from_full": "freeipa/freeipa-server:latest",
+            "from": "freeipa/freeipa-server",
+            "discos": [],
+            "cmd_keywords": [],
+            "gates": []
+        },
+        {
+            "langs": [],
+            "dbs": [],
+            "path": "/src/cdn/Dockerfile",
+            "servers": [
+                "httpd"
+            ],
+            "monitors": [],
+            "keywords": [
+                "conf",
+                "mod",
+                "loadmodule",
+                "httpd",
+                "ssl"
+            ],
+            "cmd": "",
+            "buses": [],
+            "from_full": "httpd:2.4",
+            "from": "httpd",
+            "discos": [],
+            "cmd_keywords": [],
+            "gates": []
+        },
+        {
+            "langs": [
+                "python"
+            ],
+            "dbs": [],
+            "path": "/src/api/Dockerfile",
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "dnf",
+                "all",
+                "pip",
+                "install",
+                "quart"
+            ],
+            "cmd": "",
+            "buses": [],
+            "from_full": "fedora:30",
+            "from": "fedora",
+            "discos": [],
+            "cmd_keywords": [],
+            "gates": []
+        },
+        {
+            "langs": [],
+            "dbs": [],
+            "path": "/src/demo/Dockerfile",
+            "servers": [
+                "httpd"
+            ],
+            "monitors": [],
+            "keywords": [
+                "conf",
+                "httpd",
+                "ssl",
+                "sed",
+                "local"
+            ],
+            "cmd": "",
+            "buses": [],
+            "from_full": "httpd:2.4",
+            "from": "httpd",
+            "discos": [],
+            "cmd_keywords": [],
+            "gates": []
+        },
+        {
+            "langs": [
+                "python"
+            ],
+            "dbs": [],
+            "path": "/src/test/Dockerfile",
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "dnf",
+                "python",
+                "freeipa",
+                "ipa",
+                "aiohttp"
+            ],
+            "cmd": "",
+            "buses": [],
+            "from_full": "fedora:30",
+            "from": "fedora",
+            "discos": [],
+            "cmd_keywords": [],
+            "gates": []
+        },
+        {
+            "langs": [
+                "python"
+            ],
+            "dbs": [],
+            "path": "/src/imap/Dockerfile",
+            "servers": [],
+            "monitors": [],
+            "keywords": [
+                "imapd",
+                "cyrus",
+                "etc",
+                "dnf",
+                "imap"
+            ],
+            "cmd": "",
+            "buses": [],
+            "from_full": "fedora:30",
+            "from": "fedora",
+            "discos": [],
+            "cmd_keywords": [],
+            "gates": []
+        }
+    ],
+    "num_dockers": 7,
+    "size": 931
+}

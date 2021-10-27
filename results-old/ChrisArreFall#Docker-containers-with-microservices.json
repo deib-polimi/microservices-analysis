@@ -1,0 +1,884 @@
+{
+    "size": 1776,
+    "avg_size_service": 222.0,
+    "name": "ChrisArreFall/Docker-containers-with-microservices",
+    "languages": [
+        "tsql",
+        "go"
+    ],
+    "servers": [
+        "node",
+        "express",
+        "flask"
+    ],
+    "num_dbs": 4,
+    "images": [
+        "mysql",
+        "ruby",
+        "python",
+        "neo4j",
+        "node",
+        "golang"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 3,
+        "services": [
+            {
+                "depends_on": [],
+                "image_full": "./SQL/",
+                "monitors": [],
+                "name": "sql",
+                "image": "./SQL/",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "sql"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "sql"
+                ],
+                "image_full": "./Neo4j/",
+                "monitors": [],
+                "name": "neo4j",
+                "image": "./Neo4j/",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "sql"
+                ],
+                "image_full": "./reports-service/",
+                "monitors": [],
+                "name": "reports-service",
+                "image": "./reports-service/",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "sql"
+            ],
+            "names": [
+                "sql"
+            ],
+            "shared_dbs": true,
+            "num": 1
+        }
+    },
+    "num_dockers": 8,
+    "num_buses": 0,
+    "num_services": 3,
+    "dockers": [
+        {
+            "path": "/kubernetes/ruby/container/Dockerfile",
+            "from": "ruby",
+            "langs": [
+                "ruby"
+            ],
+            "cmd": "ruby server.rb",
+            "servers": [],
+            "from_full": "ruby:2.5",
+            "keywords": [
+                "bundle",
+                "global",
+                "config",
+                "install",
+                "frozen"
+            ],
+            "cmd_keywords": [
+                "server",
+                "ruby"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/Dockerfile",
+            "from": "node",
+            "langs": [],
+            "cmd": "node server.js",
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:10",
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "cmd_keywords": [
+                "node",
+                "server"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/Neo4j/Dockerfile",
+            "from": "neo4j",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "neo4j:3.0",
+            "keywords": [],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [
+                "neo4j"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/reports-service/Dockerfile",
+            "from": "python",
+            "langs": [
+                "python"
+            ],
+            "cmd": "",
+            "servers": [],
+            "from_full": "python:3.5-alpine",
+            "keywords": [
+                "pip",
+                "txt",
+                "install",
+                "requirements"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/SQL/Dockerfile",
+            "from": "mysql",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "mysql:latest",
+            "keywords": [],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [
+                "mysql"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/orders-service/Dockerfile",
+            "from": "golang",
+            "langs": [
+                "golang"
+            ],
+            "cmd": "./main",
+            "servers": [],
+            "from_full": "golang:latest",
+            "keywords": [
+                "main",
+                "build"
+            ],
+            "cmd_keywords": [
+                "main"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/catalog-service/Dockerfile",
+            "from": "node",
+            "langs": [],
+            "cmd": "node app.js",
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:latest",
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "cmd_keywords": [
+                "node",
+                "app"
+            ],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/users-service/Dockerfile",
+            "from": "ruby",
+            "langs": [
+                "ruby"
+            ],
+            "cmd": "",
+            "servers": [],
+            "from_full": "ruby:latest",
+            "keywords": [
+                "get",
+                "install",
+                "apt",
+                "dev",
+                "bundle"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "num_langs": 5,
+    "langs": [
+        "go",
+        "python",
+        "tsql",
+        "ruby",
+        "golang"
+    ],
+    "discos": [],
+    "num_gates": 1,
+    "num_monitors": 0,
+    "num_files": 62,
+    "files": [
+        {
+            "path": "/reports-service/src/requirements.txt",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "flask"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/cookie/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/finalhandler/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/forwarded/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/toidentifier/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/destroy/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/unpipe/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/on-finished/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/serve-static/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/fresh/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/cookie-signature/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/body-parser/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/content-disposition/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/inherits/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/setprototypeof/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/proxy-addr/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/mime-db/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [
+                "nginx"
+            ],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/encodeurl/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/send/package.json"
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/send/node_modules/ms/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/path-to-regexp/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/type-is/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/merge-descriptors/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/accepts/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/safer-buffer/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/bytes/package.json"
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/ee-first/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/methods/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/debug/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/range-parser/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/media-typer/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/depd/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/utils-merge/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/etag/package.json"
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/iconv-lite/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/mime/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/array-flatten/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/escape-html/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/negotiator/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/statuses/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [
+                "nginx"
+            ],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/qs/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/mime-types/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/vary/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/express/package.json",
+            "monitors": [],
+            "dbs": [
+                "redis"
+            ],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/http-errors/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/safe-buffer/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/parseurl/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/ms/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/raw-body/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/content-type/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/kubernetes/test/container/node_modules/ipaddr.js/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/catalog-service/package.json",
+            "monitors": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "shared_dbs": true,
+    "monitors": [],
+    "num_servers": 3,
+    "url": "git://github.com/ChrisArreFall/Docker-containers-with-microservices.git",
+    "dbs": [
+        "redis",
+        "sql",
+        "neo4j",
+        "mysql"
+    ],
+    "num_discos": 0,
+    "gates": [
+        "nginx"
+    ],
+    "buses": []
+}

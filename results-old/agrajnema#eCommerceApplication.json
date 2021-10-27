@@ -1,0 +1,192 @@
+{
+    "size": 8729,
+    "num_dockers": 2,
+    "discos": [],
+    "num_files": 3,
+    "avg_size_service": 4364.5,
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_gates": 0,
+    "langs": [
+        "c#",
+        "html"
+    ],
+    "num_discos": 0,
+    "num_monitors": 0,
+    "dockers": [
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "base",
+            "path": "/OrderManagementApi/Dockerfile",
+            "keywords": [
+                "ordermanagementapi",
+                "csproj",
+                "dotnet",
+                "app",
+                "release"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "base"
+        },
+        {
+            "monitors": [],
+            "cmd": "",
+            "discos": [],
+            "servers": [],
+            "cmd_keywords": [],
+            "from": "mcr.microsoft.com/dotnet/core/aspnet",
+            "path": "/CustomerManagementApi/Dockerfile",
+            "keywords": [
+                "dotnet",
+                "release",
+                "publish",
+                "restore",
+                "output"
+            ],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "dbs": [],
+            "from_full": "mcr.microsoft.com/dotnet/core/aspnet:3.1"
+        }
+    ],
+    "num_dbs": 0,
+    "monitors": [],
+    "shared_dbs": false,
+    "structure": {
+        "services": [
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "djfarrelly/maildev",
+                "image_full": "djfarrelly/maildev",
+                "discos": [],
+                "name": "mail",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "customermanagementapi",
+                "image_full": "customermanagementapi",
+                "discos": [],
+                "name": "customermanagementapi",
+                "depends_on": [
+                    "rabbitmq",
+                    "ms-sql-server"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "image": "rabbitmq",
+                "image_full": "rabbitmq:3-management",
+                "discos": [],
+                "name": "rabbitmq",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "emailnotificationservice",
+                "image_full": "emailnotificationservice",
+                "discos": [],
+                "name": "emailnotificationservice",
+                "depends_on": [
+                    "rabbitmq",
+                    "mail"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "mcr.microsoft.com/mssql/server",
+                "image_full": "mcr.microsoft.com/mssql/server:2017-latest-ubuntu",
+                "discos": [],
+                "name": "ms-sql-server",
+                "depends_on": [],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "ocelotapigateway",
+                "image_full": "ocelotapigateway",
+                "discos": [],
+                "name": "ocelotapigateway",
+                "depends_on": [
+                    "productmanagementapi",
+                    "ms-sql-server"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            },
+            {
+                "monitors": [],
+                "buses": [],
+                "image": "productmanagementapi",
+                "image_full": "productmanagementapi",
+                "discos": [],
+                "name": "productmanagementapi",
+                "depends_on": [
+                    "rabbitmq",
+                    "ms-sql-server"
+                ],
+                "dbs": [],
+                "servers": [],
+                "gates": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        },
+        "num_services": 7,
+        "path": "/docker-compose.yml"
+    },
+    "num_buses": 1,
+    "servers": [],
+    "url": "git://github.com/agrajnema/eCommerceApplication.git",
+    "num_services": 7,
+    "gates": [],
+    "files": [],
+    "name": "agrajnema/eCommerceApplication",
+    "languages": [
+        "c#",
+        "html"
+    ],
+    "images": [
+        "mcr.microsoft.com/dotnet/core/aspnet",
+        "base"
+    ],
+    "dbs": [],
+    "num_servers": 0,
+    "num_langs": 2
+}

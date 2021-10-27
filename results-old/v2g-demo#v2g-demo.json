@@ -1,0 +1,176 @@
+{
+    "gates": [],
+    "num_buses": 0,
+    "url": "git://github.com/v2g-demo/v2g-demo.git",
+    "images": [
+        "alpine"
+    ],
+    "avg_size_service": 886.0,
+    "num_langs": 2,
+    "num_monitors": 0,
+    "num_dockers": 1,
+    "num_discos": 0,
+    "num_servers": 2,
+    "buses": [],
+    "discos": [],
+    "dockers": [
+        {
+            "path": "/Dockerfile",
+            "cmd_keywords": [
+                "jar",
+                "app",
+                "application",
+                "spring",
+                "config"
+            ],
+            "discos": [],
+            "gates": [],
+            "dbs": [
+                "sql"
+            ],
+            "from": "alpine",
+            "langs": [
+                "java"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "cmd": "-jar /app.jar --spring.config.location=classpath:/application-docker.properties",
+            "from_full": "alpine",
+            "monitors": [],
+            "keywords": [
+                "java",
+                "jdk",
+                "management",
+                "man",
+                "jgss"
+            ],
+            "buses": []
+        }
+    ],
+    "size": 886,
+    "name": "v2g-demo/v2g-demo",
+    "num_services": 4,
+    "dbs": [
+        "mysql",
+        "postgresql",
+        "sql",
+        "redis"
+    ],
+    "shared_dbs": false,
+    "langs": [
+        "typescript",
+        "java"
+    ],
+    "languages": [
+        "java",
+        "typescript"
+    ],
+    "servers": [
+        "spring",
+        "node"
+    ],
+    "num_files": 4,
+    "monitors": [],
+    "num_dbs": 4,
+    "num_gates": 0,
+    "files": [
+        {
+            "path": "/backend/pom.xml",
+            "servers": [
+                "spring"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "dbs": [
+                "mysql",
+                "postgresql",
+                "redis"
+            ],
+            "buses": []
+        },
+        {
+            "path": "/package.json",
+            "servers": [
+                "node"
+            ],
+            "discos": [],
+            "monitors": [],
+            "gates": [],
+            "dbs": [],
+            "buses": []
+        }
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 4,
+        "detected_dbs": {
+            "services": [
+                "redis"
+            ],
+            "num": 1,
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "postgres:9.5-alpine",
+                "name": "db",
+                "gates": [],
+                "image": "postgres",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [],
+                "servers": [],
+                "image_full": "redis:5-alpine",
+                "name": "redis",
+                "gates": [],
+                "image": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "db",
+                    "redis"
+                ],
+                "servers": [],
+                "image_full": "bronin/v2gdemo:latest",
+                "name": "v2gdemo",
+                "gates": [],
+                "image": "bronin/v2gdemo",
+                "dbs": [],
+                "buses": []
+            },
+            {
+                "discos": [],
+                "monitors": [],
+                "depends_on": [
+                    "db"
+                ],
+                "servers": [],
+                "image_full": "adminer",
+                "name": "adminer",
+                "gates": [],
+                "image": "adminer",
+                "dbs": [],
+                "buses": []
+            }
+        ]
+    }
+}

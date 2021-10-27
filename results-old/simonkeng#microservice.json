@@ -1,0 +1,175 @@
+{
+    "size": 42,
+    "avg_size_service": 21.0,
+    "name": "simonkeng/microservice",
+    "languages": [
+        "python",
+        "tsql",
+        "dockerfile"
+    ],
+    "servers": [
+        "flask"
+    ],
+    "num_dbs": 1,
+    "images": [
+        "nginx",
+        "python"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 4,
+        "services": [
+            {
+                "depends_on": [],
+                "image_full": "redis:alpine",
+                "monitors": [],
+                "name": "redis",
+                "image": "redis",
+                "servers": [],
+                "buses": [],
+                "dbs": [
+                    "redis"
+                ],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "web"
+                ],
+                "image_full": "nginx/",
+                "monitors": [],
+                "name": "nginx",
+                "image": "nginx/",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [
+                    "nginx"
+                ],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "postgres",
+                "monitors": [],
+                "name": "postgres",
+                "image": "postgres",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "redis",
+                    "postgres"
+                ],
+                "image_full": "./web",
+                "monitors": [],
+                "name": "web",
+                "image": "./web",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [
+                "redis"
+            ],
+            "names": [
+                "redis"
+            ],
+            "shared_dbs": false,
+            "num": 1
+        }
+    },
+    "num_dockers": 2,
+    "num_buses": 0,
+    "num_services": 4,
+    "dockers": [
+        {
+            "path": "/nginx/Dockerfile",
+            "from": "nginx",
+            "langs": [],
+            "cmd": "",
+            "servers": [],
+            "from_full": "nginx",
+            "keywords": [],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [
+                "nginx"
+            ],
+            "discos": []
+        },
+        {
+            "path": "/web/Dockerfile",
+            "from": "python",
+            "langs": [
+                "python"
+            ],
+            "cmd": "",
+            "servers": [
+                "flask"
+            ],
+            "from_full": "python",
+            "keywords": [
+                "flask",
+                "all",
+                "flaskgroup",
+                "home",
+                "install"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "num_langs": 3,
+    "langs": [
+        "dockerfile",
+        "python",
+        "tsql"
+    ],
+    "discos": [],
+    "num_gates": 1,
+    "num_monitors": 0,
+    "num_files": 4,
+    "files": [
+        {
+            "path": "/web/requirements.txt",
+            "monitors": [],
+            "dbs": [
+                "redis"
+            ],
+            "buses": [],
+            "servers": [
+                "flask"
+            ],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_servers": 1,
+    "url": "git://github.com/simonkeng/microservice.git",
+    "dbs": [
+        "redis"
+    ],
+    "num_discos": 0,
+    "gates": [
+        "nginx"
+    ],
+    "buses": []
+}

@@ -1,0 +1,318 @@
+{
+    "size": 13505,
+    "num_monitors": 0,
+    "num_discos": 0,
+    "shared_dbs": false,
+    "langs": [
+        "gcc",
+        "go"
+    ],
+    "buses": [
+        "nats"
+    ],
+    "num_langs": 2,
+    "num_dbs": 0,
+    "discos": [],
+    "avg_size_service": 4501.666666666667,
+    "images": [
+        "nginx",
+        "alpine",
+        "postgres"
+    ],
+    "gates": [
+        "nginx",
+        "zuul"
+    ],
+    "dockers": [
+        {
+            "monitors": [],
+            "from": "alpine",
+            "langs": [
+                "gcc"
+            ],
+            "servers": [],
+            "buses": [],
+            "cmd_keywords": [],
+            "cmd": "",
+            "path": "/Dockerfile",
+            "keywords": [
+                "gcc",
+                "add",
+                "cache",
+                "install",
+                "certificates"
+            ],
+            "dbs": [],
+            "gates": [],
+            "from_full": "alpine:3.7",
+            "discos": []
+        },
+        {
+            "monitors": [],
+            "from": "postgres",
+            "langs": [],
+            "servers": [],
+            "buses": [],
+            "cmd_keywords": [
+                "postgres"
+            ],
+            "cmd": "postgres",
+            "path": "/postgres/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "gates": [],
+            "from_full": "postgres:10.3",
+            "discos": []
+        },
+        {
+            "monitors": [],
+            "from": "nginx",
+            "langs": [],
+            "servers": [],
+            "buses": [],
+            "cmd_keywords": [
+                "off",
+                "nginx",
+                "daemon"
+            ],
+            "cmd": "nginx -g daemon off;",
+            "path": "/nginx/Dockerfile",
+            "keywords": [],
+            "dbs": [],
+            "gates": [
+                "nginx"
+            ],
+            "from_full": "nginx:1.13.12",
+            "discos": []
+        }
+    ],
+    "structure": {
+        "detected_dbs": {
+            "num": 0,
+            "shared_dbs": false,
+            "services": [],
+            "names": []
+        },
+        "services": [
+            {
+                "image": ".",
+                "depends_on": [
+                    "postgres",
+                    "nats"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": ".",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "meow"
+            },
+            {
+                "image": "nats-streaming",
+                "depends_on": [],
+                "discos": [],
+                "monitors": [],
+                "image_full": "nats-streaming:0.9.2",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [
+                    "nats"
+                ],
+                "name": "nats"
+            },
+            {
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "depends_on": [],
+                "discos": [],
+                "monitors": [],
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:6.2.3",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "elasticsearch"
+            },
+            {
+                "image": "./nginx",
+                "depends_on": [
+                    "meow",
+                    "query",
+                    "pusher"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": "./nginx",
+                "gates": [
+                    "nginx"
+                ],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "nginx"
+            },
+            {
+                "image": "./postgres",
+                "depends_on": [],
+                "discos": [],
+                "monitors": [],
+                "image_full": "./postgres",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "postgres"
+            },
+            {
+                "image": ".",
+                "depends_on": [
+                    "nats"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": ".",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "pusher"
+            },
+            {
+                "image": ".",
+                "depends_on": [
+                    "postgres",
+                    "nats"
+                ],
+                "discos": [],
+                "monitors": [],
+                "image_full": ".",
+                "gates": [],
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "name": "query"
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "num_services": 7
+    },
+    "num_dockers": 3,
+    "num_files": 13,
+    "num_services": 7,
+    "num_gates": 2,
+    "name": "HectorBarrios/go-microservices-cqrs-docker",
+    "url": "git://github.com/HectorBarrios/go-microservices-cqrs-docker.git",
+    "monitors": [],
+    "servers": [
+        "node",
+        "express"
+    ],
+    "dbs": [],
+    "num_servers": 2,
+    "num_buses": 1,
+    "files": [
+        {
+            "path": "/package.json",
+            "monitors": [],
+            "dbs": [],
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "discos": []
+        },
+        {
+            "path": "/node_modules/follow-redirects/package.json",
+            "monitors": [],
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "node",
+                "express"
+            ],
+            "buses": [],
+            "discos": []
+        },
+        {
+            "path": "/node_modules/is-buffer/package.json",
+            "monitors": [],
+            "dbs": [],
+            "gates": [
+                "zuul"
+            ],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "discos": []
+        },
+        {
+            "path": "/node_modules/timeago.js/package.json",
+            "monitors": [],
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "discos": []
+        },
+        {
+            "path": "/node_modules/vue-native-websocket/package.json",
+            "monitors": [],
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "discos": []
+        },
+        {
+            "path": "/node_modules/bootstrap/package.json",
+            "monitors": [],
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "discos": []
+        },
+        {
+            "path": "/node_modules/debug/package.json",
+            "monitors": [],
+            "dbs": [],
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "discos": []
+        },
+        {
+            "path": "/node_modules/axios/package.json",
+            "monitors": [],
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "discos": []
+        },
+        {
+            "path": "/node_modules/ms/package.json",
+            "monitors": [],
+            "dbs": [],
+            "gates": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "discos": []
+        }
+    ],
+    "languages": [
+        "go"
+    ]
+}

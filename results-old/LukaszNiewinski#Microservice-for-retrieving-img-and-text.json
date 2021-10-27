@@ -1,0 +1,234 @@
+{
+    "name": "LukaszNiewinski/Microservice-for-retrieving-img-and-text",
+    "num_dbs": 1,
+    "num_services": 4,
+    "num_files": 8,
+    "servers": [
+        "zope",
+        "flask"
+    ],
+    "url": "git://github.com/LukaszNiewinski/Microservice-for-retrieving-img-and-text.git",
+    "discos": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "name": "img_retrieve",
+                "image_full": "./img_retrieve",
+                "image": "./img_retrieve",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "text_retrieve",
+                "image_full": "./text_retrieve",
+                "image": "./text_retrieve",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "webpage",
+                "image_full": "./webpage",
+                "image": "./webpage",
+                "servers": [],
+                "depends_on": [
+                    "db",
+                    "text_retrieve",
+                    "img_retrieve"
+                ],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            },
+            {
+                "name": "db",
+                "image_full": "postgres:12.0-alpine",
+                "image": "postgres",
+                "servers": [],
+                "depends_on": [],
+                "gates": [],
+                "discos": [],
+                "dbs": [],
+                "buses": [],
+                "monitors": []
+            }
+        ],
+        "detected_dbs": {
+            "shared_dbs": false,
+            "services": [],
+            "num": 0,
+            "names": []
+        },
+        "num_services": 4
+    },
+    "num_buses": 0,
+    "size": 35,
+    "dockers": [
+        {
+            "cmd": "python api_img.py",
+            "servers": [],
+            "langs": [
+                "python"
+            ],
+            "path": "/img_retrieve/Dockerfile",
+            "discos": [],
+            "from": "python",
+            "buses": [],
+            "from_full": "python:3.7.6-slim-buster",
+            "cmd_keywords": [
+                "api",
+                "img",
+                "python"
+            ],
+            "keywords": [
+                "requirements",
+                "dir",
+                "txt",
+                "pip",
+                "install"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        },
+        {
+            "cmd": "python run.py",
+            "servers": [],
+            "langs": [
+                "python"
+            ],
+            "path": "/webpage/Dockerfile",
+            "discos": [],
+            "from": "python",
+            "buses": [],
+            "from_full": "python:3.8.0-alpine",
+            "cmd_keywords": [
+                "run",
+                "python"
+            ],
+            "keywords": [
+                "pip",
+                "dev",
+                "apk",
+                "install",
+                "postgresql"
+            ],
+            "gates": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "monitors": []
+        },
+        {
+            "cmd": "python api_text.py",
+            "servers": [],
+            "langs": [
+                "python"
+            ],
+            "path": "/text_retrieve/Dockerfile",
+            "discos": [],
+            "from": "python",
+            "buses": [],
+            "from_full": "python:3.7.6-slim-buster",
+            "cmd_keywords": [
+                "text",
+                "api",
+                "python"
+            ],
+            "keywords": [
+                "requirements",
+                "dir",
+                "txt",
+                "pip",
+                "install"
+            ],
+            "gates": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "languages": [
+        "python",
+        "html"
+    ],
+    "dbs": [
+        "postgresql"
+    ],
+    "monitors": [],
+    "shared_dbs": false,
+    "avg_size_service": 11.666666666666666,
+    "num_monitors": 0,
+    "files": [
+        {
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/requirements.txt",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "zope",
+                "flask"
+            ],
+            "path": "/img_retrieve/requirements.txt",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/webpage/requirements.txt",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        },
+        {
+            "monitors": [],
+            "servers": [
+                "flask"
+            ],
+            "path": "/text_retrieve/requirements.txt",
+            "discos": [],
+            "dbs": [],
+            "gates": [],
+            "buses": []
+        }
+    ],
+    "langs": [
+        "html",
+        "python"
+    ],
+    "num_servers": 2,
+    "buses": [],
+    "num_langs": 2,
+    "num_gates": 0,
+    "num_discos": 0,
+    "images": [
+        "python"
+    ],
+    "num_dockers": 3,
+    "gates": []
+}

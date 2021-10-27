@@ -1,0 +1,183 @@
+{
+    "size": 32,
+    "avg_size_service": 10.666666666666666,
+    "name": "quan-vu/microservices-rabbitmq",
+    "languages": [
+        "shell",
+        "dockerfile",
+        "go"
+    ],
+    "servers": [
+        "flask"
+    ],
+    "num_dbs": 1,
+    "images": [
+        "buildpack-deps",
+        "debian"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 3,
+        "services": [
+            {
+                "depends_on": [
+                    "rabbitmq-server"
+                ],
+                "image_full": "./go-service",
+                "monitors": [],
+                "name": "go-service",
+                "image": "./go-service",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [
+                    "rabbitmq-server"
+                ],
+                "image_full": "./python-service",
+                "monitors": [],
+                "name": "python-service",
+                "image": "./python-service",
+                "servers": [],
+                "buses": [],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            },
+            {
+                "depends_on": [],
+                "image_full": "rabbitmq",
+                "monitors": [],
+                "name": "rabbitmq-server",
+                "image": "rabbitmq",
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "gates": [],
+                "discos": []
+            }
+        ],
+        "detected_dbs": {
+            "services": [],
+            "names": [],
+            "shared_dbs": false,
+            "num": 0
+        }
+    },
+    "num_dockers": 3,
+    "num_buses": 2,
+    "num_services": 3,
+    "dockers": [
+        {
+            "path": "/python-service/Dockerfile",
+            "from": "debian",
+            "langs": [
+                "gcc"
+            ],
+            "cmd": "",
+            "servers": [
+                "flask"
+            ],
+            "from_full": "debian:stretch-slim",
+            "keywords": [
+                "python",
+                "dev",
+                "get",
+                "apt",
+                "pip"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [],
+            "dbs": [
+                "sqlite"
+            ],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/rabbitmq-server/Dockerfile",
+            "from": "debian",
+            "langs": [
+                "erlang"
+            ],
+            "cmd": "rabbitmq-server",
+            "servers": [],
+            "from_full": "debian:stretch-slim",
+            "keywords": [
+                "rabbitmq",
+                "apt",
+                "erlang",
+                "install",
+                "server"
+            ],
+            "cmd_keywords": [
+                "rabbitmq",
+                "server"
+            ],
+            "monitors": [],
+            "buses": [
+                "rabbitmq"
+            ],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        },
+        {
+            "path": "/go-service/Dockerfile",
+            "from": "buildpack-deps",
+            "langs": [
+                "gcc"
+            ],
+            "cmd": "",
+            "servers": [],
+            "from_full": "buildpack-deps:stretch-scm",
+            "keywords": [
+                "gorelarch",
+                "echo",
+                "gorelsha",
+                "linux",
+                "tgz"
+            ],
+            "cmd_keywords": [],
+            "monitors": [],
+            "buses": [
+                "amqp"
+            ],
+            "dbs": [],
+            "gates": [],
+            "discos": []
+        }
+    ],
+    "num_langs": 5,
+    "langs": [
+        "gcc",
+        "shell",
+        "erlang",
+        "dockerfile",
+        "go"
+    ],
+    "discos": [],
+    "num_gates": 0,
+    "num_monitors": 0,
+    "num_files": 4,
+    "files": [],
+    "shared_dbs": false,
+    "monitors": [],
+    "num_servers": 1,
+    "url": "git://github.com/quan-vu/microservices-rabbitmq.git",
+    "dbs": [
+        "sqlite"
+    ],
+    "num_discos": 0,
+    "gates": [],
+    "buses": [
+        "rabbitmq",
+        "amqp"
+    ]
+}

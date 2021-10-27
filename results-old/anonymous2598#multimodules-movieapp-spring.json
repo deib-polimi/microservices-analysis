@@ -1,0 +1,324 @@
+{
+    "size": 353,
+    "shared_dbs": false,
+    "num_servers": 1,
+    "name": "anonymous2598/multimodules-movieapp-spring",
+    "files": [
+        {
+            "gates": [
+                "gateway"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/pom.xml",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [
+                "zuul",
+                "gateway"
+            ],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/api-gateway/pom.xml",
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/movie-microservice/pom.xml",
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/serviceregistry/pom.xml",
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "gates": [],
+            "dbs": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/configserver/pom.xml",
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "gates": [],
+            "dbs": [
+                "mysql"
+            ],
+            "buses": [],
+            "servers": [
+                "spring"
+            ],
+            "path": "/user-microservice/pom.xml",
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        }
+    ],
+    "num_files": 12,
+    "num_langs": 1,
+    "dbs": [
+        "mongo",
+        "mysql"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "num_discos": 1,
+    "url": "git://github.com/anonymous2598/multimodules-movieapp-spring.git",
+    "gates": [
+        "zuul"
+    ],
+    "structure": {
+        "services": [
+            {
+                "image": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "image_full": "mongo:3.4-xenial",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "mongo-container",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "movie-service",
+                "dbs": [],
+                "image_full": "movie-service:1.0.0",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "movie-container",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo-container",
+                    "eureka-container",
+                    "config-container"
+                ]
+            },
+            {
+                "image": "user-service",
+                "dbs": [],
+                "image_full": "user-service:1.0.0",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "user-container",
+                "gates": [],
+                "discos": [],
+                "depends_on": [
+                    "mysql-container",
+                    "eureka-container",
+                    "config-container"
+                ]
+            },
+            {
+                "image": "eureka-server",
+                "dbs": [],
+                "image_full": "eureka-server:1.0.0",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "eureka-container",
+                "gates": [],
+                "discos": [
+                    "eureka"
+                ],
+                "depends_on": []
+            },
+            {
+                "image": "config-server",
+                "dbs": [],
+                "image_full": "config-server:1.0.0",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "config-container",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "mysql",
+                "dbs": [
+                    "mysql"
+                ],
+                "image_full": "mysql:latest",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "mysql-container",
+                "gates": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "image": "api-gateway",
+                "dbs": [],
+                "image_full": "api-gateway:1.0.0",
+                "buses": [],
+                "servers": [],
+                "monitors": [],
+                "name": "gateway-container",
+                "gates": [
+                    "gateway"
+                ],
+                "discos": [],
+                "depends_on": [
+                    "user-container",
+                    "movie-container"
+                ]
+            }
+        ],
+        "num_services": 7,
+        "detected_dbs": {
+            "num": 2,
+            "names": [
+                "mongo",
+                "mysql"
+            ],
+            "services": [
+                "mongo-container",
+                "mysql-container"
+            ],
+            "shared_dbs": false
+        },
+        "path": "/docker-compose.yml"
+    },
+    "num_gates": 1,
+    "num_dockers": 5,
+    "num_dbs": 2,
+    "num_services": 7,
+    "langs": [
+        "java"
+    ],
+    "buses": [],
+    "num_buses": 0,
+    "num_monitors": 0,
+    "languages": [
+        "java"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "monitors": [],
+            "from_full": "openjdk:11",
+            "servers": [],
+            "path": "/api-gateway/Dockerfile",
+            "dbs": [],
+            "keywords": [],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "monitors": [],
+            "from_full": "openjdk:11",
+            "servers": [],
+            "path": "/movie-microservice/Dockerfile",
+            "dbs": [],
+            "keywords": [],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "monitors": [],
+            "from_full": "openjdk:11",
+            "servers": [],
+            "path": "/serviceregistry/Dockerfile",
+            "dbs": [],
+            "keywords": [],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "monitors": [],
+            "from_full": "openjdk:11",
+            "servers": [],
+            "path": "/configserver/Dockerfile",
+            "dbs": [],
+            "keywords": [],
+            "discos": []
+        },
+        {
+            "cmd_keywords": [],
+            "cmd": "",
+            "gates": [],
+            "buses": [],
+            "langs": [],
+            "from": "openjdk",
+            "monitors": [],
+            "from_full": "openjdk:11",
+            "servers": [],
+            "path": "/user-microservice/Dockerfile",
+            "dbs": [],
+            "keywords": [],
+            "discos": []
+        }
+    ],
+    "monitors": [],
+    "avg_size_service": 70.6,
+    "discos": [
+        "eureka"
+    ],
+    "images": [
+        "openjdk"
+    ]
+}

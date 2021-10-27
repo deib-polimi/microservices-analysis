@@ -1,0 +1,371 @@
+{
+    "size": 5787,
+    "num_servers": 1,
+    "dbs": [
+        "virtuoso"
+    ],
+    "files": [
+        {
+            "path": "/requirements.txt",
+            "gates": [],
+            "servers": [],
+            "buses": [],
+            "discos": [],
+            "dbs": [],
+            "monitors": []
+        }
+    ],
+    "structure": {
+        "num_services": 19,
+        "services": [
+            {
+                "name": "kpisapi",
+                "image": "./kpis",
+                "depends_on": [
+                    "db:database"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "./kpis",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "hierarchyapi",
+                "image": "./hierarchy",
+                "depends_on": [
+                    "db:database"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "./hierarchy",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "indexer",
+                "image": "./delta-based-indexer",
+                "depends_on": [
+                    "solr:solr",
+                    "db:database"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "./delta-based-indexer",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "application",
+                "image": "Dockerfile.real",
+                "depends_on": [
+                    "frontend:backend",
+                    "db:db"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "Dockerfile.real",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "resource",
+                "image": "semtech/mu-cache",
+                "depends_on": [
+                    "resourcebackend:backend"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "semtech/mu-cache:0.4.0",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "narrower-handler",
+                "image": "./narrower-handler",
+                "depends_on": [
+                    "db:database"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "./narrower-handler",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "frontend",
+                "image": "semtech/mu-nginx-spa-proxy",
+                "depends_on": [
+                    "dispatcher:backend"
+                ],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "servers": [],
+                "image_full": "semtech/mu-nginx-spa-proxy",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "publisher",
+                "image": "./publisher",
+                "depends_on": [
+                    "db:database"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "./publisher",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "login",
+                "image": "./login",
+                "depends_on": [
+                    "db:database"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "./login",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "cleanup",
+                "image": "./clean-up-microservice",
+                "depends_on": [
+                    "db:database"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "./clean-up-microservice",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "dictionary",
+                "image": "./dictionary",
+                "depends_on": [
+                    "db:database"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "./dictionary",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "resourcebackend",
+                "image": "semtech/mu-cl-resources",
+                "depends_on": [
+                    "delta:database"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "semtech/mu-cl-resources:overeager-caching-tests",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "validation",
+                "image": "./validation",
+                "depends_on": [
+                    "db:database"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "./validation",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "frontend-dist",
+                "image": "./client",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "./client",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "solr",
+                "image": "./solr-docker",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "./solr-docker",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "db",
+                "image": "tenforce/virtuoso",
+                "depends_on": [],
+                "buses": [],
+                "gates": [],
+                "servers": [
+                    "virtuoso"
+                ],
+                "image_full": "tenforce/virtuoso:1.1.1-virtuoso7.2.4",
+                "discos": [],
+                "dbs": [
+                    "virtuoso"
+                ],
+                "monitors": []
+            },
+            {
+                "name": "delta",
+                "image": "./mu-delta-service",
+                "depends_on": [
+                    "db:db"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "./mu-delta-service",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "dispatcher",
+                "image": "semtech/mu-dispatcher",
+                "depends_on": [
+                    "resource:resource",
+                    "login:login",
+                    "hierarchyapi:hierarchyapi",
+                    "kpisapi:kpisapi",
+                    "dictionary:dictionary",
+                    "validation:validation",
+                    "indexer:indexer",
+                    "cleanup:cleanup",
+                    "publisher:publisher"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "semtech/mu-dispatcher:1.0.1",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            },
+            {
+                "name": "scheduler",
+                "image": "./mu-java-scheduler",
+                "depends_on": [
+                    "dispatcher:dispatcher"
+                ],
+                "buses": [],
+                "gates": [],
+                "servers": [],
+                "image_full": "./mu-java-scheduler",
+                "discos": [],
+                "dbs": [],
+                "monitors": []
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "virtuoso"
+            ],
+            "shared_dbs": false,
+            "services": [
+                "db"
+            ]
+        }
+    },
+    "buses": [],
+    "images": [
+        "python"
+    ],
+    "num_discos": 0,
+    "url": "git://github.com/big-data-europe/mu-har-transformation-service.git",
+    "num_services": 19,
+    "langs": [
+        "python"
+    ],
+    "discos": [],
+    "num_gates": 1,
+    "shared_dbs": false,
+    "num_files": 3,
+    "num_monitors": 0,
+    "gates": [
+        "nginx"
+    ],
+    "servers": [
+        "virtuoso"
+    ],
+    "num_langs": 1,
+    "languages": [
+        "python"
+    ],
+    "monitors": [],
+    "name": "big-data-europe/mu-har-transformation-service",
+    "num_buses": 0,
+    "avg_size_service": 5787.0,
+    "dockers": [
+        {
+            "path": "/Dockerfile",
+            "gates": [],
+            "servers": [],
+            "langs": [
+                "python"
+            ],
+            "cmd": "python pcap-har-watcher.py",
+            "keywords": [
+                "requirements",
+                "txt",
+                "install",
+                "mkdir",
+                "then"
+            ],
+            "from": "python",
+            "buses": [],
+            "from_full": "python:2.7",
+            "discos": [],
+            "dbs": [],
+            "monitors": [],
+            "cmd_keywords": [
+                "watcher",
+                "python",
+                "pcap",
+                "har"
+            ]
+        }
+    ],
+    "num_dbs": 1,
+    "num_dockers": 1
+}

@@ -1,0 +1,393 @@
+{
+    "languages": [
+        "go",
+        "javascript"
+    ],
+    "num_servers": 3,
+    "shared_dbs": true,
+    "name": "rizalhamdana/thesis-microservice-project",
+    "servers": [
+        "flask",
+        "node",
+        "express"
+    ],
+    "num_monitors": 0,
+    "num_langs": 3,
+    "images": [
+        "alpine",
+        "node",
+        "python"
+    ],
+    "langs": [
+        "javascript",
+        "go",
+        "python"
+    ],
+    "dockers": [
+        {
+            "cmd_keywords": [
+                "app",
+                "python"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "cmd": "python ./app.py",
+            "keywords": [
+                "apk",
+                "dev",
+                "musl",
+                "gcc",
+                "txt"
+            ],
+            "path": "/auth-service/Dockerfile",
+            "gates": [],
+            "from": "python",
+            "from_full": "python:3.7-alpine3.11",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "index",
+                "node"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "node index.js",
+            "keywords": [
+                "install",
+                "npm"
+            ],
+            "path": "/api-gateway/Dockerfile",
+            "gates": [],
+            "from": "node",
+            "from_full": "node:10",
+            "servers": [
+                "node"
+            ],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "main"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "./main",
+            "keywords": [
+                "apk",
+                "cgo",
+                "add",
+                "cache",
+                "main"
+            ],
+            "path": "/family-service/Dockerfile",
+            "gates": [],
+            "from": "alpine",
+            "from_full": "alpine:latest",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "main"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "./main",
+            "keywords": [
+                "apk",
+                "cgo",
+                "add",
+                "cache",
+                "main"
+            ],
+            "path": "/married-service/Dockerfile",
+            "gates": [],
+            "from": "alpine",
+            "from_full": "alpine:latest",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "app",
+                "python"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [
+                "python"
+            ],
+            "cmd": "python ./app.py",
+            "keywords": [
+                "apk",
+                "dev",
+                "musl",
+                "gcc",
+                "txt"
+            ],
+            "path": "/admin-service/Dockerfile",
+            "gates": [],
+            "from": "python",
+            "from_full": "python:3.7-alpine3.11",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "main"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "./main",
+            "keywords": [
+                "apk",
+                "cgo",
+                "add",
+                "cache",
+                "main"
+            ],
+            "path": "/citizen-service/Dockerfile",
+            "gates": [],
+            "from": "alpine",
+            "from_full": "alpine:latest",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "cmd_keywords": [
+                "main"
+            ],
+            "dbs": [],
+            "buses": [],
+            "langs": [],
+            "cmd": "./main",
+            "keywords": [
+                "apk",
+                "cgo",
+                "add",
+                "cache",
+                "main"
+            ],
+            "path": "/birth-service/Dockerfile",
+            "gates": [],
+            "from": "alpine",
+            "from_full": "alpine:latest",
+            "servers": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "gates": [
+        "gateway"
+    ],
+    "num_buses": 1,
+    "discos": [],
+    "monitors": [],
+    "num_files": 11,
+    "structure": {
+        "path": "/docker-compose.yml",
+        "services": [
+            {
+                "image_full": "rizalhamdana/birth-service",
+                "depends_on": [
+                    "mongodb-server",
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "birth-api",
+                "image": "rizalhamdana/birth-service",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "rizalhamdana/married-service",
+                "depends_on": [
+                    "mongodb-server",
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "married-api",
+                "image": "rizalhamdana/married-service",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mysql:5.7",
+                "depends_on": [],
+                "dbs": [
+                    "mysql"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "mysql-server",
+                "image": "mysql",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "rabbitmq:3.8.2-management",
+                "depends_on": [],
+                "dbs": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "name": "rabbitmq",
+                "image": "rabbitmq",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "rizalhamdana/citizen-service",
+                "depends_on": [
+                    "mysql-server",
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "citizen-api",
+                "image": "rizalhamdana/citizen-service",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "mongo:4.2-bionic",
+                "depends_on": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "buses": [],
+                "gates": [],
+                "name": "mongodb-server",
+                "image": "mongo",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "phpmyadmin/phpmyadmin",
+                "depends_on": [
+                    "mysql-server"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "phpmyadmin",
+                "image": "phpmyadmin/phpmyadmin",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            },
+            {
+                "image_full": "rizalhamdana/family-service",
+                "depends_on": [
+                    "mongodb-server",
+                    "rabbitmq"
+                ],
+                "dbs": [],
+                "buses": [],
+                "gates": [],
+                "name": "family-api",
+                "image": "rizalhamdana/family-service",
+                "servers": [],
+                "discos": [],
+                "monitors": []
+            }
+        ],
+        "num_services": 8,
+        "detected_dbs": {
+            "services": [
+                "mysql-server",
+                "mongodb-server"
+            ],
+            "names": [
+                "mysql",
+                "mongo"
+            ],
+            "num": 2,
+            "shared_dbs": true
+        }
+    },
+    "dbs": [
+        "mysql",
+        "redis",
+        "mongo"
+    ],
+    "num_dbs": 3,
+    "avg_size_service": 2245.285714285714,
+    "num_services": 8,
+    "buses": [
+        "rabbitmq"
+    ],
+    "files": [
+        {
+            "dbs": [
+                "redis"
+            ],
+            "path": "/auth-service/requirements.txt",
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "path": "/admin-service/requirements.txt",
+            "gates": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "redis"
+            ],
+            "path": "/api-gateway/package.json",
+            "gates": [
+                "gateway"
+            ],
+            "servers": [
+                "express"
+            ],
+            "buses": [],
+            "discos": [],
+            "monitors": []
+        }
+    ],
+    "url": "git://github.com/rizalhamdana/thesis-microservice-project.git",
+    "num_dockers": 7,
+    "size": 15717,
+    "num_discos": 0,
+    "num_gates": 1
+}

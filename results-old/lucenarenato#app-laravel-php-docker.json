@@ -1,0 +1,165 @@
+{
+    "gates": [
+        "nginx"
+    ],
+    "num_gates": 1,
+    "size": 11,
+    "shared_dbs": false,
+    "num_services": 4,
+    "num_dbs": 1,
+    "name": "lucenarenato/app-laravel-php-docker",
+    "dbs": [
+        "redis"
+    ],
+    "buses": [],
+    "num_dockers": 2,
+    "images": [
+        "nginx",
+        "alpine"
+    ],
+    "monitors": [],
+    "files": [],
+    "structure": {
+        "detected_dbs": {
+            "services": [
+                "redis"
+            ],
+            "names": [
+                "redis"
+            ],
+            "num": 1,
+            "shared_dbs": false
+        },
+        "services": [
+            {
+                "gates": [],
+                "monitors": [],
+                "dbs": [],
+                "buses": [],
+                "depends_on": [
+                    "php-fpm"
+                ],
+                "image_full": "./caddy",
+                "image": "./caddy",
+                "servers": [
+                    "caddy"
+                ],
+                "discos": [],
+                "name": "webserver"
+            },
+            {
+                "gates": [],
+                "monitors": [],
+                "dbs": [
+                    "redis"
+                ],
+                "buses": [],
+                "depends_on": [],
+                "image_full": "redis:alpine",
+                "image": "redis",
+                "servers": [],
+                "discos": [],
+                "name": "redis"
+            },
+            {
+                "gates": [],
+                "monitors": [],
+                "dbs": [],
+                "buses": [],
+                "depends_on": [
+                    "database",
+                    "redis"
+                ],
+                "image_full": "petronetto/php7-alpine",
+                "image": "petronetto/php7-alpine",
+                "servers": [],
+                "discos": [],
+                "name": "php-fpm"
+            },
+            {
+                "gates": [],
+                "monitors": [],
+                "dbs": [],
+                "buses": [],
+                "depends_on": [],
+                "image_full": "postgres:alpine",
+                "image": "postgres",
+                "servers": [],
+                "discos": [],
+                "name": "database"
+            }
+        ],
+        "path": "/docker-compose.yml",
+        "num_services": 4
+    },
+    "servers": [
+        "caddy"
+    ],
+    "num_discos": 0,
+    "discos": [],
+    "num_monitors": 0,
+    "url": "git://github.com/lucenarenato/app-laravel-php-docker.git",
+    "langs": [
+        "dockerfile"
+    ],
+    "num_langs": 1,
+    "dockers": [
+        {
+            "gates": [
+                "nginx"
+            ],
+            "keywords": [
+                "nginx",
+                "cache",
+                "apk",
+                "etc",
+                "var"
+            ],
+            "discos": [],
+            "path": "/nginx/Dockerfile",
+            "langs": [],
+            "cmd_keywords": [],
+            "dbs": [],
+            "servers": [],
+            "cmd": "",
+            "from_full": "nginx:1.12-alpine",
+            "buses": [],
+            "from": "nginx",
+            "monitors": []
+        },
+        {
+            "gates": [],
+            "keywords": [
+                "caddy",
+                "application",
+                "usr",
+                "bin",
+                "tar"
+            ],
+            "discos": [],
+            "path": "/caddy/Dockerfile",
+            "langs": [],
+            "cmd_keywords": [
+                "etc",
+                "caddyfile",
+                "conf"
+            ],
+            "dbs": [],
+            "servers": [
+                "caddy"
+            ],
+            "cmd": "--conf /etc/Caddyfile",
+            "from_full": "alpine:3.7",
+            "buses": [],
+            "from": "alpine",
+            "monitors": []
+        }
+    ],
+    "avg_size_service": 5.5,
+    "languages": [
+        "dockerfile"
+    ],
+    "num_buses": 0,
+    "num_files": 3,
+    "num_servers": 1
+}

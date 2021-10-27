@@ -1,0 +1,429 @@
+{
+    "dbs": [
+        "postgresql"
+    ],
+    "discos": [],
+    "servers": [
+        "busybox",
+        "node",
+        "flask",
+        "spring",
+        "tomcat"
+    ],
+    "num_dockers": 10,
+    "structure": {
+        "path": "/job-frontend/docker-compose.yml",
+        "services": [
+            {
+                "dbs": [],
+                "discos": [],
+                "name": "minio",
+                "depends_on": [],
+                "image": "minio/minio",
+                "servers": [],
+                "gates": [],
+                "buses": [],
+                "monitors": [],
+                "image_full": "minio/minio:RELEASE.2020-04-02T21-34-49Z"
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "name": "master-api-server",
+                "depends_on": [
+                    "postgres",
+                    "rabbitmq",
+                    "minio"
+                ],
+                "image": "restfulci/job-master-api-server",
+                "servers": [],
+                "gates": [],
+                "buses": [],
+                "monitors": [],
+                "image_full": "restfulci/job-master-api-server:cfeba6e434fcc1a0432b6b6c51950339ede94ad4"
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "name": "frontend",
+                "depends_on": [
+                    "master-api-server"
+                ],
+                "image": "./Dockerfile",
+                "servers": [],
+                "gates": [],
+                "buses": [],
+                "monitors": [],
+                "image_full": "./Dockerfile"
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "name": "rabbitmq",
+                "depends_on": [],
+                "image": "rabbitmq",
+                "servers": [],
+                "gates": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "monitors": [],
+                "image_full": "rabbitmq:3.8.2-management"
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "name": "postgres",
+                "depends_on": [],
+                "image": "restfulci/job-postgres",
+                "servers": [],
+                "gates": [],
+                "buses": [],
+                "monitors": [],
+                "image_full": "restfulci/job-postgres:cfeba6e434fcc1a0432b6b6c51950339ede94ad4"
+            },
+            {
+                "dbs": [],
+                "discos": [],
+                "name": "slave-executor",
+                "depends_on": [
+                    "postgres",
+                    "rabbitmq",
+                    "minio"
+                ],
+                "image": "restfulci/job-slave-executor",
+                "servers": [],
+                "gates": [],
+                "buses": [],
+                "monitors": [],
+                "image_full": "restfulci/job-slave-executor:cfeba6e434fcc1a0432b6b6c51950339ede94ad4"
+            }
+        ],
+        "num_services": 6,
+        "detected_dbs": {
+            "names": [],
+            "num": 0,
+            "shared_dbs": false,
+            "services": []
+        }
+    },
+    "files": [
+        {
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [],
+            "buses": [],
+            "servers": [
+                "spring",
+                "tomcat"
+            ],
+            "path": "/pipeline-microservice/api-cron/pom.xml",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "dbs": [
+                "postgresql"
+            ],
+            "discos": [],
+            "buses": [
+                "amqp"
+            ],
+            "servers": [
+                "spring",
+                "tomcat"
+            ],
+            "path": "/job-microservice/pom.xml",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "servers": [
+                "spring",
+                "tomcat"
+            ],
+            "path": "/job-microservice/master-api/pom.xml",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "servers": [],
+            "path": "/job-microservice/master-slave-shared/pom.xml",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "buses": [
+                "amqp"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "path": "/job-microservice/slave-agent/pom.xml",
+            "gates": [],
+            "monitors": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "buses": [],
+            "servers": [],
+            "path": "/job-frontend/package.json",
+            "gates": [],
+            "monitors": []
+        }
+    ],
+    "images": [
+        "busybox",
+        "node",
+        "postgres",
+        "tomcat",
+        "docker",
+        "python"
+    ],
+    "num_servers": 5,
+    "monitors": [],
+    "shared_dbs": false,
+    "dockers": [
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [
+                "start",
+                "yarn"
+            ],
+            "buses": [],
+            "servers": [
+                "node"
+            ],
+            "from_full": "node:14.6.0-alpine3.12",
+            "langs": [],
+            "from": "node",
+            "cmd": "yarn start",
+            "path": "/job-frontend/Dockerfile",
+            "monitors": [],
+            "keywords": [
+                "yarn",
+                "src",
+                "app",
+                "build",
+                "mkdir"
+            ],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [
+                "run",
+                "catalina"
+            ],
+            "buses": [],
+            "servers": [
+                "tomcat"
+            ],
+            "from_full": "tomcat:8-jre11",
+            "langs": [],
+            "from": "tomcat",
+            "cmd": "catalina.sh run",
+            "path": "/pipeline-microservice/api-cron/Dockerfile",
+            "monitors": [],
+            "keywords": [
+                "local",
+                "root",
+                "usr",
+                "tomcat",
+                "webapps"
+            ],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [
+                "run",
+                "flask",
+                "host"
+            ],
+            "buses": [],
+            "servers": [
+                "flask"
+            ],
+            "from_full": "python:3.8.3-alpine",
+            "langs": [
+                "python"
+            ],
+            "from": "python",
+            "cmd": "flask run --host=0.0.0.0",
+            "path": "/pipeline-microservice/job-microservice-mock/Dockerfile",
+            "monitors": [],
+            "keywords": [
+                "flask",
+                "pip",
+                "install"
+            ],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "postgres:12.1",
+            "langs": [],
+            "from": "postgres",
+            "cmd": "",
+            "path": "/pipeline-microservice/database/Dockerfile",
+            "monitors": [],
+            "keywords": [],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [
+                "run",
+                "catalina"
+            ],
+            "buses": [],
+            "servers": [
+                "tomcat"
+            ],
+            "from_full": "tomcat:8-jre11",
+            "langs": [],
+            "from": "tomcat",
+            "cmd": "catalina.sh run",
+            "path": "/job-microservice/master-api/Dockerfile",
+            "monitors": [],
+            "keywords": [
+                "local",
+                "root",
+                "usr",
+                "tomcat",
+                "webapps"
+            ],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "docker:19.03",
+            "langs": [],
+            "from": "docker",
+            "cmd": "",
+            "path": "/job-microservice/slave-agent/Dockerfile",
+            "monitors": [],
+            "keywords": [
+                "apk",
+                "update",
+                "add",
+                "openssh",
+                "openjdk"
+            ],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "servers": [
+                "busybox"
+            ],
+            "from_full": "busybox:1.31",
+            "langs": [],
+            "from": "busybox",
+            "cmd": "",
+            "path": "/job-microservice/slave-agent/src/test/resources/docker-run-service-test/git-default-from-build/Dockerfile",
+            "monitors": [],
+            "keywords": [],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "servers": [
+                "busybox"
+            ],
+            "from_full": "busybox:1.31",
+            "langs": [],
+            "from": "busybox",
+            "cmd": "",
+            "path": "/job-microservice/slave-agent/src/test/resources/docker-run-service-test/git-shell-baked/Dockerfile",
+            "monitors": [],
+            "keywords": [],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "servers": [
+                "busybox"
+            ],
+            "from_full": "busybox:1.31",
+            "langs": [],
+            "from": "busybox",
+            "cmd": "",
+            "path": "/job-microservice/slave-agent/src/test/resources/docker-run-service-test/git-customized-basedir/subfolder/Dockerfile",
+            "monitors": [],
+            "keywords": [],
+            "gates": []
+        },
+        {
+            "dbs": [],
+            "discos": [],
+            "cmd_keywords": [],
+            "buses": [],
+            "servers": [],
+            "from_full": "postgres:12.1",
+            "langs": [],
+            "from": "postgres",
+            "cmd": "",
+            "path": "/job-microservice/database/Dockerfile",
+            "monitors": [],
+            "keywords": [],
+            "gates": []
+        }
+    ],
+    "num_discos": 0,
+    "size": 1016,
+    "name": "restfulci/restfulci",
+    "buses": [
+        "rabbitmq",
+        "amqp"
+    ],
+    "languages": [
+        "java"
+    ],
+    "num_buses": 2,
+    "langs": [
+        "java",
+        "python"
+    ],
+    "num_services": 6,
+    "num_langs": 2,
+    "num_files": 17,
+    "avg_size_service": 101.6,
+    "num_monitors": 0,
+    "url": "git://github.com/restfulci/restfulci.git",
+    "num_dbs": 1,
+    "gates": [],
+    "num_gates": 0
+}

@@ -1,0 +1,319 @@
+{
+    "num_services": 7,
+    "monitors": [],
+    "dockers": [
+        {
+            "path": "/sales/Dockerfile",
+            "from": "openjdk",
+            "monitors": [],
+            "buses": [],
+            "from_full": "openjdk:8-jre-alpine",
+            "langs": [],
+            "gates": [],
+            "discos": [],
+            "cmd": "",
+            "dbs": [],
+            "keywords": [
+                "app",
+                "jar",
+                "touch"
+            ],
+            "cmd_keywords": [],
+            "servers": []
+        },
+        {
+            "path": "/web-client/Dockerfile",
+            "from": "openjdk",
+            "monitors": [],
+            "buses": [],
+            "from_full": "openjdk:8-jre-alpine",
+            "langs": [],
+            "gates": [],
+            "discos": [],
+            "cmd": "",
+            "dbs": [],
+            "keywords": [
+                "app",
+                "jar",
+                "touch"
+            ],
+            "cmd_keywords": [],
+            "servers": []
+        },
+        {
+            "path": "/discovery-server/Dockerfile",
+            "from": "openjdk",
+            "monitors": [],
+            "buses": [],
+            "from_full": "openjdk:8-jre-alpine",
+            "langs": [],
+            "gates": [],
+            "discos": [],
+            "cmd": "",
+            "dbs": [],
+            "keywords": [
+                "app",
+                "jar",
+                "touch"
+            ],
+            "cmd_keywords": [],
+            "servers": []
+        },
+        {
+            "path": "/inventory/Dockerfile",
+            "from": "openjdk",
+            "monitors": [],
+            "buses": [],
+            "from_full": "openjdk:8-jre-alpine",
+            "langs": [],
+            "gates": [],
+            "discos": [],
+            "cmd": "",
+            "dbs": [],
+            "keywords": [
+                "app",
+                "jar",
+                "touch"
+            ],
+            "cmd_keywords": [],
+            "servers": []
+        },
+        {
+            "path": "/size-calculator/Dockerfile",
+            "from": "openjdk",
+            "monitors": [],
+            "buses": [],
+            "from_full": "openjdk:8-jre-alpine",
+            "langs": [],
+            "gates": [],
+            "discos": [],
+            "cmd": "",
+            "dbs": [],
+            "keywords": [
+                "app",
+                "jar",
+                "touch"
+            ],
+            "cmd_keywords": [],
+            "servers": []
+        }
+    ],
+    "num_buses": 1,
+    "langs": [
+        "java"
+    ],
+    "gates": [],
+    "num_monitors": 0,
+    "discos": [
+        "eureka"
+    ],
+    "avg_size_service": 66.8,
+    "files": [
+        {
+            "path": "/sales/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "dbs": [
+                "postgresql"
+            ],
+            "gates": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "path": "/web-client/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "gates": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "path": "/discovery-server/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "dbs": [],
+            "gates": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "path": "/inventory/pom.xml",
+            "discos": [
+                "eureka"
+            ],
+            "monitors": [],
+            "dbs": [
+                "mongodb"
+            ],
+            "gates": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ]
+        },
+        {
+            "path": "/size-calculator/pom.xml",
+            "discos": [],
+            "monitors": [],
+            "dbs": [],
+            "gates": [],
+            "buses": [],
+            "servers": [
+                "spring"
+            ]
+        }
+    ],
+    "num_langs": 1,
+    "name": "pfernandom/fashion-shop",
+    "shared_dbs": false,
+    "images": [
+        "openjdk"
+    ],
+    "num_files": 11,
+    "size": 334,
+    "num_dockers": 5,
+    "url": "git://github.com/pfernandom/fashion-shop.git",
+    "buses": [
+        "rabbitmq"
+    ],
+    "num_discos": 1,
+    "num_dbs": 2,
+    "dbs": [
+        "postgresql",
+        "mongo"
+    ],
+    "num_gates": 0,
+    "languages": [
+        "java"
+    ],
+    "num_servers": 1,
+    "servers": [
+        "spring"
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "detected_dbs": {
+            "num": 1,
+            "shared_dbs": false,
+            "names": [
+                "mongo"
+            ],
+            "services": [
+                "mongo"
+            ]
+        },
+        "num_services": 7,
+        "services": [
+            {
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "inventory"
+                ],
+                "image_full": "./web-client/.",
+                "monitors": [],
+                "dbs": [],
+                "name": "web",
+                "image": "./web-client/.",
+                "gates": [],
+                "servers": []
+            },
+            {
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "sales-db",
+                    "discovery"
+                ],
+                "image_full": "./sales/.",
+                "monitors": [],
+                "dbs": [],
+                "name": "sales",
+                "image": "./sales/.",
+                "gates": [],
+                "servers": []
+            },
+            {
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image_full": "postgres",
+                "monitors": [],
+                "dbs": [],
+                "name": "sales-db",
+                "image": "postgres",
+                "gates": [],
+                "servers": []
+            },
+            {
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image_full": "mongo",
+                "monitors": [],
+                "dbs": [
+                    "mongo"
+                ],
+                "name": "mongo",
+                "image": "mongo",
+                "gates": [],
+                "servers": []
+            },
+            {
+                "discos": [],
+                "buses": [],
+                "depends_on": [
+                    "mongo",
+                    "discovery"
+                ],
+                "image_full": "./inventory/.",
+                "monitors": [],
+                "dbs": [],
+                "name": "inventory",
+                "image": "./inventory/.",
+                "gates": [],
+                "servers": []
+            },
+            {
+                "discos": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "depends_on": [],
+                "image_full": "rabbitmq:3.6.9-management-alpine",
+                "monitors": [],
+                "dbs": [],
+                "name": "queue",
+                "image": "rabbitmq",
+                "gates": [],
+                "servers": []
+            },
+            {
+                "discos": [],
+                "buses": [],
+                "depends_on": [],
+                "image_full": "./discovery-server/.",
+                "monitors": [],
+                "dbs": [],
+                "name": "discovery",
+                "image": "./discovery-server/.",
+                "gates": [],
+                "servers": []
+            }
+        ]
+    }
+}
