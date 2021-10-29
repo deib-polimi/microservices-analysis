@@ -5,14 +5,14 @@ from collections import Counter
 import matplotlib
 import matplotlib.pyplot as plt 
 import numpy as np
-from scipy import stats
 import sys
 import pickle
 import csv
+import argparse
 
 from itertools import combinations, product
 
-with open('colors.csv') as colors_files:
+with open('./consts/colors.csv') as colors_files:
     COLORS = colors_files.read().splitlines()
 
 KEYS = [ 'dbs', 'servers', 'buses', 'langs', 'gates', 'monitors', 'discos', 'images']
@@ -52,6 +52,9 @@ CLEANER['gates'][0] += ['gateway', 'loadbalancer', 'loadbalancing']
 #CLEANER['gates'][1].update({'gateway' : '(G) nginx', 'loadbalancer': '(G) zuul', 'loadbalancing': ' (G) kong'}
 CLEANER['gates'][1].update({'nginx' : ' nginx (G)', 'zuul': 'zuul (G)', 'kong' : 'kong (G)', 'linkerd' : 'linkerd (G)'})
 
+parser = argparse.ArgumentParser()
+parser.add_argument("-f", dest='filter_file', type=str, help="Filter file", required=True)
+args = parser.parse_args()
 
 def clean_data(data):
     for key in KEYS:
@@ -88,11 +91,12 @@ def analyze_all():
     
     include = set()
     
-    with open('include.csv', newline='') as f:
+    with open(args.filter_file, newline='') as f:
             reader = csv.reader(f, delimiter=';')
             while True:
                 try:
                     line = next(reader)
+                    print("Line",line)
                     if line[2] == 'D' or line[2] == 'M':
                         include.add(line[1])
                 except UnicodeDecodeError as e:
@@ -419,6 +423,8 @@ plots()
 tables()
 print("\n***STATS***\n")
 for k, v in SIZES.items():
+    if k == 'shared_dbs':
+        break
     print(k.upper())
     a = np.array(v)
     print('mean', np.mean(a), 'std', np.std(a), 'min', np.min(a), 'max', np.max(a), np.percentile(a, 75))

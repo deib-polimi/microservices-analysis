@@ -6,29 +6,27 @@ import dockerfile
 from collections import Counter
 import nltk
 nltk.download('punkt')
-import sys
 import string
 import subprocess
 import json
 import shutil
 import yaml
-import Levenshtein
 import csv
 from filelock import Timeout, FileLock
 
-with open('db.csv') as db_file:
+with open('./consts/db.csv') as db_file:
     dbs = [db.lower() for db in db_file.read().splitlines()]
-with open('bus.csv') as bus_file:
+with open('./consts/bus.csv') as bus_file:
     buses = [bus.lower() for bus in bus_file.read().splitlines()]
-with open('lang.csv') as lang_file:
+with open('./consts/lang.csv') as lang_file:
     langs = [lang.lower() for lang in lang_file.read().splitlines()]
-with open('server.csv') as server_file:
+with open('./consts/server.csv') as server_file:
     servers = [server.lower() for server in server_file.read().splitlines()]
-with open('gateway.csv') as gate_file:
+with open('./consts/gateway.csv') as gate_file:
     gates = [gate.lower() for gate in gate_file.read().splitlines()]
-with open('monitor.csv') as monitor_file:
+with open('./consts/monitor.csv') as monitor_file:
     monitors = [monitor.lower() for monitor in monitor_file.read().splitlines()]
-with open('discovery.csv') as disco_file:
+with open('./consts/discovery.csv') as disco_file:
     discos = [disco.lower() for disco in disco_file.read().splitlines()]
 
 DATA = {
@@ -292,6 +290,7 @@ def analyze_repo(url):
                 analysis['commiters'] = committers(workdir)
                 analysis['size']=compute_size(workdir)
                 analysis['languages'] = analyze_languages(workdir)
+                print("Language analysis completed")
                 dfs = locate_files(workdir, 'Dockerfile')
                 dockers_analysis = []
                 for df in dfs:
@@ -322,9 +321,9 @@ def analyze_repo(url):
     except Timeout:
         print('in progress')
     except FileNotFoundError:
-        print('skipped')
-    except:
-        print('Error, continuing...')
+        print('FileNotFoundError skipped')
+    except Exception as e:
+        print('Error, continuing...', e)
     finally:
         print(workdir)
     
