@@ -70,9 +70,12 @@ def clone(repo_url, full_repo_name):
         data = json.loads(p1.stdout.decode("utf-8"))
         if 'size' not in data or data['size'] < 512000:
             try:
+                # force SSH protocol
+                repo_url = repo_url.replace("git://github.com/", "git@github.com:")
+                print("--repo_url", repo_url)
                 git.Git(workdir).clone(repo_url)
-            except:
-                return None
+            except Exception as e:
+                print("cloning repo exception", e)
         else:
             print('repo too big')
             return None
