@@ -54,6 +54,7 @@ CLEANER['gates'][1].update({'nginx' : ' nginx (G)', 'zuul': 'zuul (G)', 'kong' :
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-f", dest='filter_file', type=str, help="Filter file", required=True)
+parser.add_argument("-s", dest='min_services', type=int, help="Min services", default=0)
 args = parser.parse_args()
 
 def clean_data(data):
@@ -69,6 +70,10 @@ def analyze_data(data):
     clean_data(data)
     if data['num_dockers'] > 30:
         return
+    # # filter repos with microservices < args.min_services
+    # num_ms = max(2, data['num_services']-data['num_dbs']-data['num_buses']-data['num_discos']-data['num_monitors']-data['num_gates'])
+    # if num_ms < args.min_services or data['num_dockers'] < args.min_services:
+    #      return
     for key in KEYS:
         DATA[key][0] += data[key]
         if data[key]:
@@ -96,22 +101,25 @@ def analyze_all():
             while True:
                 try:
                     line = next(reader)
-                    print("Line",line)
+                    #print("Line",line)
                     if line[2] == 'D' or line[2] == 'M':
                         include.add(line[1])
                 except UnicodeDecodeError as e:
                     print(e)
                 except StopIteration:
                     break
+
+    print("INCLUDING", len(include))
     
     repos = Path('results').glob('*.json')
-    i = j = 0
+    i = j = l = 0
     for source in repos:
         j += 1
         try:
             with open(str(source)) as json_file:
                 data = json.load(json_file)
                 if data['url'] and data['url'] in include:
+                    l += 1
                     analyze_data(data)
                 
         except (UnicodeDecodeError, json.decoder.JSONDecodeError):
@@ -123,8 +131,8 @@ def analyze_all():
     with open('temp/DATA', 'wb') as f:
         pickle.dump(DATA, f)
     print('writed on disk')
-    print("TOTAL", j, "ERRORS", i)
-
+    print("TOTAL", j, "ANALYZED", l, "ERRORS", i)
+    print("DATA len", len(DATA))
 
 def color_with_alpha(hex, alpha):
     hex = hex.lstrip('#')
@@ -184,7 +192,7 @@ def create_hist(name, b, *data, xlabel='', ylabel='', interval=False, legend=[],
         #autolabel(rect)
 
     plt.legend(legend)
-    plt.savefig(f'plots/{name}.pdf',bbox_inches='tight')
+    plt.savefig(f'plots/{name}.png',bbox_inches='tight')
     plt.cla()
     plt.clf()
 
@@ -265,7 +273,8 @@ def plots():
     matplotlib.rc('font', **font)
 
 
-    create_hist('size', [1, 7, 15, 25, 50, sys.maxsize], [x/1000 for x in SIZES['size']], [x/1000 for x in SIZES['avg_size_service']], interval=True, legend=['Project size', 'Microservice size'], ylabel='Occurrences', xlabel='Size (MB)', colors=nice_colors(0, 5)) 
+    create_hist('size', [1, 7, 15, 25, 50, sys.maxsize], [x/1000 for x in SIZES['size']], [x/1000 for x in SIZES['avg_size_service']], interval=True, legend=['Project size', ''
+                                                                                                                                                                              'ervice size'], ylabel='Occurrences', xlabel='Size (MB)', colors=nice_colors(0, 5))
     create_hist('num_services', [1, 4, 6, 8, 10, 15, 20, sys.maxsize], SIZES['num_dockers'], SIZES['num_services'], SIZES['num_ms'], interval=True, legend=['# Dockerfile', '# Compose services', '# Microservices'], ylabel='Occurrences', colors=nice_colors(0, 3, 5))
     
     #plot_scatter('size-services', [x/1000 for x in SIZES['size']], x=[x/1000 for x in SIZES['avg_size_service']], ylabel='Project Size (MB)', xlabel='Avg Service Size (MB)', colors=nice_colors(0, 5)) 
