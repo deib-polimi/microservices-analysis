@@ -13,6 +13,8 @@ import shutil
 import yaml
 import csv
 from filelock import Timeout, FileLock
+import networkx as nx
+
 
 with open('./consts/db.csv') as db_file:
     dbs = [db.lower() for db in db_file.read().splitlines()]
@@ -35,7 +37,7 @@ DATA = {
 
 def are_similar(name, candidate):
     return name == candidate
-   
+
 def match_one(name, l):
     for candidate in l:
         if are_similar(name, candidate):
@@ -54,7 +56,7 @@ def match_ones(names, l):
         if res:
             return res
     return []
-  
+
 def clone(repo_url, full_repo_name):
     parts = full_repo_name.split('/')
     if len(parts) != 2:
@@ -136,9 +138,9 @@ def analyze_dockerfile(workdir, df):
         if 'from' in analysis:
             for k,v in DATA.items():
                 analysis[k] = match_one(analysis['from'], v) \
-                                or match_ones(get_words(analysis['from']), v) \
-                                or match_ones(get_words(analysis['cmd']), v) \
-                                or match_ones(get_words(runs), v)
+                              or match_ones(get_words(analysis['from']), v) \
+                              or match_ones(get_words(analysis['cmd']), v) \
+                              or match_ones(get_words(runs), v)
     except dockerfile.GoParseError as e:
         print(e)
     return analysis
@@ -153,8 +155,8 @@ def analyze_file(workdir, f):
                 if k == 'langs':
                     continue
                 analysis[k] = match_alls(get_words(data), v)
-    except UnicodeDecodeError as e: 
-            print(e)
+    except UnicodeDecodeError as e:
+        print(e)
     return analysis
 
 def check_shared_db(analysis):
@@ -174,6 +176,8 @@ def committers(workdir):
 
 def analyze_docker_compose(workdir, dc):
     print('-analyzing docker-compose')
+    dep_graphs = {'full': nx.DiGraph(), 'micro': None}
+    nodes_not_microservice = []
     analysis = {'path': dc, 'num_services': 0, 'services': [], 'detected_dbs': { 'num' : 0, 'names': [], 'services': [], 'shared_dbs' : False} }
     with open(workdir+dc) as f:
         try:
@@ -215,12 +219,33 @@ def analyze_docker_compose(workdir, dc):
                 else:
                     s['depends_on'] = []
                 services.append(s)
+
+                # add the node to the dependencies graph
+                dep_graphs['full'].add_node(name)
+                # add the edges to the dependencies graph
+                dep_graphs['full'].add_edges_from([(name, serv) for serv in s['depends_on']])
+                # append the node to the nodes_not_microservice list if the node is not a microservice
+                if s['dbs'] or s['servers'] or s['buses'] or s['gates'] or s['monitors'] or s['discos']:
+                    nodes_not_microservice.append(name)
             analysis['services'] = services
             analysis['num_services'] = len(services)
             analysis['detected_dbs'] = {'num': len(detected_dbs), \
                                         'names' : list({db['name'] for db in detected_dbs}), \
                                         'services' : [db['service'] for db in detected_dbs]}
             analysis['detected_dbs']['shared_dbs'] = check_shared_db(analysis)
+
+            # copy the full graph
+            dep_graphs['micro'] = dep_graphs['full'].copy()
+            # delete the not-microservice nodes from the micro dependencies graph
+            for node in nodes_not_microservice:
+                dep_graphs['micro'].remove_node(node)
+            for g in dep_graphs:
+                analysis['dep_graph_' + g] = {'nodes': dep_graphs[g].number_of_nodes(),
+                                              'edges': dep_graphs[g].number_of_edges(),
+                                              'avg_deps_per_service': sum([out_deg for name, out_deg in dep_graphs[g].out_degree]) / dep_graphs[g].number_of_nodes(),
+                                              'acyclic': nx.is_directed_acyclic_graph(dep_graphs[g]),
+                                              'longest_path': nx.dag_longest_path_length(dep_graphs[g])}
+
         except (UnicodeDecodeError, yaml.parser.ParserError, yaml.scanner.ScannerError) as e:
             print(e)
 
@@ -244,7 +269,7 @@ def synthetize_data(analysis):
 
     for k in keys:
         analysis[k] = set()
-    
+
     add_data(analysis['files'])
     add_data(analysis['structure']['services'])
     add_data(analysis['dockers'])
@@ -261,7 +286,7 @@ def synthetize_data(analysis):
     if len(analysis['dbs']) > 1:
         analysis['dbs'].discard('db')
     if len(analysis['gates']) > 1:
-       analysis['gates'].discard('gateway')
+        analysis['gates'].discard('gateway')
     if len(analysis['monitors']) > 1:
         analysis['monitors'].discard('monitoring')
     if len(analysis['buses']) > 1:
@@ -289,7 +314,7 @@ def analyze_repo(url):
             if not path.exists(outfile):
                 workdir = clone(url, analysis['name'])
                 if not workdir:
-                    return 
+                    return
                 analysis['commiters'] = committers(workdir)
                 analysis['size']=compute_size(workdir)
                 analysis['languages'] = analyze_languages(workdir)
@@ -309,7 +334,7 @@ def analyze_repo(url):
                 fs += locate_files(workdir, '*.gradle')
                 fs += locate_files(workdir, 'pom.xml')
                 fs += locate_files(workdir, 'package.json')
-                
+
                 file_analysis = []
                 for f in fs:
                     file_analysis.append(analyze_file(workdir, f))
@@ -329,8 +354,8 @@ def analyze_repo(url):
         print('Error, continuing...', e)
     finally:
         print(workdir)
-    
-    
+
+
 def remove_invalid_char(d):
     if isinstance(d, str):
         return d.encode('utf-16', 'surrogatepass').decode('utf-16')
@@ -341,8 +366,8 @@ def remove_invalid_char(d):
         for i, v in enumerate(list(d)):
             d[i] = remove_invalid_char(v)
     return d
- 
-                
+
+
 
 def analyze_all():
     repos = Path('repos').glob('*.csv')
