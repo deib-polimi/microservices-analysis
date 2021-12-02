@@ -115,9 +115,11 @@ def keywords(data, n=5):
 
 def analyze_languages(workdir):
     print('-analyzing languages')
-    result = subprocess.run(['github-linguist', workdir], stdout=subprocess.PIPE)
+    result = subprocess.run(['github-linguist', workdir, "--json"], stdout=subprocess.PIPE)
     output = result.stdout.decode("utf-8")
-    return [r.split('%')[1].lower().replace(' ', '') for r in output.split('\n')[:-1] if float(r.split('%')[0]) > 10]
+    dict_langs = json.loads(output)
+    languages_list = [lang.lower() for lang in dict_langs if float(dict_langs[lang]['percentage']) > 10]
+    return languages_list
 
 def analyze_dockerfile(workdir, df):
     print('-analyzing dockerfile', df)
