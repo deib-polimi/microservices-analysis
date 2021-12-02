@@ -69,11 +69,11 @@ def analyze_data(data):
     global DATA, KEYS
     clean_data(data)
     if data['num_dockers'] > 30:
-        return
-    # # filter repos with microservices < args.min_services
-    # num_ms = max(2, data['num_services']-data['num_dbs']-data['num_buses']-data['num_discos']-data['num_monitors']-data['num_gates'])
-    # if num_ms < args.min_services or data['num_dockers'] < args.min_services:
-    #      return
+        return False
+    # discard repos with microservices < args.min_services
+    num_ms = data['num_ms']
+    if num_ms < args.min_services:
+         return False
     for key in KEYS:
         DATA[key][0] += data[key]
         if data[key]:
@@ -82,7 +82,7 @@ def analyze_data(data):
 
     for key in SIZE_KEYS:
         SIZES[key].append(data[key])
-    
+    return True
 
 def analyze_all():
     global DATA, SIZES
@@ -109,7 +109,7 @@ def analyze_all():
                 except StopIteration:
                     break
 
-    print("INCLUDING", len(include))
+    print("INCLUDING", len(include), " REPOS")
     
     repos = Path('results').glob('*.json')
     i = j = l = 0
@@ -119,8 +119,8 @@ def analyze_all():
             with open(str(source)) as json_file:
                 data = json.load(json_file)
                 if data['url'] and data['url'] in include:
-                    l += 1
-                    analyze_data(data)
+                    if analyze_data(data):
+                        l += 1
                 
         except (UnicodeDecodeError, json.decoder.JSONDecodeError):
             i += 1
@@ -274,7 +274,7 @@ def plots():
 
 
     create_hist('size', [1, 7, 15, 25, 50, sys.maxsize], [x/1000 for x in SIZES['size']], [x/1000 for x in SIZES['avg_size_service']], interval=True, legend=['Project size', ''
-                                                                                                                                                                              'ervice size'], ylabel='Occurrences', xlabel='Size (MB)', colors=nice_colors(0, 5))
+                                                                                                                                                                              'Service size'], ylabel='Occurrences', xlabel='Size (MB)', colors=nice_colors(0, 5))
     create_hist('num_services', [1, 4, 6, 8, 10, 15, 20, sys.maxsize], SIZES['num_dockers'], SIZES['num_services'], SIZES['num_ms'], interval=True, legend=['# Dockerfile', '# Compose services', '# Microservices'], ylabel='Occurrences', colors=nice_colors(0, 3, 5))
     
     #plot_scatter('size-services', [x/1000 for x in SIZES['size']], x=[x/1000 for x in SIZES['avg_size_service']], ylabel='Project Size (MB)', xlabel='Avg Service Size (MB)', colors=nice_colors(0, 5)) 
@@ -412,6 +412,9 @@ def tables():
     print(f'\\\\ \\hline')
 
 
+def dep_graphs_tables():
+    pass
+
 analyze_all()
 print('all:', len(SIZES['num_services']), \
     '#services:', sum(SIZES['num_services']), \
@@ -430,6 +433,10 @@ for key in KEYS:
 
 plots()
 tables()
+
+print("Dependencies graphs tables")
+dep_graphs_tables()
+
 print("\n***STATS***\n")
 for k, v in SIZES.items():
     if k == 'shared_dbs':
