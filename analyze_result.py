@@ -9,6 +9,8 @@ import sys
 import pickle
 import csv
 import argparse
+from tabulate import tabulate
+import statistics as stats
 
 from itertools import combinations, product
 
@@ -33,6 +35,7 @@ CLEANER = {}
 
 
 DATA = {}
+DEP_GRAPHS = []
 
 for key in KEYS:
     DATA[key] = [[], [], []]
@@ -82,6 +85,11 @@ def analyze_data(data):
 
     for key in SIZE_KEYS:
         SIZES[key].append(data[key])
+
+    # save the dependencies graphs
+    if data['structure']:
+        DEP_GRAPHS.append({'full': data['structure']['dep_graph_full'],
+                           'micro': data['structure']['dep_graph_micro']})
     return True
 
 def analyze_all():
@@ -133,6 +141,7 @@ def analyze_all():
     print('writed on disk')
     print("TOTAL", j, "ANALYZED", l, "ERRORS", i)
     print("DATA len", len(DATA))
+    print("DEP_GRAPHS len", len(DEP_GRAPHS))
 
 def color_with_alpha(hex, alpha):
     hex = hex.lstrip('#')
@@ -192,7 +201,7 @@ def create_hist(name, b, *data, xlabel='', ylabel='', interval=False, legend=[],
         #autolabel(rect)
 
     plt.legend(legend)
-    plt.savefig(f'plots/{name}.png',bbox_inches='tight')
+    plt.savefig(f'plots/{name}.pdf',bbox_inches='tight')
     plt.cla()
     plt.clf()
 
@@ -413,7 +422,30 @@ def tables():
 
 
 def dep_graphs_tables():
-    pass
+    print("Dependencies graphs table")
+    values = {'full': {'nodes': [], 'edges': [], 'avg_deps_per_service': [],
+              'acyclic': [], 'longest_path': []},
+              'micro': {'nodes': [], 'edges': [], 'avg_deps_per_service': [],
+              'acyclic': [], 'longest_path': []}}
+    table = []
+    for dg_type in ["full", "micro"]:
+        for dg in DEP_GRAPHS:
+            dep_graph = dg[dg_type]
+            values[dg_type]['nodes'].append(dep_graph['nodes'])
+            values[dg_type]['edges'].append(dep_graph['edges'])
+            values[dg_type]['avg_deps_per_service'].append(dep_graph['avg_deps_per_service'])
+            values[dg_type]['acyclic'].append(dep_graph['acyclic'])
+            values[dg_type]['longest_path'].append(dep_graph['longest_path'])
+        table.append([dg_type,
+                      stats.mean(values[dg_type]['nodes']),
+                      stats.mean(values[dg_type]['edges']),
+                      stats.mean(values[dg_type]['avg_deps_per_service']),
+                      len([ac for ac in values[dg_type]['acyclic'] if ac == False]),
+                      stats.mean(values[dg_type]['longest_path'])])
+    headers = ['Avg nodes', 'Avg edges', 'Avg avg deps per service', 'Num cyclic', 'Avg longest path']
+    print(tabulate(table, headers=headers, floatfmt=".2f", tablefmt="latex"))
+
+
 
 analyze_all()
 print('all:', len(SIZES['num_services']), \
@@ -434,7 +466,6 @@ for key in KEYS:
 plots()
 tables()
 
-print("Dependencies graphs tables")
 dep_graphs_tables()
 
 print("\n***STATS***\n")
