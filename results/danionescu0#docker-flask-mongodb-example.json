@@ -1,0 +1,490 @@
+{
+    "url": "git://github.com/danionescu0/docker-flask-mongodb-example.git",
+    "name": "danionescu0/docker-flask-mongodb-example",
+    "commiters": 5,
+    "size": 15779,
+    "languages": [
+        "python"
+    ],
+    "dockers": [
+        {
+            "path": "/docker-grafana/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/docker-mosquitto/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/docker-influxdb/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/docker-redis/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/docker-python/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/docker-python/base/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/docker-python-pypy/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 19,
+        "services": [
+            {
+                "name": "web-base-image",
+                "image": "web-base",
+                "image_full": "web-base",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "web-random",
+                "image": "web-standard",
+                "image_full": "web-standard",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo",
+                    "web-base-image"
+                ]
+            },
+            {
+                "name": "web-random-pypy",
+                "image": "web-standard-pypy",
+                "image_full": "web-standard-pypy",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo"
+                ]
+            },
+            {
+                "name": "web-users",
+                "image": "web-standard",
+                "image_full": "web-standard",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo",
+                    "web-base-image",
+                    "redis"
+                ]
+            },
+            {
+                "name": "background-mqtt",
+                "image": "backgorund-mqtt-image",
+                "image_full": "backgorund-mqtt-image",
+                "dbs": [],
+                "servers": [],
+                "buses": [
+                    "mqtt"
+                ],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo",
+                    "mqtt",
+                    "influxdb"
+                ]
+            },
+            {
+                "name": "web-fulltext-search",
+                "image": "web-standard",
+                "image_full": "web-standard",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo"
+                ]
+            },
+            {
+                "name": "web-geolocation-search",
+                "image": "web-geolocation-image",
+                "image_full": "web-geolocation-image",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo"
+                ]
+            },
+            {
+                "name": "web-baesian",
+                "image": "web-standard",
+                "image_full": "web-standard",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo"
+                ]
+            },
+            {
+                "name": "web-photo-process",
+                "image": "web-photo-image",
+                "image_full": "web-photo-image",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo"
+                ]
+            },
+            {
+                "name": "web-book-collection",
+                "image": "web-bookcollection-image",
+                "image_full": "web-bookcollection-image",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo",
+                    "web-users"
+                ]
+            },
+            {
+                "name": "web-users-fast-api",
+                "image": "web-users-fastapi-image",
+                "image_full": "web-users-fastapi-image",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo"
+                ]
+            },
+            {
+                "name": "web-tictactoe",
+                "image": "web-standard",
+                "image_full": "web-standard",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "influxdb",
+                "image": "docker-influxdb",
+                "image_full": "docker-influxdb",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [
+                    "influxdb"
+                ],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "grafana",
+                "image": "docker-grafana",
+                "image_full": "docker-grafana",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [
+                    "grafana"
+                ],
+                "discos": [],
+                "depends_on": [
+                    "influxdb"
+                ]
+            },
+            {
+                "name": "mongo",
+                "image": "mongo",
+                "image_full": "mongo:4.4.5-bionic",
+                "dbs": [
+                    "mongo"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "redis",
+                "image": "./docker-redis",
+                "image_full": "./docker-redis",
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "mqtt",
+                "image": "./docker-mosquitto",
+                "image_full": "./docker-mosquitto",
+                "dbs": [],
+                "servers": [],
+                "buses": [
+                    "mosquitto"
+                ],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "krakend",
+                "image": "devopsfaith/krakend",
+                "image_full": "devopsfaith/krakend",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "web-random",
+                    "web-users"
+                ]
+            },
+            {
+                "name": "web-test",
+                "image": "alpine",
+                "image_full": "alpine",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "web-base-image",
+                    "web-random",
+                    "web-random-pypy",
+                    "web-users",
+                    "background-mqtt",
+                    "web-fulltext-search",
+                    "web-geolocation-search",
+                    "web-baesian",
+                    "web-photo-process",
+                    "web-book-collection",
+                    "web-users-fast-api",
+                    "influxdb",
+                    "grafana",
+                    "mongo",
+                    "mqtt",
+                    "krakend",
+                    "web-tictactoe",
+                    "redis"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "num": 2,
+            "names": [
+                "mongo",
+                "redis"
+            ],
+            "services": [
+                "mongo",
+                "redis"
+            ],
+            "shared_dbs": true
+        },
+        "dep_graph_full": {
+            "nodes": 19,
+            "edges": 37,
+            "avg_deps_per_service": 1.9473684210526316,
+            "acyclic": true,
+            "longest_path": 3
+        },
+        "dep_graph_micro": {
+            "nodes": 13,
+            "edges": 17,
+            "avg_deps_per_service": 1.3076923076923077,
+            "acyclic": true,
+            "longest_path": 3
+        }
+    },
+    "files": [
+        {
+            "path": "/python/requirements.txt",
+            "dbs": [
+                "redis"
+            ],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/tests/requirements.txt",
+            "dbs": [],
+            "servers": [],
+            "buses": [
+                "mqtt"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "dbs": [
+        "mongo",
+        "redis"
+    ],
+    "servers": [
+        "flask"
+    ],
+    "buses": [
+        "mosquitto",
+        "mqtt"
+    ],
+    "langs": [
+        "python"
+    ],
+    "gates": [],
+    "monitors": [
+        "influxdb",
+        "grafana"
+    ],
+    "discos": [],
+    "num_services": 19,
+    "shared_dbs": true,
+    "num_dockers": 7,
+    "images": [],
+    "num_dbs": 2,
+    "num_servers": 1,
+    "num_buses": 2,
+    "num_langs": 1,
+    "num_gates": 0,
+    "num_monitors": 2,
+    "num_discos": 0,
+    "num_files": 10,
+    "avg_size_service": 2254.1428571428573
+}

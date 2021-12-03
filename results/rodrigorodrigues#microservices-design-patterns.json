@@ -1,0 +1,660 @@
+{
+    "url": "git://github.com/rodrigorodrigues/microservices-design-patterns.git",
+    "name": "rodrigorodrigues/microservices-design-patterns",
+    "commiters": 7,
+    "size": 4944,
+    "languages": [
+        "java",
+        "javascript"
+    ],
+    "dockers": [
+        {
+            "path": "/go-service/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/python-service/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/nodejs-service/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/react-webapp/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/openzipkin-eureka/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "structure": {
+        "path": "/docker/docker-compose.yml",
+        "num_services": 19,
+        "services": [
+            {
+                "name": "service-discovery",
+                "image": "consul",
+                "image_full": "consul:latest",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [
+                    "consul"
+                ],
+                "depends_on": []
+            },
+            {
+                "name": "service-discovery-load-configuration",
+                "image": "appropriate/curl",
+                "image_full": "appropriate/curl",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "service-discovery"
+                ]
+            },
+            {
+                "name": "gateway",
+                "image": "edge-server",
+                "image_full": "edge-server",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "service-discovery"
+                ]
+            },
+            {
+                "name": "monitoring",
+                "image": "admin-server",
+                "image_full": "admin-server",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "service-discovery"
+                ]
+            },
+            {
+                "name": "react-webapp",
+                "image": "['PORT=3003']",
+                "image_full": "['PORT=3003']",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "gateway"
+                ]
+            },
+            {
+                "name": "week-menu-api",
+                "image": "../nodejs-service",
+                "image_full": "../nodejs-service",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "service-discovery"
+                ]
+            },
+            {
+                "name": "receipt-api",
+                "image": "['PORT=3005']",
+                "image_full": "['PORT=3005']",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "service-discovery",
+                    "mongodb-datasource",
+                    "jaeger"
+                ]
+            },
+            {
+                "name": "post-api",
+                "image": "['PORT=3006', 'ENV=docker']",
+                "image_full": "['PORT=3006', 'ENV=docker']",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "service-discovery",
+                    "mongodb-datasource"
+                ]
+            },
+            {
+                "name": "person-api",
+                "image": "person-service",
+                "image_full": "person-service",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "service-discovery",
+                    "mongodb-datasource",
+                    "jaeger",
+                    "service-discovery-load-configuration"
+                ]
+            },
+            {
+                "name": "task-api",
+                "image": "kotlin-service",
+                "image_full": "kotlin-service",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "service-discovery",
+                    "mongodb-datasource",
+                    "jaeger",
+                    "service-discovery-load-configuration"
+                ]
+            },
+            {
+                "name": "company-api",
+                "image": "quarkus-service",
+                "image_full": "quarkus-service",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "service-discovery",
+                    "mongodb-datasource"
+                ]
+            },
+            {
+                "name": "user-api",
+                "image": "user-service",
+                "image_full": "user-service",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "authentication-api",
+                    "jaeger"
+                ]
+            },
+            {
+                "name": "authentication-api",
+                "image": "authentication-service",
+                "image_full": "authentication-service",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "service-discovery",
+                    "mongodb-datasource",
+                    "gateway",
+                    "monitoring",
+                    "redisdb",
+                    "jaeger",
+                    "service-discovery-load-configuration"
+                ]
+            },
+            {
+                "name": "mongodb-datasource",
+                "image": "mongo",
+                "image_full": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "redisdb",
+                "image": "redis",
+                "image_full": "redis:alpine",
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "prometheus",
+                "image": "prom/prometheus",
+                "image_full": "prom/prometheus",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [
+                    "prometheus"
+                ],
+                "discos": [],
+                "depends_on": [
+                    "service-discovery"
+                ]
+            },
+            {
+                "name": "grafana",
+                "image": "grafana/grafana",
+                "image_full": "grafana/grafana",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [
+                    "grafana"
+                ],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "setup_grafana_datasource",
+                "image": "appropriate/curl",
+                "image_full": "appropriate/curl",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "grafana"
+                ]
+            },
+            {
+                "name": "jaeger",
+                "image": "jaegertracing/all-in-one",
+                "image_full": "jaegertracing/all-in-one:latest",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 2,
+            "names": [
+                "mongo",
+                "redis"
+            ],
+            "services": [
+                "mongodb-datasource",
+                "redisdb"
+            ],
+            "shared_dbs": true
+        },
+        "dep_graph_full": {
+            "nodes": 19,
+            "edges": 31,
+            "avg_deps_per_service": 1.631578947368421,
+            "acyclic": true,
+            "longest_path": 3
+        },
+        "dep_graph_micro": {
+            "nodes": 14,
+            "edges": 12,
+            "avg_deps_per_service": 0.8571428571428571,
+            "acyclic": true,
+            "longest_path": 2
+        }
+    },
+    "files": [
+        {
+            "path": "/python-service/app/app/requirements.txt",
+            "dbs": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [
+                "prometheus",
+                "jaeger"
+            ],
+            "discos": []
+        },
+        {
+            "path": "/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/quarkus-service/pom.xml",
+            "dbs": [
+                "mongodb"
+            ],
+            "servers": [
+                "spring",
+                "jboss"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "consul"
+            ]
+        },
+        {
+            "path": "/user-service/pom.xml",
+            "dbs": [
+                "mongodb",
+                "mongo"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "consul"
+            ]
+        },
+        {
+            "path": "/web-common/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring",
+                "glassfish"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [
+                "prometheus",
+                "jaeger"
+            ],
+            "discos": []
+        },
+        {
+            "path": "/authentication-service/pom.xml",
+            "dbs": [
+                "mongo",
+                "redis"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "consul"
+            ]
+        },
+        {
+            "path": "/openzipkin-eureka/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/edge-server/pom.xml",
+            "dbs": [
+                "redis"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [
+                "zuul"
+            ],
+            "monitors": [
+                "jaeger"
+            ],
+            "discos": [
+                "consul"
+            ]
+        },
+        {
+            "path": "/admin-server/pom.xml",
+            "dbs": [
+                "redis"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "consul"
+            ]
+        },
+        {
+            "path": "/kotlin-service/pom.xml",
+            "dbs": [
+                "mongodb",
+                "mongo"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "consul"
+            ]
+        },
+        {
+            "path": "/person-service/pom.xml",
+            "dbs": [
+                "mongodb",
+                "mongo"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "consul"
+            ]
+        },
+        {
+            "path": "/authentication-common/pom.xml",
+            "dbs": [
+                "mongodb"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "discos": []
+        },
+        {
+            "path": "/nodejs-service/package.json",
+            "dbs": [
+                "mongodb"
+            ],
+            "servers": [
+                "spring",
+                "express",
+                "node",
+                "mongoose"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/react-webapp/package.json",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/react-native-app/package.json",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "dbs": [
+        "mongo",
+        "redis"
+    ],
+    "servers": [
+        "express",
+        "glassfish",
+        "jboss",
+        "spring",
+        "flask",
+        "mongoose",
+        "node"
+    ],
+    "buses": [],
+    "langs": [
+        "java",
+        "javascript"
+    ],
+    "gates": [
+        "zuul"
+    ],
+    "monitors": [
+        "grafana",
+        "prometheus",
+        "jaeger"
+    ],
+    "discos": [
+        "consul",
+        "eureka"
+    ],
+    "num_services": 19,
+    "shared_dbs": true,
+    "num_dockers": 5,
+    "images": [],
+    "num_dbs": 2,
+    "num_servers": 7,
+    "num_buses": 0,
+    "num_langs": 2,
+    "num_gates": 1,
+    "num_monitors": 3,
+    "num_discos": 2,
+    "num_files": 21,
+    "avg_size_service": 988.8
+}

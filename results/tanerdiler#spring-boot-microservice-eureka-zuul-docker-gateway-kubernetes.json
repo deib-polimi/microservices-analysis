@@ -1,0 +1,470 @@
+{
+    "url": "git://github.com/tanerdiler/spring-boot-microservice-eureka-zuul-docker-gateway-kubernetes.git",
+    "name": "tanerdiler/spring-boot-microservice-eureka-zuul-docker-gateway-kubernetes",
+    "commiters": 2,
+    "size": 1665,
+    "languages": [
+        "java"
+    ],
+    "dockers": [
+        {
+            "path": "/containerized-discovery/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/containerized-products/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/containerized-gateway/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/containerized-orders/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/containerized-accounts/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/containerized-main/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/containerized-zipkin/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 12,
+        "services": [
+            {
+                "name": "elasticsearch",
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:7.8.0",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "kibana",
+                "image": "docker.elastic.co/kibana/kibana",
+                "image_full": "docker.elastic.co/kibana/kibana:7.8.0",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "elasticsearch"
+                ]
+            },
+            {
+                "name": "zipkin",
+                "image": "openzipkin/zipkin",
+                "image_full": "openzipkin/zipkin",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "logstash",
+                "image": "docker.elastic.co/logstash/logstash",
+                "image_full": "docker.elastic.co/logstash/logstash:7.8.0",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "elasticsearch"
+                ]
+            },
+            {
+                "name": "discovery",
+                "image": "tanerdiler/service-discovery",
+                "image_full": "tanerdiler/service-discovery",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "logstash"
+                ]
+            },
+            {
+                "name": "gateway",
+                "image": "tanerdiler/service-gateway",
+                "image_full": "tanerdiler/service-gateway",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "discovery",
+                    "logstash",
+                    "zipkin"
+                ]
+            },
+            {
+                "name": "accounts",
+                "image": "tanerdiler/service-accounts-api",
+                "image_full": "tanerdiler/service-accounts-api",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "discovery",
+                    "logstash",
+                    "zipkin"
+                ]
+            },
+            {
+                "name": "products",
+                "image": "tanerdiler/service-products-api",
+                "image_full": "tanerdiler/service-products-api",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "discovery",
+                    "accounts"
+                ]
+            },
+            {
+                "name": "orders",
+                "image": "tanerdiler/service-orders-api",
+                "image_full": "tanerdiler/service-orders-api",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "discovery",
+                    "products"
+                ]
+            },
+            {
+                "name": "main",
+                "image": "tanerdiler/service-main-api",
+                "image_full": "tanerdiler/service-main-api",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "discovery",
+                    "orders"
+                ]
+            },
+            {
+                "name": "prometheus",
+                "image": "prom/prometheus",
+                "image_full": "prom/prometheus:latest",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [
+                    "prometheus"
+                ],
+                "discos": [],
+                "depends_on": [
+                    "discovery",
+                    "gateway",
+                    "accounts",
+                    "products",
+                    "orders",
+                    "main"
+                ]
+            },
+            {
+                "name": "grafana",
+                "image": "grafana/grafana",
+                "image_full": "grafana/grafana",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [
+                    "grafana"
+                ],
+                "discos": [],
+                "depends_on": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        },
+        "dep_graph_full": {
+            "nodes": 12,
+            "edges": 21,
+            "avg_deps_per_service": 1.75,
+            "acyclic": true,
+            "longest_path": 7
+        },
+        "dep_graph_micro": {
+            "nodes": 9,
+            "edges": 12,
+            "avg_deps_per_service": 1.3333333333333333,
+            "acyclic": true,
+            "longest_path": 6
+        }
+    },
+    "files": [
+        {
+            "path": "/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [
+                "gateway"
+            ],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/containerized-discovery/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/containerized-products/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/containerized-gateway/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [
+                "gateway"
+            ],
+            "monitors": [
+                "prometheus"
+            ],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/containerized-orders/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/containerized-accounts/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/containerized-main/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [
+                "prometheus"
+            ],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/containerized-zipkin/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [
+                "gateway"
+            ],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        }
+    ],
+    "dbs": [],
+    "servers": [
+        "spring"
+    ],
+    "buses": [],
+    "langs": [
+        "java"
+    ],
+    "gates": [
+        "gateway"
+    ],
+    "monitors": [
+        "prometheus",
+        "grafana"
+    ],
+    "discos": [
+        "eureka"
+    ],
+    "num_services": 12,
+    "shared_dbs": false,
+    "num_dockers": 7,
+    "images": [],
+    "num_dbs": 0,
+    "num_servers": 1,
+    "num_buses": 0,
+    "num_langs": 1,
+    "num_gates": 1,
+    "num_monitors": 2,
+    "num_discos": 1,
+    "num_files": 16,
+    "avg_size_service": 237.85714285714286
+}

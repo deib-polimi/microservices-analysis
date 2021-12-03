@@ -1,0 +1,1154 @@
+{
+    "url": "git://github.com/ttulka/ddd-example-ecommerce-microservices.git",
+    "name": "ttulka/ddd-example-ecommerce-microservices",
+    "commiters": 1,
+    "size": 464,
+    "languages": [
+        "java"
+    ],
+    "dockers": [
+        {
+            "path": "/billing/payment/application/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/order/application/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/catalog/application/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/cart/application/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/shipping/dispatching/application/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/shipping/delivery/application/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/reverseproxy/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/portal/application/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/warehouse/application/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 11,
+        "services": [
+            {
+                "name": "redis",
+                "image": "redis",
+                "image_full": "redis:${REDIS_VERSION:-6}",
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "postgres",
+                "image": "postgres",
+                "image_full": "postgres:${POSTGRES_VERSION:-13}",
+                "dbs": [
+                    "postgres"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "reverseproxy",
+                "image": "ttulka/ecommerce-reverseproxy",
+                "image_full": "ttulka/ecommerce-reverseproxy",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "portal",
+                    "catalog",
+                    "order",
+                    "cart",
+                    "payment",
+                    "delivery",
+                    "dispatching",
+                    "warehouse"
+                ]
+            },
+            {
+                "name": "portal",
+                "image": "ttulka/ecommerce-portal-service",
+                "image_full": "ttulka/ecommerce-portal-service",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "redis",
+                    "postgres"
+                ]
+            },
+            {
+                "name": "catalog",
+                "image": "ttulka/ecommerce-catalog-service",
+                "image_full": "ttulka/ecommerce-catalog-service",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "redis",
+                    "postgres"
+                ]
+            },
+            {
+                "name": "order",
+                "image": "ttulka/ecommerce-order-service",
+                "image_full": "ttulka/ecommerce-order-service",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "redis",
+                    "postgres"
+                ]
+            },
+            {
+                "name": "cart",
+                "image": "ttulka/ecommerce-cart-service",
+                "image_full": "ttulka/ecommerce-cart-service",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "redis",
+                    "postgres"
+                ]
+            },
+            {
+                "name": "payment",
+                "image": "ttulka/ecommerce-payment-service",
+                "image_full": "ttulka/ecommerce-payment-service",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "redis",
+                    "postgres"
+                ]
+            },
+            {
+                "name": "delivery",
+                "image": "ttulka/ecommerce-delivery-service",
+                "image_full": "ttulka/ecommerce-delivery-service",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "redis",
+                    "postgres"
+                ]
+            },
+            {
+                "name": "dispatching",
+                "image": "ttulka/ecommerce-dispatching-service",
+                "image_full": "ttulka/ecommerce-dispatching-service",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "redis",
+                    "postgres"
+                ]
+            },
+            {
+                "name": "warehouse",
+                "image": "ttulka/ecommerce-warehouse-service",
+                "image_full": "ttulka/ecommerce-warehouse-service",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "redis",
+                    "postgres"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "num": 2,
+            "names": [
+                "postgres",
+                "redis"
+            ],
+            "services": [
+                "redis",
+                "postgres"
+            ],
+            "shared_dbs": true
+        },
+        "dep_graph_full": {
+            "nodes": 11,
+            "edges": 24,
+            "avg_deps_per_service": 2.1818181818181817,
+            "acyclic": true,
+            "longest_path": 2
+        },
+        "dep_graph_micro": {
+            "nodes": 9,
+            "edges": 8,
+            "avg_deps_per_service": 0.8888888888888888,
+            "acyclic": true,
+            "longest_path": 1
+        }
+    },
+    "files": [
+        {
+            "path": "/settings.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/billing/payment/settings.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/billing/payment/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/billing/payment/rest/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/billing/payment/domain/build.gradle",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/billing/payment/events/build.gradle",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/billing/payment/spring-boot-starter/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/billing/payment/application/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/billing/payment/jdbc/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/billing/payment/listeners/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/common/settings.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/common/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/common/primitives/build.gradle",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/common/events/build.gradle",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/common/application-integration-spring-boot-starter/build.gradle",
+            "dbs": [
+                "postgresql",
+                "redis"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/order/settings.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/order/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/order/webcomp/build.gradle",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/order/rest/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/order/domain/build.gradle",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/order/events/build.gradle",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/order/spring-boot-starter/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/order/application/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/order/jdbc/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/catalog/settings.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/catalog/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/catalog/webcomp/build.gradle",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/catalog/rest/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/catalog/domain/build.gradle",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/catalog/spring-boot-starter/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/catalog/application/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/catalog/jdbc/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/cart/settings.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/cart/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/cart/webcomp/build.gradle",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/cart/rest/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/cart/domain/build.gradle",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/cart/spring-boot-starter/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/cart/application/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/sales/cart/jdbc/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/shipping/dispatching/settings.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/shipping/dispatching/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/shipping/dispatching/domain/build.gradle",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/shipping/dispatching/events/build.gradle",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/shipping/dispatching/spring-boot-starter/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/shipping/dispatching/application/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/shipping/dispatching/jdbc/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/shipping/dispatching/listeners/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/shipping/delivery/settings.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/shipping/delivery/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/shipping/delivery/webcomp/build.gradle",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/shipping/delivery/rest/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/shipping/delivery/domain/build.gradle",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/shipping/delivery/events/build.gradle",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/shipping/delivery/spring-boot-starter/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/shipping/delivery/application/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/shipping/delivery/jdbc/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/shipping/delivery/listeners/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/portal/settings.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/portal/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/portal/web/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/portal/spring-boot-starter/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/portal/application/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/application/settings.gradle",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/application/build.gradle",
+            "dbs": [
+                "postgresql",
+                "redis"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/warehouse/settings.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/warehouse/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/warehouse/rest/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/warehouse/domain/build.gradle",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/warehouse/events/build.gradle",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/warehouse/spring-boot-starter/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/warehouse/application/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/warehouse/jdbc/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/warehouse/listeners/build.gradle",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "dbs": [
+        "postgres",
+        "postgresql",
+        "redis"
+    ],
+    "servers": [
+        "spring"
+    ],
+    "buses": [
+        "amqp"
+    ],
+    "langs": [
+        "java"
+    ],
+    "gates": [],
+    "monitors": [],
+    "discos": [],
+    "num_services": 11,
+    "shared_dbs": true,
+    "num_dockers": 9,
+    "images": [],
+    "num_dbs": 3,
+    "num_servers": 1,
+    "num_buses": 1,
+    "num_langs": 1,
+    "num_gates": 0,
+    "num_monitors": 0,
+    "num_discos": 0,
+    "num_files": 84,
+    "avg_size_service": 51.55555555555556
+}

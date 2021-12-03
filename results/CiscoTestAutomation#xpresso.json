@@ -1,0 +1,863 @@
+{
+    "url": "git://github.com/CiscoTestAutomation/xpresso.git",
+    "name": "CiscoTestAutomation/xpresso",
+    "commiters": 16,
+    "size": 163,
+    "languages": [
+        "shell",
+        "python"
+    ],
+    "dockers": [],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 53,
+        "services": [
+            {
+                "name": "database",
+                "image": "mysql/mysql-server",
+                "image_full": "mysql/mysql-server:8.0",
+                "dbs": [
+                    "mysql"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "cache",
+                "image": "redis",
+                "image_full": "redis:3.2",
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "elasticsearch",
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:7.6.0",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "copyservice",
+                "image": "${DOCKER_REGISTRY}/pyats-web-copyservice",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-copyservice:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "database",
+                    "management"
+                ]
+            },
+            {
+                "name": "management",
+                "image": "${DOCKER_REGISTRY}/pyats-web-management",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-management:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "database",
+                    "cache"
+                ]
+            },
+            {
+                "name": "sessions",
+                "image": "${DOCKER_REGISTRY}/pyats-web-sessions",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-sessions:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "database",
+                    "cache",
+                    "management"
+                ]
+            },
+            {
+                "name": "auths",
+                "image": "${DOCKER_REGISTRY}/pyats-web-auths",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-auths:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "database",
+                    "cache",
+                    "management"
+                ]
+            },
+            {
+                "name": "users",
+                "image": "${DOCKER_REGISTRY}/pyats-web-users",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-users:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "database",
+                    "cache",
+                    "management"
+                ]
+            },
+            {
+                "name": "users-celery",
+                "image": "${DOCKER_REGISTRY}/pyats-web-users",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-users:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "users"
+                ]
+            },
+            {
+                "name": "users-beat",
+                "image": "${DOCKER_REGISTRY}/pyats-web-users",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-users:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "users"
+                ]
+            },
+            {
+                "name": "groups",
+                "image": "${DOCKER_REGISTRY}/pyats-web-groups",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-groups:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "database",
+                    "cache",
+                    "management"
+                ]
+            },
+            {
+                "name": "groups-celery",
+                "image": "${DOCKER_REGISTRY}/pyats-web-groups",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-groups:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "groups"
+                ]
+            },
+            {
+                "name": "groups-beat",
+                "image": "${DOCKER_REGISTRY}/pyats-web-groups",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-groups:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "groups"
+                ]
+            },
+            {
+                "name": "resources",
+                "image": "${DOCKER_REGISTRY}/pyats-web-resources",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-resources:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "database",
+                    "cache",
+                    "elasticsearch",
+                    "management"
+                ]
+            },
+            {
+                "name": "communications",
+                "image": "${DOCKER_REGISTRY}/pyats-web-communications",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-communications:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "database",
+                    "cache",
+                    "management"
+                ]
+            },
+            {
+                "name": "history",
+                "image": "${DOCKER_REGISTRY}/pyats-web-history",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-history:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "database",
+                    "cache",
+                    "management"
+                ]
+            },
+            {
+                "name": "qmgr",
+                "image": "${DOCKER_REGISTRY}/pyats-web-qmgr",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-qmgr:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "database",
+                    "cache",
+                    "management"
+                ]
+            },
+            {
+                "name": "qmgr-celery",
+                "image": "${DOCKER_REGISTRY}/pyats-web-qmgr",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-qmgr:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "qmgr"
+                ]
+            },
+            {
+                "name": "qmgr-beat",
+                "image": "${DOCKER_REGISTRY}/pyats-web-qmgr",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-qmgr:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "qmgr"
+                ]
+            },
+            {
+                "name": "topoman",
+                "image": "${DOCKER_REGISTRY}/pyats-web-topoman",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-topoman:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "database",
+                    "cache",
+                    "management"
+                ]
+            },
+            {
+                "name": "topoman-celery",
+                "image": "${DOCKER_REGISTRY}/pyats-web-topoman",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-topoman:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "topoman"
+                ]
+            },
+            {
+                "name": "topoman-beat",
+                "image": "${DOCKER_REGISTRY}/pyats-web-topoman",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-topoman:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "topoman"
+                ]
+            },
+            {
+                "name": "laas",
+                "image": "${DOCKER_REGISTRY}/pyats-web-laas",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-laas:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "database",
+                    "cache",
+                    "management"
+                ]
+            },
+            {
+                "name": "laas-celery",
+                "image": "${DOCKER_REGISTRY}/pyats-web-laas",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-laas:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "laas"
+                ]
+            },
+            {
+                "name": "laas-beat",
+                "image": "${DOCKER_REGISTRY}/pyats-web-laas",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-laas:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "laas"
+                ]
+            },
+            {
+                "name": "registry",
+                "image": "${DOCKER_REGISTRY}/pyats-web-registry",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-registry:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "database",
+                    "cache",
+                    "management",
+                    "genie"
+                ]
+            },
+            {
+                "name": "registry-celery",
+                "image": "${DOCKER_REGISTRY}/pyats-web-registry",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-registry:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "registry"
+                ]
+            },
+            {
+                "name": "results",
+                "image": "${DOCKER_REGISTRY}/pyats-web-results",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-results:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "database",
+                    "cache",
+                    "management"
+                ]
+            },
+            {
+                "name": "results-celery",
+                "image": "${DOCKER_REGISTRY}/pyats-web-results",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-results:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "results"
+                ]
+            },
+            {
+                "name": "results-beat",
+                "image": "${DOCKER_REGISTRY}/pyats-web-results",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-results:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "results"
+                ]
+            },
+            {
+                "name": "results2",
+                "image": "${DOCKER_REGISTRY}/pyats-web-results2",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-results2:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "database",
+                    "cache",
+                    "management"
+                ]
+            },
+            {
+                "name": "jenkinsengine",
+                "image": "${DOCKER_REGISTRY}/pyats-web-jenkinsengine",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-jenkinsengine:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "database",
+                    "cache",
+                    "management"
+                ]
+            },
+            {
+                "name": "jenkinsengine-celery",
+                "image": "${DOCKER_REGISTRY}/pyats-web-jenkinsengine",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-jenkinsengine:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "jenkinsengine"
+                ]
+            },
+            {
+                "name": "jenkinsengine-beat",
+                "image": "${DOCKER_REGISTRY}/pyats-web-jenkinsengine",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-jenkinsengine:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "jenkinsengine"
+                ]
+            },
+            {
+                "name": "requests",
+                "image": "${DOCKER_REGISTRY}/pyats-web-requests",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-requests:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "database",
+                    "cache",
+                    "management"
+                ]
+            },
+            {
+                "name": "requests-celery",
+                "image": "${DOCKER_REGISTRY}/pyats-web-requests",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-requests:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "requests"
+                ]
+            },
+            {
+                "name": "requests-beat",
+                "image": "${DOCKER_REGISTRY}/pyats-web-requests",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-requests:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "requests"
+                ]
+            },
+            {
+                "name": "labvpn",
+                "image": "${DOCKER_REGISTRY}/pyats-web-labvpn",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-labvpn:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "database",
+                    "cache",
+                    "management"
+                ]
+            },
+            {
+                "name": "cdets",
+                "image": "${DOCKER_REGISTRY}/pyats-web-cdets",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-cdets:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "database",
+                    "cache",
+                    "management"
+                ]
+            },
+            {
+                "name": "cdets-celery",
+                "image": "${DOCKER_REGISTRY}/pyats-web-cdets",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-cdets:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "cdets"
+                ]
+            },
+            {
+                "name": "cdets-beat",
+                "image": "${DOCKER_REGISTRY}/pyats-web-cdets",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-cdets:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "cdets"
+                ]
+            },
+            {
+                "name": "genie",
+                "image": "${DOCKER_REGISTRY}/pyats-web-genie",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-genie:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "database",
+                    "cache",
+                    "management"
+                ]
+            },
+            {
+                "name": "genie-celery",
+                "image": "${DOCKER_REGISTRY}/pyats-web-genie",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-genie:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "genie"
+                ]
+            },
+            {
+                "name": "genie-beat",
+                "image": "${DOCKER_REGISTRY}/pyats-web-genie",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-genie:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "genie"
+                ]
+            },
+            {
+                "name": "controller",
+                "image": "${DOCKER_REGISTRY}/pyats-web-taas-controller",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-taas-controller:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "database",
+                    "cache",
+                    "wsgateway"
+                ]
+            },
+            {
+                "name": "plugins",
+                "image": "${DOCKER_REGISTRY}/pyats-web-plugins",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-plugins:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "management"
+                ]
+            },
+            {
+                "name": "aggregator",
+                "image": "${DOCKER_REGISTRY}/pyats-web-aggregator",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-aggregator:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "gateway",
+                    "database",
+                    "cache"
+                ]
+            },
+            {
+                "name": "aggregator-celery",
+                "image": "${DOCKER_REGISTRY}/pyats-web-aggregator",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-aggregator:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "aggregator"
+                ]
+            },
+            {
+                "name": "aggregator-beat",
+                "image": "${DOCKER_REGISTRY}/pyats-web-aggregator",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-aggregator:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "aggregator"
+                ]
+            },
+            {
+                "name": "gateway",
+                "image": "${DOCKER_REGISTRY}/pyats-web-gateway",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-gateway:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "auths",
+                    "users",
+                    "groups",
+                    "sessions",
+                    "management"
+                ]
+            },
+            {
+                "name": "client",
+                "image": "${DOCKER_REGISTRY}/pyats-web-client",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-client:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "gateway",
+                    "controller"
+                ]
+            },
+            {
+                "name": "workers",
+                "image": "${DOCKER_REGISTRY}/pyats-web-taas-worker",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-taas-worker:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "wsgateway"
+                ]
+            },
+            {
+                "name": "wsgateway",
+                "image": "${DOCKER_REGISTRY}/pyats-web-wsgateway",
+                "image_full": "${DOCKER_REGISTRY}/pyats-web-wsgateway:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "cache"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "num": 2,
+            "names": [
+                "redis",
+                "mysql"
+            ],
+            "services": [
+                "database",
+                "cache"
+            ],
+            "shared_dbs": true
+        },
+        "dep_graph_full": {
+            "nodes": 53,
+            "edges": 99,
+            "avg_deps_per_service": 1.8679245283018868,
+            "acyclic": true,
+            "longest_path": 5
+        },
+        "dep_graph_micro": {
+            "nodes": 50,
+            "edges": 48,
+            "avg_deps_per_service": 0.96,
+            "acyclic": true,
+            "longest_path": 3
+        }
+    },
+    "files": [],
+    "dbs": [
+        "redis",
+        "mysql"
+    ],
+    "servers": [],
+    "buses": [],
+    "langs": [
+        "shell",
+        "python"
+    ],
+    "gates": [
+        "gateway"
+    ],
+    "monitors": [],
+    "discos": [],
+    "num_services": 53,
+    "shared_dbs": true,
+    "num_dockers": 0,
+    "images": [],
+    "num_dbs": 2,
+    "num_servers": 0,
+    "num_buses": 0,
+    "num_langs": 2,
+    "num_gates": 1,
+    "num_monitors": 0,
+    "num_discos": 0,
+    "num_files": 1,
+    "avg_size_service": 163.0
+}

@@ -1,0 +1,137 @@
+{
+    "url": "git://github.com/nightingaleproject/nightingale.git",
+    "name": "nightingaleproject/nightingale",
+    "commiters": 16,
+    "size": 10704,
+    "languages": [
+        "ruby",
+        "javascript"
+    ],
+    "dockers": [
+        {
+            "path": "/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 4,
+        "services": [
+            {
+                "name": "db",
+                "image": "postgres",
+                "image_full": "postgres:12",
+                "dbs": [
+                    "postgres"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "app",
+                "image": "mitre/nightingale",
+                "image_full": "mitre/nightingale:latest",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "db",
+                    "vrdr-microservice"
+                ]
+            },
+            {
+                "name": "web",
+                "image": ".",
+                "image_full": ".",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "app"
+                ]
+            },
+            {
+                "name": "vrdr-microservice",
+                "image": "mitre/vrdr-microservice",
+                "image_full": "mitre/vrdr-microservice:latest",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "postgres"
+            ],
+            "services": [
+                "db"
+            ],
+            "shared_dbs": false
+        },
+        "dep_graph_full": {
+            "nodes": 4,
+            "edges": 3,
+            "avg_deps_per_service": 0.75,
+            "acyclic": true,
+            "longest_path": 2
+        },
+        "dep_graph_micro": {
+            "nodes": 3,
+            "edges": 2,
+            "avg_deps_per_service": 0.6666666666666666,
+            "acyclic": true,
+            "longest_path": 2
+        }
+    },
+    "files": [],
+    "dbs": [
+        "postgres"
+    ],
+    "servers": [],
+    "buses": [],
+    "langs": [
+        "ruby",
+        "javascript"
+    ],
+    "gates": [],
+    "monitors": [],
+    "discos": [],
+    "num_services": 4,
+    "shared_dbs": false,
+    "num_dockers": 1,
+    "images": [],
+    "num_dbs": 1,
+    "num_servers": 0,
+    "num_buses": 0,
+    "num_langs": 2,
+    "num_gates": 0,
+    "num_monitors": 0,
+    "num_discos": 0,
+    "num_files": 2,
+    "avg_size_service": 10704.0
+}

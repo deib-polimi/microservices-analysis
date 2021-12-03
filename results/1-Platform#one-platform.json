@@ -1,0 +1,716 @@
+{
+    "url": "git://github.com/1-Platform/one-platform.git",
+    "name": "1-Platform/one-platform",
+    "commiters": 24,
+    "size": 26726,
+    "languages": [
+        "javascript",
+        "typescript"
+    ],
+    "dockers": [
+        {
+            "path": "/packages/notifications-service/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/reverse-proxy-service/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/user-group-service/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/ssi-service/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/apps-service/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/search-service/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/api-catalog-service/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/lighthouse-service/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/feedback-service/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/api-gateway-service/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/home-spa/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/cli/generator-op-microservice/generators/microservice/templates/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": ""
+        }
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 13,
+        "services": [
+            {
+                "name": "httpd",
+                "image": "spaship/httpd",
+                "image_full": "spaship/httpd:latest",
+                "dbs": [],
+                "servers": [
+                    "httpd"
+                ],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "reverse-proxy",
+                "image": "./packages/reverse-proxy-service",
+                "image_full": "./packages/reverse-proxy-service",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "couchdb"
+                ]
+            },
+            {
+                "name": "api-gateway",
+                "image": "./packages/api-gateway-service",
+                "image_full": "./packages/api-gateway-service",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "apps-service",
+                    "feedback-service",
+                    "user-group-service",
+                    "notifications-service",
+                    "search-service",
+                    "lighthouse-service",
+                    "api-catalog-service"
+                ]
+            },
+            {
+                "name": "apps-service",
+                "image": "./packages/apps-service",
+                "image_full": "./packages/apps-service",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo",
+                    "couchdb"
+                ]
+            },
+            {
+                "name": "feedback-service",
+                "image": "./packages/feedback-service",
+                "image_full": "./packages/feedback-service",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo",
+                    "redis"
+                ]
+            },
+            {
+                "name": "user-group-service",
+                "image": "./packages/user-group-service",
+                "image_full": "./packages/user-group-service",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo",
+                    "redis"
+                ]
+            },
+            {
+                "name": "notifications-service",
+                "image": "./packages/notifications-service",
+                "image_full": "./packages/notifications-service",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo",
+                    "redis"
+                ]
+            },
+            {
+                "name": "search-service",
+                "image": "./packages/search-service",
+                "image_full": "./packages/search-service",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo",
+                    "redis"
+                ]
+            },
+            {
+                "name": "lighthouse-service",
+                "image": "./packages/lighthouse-service",
+                "image_full": "./packages/lighthouse-service",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo",
+                    "redis"
+                ]
+            },
+            {
+                "name": "api-catalog-service",
+                "image": "./packages/api-catalog-service",
+                "image_full": "./packages/api-catalog-service",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo",
+                    "redis"
+                ]
+            },
+            {
+                "name": "mongo",
+                "image": "mongo",
+                "image_full": "mongo:4",
+                "dbs": [
+                    "mongo"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "couchdb",
+                "image": "couchdb",
+                "image_full": "couchdb:3",
+                "dbs": [
+                    "couchdb"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "redis",
+                "image": "redis",
+                "image_full": "redis:alpine",
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 3,
+            "names": [
+                "mongo",
+                "couchdb",
+                "redis"
+            ],
+            "services": [
+                "mongo",
+                "couchdb",
+                "redis"
+            ],
+            "shared_dbs": true
+        },
+        "dep_graph_full": {
+            "nodes": 13,
+            "edges": 22,
+            "avg_deps_per_service": 1.6923076923076923,
+            "acyclic": true,
+            "longest_path": 2
+        },
+        "dep_graph_micro": {
+            "nodes": 8,
+            "edges": 0,
+            "avg_deps_per_service": 0.0,
+            "acyclic": true,
+            "longest_path": 0
+        }
+    },
+    "files": [
+        {
+            "path": "/package.json",
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/notifications-service/package.json",
+            "dbs": [
+                "redis"
+            ],
+            "servers": [
+                "express",
+                "node",
+                "mongoose"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/search-spa/package.json",
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/api-catalog-spa/package.json",
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/reverse-proxy-service/package.json",
+            "dbs": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/developer-console-spa/package.json",
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/component-catalog-spa/package.json",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/user-group-service/package.json",
+            "dbs": [
+                "redis"
+            ],
+            "servers": [
+                "express",
+                "node",
+                "mongoose"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/ssi-service/package.json",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/apps-service/package.json",
+            "dbs": [],
+            "servers": [
+                "node",
+                "mongoose"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/documentation-spa/package.json",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/lighthouse-spa/package.json",
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/search-service/package.json",
+            "dbs": [
+                "redis"
+            ],
+            "servers": [
+                "express",
+                "node",
+                "mongoose"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/api-catalog-service/package.json",
+            "dbs": [
+                "redis"
+            ],
+            "servers": [
+                "express",
+                "node",
+                "mongoose"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/user-group-spa/package.json",
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/feedback-spa/package.json",
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/opc-base/package.json",
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/lighthouse-service/package.json",
+            "dbs": [
+                "redis"
+            ],
+            "servers": [
+                "express",
+                "node",
+                "mongoose"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/feedback-service/package.json",
+            "dbs": [
+                "redis"
+            ],
+            "servers": [
+                "express",
+                "node",
+                "mongoose"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/api-gateway-service/package.json",
+            "dbs": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "buses": [],
+            "gates": [
+                "gateway"
+            ],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/packages/home-spa/package.json",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/cli/generator-op-microservice/package.json",
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/cli/generator-op-microservice/generators/microservice/templates/package.json",
+            "dbs": [
+                "redis"
+            ],
+            "servers": [
+                "express",
+                "node",
+                "mongoose"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "dbs": [
+        "mongo",
+        "redis"
+    ],
+    "servers": [
+        "express",
+        "httpd",
+        "node",
+        "mongoose"
+    ],
+    "buses": [],
+    "langs": [
+        "typescript",
+        "javascript"
+    ],
+    "gates": [
+        "gateway"
+    ],
+    "monitors": [],
+    "discos": [],
+    "num_services": 13,
+    "shared_dbs": true,
+    "num_dockers": 12,
+    "images": [],
+    "num_dbs": 2,
+    "num_servers": 4,
+    "num_buses": 0,
+    "num_langs": 2,
+    "num_gates": 1,
+    "num_monitors": 0,
+    "num_discos": 0,
+    "num_files": 36,
+    "avg_size_service": 2227.1666666666665
+}

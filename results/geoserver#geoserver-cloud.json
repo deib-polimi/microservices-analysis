@@ -1,0 +1,785 @@
+{
+    "url": "git://github.com/geoserver/geoserver-cloud.git",
+    "name": "geoserver/geoserver-cloud",
+    "commiters": 5,
+    "size": 2473,
+    "languages": [
+        "java"
+    ],
+    "dockers": [
+        {
+            "path": "/support-services/database/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/support-services/discovery/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/support-services/config/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/support-services/api-gateway/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/services/wfs/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/services/web-ui/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/services/wcs/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/services/restconfig/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/services/wps/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/services/catalog/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/services/wms/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 11,
+        "services": [
+            {
+                "name": "rabbitmq",
+                "image": "rabbitmq",
+                "image_full": "rabbitmq:3.9-management",
+                "dbs": [],
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "database",
+                "image": "geoservercloud/geoserver-cloud-postgres-jdbcconfig",
+                "image_full": "geoservercloud/geoserver-cloud-postgres-jdbcconfig:${TAG}",
+                "dbs": [
+                    "postgres"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "discovery",
+                "image": "geoservercloud/geoserver-cloud-discovery",
+                "image_full": "geoservercloud/geoserver-cloud-discovery:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "config",
+                "image": "geoservercloud/geoserver-cloud-config",
+                "image_full": "geoservercloud/geoserver-cloud-config:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "discovery"
+                ]
+            },
+            {
+                "name": "gateway",
+                "image": "geoservercloud/geoserver-cloud-gateway",
+                "image_full": "geoservercloud/geoserver-cloud-gateway:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "config"
+                ]
+            },
+            {
+                "name": "catalog",
+                "image": "geoservercloud/geoserver-cloud-catalog",
+                "image_full": "geoservercloud/geoserver-cloud-catalog:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "config",
+                    "database",
+                    "rabbitmq"
+                ]
+            },
+            {
+                "name": "wfs",
+                "image": "geoservercloud/geoserver-cloud-wfs",
+                "image_full": "geoservercloud/geoserver-cloud-wfs:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "catalog"
+                ]
+            },
+            {
+                "name": "wms",
+                "image": "geoservercloud/geoserver-cloud-wms",
+                "image_full": "geoservercloud/geoserver-cloud-wms:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "catalog"
+                ]
+            },
+            {
+                "name": "wcs",
+                "image": "geoservercloud/geoserver-cloud-wcs",
+                "image_full": "geoservercloud/geoserver-cloud-wcs:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "catalog"
+                ]
+            },
+            {
+                "name": "rest",
+                "image": "geoservercloud/geoserver-cloud-rest",
+                "image_full": "geoservercloud/geoserver-cloud-rest:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "catalog"
+                ]
+            },
+            {
+                "name": "webui",
+                "image": "geoservercloud/geoserver-cloud-webui",
+                "image_full": "geoservercloud/geoserver-cloud-webui:${TAG}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "rabbitmq",
+                    "catalog"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "postgres"
+            ],
+            "services": [
+                "database"
+            ],
+            "shared_dbs": false
+        },
+        "dep_graph_full": {
+            "nodes": 11,
+            "edges": 12,
+            "avg_deps_per_service": 1.0909090909090908,
+            "acyclic": true,
+            "longest_path": 3
+        },
+        "dep_graph_micro": {
+            "nodes": 8,
+            "edges": 7,
+            "avg_deps_per_service": 0.875,
+            "acyclic": true,
+            "longest_path": 3
+        }
+    },
+    "files": [
+        {
+            "path": "/pom.xml",
+            "dbs": [
+                "nexus",
+                "oracle"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [
+                "loadbalancer"
+            ],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/support-services/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [
+                "gateway"
+            ],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/support-services/database/pom.xml",
+            "dbs": [
+                "postgres"
+            ],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/support-services/discovery/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring",
+                "glassfish"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/support-services/config/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [
+                "loadbalancer"
+            ],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/support-services/api-gateway/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [
+                "gateway",
+                "loadbalancer"
+            ],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/services/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/services/wfs/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/services/web-ui/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/services/wcs/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/services/restconfig/pom.xml",
+            "dbs": [
+                "oracle"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/services/wps/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/services/catalog/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/services/wms/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/docker-healthcheck/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/starters/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/starters/catalog-backend-starter/pom.xml",
+            "dbs": [
+                "postgresql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/starters/starter-vector-formats/pom.xml",
+            "dbs": [
+                "oracle"
+            ],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/starters/starter-reactive/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [
+                "loadbalancer"
+            ],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/starters/starter-webmvc/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [
+                "loadbalancer"
+            ],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/starters/starter-jackson/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/starters/starter-raster-formats/pom.xml",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/integration-tests/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/integration-tests/catalog-service-it/pom.xml",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/catalog-support/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/catalog-support/catalog-cache/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/catalog-support/catalog-event-bus/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/catalog-support/pluggable-catalog-support/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/catalog-support/catalog-client/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [
+                "loadbalancer"
+            ],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/catalog-support/catalog-event-bus-amqp/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [
+                "amqp"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/catalog-support/geoserver-jackson-bindings/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/catalog-support/geotools-jackson-bindings/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "dbs": [
+        "postgres",
+        "nexus",
+        "postgresql",
+        "oracle"
+    ],
+    "servers": [
+        "spring",
+        "glassfish"
+    ],
+    "buses": [
+        "amqp",
+        "rabbitmq"
+    ],
+    "langs": [
+        "java"
+    ],
+    "gates": [
+        "loadbalancer"
+    ],
+    "monitors": [],
+    "discos": [
+        "eureka"
+    ],
+    "num_services": 11,
+    "shared_dbs": false,
+    "num_dockers": 11,
+    "images": [],
+    "num_dbs": 4,
+    "num_servers": 2,
+    "num_buses": 2,
+    "num_langs": 1,
+    "num_gates": 1,
+    "num_monitors": 0,
+    "num_discos": 1,
+    "num_files": 44,
+    "avg_size_service": 224.8181818181818
+}

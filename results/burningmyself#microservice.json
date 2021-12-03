@@ -1,0 +1,481 @@
+{
+    "url": "git://github.com/burningmyself/microservice.git",
+    "name": "burningmyself/microservice",
+    "commiters": 2,
+    "size": 14715,
+    "languages": [
+        "c#",
+        "javascript",
+        "vue"
+    ],
+    "dockers": [
+        {
+            "path": "/databases/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/databases/restore/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/microservices/AuditLogging.Host/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/microservices/IdentityService.Host/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/microservices/BaseManagement.Host/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/microservices/OrganizationService.Host/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/gateways/BackendAdminAppGateway.Host/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/applications/AuthServer.Host/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/applications/BackendAdminApp.Host/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 16,
+        "services": [
+            {
+                "name": "sqlserver",
+                "image": "mcr.microsoft.com/mssql/server",
+                "image_full": "mcr.microsoft.com/mssql/server",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "mongodb",
+                "image": "mongo",
+                "image_full": "mongo",
+                "dbs": [
+                    "mongo"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "rabbitmq",
+                "image": "rabbitmq",
+                "image_full": "rabbitmq:3-management-alpine",
+                "dbs": [],
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "redis",
+                "image": "redis",
+                "image_full": "redis",
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "elasticsearch",
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:6.6.0",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "logstash",
+                "image": "docker.elastic.co/logstash/logstash",
+                "image_full": "docker.elastic.co/logstash/logstash:6.6.0",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "elasticsearch"
+                ]
+            },
+            {
+                "name": "kibana",
+                "image": "docker.elastic.co/kibana/kibana",
+                "image_full": "docker.elastic.co/kibana/kibana:6.6.0",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "elasticsearch"
+                ]
+            },
+            {
+                "name": "internal-gateway",
+                "image": "volosoft/microservice-demo-internal-gateway",
+                "image_full": "volosoft/microservice-demo-internal-gateway:${TAG:-latest}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "elasticsearch",
+                    "redis",
+                    "sqlserver",
+                    "identity-service",
+                    "product-service",
+                    "blogging-service"
+                ]
+            },
+            {
+                "name": "backend-admin-app-gateway",
+                "image": "volosoft/microservice-demo-backend-admin-app-gateway",
+                "image_full": "volosoft/microservice-demo-backend-admin-app-gateway:${TAG:-latest}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "elasticsearch",
+                    "redis",
+                    "sqlserver",
+                    "identity-service",
+                    "product-service"
+                ]
+            },
+            {
+                "name": "public-website-gateway",
+                "image": "volosoft/microservice-demo-public-website-gateway",
+                "image_full": "volosoft/microservice-demo-public-website-gateway:${TAG:-latest}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "gateway"
+                ],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "elasticsearch",
+                    "redis",
+                    "blogging-service",
+                    "product-service"
+                ]
+            },
+            {
+                "name": "blogging-service",
+                "image": "volosoft/microservice-demo-blogging-service",
+                "image_full": "volosoft/microservice-demo-blogging-service:${TAG:-latest}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "elasticsearch",
+                    "mongodb",
+                    "redis"
+                ]
+            },
+            {
+                "name": "identity-service",
+                "image": "volosoft/microservice-demo-identity-service",
+                "image_full": "volosoft/microservice-demo-identity-service:${TAG:-latest}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "elasticsearch",
+                    "rabbitmq",
+                    "redis",
+                    "sqlserver"
+                ]
+            },
+            {
+                "name": "product-service",
+                "image": "volosoft/microservice-demo-product-service",
+                "image_full": "volosoft/microservice-demo-product-service:${TAG:-latest}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "elasticsearch",
+                    "sqlserver",
+                    "redis"
+                ]
+            },
+            {
+                "name": "auth-server",
+                "image": "volosoft/microservice-demo-auth-server",
+                "image_full": "volosoft/microservice-demo-auth-server:${TAG:-latest}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "elasticsearch",
+                    "redis",
+                    "rabbitmq",
+                    "identity-service"
+                ]
+            },
+            {
+                "name": "backend-admin-app",
+                "image": "volosoft/microservice-demo-backend-admin-app",
+                "image_full": "volosoft/microservice-demo-backend-admin-app:${TAG:-latest}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "elasticsearch",
+                    "backend-admin-app-gateway"
+                ]
+            },
+            {
+                "name": "public-website",
+                "image": "volosoft/microservice-demo-public-website",
+                "image_full": "volosoft/microservice-demo-public-website:${TAG:-latest}",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "elasticsearch",
+                    "public-website-gateway"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "num": 2,
+            "names": [
+                "mongo",
+                "redis"
+            ],
+            "services": [
+                "mongodb",
+                "redis"
+            ],
+            "shared_dbs": true
+        },
+        "dep_graph_full": {
+            "nodes": 16,
+            "edges": 35,
+            "avg_deps_per_service": 2.1875,
+            "acyclic": true,
+            "longest_path": 3
+        },
+        "dep_graph_micro": {
+            "nodes": 10,
+            "edges": 11,
+            "avg_deps_per_service": 1.1,
+            "acyclic": true,
+            "longest_path": 2
+        }
+    },
+    "files": [
+        {
+            "path": "/modules/iview-admin/package.json",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/applications/AuthServer.Host/package.json",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/applications/BackendAdminApp.Host/package.json",
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "dbs": [
+        "mongo",
+        "redis"
+    ],
+    "servers": [],
+    "buses": [
+        "rabbitmq"
+    ],
+    "langs": [
+        "c#",
+        "vue",
+        "javascript"
+    ],
+    "gates": [
+        "gateway"
+    ],
+    "monitors": [],
+    "discos": [],
+    "num_services": 16,
+    "shared_dbs": true,
+    "num_dockers": 9,
+    "images": [],
+    "num_dbs": 2,
+    "num_servers": 0,
+    "num_buses": 1,
+    "num_langs": 3,
+    "num_gates": 1,
+    "num_monitors": 0,
+    "num_discos": 0,
+    "num_files": 13,
+    "avg_size_service": 1635.0
+}

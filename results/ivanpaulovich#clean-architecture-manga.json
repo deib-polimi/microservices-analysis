@@ -1,0 +1,232 @@
+{
+    "url": "git://github.com/ivanpaulovich/clean-architecture-manga.git",
+    "name": "ivanpaulovich/clean-architecture-manga",
+    "commiters": 22,
+    "size": 6114,
+    "languages": [
+        "c#",
+        "javascript"
+    ],
+    "dockers": [
+        {
+            "path": "/identity-server/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/nginx/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/accounts-api/src/WebApi/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/wallet-spa/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/accounts-api-seed/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "structure": {
+        "path": "/docker-compose/docker-compose.yml",
+        "num_services": 6,
+        "services": [
+            {
+                "name": "nginx",
+                "image": "../nginx/",
+                "image_full": "../nginx/",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "nginx"
+                ],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "accounts-api",
+                    "identity-server",
+                    "wallet-spa"
+                ]
+            },
+            {
+                "name": "accounts-api",
+                "image": "${DOCKER_REGISTRY-}accounts",
+                "image_full": "${DOCKER_REGISTRY-}accounts",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "sql1",
+                    "accounts-api-seed",
+                    "identity-server"
+                ]
+            },
+            {
+                "name": "accounts-api-seed",
+                "image": "../accounts-api/",
+                "image_full": "../accounts-api/",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "sql1"
+                ]
+            },
+            {
+                "name": "identity-server",
+                "image": "${DOCKER_REGISTRY-}identityserver",
+                "image_full": "${DOCKER_REGISTRY-}identityserver",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "wallet-spa",
+                "image": "${DOCKER_REGISTRY-}wallet",
+                "image_full": "${DOCKER_REGISTRY-}wallet",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "sql1",
+                "image": "mcr.microsoft.com/mssql/server",
+                "image_full": "mcr.microsoft.com/mssql/server:2019-latest",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        },
+        "dep_graph_full": {
+            "nodes": 6,
+            "edges": 7,
+            "avg_deps_per_service": 1.1666666666666667,
+            "acyclic": true,
+            "longest_path": 3
+        },
+        "dep_graph_micro": {
+            "nodes": 5,
+            "edges": 4,
+            "avg_deps_per_service": 0.8,
+            "acyclic": true,
+            "longest_path": 2
+        }
+    },
+    "files": [
+        {
+            "path": "/wallet-spa/package.json",
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "dbs": [],
+    "servers": [
+        "node"
+    ],
+    "buses": [],
+    "langs": [
+        "c#",
+        "javascript"
+    ],
+    "gates": [
+        "nginx"
+    ],
+    "monitors": [],
+    "discos": [],
+    "num_services": 6,
+    "shared_dbs": false,
+    "num_dockers": 5,
+    "images": [],
+    "num_dbs": 0,
+    "num_servers": 1,
+    "num_buses": 0,
+    "num_langs": 2,
+    "num_gates": 1,
+    "num_monitors": 0,
+    "num_discos": 0,
+    "num_files": 7,
+    "avg_size_service": 1222.8
+}

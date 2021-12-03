@@ -1,0 +1,519 @@
+{
+    "url": "git://github.com/jbw/TooBigToFailBurgerShop.git",
+    "name": "jbw/TooBigToFailBurgerShop",
+    "commiters": 3,
+    "size": 1693,
+    "languages": [
+        "c#"
+    ],
+    "dockers": [
+        {
+            "path": "/src/services/Ordering/CreateOrder.Consumer/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/src/services/Ordering/Ordering.StateService/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/src/services/Ordering/Ordering.API/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/src/services/Ordering/ProcessOrder.Consumer/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/src/services/Ordering/Ordering.IntegrationTests/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/src/services/Basket/Basket.API/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/src/web/Burgers.WebSPA/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "structure": {
+        "path": "/src/docker-compose.yml",
+        "num_services": 25,
+        "services": [
+            {
+                "name": "keycloak.data",
+                "image": "postgres",
+                "image_full": "postgres:alpine",
+                "dbs": [
+                    "postgres"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "keycloak",
+                "image": "quay.io/keycloak/keycloak",
+                "image_full": "quay.io/keycloak/keycloak:latest",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "keycloak.data"
+                ]
+            },
+            {
+                "name": "dapr-dashboard",
+                "image": "daprio/dashboard",
+                "image_full": "daprio/dashboard",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "redis",
+                "image": "redis",
+                "image_full": "redis:alpine",
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "seq",
+                "image": "datalust/seq",
+                "image_full": "datalust/seq",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "mongo",
+                "image": "bitnami/mongodb",
+                "image_full": "bitnami/mongodb",
+                "dbs": [
+                    "mongodb"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "mongodb-secondary",
+                "image": "docker.io/bitnami/mongodb",
+                "image_full": "docker.io/bitnami/mongodb:4.4-debian-10",
+                "dbs": [
+                    "mongodb"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo"
+                ]
+            },
+            {
+                "name": "mongodb-arbiter",
+                "image": "docker.io/bitnami/mongodb",
+                "image_full": "docker.io/bitnami/mongodb:4.4-debian-10",
+                "dbs": [
+                    "mongodb"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo"
+                ]
+            },
+            {
+                "name": "mongo-express",
+                "image": "mongo-express",
+                "image_full": "mongo-express",
+                "dbs": [
+                    "mongo"
+                ],
+                "servers": [
+                    "express"
+                ],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo"
+                ]
+            },
+            {
+                "name": "pgadmin",
+                "image": "dpage/pgadmin4",
+                "image_full": "dpage/pgadmin4",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "jaeger",
+                "image": "jaegertracing/all-in-one",
+                "image_full": "jaegertracing/all-in-one",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "rabbitmq",
+                "image": "rabbitmq",
+                "image_full": "rabbitmq:management-alpine",
+                "dbs": [],
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "burgers.data",
+                "image": "postgres",
+                "image_full": "postgres:alpine",
+                "dbs": [
+                    "postgres"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "burgers.gateway.api",
+                "image": "envoyproxy/envoy",
+                "image_full": "envoyproxy/envoy:v1.18-latest",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [
+                    "envoy"
+                ],
+                "depends_on": []
+            },
+            {
+                "name": "burgers.gateway.api.dapr",
+                "image": "daprio/daprd",
+                "image_full": "daprio/daprd:1.0.0",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "burgers.gateway.api"
+                ]
+            },
+            {
+                "name": "burgers.webspa",
+                "image": "burgers.webspa",
+                "image_full": "burgers.webspa",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "burgers.ordering.api",
+                "image": "burgers.ordering.api",
+                "image_full": "burgers.ordering.api",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "burgers.data"
+                ]
+            },
+            {
+                "name": "burgers.ordering.api.dapr",
+                "image": "daprio/daprd",
+                "image_full": "daprio/daprd:1.1.1",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "burgers.ordering.api"
+                ]
+            },
+            {
+                "name": "burgers.create.order.consumer",
+                "image": "burgers.create.order.consumer",
+                "image_full": "burgers.create.order.consumer",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "burgers.create.order.consumer.dapr",
+                "image": "daprio/daprd",
+                "image_full": "daprio/daprd:1.1.1",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "burgers.create.order.consumer"
+                ]
+            },
+            {
+                "name": "burgers.ordering.state.service",
+                "image": "burgers.ordering.state.service",
+                "image_full": "burgers.ordering.state.service",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "burgers.process.order.consumer",
+                "image": "burgers.process.order.consumer",
+                "image_full": "burgers.process.order.consumer",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "burgers.basket.api",
+                "image": "burgers.basket.api",
+                "image_full": "burgers.basket.api",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "burgers.basket.api.dapr",
+                "image": "daprio/daprd",
+                "image_full": "daprio/daprd:1.1.1",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "burgers.basket.api"
+                ]
+            },
+            {
+                "name": "dapr-placement",
+                "image": "daprio/dapr",
+                "image_full": "daprio/dapr:1.1.1",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 7,
+            "names": [
+                "postgres",
+                "mongo",
+                "mongodb",
+                "redis"
+            ],
+            "services": [
+                "keycloak.data",
+                "redis",
+                "mongo",
+                "mongodb-secondary",
+                "mongodb-arbiter",
+                "mongo-express",
+                "burgers.data"
+            ],
+            "shared_dbs": true
+        },
+        "dep_graph_full": {
+            "nodes": 25,
+            "edges": 9,
+            "avg_deps_per_service": 0.36,
+            "acyclic": true,
+            "longest_path": 2
+        },
+        "dep_graph_micro": {
+            "nodes": 16,
+            "edges": 3,
+            "avg_deps_per_service": 0.1875,
+            "acyclic": true,
+            "longest_path": 1
+        }
+    },
+    "files": [],
+    "dbs": [
+        "postgres",
+        "mongo",
+        "redis"
+    ],
+    "servers": [
+        "express"
+    ],
+    "buses": [
+        "rabbitmq"
+    ],
+    "langs": [
+        "c#"
+    ],
+    "gates": [],
+    "monitors": [],
+    "discos": [
+        "envoy"
+    ],
+    "num_services": 25,
+    "shared_dbs": true,
+    "num_dockers": 7,
+    "images": [],
+    "num_dbs": 3,
+    "num_servers": 1,
+    "num_buses": 1,
+    "num_langs": 1,
+    "num_gates": 0,
+    "num_monitors": 0,
+    "num_discos": 1,
+    "num_files": 8,
+    "avg_size_service": 241.85714285714286
+}

@@ -1,0 +1,583 @@
+{
+    "url": "git://github.com/learningOrchestra/learningOrchestra.git",
+    "name": "learningOrchestra/learningOrchestra",
+    "commiters": 18,
+    "size": 356,
+    "languages": [
+        "python"
+    ],
+    "dockers": [
+        {
+            "path": "/microservices/code_executor_image/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/microservices/database_api_image/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/microservices/spark_image/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/microservices/builder_image/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/microservices/database_executor_image/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/microservices/spark_task_image/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/microservices/data_type_handler_image/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/microservices/binary_executor_image/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/microservices/histogram_image/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/microservices/projection_image/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/microservices/model_image/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 18,
+        "services": [
+            {
+                "name": "databaseapi",
+                "image": "127.0.0.1",
+                "image_full": "127.0.0.1:5050/database_api",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "databaseprimary",
+                    "images"
+                ]
+            },
+            {
+                "name": "databaseprimary",
+                "image": "bitnami/mongodb",
+                "image_full": "bitnami/mongodb:3.6.17-ol-7-r26",
+                "dbs": [
+                    "mongodb"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "databasesecondary",
+                "image": "bitnami/mongodb",
+                "image_full": "bitnami/mongodb:3.6.17-ol-7-r26",
+                "dbs": [
+                    "mongodb"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "databaseprimary"
+                ]
+            },
+            {
+                "name": "databasearbiter",
+                "image": "bitnami/mongodb",
+                "image_full": "bitnami/mongodb:3.6.17-ol-7-r26",
+                "dbs": [
+                    "mongodb"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "databaseprimary"
+                ]
+            },
+            {
+                "name": "images",
+                "image": "registry",
+                "image_full": "registry:2.7.1",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "agent",
+                "image": "portainer/agent",
+                "image_full": "portainer/agent:linux-amd64-2.1.0-alpine",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "portainer",
+                "image": "portainer/portainer-ce",
+                "image_full": "portainer/portainer-ce:2.1.1-alpine",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "sparkmaster",
+                "image": "127.0.0.1",
+                "image_full": "127.0.0.1:5050/spark",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "sparkworker",
+                "image": "127.0.0.1",
+                "image_full": "127.0.0.1:5050/spark",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "sparkmaster"
+                ]
+            },
+            {
+                "name": "projection",
+                "image": "127.0.0.1",
+                "image_full": "127.0.0.1:5050/projection",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "databaseprimary",
+                    "images",
+                    "sparkmaster",
+                    "sparkworker"
+                ]
+            },
+            {
+                "name": "builder",
+                "image": "127.0.0.1",
+                "image_full": "127.0.0.1:5050/builder",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "databaseprimary",
+                    "images",
+                    "sparkmaster",
+                    "sparkworker"
+                ]
+            },
+            {
+                "name": "datatypehandler",
+                "image": "127.0.0.1",
+                "image_full": "127.0.0.1:5050/data_type_handler",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "databaseprimary",
+                    "images"
+                ]
+            },
+            {
+                "name": "histogram",
+                "image": "127.0.0.1",
+                "image_full": "127.0.0.1:5050/histogram",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "databaseprimary",
+                    "images"
+                ]
+            },
+            {
+                "name": "databasexecutor",
+                "image": "127.0.0.1",
+                "image_full": "127.0.0.1:5050/database_executor",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "databaseprimary",
+                    "images"
+                ]
+            },
+            {
+                "name": "gatewayapi",
+                "image": "devopsfaith/krakend",
+                "image_full": "devopsfaith/krakend:1.2.0",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "model",
+                "image": "127.0.0.1",
+                "image_full": "127.0.0.1:5050/model",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "databaseprimary",
+                    "images"
+                ]
+            },
+            {
+                "name": "binaryexecutor",
+                "image": "127.0.0.1",
+                "image_full": "127.0.0.1:5050/binary_executor",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "databaseprimary",
+                    "images"
+                ]
+            },
+            {
+                "name": "codexecutor",
+                "image": "127.0.0.1",
+                "image_full": "127.0.0.1:5050/code_executor",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "databaseprimary",
+                    "images"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "num": 3,
+            "names": [
+                "mongodb"
+            ],
+            "services": [
+                "databaseprimary",
+                "databasesecondary",
+                "databasearbiter"
+            ],
+            "shared_dbs": true
+        },
+        "dep_graph_full": {
+            "nodes": 18,
+            "edges": 25,
+            "avg_deps_per_service": 1.3888888888888888,
+            "acyclic": true,
+            "longest_path": 2
+        },
+        "dep_graph_micro": {
+            "nodes": 15,
+            "edges": 14,
+            "avg_deps_per_service": 0.9333333333333333,
+            "acyclic": true,
+            "longest_path": 2
+        }
+    },
+    "files": [
+        {
+            "path": "/microservices/code_executor_image/requirements.txt",
+            "dbs": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/microservices/database_api_image/requirements.txt",
+            "dbs": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/microservices/builder_image/requirements.txt",
+            "dbs": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/microservices/database_executor_image/requirements.txt",
+            "dbs": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/microservices/data_type_handler_image/requirements.txt",
+            "dbs": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/microservices/binary_executor_image/requirements.txt",
+            "dbs": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/microservices/histogram_image/requirements.txt",
+            "dbs": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/microservices/projection_image/requirements.txt",
+            "dbs": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/microservices/model_image/requirements.txt",
+            "dbs": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "dbs": [
+        "db"
+    ],
+    "servers": [
+        "flask"
+    ],
+    "buses": [],
+    "langs": [
+        "python"
+    ],
+    "gates": [],
+    "monitors": [],
+    "discos": [],
+    "num_services": 18,
+    "shared_dbs": true,
+    "num_dockers": 11,
+    "images": [],
+    "num_dbs": 1,
+    "num_servers": 1,
+    "num_buses": 0,
+    "num_langs": 1,
+    "num_gates": 0,
+    "num_monitors": 0,
+    "num_discos": 0,
+    "num_files": 21,
+    "avg_size_service": 32.36363636363637
+}

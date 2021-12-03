@@ -1,0 +1,364 @@
+{
+    "url": "git://github.com/reckonsys/bigga.git",
+    "name": "reckonsys/bigga",
+    "commiters": 8,
+    "size": 4300,
+    "languages": [
+        "python",
+        "typescript",
+        "html"
+    ],
+    "dockers": [
+        {
+            "path": "/ssrfrontend/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/solr/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/backend/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/traefik/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 14,
+        "services": [
+            {
+                "name": "datadog",
+                "image": "datadog/agent",
+                "image_full": "datadog/agent:latest",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "redis"
+                ]
+            },
+            {
+                "name": "elasticsearch",
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "mongo",
+                "image": "mongo",
+                "image_full": "mongo:latest",
+                "dbs": [
+                    "mongo"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "neo4j",
+                "image": "neo4j",
+                "image_full": "neo4j:latest",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "postgres",
+                "image": "postgres",
+                "image_full": "postgres:latest",
+                "dbs": [
+                    "postgres"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "rabbitmq",
+                "image": "rabbitmq",
+                "image_full": "rabbitmq:latest",
+                "dbs": [],
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "redis",
+                "image": "redis",
+                "image_full": "redis:latest",
+                "dbs": [
+                    "redis"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "solr",
+                "image": "solr",
+                "image_full": "solr",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "worker",
+                "image": "./backend",
+                "image_full": "./backend",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo:mongo",
+                    "rabbitmq:rabbitmq",
+                    "postgres:postgres",
+                    "redis:redis"
+                ]
+            },
+            {
+                "name": "beat",
+                "image": "./backend",
+                "image_full": "./backend",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo:mongo",
+                    "rabbitmq:rabbitmq",
+                    "postgres:postgres",
+                    "redis:redis"
+                ]
+            },
+            {
+                "name": "api",
+                "image": "./backend",
+                "image_full": "./backend",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo:mongo",
+                    "rabbitmq:rabbitmq",
+                    "postgres:postgres",
+                    "redis:redis"
+                ]
+            },
+            {
+                "name": "socket",
+                "image": "./backend",
+                "image_full": "./backend",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "mongo:mongo",
+                    "rabbitmq:rabbitmq",
+                    "postgres:postgres",
+                    "redis:redis"
+                ]
+            },
+            {
+                "name": "ssrfrontend",
+                "image": "./ssrfrontend",
+                "image_full": "./ssrfrontend",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "traefik",
+                "image": "traefik",
+                "image_full": "traefik",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [
+                    "traefik"
+                ],
+                "depends_on": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 3,
+            "names": [
+                "postgres",
+                "mongo",
+                "redis"
+            ],
+            "services": [
+                "mongo",
+                "postgres",
+                "redis"
+            ],
+            "shared_dbs": false
+        },
+        "dep_graph_full": {
+            "nodes": 18,
+            "edges": 17,
+            "avg_deps_per_service": 0.9444444444444444,
+            "acyclic": true,
+            "longest_path": 1
+        },
+        "dep_graph_micro": {
+            "nodes": 13,
+            "edges": 16,
+            "avg_deps_per_service": 1.2307692307692308,
+            "acyclic": true,
+            "longest_path": 1
+        }
+    },
+    "files": [
+        {
+            "path": "/backend/requirements.txt",
+            "dbs": [],
+            "servers": [
+                "flask"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/ssrfrontend/package.json",
+            "dbs": [],
+            "servers": [
+                "express",
+                "node"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "dbs": [
+        "postgres",
+        "mongo",
+        "redis"
+    ],
+    "servers": [
+        "flask",
+        "express",
+        "node"
+    ],
+    "buses": [
+        "rabbitmq"
+    ],
+    "langs": [
+        "html",
+        "typescript",
+        "python"
+    ],
+    "gates": [],
+    "monitors": [],
+    "discos": [
+        "traefik"
+    ],
+    "num_services": 14,
+    "shared_dbs": false,
+    "num_dockers": 4,
+    "images": [],
+    "num_dbs": 3,
+    "num_servers": 3,
+    "num_buses": 1,
+    "num_langs": 3,
+    "num_gates": 0,
+    "num_monitors": 0,
+    "num_discos": 1,
+    "num_files": 7,
+    "avg_size_service": 1075.0
+}

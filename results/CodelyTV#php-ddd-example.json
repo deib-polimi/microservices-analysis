@@ -1,0 +1,187 @@
+{
+    "url": "git://github.com/CodelyTV/php-ddd-example.git",
+    "name": "CodelyTV/php-ddd-example",
+    "commiters": 26,
+    "size": 699,
+    "languages": [
+        "php"
+    ],
+    "dockers": [
+        {
+            "path": "/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "structure": {
+        "path": "/docker-compose.yml",
+        "num_services": 7,
+        "services": [
+            {
+                "name": "shared_rabbitmq",
+                "image": "rabbitmq",
+                "image_full": "rabbitmq:3.7-management",
+                "dbs": [],
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "shared_prometheus",
+                "image": "prom/prometheus",
+                "image_full": "prom/prometheus:v2.1.0",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [
+                    "prometheus"
+                ],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "mooc_mysql",
+                "image": "mariadb",
+                "image_full": "mariadb:10.6",
+                "dbs": [
+                    "mariadb"
+                ],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "backoffice_elasticsearch",
+                "image": "docker.elastic.co/elasticsearch/elasticsearch",
+                "image_full": "docker.elastic.co/elasticsearch/elasticsearch:6.8.10",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "backoffice_backend_php",
+                "image": ".",
+                "image_full": ".",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "shared_rabbitmq",
+                    "shared_prometheus",
+                    "backoffice_elasticsearch"
+                ]
+            },
+            {
+                "name": "backoffice_frontend_php",
+                "image": ".",
+                "image_full": ".",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "shared_rabbitmq",
+                    "shared_prometheus",
+                    "backoffice_elasticsearch",
+                    "mooc_mysql"
+                ]
+            },
+            {
+                "name": "mooc_backend_php",
+                "image": ".",
+                "image_full": ".",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "shared_rabbitmq",
+                    "shared_prometheus",
+                    "mooc_mysql"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "num": 1,
+            "names": [
+                "mariadb"
+            ],
+            "services": [
+                "mooc_mysql"
+            ],
+            "shared_dbs": true
+        },
+        "dep_graph_full": {
+            "nodes": 7,
+            "edges": 10,
+            "avg_deps_per_service": 1.4285714285714286,
+            "acyclic": true,
+            "longest_path": 1
+        },
+        "dep_graph_micro": {
+            "nodes": 4,
+            "edges": 2,
+            "avg_deps_per_service": 0.5,
+            "acyclic": true,
+            "longest_path": 1
+        }
+    },
+    "files": [],
+    "dbs": [
+        "db"
+    ],
+    "servers": [],
+    "buses": [
+        "rabbitmq"
+    ],
+    "langs": [
+        "php"
+    ],
+    "gates": [],
+    "monitors": [
+        "prometheus"
+    ],
+    "discos": [],
+    "num_services": 7,
+    "shared_dbs": true,
+    "num_dockers": 1,
+    "images": [],
+    "num_dbs": 1,
+    "num_servers": 0,
+    "num_buses": 1,
+    "num_langs": 1,
+    "num_gates": 0,
+    "num_monitors": 1,
+    "num_discos": 0,
+    "num_files": 2,
+    "avg_size_service": 699.0
+}

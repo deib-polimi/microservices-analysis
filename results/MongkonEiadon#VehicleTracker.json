@@ -1,0 +1,206 @@
+{
+    "url": "git://github.com/MongkonEiadon/VehicleTracker.git",
+    "name": "MongkonEiadon/VehicleTracker",
+    "commiters": 2,
+    "size": 5028,
+    "languages": [
+        "c#"
+    ],
+    "dockers": [
+        {
+            "path": "/src/MicroServices/Trackers/Trackers.Service/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/src/MicroServices/Vehicles/Vehicles.Service/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/src/Gateway/ServicesGateway/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/src/Apps/EventStore.App/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "structure": {
+        "path": "/src/docker-compose.yml",
+        "num_services": 6,
+        "services": [
+            {
+                "name": "eventstore",
+                "image": "eventstore",
+                "image_full": "eventstore",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "database_sql"
+                ]
+            },
+            {
+                "name": "trackers",
+                "image": "trackers",
+                "image_full": "trackers",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "database_sql",
+                    "eventstore",
+                    "rabbitmq"
+                ]
+            },
+            {
+                "name": "vehicles",
+                "image": "vehicles",
+                "image_full": "vehicles",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "database_sql",
+                    "eventstore",
+                    "rabbitmq"
+                ]
+            },
+            {
+                "name": "servicegateway",
+                "image": "servicegateway",
+                "image_full": "servicegateway",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "trackers",
+                    "vehicles",
+                    "rabbitmq"
+                ]
+            },
+            {
+                "name": "rabbitmq",
+                "image": "rabbitmq",
+                "image_full": "rabbitmq:3-management",
+                "dbs": [],
+                "servers": [],
+                "buses": [
+                    "rabbitmq"
+                ],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "database_sql",
+                "image": "microsoft/mssql-server-linux",
+                "image_full": "microsoft/mssql-server-linux:latest",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        },
+        "dep_graph_full": {
+            "nodes": 6,
+            "edges": 10,
+            "avg_deps_per_service": 1.6666666666666667,
+            "acyclic": true,
+            "longest_path": 3
+        },
+        "dep_graph_micro": {
+            "nodes": 5,
+            "edges": 7,
+            "avg_deps_per_service": 1.4,
+            "acyclic": true,
+            "longest_path": 3
+        }
+    },
+    "files": [],
+    "dbs": [],
+    "servers": [],
+    "buses": [
+        "rabbitmq"
+    ],
+    "langs": [
+        "c#"
+    ],
+    "gates": [],
+    "monitors": [],
+    "discos": [],
+    "num_services": 6,
+    "shared_dbs": false,
+    "num_dockers": 4,
+    "images": [],
+    "num_dbs": 0,
+    "num_servers": 0,
+    "num_buses": 1,
+    "num_langs": 1,
+    "num_gates": 0,
+    "num_monitors": 0,
+    "num_discos": 0,
+    "num_files": 5,
+    "avg_size_service": 1257.0
+}

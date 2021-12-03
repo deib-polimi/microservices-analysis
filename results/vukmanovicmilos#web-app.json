@@ -1,0 +1,302 @@
+{
+    "url": "git://github.com/vukmanovicmilos/web-app.git",
+    "name": "vukmanovicmilos/web-app",
+    "commiters": 2,
+    "size": 3248,
+    "languages": [
+        "java",
+        "typescript",
+        "html"
+    ],
+    "dockers": [
+        {
+            "path": "/eureka/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/faculty/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/report/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/zuul/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/spring-cloud-config/Dockerfile",
+            "cmd": "",
+            "cmd_keywords": [],
+            "from": "",
+            "keywords": [],
+            "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "structure": {
+        "path": "/spring-cloud-config/docker-compose.yml",
+        "num_services": 5,
+        "services": [
+            {
+                "name": "spring-cloud-config",
+                "image": "spring-cloud-config",
+                "image_full": "spring-cloud-config:1.0",
+                "dbs": [],
+                "servers": [
+                    "spring"
+                ],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": []
+            },
+            {
+                "name": "netflix-eureka",
+                "image": "eureka",
+                "image_full": "eureka:1.0",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [
+                    "eureka"
+                ],
+                "depends_on": [
+                    "spring-cloud-config"
+                ]
+            },
+            {
+                "name": "faculty",
+                "image": "faculty",
+                "image_full": "faculty:1.0",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "spring-cloud-config",
+                    "netflix-eureka"
+                ]
+            },
+            {
+                "name": "report",
+                "image": "report",
+                "image_full": "report:1.0",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "spring-cloud-config",
+                    "netflix-eureka",
+                    "faculty"
+                ]
+            },
+            {
+                "name": "zuul",
+                "image": "zuul",
+                "image_full": "zuul:1.0",
+                "dbs": [],
+                "servers": [],
+                "buses": [],
+                "gates": [
+                    "zuul"
+                ],
+                "monitors": [],
+                "discos": [],
+                "depends_on": [
+                    "spring-cloud-config",
+                    "netflix-eureka",
+                    "faculty"
+                ]
+            }
+        ],
+        "detected_dbs": {
+            "num": 0,
+            "names": [],
+            "services": [],
+            "shared_dbs": false
+        },
+        "dep_graph_full": {
+            "nodes": 5,
+            "edges": 9,
+            "avg_deps_per_service": 1.8,
+            "acyclic": true,
+            "longest_path": 3
+        },
+        "dep_graph_micro": {
+            "nodes": 2,
+            "edges": 1,
+            "avg_deps_per_service": 0.5,
+            "acyclic": true,
+            "longest_path": 1
+        }
+    },
+    "files": [
+        {
+            "path": "/eureka/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/faculty/pom.xml",
+            "dbs": [
+                "postgresql"
+            ],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/report/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/zuul/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [
+                "gateway",
+                "zuul"
+            ],
+            "monitors": [],
+            "discos": [
+                "eureka"
+            ]
+        },
+        {
+            "path": "/spring-cloud-config/pom.xml",
+            "dbs": [],
+            "servers": [
+                "spring"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/frontend/package.json",
+            "dbs": [],
+            "servers": [
+                "node"
+            ],
+            "buses": [],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        }
+    ],
+    "dbs": [
+        "postgresql"
+    ],
+    "servers": [
+        "spring",
+        "node"
+    ],
+    "buses": [],
+    "langs": [
+        "java",
+        "html",
+        "typescript"
+    ],
+    "gates": [
+        "zuul"
+    ],
+    "monitors": [],
+    "discos": [
+        "eureka"
+    ],
+    "num_services": 5,
+    "shared_dbs": false,
+    "num_dockers": 5,
+    "images": [],
+    "num_dbs": 1,
+    "num_servers": 2,
+    "num_buses": 0,
+    "num_langs": 3,
+    "num_gates": 1,
+    "num_monitors": 0,
+    "num_discos": 1,
+    "num_files": 12,
+    "avg_size_service": 649.6
+}
