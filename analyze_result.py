@@ -474,17 +474,19 @@ for k, v in SIZES.items():
         break
     print(k.upper())
     a = np.array(v)
-    print('mean', np.mean(a), 'std', np.std(a), 'min', np.min(a), 'max', np.max(a), np.percentile(a, 75))
+    print(f"mean: {np.mean(a):.2f}, std: {np.std(a):.2f}, min: {np.min(a):.2f}, "
+          f"max: {np.max(a):.2f}, 75-th percentile: {np.percentile(a, 75):.2f}")
 
 
 a =  np.array([x/max(1,SIZES['num_langs'][i]) for i, x in enumerate(SIZES['num_ms'])])
-print('mean', np.mean(a), 'std', np.std(a), 'min', np.min(a), 'max', np.max(a), np.percentile(a, 30))
+print(f"mean: {np.mean(a):.2f}, std: {np.std(a):.2f}, min: {np.min(a):.2f}, "
+      f"max: {np.max(a):.2f}, 75-th percentile: {np.percentile(a, 30):.2f}")
 
-print(Counter(DATA['discos'][0]).most_common(20))
+print("Most common discos:", Counter(DATA['discos'][0]).most_common(20))
 
-print(Counter(DATA['monitors'][1]).most_common(20))
+print("Most common monitors:", Counter(DATA['monitors'][1]).most_common(20))
 
 
-print(len([x for x in SIZES['shared_dbs'] if x]))
+print("Shared DBS:", len([x for x in SIZES['shared_dbs'] if x]))
 
 print(max([x/max(1,SIZES['num_ms'][i]) for i,x in enumerate(SIZES['commiters'])]))
