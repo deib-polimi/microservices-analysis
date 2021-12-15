@@ -128,12 +128,12 @@ def analyze_dockerfile(workdir, df):
         commands = dockerfile.parse_file(workdir+df)
         runs = ''
         for command in commands:
-            if command.cmd == 'from' and command.value:
+            if command.cmd.lower() == 'from' and command.value:
                 analysis['from'] = command.value[0].split(':')[0]
                 analysis['from_full'] = command.value[0]
-            if command.cmd == 'run':
+            if command.cmd.lower() == 'run':
                 runs += '%s ' % (' '.join(command.value),)
-            if command.cmd == 'cmd':
+            if command.cmd.lower() == 'cmd':
                 analysis['cmd'] = ' '.join(command.value)
                 analysis['cmd_keywords'] = keywords(analysis['cmd'])
             analysis['keywords'] = keywords(runs)
