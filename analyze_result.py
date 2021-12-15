@@ -441,8 +441,11 @@ def dep_graphs_tables():
                       stats.mean(values[dg_type]['edges']),
                       stats.mean(values[dg_type]['avg_deps_per_service']),
                       len([ac for ac in values[dg_type]['acyclic'] if ac == False]),
-                      stats.mean(values[dg_type]['longest_path'])])
-    headers = ['Avg nodes', 'Avg edges', 'Avg avg deps per service', 'Num cyclic', 'Avg longest path']
+                      stats.mean(values[dg_type]['longest_path']),
+                      min(values[dg_type]['longest_path']),
+                      max(values[dg_type]['longest_path'])])
+    headers = ['Avg nodes', 'Avg edges', 'Avg avg deps per service', 'Num cyclic',
+               'Avg longest path', 'Min longest path', 'Max longest path']
     print(tabulate(table, headers=headers, floatfmt=".2f", tablefmt="latex"))
 
 
