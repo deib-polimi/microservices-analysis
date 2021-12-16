@@ -3,7 +3,7 @@ from os import path
 from pathlib import Path
 from collections import Counter
 import matplotlib
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
 import numpy as np
 import sys
 import pickle
@@ -235,7 +235,8 @@ def plot_barh(name, *data, ticks=[], xlabel='', ylabel='', legend=[], colors=[])
                 rect = plt.barh(x_pos, y, width, color=colors[j])
             else:
                 rect = plt.barh(x_pos, y, width)       
-    plt.legend(legend)
+    if legend:
+        plt.legend(legend)
     plt.yticks([i for i, _ in enumerate(ticks)], list(reversed(ticks)))
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
@@ -388,8 +389,9 @@ def tables():
 
     mostservers = [x for x,_ in Counter(DATA['servers'][0]).most_common(10)]
     mostdb = [x for x,_ in Counter(DATA['dbs'][0]).most_common(10)]
-    print(Counter(DATA['servers'][0]).most_common(10))
-    print(Counter(DATA['dbs'][0]).most_common(10))
+
+    print(f"Num servers: {len(set(DATA['servers'][0]))}, most common Servers: {Counter(DATA['servers'][0]).most_common(10)}")
+    print(f"Num DBS: {len(set(DATA['dbs'][0]))}, most common DBS: {Counter(DATA['dbs'][0]).most_common(10)}")
 
     comb = []
 
@@ -399,8 +401,7 @@ def tables():
         comb  += [tuple(x) for x in product(s, d)]
 
     data = Counter(comb).most_common(100)
-
-    print(data)
+    print("Combination server, DB:", data)
 
     def search_tuple(t, data):
         for t1, v in data:
@@ -408,6 +409,7 @@ def tables():
                 return v
         return 0
 
+    print("\nFrameworks and DB table")
     for d in mostdb:
         print(f'& \\textit{{{d}}}', end=' ')
 
@@ -430,7 +432,7 @@ def tables():
 
 
 def dep_graphs_tables():
-    print("Dependencies graphs table")
+    print("\nDependencies graphs table")
     values = {'full': {'nodes': [], 'edges': [], 'avg_deps_per_service': [],
               'acyclic': [], 'longest_path': []},
               'micro': {'nodes': [], 'edges': [], 'avg_deps_per_service': [],
@@ -485,19 +487,44 @@ for k, v in SIZES.items():
         break
     print(k.upper())
     a = np.array(v)
-    print(f"mean: {np.mean(a):.2f}, std: {np.std(a):.2f}, min: {np.min(a):.2f}, "
-          f"max: {np.max(a):.2f}, 75-th percentile: {np.percentile(a, 75):.2f}")
+    print(f"\tmean: {np.mean(a):.2f}\n"
+          f"\tstd: {np.std(a):.2f}\n"
+          f"\tmin: {np.min(a):.2f}\n"
+          f"\tmax: {np.max(a):.2f}\n"
+          f"\t75-th percentile: {np.percentile(a, 75):.2f}\n"
+          f"\t80-th percentile: {np.percentile(a, 80):.2f}\n"
+          f"\t95-th percentile: {np.percentile(a, 95):.2f}")
 
 
+print("Microservices and languages per project ratio")
 a =  np.array([x/max(1,SIZES['num_langs'][i]) for i, x in enumerate(SIZES['num_ms'])])
-print(f"mean: {np.mean(a):.2f}, std: {np.std(a):.2f}, min: {np.min(a):.2f}, "
-      f"max: {np.max(a):.2f}, 75-th percentile: {np.percentile(a, 30):.2f}")
+print(f"\tmean: {np.mean(a):.2f}\n"
+      f"\tstd: {np.std(a):.2f}\n"
+      f"\tmin: {np.min(a):.2f}\n"
+      f"\tmax: {np.max(a):.2f}\n"
+      f"\t75-th percentile: {np.percentile(a, 30):.2f}")
 
-print("Most common discos:", Counter(DATA['discos'][0]).most_common(20))
+print("\nBuses: most common:", Counter(DATA['buses'][0]).most_common(20), ", num buses: ", len(set(DATA['buses'][0])))
+print(f"at least 1 bus: {len(list(filter(lambda x: len(x)>0, DATA['buses'][2])))}/{len(DATA['buses'][2])}, "
+      f">= 2 buses: {len(list(filter(lambda x: len(x)>=2, DATA['buses'][2])))}/{len(DATA['buses'][2])}")
 
-print("Most common monitors:", Counter(DATA['monitors'][1]).most_common(20))
+print("\nDiscos: most common:", Counter(DATA['discos'][0]).most_common(20))
+print(f"at least 1 disco: {len(list(filter(lambda x: len(x)>0, DATA['discos'][2])))}/{len(DATA['discos'][2])}, "
+      f">= 2 discos: {len(list(filter(lambda x: len(x)>=2, DATA['discos'][2])))}/{len(DATA['discos'][2])}")
 
+print("\nMonitors: most common:", Counter(DATA['monitors'][1]).most_common(20))
+print(f"at least 1 monitor: {len(list(filter(lambda x: len(x)>0, DATA['monitors'][2])))}/{len(DATA['monitors'][2])}, "
+      f">= 2 monitors: {len(list(filter(lambda x: len(x)>=2, DATA['monitors'][2])))}/{len(DATA['monitors'][2])}")
 
-print("Shared DBS:", len([x for x in SIZES['shared_dbs'] if x]))
+print("\nGates: most common:", Counter(DATA['gates'][0]).most_common(20))
+print(f"at least 1 gate: {len(list(filter(lambda x: len(x)>0, DATA['gates'][2])))}/{len(DATA['gates'][2])}, "
+      f">= 2 gates: {len(list(filter(lambda x: len(x)>=2, DATA['gates'][2])))}/{len(DATA['gates'][2])}")
 
-print(max([x/max(1,SIZES['num_ms'][i]) for i,x in enumerate(SIZES['commiters'])]))
+print("\nShared DBS:", len([x for x in SIZES['shared_dbs'] if x]))
+
+print("\nMax team size:", f"{max([x/max(1,SIZES['num_ms'][i]) for i,x in enumerate(SIZES['commiters'])]):.2f}")
+
+print("\nNum languages:", len(set(DATA['langs'][0])))
+print("Languages:", (DATA['langs'][2]))
+
+print("\nNum images:", len(set(DATA['images'][0])))
