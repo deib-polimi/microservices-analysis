@@ -281,11 +281,19 @@ def plots():
 
     matplotlib.rc('font', **font)
 
-
-    create_hist('size', [1, 7, 15, 25, 50, sys.maxsize], [x/1000 for x in SIZES['size']], [x/1000 for x in SIZES['avg_size_service']], interval=True, legend=['Project size', ''
-                                                                                                                                                                              'Service size'], ylabel='Occurrences', xlabel='Size (MB)', colors=nice_colors(0, 5))
-    create_hist('num_services', [1, 4, 6, 8, 10, 15, 20, sys.maxsize], SIZES['num_dockers'], SIZES['num_services'], SIZES['num_ms'], interval=True, legend=['# Dockerfile', '# Compose services', '# Microservices'], ylabel='Occurrences', colors=nice_colors(0, 3, 5))
-    
+    create_hist('size',
+                [0, 7, 15, 25, sys.maxsize],
+                [x/1000 for x in SIZES['size']],
+                [x/1000 for x in SIZES['avg_size_service']],
+                interval=True, legend=['Project size', 'Service size'],
+                ylabel='Occurrences', xlabel='Size (MB)', colors=nice_colors(0, 5))
+    create_hist('num_services',
+                [0, 4, 6, 8, 10, 15, 20, sys.maxsize],
+                SIZES['num_dockers'],
+                SIZES['num_services'],
+                SIZES['num_ms'],
+                interval=True, legend=['# Dockerfile', '# Compose services', '# Microservices'],
+                ylabel='Occurrences', colors=nice_colors(0, 3, 5))
     #plot_scatter('size-services', [x/1000 for x in SIZES['size']], x=[x/1000 for x in SIZES['avg_size_service']], ylabel='Project Size (MB)', xlabel='Avg Service Size (MB)', colors=nice_colors(0, 5)) 
 
     imagescomb = []
