@@ -504,27 +504,36 @@ print(f"\tmean: {np.mean(a):.2f}\n"
       f"\tmax: {np.max(a):.2f}\n"
       f"\t75-th percentile: {np.percentile(a, 30):.2f}")
 
-print("\nBuses: most common:", Counter(DATA['buses'][0]).most_common(20), ", num buses: ", len(set(DATA['buses'][0])))
-print(f"at least 1 bus: {len(list(filter(lambda x: len(x)>0, DATA['buses'][2])))}/{len(DATA['buses'][2])}, "
-      f">= 2 buses: {len(list(filter(lambda x: len(x)>=2, DATA['buses'][2])))}/{len(DATA['buses'][2])}")
+print(f"\nBuses\n"
+      f"\tmost common: {Counter(DATA['buses'][0]).most_common(20)} num buses: {len(set(DATA['buses'][0]))}\n"
+      f"\tat least 1 bus: {len(list(filter(lambda x: len(x)>0, DATA['buses'][2])))}/{len(DATA['buses'][2])},\n"
+      f"\t>= 2 buses: {len(list(filter(lambda x: len(x)>=2, DATA['buses'][2])))}/{len(DATA['buses'][2])}")
 
-print("\nDiscos: most common:", Counter(DATA['discos'][0]).most_common(20))
-print(f"at least 1 disco: {len(list(filter(lambda x: len(x)>0, DATA['discos'][2])))}/{len(DATA['discos'][2])}, "
-      f">= 2 discos: {len(list(filter(lambda x: len(x)>=2, DATA['discos'][2])))}/{len(DATA['discos'][2])}")
+print(f"\nDiscos\n"
+      f"\tmost common: {Counter(DATA['discos'][0]).most_common(20)}\n"
+      f"\tat least 1 disco: {len(list(filter(lambda x: len(x)>0, DATA['discos'][2])))}/{len(DATA['discos'][2])},\n"
+      f"\t>= 2 discos: {len(list(filter(lambda x: len(x)>=2, DATA['discos'][2])))}/{len(DATA['discos'][2])}")
 
-print("\nMonitors: most common:", Counter(DATA['monitors'][1]).most_common(20))
-print(f"at least 1 monitor: {len(list(filter(lambda x: len(x)>0, DATA['monitors'][2])))}/{len(DATA['monitors'][2])}, "
-      f">= 2 monitors: {len(list(filter(lambda x: len(x)>=2, DATA['monitors'][2])))}/{len(DATA['monitors'][2])}")
+print(f"\nMonitors\n"
+      f"\tmost common: {Counter(DATA['monitors'][1]).most_common(20)}\n"
+      f"\tat least 1 monitor: {len(list(filter(lambda x: len(x)>0, DATA['monitors'][2])))}/{len(DATA['monitors'][2])},\n"
+      f"\t>= 2 monitors: {len(list(filter(lambda x: len(x)>=2, DATA['monitors'][2])))}/{len(DATA['monitors'][2])}")
 
-print("\nGates: most common:", Counter(DATA['gates'][0]).most_common(20))
-print(f"at least 1 gate: {len(list(filter(lambda x: len(x)>0, DATA['gates'][2])))}/{len(DATA['gates'][2])}, "
-      f">= 2 gates: {len(list(filter(lambda x: len(x)>=2, DATA['gates'][2])))}/{len(DATA['gates'][2])}")
+print(f"\nGates\n"
+      f"\tmost common: {Counter(DATA['gates'][0]).most_common(20)}\n"
+      f"\tat least 1 gate: {len(list(filter(lambda x: len(x)>0, DATA['gates'][2])))}/{len(DATA['gates'][2])},\n"
+      f"\t>= 2 gates: {len(list(filter(lambda x: len(x)>=2, DATA['gates'][2])))}/{len(DATA['gates'][2])}")
 
-print("\nShared DBS:", len([x for x in SIZES['shared_dbs'] if x]))
+print(f"\nShared DBS: {len([x for x in SIZES['shared_dbs'] if x])}")
 
-print("\nMax team size:", f"{max([x/max(1,SIZES['num_ms'][i]) for i,x in enumerate(SIZES['commiters'])]):.2f}")
+print(f"\nMax team size: {max([x/max(1,SIZES['num_ms'][i]) for i,x in enumerate(SIZES['commiters'])]):.2f}")
 
-print("\nNum languages:", len(set(DATA['langs'][0])))
-print("Languages:", (DATA['langs'][2]))
+print(f"\nLanguages:\n"
+      f"\tnum languages{len(set(DATA['langs'][0]))}\n"
+      f"\tlanguages: {DATA['langs'][1]},\n"
+      f"\t>= 2 languages (without excluded): {len(list(filter(lambda x: len(x)>=2, DATA['langs'][1])))}/{len(DATA['langs'][1])}")
 
-print("\nNum images:", len(set(DATA['images'][0])))
+print(f"\nImages:\n"
+      f"\tnum images: {len(set(DATA['images'][0]))},\n"
+      f"\timages: {set(DATA['images'][0])},\n"
+      f"\tmean images per project: {np.mean([len(i) for i in DATA['images'][2]]):.2f}")
