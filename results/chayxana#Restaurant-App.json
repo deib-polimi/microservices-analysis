@@ -2,7 +2,7 @@
     "url": "git://github.com/chayxana/Restaurant-App.git",
     "name": "chayxana/Restaurant-App",
     "commiters": 12,
-    "size": 51444,
+    "size": 20245,
     "languages": [
         "c#"
     ],
@@ -11,7 +11,8 @@
             "path": "/src/backend/elk/kibana/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
+            "from": "kibana",
+            "from_full": "kibana:7.10.1",
             "keywords": [],
             "dbs": [],
             "servers": [],
@@ -25,21 +26,31 @@
             "path": "/src/backend/elk/fluentd/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "fluent/fluentd",
+            "from_full": "fluent/fluentd:v1.12.0-debian-1.0",
+            "keywords": [
+                "gem",
+                "install",
+                "fluent",
+                "plugin",
+                "elasticsearch"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
             "langs": [],
             "gates": [],
-            "monitors": [],
+            "monitors": [
+                "fluentd"
+            ],
             "discos": []
         },
         {
             "path": "/src/backend/elk/elasticsearch/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
+            "from": "docker.elastic.co/elasticsearch/elasticsearch",
+            "from_full": "docker.elastic.co/elasticsearch/elasticsearch:7.10.2",
             "keywords": [],
             "dbs": [],
             "servers": [],
@@ -51,10 +62,20 @@
         },
         {
             "path": "/src/backend/services/basket.api/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "./basket.api",
+            "cmd_keywords": [
+                "basket",
+                "api"
+            ],
+            "from": "alpine",
+            "from_full": "alpine:latest",
+            "keywords": [
+                "apk",
+                "add",
+                "cache",
+                "cgo",
+                "enabled"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
@@ -65,10 +86,22 @@
         },
         {
             "path": "/src/backend/services/identity.api/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "dotnet Identity.API.dll",
+            "cmd_keywords": [
+                "dotnet",
+                "identity",
+                "api",
+                "dll"
+            ],
+            "from": "mcr.microsoft.com/dotnet/core/aspnet",
+            "from_full": "mcr.microsoft.com/dotnet/core/aspnet:3.1-alpine",
+            "keywords": [
+                "api",
+                "dotnet",
+                "identity",
+                "csproj",
+                "release"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
@@ -81,13 +114,16 @@
             "path": "/src/backend/nginx/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
+            "from": "nginx",
+            "from_full": "nginx:alpine",
             "keywords": [],
             "dbs": [],
             "servers": [],
             "buses": [],
             "langs": [],
-            "gates": [],
+            "gates": [
+                "nginx"
+            ],
             "monitors": [],
             "discos": []
         },
@@ -95,13 +131,22 @@
             "path": "/src/backend/web/web.admin/dashboard/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "bitnami/nginx",
+            "from_full": "bitnami/nginx:1.19",
+            "keywords": [
+                "yarn",
+                "dashboard",
+                "build",
+                "prod",
+                "base"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
             "langs": [],
-            "gates": [],
+            "gates": [
+                "nginx"
+            ],
             "monitors": [],
             "discos": []
         },
@@ -109,13 +154,19 @@
             "path": "/src/backend/web/web.client/web-app/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "nginx",
+            "from_full": "nginx:alpine",
+            "keywords": [
+                "yarn",
+                "build"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
             "langs": [],
-            "gates": [],
+            "gates": [
+                "nginx"
+            ],
             "monitors": [],
             "discos": []
         }
@@ -330,19 +381,29 @@
     "gates": [
         "nginx"
     ],
-    "monitors": [],
+    "monitors": [
+        "fluentd"
+    ],
     "discos": [],
     "num_services": 8,
     "shared_dbs": true,
     "num_dockers": 8,
-    "images": [],
+    "images": [
+        "mcr.microsoft.com/dotnet/core/aspnet",
+        "docker.elastic.co/elasticsearch/elasticsearch",
+        "bitnami/nginx",
+        "fluent/fluentd",
+        "nginx",
+        "alpine",
+        "kibana"
+    ],
     "num_dbs": 3,
     "num_servers": 2,
     "num_buses": 0,
     "num_langs": 1,
     "num_gates": 1,
-    "num_monitors": 0,
+    "num_monitors": 1,
     "num_discos": 0,
     "num_files": 13,
-    "avg_size_service": 6430.5
+    "avg_size_service": 2530.625
 }

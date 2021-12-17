@@ -1,8 +1,8 @@
 {
     "url": "git://github.com/SeldonIO/seldon-core.git",
     "name": "SeldonIO/seldon-core",
-    "commiters": 169,
-    "size": 112095,
+    "commiters": 170,
+    "size": 112378,
     "languages": [
         "python",
         "jupyter notebook",
@@ -13,14 +13,23 @@
     "dockers": [
         {
             "path": "/executor/samples/local/metadata/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
+            "cmd": "seldon-core-microservice $MODEL_NAME $API_TYPE --service-type $SERVICE_TYPE --persistence $PERSISTENCE --log-level DEBUG",
+            "cmd_keywords": [
+                "type",
+                "service",
+                "persistence",
+                "seldon",
+                "core"
+            ],
+            "from": "seldonio/seldon-core-s2i-python37",
+            "from_full": "seldonio/seldon-core-s2i-python37:1.2.1-dev",
             "keywords": [],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
@@ -29,26 +38,54 @@
             "path": "/components/alibi-explain-server/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "base",
+            "keywords": [
+                "licenses",
+                "python",
+                "pip",
+                "install",
+                "poetry"
+            ],
+            "from_full": "base",
             "dbs": [],
-            "servers": [],
+            "servers": [
+                "httpd"
+            ],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
         },
         {
             "path": "/components/seldon-request-logger/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "gunicorn --bind 0.0.0.0:$PORT --workers $GUNICORN_WORKERS --threads $GUNICORN_THREADS default_logger:app",
+            "cmd_keywords": [
+                "gunicorn",
+                "workers",
+                "threads",
+                "bind",
+                "port"
+            ],
+            "from": "registry.access.redhat.com/ubi8/python-38",
+            "from_full": "registry.access.redhat.com/ubi8/python-38",
+            "keywords": [
+                "licenses",
+                "pip",
+                "license",
+                "install",
+                "file"
+            ],
             "dbs": [],
-            "servers": [],
+            "servers": [
+                "httpd"
+            ],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
@@ -57,12 +94,23 @@
             "path": "/components/storage-initializer/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "registry.access.redhat.com/ubi8/python-36",
+            "from_full": "registry.access.redhat.com/ubi8/python-36",
+            "keywords": [
+                "licenses",
+                "pip",
+                "license",
+                "install",
+                "file"
+            ],
             "dbs": [],
-            "servers": [],
+            "servers": [
+                "httpd"
+            ],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
@@ -71,7 +119,8 @@
             "path": "/components/rclone-storage-initializer/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
+            "from": "rclone/rclone",
+            "from_full": "rclone/rclone:1.56.2",
             "keywords": [],
             "dbs": [],
             "servers": [],
@@ -85,22 +134,46 @@
             "path": "/components/alibi-detect-server/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "base",
+            "keywords": [
+                "rclone",
+                "licenses",
+                "install",
+                "linux",
+                "amd"
+            ],
+            "from_full": "base",
             "dbs": [],
-            "servers": [],
+            "servers": [
+                "httpd"
+            ],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
         },
         {
             "path": "/kubectl-proxy/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "/usr/local/bin/kubectl proxy -p 8001",
+            "cmd_keywords": [
+                "usr",
+                "local",
+                "bin",
+                "kubectl",
+                "proxy"
+            ],
+            "from": "alpine",
+            "from_full": "alpine",
+            "keywords": [
+                "apk",
+                "kubectl",
+                "bin",
+                "add",
+                "update"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
@@ -111,14 +184,25 @@
         },
         {
             "path": "/util/loadtester/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "bash",
+            "cmd_keywords": [
+                "bash"
+            ],
+            "from": "ubuntu",
+            "from_full": "ubuntu:16.04",
+            "keywords": [
+                "python",
+                "install",
+                "apt",
+                "get",
+                "dev"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "bash"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
@@ -127,10 +211,18 @@
             "path": "/incubating/wrappers/s2i/nodejs/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "node",
+            "from_full": "node:latest",
+            "keywords": [
+                "mkdir",
+                "microservice",
+                "npm",
+                "install"
+            ],
             "dbs": [],
-            "servers": [],
+            "servers": [
+                "node"
+            ],
             "buses": [],
             "langs": [],
             "gates": [],
@@ -141,8 +233,15 @@
             "path": "/incubating/wrappers/s2i/R/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "rocker/r-base",
+            "from_full": "rocker/r-base",
+            "keywords": [
+                "install",
+                "rscript",
+                "packages",
+                "dev",
+                "apt"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
@@ -155,26 +254,46 @@
             "path": "/incubating/wrappers/s2i/go/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "golang",
+            "from_full": "golang",
+            "keywords": [
+                "get",
+                "google",
+                "golang",
+                "org",
+                "grpc"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "golang"
+            ],
             "gates": [],
             "monitors": [],
-            "discos": []
+            "discos": [
+                "grpc"
+            ]
         },
         {
             "path": "/incubating/wrappers/s2i/python-ngraph-onnx/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "seldonio/seldon-core-s2i-python3",
+            "from_full": "seldonio/seldon-core-s2i-python3:0.4",
+            "keywords": [
+                "ngraph",
+                "git",
+                "install",
+                "build",
+                "apt"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
@@ -183,12 +302,21 @@
             "path": "/incubating/wrappers/s2i/python-tensorrt/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "seldonio/seldon-core-s2i-python3",
+            "from_full": "seldonio/seldon-core-s2i-python3:0.2",
+            "keywords": [
+                "inference",
+                "server",
+                "install",
+                "build",
+                "dev"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
@@ -197,26 +325,49 @@
             "path": "/incubating/wrappers/s2i/cpp/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "$BASE_IMAGE_NAME",
+            "keywords": [
+                "build",
+                "make",
+                "install",
+                "cpp",
+                "pybind"
+            ],
+            "from_full": "$BASE_IMAGE_NAME:$BASE_IMAGE_TAG",
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "cmake"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
         },
         {
             "path": "/kafka/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "start-kafka.sh",
+            "cmd_keywords": [
+                "start",
+                "kafka"
+            ],
+            "from": "anapsix/alpine-java",
+            "from_full": "anapsix/alpine-java",
+            "keywords": [
+                "kafka",
+                "version",
+                "tmp",
+                "chmod",
+                "scala"
+            ],
             "dbs": [],
             "servers": [],
-            "buses": [],
-            "langs": [],
+            "buses": [
+                "kafka"
+            ],
+            "langs": [
+                "java"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
@@ -225,8 +376,15 @@
             "path": "/engine/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "openjdk",
+            "from_full": "openjdk:11.0.5-jre-slim",
+            "keywords": [
+                "mvn",
+                "clean",
+                "verify",
+                "dlicense",
+                "usemissingfile"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
@@ -239,26 +397,50 @@
             "path": "/operator/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
-            "dbs": [],
+            "from": "gcr.io/distroless/base-debian10",
+            "from_full": "gcr.io/distroless/base-debian10:latest",
+            "keywords": [
+                "tar",
+                "hashicorp",
+                "wget",
+                "https",
+                "github"
+            ],
+            "dbs": [
+                "sql"
+            ],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "sql"
+            ],
             "gates": [],
             "monitors": [],
-            "discos": []
+            "discos": [
+                "consul"
+            ]
         },
         {
             "path": "/core-builder/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "bash",
+            "cmd_keywords": [
+                "bash"
+            ],
+            "from": "openjdk",
+            "from_full": "openjdk:13.0.1-jdk-buster",
+            "keywords": [
+                "tar",
+                "linux",
+                "apt",
+                "get",
+                "com"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "bash"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
@@ -267,12 +449,21 @@
             "path": "/examples/outliers/alibi-detect-combiner/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "seldonio/seldon-core-s2i-python37",
+            "from_full": "seldonio/seldon-core-s2i-python37:0.14",
+            "keywords": [
+                "pip",
+                "install",
+                "upgrade",
+                "setuptools",
+                "requirements"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
@@ -281,12 +472,21 @@
             "path": "/examples/pachyderm-simple/iris-train-python-svm/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "python",
+            "from_full": "python:3.8-slim",
+            "keywords": [
+                "pip",
+                "install",
+                "pandas",
+                "scikit",
+                "learn"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
@@ -295,7 +495,8 @@
             "path": "/examples/init_containers/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
+            "from": "rclone/rclone",
+            "from_full": "rclone/rclone:latest",
             "keywords": [],
             "dbs": [],
             "servers": [],
@@ -309,12 +510,19 @@
             "path": "/examples/batch/hdfs-argo-workflows/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "python",
+            "from_full": "python:3.8",
+            "keywords": [
+                "pip",
+                "install",
+                "hdfs"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
@@ -323,26 +531,50 @@
             "path": "/examples/models/sklearn_spacy_text/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "seldonio/seldon-core-s2i-python37-ubi8",
+            "from_full": "seldonio/seldon-core-s2i-python37-ubi8:1.7.0-dev",
+            "keywords": [
+                "spacy",
+                "pip",
+                "install",
+                "python",
+                "download"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
         },
         {
             "path": "/examples/ray/batch-split-proxy/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "seldon-core-microservice $MODEL_NAME $API_TYPE",
+            "cmd_keywords": [
+                "seldon",
+                "core",
+                "microservice",
+                "model",
+                "name"
+            ],
+            "from": "seldonio/seldon-core-s2i-python37",
+            "from_full": "seldonio/seldon-core-s2i-python37:1.5.0-dev",
+            "keywords": [
+                "pip",
+                "install",
+                "cache",
+                "requirements",
+                "txt"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
@@ -351,12 +583,20 @@
             "path": "/examples/kubeflow/pipeline/pipeline_steps/data_downloader/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "python",
+            "from_full": "python:3.7-slim",
+            "keywords": [
+                "pip",
+                "install",
+                "requirements",
+                "txt"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
@@ -365,7 +605,8 @@
             "path": "/examples/pachyderm-cd4ml/RSIDeployer/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
+            "from": "alpine/helm",
+            "from_full": "alpine/helm:3.4.2",
             "keywords": [],
             "dbs": [],
             "servers": [],
@@ -377,14 +618,29 @@
         },
         {
             "path": "/examples/pachyderm-cd4ml/RSIServing/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "exec seldon-core-microservice RSIModel --service-type MODEL --persistence 0",
+            "cmd_keywords": [
+                "exec",
+                "seldon",
+                "core",
+                "microservice",
+                "rsimodel"
+            ],
+            "from": "python",
+            "from_full": "python:3.8-slim",
+            "keywords": [
+                "pip",
+                "install",
+                "pandas",
+                "statsmodels",
+                "seldon"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
@@ -393,12 +649,21 @@
             "path": "/examples/pachyderm-cd4ml/RSITraining/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "python",
+            "from_full": "python:3.8-slim",
+            "keywords": [
+                "pip",
+                "install",
+                "pandas",
+                "statsmodels",
+                "joblib"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
@@ -407,36 +672,69 @@
             "path": "/wrappers/s2i/python/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "$BASE_IMAGE",
+            "keywords": [
+                "conda",
+                "python",
+                "certifi",
+                "install",
+                "pip"
+            ],
+            "from_full": "$BASE_IMAGE:$IMAGE_VERSION",
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
         },
         {
             "path": "/zookeeper-k8s/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
-            "dbs": [],
+            "cmd": "/opt/zookeeper/bin/config-and-run.sh",
+            "cmd_keywords": [
+                "opt",
+                "zookeeper",
+                "bin",
+                "config",
+                "and"
+            ],
+            "from": "ubuntu",
+            "from_full": "ubuntu:14.04",
+            "keywords": [
+                "zookeeper",
+                "opt",
+                "apt",
+                "get",
+                "version"
+            ],
+            "dbs": [
+                "zookeeper"
+            ],
             "servers": [],
             "buses": [],
             "langs": [],
             "gates": [],
             "monitors": [],
-            "discos": []
+            "discos": [
+                "zookeeper"
+            ]
         },
         {
             "path": "/testing/profiling/engine/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "$SELDON_ENGINE_IMAGE",
+            "keywords": [
+                "yourkit",
+                "docker",
+                "javaprofiler",
+                "zip",
+                "tmp"
+            ],
+            "from_full": "$SELDON_ENGINE_IMAGE",
             "dbs": [],
             "servers": [],
             "buses": [],
@@ -447,10 +745,20 @@
         },
         {
             "path": "/testing/benchmarking/ghz/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "ghz --help",
+            "cmd_keywords": [
+                "ghz",
+                "help"
+            ],
+            "from": "ubuntu",
+            "from_full": "ubuntu",
+            "keywords": [
+                "ghz",
+                "https",
+                "github",
+                "com",
+                "apt"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
@@ -461,14 +769,25 @@
         },
         {
             "path": "/python-builder/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "bash",
+            "cmd_keywords": [
+                "bash"
+            ],
+            "from": "continuumio/miniconda3",
+            "from_full": "continuumio/miniconda3:4.7.12",
+            "keywords": [
+                "install",
+                "apt",
+                "get",
+                "git",
+                "pip"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "bash"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
@@ -1147,8 +1466,8 @@
             "buses": [],
             "gates": [],
             "monitors": [
-                "prometheus",
-                "jaeger"
+                "jaeger",
+                "prometheus"
             ],
             "discos": [
                 "thrift",
@@ -1235,45 +1554,77 @@
     ],
     "dbs": [
         "nexus",
-        "redis"
+        "sql",
+        "redis",
+        "zookeeper"
     ],
     "servers": [
-        "express",
         "spring",
-        "flask",
         "tomcat",
-        "node"
+        "flask",
+        "express",
+        "node",
+        "httpd"
     ],
     "buses": [
         "kafka"
     ],
     "langs": [
-        "html",
-        "c++",
-        "python",
         "jupyter notebook",
-        "go"
+        "html",
+        "java",
+        "c++",
+        "cmake",
+        "golang",
+        "go",
+        "bash",
+        "sql",
+        "python"
     ],
     "gates": [],
     "monitors": [
-        "prometheus",
-        "jaeger"
+        "jaeger",
+        "prometheus"
     ],
     "discos": [
+        "consul",
         "thrift",
-        "grpc"
+        "grpc",
+        "zookeeper"
     ],
     "num_services": 6,
     "shared_dbs": false,
     "num_dockers": 33,
-    "images": [],
-    "num_dbs": 2,
-    "num_servers": 5,
+    "images": [
+        "openjdk",
+        "seldonio/seldon-core-s2i-python37",
+        "seldonio/seldon-core-s2i-python3",
+        "golang",
+        "$BASE_IMAGE",
+        "ubuntu",
+        "base",
+        "alpine/helm",
+        "anapsix/alpine-java",
+        "gcr.io/distroless/base-debian10",
+        "rclone/rclone",
+        "registry.access.redhat.com/ubi8/python-36",
+        "continuumio/miniconda3",
+        "rocker/r-base",
+        "registry.access.redhat.com/ubi8/python-38",
+        "seldonio/seldon-core-s2i-python37-ubi8",
+        "alpine",
+        "$BASE_IMAGE_NAME",
+        "$SELDON_ENGINE_IMAGE",
+        "node",
+        "python"
+    ],
+    "num_dbs": 4,
+    "num_servers": 6,
     "num_buses": 1,
-    "num_langs": 5,
+    "num_langs": 10,
     "num_gates": 0,
     "num_monitors": 2,
-    "num_discos": 2,
+    "num_discos": 4,
     "num_files": 102,
-    "avg_size_service": 3396.818181818182
+    "avg_size_service": 3405.3939393939395
 }

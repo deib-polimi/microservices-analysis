@@ -2,17 +2,27 @@
     "url": "git://github.com/erda-project/erda.git",
     "name": "erda-project/erda",
     "commiters": 44,
-    "size": 64043,
+    "size": 64862,
     "languages": [
         "go"
     ],
     "dockers": [
         {
             "path": "/build/dockerfiles/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "sh -c /app/${APP_NAME}",
+            "cmd_keywords": [
+                "app",
+                "name"
+            ],
+            "from": "${BASE_DOCKER_IMAGE}",
+            "keywords": [
+                "module",
+                "path",
+                "dicehub",
+                "extension",
+                "build"
+            ],
+            "from_full": "${BASE_DOCKER_IMAGE}",
             "dbs": [],
             "servers": [],
             "buses": [],
@@ -23,10 +33,20 @@
         },
         {
             "path": "/build/dockerfiles/reportengine/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "sh -c /app/${APP_NAME}",
+            "cmd_keywords": [
+                "app",
+                "name"
+            ],
+            "from": "${BASE_DOCKER_IMAGE}",
+            "keywords": [
+                "opt",
+                "action",
+                "erda",
+                "make",
+                "build"
+            ],
+            "from_full": "${BASE_DOCKER_IMAGE}",
             "dbs": [],
             "servers": [],
             "buses": [],
@@ -37,10 +57,20 @@
         },
         {
             "path": "/build/dockerfiles/cluster-agent/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "sh -c /app/${APP_NAME}",
+            "cmd_keywords": [
+                "app",
+                "name"
+            ],
+            "from": "${BASE_DOCKER_IMAGE}",
+            "keywords": [
+                "kubectl",
+                "bin",
+                "usr",
+                "apk",
+                "add"
+            ],
+            "from_full": "${BASE_DOCKER_IMAGE}",
             "dbs": [],
             "servers": [],
             "buses": [],
@@ -53,9 +83,44 @@
             "path": "/build/dockerfiles/base/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "unitedwardrobe/golang-librdkafka",
+            "from_full": "unitedwardrobe/golang-librdkafka:alpine3.12-golang1.15.0-librdkafka1.5.0",
+            "keywords": [
+                "apk",
+                "git",
+                "etc",
+                "build",
+                "echo"
+            ],
             "dbs": [],
+            "servers": [],
+            "buses": [],
+            "langs": [
+                "golang"
+            ],
+            "gates": [],
+            "monitors": [],
+            "discos": []
+        },
+        {
+            "path": "/build/dockerfiles/soldier/Dockerfile",
+            "cmd": "sh -c /app/${APP_NAME}",
+            "cmd_keywords": [
+                "app",
+                "name"
+            ],
+            "from": "${BASE_DOCKER_IMAGE}",
+            "keywords": [
+                "usr",
+                "bin",
+                "com",
+                "erda",
+                "docker"
+            ],
+            "from_full": "${BASE_DOCKER_IMAGE}",
+            "dbs": [
+                "mariadb"
+            ],
             "servers": [],
             "buses": [],
             "langs": [],
@@ -64,11 +129,18 @@
             "discos": []
         },
         {
-            "path": "/build/dockerfiles/soldier/Dockerfile",
+            "path": "/build/dockerfiles/agent-injector/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "${BASE_DOCKER_IMAGE}",
+            "keywords": [
+                "erda",
+                "make",
+                "build",
+                "module",
+                "path"
+            ],
+            "from_full": "${BASE_DOCKER_IMAGE}",
             "dbs": [],
             "servers": [],
             "buses": [],
@@ -568,9 +640,11 @@
             },
             {
                 "name": "erda-migration",
-                "image": "registry.erda.cloud/erda/init-image",
-                "image_full": "registry.erda.cloud/erda/init-image:1.3.1-20211018",
-                "dbs": [],
+                "image": "registry.erda.cloud/erda-actions/erda-mysql-migration-action",
+                "image_full": "registry.erda.cloud/erda-actions/erda-mysql-migration-action:1.0-57-20211207-321dfaa",
+                "dbs": [
+                    "mysql"
+                ],
                 "servers": [],
                 "buses": [],
                 "gates": [],
@@ -612,17 +686,18 @@
             }
         ],
         "detected_dbs": {
-            "num": 5,
+            "num": 6,
             "names": [
                 "cassandra",
-                "mysql",
                 "redis",
+                "mysql",
                 "zookeeper"
             ],
             "services": [
                 "zookeeper",
                 "cassandra",
                 "mysql",
+                "erda-migration",
                 "redis-sentinel",
                 "redis"
             ],
@@ -636,11 +711,11 @@
             "longest_path": 6
         },
         "dep_graph_micro": {
-            "nodes": 27,
-            "edges": 27,
-            "avg_deps_per_service": 1.0,
+            "nodes": 26,
+            "edges": 18,
+            "avg_deps_per_service": 0.6923076923076923,
             "acyclic": true,
-            "longest_path": 4
+            "longest_path": 3
         }
     },
     "files": [
@@ -658,19 +733,20 @@
     ],
     "dbs": [
         "cassandra",
-        "mysql",
         "redis",
+        "mysql",
         "zookeeper"
     ],
     "servers": [
-        "busybox",
-        "django"
+        "django",
+        "busybox"
     ],
     "buses": [
         "kafka"
     ],
     "langs": [
-        "go"
+        "go",
+        "golang"
     ],
     "gates": [
         "nginx"
@@ -682,15 +758,18 @@
     ],
     "num_services": 37,
     "shared_dbs": true,
-    "num_dockers": 5,
-    "images": [],
+    "num_dockers": 6,
+    "images": [
+        "${BASE_DOCKER_IMAGE}",
+        "unitedwardrobe/golang-librdkafka"
+    ],
     "num_dbs": 4,
     "num_servers": 2,
     "num_buses": 1,
-    "num_langs": 1,
+    "num_langs": 2,
     "num_gates": 1,
     "num_monitors": 0,
     "num_discos": 2,
-    "num_files": 7,
-    "avg_size_service": 12808.6
+    "num_files": 8,
+    "avg_size_service": 10810.333333333334
 }

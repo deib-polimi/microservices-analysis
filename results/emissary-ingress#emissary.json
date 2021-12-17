@@ -2,7 +2,7 @@
     "url": "git://github.com/emissary-ingress/emissary.git",
     "name": "emissary-ingress/emissary",
     "commiters": 234,
-    "size": 81422,
+    "size": 81559,
     "languages": [
         "python",
         "go"
@@ -12,12 +12,21 @@
             "path": "/docker/test-auth/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "ubuntu",
+            "from_full": "ubuntu:18.04",
+            "keywords": [
+                "apt",
+                "get",
+                "install",
+                "pip",
+                "update"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
@@ -26,12 +35,21 @@
             "path": "/docker/test-http/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "golang",
+            "from_full": "golang:1.17",
+            "keywords": [
+                "usr",
+                "local",
+                "bin",
+                "httptest",
+                "build"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "golang"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
@@ -40,8 +58,9 @@
             "path": "/docker/base-envoy/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
+            "from": "${base}",
             "keywords": [],
+            "from_full": "${base}",
             "dbs": [],
             "servers": [],
             "buses": [],
@@ -52,12 +71,21 @@
         },
         {
             "path": "/docker/test-ratelimit/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "npm start",
+            "cmd_keywords": [
+                "npm",
+                "start"
+            ],
+            "from": "node",
+            "from_full": "node:10-alpine",
+            "keywords": [
+                "npm",
+                "install"
+            ],
             "dbs": [],
-            "servers": [],
+            "servers": [
+                "node"
+            ],
             "buses": [],
             "langs": [],
             "gates": [],
@@ -68,12 +96,21 @@
             "path": "/docker/test-stats/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "alpine",
+            "from_full": "alpine:3.11",
+            "keywords": [
+                "python",
+                "usr",
+                "pip",
+                "bin",
+                "cache"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
@@ -82,43 +119,77 @@
             "path": "/docker/test-shadow/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "ubuntu",
+            "from_full": "ubuntu:18.04",
+            "keywords": [
+                "apt",
+                "get",
+                "install",
+                "pip",
+                "update"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
         },
         {
             "path": "/vendor/golang.org/x/net/http2/Dockerfile",
-            "cmd": "",
+            "cmd": "-h",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "ubuntu",
+            "from_full": "ubuntu:trusty",
+            "keywords": [
+                "dev",
+                "install",
+                "apt",
+                "get",
+                "make"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
         },
         {
             "path": "/builder/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
-            "dbs": [],
+            "cmd": "kat-server",
+            "cmd_keywords": [
+                "kat",
+                "server"
+            ],
+            "from": "${base}",
+            "keywords": [
+                "ambassador",
+                "python",
+                "bin",
+                "buildroot",
+                "post"
+            ],
+            "from_full": "${base}",
+            "dbs": [
+                "redis"
+            ],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
-            "discos": []
+            "discos": [
+                "datawire"
+            ]
         }
     ],
     "structure": {
@@ -215,15 +286,18 @@
             ]
         }
     ],
-    "dbs": [],
+    "dbs": [
+        "redis"
+    ],
     "servers": [
-        "flask",
-        "node"
+        "node",
+        "flask"
     ],
     "buses": [],
     "langs": [
-        "python",
-        "go"
+        "go",
+        "golang",
+        "python"
     ],
     "gates": [
         "gateway"
@@ -232,19 +306,26 @@
         "prometheus"
     ],
     "discos": [
-        "grpc"
+        "grpc",
+        "datawire"
     ],
     "num_services": 0,
     "shared_dbs": false,
     "num_dockers": 8,
-    "images": [],
-    "num_dbs": 0,
+    "images": [
+        "${base}",
+        "alpine",
+        "golang",
+        "node",
+        "ubuntu"
+    ],
+    "num_dbs": 1,
     "num_servers": 2,
     "num_buses": 0,
-    "num_langs": 2,
+    "num_langs": 3,
     "num_gates": 1,
     "num_monitors": 1,
-    "num_discos": 1,
+    "num_discos": 2,
     "num_files": 16,
-    "avg_size_service": 10177.75
+    "avg_size_service": 10194.875
 }

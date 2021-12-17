@@ -12,12 +12,24 @@
     "dockers": [
         {
             "path": "/frontend/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "./node_modules/@angular/cli/bin/ng serve --prod --host 0.0.0.0 --port 8090 --disable-host-check",
+            "cmd_keywords": [
+                "host",
+                "node",
+                "modules",
+                "angular",
+                "cli"
+            ],
+            "from": "node",
+            "from_full": "node:8",
+            "keywords": [
+                "npm",
+                "install"
+            ],
             "dbs": [],
-            "servers": [],
+            "servers": [
+                "node"
+            ],
             "buses": [],
             "langs": [],
             "gates": [],
@@ -26,13 +38,18 @@
         },
         {
             "path": "/dependencies/rabbitmq/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
+            "cmd": "/init.sh",
+            "cmd_keywords": [
+                "init"
+            ],
+            "from": "rabbitmq",
+            "from_full": "rabbitmq",
             "keywords": [],
             "dbs": [],
             "servers": [],
-            "buses": [],
+            "buses": [
+                "rabbitmq"
+            ],
             "langs": [],
             "gates": [],
             "monitors": [],
@@ -40,12 +57,27 @@
         },
         {
             "path": "/backend/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "echo \"CMD start delegateContractService\\\\n\" && cd delegate-contract-service && ./range-delegator.sh",
+            "cmd_keywords": [
+                "echo",
+                "cmd",
+                "start",
+                "delegatecontractservice",
+                "delegate"
+            ],
+            "from": "node",
+            "from_full": "node:8",
+            "keywords": [
+                "npm",
+                "install",
+                "echo",
+                "middle",
+                "container"
+            ],
             "dbs": [],
-            "servers": [],
+            "servers": [
+                "node"
+            ],
             "buses": [],
             "langs": [],
             "gates": [],
@@ -83,9 +115,9 @@
                 "mysql"
             ],
             "servers": [
-                "express",
                 "node",
-                "mongoose"
+                "mongoose",
+                "express"
             ],
             "buses": [],
             "gates": [],
@@ -98,16 +130,18 @@
         "mysql"
     ],
     "servers": [
-        "express",
         "node",
-        "mongoose"
+        "mongoose",
+        "express"
     ],
-    "buses": [],
+    "buses": [
+        "rabbitmq"
+    ],
     "langs": [
-        "html",
+        "javascript",
         "less",
         "typescript",
-        "javascript"
+        "html"
     ],
     "gates": [],
     "monitors": [],
@@ -115,10 +149,13 @@
     "num_services": 0,
     "shared_dbs": false,
     "num_dockers": 3,
-    "images": [],
+    "images": [
+        "rabbitmq",
+        "node"
+    ],
     "num_dbs": 2,
     "num_servers": 3,
-    "num_buses": 0,
+    "num_buses": 1,
     "num_langs": 4,
     "num_gates": 0,
     "num_monitors": 0,

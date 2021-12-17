@@ -12,8 +12,15 @@
             "path": "/identity-server/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "base",
+            "from_full": "base",
+            "keywords": [
+                "dotnet",
+                "identityserver",
+                "csproj",
+                "build",
+                "release"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
@@ -26,22 +33,34 @@
             "path": "/nginx/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
+            "from": "nginx",
+            "from_full": "nginx:latest",
             "keywords": [],
             "dbs": [],
             "servers": [],
             "buses": [],
             "langs": [],
-            "gates": [],
+            "gates": [
+                "nginx"
+            ],
             "monitors": [],
             "discos": []
         },
         {
             "path": "/accounts-api/src/WebApi/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "entrypoint.sh",
+            "cmd_keywords": [
+                "entrypoint"
+            ],
+            "from": "base",
+            "from_full": "base",
+            "keywords": [
+                "webapi",
+                "dotnet",
+                "csproj",
+                "build",
+                "release"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
@@ -52,14 +71,30 @@
         },
         {
             "path": "/wallet-spa/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "npm run start-${ENV}",
+            "cmd_keywords": [
+                "npm",
+                "run",
+                "start",
+                "env"
+            ],
+            "from": "node",
+            "from_full": "node:9-alpine",
+            "keywords": [
+                "apk",
+                "build",
+                "dependencies",
+                "mkdir",
+                "usr"
+            ],
             "dbs": [],
-            "servers": [],
+            "servers": [
+                "node"
+            ],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
@@ -68,8 +103,15 @@
             "path": "/accounts-api-seed/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "mcr.microsoft.com/dotnet/sdk",
+            "from_full": "mcr.microsoft.com/dotnet/sdk:6.0",
+            "keywords": [
+                "dotnet",
+                "webapi",
+                "restore",
+                "src",
+                "csproj"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
@@ -208,8 +250,9 @@
     ],
     "buses": [],
     "langs": [
+        "javascript",
         "c#",
-        "javascript"
+        "python"
     ],
     "gates": [
         "nginx"
@@ -219,11 +262,16 @@
     "num_services": 6,
     "shared_dbs": false,
     "num_dockers": 5,
-    "images": [],
+    "images": [
+        "node",
+        "base",
+        "mcr.microsoft.com/dotnet/sdk",
+        "nginx"
+    ],
     "num_dbs": 0,
     "num_servers": 1,
     "num_buses": 0,
-    "num_langs": 2,
+    "num_langs": 3,
     "num_gates": 1,
     "num_monitors": 0,
     "num_discos": 0,

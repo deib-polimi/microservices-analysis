@@ -2,7 +2,7 @@
     "url": "git://github.com/TaitoUnited/full-stack-template.git",
     "name": "TaitoUnited/full-stack-template",
     "commiters": 12,
-    "size": 8199,
+    "size": 8817,
     "languages": [
         "shell",
         "typescript"
@@ -10,12 +10,24 @@
     "dockers": [
         {
             "path": "/www/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": ". ~/.bashrc && ./develop.sh",
+            "cmd_keywords": [
+                "bashrc",
+                "develop"
+            ],
+            "from": "node",
+            "from_full": "node:lts-buster-slim",
+            "keywords": [
+                "install",
+                "npm",
+                "mkdir",
+                "develop",
+                "loglevel"
+            ],
             "dbs": [],
-            "servers": [],
+            "servers": [
+                "node"
+            ],
             "buses": [],
             "langs": [],
             "gates": [],
@@ -24,10 +36,17 @@
         },
         {
             "path": "/storage/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "server /develop",
+            "cmd_keywords": [
+                "server",
+                "develop"
+            ],
+            "from": "minio/minio",
+            "from_full": "minio/minio",
+            "keywords": [
+                "mkdir",
+                "develop"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
@@ -38,10 +57,22 @@
         },
         {
             "path": "/client/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "npm install; npm run start",
+            "cmd_keywords": [
+                "npm",
+                "install",
+                "run",
+                "start"
+            ],
+            "from": "ghcr.io/taitounited/cypress",
+            "from_full": "ghcr.io/taitounited/cypress:8.7.0",
+            "keywords": [
+                "mkdir",
+                "develop",
+                "npm",
+                "install",
+                "loglevel"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
@@ -52,12 +83,26 @@
         },
         {
             "path": "/worker/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "npm install; npm run start",
+            "cmd_keywords": [
+                "npm",
+                "install",
+                "run",
+                "start"
+            ],
+            "from": "node",
+            "from_full": "node:lts-alpine",
+            "keywords": [
+                "mkdir",
+                "develop",
+                "npm",
+                "install",
+                "loglevel"
+            ],
             "dbs": [],
-            "servers": [],
+            "servers": [
+                "node"
+            ],
             "buses": [],
             "langs": [],
             "gates": [],
@@ -66,12 +111,26 @@
         },
         {
             "path": "/server/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "npm install; npm run start",
+            "cmd_keywords": [
+                "npm",
+                "install",
+                "run",
+                "start"
+            ],
+            "from": "node",
+            "from_full": "node:lts-alpine",
+            "keywords": [
+                "mkdir",
+                "develop",
+                "npm",
+                "install",
+                "loglevel"
+            ],
             "dbs": [],
-            "servers": [],
+            "servers": [
+                "node"
+            ],
             "buses": [],
             "langs": [],
             "gates": [],
@@ -80,14 +139,33 @@
         },
         {
             "path": "/alternatives/server-flask/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
-            "dbs": [],
-            "servers": [],
+            "cmd": "pip-compile requirements-dev.in;     pip-compile requirements-prod.in;     pip3 install -r requirements-dev.txt;     python -m debugpy --listen 0.0.0.0:9229 -m       flask run --host $API_BINDADDR --port $API_PORT --no-debugger",
+            "cmd_keywords": [
+                "pip",
+                "requirements",
+                "compile",
+                "dev",
+                "api"
+            ],
+            "from": "python",
+            "from_full": "python:3.9-alpine3.13",
+            "keywords": [
+                "dev",
+                "pip",
+                "install",
+                "apk",
+                "add"
+            ],
+            "dbs": [
+                "postgresql"
+            ],
+            "servers": [
+                "flask"
+            ],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
@@ -96,22 +174,42 @@
             "path": "/alternatives/client-static/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "nginx",
+            "from_full": "nginx:stable-alpine",
+            "keywords": [
+                "nginx",
+                "etc",
+                "develop",
+                "conf",
+                "sed"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
             "langs": [],
-            "gates": [],
+            "gates": [
+                "nginx"
+            ],
             "monitors": [],
             "discos": []
         },
         {
             "path": "/alternatives/server-micronaut-java/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "DATABASE_PASSWORD=$(cat /run/secrets/DATABASE_PASSWORD) ./gradlew run",
+            "cmd_keywords": [
+                "database",
+                "password",
+                "run",
+                "cat",
+                "secrets"
+            ],
+            "from": "adoptopenjdk/openjdk11-openj9",
+            "from_full": "adoptopenjdk/openjdk11-openj9:jdk-11.0.1.13-alpine-slim",
+            "keywords": [
+                "mkdir",
+                "develop",
+                "gradlew"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
@@ -122,24 +220,53 @@
         },
         {
             "path": "/alternatives/server-django/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
-            "dbs": [],
+            "cmd": "pip-compile requirements-dev.in;     pip-compile requirements-prod.in;     pip3 install -r requirements-dev.txt;     python -m debugpy --listen 0.0.0.0:9229 -m       src/manage.py runserver 0.0.0.0:8080",
+            "cmd_keywords": [
+                "pip",
+                "requirements",
+                "compile",
+                "dev",
+                "prod"
+            ],
+            "from": "python",
+            "from_full": "python:3.9-alpine3.13",
+            "keywords": [
+                "dev",
+                "pip",
+                "install",
+                "apk",
+                "add"
+            ],
+            "dbs": [
+                "postgresql"
+            ],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
         },
         {
             "path": "/admin/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "npm install; npm run start",
+            "cmd_keywords": [
+                "npm",
+                "install",
+                "run",
+                "start"
+            ],
+            "from": "ghcr.io/taitounited/cypress",
+            "from_full": "ghcr.io/taitounited/cypress:8.7.0",
+            "keywords": [
+                "mkdir",
+                "develop",
+                "npm",
+                "install",
+                "loglevel"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
@@ -316,34 +443,44 @@
         }
     ],
     "dbs": [
-        "sql",
-        "postgresql"
+        "postgresql",
+        "sql"
     ],
     "servers": [
         "spring",
-        "flask",
         "node",
+        "flask",
         "django"
     ],
     "buses": [],
     "langs": [
-        "shell",
-        "typescript"
+        "typescript",
+        "python",
+        "shell"
     ],
-    "gates": [],
+    "gates": [
+        "nginx"
+    ],
     "monitors": [],
     "discos": [],
     "num_services": 0,
     "shared_dbs": false,
     "num_dockers": 10,
-    "images": [],
+    "images": [
+        "ghcr.io/taitounited/cypress",
+        "minio/minio",
+        "adoptopenjdk/openjdk11-openj9",
+        "nginx",
+        "node",
+        "python"
+    ],
     "num_dbs": 2,
     "num_servers": 4,
     "num_buses": 0,
-    "num_langs": 2,
-    "num_gates": 0,
+    "num_langs": 3,
+    "num_gates": 1,
     "num_monitors": 0,
     "num_discos": 0,
     "num_files": 26,
-    "avg_size_service": 819.9
+    "avg_size_service": 881.7
 }

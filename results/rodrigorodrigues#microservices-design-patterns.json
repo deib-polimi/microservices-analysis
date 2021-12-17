@@ -2,7 +2,7 @@
     "url": "git://github.com/rodrigorodrigues/microservices-design-patterns.git",
     "name": "rodrigorodrigues/microservices-design-patterns",
     "commiters": 7,
-    "size": 4944,
+    "size": 4947,
     "languages": [
         "java",
         "javascript"
@@ -10,14 +10,26 @@
     "dockers": [
         {
             "path": "/go-service/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "/app/main",
+            "cmd_keywords": [
+                "app",
+                "main"
+            ],
+            "from": "golang",
+            "from_full": "golang:1.15.2-alpine3.12",
+            "keywords": [
+                "mkdir",
+                "app",
+                "mod",
+                "download",
+                "build"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "golang"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
@@ -26,24 +38,47 @@
             "path": "/python-service/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "tiangolo/uwsgi-nginx-flask",
+            "from_full": "tiangolo/uwsgi-nginx-flask:python3.8",
+            "keywords": [
+                "from",
+                "app",
+                "install",
+                "find",
+                "type"
+            ],
             "dbs": [],
-            "servers": [],
+            "servers": [
+                "flask"
+            ],
             "buses": [],
             "langs": [],
-            "gates": [],
+            "gates": [
+                "nginx"
+            ],
             "monitors": [],
             "discos": []
         },
         {
             "path": "/nodejs-service/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "node server.js",
+            "cmd_keywords": [
+                "node",
+                "server"
+            ],
+            "from": "node",
+            "from_full": "node:10.15.3-slim",
+            "keywords": [
+                "apt",
+                "get",
+                "install",
+                "update",
+                "netcat"
+            ],
             "dbs": [],
-            "servers": [],
+            "servers": [
+                "node"
+            ],
             "buses": [],
             "langs": [],
             "gates": [],
@@ -52,31 +87,62 @@
         },
         {
             "path": "/react-webapp/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "nginx-debug",
+            "cmd_keywords": [
+                "nginx",
+                "debug"
+            ],
+            "from": "nginx",
+            "from_full": "nginx:stable-alpine",
+            "keywords": [
+                "install",
+                "npm",
+                "port",
+                "apt",
+                "get"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
             "langs": [],
-            "gates": [],
+            "gates": [
+                "nginx"
+            ],
             "monitors": [],
             "discos": []
         },
         {
             "path": "/openzipkin-eureka/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "java -cp zipkin.jar  -Dloader.path='eureka.jar,eureka.jar!/lib'  -Dloader.main=zipkin.server.ZipkinServer org.springframework.boot.loader.PropertiesLauncher  --spring.config.location=file:BOOT-INF/classes/zipkin-server-shared.yml  --spring.profiles.active=shared  -Djava.security.egd=file:/dev/./urandom",
+            "cmd_keywords": [
+                "zipkin",
+                "jar",
+                "dloader",
+                "eureka",
+                "server"
+            ],
+            "from": "maven",
+            "from_full": "maven:3.6.0-jdk-8-alpine",
+            "keywords": [
+                "zipkin",
+                "server",
+                "eureka",
+                "boot",
+                "inf"
+            ],
             "dbs": [],
-            "servers": [],
+            "servers": [
+                "spring"
+            ],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "java"
+            ],
             "gates": [],
             "monitors": [],
-            "discos": []
+            "discos": [
+                "eureka"
+            ]
         }
     ],
     "structure": {
@@ -404,8 +470,8 @@
             "buses": [],
             "gates": [],
             "monitors": [
-                "prometheus",
-                "jaeger"
+                "jaeger",
+                "prometheus"
             ],
             "discos": []
         },
@@ -462,8 +528,8 @@
             "buses": [],
             "gates": [],
             "monitors": [
-                "prometheus",
-                "jaeger"
+                "jaeger",
+                "prometheus"
             ],
             "discos": []
         },
@@ -584,9 +650,9 @@
             ],
             "servers": [
                 "spring",
-                "express",
                 "node",
-                "mongoose"
+                "mongoose",
+                "express"
             ],
             "buses": [],
             "gates": [],
@@ -619,26 +685,28 @@
         "redis"
     ],
     "servers": [
-        "express",
-        "glassfish",
-        "jboss",
-        "spring",
-        "flask",
         "mongoose",
-        "node"
+        "spring",
+        "glassfish",
+        "flask",
+        "express",
+        "node",
+        "jboss"
     ],
     "buses": [],
     "langs": [
-        "java",
-        "javascript"
+        "javascript",
+        "golang",
+        "java"
     ],
     "gates": [
+        "nginx",
         "zuul"
     ],
     "monitors": [
-        "grafana",
+        "jaeger",
         "prometheus",
-        "jaeger"
+        "grafana"
     ],
     "discos": [
         "consul",
@@ -647,14 +715,20 @@
     "num_services": 19,
     "shared_dbs": true,
     "num_dockers": 5,
-    "images": [],
+    "images": [
+        "maven",
+        "tiangolo/uwsgi-nginx-flask",
+        "nginx",
+        "golang",
+        "node"
+    ],
     "num_dbs": 2,
     "num_servers": 7,
     "num_buses": 0,
-    "num_langs": 2,
-    "num_gates": 1,
+    "num_langs": 3,
+    "num_gates": 2,
     "num_monitors": 3,
     "num_discos": 2,
     "num_files": 21,
-    "avg_size_service": 988.8
+    "avg_size_service": 989.4
 }

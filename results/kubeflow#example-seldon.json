@@ -11,66 +11,126 @@
     "dockers": [
         {
             "path": "/models/sk_mnist/train/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "/training/train.sh",
+            "cmd_keywords": [
+                "training",
+                "train"
+            ],
+            "from": "python",
+            "from_full": "python:3.7-slim",
+            "keywords": [
+                "apt",
+                "get",
+                "install",
+                "python",
+                "pip"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
         },
         {
             "path": "/models/sk_mnist/runtime/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "exec seldon-core-microservice $MODEL_NAME $API_TYPE --service-type $SERVICE_TYPE --persistence $PERSISTENCE",
+            "cmd_keywords": [
+                "type",
+                "service",
+                "persistence",
+                "exec",
+                "seldon"
+            ],
+            "from": "python",
+            "from_full": "python:3.7-slim",
+            "keywords": [
+                "pip",
+                "install",
+                "requirements",
+                "txt"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
         },
         {
             "path": "/models/tf_mnist/train/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "python -u create_model.py",
+            "cmd_keywords": [
+                "python",
+                "create",
+                "model"
+            ],
+            "from": "tensorflow/tensorflow",
+            "from_full": "tensorflow/tensorflow:1.3.0",
+            "keywords": [
+                "mkdir",
+                "training"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
         },
         {
             "path": "/models/tf_mnist/runtime/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "exec seldon-core-microservice $MODEL_NAME $API_TYPE --service-type $SERVICE_TYPE --persistence $PERSISTENCE",
+            "cmd_keywords": [
+                "type",
+                "service",
+                "persistence",
+                "exec",
+                "seldon"
+            ],
+            "from": "python",
+            "from_full": "python:3.7-slim",
+            "keywords": [
+                "pip",
+                "install",
+                "requirements",
+                "txt"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
         },
         {
             "path": "/models/r_mnist/train/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "/training/train.sh",
+            "cmd_keywords": [
+                "training",
+                "train"
+            ],
+            "from": "rocker/r-apt",
+            "from_full": "rocker/r-apt:bionic",
+            "keywords": [
+                "get",
+                "cran",
+                "apt",
+                "install",
+                "training"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
@@ -81,10 +141,23 @@
         },
         {
             "path": "/models/r_mnist/runtime/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "Rscript microservice.R --model $MODEL_NAME --api $API_TYPE --service $SERVICE_TYPE --persistence $PERSISTENCE",
+            "cmd_keywords": [
+                "model",
+                "api",
+                "type",
+                "service",
+                "persistence"
+            ],
+            "from": "rocker/r-apt",
+            "from_full": "rocker/r-apt:bionic",
+            "keywords": [
+                "cran",
+                "microservice",
+                "apt",
+                "get",
+                "curl"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
@@ -147,9 +220,9 @@
     "servers": [],
     "buses": [],
     "langs": [
-        "shell",
         "jupyter notebook",
-        "python"
+        "python",
+        "shell"
     ],
     "gates": [],
     "monitors": [],
@@ -157,7 +230,11 @@
     "num_services": 0,
     "shared_dbs": false,
     "num_dockers": 6,
-    "images": [],
+    "images": [
+        "tensorflow/tensorflow",
+        "python",
+        "rocker/r-apt"
+    ],
     "num_dbs": 0,
     "num_servers": 0,
     "num_buses": 0,

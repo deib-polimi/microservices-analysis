@@ -1,8 +1,8 @@
 {
     "url": "git://github.com/wso2/product-microgateway.git",
     "name": "wso2/product-microgateway",
-    "commiters": 61,
-    "size": 10273,
+    "commiters": 62,
+    "size": 10370,
     "languages": [
         "go",
         "java"
@@ -10,54 +10,110 @@
     "dockers": [
         {
             "path": "/integration/mock-backend-server/src/main/resources/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
+            "cmd": "java -cp \"lib/*\" org.wso2.choreo.connect.mockbackend.MockServices",
+            "cmd_keywords": [
+                "java",
+                "lib",
+                "org",
+                "wso",
+                "choreo"
+            ],
+            "from": "adoptopenjdk/openjdk11",
+            "from_full": "adoptopenjdk/openjdk11:jre-11.0.9_11.1-alpine",
             "keywords": [],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "java"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
         },
         {
             "path": "/router/src/main/resources/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
-            "dbs": [],
-            "servers": [],
+            "cmd": "/usr/local/bin/envoy -c /etc/envoy/envoy.yaml --config-yaml \"{admin: {address: {socket_address: {address: '${ROUTER_ADMIN_HOST}', port_value: '${ROUTER_ADMIN_PORT}'}}}, dynamic_resources: {ads_config: {api_type: GRPC, transport_api_version: V3, grpc_services: [{envoy_grpc: {cluster_name: xds_cluster}}]}, cds_config: {ads: {}, resource_api_version: V3}, lds_config: {ads: {}, resource_api_version: V3}}, node: {cluster: '${ROUTER_CLUSTER}', id: '${ROUTER_LABEL}'}, static_resources: {clusters: [{name: xds_cluster, type: STRICT_DNS, connect_timeout: 1s, load_assignment: {cluster_name: xds_cluster, endpoints: [{lb_endpoints: [{endpoint: {address: {socket_address: {address: '${ADAPTER_HOST}', port_value: '${ADAPTER_PORT}'}}}}]}]}, typed_extension_protocol_options: {envoy.extensions.upstreams.http.v3.HttpProtocolOptions: {'@type': 'type.googleapis.com/envoy.extensions.upstreams.http.v3.HttpProtocolOptions', explicit_http_config: {http2_protocol_options: {}}}}, transport_socket: {name: envoy.transport_sockets.tls, typed_config: {'@type': type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.UpstreamTlsContext, common_tls_context: {tls_params: {tls_minimum_protocol_version: TLSv1_2, tls_maximum_protocol_version: TLSv1_2}, tls_certificates: {private_key: {filename: '${ROUTER_PRIVATE_KEY_PATH}'}, certificate_chain: {filename: '${ROUTER_PUBLIC_CERT_PATH}'}}, validation_context: {trusted_ca: {filename: '${ADAPTER_CA_CERT_PATH}'}}}}}}, {name: ext-authz, type: STRICT_DNS, connect_timeout: 20s, typed_extension_protocol_options: {envoy.extensions.upstreams.http.v3.HttpProtocolOptions: {'@type': 'type.googleapis.com/envoy.extensions.upstreams.http.v3.HttpProtocolOptions', explicit_http_config: {http2_protocol_options: {}}}}, transport_socket: {name: envoy.transport_sockets.tls, typed_config: {'@type': type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.UpstreamTlsContext, common_tls_context: {tls_params: {tls_minimum_protocol_version: TLSv1_2, tls_maximum_protocol_version: TLSv1_2}, tls_certificates: {private_key: {filename: '${ROUTER_PRIVATE_KEY_PATH}'}, certificate_chain: {filename: '${ROUTER_PUBLIC_CERT_PATH}'}}, validation_context: {trusted_ca: {filename: '${ENFORCER_CA_CERT_PATH}'}}}}}, load_assignment: {cluster_name: ext-authz, endpoints: [{lb_endpoints: [{endpoint: {address: {socket_address: {address: '${ENFORCER_HOST}', port_value: '${ENFORCER_PORT}'}}}}]}]}}, {name: access-logger, type: STRICT_DNS, connect_timeout: 200s, typed_extension_protocol_options: {envoy.extensions.upstreams.http.v3.HttpProtocolOptions: {'@type': 'type.googleapis.com/envoy.extensions.upstreams.http.v3.HttpProtocolOptions', explicit_http_config: {http2_protocol_options: {}}}}, transport_socket: {name: envoy.transport_sockets.tls, typed_config: {'@type': type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.UpstreamTlsContext, common_tls_context: {tls_params: {tls_minimum_protocol_version: TLSv1_2, tls_maximum_protocol_version: TLSv1_2}, tls_certificates: {private_key: {filename: '${ROUTER_PRIVATE_KEY_PATH}'}, certificate_chain: {filename: '${ROUTER_PUBLIC_CERT_PATH}'}}, validation_context: {trusted_ca: {filename: '${ENFORCER_CA_CERT_PATH}'}}}}}, load_assignment: {cluster_name: access-logger, endpoints: [{lb_endpoints: [{endpoint: {address: {socket_address: {address: '${ENFORCER_ANALYTICS_HOST}', port_value: '${ENFORCER_ANALYTICS_RECEIVER_PORT}'}}}}]}]}}, {name: token_cluster, type: STRICT_DNS, connect_timeout: 20s, transport_socket: {name: envoy.transport_sockets.tls, typed_config: {'@type': type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.UpstreamTlsContext, common_tls_context: {tls_params: {tls_minimum_protocol_version: TLSv1_2, tls_maximum_protocol_version: TLSv1_2}, tls_certificates: {private_key: {filename: '${ROUTER_PRIVATE_KEY_PATH}'}, certificate_chain: {filename: '${ROUTER_PUBLIC_CERT_PATH}'}}, validation_context: {trusted_ca: {filename: '${ENFORCER_CA_CERT_PATH}'}}}}}, load_assignment: {cluster_name: token_cluster, endpoints: [{lb_endpoints: [{endpoint: {address: {socket_address: {address: '${ENFORCER_HOST}', port_value: 8082}}}}]}]}}]}, layeredRuntime: {layers: [{name: deprecation, staticLayer: {re2.max_program_size.error_level: 1000}}]} }\" --concurrency \"${CONCURRENCY}\"  $TRAILING_ARGS",
+            "cmd_keywords": [
+                "tls",
+                "type",
+                "envoy",
+                "address",
+                "name"
+            ],
+            "from": "envoyproxy/envoy-alpine",
+            "from_full": "envoyproxy/envoy-alpine:v1.20.0",
+            "keywords": [
+                "user",
+                "etc",
+                "motd",
+                "group",
+                "apk"
+            ],
+            "dbs": [
+                "max"
+            ],
+            "servers": [
+                "node"
+            ],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "bash"
+            ],
             "gates": [],
             "monitors": [],
-            "discos": []
+            "discos": [
+                "envoy"
+            ]
         },
         {
             "path": "/enforcer-parent/enforcer/src/main/resources/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "java -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=\"${ENFORCER_HOME}/logs/heap-dump.hprof\" $JAVA_OPTS -Dlog4j.configurationFile=\"${ENFORCER_HOME}/conf/log4j2.properties\" -DtracingEnabled=\"true\" -cp \"lib/*:lib/dropins/*\" org.wso2.choreo.connect.enforcer.server.AuthServer",
+            "cmd_keywords": [
+                "enforcer",
+                "java",
+                "home",
+                "lib",
+                "heapdumponoutofmemoryerror"
+            ],
+            "from": "adoptopenjdk/openjdk11",
+            "from_full": "adoptopenjdk/openjdk11:jre-11.0.13_8-alpine",
+            "keywords": [
+                "user",
+                "group",
+                "home",
+                "etc",
+                "motd"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "java"
+            ],
             "gates": [],
             "monitors": [],
-            "discos": []
+            "discos": [
+                "grpc"
+            ]
         },
         {
             "path": "/samples/interceptors/nodejs/nodejs-interceptor-server-generated/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "node index.js",
+            "cmd_keywords": [
+                "node",
+                "index"
+            ],
+            "from": "node",
+            "from_full": "node:16.13-alpine",
+            "keywords": [
+                "npm",
+                "install"
+            ],
             "dbs": [],
-            "servers": [],
+            "servers": [
+                "node"
+            ],
             "buses": [],
             "langs": [],
             "gates": [],
@@ -68,12 +124,21 @@
             "path": "/samples/interceptors/golang/go-interceptor-server-generated/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "scratch",
+            "from_full": "scratch",
+            "keywords": [
+                "get",
+                "build",
+                "installsuffix",
+                "cgo",
+                "swagger"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "scratch"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
@@ -82,8 +147,13 @@
             "path": "/samples/interceptors/java/spring-server-generated/Dockerfile",
             "cmd": "",
             "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "from": "adoptopenjdk/openjdk11",
+            "from_full": "adoptopenjdk/openjdk11:jre-11.0.11_9-alpine",
+            "keywords": [
+                "wso",
+                "addgroup",
+                "adduser"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
@@ -94,17 +164,30 @@
         },
         {
             "path": "/adapter/src/main/resources/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "./adapter",
+            "cmd_keywords": [
+                "adapter"
+            ],
+            "from": "alpine",
+            "from_full": "alpine:3.14.3",
+            "keywords": [
+                "user",
+                "group",
+                "etc",
+                "motd",
+                "home"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "bash"
+            ],
             "gates": [],
             "monitors": [],
-            "discos": []
+            "discos": [
+                "grpc"
+            ]
         }
     ],
     "structure": {
@@ -123,8 +206,8 @@
             "path": "/pom.xml",
             "dbs": [],
             "servers": [
-                "express",
-                "tomcat"
+                "tomcat",
+                "express"
             ],
             "buses": [],
             "gates": [
@@ -219,8 +302,8 @@
                 "max"
             ],
             "servers": [
-                "express",
-                "tomcat"
+                "tomcat",
+                "express"
             ],
             "buses": [],
             "gates": [
@@ -296,19 +379,21 @@
         }
     ],
     "dbs": [
-        "nexus",
-        "max"
+        "max",
+        "nexus"
     ],
     "servers": [
         "spring",
-        "express",
         "node",
-        "tomcat"
+        "tomcat",
+        "express"
     ],
     "buses": [],
     "langs": [
-        "java",
-        "go"
+        "go",
+        "bash",
+        "scratch",
+        "java"
     ],
     "gates": [
         "gateway"
@@ -324,14 +409,20 @@
     "num_services": 0,
     "shared_dbs": false,
     "num_dockers": 7,
-    "images": [],
+    "images": [
+        "adoptopenjdk/openjdk11",
+        "scratch",
+        "alpine",
+        "envoyproxy/envoy-alpine",
+        "node"
+    ],
     "num_dbs": 2,
     "num_servers": 4,
     "num_buses": 0,
-    "num_langs": 2,
+    "num_langs": 4,
     "num_gates": 1,
     "num_monitors": 1,
     "num_discos": 3,
     "num_files": 21,
-    "avg_size_service": 1467.5714285714287
+    "avg_size_service": 1481.4285714285713
 }

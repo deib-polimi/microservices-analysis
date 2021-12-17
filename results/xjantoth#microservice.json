@@ -11,28 +11,53 @@
     "dockers": [
         {
             "path": "/frontend/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
+            "cmd": "nginx -g daemon off;",
+            "cmd_keywords": [
+                "nginx",
+                "daemon",
+                "off"
+            ],
+            "from": "nginx",
+            "from_full": "nginx:alpine",
+            "keywords": [
+                "npm",
+                "run",
+                "build"
+            ],
             "dbs": [],
             "servers": [],
             "buses": [],
             "langs": [],
-            "gates": [],
+            "gates": [
+                "nginx"
+            ],
             "monitors": [],
             "discos": []
         },
         {
             "path": "/backend/Dockerfile",
-            "cmd": "",
-            "cmd_keywords": [],
-            "from": "",
-            "keywords": [],
-            "dbs": [],
+            "cmd": "--bind 0.0.0.0:8000 app:app",
+            "cmd_keywords": [
+                "app",
+                "bind"
+            ],
+            "from": "python",
+            "from_full": "python:3-alpine",
+            "keywords": [
+                "apk",
+                "dev",
+                "pip",
+                "data",
+                "add"
+            ],
+            "dbs": [
+                "postgresql"
+            ],
             "servers": [],
             "buses": [],
-            "langs": [],
+            "langs": [
+                "python"
+            ],
             "gates": [],
             "monitors": [],
             "discos": []
@@ -133,29 +158,35 @@
         }
     ],
     "dbs": [
-        "postgres"
+        "postgres",
+        "postgresql"
     ],
     "servers": [
         "flask"
     ],
     "buses": [],
     "langs": [
-        "shell",
+        "javascript",
         "python",
-        "javascript"
+        "shell"
     ],
-    "gates": [],
+    "gates": [
+        "nginx"
+    ],
     "monitors": [],
     "discos": [],
     "num_services": 3,
     "shared_dbs": false,
     "num_dockers": 2,
-    "images": [],
-    "num_dbs": 1,
+    "images": [
+        "python",
+        "nginx"
+    ],
+    "num_dbs": 2,
     "num_servers": 1,
     "num_buses": 0,
     "num_langs": 3,
-    "num_gates": 0,
+    "num_gates": 1,
     "num_monitors": 0,
     "num_discos": 0,
     "num_files": 5,
