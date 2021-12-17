@@ -529,7 +529,7 @@ print(f"\nShared DBS: {len([x for x in SIZES['shared_dbs'] if x])}")
 print(f"\nMax team size: {max([x/max(1,SIZES['num_ms'][i]) for i,x in enumerate(SIZES['commiters'])]):.2f}")
 
 print(f"\nLanguages:\n"
-      f"\tnum languages{len(set(DATA['langs'][0]))}\n"
+      f"\tnum languages: {len(set(DATA['langs'][0]))}\n"
       f"\tlanguages: {DATA['langs'][1]},\n"
       f"\t>= 2 languages (without excluded): {len(list(filter(lambda x: len(x)>=2, DATA['langs'][1])))}/{len(DATA['langs'][1])}")
 
